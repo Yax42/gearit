@@ -38,6 +38,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -49,6 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="farseer\Collision\Collision.cs" />
     <Compile Include="farseer\Collision\Distance.cs" />
     <Compile Include="farseer\Collision\DynamicTree.cs" />
@@ -151,8 +155,9 @@
     <Compile Include="farseer\Factories\FixtureFactory.cs" />
     <Compile Include="farseer\Factories\JointFactory.cs" />
     <Compile Include="farseer\Factories\LinkFactory.cs" />
-    <Compile Include="farseer\Properties\AssemblyInfo.cs" />
     <Compile Include="farseer\Settings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.Designer.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\main.cs" />
     <Compile Include="src\robot\Piece.cs" />
@@ -184,8 +189,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="farseer\Properties\AppManifest.xml" />
-    <Content Include="farseer\Properties\WMAppManifest.xml" />
+    <None Include="app.config" />
+    <None Include="Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppManifest.xml" />
+    <Content Include="WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
