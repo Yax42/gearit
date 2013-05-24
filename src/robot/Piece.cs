@@ -15,6 +15,7 @@ namespace gearit
 	internal Piece(World world, Shape shape) :
 		base(world)
 	 {
+            BodyType = BodyType.Dynamic;
             _shape = shape;
             _fix = CreateFixture(_shape, null);
 	 }
