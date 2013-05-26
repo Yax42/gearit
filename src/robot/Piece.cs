@@ -9,8 +9,8 @@ namespace gearit
 {
     class Piece : Body
     {
-	Shape	    _shape;
-	Fixture	    _fix;
+	internal Shape	    _shape;
+	internal Fixture    _fix;
 
 	internal Piece(World world, Shape shape) :
 		base(world)
@@ -19,5 +19,17 @@ namespace gearit
             _shape = shape;
             _fix = CreateFixture(_shape, null);
 	 }
+
+	internal Piece(World world):
+		base(world)
+	 {
+            BodyType = BodyType.Dynamic;
+	 }
+
+	internal void initShapeAndFixture(Shape shape)
+	{
+            _shape = shape;
+            _fix = CreateFixture(_shape, null);
+	}
     }
 }
