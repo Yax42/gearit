@@ -1,0 +1,13 @@
+﻿[C:\Windows\assembly\NativeImages_v4.0.30319_32\Microsoft.VisualStu#\38d46e9e5c0cef9afb9fef82617ba3e6\Microsoft.VisualStudio.Shell.UI.Internal.ni.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x5c540000
+LINECOUNT=1
+3484,3296,1,1,[2 0] 1,0x569a6
+[SUB_END]
+[END]
+

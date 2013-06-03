@@ -1,0 +1,17 @@
+﻿[C:\Windows\system32\drivers\HDAudBus.sys]
+SIZE=0
+SAMPS=6
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff88008587000
+LINECOUNT=5
+0,0,1,1,[0 0] 1,0x196c
+5788,5580,2,1,[0 0] 2,0x196c
+5788,5580,1,1,[0 0] 1,0x3bac
+5788,5580,1,1,[0 0] 1,0xf524
+5788,5580,1,1,[0 0] 1,0x115a7
+[SUB_END]
+[END]
+

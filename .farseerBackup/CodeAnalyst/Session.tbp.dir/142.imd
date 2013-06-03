@@ -1,0 +1,13 @@
+﻿[C:\Windows\syswow64\MSCTF.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x75d60000
+LINECOUNT=1
+3484,1876,1,1,[0 0] 1,0x3a1d
+[SUB_END]
+[END]
+

@@ -1,0 +1,13 @@
+﻿[unknown module pid (2056)]
+SIZE=0
+SAMPS=2
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=2
+2056,2088,1,1,[2 0] 1,0x77997b12
+2056,2088,1,1,[0 0] 1,0x77ae31d0
+[SUB_END]
+[END]
+

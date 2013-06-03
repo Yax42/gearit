@@ -21,7 +21,7 @@ namespace gearit
             _world = world;
             _id = _robotIdCounter++;
             Console.WriteLine("new robot.");
-            _heart = new Heart();
+            _heart = new Heart(world);
 	    _pieces = new List<Piece>();
 	    _spots = new List<Spot>();
             //x_heart = new Heart();
@@ -30,16 +30,16 @@ namespace gearit
         public void addSpot(Spot spot)
         {
             _spots.Add(spot);
-            _world.AddJoint(spot);
         }
 
         public void addPiece(Piece piece)
         {
             _pieces.Add(piece);
-            //_world.AddPiece(piece);
-            /*
-             * Cette méthode n'existe pas. Du coup je me demande comment un Body est ajouté au world.
-            */
+        }
+
+        public Heart getHeart()
+        {
+            return (_heart);
         }
     }
 }

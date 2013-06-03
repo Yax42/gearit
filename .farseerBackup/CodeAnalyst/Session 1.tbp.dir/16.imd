@@ -1,0 +1,20 @@
+﻿[C:\Program Files (x86)\bNetSoul\bNetSoul.exe]
+SIZE=0
+SAMPS=8
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x400000
+LINECOUNT=8
+3464,3468,1,1,[0 0] 1,0xe4c78
+3464,3468,1,1,[0 0] 1,0xfbec0
+3464,3468,1,1,[1 0] 1,0xfd72a
+3464,3468,1,1,[0 0] 1,0xfd72d
+3464,3468,1,1,[0 0] 1,0xfd734
+3464,3468,1,1,[0 0] 1,0xfd7b4
+3464,3468,1,1,[0 0] 1,0x101aa0
+3464,3468,1,1,[0 0] 1,0x10a21f
+[SUB_END]
+[END]
+

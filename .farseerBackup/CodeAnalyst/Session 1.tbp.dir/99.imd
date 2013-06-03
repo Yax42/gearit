@@ -1,0 +1,15 @@
+﻿[C:\Windows\System32\drivers\watchdog.sys]
+SIZE=0
+SAMPS=4
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff88004743000
+LINECOUNT=3
+4,472,2,2,[1 0] 1,[2 0] 1,0x10be
+3168,1272,1,1,[0 0] 1,0x10be
+1372,1456,1,1,[0 0] 1,0x10dc
+[SUB_END]
+[END]
+

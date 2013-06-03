@@ -1,0 +1,13 @@
+﻿[C:\Program Files (x86)\AMD\CodeAnalyst\bin\CSSQuery.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x56c20000
+LINECOUNT=1
+3484,4752,1,1,[0 0] 1,0xa09b
+[SUB_END]
+[END]
+

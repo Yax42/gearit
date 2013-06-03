@@ -1,0 +1,15 @@
+﻿[C:\Windows\system32\drivers\ataport.SYS]
+SIZE=0
+SAMPS=3
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880013b3000
+LINECOUNT=3
+4,3128,1,1,[0 0] 1,0x56e9
+4,36,1,1,[2 0] 1,0x77f9
+5088,2156,1,1,[0 0] 1,0xe741
+[SUB_END]
+[END]
+

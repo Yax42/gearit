@@ -1,0 +1,13 @@
+﻿[C:\Windows\SysWOW64\sechost.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x7feffa70000
+LINECOUNT=1
+3700,3704,1,1,[0 0] 1,0x15c70
+[SUB_END]
+[END]
+

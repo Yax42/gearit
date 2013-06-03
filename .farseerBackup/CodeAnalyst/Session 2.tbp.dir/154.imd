@@ -1,0 +1,14 @@
+﻿[unknown module pid (1616)]
+SIZE=0
+SAMPS=3
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=3
+1616,2136,1,1,[2 0] 1,0x77a9f524
+1616,980,1,1,[2 0] 1,0x77ae415b
+1616,2136,1,1,[2 0] 1,0x77ae4290
+[SUB_END]
+[END]
+

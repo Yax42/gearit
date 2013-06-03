@@ -1,0 +1,13 @@
+﻿[C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Packages\dirprj.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x52420000
+LINECOUNT=1
+3484,3296,1,1,[2 0] 1,0x1592
+[SUB_END]
+[END]
+

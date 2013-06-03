@@ -1,0 +1,13 @@
+﻿[C:\Users\DANEEL\AppData\Local\Temp\_MEI34882\wx._core_.pyd]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x2e10000
+LINECOUNT=1
+3304,3812,1,1,[1 0] 1,0x73cb
+[SUB_END]
+[END]
+

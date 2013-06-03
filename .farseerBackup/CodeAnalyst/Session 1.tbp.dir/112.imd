@@ -1,0 +1,13 @@
+﻿[C:\Windows\assembly\NativeImages_v4.0.30319_32\System.Xml\bd2433e160ce2f19acc8ebe10babae8d\System.Xml.ni.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x5bb50000
+LINECOUNT=1
+3168,1272,1,1,[0 0] 1,0xc5780
+[SUB_END]
+[END]
+

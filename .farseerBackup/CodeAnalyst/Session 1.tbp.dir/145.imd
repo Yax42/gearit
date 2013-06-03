@@ -1,0 +1,13 @@
+﻿[C:\Windows\system32\drivers\luafv.sys]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff88006a00000
+LINECOUNT=1
+4,2368,1,1,[3 0] 1,0x1417
+[SUB_END]
+[END]
+

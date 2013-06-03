@@ -52,11 +52,11 @@ namespace FarseerPhysics.SamplesFramework
             _border = new Border(World, this, ScreenManager.GraphicsDevice.Viewport);
 
             _agent = new Agent(World, this, new Vector2(0f, 10f));
-            _spiders = new Spider[8];
+            _spiders = new Spider[80];
 
             for (int i = 0; i < _spiders.Length; i++)
             {
-                _spiders[i] = new Spider(World, this, new Vector2(0f, 8f - (i + 1) * 2f));
+                _spiders[i] = new Spider(World, this, new Vector2(0f, 8f - (i + 1) * 0.05f));
             }
 
             SetUserAgent(_agent.Body, 1000f, 400f);

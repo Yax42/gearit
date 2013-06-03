@@ -95,7 +95,7 @@ namespace FarseerPhysics.SamplesFramework
         public void Update(GameTime gameTime)
         {
             _s += gameTime.ElapsedGameTime.Milliseconds;
-            if (_s > 4000)
+            if (_s > 20000)
             {
                 _s = 0;
 

@@ -1,0 +1,14 @@
+﻿[C:\Users\DANEEL\AppData\Local\Google\Google Talk Plugin\googletalkplugin.dll]
+SIZE=0
+SAMPS=3
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x66290000
+LINECOUNT=2
+5396,5412,1,1,[2 0] 1,0x340fa4
+5396,5412,2,1,[0 0] 2,0x341061
+[SUB_END]
+[END]
+

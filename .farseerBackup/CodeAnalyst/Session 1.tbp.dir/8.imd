@@ -1,0 +1,13 @@
+﻿[C:\Program Files (x86)\Steam\bin\chromehtml.DLL]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x71e30000
+LINECOUNT=1
+6084,6088,1,1,[1 0] 1,0x2262
+[SUB_END]
+[END]
+

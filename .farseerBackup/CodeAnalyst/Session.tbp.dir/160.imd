@@ -1,0 +1,12 @@
+﻿[unknown module pid (1568)]
+SIZE=0
+SAMPS=1
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=1
+1568,4248,1,1,[2 0] 1,0x3f84ad6e
+[SUB_END]
+[END]
+
