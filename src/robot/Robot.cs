@@ -17,7 +17,7 @@ namespace gearit
         private List<Spot> _spots;
         private World _world;
 
-        public Robot(World world, PolygonShape shape)
+        public Robot(World world)
         {
             _world = world;
             _id = _robotIdCounter++;

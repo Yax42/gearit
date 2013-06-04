@@ -24,6 +24,7 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             _shape = shape;
             _fix = CreateFixture(_shape, null);
+            _fix.CollisionGroup = 0; // HERE ID OF THE ROBOT
 	 }
 
 	internal void initShapeAndFixture(Shape shape)
