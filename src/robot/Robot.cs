@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Collision.Shapes;
 
 namespace gearit
 {
@@ -16,7 +17,7 @@ namespace gearit
         private List<Spot> _spots;
         private World _world;
 
-        public Robot(World world)
+        public Robot(World world, PolygonShape shape)
         {
             _world = world;
             _id = _robotIdCounter++;

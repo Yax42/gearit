@@ -25,5 +25,11 @@ namespace gearit
             _shape = shape;
             _fix = CreateFixture(_shape, null);
 	 }
+
+	internal void initShapeAndFixture(Shape shape)
+	{
+            _shape = shape;
+            _fix = CreateFixture(_shape, null);
+	}
     }
 }

@@ -22,7 +22,8 @@ namespace gearit
 	}
 
         public void connect(World world, Piece p, Vector2 localAnchor)
-        {            world.AddJoint(new RevoluteJoint(_base, p, _baseAnchor, localAnchor));
+        {
+            world.AddJoint(new RevoluteJoint(_base, p, _baseAnchor, localAnchor));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace gearit
 {
     class Rod : Piece, IMotor
     {
-        private Motor _motor;
+      private Motor	 _motor;
       private float	 _size;
 
       public	Rod(World world, Spot spot, Vector2 start, float size) : 
