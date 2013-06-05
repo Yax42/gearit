@@ -9,7 +9,7 @@ using gearit.src.robot;
 
 namespace gearit
 {
-    class Spot : Motor
+    class Spot
     {
         Piece		_base;
 	Vector2		_baseAnchor;

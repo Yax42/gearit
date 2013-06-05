@@ -10,7 +10,7 @@ namespace gearit
 {
     class Robot
     {
-        private static int _robotIdCounter = 0;
+        private static int _robotIdCounter = 1;
         private Heart _heart;
         private int _id;
         private List<Piece> _pieces;
@@ -21,10 +21,10 @@ namespace gearit
         {
             _world = world;
             _id = _robotIdCounter++;
-            Console.WriteLine("new robot.");
-            _heart = new Heart(world);
+            Console.WriteLine("Robot created.");
 	    _pieces = new List<Piece>();
 	    _spots = new List<Spot>();
+            new Heart(this);
             //x_heart = new Heart();
         }
 
@@ -38,9 +38,19 @@ namespace gearit
             _pieces.Add(piece);
         }
 
+        public World getWorld()
+        {
+            return (_world);
+        }
+
         public Heart getHeart()
         {
             return (_heart);
+        }
+
+        public int getId()
+        {
+            return (_id);
         }
     }
 }

@@ -11,10 +11,10 @@ namespace gearit
   {
     private Vertices		_vertices; //Le PolygonShape sera composé de ces vertices.
 
-    public	Heart(World world) :
-          base(world)
+    public	Heart(Robot robot) :
+          base(robot)
     {
-        Console.WriteLine("new heart.");
+        Console.WriteLine("Heart created.");
         _vertices = PolygonTools.CreateRectangle(50f / 2, 50f / 2);
         _shape = new PolygonShape(_vertices, 50f);
         _fix = CreateFixture(_shape, null);
