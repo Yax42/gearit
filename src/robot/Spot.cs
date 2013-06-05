@@ -5,7 +5,6 @@ using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
-using gearit.src.robot;
 
 namespace gearit
 {

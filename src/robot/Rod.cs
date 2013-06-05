@@ -3,13 +3,11 @@ using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
-using gearit.src.robot;
 
 namespace gearit
 {
     class Rod : Piece
     {
-      private Motor	 _motor;
       private float	 _size;
 
       public	Rod(Robot robot, Spot spot, Vector2 start, float size) : 

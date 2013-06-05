@@ -156,10 +156,8 @@
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\main.cs" />
-    <Compile Include="src\robot\IMotor.cs" />
-    <Compile Include="src\robot\Motor.cs" />
+    <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
     <Compile Include="src\robot\Robot.cs" />
     <Compile Include="src\robot\Rod.cs" />

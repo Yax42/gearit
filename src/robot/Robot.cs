@@ -11,7 +11,6 @@ namespace gearit
     class Robot
     {
         private static int _robotIdCounter = 1;
-        private Heart _heart;
         private int _id;
         private List<Piece> _pieces;
         private List<Spot> _spots;
@@ -43,9 +42,9 @@ namespace gearit
             return (_world);
         }
 
-        public Heart getHeart()
+        public Piece getHeart()
         {
-            return (_heart);
+            return (_pieces.First());
         }
 
         public int getId()
