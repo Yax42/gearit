@@ -3,7 +3,6 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
-using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
