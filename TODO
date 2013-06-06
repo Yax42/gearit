@@ -1,0 +1,5 @@
+open HelloWorld XNA.sln and use the two bodies in it to test and understand:
+	- RevoluteJoint
+	- LineJoint
+	- SliderJoint
+	- PrismaticJoint
