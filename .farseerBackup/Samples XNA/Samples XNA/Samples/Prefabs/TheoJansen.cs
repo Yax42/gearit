@@ -242,7 +242,7 @@ namespace FarseerPhysics.SamplesFramework
             vertices.Add(p3);
             _leftLeg =
                 new Sprite(_screen.ScreenManager.Assets.TextureFromVertices(vertices, MaterialType.Blank,
-                                                                            Color.IndianRed * 0.8f, 1f));
+                                                                            Color.Blue * 0.8f, 1f));
 
             vertices[0] = Vector2.Zero;
             vertices[1] = p4;
