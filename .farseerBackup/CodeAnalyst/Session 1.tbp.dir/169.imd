@@ -1,0 +1,14 @@
+﻿[C:\Windows\syswow64\ole32.dll]
+SIZE=0
+SAMPS=2
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x754f0000
+LINECOUNT=2
+3484,3296,1,1,[0 0] 1,0x1eb1a
+3484,3296,1,1,[2 0] 1,0x56f43
+[SUB_END]
+[END]
+

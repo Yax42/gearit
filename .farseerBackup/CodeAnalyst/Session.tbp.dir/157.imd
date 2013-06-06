@@ -1,0 +1,13 @@
+﻿[unknown module pid (1360)]
+SIZE=0
+SAMPS=2
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=2
+1360,1720,1,1,[1 0] 1,0x773e27e1
+1360,1720,1,1,[2 0] 1,0x77ae33e0
+[SUB_END]
+[END]
+

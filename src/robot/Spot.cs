@@ -4,15 +4,25 @@ using System.Linq;
 using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
-    class Spot : RevoluteJoint
+    class Spot
     {
-	public Spot(Piece p1, Piece p2, Vector2 localAnchorA, Vector2 localAnchorB) :
-          base(p1, p2, localAnchorA, localAnchorB)
+        Piece		_base;
+	Vector2		_baseAnchor;
+
+	public Spot(Piece p, Vector2 anchor)
 	{
-            CollideConnected = true;
+	  _base = p;
+	  _baseAnchor = anchor;
+           // CollideConnected = true;
 	}
+
+        public void connect(World world, Piece p, Vector2 localAnchor)
+        {
+            world.AddJoint(new RevoluteJoint(_base, p, _baseAnchor, localAnchor));
+        }
     }
 }

@@ -1,0 +1,13 @@
+﻿[unknown module pid (1004)]
+SIZE=0
+SAMPS=2
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=2
+1004,1736,1,1,[0 0] 1,0x77ae5055
+1004,4772,1,1,[2 0] 1,0x77ae5055
+[SUB_END]
+[END]
+

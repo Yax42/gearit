@@ -1,0 +1,19 @@
+﻿[C:\Windows\assembly\NativeImages_v4.0.30319_32\PresentationFramewo#\bcec0e7db1d027328cc8cd702185fa66\PresentationFramework.ni.dll]
+SIZE=0
+SAMPS=7
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x59700000
+LINECOUNT=7
+3484,3296,1,1,[2 0] 1,0x1c7ed8
+3484,1876,1,1,[0 0] 1,0x2c6880
+3484,1876,1,1,[0 0] 1,0x2c6881
+3484,3296,1,1,[1 0] 1,0x2d50a5
+3484,3296,1,1,[2 0] 1,0x2e60cb
+3484,3296,1,1,[0 0] 1,0x2e64ed
+3484,3296,1,1,[1 0] 1,0x2e81f5
+[SUB_END]
+[END]
+

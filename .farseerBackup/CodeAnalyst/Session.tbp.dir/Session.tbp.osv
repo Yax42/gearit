@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<OSV version="1" >
+	<Entry hdr="Target Application Info" >
+		<Entry hdr="PID : 5788" val="C:\Users\DANEEL\Documents\GitHub\gearit\.farseerBackup\Samples XNA\Samples XNA\bin\x86\Debug\Samples XNA.exe" >
+			<Entry hdr="TID : 2992" val="21.73 sec" />
+			<Entry hdr="TID : 3016" val="21.743 sec" />
+			<Entry hdr="TID : 3136" val="21.756 sec" />
+			<Entry hdr="TID : 3904" val="21.474 sec" />
+			<Entry hdr="TID : 4320" val="21.297 sec" />
+			<Entry hdr="TID : 4336" val="21.457 sec" />
+			<Entry hdr="TID : 4748" val="21.258 sec" />
+			<Entry hdr="TID : 5428" val="21.676 sec" />
+			<Entry hdr="TID : 5580" val="22.264 sec" />
+			<Entry hdr="TID : 5736" val="21.197 sec" />
+			<Entry hdr="TID : 5740" val="21.258 sec" />
+			<Entry hdr="TID : 5800" val="21.258 sec" />
+			<Entry hdr="TID : 6100" val="21.729 sec" />
+		</Entry>
+	</Entry>
+	<Entry hdr="System-wide Profile" >
+		<Entry hdr="Number of Processes" val="53  [View Processes]" lnk = "proc:Session.tbp" />
+		<Entry hdr="Number of Modules" val="176  [View Modules]" lnk = "sys:Session.tbp" />
+	</Entry>
+</OSV>

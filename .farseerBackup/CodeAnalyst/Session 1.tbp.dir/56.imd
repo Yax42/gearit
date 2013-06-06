@@ -1,0 +1,13 @@
+﻿[C:\Windows\SysWOW64\atiumd64.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x7fee7ef0000
+LINECOUNT=1
+1284,172,1,1,[2 0] 1,0x54fb2
+[SUB_END]
+[END]
+

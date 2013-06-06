@@ -1,0 +1,14 @@
+﻿[C:\Windows\system32\DRIVERS\lltdio.sys]
+SIZE=0
+SAMPS=2
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff88006a58000
+LINECOUNT=2
+4,2812,1,1,[0 0] 1,0x2502
+5088,2156,1,1,[0 0] 1,0x28be
+[SUB_END]
+[END]
+

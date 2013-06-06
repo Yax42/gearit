@@ -1,0 +1,13 @@
+﻿[C:\Windows\SysWOW64\webio.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x7fef9a80000
+LINECOUNT=1
+3700,3704,1,1,[1 0] 1,0x103d
+[SUB_END]
+[END]
+

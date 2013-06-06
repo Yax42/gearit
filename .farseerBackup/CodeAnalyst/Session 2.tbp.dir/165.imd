@@ -1,0 +1,17 @@
+﻿[unknown module pid (732)]
+SIZE=0
+SAMPS=6
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=6
+732,1104,1,1,[2 0] 1,0x77ad9e87
+732,1104,1,1,[2 0] 1,0x77adea60
+732,2108,1,1,[1 0] 1,0x77ae155a
+732,1104,1,1,[2 0] 1,0x77ae2f55
+732,2108,1,1,[0 0] 1,0x77ae4270
+732,1104,1,1,[2 0] 1,0x77ae50d8
+[SUB_END]
+[END]
+

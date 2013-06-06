@@ -11,9 +11,11 @@ namespace gearit
   {
     public static void Main()
     {
-        World myWorld = new World(new Vector2(0, 9.82f));
+        World		world = new World(new Vector2(0, 9.82f));
+
+        Robot		wallE = new Robot(world);
+	///Piece		arm1 = new Rod(world, wallE.getHeart(), new Vector2(0, 0), 30);
         //BodyFactory.CreateRectangle(myWorld, 50f, 50f, 50f);
-        Heart myHeart = new Heart(myWorld);
         //PolygonShape polygon = new PolygonShape(vertices, 1);
         //Heart myHeart = new Heart(myWorld, polygon);
         //Robot WallE = new Robot(myWorld, polygon);

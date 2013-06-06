@@ -1,0 +1,15 @@
+﻿[C:\Windows\system32\DRIVERS\mouhid.sys]
+SIZE=0
+SAMPS=3
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880097ee000
+LINECOUNT=3
+5180,4020,1,1,[0 0] 1,0x27b5
+3168,1272,1,1,[0 0] 1,0x3b8b
+0,0,1,1,[0 0] 1,0x3c68
+[SUB_END]
+[END]
+

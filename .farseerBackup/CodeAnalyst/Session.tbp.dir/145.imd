@@ -1,0 +1,13 @@
+﻿[C:\Windows\syswow64\SETUPAPI.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x76f30000
+LINECOUNT=1
+6084,3880,1,1,[1 0] 1,0xb8dc
+[SUB_END]
+[END]
+

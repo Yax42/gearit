@@ -1,0 +1,14 @@
+﻿[C:\Windows\SysWOW64\atiuxp64.dll]
+SIZE=0
+SAMPS=2
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x7fef88d0000
+LINECOUNT=2
+2432,3096,1,1,[2 0] 1,0xc8d8
+2432,3096,1,1,[2 0] 1,0xc8da
+[SUB_END]
+[END]
+

@@ -1,0 +1,14 @@
+﻿[C:\Windows\system32\DRIVERS\pacer.sys]
+SIZE=0
+SAMPS=2
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880017d3000
+LINECOUNT=2
+5788,5580,1,1,[0 0] 1,0x114e
+4,2812,1,1,[0 0] 1,0x1172
+[SUB_END]
+[END]
+

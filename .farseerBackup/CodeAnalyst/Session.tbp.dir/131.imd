@@ -1,0 +1,15 @@
+﻿[C:\Windows\system32\drivers\i8042prt.sys]
+SIZE=0
+SAMPS=14
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff8800939b000
+LINECOUNT=3
+4,2812,1,1,[0 0] 1,0x223c
+5788,5580,12,1,[0 0] 12,0x223c
+0,0,1,1,[0 0] 1,0xa4a3
+[SUB_END]
+[END]
+

@@ -1,0 +1,14 @@
+﻿[C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\comctl32.dll]
+SIZE=0
+SAMPS=2
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x7fefc940000
+LINECOUNT=2
+3084,3260,1,1,[2 0] 1,0x266f1
+3084,4260,1,1,[0 0] 1,0x267a3
+[SUB_END]
+[END]
+

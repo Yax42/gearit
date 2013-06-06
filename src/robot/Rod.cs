@@ -10,10 +10,11 @@ namespace gearit
     {
       private float	 _size;
 
-      public	Rod(World world, FarseerPhysics.Dynamics.Body body, Vector2 start, float size) : 
-          base(world, new EdgeShape(start, new Vector2(10, 10) + new Vector2(0, size)))
+      public	Rod(Robot robot, Spot spot, Vector2 start, float size) : 
+          base(robot, new EdgeShape(start, new Vector2(10, 10) + new Vector2(0, size)))
       {
           _size = size;
+          spot.connect(robot.getWorld(), this, new Vector2(0, 0));
           Console.WriteLine("Rod created.");
       }
     }

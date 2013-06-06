@@ -1,0 +1,16 @@
+﻿[C:\Windows\system32\drivers\fileinfo.sys]
+SIZE=0
+SAMPS=4
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880019e4000
+LINECOUNT=4
+4,6016,1,1,[2 0] 1,0x10b8
+1284,5568,1,1,[2 0] 1,0x199c
+1004,1736,1,1,[2 0] 1,0x23ba
+5788,5580,1,1,[0 0] 1,0x7e58
+[SUB_END]
+[END]
+

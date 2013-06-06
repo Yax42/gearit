@@ -1,0 +1,13 @@
+﻿[C:\Windows\WinSxS\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.5570_none_08e72cf3a83ac624\MSVCR90.dll]
+SIZE=0
+SAMPS=1
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x738a0000
+LINECOUNT=1
+3084,4272,1,1,[2 0] 1,0x1ecae
+[SUB_END]
+[END]
+

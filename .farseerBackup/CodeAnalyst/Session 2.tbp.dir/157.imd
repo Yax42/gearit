@@ -1,0 +1,15 @@
+﻿[unknown module pid (324)]
+SIZE=0
+SAMPS=4
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=4
+324,2408,1,1,[0 0] 1,0x77ad6f30
+324,440,1,1,[2 0] 1,0x77ae1670
+324,5492,1,1,[1 0] 1,0x77ae343d
+324,5492,1,1,[1 0] 1,0x77ae4f3a
+[SUB_END]
+[END]
+

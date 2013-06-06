@@ -1,0 +1,21 @@
+﻿[C:\Windows\system32\drivers\fltmgr.sys]
+SIZE=0
+SAMPS=10
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff88001774000
+LINECOUNT=9
+4,104,1,1,[1 0] 1,0x197c
+4,104,1,1,[2 0] 1,0x1b74
+4,104,1,1,[0 0] 1,0x3ae2
+5088,2156,1,1,[0 0] 1,0x466b
+4,5224,1,1,[2 0] 1,0x53e0
+5088,2156,2,1,[0 0] 2,0x70fc
+4,5224,1,1,[2 0] 1,0x8dee
+3084,5680,1,1,[0 0] 1,0x222b9
+3484,3296,1,1,[2 0] 1,0x23186
+[SUB_END]
+[END]
+

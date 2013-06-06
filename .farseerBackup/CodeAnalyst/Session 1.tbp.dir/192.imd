@@ -1,0 +1,13 @@
+﻿[unknown module pid (5908)]
+SIZE=0
+SAMPS=2
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=2
+5908,4644,1,1,[2 0] 1,0xf0e23c1
+5908,4644,1,1,[2 0] 1,0xf0e57bd
+[SUB_END]
+[END]
+

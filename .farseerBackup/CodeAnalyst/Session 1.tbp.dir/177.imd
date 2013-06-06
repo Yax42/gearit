@@ -1,0 +1,14 @@
+﻿[unknown module pid (1372)]
+SIZE=0
+SAMPS=3
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=3
+1372,1456,1,1,[2 0] 1,0x7799a551
+1372,1456,1,1,[0 0] 1,0x779a594a
+1372,1456,1,1,[1 0] 1,0x77ae5852
+[SUB_END]
+[END]
+

@@ -1,0 +1,14 @@
+﻿[C:\Windows\system32\drivers\HECIx64.sys]
+SIZE=0
+SAMPS=4
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880085ab000
+LINECOUNT=2
+3168,1272,3,1,[0 0] 3,0x1024
+3168,1272,1,1,[0 0] 1,0x5370
+[SUB_END]
+[END]
+

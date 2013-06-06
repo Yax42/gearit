@@ -1,0 +1,12 @@
+﻿[unknown module pid (2220)]
+SIZE=0
+SAMPS=1
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=1
+2220,5516,1,1,[2 0] 1,0x7ec3f75
+[SUB_END]
+[END]
+

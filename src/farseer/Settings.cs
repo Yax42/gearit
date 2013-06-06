@@ -94,7 +94,7 @@ namespace FarseerPhysics
         /// We have both FPE and Box2D filtering in the engine. If you are upgrading
         /// from earlier versions of FPE, set this to true.
         /// </summary>
-        public static bool UseFPECollisionCategories;
+        public static bool UseFPECollisionCategories = true; //Modification from gearit
 
         /// <summary>
         /// Conserve memory makes sure that objects are used by reference instead of cloned.

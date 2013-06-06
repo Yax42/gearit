@@ -1,0 +1,12 @@
+﻿[unknown module pid (580)]
+SIZE=0
+SAMPS=1
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=1
+580,728,1,1,[1 0] 1,0x77aaa97c
+[SUB_END]
+[END]
+

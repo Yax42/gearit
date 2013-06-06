@@ -1,0 +1,17 @@
+﻿[C:\Windows\system32\DRIVERS\rspndr.sys]
+SIZE=0
+SAMPS=5
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0xfffff880094bb000
+LINECOUNT=5
+4,2812,1,1,[0 0] 1,0x297c
+4,2812,1,1,[0 0] 1,0x2981
+4,2812,1,1,[0 0] 1,0x29a6
+4,2812,1,1,[0 0] 1,0x29e4
+5088,2156,1,1,[0 0] 1,0x29e4
+[SUB_END]
+[END]
+

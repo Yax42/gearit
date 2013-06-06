@@ -1,0 +1,12 @@
+﻿[unknown module pid (1944)]
+SIZE=0
+SAMPS=1
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=1
+1944,2500,1,1,[2 0] 1,0x61702b9f
+[SUB_END]
+[END]
+

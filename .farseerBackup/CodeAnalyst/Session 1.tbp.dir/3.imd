@@ -1,0 +1,15 @@
+﻿[C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\Microsoft\XNA Game Studio 4.0\ProjectAggregator2.dll]
+SIZE=0
+SAMPS=4
+ModuleType=1
+NUMSUBSECTIONS=1
+
+[SUB]
+BASEADDR=0x52bd0000
+LINECOUNT=3
+3484,3296,1,1,[1 0] 1,0x26c7
+3484,3296,1,1,[1 0] 1,0x2747
+3484,3296,2,1,[1 0] 2,0x4408
+[SUB_END]
+[END]
+

@@ -1,0 +1,12 @@
+﻿[unknown module pid (3516)]
+SIZE=0
+SAMPS=1
+ModuleType=5
+NUMSUBSECTIONS=1
+
+[SUB]
+LINECOUNT=1
+3516,4128,1,1,[2 0] 1,0x773c1228
+[SUB_END]
+[END]
+
