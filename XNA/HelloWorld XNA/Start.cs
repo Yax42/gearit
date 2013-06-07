@@ -3,6 +3,7 @@ using FarseerPhysics.Factories;
 using FarseerPhysics.Common;
 using FarseerPhysics.DebugViews;
 using FarseerPhysics.Collision.Shapes;
+using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -27,9 +28,15 @@ namespace FarseerPhysics.HelloWorld
         private Body _circleBody;
         private Body _groundBody;
 
+        // Cercle voiture
         private Body _circle;
         private Texture2D _circleTex;
         private CircleShape _circleShape;
+
+        // Cercle voiture
+        private Body _circle2;
+        private Texture2D _circleTex2;
+        private CircleShape _circleShape2;
 
         Vertices vertices;
 
@@ -52,6 +59,12 @@ namespace FarseerPhysics.HelloWorld
         // New Asset
         private AssetCreator _asset;
 
+        // Revolute Joint
+        private RevoluteJoint _motorJoint;
+        private RevoluteJoint _motorJoint2;
+
+        private PrismaticJoint _motorPris;
+        private SliderJoint _motorSlider;
         /*// physics simulator debug view
         DebugViewXNA _debugView;*/
 
@@ -100,6 +113,8 @@ namespace FarseerPhysics.HelloWorld
             _asset = new AssetCreator(GraphicsDevice);
             _asset.LoadContent(Content);
 
+            FarseerPhysics.Settings.UseFPECollisionCategories = true;
+
             // Load sprites
             _circleSprite = Content.Load<Texture2D>("circleSprite"); //  96px x 96px => 1.5m x 1.5m
             _groundSprite = Content.Load<Texture2D>("groundSprite"); // 512px x 64px =>   8m x 1m
@@ -111,11 +126,11 @@ namespace FarseerPhysics.HelloWorld
 
             // Create the circle fixture
             
-            _circleBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, circlePosition);
+            _circleBody = BodyFactory.CreateCircle(_world, 96f / (2f * MeterInPixels), 1f, circlePosition + new Vector2(10f, 10f));
             _circleBody.BodyType = BodyType.Dynamic;
 
             // Create new circle
-            _circleShape = new CircleShape(96f / (2f * MeterInPixels), 1f);
+            _circleShape = new CircleShape(64f / (2f * MeterInPixels), 10f);
             //_circleShape.Position = circlePosition;
             //_circleShape.MassData.Mass = 500f;
 
@@ -125,9 +140,25 @@ namespace FarseerPhysics.HelloWorld
             Fixture fix = _circle.CreateFixture(_circleShape);
             fix.Friction = 0.5f;
             fix.Restitution = 1f;
-
+            fix.CollisionGroup = 42;
 
             _circleTex = _asset.TextureFromShape(_circleShape, MaterialType.Blank, Color.Red, 1f);
+
+            // Create new circle 2
+            _circleShape2 = new CircleShape(64f / (2f * MeterInPixels), 10f);
+            //_circleShape.Position = circlePosition;
+            //_circleShape.MassData.Mass = 500f;
+
+            _circle2 = new Body(_world);
+            _circle2.BodyType = BodyType.Dynamic;
+            _circle2.Position = circlePosition;
+            Fixture fix2 = _circle2.CreateFixture(_circleShape2);
+            fix2.Friction = 0.5f;
+            fix2.Restitution = 1f;
+            fix2.CollisionGroup = 42;
+
+
+            _circleTex2 = _asset.TextureFromShape(_circleShape2, MaterialType.Blank, Color.Gray, 1f);
 
             // Create Square
             vertices = new Vertices(8);
@@ -138,13 +169,14 @@ namespace FarseerPhysics.HelloWorld
             vertices.Add(new Vector2(-1.15f, 0.9f));
             vertices.Add(new Vector2(-1.5f, 0.2f));
 
-            _squareShape = new PolygonShape(vertices, 1);
+            _squareShape = new PolygonShape(vertices, 20f);
 
             _square = new Body(_world);
+            _square.SetTransform(circlePosition, 3f);
             _square.BodyType = BodyType.Dynamic;
             _square.Position = circlePosition;
             _square.CreateFixture(_squareShape);
-
+            _square.CollisionGroup = 42;
             _squareTex = _asset.TextureFromVertices(vertices, MaterialType.Blank, Color.Blue * 0.8f, 1f);
 
             // Give it some bounce and friction
@@ -180,6 +212,39 @@ namespace FarseerPhysics.HelloWorld
             _wallRight.IsStatic = true;
             _wallRight.Restitution = 0.3f;
             _wallRight.Friction = 0.5f;
+
+            // Joint body 1
+            _motorJoint = new RevoluteJoint(_circle, _square, _circle.GetLocalPoint(_square.Position), new Vector2(1f, -0.5f));
+            _motorJoint.CollideConnected = false;
+            _motorJoint.MotorSpeed = 0f;
+            _motorJoint.MaxMotorTorque = 400f;
+            
+            _motorJoint.MotorEnabled = true;
+            _world.AddJoint(_motorJoint);
+
+            // Joint body 2
+            _motorPris = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f), new Vector2(1f, 0f));
+            _motorPris.CollideConnected = false;
+            _motorPris.MaxMotorForce = 400f;
+            _motorPris.UpperLimit = 20f;
+            _motorPris.LowerLimit = -10f;
+            _motorPris.MotorEnabled = true;
+            _motorPris.MotorSpeed = 0f;
+            _motorPris.Enabled = true;
+            _world.AddJoint(_motorPris);
+
+            _motorSlider = new SliderJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(1f, 0f), 2f, 10f);
+            _motorSlider.Enabled = true;
+            _motorSlider.CollideConnected = false;
+            //_world.AddJoint(_motorSlider);
+
+            /*_motorJoint2 = new RevoluteJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-1f, 0f));
+            _motorJoint2.CollideConnected = false;
+            _motorJoint2.MotorSpeed = -5.0f;
+            _motorJoint2.MaxMotorTorque = 400f;
+
+            _motorJoint2.MotorEnabled = true;
+            _world.AddJoint(_motorJoint2);*/
 
             /*// create and configure the debug view
             _debugView = new DebugViewXNA(_world);
@@ -260,13 +325,47 @@ namespace FarseerPhysics.HelloWorld
             {
                 // We make it possible to rotate the circle body
                 if (state.IsKeyDown(Keys.Q))
+                {
                     _circleBody.ApplyTorque(-10);
+                    _motorJoint.MotorSpeed = 5.0f;
+                    //_motorJoint2.MotorSpeed = 5.0f;
+                    _motorPris.MotorSpeed = 5.0f;
+                }
+                
+                if (state.IsKeyDown(Keys.Right))
+                {
+                    _motorJoint.MotorSpeed = -5.0f;
+                    //_motorJoint2.MotorSpeed = -5.0f;
+                    _motorPris.MotorSpeed = -5.0f;
+                }
+
+                // We make it possible to rotate the circle body
+                if (state.IsKeyDown(Keys.Left))
+                {
+                    _motorJoint.MotorSpeed = 5.0f;
+                    //_motorJoint2.MotorSpeed = 5.0f;
+                    _motorPris.MotorSpeed = 5.0f;
+                }
 
                 if (state.IsKeyDown(Keys.D))
+                {
                     _circleBody.ApplyTorque(10);
+                    _motorJoint.MotorSpeed = -5.0f;
+                    //_motorJoint2.MotorSpeed = -5.0f;
+                    _motorPris.MotorSpeed = -5.0f;
+                }
+
+                if (state.IsKeyDown(Keys.S))
+                {
+                    _motorJoint.MotorSpeed = 0f;
+                    //_motorJoint2.MotorSpeed = 0f;
+                }
 
                 if (state.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
+                {
                     _circleBody.ApplyLinearImpulse(new Vector2(0, -10));
+                    _square.ApplyLinearImpulse(new Vector2(0, -500));
+                }
             }
 
             if (state.IsKeyDown(Keys.Escape))
@@ -291,6 +390,9 @@ namespace FarseerPhysics.HelloWorld
             Vector2 circlePos2 = _circle.Position * MeterInPixels;
             float circleRotation2 = _circle.Rotation;
 
+            Vector2 circlePos3 = _circle2.Position * MeterInPixels;
+            float circleRotation3 = _circle2.Rotation;
+
             Vector2 squarePos = _square.Position * MeterInPixels;
             float squareRotation = _square.Rotation;
 
@@ -306,7 +408,8 @@ namespace FarseerPhysics.HelloWorld
             // Align sprite center to body position
             Vector2 circleOrigin = new Vector2(_circleSprite.Width / 2f, _circleSprite.Height / 2f);
             Vector2 circleOrigin2 = new Vector2(_circleTex.Width / 2f, _circleTex.Height / 2f);
-            Vector2 squareOrigin = new Vector2(_squareTex.Width / 2f, _squareTex.Height / 2f);
+            Vector2 circleOrigin3 = new Vector2(_circleTex2.Width / 2f, _circleTex2.Height / 2f);
+            Vector2 squareOrigin = new Vector2(_squareTex.Width / 2f, _squareTex.Height / 3f);
 
             _batch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
 
@@ -314,6 +417,8 @@ namespace FarseerPhysics.HelloWorld
             _batch.Draw(_circleSprite, circlePos, null, Color.White, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
 
             _batch.Draw(_circleTex, circlePos2, null, Color.White, circleRotation2, circleOrigin2, 1f, SpriteEffects.None, 0f);
+
+            _batch.Draw(_circleTex2, circlePos3, null, Color.White, circleRotation3, circleOrigin3, 1f, SpriteEffects.None, 0f);
 
             _batch.Draw(_squareTex, squarePos, null, Color.White, squareRotation, squareOrigin, 1f, SpriteEffects.None, 0f);
 
