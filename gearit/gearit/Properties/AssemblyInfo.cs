@@ -1,27 +1,28 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-
-[assembly: AssemblyTitle("Farseer Physics XNA")]
-[assembly: AssemblyProduct("Farseer Physics XNA")]
+[assembly: AssemblyTitle("gearit")]
+[assembly: AssemblyProduct("gearit")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("Farseer Physics Engine")]
-[assembly: AssemblyCopyright("Copyright © Farseer Physics 2011")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-
+// COM, set the ComVisible attribute to true on that type. Only Windows
+// assemblies support COM.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-
-[assembly: Guid("29db249d-55cf-4319-a207-a561789fe8eb")]
+// On Windows, the following GUID is for the ID of the typelib if this
+// project is exposed to COM. On other platforms, it unique identifies the
+// title storage container when deploying this assembly to the device.
+[assembly: Guid("537e1cd6-732a-4473-90ca-637163ca3c19")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,5 +31,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-
-[assembly: AssemblyVersion("3.3.*")]
+[assembly: AssemblyVersion("1.0.0.0")]

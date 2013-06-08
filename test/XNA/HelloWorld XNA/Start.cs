@@ -63,6 +63,13 @@ namespace FarseerPhysics.HelloWorld
         private RevoluteJoint _motorJoint;
         private RevoluteJoint _motorJoint2;
 
+	// Piston Joint
+        private RevoluteJoint	_revPis;
+        private PrismaticJoint	_prisPis;
+        private LineJoint	_linePis;
+
+
+
         private PrismaticJoint _motorPris;
         private SliderJoint _motorSlider;
         /*// physics simulator debug view
@@ -223,7 +230,25 @@ namespace FarseerPhysics.HelloWorld
             _world.AddJoint(_motorJoint);
 
             // Joint body 2
-            _motorPris = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f), new Vector2(1f, 0f));
+            _prisPis = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(0f, 0f), new Vector2(0f, 0f));
+            _prisPis.CollideConnected = false;
+            _prisPis.MaxMotorForce = 800f;
+            _prisPis.UpperLimit = 0f;
+            _prisPis.LowerLimit = 0f;
+            _prisPis.LimitEnabled = true;
+            _prisPis.MotorEnabled = true;
+            _prisPis.MotorSpeed = 0f;
+            _prisPis.Enabled = true;
+            _world.AddJoint(_prisPis);
+
+            _linePis = new LineJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f));
+            _world.AddJoint(_linePis);
+            _linePis.MotorEnabled = true;
+            _linePis.MotorSpeed = 0f;
+            _linePis.Enabled = true;
+            _linePis.MaxMotorTorque = 400f;
+
+            /*_motorPris = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f), new Vector2(1f, 0f));
             _motorPris.CollideConnected = false;
             _motorPris.MaxMotorForce = 400f;
             _motorPris.UpperLimit = 20f;
@@ -237,6 +262,7 @@ namespace FarseerPhysics.HelloWorld
             _motorSlider.Enabled = true;
             _motorSlider.CollideConnected = false;
             //_world.AddJoint(_motorSlider);
+	    */
 
             /*_motorJoint2 = new RevoluteJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-1f, 0f));
             _motorJoint2.CollideConnected = false;
@@ -302,72 +328,18 @@ namespace FarseerPhysics.HelloWorld
         {
             KeyboardState state = Keyboard.GetState();
 
-            // Switch between circle body and camera control
-            if (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift))
-            {
-                // Move camera
-                if (state.IsKeyDown(Keys.Q))
-                    _cameraPosition.X += 1.5f;
-
-                if (state.IsKeyDown(Keys.D))
-                    _cameraPosition.X -= 1.5f;
-
-                if (state.IsKeyDown(Keys.Z))
-                    _cameraPosition.Y += 1.5f;
-
-                if (state.IsKeyDown(Keys.S))
-                    _cameraPosition.Y -= 1.5f;
-
-                _view = Matrix.CreateTranslation(new Vector3(_cameraPosition - _screenCenter, 0f)) *
-                        Matrix.CreateTranslation(new Vector3(_screenCenter, 0f));
-            }
-            else
-            {
-                // We make it possible to rotate the circle body
-                if (state.IsKeyDown(Keys.Q))
-                {
-                    _circleBody.ApplyTorque(-10);
-                    _motorJoint.MotorSpeed = 5.0f;
-                    //_motorJoint2.MotorSpeed = 5.0f;
-                    _motorPris.MotorSpeed = 5.0f;
-                }
-                
-                if (state.IsKeyDown(Keys.Right))
-                {
-                    _motorJoint.MotorSpeed = -5.0f;
-                    //_motorJoint2.MotorSpeed = -5.0f;
-                    _motorPris.MotorSpeed = -5.0f;
-                }
-
-                // We make it possible to rotate the circle body
-                if (state.IsKeyDown(Keys.Left))
-                {
-                    _motorJoint.MotorSpeed = 5.0f;
-                    //_motorJoint2.MotorSpeed = 5.0f;
-                    _motorPris.MotorSpeed = 5.0f;
-                }
-
-                if (state.IsKeyDown(Keys.D))
-                {
-                    _circleBody.ApplyTorque(10);
-                    _motorJoint.MotorSpeed = -5.0f;
-                    //_motorJoint2.MotorSpeed = -5.0f;
-                    _motorPris.MotorSpeed = -5.0f;
-                }
-
-                if (state.IsKeyDown(Keys.S))
-                {
-                    _motorJoint.MotorSpeed = 0f;
-                    //_motorJoint2.MotorSpeed = 0f;
-                }
-
-                if (state.IsKeyDown(Keys.Space) && _oldKeyState.IsKeyUp(Keys.Space))
-                {
-                    _circleBody.ApplyLinearImpulse(new Vector2(0, -10));
-                    _square.ApplyLinearImpulse(new Vector2(0, -500));
-                }
-            }
-
+                if (state.IsKeyDown(Keys.W))
+		    _linePis.MotorSpeed = -10f;
+                else if (state.IsKeyDown(Keys.S))
+		    _linePis.MotorSpeed = 10f;
+                else
+		    _linePis.MotorSpeed = 0f;
+                if (state.IsKeyDown(Keys.A))
+                    _prisPis.MotorSpeed = -10f;
+                else if (state.IsKeyDown(Keys.D))
+                    _prisPis.MotorSpeed = 10f;
+                else
+                    _prisPis.MotorSpeed = 0f;
             if (state.IsKeyDown(Keys.Escape))
                 Exit();
 

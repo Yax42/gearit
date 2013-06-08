@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
+using Microsoft.Xna.Framework;
 
 namespace gearit
 {
@@ -50,6 +51,17 @@ namespace gearit
         public int getId()
         {
             return (_id);
+        }
+
+        public Piece getPiece(Vector2 p)
+        {
+            for (int i = 1; i < _pieces.Count; i++)
+                if (_pieces[i].isRod() && _pieces[i].isOn(p))
+                    return (_pieces[i]);
+            for (int i = 1; i < _pieces.Count; i++)
+                if (_pieces[i].isRod() == false && _pieces[i].isOn(p))
+                    return (_pieces[i]);
+            return (getHeart());
         }
     }
 }
