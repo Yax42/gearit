@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{5CE29E4D-953D-4110-9464-09E85485A785}</ProjectGuid>
+    <ProjectGuid>{33102092-8FDB-4B8D-BC6C-68C69B678873}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -14,7 +14,7 @@
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>HiDef</XnaProfile>
-    <XnaCrossPlatformGroupID>a708ad74-7be5-440d-861f-c53a4d0b3bcf</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>ddd0bac3-4ac3-4e66-a90d-c012fa08cfb5</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
@@ -110,6 +110,116 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="src\farseer\Collision\Collision.cs" />
+    <Compile Include="src\farseer\Collision\Distance.cs" />
+    <Compile Include="src\farseer\Collision\DynamicTree.cs" />
+    <Compile Include="src\farseer\Collision\DynamicTreeBroadPhase.cs" />
+    <Compile Include="src\farseer\Collision\IBroadPhase.cs" />
+    <Compile Include="src\farseer\Collision\QuadTree.cs" />
+    <Compile Include="src\farseer\Collision\QuadTreeBroadPhase.cs" />
+    <Compile Include="src\farseer\Collision\Shapes\CircleShape.cs" />
+    <Compile Include="src\farseer\Collision\Shapes\EdgeShape.cs" />
+    <Compile Include="src\farseer\Collision\Shapes\LoopShape.cs" />
+    <Compile Include="src\farseer\Collision\Shapes\PolygonShape.cs" />
+    <Compile Include="src\farseer\Collision\Shapes\Shape.cs" />
+    <Compile Include="src\farseer\Collision\TimeOfImpact.cs" />
+    <Compile Include="src\farseer\Common\ConvexHull\ChainHull.cs" />
+    <Compile Include="src\farseer\Common\ConvexHull\GiftWrap.cs" />
+    <Compile Include="src\farseer\Common\ConvexHull\Melkman.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\BayazitDecomposer.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDTDecomposer.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\DelaunayTriangle.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFront.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFrontNode.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\DTSweep.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepConstraint.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepContext.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepPointComparator.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Delaunay\Sweep\PointOnEdgeException.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\ITriangulatable.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Orientation.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Polygon\Polygon.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Polygon\PolygonPoint.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Polygon\PolygonSet.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Sets\ConstrainedPointSet.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Sets\PointSet.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\TriangulationConstraint.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\TriangulationContext.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\TriangulationMode.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\TriangulationPoint.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\TriangulationUtil.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Util\FixedArray3.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Util\FixedBitArray3.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Util\PointGenerator.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\CDT\Util\PolygonGenerator.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\EarclipDecomposer.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\FlipcodeDecomposer.cs" />
+    <Compile Include="src\farseer\Common\Decomposition\SeidelDecomposer.cs" />
+    <Compile Include="src\farseer\Common\FixedArray.cs" />
+    <Compile Include="src\farseer\Common\HashSet.cs" />
+    <Compile Include="src\farseer\Common\LineTools.cs" />
+    <Compile Include="src\farseer\Common\Math.cs" />
+    <Compile Include="src\farseer\Common\Path.cs" />
+    <Compile Include="src\farseer\Common\PathManager.cs" />
+    <Compile Include="src\farseer\Common\PhysicsLogic\Explosion.cs" />
+    <Compile Include="src\farseer\Common\PhysicsLogic\PhysicsLogic.cs" />
+    <Compile Include="src\farseer\Common\PolygonManipulation\CuttingTools.cs" />
+    <Compile Include="src\farseer\Common\PolygonManipulation\SimplifyTools.cs" />
+    <Compile Include="src\farseer\Common\PolygonManipulation\YuPengClipper.cs" />
+    <Compile Include="src\farseer\Common\PolygonTools.cs" />
+    <Compile Include="src\farseer\Common\Serialization.cs" />
+    <Compile Include="src\farseer\Common\TextureTools\MarchingSquares.cs" />
+    <Compile Include="src\farseer\Common\TextureTools\MSTerrain.cs" />
+    <Compile Include="src\farseer\Common\TextureTools\TextureConverter.cs" />
+    <Compile Include="src\farseer\Common\Vertices.cs" />
+    <Compile Include="src\farseer\Controllers\AbstractForceController.cs" />
+    <Compile Include="src\farseer\Controllers\BuoyancyController.cs" />
+    <Compile Include="src\farseer\Controllers\Controller.cs" />
+    <Compile Include="src\farseer\Controllers\GravityController.cs" />
+    <Compile Include="src\farseer\Controllers\SimpleWindForce.cs" />
+    <Compile Include="src\farseer\Controllers\VelocityLimitController.cs" />
+    <Compile Include="src\farseer\DebugView.cs" />
+    <Compile Include="src\farseer\Dynamics\Body.cs" />
+    <Compile Include="src\farseer\Dynamics\BreakableBody.cs" />
+    <Compile Include="src\farseer\Dynamics\ContactManager.cs" />
+    <Compile Include="src\farseer\Dynamics\Contacts\Contact.cs" />
+    <Compile Include="src\farseer\Dynamics\Contacts\ContactSolver.cs" />
+    <Compile Include="src\farseer\Dynamics\Fixture.cs" />
+    <Compile Include="src\farseer\Dynamics\Island.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\AngleJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\DistanceJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedAngleJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedDistanceJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedFrictionJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedLineJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedMouseJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedPrismaticJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FixedRevoluteJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\FrictionJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\GearJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\Joint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\LineJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\PrismaticJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\PulleyJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\RevoluteJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\RopeJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\SliderJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\Joints\WeldJoint.cs" />
+    <Compile Include="src\farseer\Dynamics\TimeStep.cs" />
+    <Compile Include="src\farseer\Dynamics\World.cs" />
+    <Compile Include="src\farseer\Dynamics\WorldCallbacks.cs" />
+    <Compile Include="src\farseer\Factories\BodyFactory.cs" />
+    <Compile Include="src\farseer\Factories\FixtureFactory.cs" />
+    <Compile Include="src\farseer\Factories\JointFactory.cs" />
+    <Compile Include="src\farseer\Factories\LinkFactory.cs" />
+    <Compile Include="src\farseer\Settings.cs" />
+    <Compile Include="src\main.cs" />
+    <Compile Include="src\robot\Heart.cs" />
+    <Compile Include="src\robot\Piece.cs" />
+    <Compile Include="src\robot\Robot.cs" />
+    <Compile Include="src\robot\Rod.cs" />
+    <Compile Include="src\robot\Spot.cs" />
+    <Compile Include="src\robot\Wheel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
