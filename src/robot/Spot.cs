@@ -8,12 +8,13 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
-    class Spot
+    class Spot : Body
     {
         Piece		_base;
 	Vector2		_baseAnchor;
 
-	public Spot(Piece p, Vector2 anchor)
+	public Spot(Robot robot, Heart h, Vector2 anchor) :
+		base(robot.getWorld())
 	{
 	  _base = p;
 	  _baseAnchor = anchor;
