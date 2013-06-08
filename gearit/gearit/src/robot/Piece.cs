@@ -42,7 +42,7 @@ namespace gearit
             _fix = CreateFixture(_shape, null);
         }
 
-        public Vector2 getSpotPos(Vector2 p)
+        public virtual Vector2 getSpotPos(Vector2 p)
         {
             Transform t;
             base.GetTransform(out t);
@@ -52,24 +52,24 @@ namespace gearit
                 return (new Vector2(-1, -1));
         }
 
-        public bool isOn(Vector2 p)
+        public virtual bool isOn(Vector2 p)
         {
             return (getSpotPos(p) != new Vector2(-1, -1));
         }
 
-        public bool isRod()
+        public virtual bool isRod()
         {
             return (false);
         }
 
         public bool hasSpot()
         {
-
+            return (false);
         }
 
-        public Spot getSpot()
+       /* public Spot getSpot()
         {
-
-        }
+            return (new Spot());
+        }*/
     }
 }

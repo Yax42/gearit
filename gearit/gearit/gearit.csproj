@@ -213,7 +213,6 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
-    <Compile Include="src\main.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
     <Compile Include="src\robot\Robot.cs" />
