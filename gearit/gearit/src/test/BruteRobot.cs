@@ -31,6 +31,7 @@ namespace gearit.src.test
         private Texture2D               _heart_tex;
         private Texture2D               _ground_tex;
         private Texture2D               _box_text;
+        private Texture2D               _ball_tex;
         // Camera
         private Matrix                  _view;
         private Vector2                 _camera_position;
@@ -47,6 +48,7 @@ namespace gearit.src.test
         private Body                    _ground_up_right;
         private Body                    _ground_up_left;
         private Pyramid                 _pyramid;
+        private Body                    _ball;
         // Robot
         private Body                    _heart;
         private Body                    _wheel_left;
@@ -77,7 +79,7 @@ namespace gearit.src.test
             // Initialize camera controls
             _view = Matrix.Identity;
             _camera_position = Vector2.Zero;
-            _screen_center = new Vector2(_graphics.GraphicsDevice.Viewport.Width / 2f, _graphics.GraphicsDevice.Viewport.Height / 2f);
+            _screen_center = new Vector2(_graphics.GraphicsDevice.Viewport.Width, _graphics.GraphicsDevice.Viewport.Height) / MeterInPixels / 2f;
 
             // Link painter to window 
             _batch = new SpriteBatch(_graphics.GraphicsDevice);
@@ -88,22 +90,29 @@ namespace gearit.src.test
             _asset.LoadContent(Content);
 
             // Initialize grounds
-            Vector2 wall_position = new Vector2(_graphics.GraphicsDevice.Viewport.Width / 4, _graphics.GraphicsDevice.Viewport.Height - 100f);
-            _ground = BodyFactory.CreateRectangle(_world, 512f / MeterInPixels, 32f / MeterInPixels, 1f, wall_position);
-            _ground.SetTransform(wall_position, 1.5f);
-            _ground.IsStatic = true;
-            _ground.Restitution = 0.3f;
-            _ground.Friction = 0.5f;
+            Vector2 wall_position = new Vector2(_screen_center.X / 2, _screen_center.Y + 2f);
+            _ground = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
             _ground_tex = _asset.TextureFromShape(_ground.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
             _ground.BodyType = BodyType.Static;
+            //_ground.SetTransform(_ground.Position, 1.5f);
             // Up grounds
-            wall_position -= new Vector2(400f, 150f);
-            _ground_up_left = BodyFactory.CreateRectangle(_world, 512f, 64f, 1f, wall_position);
-            wall_position += new Vector2(900f, 50f);
-            _ground_up_right = BodyFactory.CreateRectangle(_world, 512f, 64f, 1f, wall_position);
+            wall_position -= new Vector2(7f, 2f);
+            _ground_up_left = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            //_ground_up_left.SetTransform(wall_position, 1.5f);
+            _ground.BodyType = BodyType.Static;
+            wall_position += new Vector2(14f, 1f);
+            _ground_up_right = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            //_ground_up_right.SetTransform(wall_position, 1.5f);
+            _ground.BodyType = BodyType.Static;
+
+            // Ball
+            _ball = BodyFactory.CreateCircle(_world, 0.5f, 1f, _screen_center);
+            _ball.BodyType = BodyType.Dynamic;
+            _ball_tex = _asset.TextureFromShape(_ball.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
+            _ball.SetTransform(_screen_center, 1f);
 
             // Pyramid
-            _pyramid = new Pyramid(_world, new Vector2(10f, 0f), 3, 1f, _asset);
+            _pyramid = new Pyramid(_world, new Vector2(9.3f, 0f), 3, 1f, _asset);
         }
 
         // Allows the game to run logic such as updating the world,
@@ -145,9 +154,11 @@ namespace gearit.src.test
             _batch.Begin();
 
             // Grounds
-            _batch.Draw(_ground_tex, _ground.Position, Color.LightGreen);
-            _batch.Draw(_ground_tex, _ground_up_right.Position, Color.LightGreen);
-            _batch.Draw(_ground_tex, _ground_up_left.Position, Color.LightGreen);
+            _batch.Draw(_ground_tex, _ground.Position * MeterInPixels, Color.LightGreen);
+            _batch.Draw(_ground_tex, _ground_up_right.Position * MeterInPixels, Color.LightGreen);
+            _batch.Draw(_ground_tex, _ground_up_left.Position * MeterInPixels, Color.LightGreen);
+            // Ball
+            _batch.Draw(_ball_tex, _ball.Position * MeterInPixels, Color.LightGreen);
             // Pyramid
             _pyramid.Draw(_batch);
 
