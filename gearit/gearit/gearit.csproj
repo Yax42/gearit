@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
     <Compile Include="src\farseer\Collision\DynamicTree.cs" />
@@ -219,6 +218,12 @@
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\robot\Spot.cs" />
     <Compile Include="src\robot\Wheel.cs" />
+    <Compile Include="src\test\Border.cs" />
+    <Compile Include="src\test\BruteRobot.cs" />
+    <Compile Include="src\test\Pyramid.cs" />
+    <Compile Include="src\test\Sprite.cs" />
+    <Compile Include="src\utility\AssetCreator.cs" />
+    <Compile Include="src\utility\ConvertUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
