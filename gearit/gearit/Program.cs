@@ -1,6 +1,7 @@
 using System;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
+using gearit.src.test;
 
 namespace gearit
 {
@@ -15,10 +16,8 @@ namespace gearit
             World world = new World(new Vector2(0, 9.82f));
 
             Robot wallE = new Robot(world);
-            using (Game1 game = new Game1())
-            {
-                game.Run();
-            }
+            BruteRobot game = new BruteRobot();
+            game.Run();
         }
     }
 #endif
