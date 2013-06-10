@@ -19,10 +19,11 @@ namespace gearit
     class Rod : Piece
     {
         private float _size;
+        private float _strength;
         private RodSide _side1;
         private RodSide _side2;
         private PrismaticJoint _prisJoint;
-        private LineJoint _lineJoint;
+        //private LineJoint _lineJoint;
 
 
         public Rod(Robot robot, Spot spot, Vector2 start, float size) :
@@ -30,10 +31,13 @@ namespace gearit
         {
             _side1 = new RodSide(robot.getWorld());
             _side2 = new RodSide(robot.getWorld());
-            _lineJoint = new LineJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size));
-            robot.getWorld().AddJoint(_lineJoint);
+            //_lineJoint = new LineJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size));
+            //robot.getWorld().AddJoint(_lineJoint);
             _prisJoint = new PrismaticJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size), Vector2.Zero);
+            _prisJoint.LimitEnabled = true;
+            _prisJoint.Enabled = true;
             robot.getWorld().AddJoint(_prisJoint);
+            Strength = 0;
             Size = size;
             spot.connect(robot.getWorld(), this, true);
             Console.WriteLine("Rod created.");
@@ -64,7 +68,23 @@ namespace gearit
             }
         }
 
-        public void update()
+        public float Strength
+        {
+            get { return _strength; }
+            set
+            {
+                _strength = value;
+                if (_strength < 0)
+                    _strength = 0;
+                if (_strength > 300)
+                    _strength = 300;
+                _prisJoint.MotorEnabled = (_strength != 0);
+                _prisJoint.MaxMotorForce = _strength;
+                _prisJoint.MotorSpeed = 0f;
+            }
+        }
+
+        public void refreshShape()
         {
         }
 

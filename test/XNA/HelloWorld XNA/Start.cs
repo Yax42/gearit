@@ -230,23 +230,32 @@ namespace FarseerPhysics.HelloWorld
             _world.AddJoint(_motorJoint);
 
             // Joint body 2
-            _prisPis = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(0f, 0f), new Vector2(0f, 0f));
+            _prisPis = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(0f, 0f), new Vector2(1f, 0f));
             _prisPis.CollideConnected = false;
-            _prisPis.MaxMotorForce = 800f;
-            _prisPis.UpperLimit = 0f;
-            _prisPis.LowerLimit = 0f;
+            _prisPis.MaxMotorForce = 100f;
+            _prisPis.UpperLimit = 9f;
+            _prisPis.LowerLimit = 1f;
             _prisPis.LimitEnabled = true;
             _prisPis.MotorEnabled = true;
             _prisPis.MotorSpeed = 0f;
             _prisPis.Enabled = true;
             _world.AddJoint(_prisPis);
 
+            _motorJoint2 = new RevoluteJoint(_circle2, _square, _circle2.GetLocalPoint(_square.Position), new Vector2(1f, -0.5f));
+            _motorJoint2.CollideConnected = false;
+            _motorJoint2.MotorSpeed = 0f;
+            _motorJoint2.MaxMotorTorque = 10f;
+            
+            _motorJoint2.MotorEnabled = true;
+            _world.AddJoint(_motorJoint2);
+	    /*
             _linePis = new LineJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f));
             _world.AddJoint(_linePis);
             _linePis.MotorEnabled = true;
             _linePis.MotorSpeed = 0f;
             _linePis.Enabled = true;
             _linePis.MaxMotorTorque = 400f;
+	    */
 
             /*_motorPris = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f), new Vector2(1f, 0f));
             _motorPris.CollideConnected = false;
@@ -328,17 +337,17 @@ namespace FarseerPhysics.HelloWorld
         {
             KeyboardState state = Keyboard.GetState();
 
-                if (state.IsKeyDown(Keys.W))
-		    _linePis.MotorSpeed = -10f;
-                else if (state.IsKeyDown(Keys.S))
-		    _linePis.MotorSpeed = 10f;
-                else
-		    _linePis.MotorSpeed = 0f;
-                if (state.IsKeyDown(Keys.A))
-                    _prisPis.MotorSpeed = -10f;
-                else if (state.IsKeyDown(Keys.D))
-                    _prisPis.MotorSpeed = 10f;
-                else
+            if (state.IsKeyDown(Keys.W))
+                _motorJoint2.MotorSpeed = -10f;
+            else if (state.IsKeyDown(Keys.S))
+                _motorJoint2.MotorSpeed = 10f;
+            else
+                _motorJoint2.MotorSpeed = 0f;
+            if (state.IsKeyDown(Keys.A))
+                _prisPis.MotorSpeed = -10f;
+            else if (state.IsKeyDown(Keys.D))
+                _prisPis.MotorSpeed = 10f;
+            else
                     _prisPis.MotorSpeed = 0f;
             if (state.IsKeyDown(Keys.Escape))
                 Exit();
