@@ -113,6 +113,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="src\debug\DebugViewXNA.cs" />
+    <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
     <Compile Include="src\farseer\Collision\DynamicTree.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="src\test\BruteRobot.cs" />
     <Compile Include="src\test\LuaTest.cs" />
     <Compile Include="src\test\Pyramid.cs" />
+    <Compile Include="src\test\SpiderBot.cs" />
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />
     <Compile Include="src\utility\ConvertUnit.cs" />

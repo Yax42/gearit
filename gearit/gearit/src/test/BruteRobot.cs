@@ -136,12 +136,10 @@ namespace gearit.src.test
             _ball.SetTransform(_screen_center, 1f);
 
             // Pyramid
-<<<<<<< HEAD
             _pyramid = new Pyramid(_world, new Vector2(0.3f, 0f), 5, 1f, _asset);
 
             // Robot
 
-=======
             //_pyramid = new Pyramid(_world, new Vector2(9.3f, 0f), 8, 1f, _asset);
             #endregion
 
