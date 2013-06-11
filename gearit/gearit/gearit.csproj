@@ -222,6 +222,7 @@
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
+    <Compile Include="src\test\SpiderBot.cs" />
     <Compile Include="src\test\Pyramid.cs" />
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />

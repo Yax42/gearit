@@ -16,7 +16,7 @@ namespace gearit
             World world = new World(new Vector2(0, 9.82f));
 
             Robot wallE = new Robot(world);
-            BruteRobot game = new BruteRobot();
+            SpiderBot game = new SpiderBot();
             game.Run();
         }
     }
