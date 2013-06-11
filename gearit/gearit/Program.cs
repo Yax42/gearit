@@ -16,8 +16,13 @@ namespace gearit
             World world = new World(new Vector2(0, 9.82f));
 
             Robot wallE = new Robot(world);
-            BruteRobot game = new BruteRobot();
-            game.Run();
+
+            // Test robot
+            //BruteRobot game = new BruteRobot();
+            //game.Run();
+
+            // Test lua
+            LuaTest l = new LuaTest();
         }
     }
 #endif
