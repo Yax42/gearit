@@ -23,6 +23,8 @@ namespace gearit
 
             // Test lua
             LuaTest l = new LuaTest();
+            SpiderBot game = new SpiderBot();
+            game.Run();
         }
     }
 #endif

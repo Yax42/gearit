@@ -86,6 +86,10 @@ namespace gearit
 
         public void refreshShape()
         {
+            EdgeShape s = (EdgeShape)_shape;
+            s.Vertex1 = _side1.Position;
+            s.Vertex2 = _side2.Position;
+            _shape = s;
         }
 
         private float distance(RodSide side, Vector2 p)
