@@ -72,8 +72,8 @@ namespace FarseerPhysics.HelloWorld
 
         private PrismaticJoint _motorPris;
         private SliderJoint _motorSlider;
-        /*// physics simulator debug view
-        DebugViewXNA _debugView;*/
+        // physics simulator debug view
+        DebugViewXNA _debugView;
 
 
 #if !XBOX360
@@ -232,15 +232,16 @@ namespace FarseerPhysics.HelloWorld
             // Joint body 2
             _prisPis = new PrismaticJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(0f, 0f), new Vector2(1f, 0f));
             _prisPis.CollideConnected = false;
-            _prisPis.MaxMotorForce = 100f;
+            _prisPis.MaxMotorForce = 1000f;
             _prisPis.UpperLimit = 9f;
             _prisPis.LowerLimit = 1f;
-            _prisPis.LimitEnabled = true;
+            _prisPis.LimitEnabled = false;
             _prisPis.MotorEnabled = true;
             _prisPis.MotorSpeed = 0f;
             _prisPis.Enabled = true;
             _world.AddJoint(_prisPis);
 
+	    /*
             _motorJoint2 = new RevoluteJoint(_circle2, _square, _circle2.GetLocalPoint(_square.Position), new Vector2(1f, -0.5f));
             _motorJoint2.CollideConnected = false;
             _motorJoint2.MotorSpeed = 0f;
@@ -248,6 +249,7 @@ namespace FarseerPhysics.HelloWorld
             
             _motorJoint2.MotorEnabled = true;
             _world.AddJoint(_motorJoint2);
+	    */
 	    /*
             _linePis = new LineJoint(_circle2, _square, _circle.GetLocalPoint(_square.Position), new Vector2(-4f, 0f));
             _world.AddJoint(_linePis);
@@ -281,12 +283,12 @@ namespace FarseerPhysics.HelloWorld
             _motorJoint2.MotorEnabled = true;
             _world.AddJoint(_motorJoint2);*/
 
-            /*// create and configure the debug view
+            // create and configure the debug view
             _debugView = new DebugViewXNA(_world);
             _debugView.AppendFlags(DebugViewFlags.DebugPanel);
             _debugView.DefaultShapeColor = Color.White;
             _debugView.SleepingShapeColor = Color.LightGray;
-            _debugView.LoadContent(GraphicsDevice, Content);*/
+            _debugView.LoadContent(GraphicsDevice, Content);
         }
 
         /// <summary>
@@ -337,16 +339,18 @@ namespace FarseerPhysics.HelloWorld
         {
             KeyboardState state = Keyboard.GetState();
 
+	    /*
             if (state.IsKeyDown(Keys.W))
                 _motorJoint2.MotorSpeed = -10f;
             else if (state.IsKeyDown(Keys.S))
                 _motorJoint2.MotorSpeed = 10f;
             else
                 _motorJoint2.MotorSpeed = 0f;
+	    */
             if (state.IsKeyDown(Keys.A))
-                _prisPis.MotorSpeed = -10f;
+                _prisPis.MotorSpeed = -800f;
             else if (state.IsKeyDown(Keys.D))
-                _prisPis.MotorSpeed = 10f;
+                _prisPis.MotorSpeed = 800f;
             else
                     _prisPis.MotorSpeed = 0f;
             if (state.IsKeyDown(Keys.Escape))
@@ -426,13 +430,13 @@ namespace FarseerPhysics.HelloWorld
 
             
 
-            /*// calculate the projection and view adjustments for the debug view
+            // calculate the projection and view adjustments for the debug view
             Matrix projection = Matrix.CreateOrthographicOffCenter(0f, _graphics.GraphicsDevice.Viewport.Width / MeterInPixels,
                                                              _graphics.GraphicsDevice.Viewport.Height / MeterInPixels, 0f, 0f,
                                                              1f);
             Matrix view = Matrix.CreateTranslation(new Vector3((_cameraPosition / MeterInPixels) - (_screenCenter / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((_screenCenter / MeterInPixels), 0f));
             // draw the debug view
-            _debugView.RenderDebugData(ref projection, ref view);*/
+            _debugView.RenderDebugData(ref projection, ref view);
 
             base.Draw(gameTime);
         }

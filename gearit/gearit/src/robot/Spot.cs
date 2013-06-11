@@ -12,7 +12,8 @@ namespace gearit
     {
 	public Spot(Robot robot) :
 		base(robot.getWorld())
-	{           BodyType = BodyType.Dynamic;
+	{
+           BodyType = BodyType.Dynamic;
 	}
 
         public void connect(World world, Wheel p, Vector2 localAnchor)

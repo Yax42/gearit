@@ -17,14 +17,14 @@ namespace gearit.src.test
 
         public Pyramid(World world, Vector2 position, int count, float density, AssetCreator creator)
         {
-            Vertices rect = PolygonTools.CreateRectangle(0.5f, 0.5f);
+            Vertices rect = PolygonTools.CreateRectangle(0.1f, 0.1f);
             PolygonShape shape = new PolygonShape(rect, density);
 
             Vector2 rowStart = position;
             rowStart.Y -= 0.5f + count * 1.1f;
 
-            Vector2 deltaRow = new Vector2(-0.625f, 1.1f);
-            const float spacing = 1.25f;
+            Vector2 deltaRow = new Vector2(-0.625f, 0.4f);
+            const float spacing = 0.25f;
 
             _boxes = new List<Body>();
 
