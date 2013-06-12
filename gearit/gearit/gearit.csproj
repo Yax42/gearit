@@ -220,6 +220,8 @@
     <Compile Include="src\farseer\Settings.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
+    <Compile Include="src\robot\PrismaticSpot.cs" />
+    <Compile Include="src\robot\RevoluteSpot.cs" />
     <Compile Include="src\robot\Robot.cs" />
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\robot\Spot.cs" />

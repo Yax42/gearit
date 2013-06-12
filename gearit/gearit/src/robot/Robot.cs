@@ -56,10 +56,10 @@ namespace gearit
         public Piece getPiece(Vector2 p)
         {
             for (int i = 1; i < _pieces.Count; i++)
-                if (_pieces[i].isRod() && _pieces[i].isOn(p))
+                if (_pieces[i].isOn(p))
                     return (_pieces[i]);
             for (int i = 1; i < _pieces.Count; i++)
-                if (_pieces[i].isRod() == false && _pieces[i].isOn(p))
+                if (_pieces[i].isOn(p))
                     return (_pieces[i]);
             return (getHeart());
         }

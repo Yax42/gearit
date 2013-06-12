@@ -73,7 +73,7 @@ namespace gearit
         public void revoluteLink(World world, Piece p, Vector2 anchor1, Vector2 anchor2)
         {
             RevoluteJoint joint;
-            joint = new RevoluteJoint(this, p, anchor1, anchor2)
+            joint = new RevoluteJoint(this, p, anchor1, anchor2);
             world.AddJoint(joint);
             joint.Enabled = true;
             joint.MaxMotorTorque = 100;

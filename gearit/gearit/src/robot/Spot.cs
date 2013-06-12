@@ -8,12 +8,12 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
-    class Spot()
+    class Spot
     {
         internal Piece _p1;
         internal Piece _p2;
 
-        public Spot(World world, Piece p1, Piece p2)
+        public Spot(Piece p1, Piece p2)
         {
             _p1 = p1;
             _p2 = p2;

@@ -33,8 +33,7 @@ namespace gearit.src.robot
         public void publicSwap(Piece p1, Piece p2, Vector2 anchor2)
         {
 	    Piece   p;
-	    if (p1 == p2)
-	      p
+//	    if (p1 == p2)
         }
     }
 }
