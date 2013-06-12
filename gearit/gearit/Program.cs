@@ -24,6 +24,7 @@ namespace gearit
             // Test lua
             LuaTest l = new LuaTest();
             SpiderBot game = new SpiderBot();
+            //BruteRobot game = new BruteRobot();
             game.Run();
         }
     }

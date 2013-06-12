@@ -38,7 +38,7 @@ namespace gearit.src.test
                 _nbLeggs = nbLeggs;
                 _id = ++_nb;
                 _spot = new Body(world);
-                CircleShape circleShape1 = new CircleShape(0.1f, 1f);
+                CircleShape circleShape1 = new CircleShape(0.1f, 0.1f);
                 (_spot.CreateFixture(circleShape1)).CollisionGroup = 42;
                 _spot.BodyType = BodyType.Dynamic;
 
@@ -53,8 +53,8 @@ namespace gearit.src.test
 
                 _pris.LimitEnabled = true;
                 _pris.Enabled = true;
-                _pris.LowerLimit = -2f;
-                _pris.UpperLimit = 2f;
+                _pris.LowerLimit = 1f;
+                _pris.UpperLimit = 4f;
                 _pris.MotorEnabled = true;
                 _pris.MaxMotorForce = 200f;
                 _pris.MotorSpeed = 0f;
@@ -68,7 +68,7 @@ namespace gearit.src.test
                 _rev = new RevoluteJoint(_wheel, _spot, Vector2.Zero, Vector2.Zero);
                 _rev.Enabled = true;
                 _rev.MotorEnabled = true;
-                _rev.MaxMotorTorque = 5f;
+                _rev.MaxMotorTorque = 100f;
                 _rev.MotorSpeed = 0f;
                 world.AddJoint(_rev);
             }
@@ -239,10 +239,10 @@ namespace gearit.src.test
                     _leggs[i].setTranslation(0f);
 
                 if (state.IsKeyDown(Keys.A))
-                    _leggs[i].setRotation(10f);
+                    _leggs[i].setRotation(30f);
                 else if (state.IsKeyDown(Keys.D))
 
-                    _leggs[i].setRotation(-10f);
+                    _leggs[i].setRotation(-20f);
                 else
                     _leggs[i].setRotation(0f);
             }

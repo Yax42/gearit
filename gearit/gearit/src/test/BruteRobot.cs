@@ -187,6 +187,7 @@ namespace gearit.src.test
 	    */
 	    //_rod2End = BodyFactory.CreateCircle(_world, 0.5f, 0.1f, Vector2.Zero);
 
+	    /*
             _rod1End = new Body(_world);
             CircleShape circleShape1 = new CircleShape(0.1f, 1f);
             (_rod1End.CreateFixture(circleShape1)).CollisionGroup = 42;
@@ -196,9 +197,16 @@ namespace gearit.src.test
             CircleShape circleShape2 = new CircleShape(0.1f, 1f);
             (_rod2End.CreateFixture(circleShape2)).CollisionGroup = 42;
             _rod2End.BodyType = BodyType.Dynamic;
+	    */
 
 
-//            _rod2End.CollisionGroup = 42;
+	    _rod1End = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+            _rod1End.CollisionGroup = 42;
+            _rod1End.BodyType = BodyType.Dynamic;
+
+	    _rod2End = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+            _rod2End.CollisionGroup = 42;
+            _rod2End.BodyType = BodyType.Dynamic;
 
 	    /*
 	    _rod1End = BodyFactory.CreateCircle(_world, 0.5f, 0.1f, Vector2.Zero);
