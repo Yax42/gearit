@@ -6,6 +6,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
+using FarseerPhysics.Dynamics.Joints;
 
 namespace gearit
 {
@@ -33,13 +34,23 @@ namespace gearit
         {
             _shape = shape;
             _fix = CreateFixture(_shape, null);
-            _fix.CollisionGroup = (short)id;
+            _fix.CollisionGroup = (short) id;
         }
 
         internal void initShapeAndFixture(Shape shape)
         {
             _shape = shape;
             _fix = CreateFixture(_shape, null);
+        }
+
+        public float Weight
+        {
+            set
+            {
+                FixtureList[0].Shape.Density = value;
+                ResetMassData();
+            }
+            get { return FixtureList[0].Shape.Density; }
         }
 
         public virtual Vector2 getSpotPos(Vector2 p)
@@ -54,22 +65,22 @@ namespace gearit
 
         public virtual bool isOn(Vector2 p)
         {
+
             return (getSpotPos(p) != new Vector2(-1, -1));
         }
 
-        public virtual bool isRod()
-        {
-            return (false);
-        }
 
-        public bool hasSpot()
+        public void revoluteLink(World world, Piece p, Vector2 anchor1, Vector2 anchor2)
         {
-            return (false);
+            RevoluteJoint joint;
+            joint = new RevoluteJoint(this, p, anchor1, anchor2)
+            world.AddJoint(joint);
+            joint.Enabled = true;
+            joint.MaxMotorTorque = 100;
+            joint.MotorSpeed = 0f;
+            joint.LimitEnabled = true;
+            joint.MotorEnabled = true;
         }
-
-       /* public Spot getSpot()
-        {
-            return (new Spot());
-        }*/
+	
     }
 }

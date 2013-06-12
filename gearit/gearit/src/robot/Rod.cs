@@ -8,49 +8,35 @@ using FarseerPhysics.Common;
 
 namespace gearit
 {
-    class RodSide : Body
-    {
-        public RodSide(World world)
-            : base(world)
-        {
-           BodyType = BodyType.Dynamic;
-        }
-    }
-    class Rod : Piece
+    class Rod
     {
         private float _size;
         private float _strength;
-        private RodSide _side1;
-        private RodSide _side2;
+        private Piece _start;
+        private Piece _end;
         private PrismaticJoint _prisJoint;
         //private LineJoint _lineJoint;
 
 
-        public Rod(Robot robot, Spot spot, Vector2 start, float size) :
-            base(robot, new EdgeShape(start, new Vector2(10, 10) + new Vector2(0, size)))
+        public Rod(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2)
         {
-            _side1 = new RodSide(robot.getWorld());
-            _side2 = new RodSide(robot.getWorld());
             //_lineJoint = new LineJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size));
             //robot.getWorld().AddJoint(_lineJoint);
-            _prisJoint = new PrismaticJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size), Vector2.Zero);
+            _prisJoint = new PrismaticJoint(p1, p2, anchor1, anchor2, Vector2.Zero);
             _prisJoint.LimitEnabled = true;
             _prisJoint.Enabled = true;
             robot.getWorld().AddJoint(_prisJoint);
             Strength = 0;
-            Size = size;
-            spot.connect(robot.getWorld(), this, true);
+            //Size = size;
+            //spot.connect(robot.getWorld(), this, true);
             Console.WriteLine("Rod created.");
         }
 
-        public RodSide getSide1()
+        public Piece getPiece(int v)
         {
-            return (_side1);
-        }
-
-        public RodSide getSide2()
-        {
-            return (_side2);
+	    if (v == 0)
+	      return (_start);
+            return (_end);
         }
 
         public float Size
@@ -84,6 +70,7 @@ namespace gearit
             }
         }
 
+    /*	
         public void refreshShape()
         {
             EdgeShape s = (EdgeShape)_shape;
@@ -92,7 +79,7 @@ namespace gearit
             _shape = s;
         }
 
-        private float distance(RodSide side, Vector2 p)
+        private float distance(, Vector2 p)
         {
             Vector2 p2;
 
@@ -120,5 +107,6 @@ namespace gearit
         {
             return (true);
         }
+     */
     }
 }

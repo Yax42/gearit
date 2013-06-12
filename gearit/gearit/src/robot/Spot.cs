@@ -8,42 +8,16 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
-    class Spot
+    class Spot()
     {
-	private Piece		    _main;
+        internal Piece _p1;
+        internal Piece _p2;
 
-	public Spot(Robot robot, Piece p)
-	{
-	  _main = p;
+        public Spot(World world, Piece p1, Piece p2)
+        {
+            _p1 = p1;
+            _p2 = p2;
 	}
-
-        public void connect(World world, Wheel p, Vector2 localAnchor)
-        {
-            world.AddJoint(new RevoluteJoint(_main, p, Vector2.Zero, localAnchor));
-        }
-
-        public void connect(World world, Heart p, Vector2 localAnchor)
-        {
-            world.AddJoint(new RevoluteJoint(_main, p, Vector2.Zero, localAnchor));
-        }
-
-        public void connect(World world, Rod r, bool isSide1)
-        {
-            world.AddJoint(new RevoluteJoint(_main, (isSide1 ? r.getSide1() : r.getSide2()), Vector2.Zero, Vector2.Zero));
-        }
-
-        public void connect(World world, RodSide side)
-        {
-            world.AddJoint(new RevoluteJoint(_main, side, Vector2.Zero, Vector2.Zero));
-        }
-
-        public void merge(Spot other)
-        {
-        }
-
-        public void split()
-        {
-        }
 
     }
 }

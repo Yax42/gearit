@@ -166,7 +166,7 @@ namespace gearit.src.test
             _heart = new Body(_world);
             _heart.BodyType = BodyType.Dynamic;
             _heart.CreateFixture(new PolygonShape(vertices, 20f));
-            _heart.FixtureList[0].Shape.Density = 1.8f;
+            _heart.FixtureList[0].Shape.Density = 3f;
             _heart.ResetMassData();
             _heart.FixtureList[0].CollisionGroup = 42;
             _heart_tex = _asset.TextureFromVertices(vertices, MaterialType.Blank, Color.Blue * 0.8f, 1f);
@@ -208,13 +208,22 @@ namespace gearit.src.test
             _rod2End.CollisionGroup = 42;
             _rod2End.BodyType = BodyType.Dynamic;
 
+	    _rod1Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+            _rod1Start.CollisionGroup = 42;
+            _rod1Start.BodyType = BodyType.Dynamic;
+
+	    _rod2Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+            _rod2Start.CollisionGroup = 42;
+            _rod2Start.BodyType = BodyType.Dynamic;
+
 	    /*
 	    _rod1End = BodyFactory.CreateCircle(_world, 0.5f, 0.1f, Vector2.Zero);
             _rod1End.BodyType = BodyType.Dynamic;
-            _rod1End.CollisionGroup = 42;*/
+            _rod1End.CollisionGroup = 42;
+             */
 
 	    //RodSpot
-            _jointRod1 = new PrismaticJoint(_heart, _rod2End, new Vector2(0.5f, -1f), new Vector2(0, 0), new Vector2(-1, 1));
+            _jointRod1 = new PrismaticJoint(_heart, _rod1End, Vector2.Zero, new Vector2(0, 0), new Vector2(-1, 1));
             _jointRod1.LimitEnabled = true;
             _jointRod1.Enabled = true;
             _jointRod1.LowerLimit = 1;
@@ -224,7 +233,7 @@ namespace gearit.src.test
             _jointRod1.MotorSpeed = 0f;
             _world.AddJoint(_jointRod1);
 
-            _jointRod2 = new PrismaticJoint(_heart, _rod1End, new Vector2(-0.5f, -1f), new Vector2(0, 0), new Vector2(1, 1));
+            _jointRod2 = new PrismaticJoint(_heart, _rod2End, Vector2.Zero, new Vector2(0, 0), new Vector2(1, 1));
             _jointRod2.LimitEnabled = true;
             _jointRod2.Enabled = true;
             _jointRod2.LowerLimit = 1;
@@ -237,12 +246,16 @@ namespace gearit.src.test
 
 	    // Wheel
             _wheel_right = BodyFactory.CreateCircle(_world, 0.5f, 1f, Vector2.Zero);
+            _wheel_right.FixtureList[0].Shape.Density = 1f;
+            _wheel_right.ResetMassData();
             _wheel_right.BodyType = BodyType.Dynamic;
             _wheel_right_tex = _asset.TextureFromShape(_wheel_right.FixtureList[0].Shape, MaterialType.Blank, Color.Gray, 1f);
             _wheel_right.CollisionGroup = 42;
             _wheel_right.Position = new Vector2(13, 4);
 
             _wheel_left = BodyFactory.CreateCircle(_world, 0.5f, 1f, Vector2.Zero);
+            _wheel_left.FixtureList[0].Shape.Density = 1f;
+            _wheel_left.ResetMassData();
             _wheel_left.BodyType = BodyType.Dynamic;
             _wheel_left_tex = _asset.TextureFromShape(_wheel_left.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
             _wheel_left.FixtureList[0].CollisionGroup = 42;
@@ -253,18 +266,32 @@ namespace gearit.src.test
             _world.AddJoint(_spotJoint[1]);
 	    _spotJoint[1].Enabled = true;
             _spotJoint[1].MotorEnabled = true;
-            _spotJoint[1].MaxMotorTorque = 10f;
+            _spotJoint[1].MaxMotorTorque = 1000f;
             _spotJoint[1].MotorSpeed = 0f;
 
             _spotJoint[0] = new RevoluteJoint(_wheel_left, _rod2End, Vector2.Zero, Vector2.Zero);
             _world.AddJoint(_spotJoint[0]);
 	    _spotJoint[0].Enabled = true;
             _spotJoint[0].MotorEnabled = true;
-            _spotJoint[0].MaxMotorTorque = 10f;
+            _spotJoint[0].MaxMotorTorque = 1000f;
             _spotJoint[0].MotorSpeed = 0f;
-
 #region test construction
-	    /*
+/*
+            _spotJoint[2] = new RevoluteJoint(_heart, _rod1Start,  new Vector2(-0.5f, -1f), Vector2.Zero);
+            _world.AddJoint(_spotJoint[2]);
+	    _spotJoint[2].Enabled = true;
+            _spotJoint[2].MotorEnabled = true;
+            _spotJoint[2].MaxMotorTorque = 1000f;
+            _spotJoint[2].MotorSpeed = 0f;
+            _spotJoint[2].LimitEnabled = true;
+
+            _spotJoint[3] = new RevoluteJoint(_heart, _rod2Start,  new Vector2(0.5f, -1f), Vector2.Zero);
+            _world.AddJoint(_spotJoint[3]);
+	    _spotJoint[3].Enabled = true;
+            _spotJoint[3].MotorEnabled = false;
+            _spotJoint[3].MaxMotorTorque = 1000f;
+            _spotJoint[3].MotorSpeed = 0f;
+
             _spotJoint[2] = new RevoluteJoint(_rod2Start, _heart, Vector2.Zero, new Vector2(-1, -0.5f));
             _world.AddJoint(_spotJoint[2]);
 	    _spotJoint[2].Enabled = true;
@@ -372,7 +399,6 @@ namespace gearit.src.test
         private void HandleKeyboard()
         {
             KeyboardState state = Keyboard.GetState();
-
 	    
             if (state.IsKeyDown(Keys.D))
             {

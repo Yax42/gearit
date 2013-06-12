@@ -38,9 +38,11 @@ namespace gearit.src.test
                 _nbLeggs = nbLeggs;
                 _id = ++_nb;
                 _spot = new Body(world);
-                CircleShape circleShape1 = new CircleShape(0.1f, 0.1f);
+                CircleShape circleShape1 = new CircleShape(0.1f, 4f);
                 (_spot.CreateFixture(circleShape1)).CollisionGroup = 42;
                 _spot.BodyType = BodyType.Dynamic;
+                _spot.FixtureList[0].Shape.Density = 2f;
+                _spot.ResetMassData();
 
 		if (_id <= nbLeggs / 2)
                   _pris = new PrismaticJoint(heart, _spot, Vector2.Zero, Vector2.Zero,
@@ -56,11 +58,13 @@ namespace gearit.src.test
                 _pris.LowerLimit = 1f;
                 _pris.UpperLimit = 4f;
                 _pris.MotorEnabled = true;
-                _pris.MaxMotorForce = 200f;
+                _pris.MaxMotorForce = 500f;
                 _pris.MotorSpeed = 0f;
                 world.AddJoint(_pris);
 
                 _wheel = BodyFactory.CreateCircle(world, 0.5f, 1f, Vector2.Zero);
+                _wheel.FixtureList[0].Shape.Density = 2f;
+                _wheel.ResetMassData();
                 _wheel.BodyType = BodyType.Dynamic;
                 _wheel.CollisionGroup = 42;
                 _wheel.Position = new Vector2(13, 4);
@@ -81,8 +85,8 @@ namespace gearit.src.test
 
             public void setTranslation(float v)
             {
-                if (_id % (_nbLeggs / 2) > _nbLeggs / 4)
-                    v = -v;
+      //          if (_id % (_nbLeggs / 2) > _nbLeggs / 4)
+       //             v = -v;
                 _pris.MotorForce = v;
             }
 
@@ -199,13 +203,13 @@ namespace gearit.src.test
             _heart = new Body(_world);
             _heart.BodyType = BodyType.Dynamic;
             _heart.CreateFixture(new PolygonShape(vertices, 20f));
-            _heart.FixtureList[0].Shape.Density = 1.8f;
+            _heart.FixtureList[0].Shape.Density = 200f;
             _heart.ResetMassData();
             _heart.FixtureList[0].CollisionGroup = 42;
             _heart.SetTransform(new Vector2(14, 0), 3.1415926f);
 
             /***********aaa************************************************************************************************/
-            _nbLeggs = 20;
+            _nbLeggs = 50;
             /***********************************************************************************************************/
             _leggs = new Legg[_nbLeggs];
             for (int i = 0; i < _nbLeggs; i++)
@@ -232,9 +236,9 @@ namespace gearit.src.test
             for (int i = 0; i < _nbLeggs; i++)
             {
                 if (state.IsKeyDown(Keys.W))
-                    _leggs[i].setTranslation(40f);
+                    _leggs[i].setTranslation(400f);
                 else if (state.IsKeyDown(Keys.S))
-                    _leggs[i].setTranslation(-40f);
+                    _leggs[i].setTranslation(-400f);
                 else
                     _leggs[i].setTranslation(0f);
 
