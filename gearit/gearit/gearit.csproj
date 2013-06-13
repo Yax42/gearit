@@ -218,6 +218,8 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
+    <Compile Include="src\test\GearIt.cs" />
+    <Compile Include="src\test\MyGame.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
     <Compile Include="src\robot\PrismaticSpot.cs" />
@@ -234,6 +236,25 @@
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />
     <Compile Include="src\utility\ConvertUnit.cs" />
+    <Compile Include="src\xna\Drawing System\LineBatch.cs" />
+    <Compile Include="src\xna\Drawing System\Sprite.cs" />
+    <Compile Include="src\xna\Menu\MainMenu.cs" />
+    <Compile Include="src\xna\Menu\MainOptions.cs" />
+    <Compile Include="src\xna\Menu\VideoOption.cs" />
+    <Compile Include="src\xna\ScreenManager\BackgroundScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\Camera2D.cs" />
+    <Compile Include="src\xna\ScreenManager\FrameRateCounter.cs" />
+    <Compile Include="src\xna\ScreenManager\GameScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\IDemoScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\InputHelper.cs" />
+    <Compile Include="src\xna\ScreenManager\LogoScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\MenuButton.cs" />
+    <Compile Include="src\xna\ScreenManager\MenuEntry.cs" />
+    <Compile Include="src\xna\ScreenManager\MenuScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\MessageBoxScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\PhysicsGameScreen.cs" />
+    <Compile Include="src\xna\ScreenManager\ScreenManager.cs" />
+    <Compile Include="src\xna\ScreenManager\SpriteFonts.cs" />
     <Compile Include="zzz_gearit_help.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +299,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

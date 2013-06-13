@@ -8,7 +8,7 @@ namespace FarseerPhysics.HelloWorld
         /// </summary>
         static void Main(string[] args)
         {
-            using (Start game = new Start())
+            using (GearIt game = new GearIt())
             {
                 game.Run();
             }

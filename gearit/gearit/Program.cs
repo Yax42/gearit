@@ -13,7 +13,11 @@ namespace gearit
         /// </summary>
         static void Main(string[] args)
         {
-            World world = new World(new Vector2(0, 9.82f));
+            using (GearIt game = new GearIt())
+            {
+                game.Run();
+            }
+            //World world = new World(new Vector2(0, 9.82f));
 
             // Test robot
             //BruteRobot game = new BruteRobot();
@@ -21,9 +25,10 @@ namespace gearit
 
             // Test lua
             //BruteRobot game = new BruteRobot();
-            SpiderBot game = new SpiderBot();
-            game.Run();
-            LuaTest l = new LuaTest();
+            
+            //SpiderBot game = new SpiderBot();
+            //game.Run();
+            //LuaTest l = new LuaTest();
         }
     }
 #endif

@@ -115,12 +115,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetCreator.cs" />
-    <Compile Include="ConvertUnits.cs" />
+    <Compile Include="Drawing Systeme\AssetCreator.cs" />
+    <Compile Include="Drawing Systeme\ConvertUnits.cs" />
+    <Compile Include="Drawing Systeme\LineBatch.cs" />
+    <Compile Include="Menu\MainMenu.cs" />
+    <Compile Include="Menu\MainOptions.cs" />
+    <Compile Include="Menu\VideoOption.cs" />
+    <Compile Include="MyGame.cs" />
+    <Compile Include="ScreenManager\BackgroundScreen.cs" />
+    <Compile Include="ScreenManager\Camera2D.cs" />
+    <Compile Include="ScreenManager\FrameRateCounter.cs" />
+    <Compile Include="ScreenManager\GameScreen.cs" />
+    <Compile Include="ScreenManager\IDemoScreen.cs" />
+    <Compile Include="ScreenManager\InputHelper.cs" />
+    <Compile Include="ScreenManager\LogoScreen.cs" />
+    <Compile Include="ScreenManager\MenuButton.cs" />
+    <Compile Include="ScreenManager\MenuEntry.cs" />
+    <Compile Include="ScreenManager\MenuScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Sprite.cs" />
-    <Compile Include="Start.cs" />
+    <Compile Include="ScreenManager\MessageBoxScreen.cs" />
+    <Compile Include="ScreenManager\PhysicsGameScreen.cs" />
+    <Compile Include="ScreenManager\ScreenManager.cs" />
+    <Compile Include="ScreenManager\SpriteFonts.cs" />
+    <Compile Include="Drawing Systeme\Sprite.cs" />
+    <Compile Include="GearIt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
