@@ -18,5 +18,9 @@ namespace gearit
             _fix = CreateFixture(_shape, null);
             Console.WriteLine("Heart created.");
         }
+
+        public override void draw()
+        {
+        }
     }
 }

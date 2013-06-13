@@ -13,5 +13,9 @@ namespace gearit
         {
             Console.WriteLine("Wheel created.");
         }
+
+        public override void draw()
+        {
+        }
     }
 }
