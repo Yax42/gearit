@@ -58,10 +58,15 @@ namespace gearit
             for (int i = 1; i < _pieces.Count; i++)
                 if (_pieces[i].isOn(p))
                     return (_pieces[i]);
-            for (int i = 1; i < _pieces.Count; i++)
-                if (_pieces[i].isOn(p))
-                    return (_pieces[i]);
             return (getHeart());
+        }
+
+        public void draw()
+        {
+            for (int i = 1; i < _pieces.Count; i++)
+              _pieces[i].draw();
+            for (int i = 1; i < _spots.Count; i++)
+              _spots[i].draw();
         }
     }
 }

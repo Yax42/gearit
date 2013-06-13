@@ -8,25 +8,58 @@ using FarseerPhysics.Dynamics.Joints;
 
 namespace gearit.src.robot
 {
-    class PrismaticSpot
+    class PrismaticSpot : PrismaticJoint, Spot
     {
-        private PrismaticJoint _prismJoint;
         private DistanceJoint _distJoint;
+        private float _size;
 
-        public PrismaticSpot(World world, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2)
+        public PrismaticSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
+	  base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
         {
-            _prismJoint = new PrismaticJoint(p1, p2, anchor1, anchor2, new Vector2(1, 1));
-            world.AddJoint(_prismJoint);
-            _prismJoint.Enabled = true;
-            _prismJoint.MaxMotorForce = 100;
-            _prismJoint.MotorSpeed = 0f;
-            _prismJoint.LimitEnabled = true;
-            _prismJoint.MotorEnabled = true;
-            //if (base.JointList.GetType() == typeof(PrismaticJoint))
-	    /*
-            joint.LowerLimit = 1;
-            joint.UpperLimit = _sizeRod1 * 3;
-	    */
+            robot.getWorld().AddJoint(this);
+            robot.addSpot(this);
+            Enabled = true;
+            MaxMotorForce = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+        }
+
+        public void updateLimit()
+        {
+            _size = ((BodyA.Position + LocalAnchorA) -
+                    (BodyB.Position + LocalAnchorB)).Length();
+            LowerLimit = _size / 2;
+            UpperLimit = _size * 2;
+            LimitEnabled = true;
+        }
+
+        public void swap(Piece p1, Piece p2, Vector2 anchor)
+        {
+            if (BodyA == p1)
+            {
+                BodyA = p2;
+                LocalAnchorA = anchor;
+            }
+            if (BodyB == p1)
+            {
+                BodyB = p2;
+                LocalAnchorB = anchor;
+            }
+        }
+
+        public void swap(Piece p1, Piece p2)
+        {
+            swap(p1, p2, Vector2.Zero);
+        }
+
+        public void move(Vector2 pos)
+        {
+            BodyA.Position = pos - LocalAnchorA;
+            BodyB.Position = pos - LocalAnchorB;
+        }
+
+        public void draw()
+        {
         }
     }
 }

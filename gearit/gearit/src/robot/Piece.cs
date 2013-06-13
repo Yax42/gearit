@@ -53,34 +53,21 @@ namespace gearit
             get { return FixtureList[0].Shape.Density; }
         }
 
-        public virtual Vector2 getSpotPos(Vector2 p)
+        public bool isOn(Vector2 p)
         {
             Transform t;
             base.GetTransform(out t);
-            if (_shape.TestPoint(ref t, ref p))
-                return (p);
-            else
-                return (new Vector2(-1, -1));
+            return (_shape.TestPoint(ref t, ref p));
         }
 
-        public virtual bool isOn(Vector2 p)
+	//  return the closest spot
+        public Spot getSpot(Vector2 p)
         {
-
-            return (getSpotPos(p) != new Vector2(-1, -1));
+	   // Spot res = null;
+	    //for (int i = 0; i <	JointList.
+            return (null);
         }
 
-
-        public void revoluteLink(World world, Piece p, Vector2 anchor1, Vector2 anchor2)
-        {
-            RevoluteJoint joint;
-            joint = new RevoluteJoint(this, p, anchor1, anchor2);
-            world.AddJoint(joint);
-            joint.Enabled = true;
-            joint.MaxMotorTorque = 100;
-            joint.MotorSpeed = 0f;
-            joint.LimitEnabled = true;
-            joint.MotorEnabled = true;
-        }
-	
+        public void draw(){}
     }
 }

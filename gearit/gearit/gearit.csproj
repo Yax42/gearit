@@ -234,6 +234,7 @@
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />
     <Compile Include="src\utility\ConvertUnit.cs" />
+    <Compile Include="zzz_gearit_help.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

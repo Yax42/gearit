@@ -8,16 +8,14 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit
 {
-    class Spot
+    interface Spot
     {
-        internal Piece _p1;
-        internal Piece _p2;
+        void swap(Piece p1, Piece p2, Vector2 anchor);
 
-        public Spot(Piece p1, Piece p2)
-        {
-            _p1 = p1;
-            _p2 = p2;
-	}
+        void swap(Piece p1, Piece p2);
 
+        void move(Vector2 pos);
+
+        void draw();
     }
 }

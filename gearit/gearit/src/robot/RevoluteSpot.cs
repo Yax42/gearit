@@ -8,32 +8,49 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit.src.robot
 {
-    class RevoluteSpot : Spot
+    class RevoluteSpot : RevoluteJoint, Spot
     {
-        private RevoluteJoint _revJoint;
         private AngleJoint _angleJoint;
 
-        public RevoluteSpot(World world, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
-	    base(p1, p2)
+        public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
+	  base(p1, p2, anchor1, anchor2)
         {
-            _revJoint = new RevoluteJoint(p1, p2, anchor1, anchor2);
-            world.AddJoint(_revJoint);
-            _revJoint.Enabled = true;
-            _revJoint.MaxMotorTorque = 100;
-            _revJoint.MotorSpeed = 0f;
-            _revJoint.LimitEnabled = true;
-            _revJoint.MotorEnabled = true;
-            //if (base.JointList.GetType() == typeof(PrismaticJoint))
-	    /*
-            joint.LowerLimit = 1;
-            joint.UpperLimit = _sizeRod1 * 3;
-	    */
+
+            robot.getWorld().AddJoint(this);
+            robot.addSpot(this);
+            Enabled = true;
+            MaxMotorTorque = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
         }
 
-        public void publicSwap(Piece p1, Piece p2, Vector2 anchor2)
+        public void swap(Piece p1, Piece p2, Vector2 anchor)
         {
-	    Piece   p;
-//	    if (p1 == p2)
+            if (BodyA == p1)
+            {
+                BodyA = p2;
+                LocalAnchorA = anchor;
+            }
+            if (BodyB == p1)
+            {
+                BodyB = p2;
+                LocalAnchorB = anchor;
+            }
+        }
+
+        public void swap(Piece p1, Piece p2)
+        {
+            swap(p1, p2, Vector2.Zero);
+        }
+
+        public void move(Vector2 pos)
+        {
+            BodyA.Position = pos - LocalAnchorA;
+            BodyB.Position = pos - LocalAnchorB;
+        }
+
+        public void draw()
+        {
         }
     }
 }
