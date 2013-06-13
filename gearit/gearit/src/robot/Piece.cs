@@ -68,6 +68,6 @@ namespace gearit
             return (null);
         }
 
-        public abstract void draw();
+        public virtual void draw() { }
     }
 }
