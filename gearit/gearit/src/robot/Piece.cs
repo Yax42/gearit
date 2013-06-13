@@ -7,6 +7,8 @@ using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Joints;
+using Microsoft.Xna.Framework.Graphics;
+using gearit.src.utility;
 
 namespace gearit
 {
@@ -14,6 +16,7 @@ namespace gearit
     {
         internal Shape _shape;
         internal Fixture _fix;
+        internal Texture2D _tex;
 
         internal Piece(Robot robot) :
             base(robot.getWorld())
@@ -68,6 +71,6 @@ namespace gearit
             return (null);
         }
 
-        public virtual void draw() { }
+        public virtual void draw(SpriteBatch batch) { }
     }
 }

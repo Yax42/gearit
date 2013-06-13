@@ -15,15 +15,13 @@ namespace gearit
         {
             World world = new World(new Vector2(0, 9.82f));
 
-            Robot wallE = new Robot(world);
-
             // Test robot
             //BruteRobot game = new BruteRobot();
             //game.Run();
 
             // Test lua
-            BruteRobot game = new BruteRobot();
-            //SpiderBot game = new SpiderBot();
+            //BruteRobot game = new BruteRobot();
+            SpiderBot game = new SpiderBot();
             game.Run();
             LuaTest l = new LuaTest();
         }

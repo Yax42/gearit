@@ -5,6 +5,7 @@ using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace gearit
 {
@@ -16,6 +17,7 @@ namespace gearit
 
         void move(Vector2 pos);
 
-        void draw();
+        void draw(SpriteBatch batch);
+
     }
 }

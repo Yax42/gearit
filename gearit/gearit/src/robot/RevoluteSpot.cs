@@ -5,23 +5,28 @@ using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
+using Microsoft.Xna.Framework.Graphics;
+using gearit.src.utility;
+using FarseerPhysics.Collision.Shapes;
 
 namespace gearit.src.robot
 {
     class RevoluteSpot : RevoluteJoint, Spot
     {
         private AngleJoint _angleJoint;
+        static private Texture2D _tex = null;
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 	  base(p1, p2, anchor1, anchor2)
         {
-
             robot.getWorld().AddJoint(this);
             robot.addSpot(this);
             Enabled = true;
             MaxMotorTorque = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
+            if (_tex != null)
+                _tex = robot.getAsset().CreateCircle(2, Color.Red);
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
@@ -49,7 +54,7 @@ namespace gearit.src.robot
             BodyB.Position = pos - LocalAnchorB;
         }
 
-        public void draw()
+        public void draw(SpriteBatch batch)
         {
         }
     }

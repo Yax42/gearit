@@ -6,6 +6,8 @@ using System.Text;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using gearit.src.utility;
 
 namespace gearit
 {
@@ -16,9 +18,13 @@ namespace gearit
         private List<Piece> _pieces;
         private List<Spot> _spots;
         private World _world;
+        private GraphicsDevice _graph;
+        private AssetCreator _asset;
 
-        public Robot(World world)
+        public Robot(World world, GraphicsDevice graph)
         {
+            _graph = graph;
+            _asset = new AssetCreator(_graph);
             _world = world;
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
@@ -26,6 +32,16 @@ namespace gearit
 	    _spots = new List<Spot>();
             new Heart(this);
             //x_heart = new Heart();
+        }
+
+        public GraphicsDevice getGraphic()
+        {
+            return (_graph);
+        }
+
+        public AssetCreator getAsset()
+        {
+            return (_asset);
         }
 
         public void addSpot(Spot spot)
@@ -61,12 +77,12 @@ namespace gearit
             return (getHeart());
         }
 
-        public void draw()
+        public void draw(SpriteBatch batch)
         {
             for (int i = 1; i < _pieces.Count; i++)
-              _pieces[i].draw();
+                _pieces[i].draw(batch);
             for (int i = 1; i < _spots.Count; i++)
-              _spots[i].draw();
+                _spots[i].draw(batch);
         }
     }
 }
