@@ -12,7 +12,7 @@ using gearit.src.utility;
 
 namespace gearit.src.robot
 {
-    class PrismaticSpot : PrismaticJoint, Spot
+    class PrismaticSpot : PrismaticJoint, ISpot
     {
         private DistanceJoint _distJoint;
         private float _size;
@@ -29,12 +29,14 @@ namespace gearit.src.robot
             MotorEnabled = true;
             if (_tex != null)
                 _tex = robot.getAsset().CreateCircle(2, Color.Red);
+            _size = ((BodyA.Position + LocalAnchorA) -
+                    (BodyB.Position + LocalAnchorB)).Length();
+            LimitEnabled = false;
+            ColorValue = Color.Cyan;
         }
 
         public void updateLimit()
         {
-            _size = ((BodyA.Position + LocalAnchorA) -
-                    (BodyB.Position + LocalAnchorB)).Length();
             LowerLimit = _size / 2;
             UpperLimit = _size * 2;
             LimitEnabled = true;
@@ -59,15 +61,33 @@ namespace gearit.src.robot
             swap(p1, p2, Vector2.Zero);
         }
 
+        public void moveAnchor(Piece p, Vector2 anchor)
+        {
+            if (BodyA == p)
+                LocalAnchorA = anchor;
+            if (BodyB == p)
+                LocalAnchorB = anchor;
+            _size = ((BodyA.Position + LocalAnchorA) -
+                    (BodyB.Position + LocalAnchorB)).Length();
+        }
+
         public void move(Vector2 pos)
         {
             BodyA.Position = pos - LocalAnchorA;
             BodyB.Position = pos - LocalAnchorB;
         }
 
-        public void draw(SpriteBatch batch)
+        public float getSize()
         {
-          
+            return (_size);
         }
+
+        public void vertices(VertexPositionColor[] vertices, ref int count)
+        {
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyB.Position, 0f), ColorValue);
+        }
+
+        public Color ColorValue { get; set; }
     }
 }

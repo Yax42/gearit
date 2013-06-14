@@ -11,8 +11,14 @@ using FarseerPhysics.Collision.Shapes;
 
 namespace gearit.src.robot
 {
-    class RevoluteSpot : RevoluteJoint, Spot
+    class RevoluteSpot : RevoluteJoint, ISpot
     {
+	private static float _spotSize = 0.2f;
+        private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
+        private static Vector2 _topRight = new Vector2(_spotSize, -_spotSize);
+        private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
+        private static Vector2 _botRight = new Vector2(_spotSize, _spotSize);
+
         private AngleJoint _angleJoint;
         static private Texture2D _tex = null;
 
@@ -27,6 +33,7 @@ namespace gearit.src.robot
             MotorEnabled = true;
             if (_tex != null)
                 _tex = robot.getAsset().CreateCircle(2, Color.Red);
+            ColorValue = Color.Yellow;
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
@@ -48,14 +55,41 @@ namespace gearit.src.robot
             swap(p1, p2, Vector2.Zero);
         }
 
+        public void moveAnchor(Piece p, Vector2 anchor)
+        {
+            if (BodyA == p)
+                LocalAnchorA = anchor;
+            if (BodyB == p)
+                LocalAnchorB = anchor;
+        }
+
         public void move(Vector2 pos)
         {
             BodyA.Position = pos - LocalAnchorA;
             BodyB.Position = pos - LocalAnchorB;
         }
 
-        public void draw(SpriteBatch batch)
+        public float getSize() { return (0); }
+
+        public void vertices(VertexPositionColor[] vertices, ref int count)
         {
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _topLeft, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _topRight, 0f), ColorValue);
+
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _topRight, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _botRight, 0f), ColorValue);
+
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _topRight, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _botRight, 0f), ColorValue);
+
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _botRight, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _botLeft, 0f), ColorValue);
+
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _botLeft, 0f), ColorValue);
+	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position + _topLeft, 0f), ColorValue);
         }
+
+        public Color ColorValue { get; set; }
+
     }
 }

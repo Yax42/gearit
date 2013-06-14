@@ -218,6 +218,7 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
+    <Compile Include="src\robot\IPrintableVertices.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\MyGame.cs" />
     <Compile Include="src\robot\Heart.cs" />
@@ -226,7 +227,7 @@
     <Compile Include="src\robot\RevoluteSpot.cs" />
     <Compile Include="src\robot\Robot.cs" />
     <Compile Include="src\robot\Rod.cs" />
-    <Compile Include="src\robot\Spot.cs" />
+    <Compile Include="src\robot\ISpot.cs" />
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
