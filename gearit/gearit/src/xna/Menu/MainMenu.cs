@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
-using gearit.src.test;
+using gearit.src.utility;
 
 namespace gearit.xna
 {
@@ -21,6 +21,7 @@ namespace gearit.xna
         private MenuScreen _menuScreen;
         private MyGame _Gearit;
         private MainOptions _Options;
+        private RobotEditor _RobotEditor;
 
         #region IDemoScreen Members
 
@@ -48,6 +49,7 @@ namespace gearit.xna
             base.LoadContent();
 
             _Gearit = new MyGame();
+            _RobotEditor = new RobotEditor();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
 
@@ -55,10 +57,13 @@ namespace gearit.xna
             _menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
+            _menuScreen.AddMenuItem(_RobotEditor.GetTitle(), EntryType.Screen, _RobotEditor);
             _menuScreen.AddMenuItem("_______", EntryType.Separator, null);
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
+
+            //_screenManager.AddScreen(_RobotEditor);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

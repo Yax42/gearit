@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using gearit.xna;
 
-namespace gearit.src.test
+namespace gearit.src.utility
 {
     /// <summary>
     /// This is the main type for your game
@@ -11,7 +11,7 @@ namespace gearit.src.test
     {
         public GearIt()
         {
-            Window.Title = "Farseer Samples Framework";
+            Window.Title = "GearIt - Prototype";
             IsFixedTimeStep = true;
             Content.RootDirectory = "Content";
 

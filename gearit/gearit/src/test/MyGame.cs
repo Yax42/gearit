@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using gearit.xna;
 
-namespace gearit.src.test
+namespace gearit.src.utility
 {
     /// <summary>
     /// This is the main type for your game

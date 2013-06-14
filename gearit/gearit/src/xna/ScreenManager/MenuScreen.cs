@@ -162,8 +162,9 @@ namespace gearit.xna
                     ScreenManager.AddScreen(_menuEntries[_selectedEntry].Screen);
                     if (_menuEntries[_selectedEntry].Screen is IDemoScreen)
                     {
-                        ScreenManager.AddScreen(
-                            new MessageBoxScreen((_menuEntries[_selectedEntry].Screen as IDemoScreen).GetDetails()));
+                        string msg = (_menuEntries[_selectedEntry].Screen as IDemoScreen).GetDetails();
+                        if (msg.Length > 0)
+                        ScreenManager.AddScreen(new MessageBoxScreen(msg));
                     }
                 }
             }

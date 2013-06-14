@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using FarseerPhysics.DebugViews;
 
-namespace gearit.src.test
+namespace gearit.src.utility
 {
     public class SpiderBot : Game
     {

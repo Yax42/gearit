@@ -34,6 +34,7 @@ namespace gearit.xna
         /// Whenever a subsequent MessageBoxScreen tries to load this same content,
         /// it will just get back another reference to the already loaded data.
         /// </summary>
+
         public override void LoadContent()
         {
             SpriteFont font = ScreenManager.Fonts.DetailsFont;

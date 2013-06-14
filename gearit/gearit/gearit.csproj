@@ -219,6 +219,8 @@
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
     <Compile Include="src\test\GearIt.cs" />
+    <Compile Include="src\utility\MenuItem.cs" />
+    <Compile Include="src\utility\MenuOverlay.cs" />
     <Compile Include="src\test\MyGame.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
@@ -232,10 +234,12 @@
     <Compile Include="src\test\BruteRobot.cs" />
     <Compile Include="src\test\LuaTest.cs" />
     <Compile Include="src\test\Pyramid.cs" />
+    <Compile Include="src\test\RobotEditor.cs" />
     <Compile Include="src\test\SpiderBot.cs" />
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />
     <Compile Include="src\utility\ConvertUnit.cs" />
+    <Compile Include="src\utility\RectangleOverlay.cs" />
     <Compile Include="src\xna\Drawing System\LineBatch.cs" />
     <Compile Include="src\xna\Drawing System\Sprite.cs" />
     <Compile Include="src\xna\Menu\MainMenu.cs" />

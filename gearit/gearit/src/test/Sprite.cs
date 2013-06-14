@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace gearit.src.test
+namespace gearit.src.utility
 {
     public struct Sprite
     {

@@ -1,7 +1,7 @@
 using System;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
-using gearit.src.test;
+using gearit.src.utility;
 
 namespace gearit
 {

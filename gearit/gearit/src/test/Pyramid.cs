@@ -5,10 +5,10 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using gearit.src.test;
+using gearit.src.utility;
 using gearit.src.utility;
 
-namespace gearit.src.test
+namespace gearit.src.utility
 {
     public class Pyramid
     {
