@@ -9,10 +9,11 @@ using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
+using gearit.src.robot;
 
 namespace gearit
 {
-    class Piece : Body
+    abstract class Piece : Body, IPrintableVertices
     {
         internal Shape _shape;
         internal Fixture _fix;
@@ -23,6 +24,7 @@ namespace gearit
         {
             BodyType = BodyType.Dynamic;
             robot.addPiece(this);
+            ColorValue = Color.Green;
         }
 
         internal Piece(Robot robot, Shape shape) :
@@ -31,6 +33,7 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             robot.addPiece(this);
             setShape(shape, robot.getId());
+            ColorValue = Color.Green;
         }
 
         internal void setShape(Shape shape, int id)
@@ -64,13 +67,37 @@ namespace gearit
         }
 
 	//  return the closest spot
-        public Spot getSpot(Vector2 p)
+        public ISpot getSpot(Vector2 p)
         {
-	   // Spot res = null;
-	    //for (int i = 0; i <	JointList.
-            return (null);
+            Joint res = null;
+            Vector2 anchorPos;
+            float min = 1000000;
+
+            for (JointEdge i = JointList; i != null; i = i.Next)
+            {
+                if (i.Joint.BodyA == this)
+                    anchorPos = i.Joint.WorldAnchorA;
+                else
+                    anchorPos = i.Joint.WorldAnchorB;
+                if (res == null || (p - anchorPos).Length() < min)
+                {
+                    min = (p - anchorPos).Length();
+                    res = i.Joint;
+                }
+            }
+            return ((ISpot)res);
         }
 
-        public virtual void draw(SpriteBatch batch) { }
+        public void move(Vector2 pos)
+        {
+            for (JointEdge i = JointList; i != null; i = i.Next)
+              if (i.Joint.GetType() == typeof(RevoluteSpot))
+                ((RevoluteSpot)i.Joint).move(pos);
+        }
+
+        public abstract void draw(SpriteBatch batch);
+
+        public abstract void vertices(VertexPositionColor[] vertices, ref int count);
+        public Color ColorValue { get; set; }
     }
 }

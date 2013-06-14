@@ -28,17 +28,18 @@ namespace gearit.xna
 
         public MainOptions(string menuTitle, ScreenManager manager)
             : base(menuTitle)
-    {
-        ScreenManager = manager;
-    }
+        {
+            ScreenManager = manager;
+        }
         public void LoadMenu()
         {
             base.LoadContent();
 
-            _video = new VideoOption();
-            AddMenuItem("Graphique", EntryType.Screen, _video);
+            _video = new VideoOption("Video Option", ScreenManager);
+            _video.LoadMenu();
+
+            AddMenuItem("Video", EntryType.Screen, _video);
             AddMenuItem("Audio", EntryType.Separator, null);
-            AddMenuItem("Graphique", EntryType.Separator, null);
             AddMenuItem("", EntryType.Separator, null);
             AddMenuItem("Retour", EntryType.Cancel, null);
         }

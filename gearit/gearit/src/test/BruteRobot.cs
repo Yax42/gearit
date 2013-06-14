@@ -16,14 +16,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using FarseerPhysics.DebugViews;
+using gearit.xna;
 
 namespace gearit.src.utility
 {
-    public class BruteRobot : Game
+    //public class BruteRobot : PhysicsGameScreen
+    internal class BruteRobot : PhysicsGameScreen, IDemoScreen
     {
         // XNA
         // Window
-        private GraphicsDeviceManager   _graphics;
         // Draw on window
         private SpriteBatch             _batch;
         // Texture & Sprite
@@ -41,7 +42,6 @@ namespace gearit.src.utility
         // 1 meters equals 64 pixels here
         // (Objects should be scaled to be between 0.1 and 10 meters in size)
         // World
-        private World                   _world;
         // Environnement
         private Body                    _ground;
         private Body                    _ground_up_right;
@@ -76,71 +76,85 @@ namespace gearit.src.utility
         // Utility
         private AssetCreator            _asset;
 
-        // Constructor.
-        public BruteRobot()
+
+        public string GetTitle()
         {
-            // Window properties
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
-            
-            // Creating the worl for farseer with his gravity
-            _world = new World(new Vector2(0, 20));
+            return "BruteRobot";
+        }
+
+        public string GetDetails()
+        {
+	    /*
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("TODO: Add sample description!");
+            sb.AppendLine(string.Empty);
+            sb.AppendLine("GamePad:");
+            sb.AppendLine("  - Exit to menu: Back button");
+            sb.AppendLine(string.Empty);
+            sb.AppendLine("Keyboard:");
+            sb.AppendLine("  - Exit to menu: Escape");
+	    */
+            return (string.Empty);
         }
 
         // LoadContent will be called once per game and is the place to load all of your content.
-        protected override void LoadContent()
+        public override void LoadContent()
         {
-            #region init
-            // Setting the root path for content (sprite/font..)
-            Content.RootDirectory = "Content";
+            base.LoadContent();
 
- 	    _debug = new DebugViewXNA(_world);
+            #region init
+            World.Gravity = new Vector2(0f, 9.8f);
+            // Setting the root path for content (sprite/font..)
+            //ScreenManager.Game.Content.RootDirectory = "Content";
+
+ 	    _debug = new DebugViewXNA(World);
             _debug.AppendFlags(DebugViewFlags.DebugPanel);
             _debug.DefaultShapeColor = Color.White;
             _debug.SleepingShapeColor = Color.LightGray;
-            _debug.LoadContent(GraphicsDevice, Content);
+            _debug.LoadContent(ScreenManager.Game.GraphicsDevice, ScreenManager.Game.Content);
             // Initialize camera controls
             _view = Matrix.Identity;
             _camera_position = Vector2.Zero;
-            _screen_center = new Vector2(ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height)) / 2f;
-
+            //_screen_center = new Vector2(ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height)) / 2f;
+            _screen_center = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
+                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
             // Link painter to window 
-            _batch = new SpriteBatch(_graphics.GraphicsDevice);
+            _batch = new SpriteBatch(ScreenManager.GraphicsDevice);
 
             // Utility
-            _asset = new AssetCreator(GraphicsDevice);
+            _asset = new AssetCreator(ScreenManager.Game.GraphicsDevice);
             
-            _asset.LoadContent(Content);
+            _asset.LoadContent(ScreenManager.Game.Content);
 
             // Initialize grounds
-            Vector2 wall_position = new Vector2(_screen_center.X, _screen_center.Y + 2f);
-            _ground = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            //Vector2 wall_position = new Vector2(_screen_center.X, _screen_center.Y + 2f);
+            Vector2 wall_position = (ConvertUnits.ToSimUnits(_screen_center)) + new Vector2(-5f, 1.25f);
+            _ground = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             _ground_tex = _asset.TextureFromShape(_ground.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
             _ground.BodyType = BodyType.Static;
             //_ground.SetTransform(_ground.Position, 1.5f);
             // Up grounds
             wall_position -= new Vector2(7f, 2f);
-            _ground_up_left = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            _ground_up_left = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             //_ground_up_left.SetTransform(wall_position, 1.5f);
             _ground.BodyType = BodyType.Static;
             wall_position += new Vector2(14f, 1f);
-            _ground_up_right = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            _ground_up_right = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             //_ground_up_right.SetTransform(wall_position, 1.5f);
             _ground.BodyType = BodyType.Static;
 
             // Ball
-            _ball = BodyFactory.CreateCircle(_world, 0.5f, 1f, _screen_center);
+            _ball = BodyFactory.CreateCircle(World, 0.5f, 1f, _screen_center);
             _ball.BodyType = BodyType.Dynamic;
             _ball_tex = _asset.TextureFromShape(_ball.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
             _ball.SetTransform(_screen_center, 1f);
 
             // Pyramid
-            _pyramid = new Pyramid(_world, new Vector2(0.3f, 0f), 5, 1f, _asset);
+            _pyramid = new Pyramid(World, new Vector2(0.3f, 0f), 5, 1f, _asset);
 
             // Robot
 
-            //_pyramid = new Pyramid(_world, new Vector2(9.3f, 0f), 8, 1f, _asset);
+            //_pyramid = new Pyramid(World, new Vector2(9.3f, 0f), 8, 1f, _asset);
             #endregion
 
             /***************************************/
@@ -163,7 +177,7 @@ namespace gearit.src.utility
             vertices.Add(new Vector2(-1.5f, 0.2f));
 	    */
 
-            _heart = new Body(_world);
+            _heart = new Body(World);
             _heart.BodyType = BodyType.Dynamic;
             _heart.CreateFixture(new PolygonShape(vertices, 20f));
             _heart.FixtureList[0].Shape.Density = 3f;
@@ -174,50 +188,50 @@ namespace gearit.src.utility
 
 	    //Rod
 	    /*
-	    _rod1Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod1Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
 	    _rod1Start.BodyType = BodyType.Dynamic;
             _rod1Start.CollisionGroup = 42;
-	    _rod2Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod2Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
 	    _rod2Start.BodyType = BodyType.Dynamic;
             _rod2Start.CollisionGroup = 42;
 	    */
         //public static Body CreateEdge(World world, Vector2 start, Vector2 end)
 	    /*
-	    _rod1End = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod1End = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
 	    */
-	    //_rod2End = BodyFactory.CreateCircle(_world, 0.5f, 0.1f, Vector2.Zero);
+	    //_rod2End = BodyFactory.CreateCircle(World, 0.5f, 0.1f, Vector2.Zero);
 
 	    /*
-            _rod1End = new Body(_world);
+            _rod1End = new Body(World);
             CircleShape circleShape1 = new CircleShape(0.1f, 1f);
             (_rod1End.CreateFixture(circleShape1)).CollisionGroup = 42;
             _rod1End.BodyType = BodyType.Dynamic;
 
-            _rod2End = new Body(_world);
+            _rod2End = new Body(World);
             CircleShape circleShape2 = new CircleShape(0.1f, 1f);
             (_rod2End.CreateFixture(circleShape2)).CollisionGroup = 42;
             _rod2End.BodyType = BodyType.Dynamic;
 	    */
 
 
-	    _rod1End = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod1End = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod1End.CollisionGroup = 42;
             _rod1End.BodyType = BodyType.Dynamic;
 
-	    _rod2End = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod2End = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod2End.CollisionGroup = 42;
             _rod2End.BodyType = BodyType.Dynamic;
 
-	    _rod1Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod1Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod1Start.CollisionGroup = 42;
             _rod1Start.BodyType = BodyType.Dynamic;
 
-	    _rod2Start = BodyFactory.CreateCircle(_world, 0.1f, 1f, Vector2.Zero);
+	    _rod2Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod2Start.CollisionGroup = 42;
             _rod2Start.BodyType = BodyType.Dynamic;
 
 	    /*
-	    _rod1End = BodyFactory.CreateCircle(_world, 0.5f, 0.1f, Vector2.Zero);
+	    _rod1End = BodyFactory.CreateCircle(World, 0.5f, 0.1f, Vector2.Zero);
             _rod1End.BodyType = BodyType.Dynamic;
             _rod1End.CollisionGroup = 42;
              */
@@ -231,7 +245,7 @@ namespace gearit.src.utility
             _jointRod1.MotorEnabled = true;
             _jointRod1.MaxMotorForce = 100;
             _jointRod1.MotorSpeed = 0f;
-            _world.AddJoint(_jointRod1);
+            World.AddJoint(_jointRod1);
 
             _jointRod2 = new PrismaticJoint(_heart, _rod2End, Vector2.Zero, new Vector2(0, 0), new Vector2(1, 1));
             _jointRod2.LimitEnabled = true;
@@ -241,11 +255,11 @@ namespace gearit.src.utility
             _jointRod2.MotorEnabled = true;
             _jointRod2.MaxMotorForce = 100;
             _jointRod2.MotorSpeed = 0f;
-            _world.AddJoint(_jointRod2);
+            World.AddJoint(_jointRod2);
 
 
 	    // Wheel
-            _wheel_right = BodyFactory.CreateCircle(_world, 0.5f, 1f, Vector2.Zero);
+            _wheel_right = BodyFactory.CreateCircle(World, 0.5f, 1f, Vector2.Zero);
             _wheel_right.FixtureList[0].Shape.Density = 1f;
             _wheel_right.ResetMassData();
             _wheel_right.BodyType = BodyType.Dynamic;
@@ -253,7 +267,7 @@ namespace gearit.src.utility
             _wheel_right.CollisionGroup = 42;
             _wheel_right.Position = new Vector2(13, 4);
 
-            _wheel_left = BodyFactory.CreateCircle(_world, 0.5f, 1f, Vector2.Zero);
+            _wheel_left = BodyFactory.CreateCircle(World, 0.5f, 1f, Vector2.Zero);
             _wheel_left.FixtureList[0].Shape.Density = 1f;
             _wheel_left.ResetMassData();
             _wheel_left.BodyType = BodyType.Dynamic;
@@ -263,14 +277,14 @@ namespace gearit.src.utility
 
             //Joint test
             _spotJoint[1] = new RevoluteJoint(_wheel_right, _rod1End, Vector2.Zero, Vector2.Zero);
-            _world.AddJoint(_spotJoint[1]);
+            World.AddJoint(_spotJoint[1]);
 	    _spotJoint[1].Enabled = true;
             _spotJoint[1].MotorEnabled = true;
             _spotJoint[1].MaxMotorTorque = 1000f;
             _spotJoint[1].MotorSpeed = 0f;
 
             _spotJoint[0] = new RevoluteJoint(_wheel_left, _rod2End, Vector2.Zero, Vector2.Zero);
-            _world.AddJoint(_spotJoint[0]);
+            World.AddJoint(_spotJoint[0]);
 	    _spotJoint[0].Enabled = true;
             _spotJoint[0].MotorEnabled = true;
             _spotJoint[0].MaxMotorTorque = 1000f;
@@ -278,7 +292,7 @@ namespace gearit.src.utility
 #region test construction
 /*
             _spotJoint[2] = new RevoluteJoint(_heart, _rod1Start,  new Vector2(-0.5f, -1f), Vector2.Zero);
-            _world.AddJoint(_spotJoint[2]);
+            World.AddJoint(_spotJoint[2]);
 	    _spotJoint[2].Enabled = true;
             _spotJoint[2].MotorEnabled = true;
             _spotJoint[2].MaxMotorTorque = 1000f;
@@ -286,14 +300,14 @@ namespace gearit.src.utility
             _spotJoint[2].LimitEnabled = true;
 
             _spotJoint[3] = new RevoluteJoint(_heart, _rod2Start,  new Vector2(0.5f, -1f), Vector2.Zero);
-            _world.AddJoint(_spotJoint[3]);
+            World.AddJoint(_spotJoint[3]);
 	    _spotJoint[3].Enabled = true;
             _spotJoint[3].MotorEnabled = false;
             _spotJoint[3].MaxMotorTorque = 1000f;
             _spotJoint[3].MotorSpeed = 0f;
 
             _spotJoint[2] = new RevoluteJoint(_rod2Start, _heart, Vector2.Zero, new Vector2(-1, -0.5f));
-            _world.AddJoint(_spotJoint[2]);
+            World.AddJoint(_spotJoint[2]);
 	    _spotJoint[2].Enabled = true;
             _spotJoint[2].LowerLimit = 0;
             _spotJoint[2].UpperLimit = 0;
@@ -309,72 +323,72 @@ namespace gearit.src.utility
             _spotJoint[2].MotorEnabled = false;
             _spotJoint[2].MaxMotorTorque = 100f;
             _spotJoint[2].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[2]);
+            World.AddJoint(_spotJoint[2]);
 	    */
 /*
 	    //Spot1
-            _joints[0] = BodyFactory.CreateCircle(_world, 0.01f, 1f, Vector2.Zero);
+            _joints[0] = BodyFactory.CreateCircle(World, 0.01f, 1f, Vector2.Zero);
             _joints[0].BodyType = BodyType.Dynamic;
 	    _spotJoint[0] = new RevoluteJoint(_wheel_left, _joints[0], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[0].Enabled = true;
             _spotJoint[0].MotorEnabled = true;
             _spotJoint[0].MaxMotorTorque = 100f;
             _spotJoint[0].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[0]);
+            World.AddJoint(_spotJoint[0]);
 	    _spotJoint[7 - 0] = new RevoluteJoint(_rod1End, _joints[0], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[7 - 0].Enabled = true;
             _spotJoint[7 - 0].MotorEnabled = true;
             _spotJoint[7 - 0].MaxMotorTorque = 100f;
             _spotJoint[7 - 0].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[7 - 0]);
+            World.AddJoint(_spotJoint[7 - 0]);
 
 	    //Spot2
-            _joints[1] = BodyFactory.CreateCircle(_world, 0.01f, 1f, Vector2.Zero);
+            _joints[1] = BodyFactory.CreateCircle(World, 0.01f, 1f, Vector2.Zero);
             _joints[1].BodyType = BodyType.Dynamic;
 	    _spotJoint[1] = new RevoluteJoint(_wheel_right, _joints[1], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[1].Enabled = true;
             _spotJoint[1].MotorEnabled = true;
             _spotJoint[1].MaxMotorTorque = 100f;
             _spotJoint[1].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[1]);
+            World.AddJoint(_spotJoint[1]);
 	    _spotJoint[7 - 1] = new RevoluteJoint(_rod2End, _joints[1], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[7 - 1].Enabled = true;
             _spotJoint[7 - 1].MotorEnabled = true;
             _spotJoint[7 - 1].MaxMotorTorque = 100f;
             _spotJoint[7 - 1].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[7 - 1]);
+            World.AddJoint(_spotJoint[7 - 1]);
 
 	    //Spot3
-            _joints[2] = BodyFactory.CreateCircle(_world, 0.01f, 1f, Vector2.Zero);
+            _joints[2] = BodyFactory.CreateCircle(World, 0.01f, 1f, Vector2.Zero);
             _joints[2].BodyType = BodyType.Dynamic;
 	    _spotJoint[2] = new RevoluteJoint(_heart, _joints[2], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[2].Enabled = true;
             _spotJoint[2].MotorEnabled = true;
             _spotJoint[2].MaxMotorTorque = 100f;
             _spotJoint[2].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[2]);
+            World.AddJoint(_spotJoint[2]);
 	    _spotJoint[7 - 2] = new RevoluteJoint(_rod1Start, _joints[2], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[7 - 2].Enabled = true;
             _spotJoint[7 - 2].MotorEnabled = true;
             _spotJoint[7 - 2].MaxMotorTorque = 100f;
             _spotJoint[7 - 2].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[7 - 2]);
+            World.AddJoint(_spotJoint[7 - 2]);
 
 	    //Spot4
-            _joints[3] = BodyFactory.CreateCircle(_world, 0.01f, 1f, Vector2.Zero);
+            _joints[3] = BodyFactory.CreateCircle(World, 0.01f, 1f, Vector2.Zero);
             _joints[3].BodyType = BodyType.Dynamic;
 	    _spotJoint[3] = new RevoluteJoint(_heart, _joints[3], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[3].Enabled = true;
             _spotJoint[3].MotorEnabled = true;
             _spotJoint[3].MaxMotorTorque = 100f;
             _spotJoint[3].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[3]);
+            World.AddJoint(_spotJoint[3]);
 	    _spotJoint[7 - 3] = new RevoluteJoint(_rod2Start, _joints[3], Vector2.Zero, Vector2.Zero);
 	    _spotJoint[7 - 3].Enabled = true;
             _spotJoint[7 - 3].MotorEnabled = true;
             _spotJoint[7 - 3].MaxMotorTorque = 100f;
             _spotJoint[7 - 3].MotorSpeed = 0f;
-            _world.AddJoint(_spotJoint[7 - 3]);
+            World.AddJoint(_spotJoint[7 - 3]);
 */
             /*
                 private RevoluteJoint[]		_spotJoint = new RevoluteJoint[8];
@@ -386,13 +400,13 @@ namespace gearit.src.utility
 
         // Allows the game to run logic such as updating the world,
         // checking for collisions, gathering input, and playing audio.
-        protected override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             HandleKeyboard();
 
             // Update the world
-            _world.Step((float) gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-            base.Update(gameTime);
+            World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
         // Manage the keyboard.
@@ -436,15 +450,13 @@ namespace gearit.src.utility
             if (state.IsKeyDown(Keys.Space))
             {
             }
-            else if (state.IsKeyDown(Keys.Escape))
-              Exit();
         }
 
         // This is called when the game should draw itself.
-        protected override void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             // Erase & Draw background
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
             _batch.Begin();
@@ -480,8 +492,8 @@ namespace gearit.src.utility
             // Pyramid
             // calculate the projection and view adjustments for the debug view
             #endregion
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width),
-                                                         ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height), 0f, 0f,
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Width),
+                                                         ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Height), 0f, 0f,
                                                          1f);
         Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(_camera_position) -
 	ConvertUnits.ToSimUnits(_screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(_screen_center), 0f));

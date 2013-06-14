@@ -218,6 +218,7 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
+    <Compile Include="src\robot\IPrintableVertices.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\utility\MenuItem.cs" />
     <Compile Include="src\utility\MenuOverlay.cs" />
@@ -228,7 +229,7 @@
     <Compile Include="src\robot\RevoluteSpot.cs" />
     <Compile Include="src\robot\Robot.cs" />
     <Compile Include="src\robot\Rod.cs" />
-    <Compile Include="src\robot\Spot.cs" />
+    <Compile Include="src\robot\ISpot.cs" />
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
@@ -242,8 +243,10 @@
     <Compile Include="src\utility\RectangleOverlay.cs" />
     <Compile Include="src\xna\Drawing System\LineBatch.cs" />
     <Compile Include="src\xna\Drawing System\Sprite.cs" />
+    <Compile Include="src\xna\Menu\FullScreen.cs" />
     <Compile Include="src\xna\Menu\MainMenu.cs" />
     <Compile Include="src\xna\Menu\MainOptions.cs" />
+    <Compile Include="src\xna\Menu\ResolutionChanger.cs" />
     <Compile Include="src\xna\Menu\VideoOption.cs" />
     <Compile Include="src\xna\ScreenManager\BackgroundScreen.cs" />
     <Compile Include="src\xna\ScreenManager\Camera2D.cs" />

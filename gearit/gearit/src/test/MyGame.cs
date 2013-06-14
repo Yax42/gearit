@@ -67,7 +67,7 @@ namespace gearit.src.utility
 
         public string GetTitle()
         {
-            return "Solo";
+            return "Alex-mobile";
         }
 
         public string GetDetails()
@@ -97,7 +97,6 @@ namespace gearit.src.utility
         // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
         // 1 meters equals 64 pixels here
         // (Objects should be scaled to be between 0.1 and 10 meters in size)
-        private const float MeterInPixels = 64f;
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -126,15 +125,15 @@ namespace gearit.src.utility
 
             /* Circle */
             // Convert screen center from pixels to meters
-            Vector2 circlePosition = (_screenCenter / MeterInPixels) + new Vector2(0, -1.5f);
+            Vector2 circlePosition = ConvertUnits.ToSimUnits(_screenCenter) + new Vector2(0, -1.5f);
 
             // Create the circle fixture
 
-            _circleBody = BodyFactory.CreateCircle(World, 96f / (2f * MeterInPixels), 1f, circlePosition);
+            _circleBody = BodyFactory.CreateCircle(World, ConvertUnits.ToSimUnits(96f) / 2f, 1f, circlePosition);
             _circleBody.BodyType = BodyType.Dynamic;
 
             // Create new circle
-            _circleShape = new CircleShape(96f / (2f * MeterInPixels), 10f);
+            _circleShape = new CircleShape(ConvertUnits.ToSimUnits(96f) / 2f , 10f);
             //_circleShape.Position = circlePosition;
             //_circleShape.MassData.Mass = 500f;
 
@@ -149,7 +148,7 @@ namespace gearit.src.utility
             _circleTex = ScreenManager.Assets.TextureFromShape(_circleShape, MaterialType.Blank, Color.Red, 1f);
 
             // Create new circle 2
-            _circleShape2 = new CircleShape(96f / (2f * MeterInPixels), 10f);
+            _circleShape2 = new CircleShape(ConvertUnits.ToSimUnits(96f) / 2f, 10f);
             //_circleShape.Position = circlePosition;
             //_circleShape.MassData.Mass = 500f;
 
@@ -188,19 +187,19 @@ namespace gearit.src.utility
             _circleBody.Friction = 0.5f;
 
             /* Ground */
-            Vector2 groundPosition = (_screenCenter / MeterInPixels) + new Vector2(0, 1.25f);
+            Vector2 groundPosition = (ConvertUnits.ToSimUnits(_screenCenter)) + new Vector2(0, 1.25f);
 
             // Create the ground fixture
-            _groundBody = BodyFactory.CreateRectangle(World, 512f / MeterInPixels, 64f / MeterInPixels, 1f, groundPosition);
+            _groundBody = BodyFactory.CreateRectangle(World, ConvertUnits.ToSimUnits(512), ConvertUnits.ToSimUnits(64f), 1f, groundPosition);
             _groundBody.IsStatic = true;
             _groundBody.Restitution = 0.3f;
             _groundBody.Friction = 0.5f;
 
             /* Wall LEFT*/
-            Vector2 wallPosition = (_screenCenter / MeterInPixels) + new Vector2(-5f, 1.25f);
+            Vector2 wallPosition = ConvertUnits.ToSimUnits(_screenCenter) + new Vector2(-5f, 1.25f);
 
             // Create the wall fixture
-            _wallLeft = BodyFactory.CreateRectangle(World, 512f / MeterInPixels, 64f / MeterInPixels, 1f, wallPosition);
+            _wallLeft = BodyFactory.CreateRectangle(World, ConvertUnits.ToSimUnits(512f), ConvertUnits.ToSimUnits(64f), 1f, wallPosition);
 
             _wallLeft.SetTransform(wallPosition, 1.5f);
             _wallLeft.IsStatic = true;
@@ -208,10 +207,10 @@ namespace gearit.src.utility
             _wallLeft.Friction = 0.5f;
 
             /* Wall RIGHT*/
-            wallPosition = (_screenCenter / MeterInPixels) + new Vector2(5f, 1.25f);
+            wallPosition = ConvertUnits.ToSimUnits(_screenCenter) + new Vector2(5f, 1.25f);
 
             // Create the wall fixture
-            _wallRight = BodyFactory.CreateRectangle(World, 512f / MeterInPixels, 64f / MeterInPixels, 1f, wallPosition);
+            _wallRight = BodyFactory.CreateRectangle(World, ConvertUnits.ToSimUnits(512f), ConvertUnits.ToSimUnits(64f), 1f, wallPosition);
             _wallRight.SetTransform(wallPosition, 1.5f);
             _wallRight.IsStatic = true;
             _wallRight.Restitution = 0.3f;
@@ -382,26 +381,26 @@ namespace gearit.src.utility
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             /* Circle position and rotation */
             // Convert physics position (meters) to screen coordinates (pixels)
-            Vector2 circlePos = _circleBody.Position * MeterInPixels;
+            Vector2 circlePos = ConvertUnits.ToDisplayUnits(_circleBody.Position);
             float circleRotation = _circleBody.Rotation;
 
-            Vector2 circlePos2 = _circle.Position * MeterInPixels;
+            Vector2 circlePos2 = ConvertUnits.ToDisplayUnits(_circle.Position);
             float circleRotation2 = _circle.Rotation;
 
-            Vector2 circlePos3 = _circle2.Position * MeterInPixels;
+            Vector2 circlePos3 = ConvertUnits.ToDisplayUnits(_circle2.Position);
             float circleRotation3 = _circle2.Rotation;
 
-            Vector2 squarePos = _square.Position * MeterInPixels;
+            Vector2 squarePos = ConvertUnits.ToDisplayUnits(_square.Position);
             float squareRotation = _square.Rotation;
 
             /* Ground position and origin */
-            Vector2 groundPos = _groundBody.Position * MeterInPixels;
-            Vector2 wallPosL = _wallLeft.Position * MeterInPixels;
-            Vector2 wallPosR = _wallRight.Position * MeterInPixels;
+            Vector2 groundPos = ConvertUnits.ToDisplayUnits(_groundBody.Position);
+            Vector2 wallPosL = ConvertUnits.ToDisplayUnits(_wallLeft.Position);
+            Vector2 wallPosR = ConvertUnits.ToDisplayUnits(_wallRight.Position);
             float wallRotationL = _wallLeft.Rotation;
             float wallRotationR = _wallRight.Rotation;
 
