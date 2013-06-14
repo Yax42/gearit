@@ -77,12 +77,6 @@ namespace gearit.src.robot
                     (BodyB.Position + LocalAnchorB)).Length();
         }
 
-        public void move(Vector2 pos)
-        {
-            BodyA.Position = pos - LocalAnchorA;
-            BodyB.Position = pos - LocalAnchorB;
-        }
-
         public float getSize()
         {
             return (_size);

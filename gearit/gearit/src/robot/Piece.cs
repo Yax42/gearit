@@ -69,9 +69,30 @@ namespace gearit
 	//  return the closest spot
         public ISpot getSpot(Vector2 p)
         {
-	   // Spot res = null;
-	    //for (int i = 0; i <	JointList.
-            return (null);
+            Joint res = null;
+            Vector2 anchorPos;
+            float min = 1000000;
+
+            for (JointEdge i = JointList; i != null; i = i.Next)
+            {
+                if (i.Joint.BodyA == this)
+                    anchorPos = i.Joint.WorldAnchorA;
+                else
+                    anchorPos = i.Joint.WorldAnchorB;
+                if (res == null || (p - anchorPos).Length() < min)
+                {
+                    min = (p - anchorPos).Length();
+                    res = i.Joint;
+                }
+            }
+            return ((ISpot)res);
+        }
+
+        public void move(Vector2 pos)
+        {
+            for (JointEdge i = JointList; i != null; i = i.Next)
+              if (i.Joint.GetType() == typeof(RevoluteSpot))
+                ((RevoluteSpot)i.Joint).move(pos);
         }
 
         public abstract void draw(SpriteBatch batch);

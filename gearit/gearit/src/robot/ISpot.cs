@@ -16,8 +16,6 @@ namespace gearit
 
         void swap(Piece p1, Piece p2);
 
-        void move(Vector2 pos);
-
         void moveAnchor(Piece p, Vector2 anchor);
 
         float getSize();

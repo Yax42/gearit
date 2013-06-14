@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src.robot;
+using FarseerPhysics.Dynamics.Joints;
 
 namespace gearit
 {
@@ -111,6 +112,20 @@ namespace gearit
             for (int i = 1; i < _pieces.Count; i++)
                 _pieces[i].draw(batch);
             _pieces[0].draw(batch);
+        }
+
+        public void remove(Piece p)
+	{
+            for (JointEdge i = p.JointList; i != null; i = i.Next)
+              _spots.Remove((ISpot) i.Joint);
+            _pieces.Remove(p);
+            _world.RemoveBody(p);
+	}
+
+        public void remove(ISpot s)
+        {
+            _spots.Remove(s);
+            _world.RemoveJoint((Joint)s);
         }
     }
 }
