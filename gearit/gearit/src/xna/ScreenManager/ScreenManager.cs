@@ -64,6 +64,7 @@ namespace gearit.xna
         {
             _graphics.PreferredBackBufferWidth = width;
             _graphics.PreferredBackBufferHeight = height;
+            
             _graphics.ApplyChanges();
         }
 

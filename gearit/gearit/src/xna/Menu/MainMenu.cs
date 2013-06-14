@@ -23,6 +23,8 @@ namespace gearit.xna
         private BruteRobot _bruteRobot;
         private SpiderBot _spiderBot;
         private MainOptions _Options;
+        private SoundEffect _sound;
+        private SoundEffectInstance _instance;
 
         #region IDemoScreen Members
 
@@ -49,12 +51,17 @@ namespace gearit.xna
         {
             base.LoadContent();
 
+            _sound = _screenManager.Content.Load<SoundEffect>("Audio/MenuSound");
+            _instance = _sound.CreateInstance();
+            _instance.IsLooped = true;
+            _instance.Play();
+
             _Gearit = new MyGame();
             _bruteRobot = new BruteRobot();
             _spiderBot = new SpiderBot();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
-
+            _instance.Play();
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
