@@ -12,8 +12,8 @@ Content\Common\popup.xnb
 Content\Common\slider.xnb
 Content\Common\socket.xnb
 Content\Common\stick.xnb
-Content\circleSprite.xnb
-Content\groundSprite.xnb
 Content\Fonts\detailsFont.xnb
 Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb
+Content\circleSprite.xnb
+Content\groundSprite.xnb

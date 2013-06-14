@@ -239,8 +239,10 @@
     <Compile Include="src\utility\ConvertUnit.cs" />
     <Compile Include="src\xna\Drawing System\LineBatch.cs" />
     <Compile Include="src\xna\Drawing System\Sprite.cs" />
+    <Compile Include="src\xna\Menu\FullScreen.cs" />
     <Compile Include="src\xna\Menu\MainMenu.cs" />
     <Compile Include="src\xna\Menu\MainOptions.cs" />
+    <Compile Include="src\xna\Menu\ResolutionChanger.cs" />
     <Compile Include="src\xna\Menu\VideoOption.cs" />
     <Compile Include="src\xna\ScreenManager\BackgroundScreen.cs" />
     <Compile Include="src\xna\ScreenManager\Camera2D.cs" />

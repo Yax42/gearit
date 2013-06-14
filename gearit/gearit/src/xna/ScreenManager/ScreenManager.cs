@@ -58,6 +58,16 @@ namespace gearit.xna
         }
 
         /// <summary>
+        /// Set Resolution
+        /// </summary>
+        public void SetResolutionScreen(int width, int height)
+        {
+            _graphics.PreferredBackBufferWidth = width;
+            _graphics.PreferredBackBufferHeight = height;
+            _graphics.ApplyChanges();
+        }
+
+        /// <summary>
         /// Return FullScreen mode
         /// </summary>
         public bool IsFullScreen

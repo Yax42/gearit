@@ -69,8 +69,8 @@ namespace gearit.xna
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (ScreenManager.IsFullScreen == false)
-                ScreenManager.activeFullScreen();
+            /*if (ScreenManager.IsFullScreen == false)
+                ScreenManager.activeFullScreen();*/
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
