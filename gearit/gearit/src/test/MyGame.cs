@@ -67,7 +67,7 @@ namespace gearit.src.test
 
         public string GetTitle()
         {
-            return "Solo";
+            return "Alex-mobile";
         }
 
         public string GetDetails()
@@ -381,7 +381,7 @@ namespace gearit.src.test
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             /* Circle position and rotation */
             // Convert physics position (meters) to screen coordinates (pixels)

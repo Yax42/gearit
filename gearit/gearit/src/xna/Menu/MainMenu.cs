@@ -56,12 +56,12 @@ namespace gearit.xna
             _Options.LoadMenu();
 
             _menuScreen = new MenuScreen("Gear it!");
-            _menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
-            _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
+            //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
+            _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
             _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
-            _menuScreen.AddMenuItem("_______", EntryType.Separator, null);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
