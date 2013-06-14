@@ -20,6 +20,8 @@ namespace gearit.xna
         private ScreenManager _screenManager;
         private MenuScreen _menuScreen;
         private MyGame _Gearit;
+        private BruteRobot _bruteRobot;
+        private SpiderBot _spiderBot;
         private MainOptions _Options;
 
         #region IDemoScreen Members
@@ -48,6 +50,8 @@ namespace gearit.xna
             base.LoadContent();
 
             _Gearit = new MyGame();
+            _bruteRobot = new BruteRobot();
+            _spiderBot = new SpiderBot();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
 
@@ -55,6 +59,8 @@ namespace gearit.xna
             _menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
+            _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
+            _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
             _menuScreen.AddMenuItem("_______", EntryType.Separator, null);
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 

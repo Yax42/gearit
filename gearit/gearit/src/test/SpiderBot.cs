@@ -16,10 +16,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using FarseerPhysics.DebugViews;
+using gearit.xna;
 
 namespace gearit.src.test
 {
-    public class SpiderBot : Game
+    internal class SpiderBot : PhysicsGameScreen, IDemoScreen
     {
 
         private class Legg
@@ -28,7 +29,6 @@ namespace gearit.src.test
             private Body _spot;
             private PrismaticJoint _pris;
             private RevoluteJoint _rev;
-            private Random _rand;
             private static int _nb = 0;
             private int _id;
             private int _nbLeggs;
@@ -98,7 +98,6 @@ namespace gearit.src.test
 
         // XNA
         // Window
-        private GraphicsDeviceManager   _graphics;
         // Draw on window
         private SpriteBatch             _batch;
         // Texture & Sprite
@@ -113,7 +112,6 @@ namespace gearit.src.test
         // 1 meters equals 64 pixels here
         // (Objects should be scaled to be between 0.1 and 10 meters in size)
         // World
-        private World                   _world;
         // Environnement
         private Body                    _ground;
         private Body                    _ground_up_right;
@@ -128,65 +126,78 @@ namespace gearit.src.test
         // Utility
         private AssetCreator            _asset;
 
-        // Constructor.
-        public SpiderBot()
+        public string GetTitle()
         {
-            // Window properties
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 768;
-            
-            // Creating the worl for farseer with his gravity
-            _world = new World(new Vector2(0, 20));
+            return "SpiderBot";
+        }
+
+        public string GetDetails()
+        {
+	    /*
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("TODO: Add sample description!");
+            sb.AppendLine(string.Empty);
+            sb.AppendLine("GamePad:");
+            sb.AppendLine("  - Exit to menu: Back button");
+            sb.AppendLine(string.Empty);
+            sb.AppendLine("Keyboard:");
+            sb.AppendLine("  - Exit to menu: Escape");
+	    */
+            return (string.Empty);
         }
 
         // LoadContent will be called once per game and is the place to load all of your content.
-        protected override void LoadContent()
+        public override void LoadContent()
         {
-            #region init
-            // Setting the root path for content (sprite/font..)
-            Content.RootDirectory = "Content";
+            base.LoadContent();
 
-            _debug = new DebugViewXNA(_world);
+            #region init
+            World.Gravity = new Vector2(0f, 9.8f);
+            // Setting the root path for content (sprite/font..)
+            //Content.RootDirectory = "Content";
+
+            _debug = new DebugViewXNA(World);
             _debug.AppendFlags(DebugViewFlags.DebugPanel);
             _debug.DefaultShapeColor = Color.White;
             _debug.SleepingShapeColor = Color.LightGray;
-            _debug.LoadContent(GraphicsDevice, Content);
+            _debug.LoadContent(ScreenManager.Game.GraphicsDevice, ScreenManager.Game.Content);
             // Initialize camera controls
             _view = Matrix.Identity;
             _camera_position = Vector2.Zero;
-            _screen_center = new Vector2(ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height)) / 2f;
+           // _screen_center = new Vector2(ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height)) / 2f;
+            _screen_center = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
+                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             // Link painter to window 
-            _batch = new SpriteBatch(_graphics.GraphicsDevice);
+            _batch = new SpriteBatch(ScreenManager.GraphicsDevice);
 
             // Utility
-            _asset = new AssetCreator(GraphicsDevice);
+            _asset = new AssetCreator(ScreenManager.Game.GraphicsDevice);
 
-            _asset.LoadContent(Content);
+            _asset.LoadContent(ScreenManager.Game.Content);
 
             // Initialize grounds
-            Vector2 wall_position = new Vector2(_screen_center.X, _screen_center.Y + 2f);
-            _ground = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            Vector2 wall_position = (ConvertUnits.ToSimUnits(_screen_center)) + new Vector2(-5f, 1.25f);
+            _ground = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             _ground.BodyType = BodyType.Static;
             //_ground.SetTransform(_ground.Position, 1.5f);
             // Up grounds
             wall_position -= new Vector2(7f, 2f);
-            _ground_up_left = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            _ground_up_left = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             //_ground_up_left.SetTransform(wall_position, 1.5f);
             _ground.BodyType = BodyType.Static;
             wall_position += new Vector2(14f, 1f);
-            _ground_up_right = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, wall_position);
+            _ground_up_right = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             //_ground_up_right.SetTransform(wall_position, 1.5f);
             _ground.BodyType = BodyType.Static;
 
             // Ball
-            _ball = BodyFactory.CreateCircle(_world, 0.5f, 1f, _screen_center);
+            _ball = BodyFactory.CreateCircle(World, 0.5f, 1f, _screen_center);
             _ball.BodyType = BodyType.Dynamic;
             _ball.SetTransform(_screen_center, 1f);
 
             // Pyramid
-            //_pyramid = new Pyramid(_world, new Vector2(9.3f, 0f), 8, 1f, _asset);
+            //_pyramid = new Pyramid(World, new Vector2(9.3f, 0f), 8, 1f, _asset);
             #endregion
 
             /***************************************/
@@ -200,7 +211,7 @@ namespace gearit.src.test
             vertices.Add(new Vector2(0.5f, 0.5f));
             vertices.Add(new Vector2(-0.5f, 0.5f));
 
-            _heart = new Body(_world);
+            _heart = new Body(World);
             _heart.BodyType = BodyType.Dynamic;
             _heart.CreateFixture(new PolygonShape(vertices, 20f));
             _heart.FixtureList[0].Shape.Density = 200f;
@@ -213,18 +224,18 @@ namespace gearit.src.test
             /***********************************************************************************************************/
             _leggs = new Legg[_nbLeggs];
             for (int i = 0; i < _nbLeggs; i++)
-                _leggs[i] = new Legg(_world, _heart, _nbLeggs);
+                _leggs[i] = new Legg(World, _heart, _nbLeggs);
         }
 
         // Allows the game to run logic such as updating the world,
         // checking for collisions, gathering input, and playing audio.
-        protected override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             HandleKeyboard();
 
             // Update the world
-            _world.Step((float) gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-            base.Update(gameTime);
+            World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
         // Manage the keyboard.
@@ -254,23 +265,21 @@ namespace gearit.src.test
             if (state.IsKeyDown(Keys.Space))
             {
             }
-            else if (state.IsKeyDown(Keys.Escape))
-              Exit();
         }
 
         // This is called when the game should draw itself.
-        protected override void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             // Erase & Draw background
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
             _batch.Begin();
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Width),
-                                                         ConvertUnits.ToSimUnits(_graphics.GraphicsDevice.Viewport.Height), 0f, 0f,
-                                                         1f);
+        Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Width),
+                                             ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Height), 0f, 0f,
+                                             1f);
         Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(_camera_position) -
-	ConvertUnits.ToSimUnits(_screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(_screen_center), 0f));
+    ConvertUnits.ToSimUnits(_screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(_screen_center), 0f));
         _debug.RenderDebugData(ref projection, ref view);
 
             //_pyramid.Draw(_batch);

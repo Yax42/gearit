@@ -22,6 +22,11 @@ namespace gearit.src.robot
         private AngleJoint _angleJoint;
         static private Texture2D _tex = null;
 
+        public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
+            this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
+        {
+        }
+
         public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 	  base(p1, p2, anchor1, anchor2)
         {

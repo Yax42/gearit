@@ -90,15 +90,23 @@ namespace gearit
             _graph.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
         }
 
+        public float getWeight()
+        {
+	    float res = 0;
+            for (int i = 0; i < _pieces.Count; i++)
+              res += _pieces[i].Weight;
+            return (res);
+        }
+
         public void draw(SpriteBatch batch)
         {
 	    int	    count = 0;
 
             for (int i = 0; i < _pieces.Count; i++)
-                if (_spots[i].GetType() == typeof(PrismaticSpot))
-                  _pieces[i].vertices(_lineVertices, ref count);
+               _pieces[i].vertices(_lineVertices, ref count);
             for (int i = 0; i < _spots.Count; i++)
-	      _spots[i].vertices(_lineVertices, ref count);
+               if (_spots[i].GetType() == typeof(PrismaticSpot))
+	         _spots[i].vertices(_lineVertices, ref count);
             _graph.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
             for (int i = 1; i < _pieces.Count; i++)
                 _pieces[i].draw(batch);
