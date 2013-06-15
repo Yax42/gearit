@@ -150,8 +150,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\la_soupe_aux_choux.mp3">
+    <Compile Include="Audio\MenuSound.mp3">
       <Name>MenuSound</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\la_soupe_aux_choux.mp3">
+      <Name>soupeGame</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

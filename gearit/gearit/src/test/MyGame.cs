@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Collections.Generic;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Common;
@@ -20,6 +21,11 @@ namespace gearit.src.utility
     /// </summary>
     internal class MyGame : PhysicsGameScreen, IDemoScreen
     {
+        private SortedList<string, Keys> _keys;
+
+        private SoundManager _sound;
+
+        private KeyboardState state;
         private KeyboardState _oldKeyState;
         private GamePadState _oldPadState;
 
@@ -113,7 +119,20 @@ namespace gearit.src.utility
             EnableCameraControl = true;
             HasVirtualStick = true;
 
+            _sound = new SoundManager(ScreenManager, "Audio/soupeGame");
+            _sound.ActiveLoop();
+
             _lua = new LuaTest(this);
+            _keys = new SortedList<string, Keys>();
+            _keys.Add("Q", Keys.Q);
+            _keys.Add("D", Keys.D);
+            _keys.Add("S", Keys.S);
+            _keys.Add("A", Keys.A);
+            _keys.Add("Z", Keys.Z);
+            _keys.Add("W", Keys.W);
+            _keys.Add("X", Keys.X);
+            _keys.Add("E", Keys.E);
+            _keys.Add("Space", Keys.Space);
 
             // Initialize camera controls
             _view = Matrix.Identity;
@@ -275,14 +294,36 @@ namespace gearit.src.utility
             //We update the world
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
+            //Play sound
+            if (!_sound.isPlaying())
+                _sound.playSound();
+
+            if (this.IsExiting)
+                _sound.StopSound();
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
+        public bool getKeysAction(string key)
+        {
+            state = Keyboard.GetState();
+            if (state.IsKeyDown(_keys[key]))
+                return (true);
+            else
+                return (false);
+        }
 
         public void ChangeWheel(float value)
         {
             _motorJoint.MotorSpeed = value;
             _motorJoint2.MotorSpeed = value;
+        }
+
+        public RevoluteJoint getWheel(int num)
+        {
+            if (num == 1)
+                return (_motorJoint);
+            else
+                return (_motorJoint2);
         }
 
         private void HandleGamePad()
@@ -311,14 +352,15 @@ namespace gearit.src.utility
         {
         }
 
+
         public KeyboardState getKeyboardState()
         {
-            //return (this.HandleKeyboard.
+            return (state);
         }
 
         private void HandleKeyboard()
         {
-            KeyboardState state = Keyboard.GetState();
+            state = Keyboard.GetState();
 
             // Switch between circle body and camera control
             if (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift))

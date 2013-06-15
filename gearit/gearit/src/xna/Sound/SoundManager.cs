@@ -31,9 +31,18 @@ namespace gearit.xna
                 _instance.IsLooped = false;
         }
 
+        public bool isPlaying()
+        {
+            if (_instance.State == SoundState.Playing)
+                return (true);
+            else
+                return (false);
+        }
+
         public void playSound()
         {
-            _instance.Play();
+            if (_instance.State != SoundState.Playing)
+                _instance.Play();
         }
 
         public void StopSound()
