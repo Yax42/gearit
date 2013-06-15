@@ -14,7 +14,7 @@ namespace gearit
 
         private float _size;
 
-        public Wheel(ref Robot robot, ref float size) :
+        public Wheel(Robot robot, float size) :
             base(robot, new CircleShape(size, 0)) //density 0 ~= poids
         {
             _size = size;

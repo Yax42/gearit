@@ -124,6 +124,8 @@ namespace gearit
 
         public void remove(Piece p)
 	{
+            if (p == getHeart())
+              return ;
             for (JointEdge i = p.JointList; i != null; i = i.Next)
               _spots.Remove((ISpot) i.Joint);
             _pieces.Remove(p);
