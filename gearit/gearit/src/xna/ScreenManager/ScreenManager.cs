@@ -58,6 +58,22 @@ namespace gearit.xna
         }
 
         /// <summary>
+        /// Return Width
+        /// </summary>
+        public int Width
+        {
+            get { return _graphics.PreferredBackBufferWidth; }
+        }
+
+        /// <summary>
+        /// Return Height
+        /// </summary>
+        public int Height
+        {
+            get { return _graphics.PreferredBackBufferHeight; }
+        }
+
+        /// <summary>
         /// Set Resolution
         /// </summary>
         public void SetResolutionScreen(int width, int height)

@@ -21,9 +21,7 @@ namespace gearit.xna
 
         public string GetDetails()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Active le mode FullScreen");
-            return sb.ToString();
+            return (string.Empty);
         }
 
         #endregion

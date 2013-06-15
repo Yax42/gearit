@@ -19,14 +19,12 @@ namespace gearit.xna
 
         public string GetTitle()
         {
-            return "Resolution";
+            return (string.Empty);
         }
 
         public string GetDetails()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Changer la resolution du jeu");
-            return sb.ToString();
+            return (string.Empty);
         }
 
         #endregion

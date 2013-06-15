@@ -24,9 +24,10 @@ namespace gearit.xna
 
         public string GetDetails()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Regler vos parametres graphique");
-            return sb.ToString();
+            /*StringBuilder sb = new StringBuilder();
+            sb.AppendLine("");
+            return sb.ToString();*/
+            return (string.Empty);
         }
 
         #endregion

@@ -19,9 +19,7 @@ namespace gearit.xna
 
         public string GetDetails()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Changer les parametres du jeu.");
-            return sb.ToString();
+            return (string.Empty);
         }
 
         #endregion

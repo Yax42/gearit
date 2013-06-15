@@ -217,13 +217,17 @@ namespace gearit.xna
             Vector2 position = Vector2.Zero;
             position.Y = _menuBorderTop - _menuOffset;
 
+            _titlePosition = new Vector2(ScreenManager.Width / 2f, 
+                                            ScreenManager.Fonts.MenuSpriteFont.MeasureString("M").Y / 2f + 10f);
+
             // update each menu entry's location in turn
             for (int i = 0; i < _menuEntries.Count; ++i)
             {
-                position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2f;
+                //position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2f;
+                position.X = ScreenManager.Width / 2f;
                 if (ScreenState == ScreenState.TransitionOn)
                 {
-                    position.X -= transitionOffset * 256;
+                    position.X -= transitionOffset * 128;
                 }
                 else
                 {
