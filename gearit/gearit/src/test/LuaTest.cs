@@ -10,17 +10,19 @@ namespace gearit.src.utility
 
     class LuaTest
     {
-
+        private MyGame _game;
         public Lua lua;
+        public Lua _luaInterpret;
 
         public void saySomething(string something)
         {
             Console.WriteLine(something);
         }
 
-        public LuaTest()
+        public LuaTest(MyGame game)
         {
-            // Creating interpreter
+            _game = game;
+            /*// Creating interpreter
             lua = new Lua();
 
             // Setting some global variable 
@@ -56,7 +58,21 @@ namespace gearit.src.utility
             }
 
             // File loading with Lua
-            lua.DoFile("test.lua");
+            lua.DoFile("test.lua");*/
+
+            /*Lua luaInterpret = new Lua();
+            luaInterpret.DoFile(@"scripts/test.lua");
+            string chaine = (string) luaInterpret["chaine"];
+            double entier = (double) luaInterpret["entier"];
+            Console.WriteLine("chaine = {0}= {1}", chaine, entier);*/
+
+            _luaInterpret = new Lua();
+            _luaInterpret.RegisterFunction("ChangeWheel", _game, _game.GetType().GetMethod("ChangeWheel"));
+        }
+
+        public void execFile()
+        {
+            _luaInterpret.DoFile(@"scripts/test.lua");
         }
     }
 }

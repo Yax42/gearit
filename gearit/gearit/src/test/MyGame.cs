@@ -63,6 +63,8 @@ namespace gearit.src.utility
         /*// physics simulator debug view
         DebugViewXNA _debugView;*/
 
+        private LuaTest _lua;
+
         #region IDemoScreen Members
 
         public string GetTitle()
@@ -110,6 +112,8 @@ namespace gearit.src.utility
             HasCursor = true;
             EnableCameraControl = true;
             HasVirtualStick = true;
+
+            _lua = new LuaTest(this);
 
             // Initialize camera controls
             _view = Matrix.Identity;
@@ -267,10 +271,18 @@ namespace gearit.src.utility
             HandleGamePad();
             HandleKeyboard();
 
+            _lua.execFile();
             //We update the world
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+        }
+
+
+        public void ChangeWheel(float value)
+        {
+            _motorJoint.MotorSpeed = value;
+            _motorJoint2.MotorSpeed = value;
         }
 
         private void HandleGamePad()
@@ -299,6 +311,11 @@ namespace gearit.src.utility
         {
         }
 
+        public KeyboardState getKeyboardState()
+        {
+            //return (this.HandleKeyboard.
+        }
+
         private void HandleKeyboard()
         {
             KeyboardState state = Keyboard.GetState();
@@ -325,7 +342,7 @@ namespace gearit.src.utility
             else
             {
                 // We make it possible to rotate the circle body
-                if (state.IsKeyDown(Keys.Q))
+                /*if (state.IsKeyDown(Keys.Q))
                 {
                     _circleBody.ApplyTorque(-10);
                     _motorJoint.MotorSpeed = 2.0f;
@@ -366,7 +383,7 @@ namespace gearit.src.utility
                 {
                     _circleBody.ApplyLinearImpulse(new Vector2(0, -10));
                     _square.ApplyLinearImpulse(new Vector2(0, -500));
-                }
+                }*/
             }
 
             /*if (state.IsKeyDown(Keys.Escape))
