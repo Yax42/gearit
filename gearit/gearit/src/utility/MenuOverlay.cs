@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
+using Microsoft.Xna.Framework.Content;
 
 namespace gearit.src.utility
 {
@@ -22,12 +23,14 @@ namespace gearit.src.utility
         private List<MenuItem> _items;
         private RectangleOverlay _background;
         private GraphicsDevice _graph;
+        private ContentManager _content;
         private MenuLayout _layout;
 
-        public MenuOverlay(GraphicsDevice graph, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
+        public MenuOverlay(GraphicsDevice graph, ContentManager content, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
         {
             _items = new List<MenuItem>();
             _layout = layout;
+            _content = content;
             _graph = graph;
             _bg_color = bg;
             setGeometry(pos, size);
@@ -42,21 +45,32 @@ namespace gearit.src.utility
             Rectangle rec = new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y);
             _background = new RectangleOverlay(rec, _bg_color, _graph);
         }
-       
-        public bool addItemMenu(string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+
+        public bool canAdd(string text, SpriteFont font, Vector2 padding)
         {
             Vector2 filled = Vector2.Zero;
 
             foreach (MenuItem item in _items)
-              filled += item.getSize();
+                filled += item.getSize();
+
+            filled += font.MeasureString(text) + padding;
 
             if (filled.X > _size.X || filled.Y > _size.Y)
                 return (false);
-            Console.WriteLine(_pos.X);
-            _items.Add(new MenuItem(this, text, font, color, scale, layout, padding, alignement));
-            Console.WriteLine(_pos.X);
-            refreshMenu();
             return (true);
+        }
+       
+        public void addItemMenu(string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        {
+            _items.Add(new MenuItem(this, text, font, color, padding, layout, alignement, scale));
+            refreshMenu();
+        }
+
+        public void addItemMenu(string rsrc_name, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        {
+            Texture2D sprite = _content.Load<Texture2D>(rsrc_name);
+            _items.Add(new MenuItem(this, sprite, padding, layout, alignement, scale));
+            refreshMenu();
         }
 
         public void refreshMenu()

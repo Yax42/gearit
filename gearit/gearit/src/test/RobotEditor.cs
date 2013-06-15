@@ -55,8 +55,10 @@ namespace gearit.src.utility
             // Menu
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, pos, size, new Color(120, 120, 120, 245), MenuLayout.Vertical);
+            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, new Color(120, 120, 120, 245), MenuLayout.Vertical);
             _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
+            _menu_properties.addItemMenu("Common/stick", new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter, 1.5f);
+            _menu_properties.addItemMenu("TEST", ScreenManager.Fonts.DetailsFont, Color.Red, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Right, 1f);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
