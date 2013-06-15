@@ -50,12 +50,12 @@ namespace gearit.src.utility
 
             // Graphic
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _background = new RectangleOverlay(rec, new Color(126, 126, 126), ScreenManager.GraphicsDevice);
+            _background = new RectangleOverlay(rec, new Color(126, 126, 126, 245), ScreenManager.GraphicsDevice);
 
             // Menu
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, pos, size, new Color(120, 120, 120), MenuLayout.Vertical);
+            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, pos, size, new Color(120, 120, 120, 245), MenuLayout.Vertical);
             _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
         }
 

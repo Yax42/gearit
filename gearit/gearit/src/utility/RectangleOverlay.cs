@@ -9,22 +9,28 @@ namespace gearit.src.utility
 {
     public class RectangleOverlay
     {
-        Texture2D dummyTexture;
-        Rectangle dummyRectangle;
-        Color Colori;
+        Texture2D _tex;
+        Rectangle _rec;
+        Color _color;
 
         public RectangleOverlay(Rectangle rect, Color colori, GraphicsDevice graph)
         {
-            dummyRectangle = rect;
-            Colori = colori;
+            _rec = rect;
+            _color = colori;
 
-            dummyTexture = new Texture2D(graph, 1, 1);
-            dummyTexture.SetData(new Color[] { Color.White });
+            _tex = new Texture2D(graph, 1, 1);
+            _tex.SetData(new Color[] { Color.White });
         }
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(dummyTexture, dummyRectangle, Colori);
+            batch.Draw(_tex, _rec, _color);
+        }
+
+        public Rectangle Geometry
+        {
+            get { return _rec; }
+            set { _rec = value; }
         }
     }
 }

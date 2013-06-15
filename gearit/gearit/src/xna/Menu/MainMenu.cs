@@ -21,6 +21,7 @@ namespace gearit.xna
         private MyGame _Gearit;
         private BruteRobot _bruteRobot;
         private SpiderBot _spiderBot;
+        private RobotEditor _robot_editor;
         private MainOptions _Options;
         private SoundEffect _sound;
         private SoundEffectInstance _instance;
@@ -58,19 +59,22 @@ namespace gearit.xna
             _Gearit = new MyGame();
             _bruteRobot = new BruteRobot();
             _spiderBot = new SpiderBot();
+            _robot_editor = new RobotEditor();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
             _instance.Play();
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
-            _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
+            _menuScreen.AddMenuItem(_robot_editor.GetTitle(), EntryType.Screen, _robot_editor);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
             _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
             _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
+            //_screenManager.AddScreen(_robot_editor);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

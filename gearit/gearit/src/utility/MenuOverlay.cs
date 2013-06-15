@@ -16,7 +16,7 @@ namespace gearit.src.utility
 
     class MenuOverlay
     {
-        private Vector2 _pos;
+        public Vector2 _pos;
         private Vector2 _size;
         private Color _bg_color;
         private List<MenuItem> _items;
@@ -52,7 +52,9 @@ namespace gearit.src.utility
 
             if (filled.X > _size.X || filled.Y > _size.Y)
                 return (false);
+            Console.WriteLine(_pos.X);
             _items.Add(new MenuItem(this, text, font, color, scale, layout, padding, alignement));
+            Console.WriteLine(_pos.X);
             refreshMenu();
             return (true);
         }
@@ -88,8 +90,6 @@ namespace gearit.src.utility
 
                 // Refreshing our item
                 item.refresh(filled, size);
-
-                Console.WriteLine(filled);
 
                 // Adjusting the filled area of the menu depending on the orientation
                 if (_layout == MenuLayout.Horizontal)
