@@ -49,7 +49,7 @@ namespace gearit
             _fix = CreateFixture(_shape, null);
         }
 
-        public float Weight
+        public virtual float Weight
         {
             set
             {
@@ -94,6 +94,23 @@ namespace gearit
               if (i.Joint.GetType() == typeof(RevoluteSpot))
                 ((RevoluteSpot)i.Joint).move(pos);
         }
+
+        public bool areSpotsOk()
+        {
+            Vector2 anchorPos;
+
+            for (JointEdge i = JointList; i != null; i = i.Next)
+            {
+                if (i.Joint.BodyA == this)
+                    anchorPos = i.Joint.WorldAnchorA;
+                else
+                    anchorPos = i.Joint.WorldAnchorB;
+                if (isOn(anchorPos) == false)
+                    return (false);
+            }
+            return (true);
+        }
+
 
         public abstract void draw(SpriteBatch batch);
 

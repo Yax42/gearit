@@ -6,7 +6,6 @@ using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
-using gearit.src.utility;
 
 namespace gearit.src.utility
 {

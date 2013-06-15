@@ -89,5 +89,11 @@ namespace gearit.src.robot
         }
 
         public Color ColorValue { get; set; }
+
+        public float MotorStrength
+        {
+            get { return MotorStrength; }
+            set { MotorStrength = value; }
+        }
     }
 }

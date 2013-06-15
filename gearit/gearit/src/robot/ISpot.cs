@@ -19,5 +19,7 @@ namespace gearit
         void moveAnchor(Piece p, Vector2 anchor);
 
         float getSize();
+
+        float MotorStrength  { get; set; }
     }
 }

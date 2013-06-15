@@ -45,5 +45,18 @@ namespace gearit
                 theta += increment;
             }
         }
+
+        public float Size
+        {
+            get { return _size; }
+            set
+            {
+                ((CircleShape)_shape).Radius = value;
+		if (areSpotsOk() == false)
+                  ((CircleShape)_shape).Radius = _size;
+		else
+                  _size = value;
+            }
+        }
     }
 }

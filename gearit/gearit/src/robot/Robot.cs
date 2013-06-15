@@ -99,6 +99,14 @@ namespace gearit
             return (res);
         }
 
+        public float getMotorStrength()
+        {
+	    float res = 0;
+            for (int i = 0; i < _spots.Count; i++)
+              res += _spots[i].MotorStrength;
+            return (res);
+        }
+
         public void draw(SpriteBatch batch)
         {
 	    int	    count = 0;
