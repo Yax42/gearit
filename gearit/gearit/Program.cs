@@ -2,6 +2,7 @@ using System;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
+using FarseerPhysics;
 
 namespace gearit
 {
@@ -13,6 +14,7 @@ namespace gearit
         /// </summary>
         static void Main(string[] args)
         {
+            Settings.UseFPECollisionCategories = true;
             using (GearIt game = new GearIt())
             {
                 game.Run();

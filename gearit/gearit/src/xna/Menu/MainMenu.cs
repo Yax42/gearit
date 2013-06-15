@@ -20,6 +20,7 @@ namespace gearit.xna
         private MenuScreen _menuScreen;
         private MyGame _Gearit;
         private BruteRobot _bruteRobot;
+        private GladiatoRobot _gladiator;
         private SpiderBot _spiderBot;
         private RobotEditor _robot_editor;
         private MainOptions _Options;
@@ -57,6 +58,7 @@ namespace gearit.xna
             _Gearit = new MyGame();
             _bruteRobot = new BruteRobot();
             _spiderBot = new SpiderBot();
+            _gladiator = new GladiatoRobot();
             _robot_editor = new RobotEditor();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
@@ -67,6 +69,7 @@ namespace gearit.xna
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
             _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
+            _menuScreen.AddMenuItem(_gladiator.GetTitle(), EntryType.Screen, _gladiator);
             _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
