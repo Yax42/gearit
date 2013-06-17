@@ -22,6 +22,9 @@ namespace gearit.src.map
             FixtureFactory.AttachCircle(0.5f, 1f, this);
         }
 
+		//
+		// SERIALISATION
+		//
         public CircleChunk(SerializationInfo info, StreamingContext ctxt)
             : base(SerializerHelper.World)
         {
@@ -32,6 +35,7 @@ namespace gearit.src.map
         {
             info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
         }
+		//--------- END SERIALISATION
 
         override public void resize(Vector2 p)
         {

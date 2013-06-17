@@ -28,6 +28,9 @@ namespace gearit
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
         }
 
+		//
+		// SERIALISATION
+		//
         public Heart(SerializationInfo info, StreamingContext ctxt) :
             base(info)
         {
@@ -45,6 +48,7 @@ namespace gearit
             info.AddValue("Vertices", v, typeof(List<Vector2>));
             serializePiece(info);
         }
+		//--------- END SERIALISATION
 
         public void draw(SpriteBatch batch)
         {

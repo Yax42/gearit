@@ -44,6 +44,9 @@ namespace gearit
             _script = null;
         }
 
+		//
+		// SERIALISATION
+		//
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
             SerializerHelper.CurrentRobot = this;
@@ -74,6 +77,7 @@ namespace gearit
             info.AddValue("Pieces", _pieces, typeof(List<Piece>));
             info.AddValue("Spots", _spots, typeof(List<ISpot>));
         }
+		//--------- END SERIALISATION
 
         public void addSpot(ISpot spot)
         {

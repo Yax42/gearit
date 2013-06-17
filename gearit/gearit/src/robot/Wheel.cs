@@ -30,6 +30,9 @@ namespace gearit
             _size = size;
         }
 
+		//
+		// SERIALISATION
+		//
         public Wheel(SerializationInfo info, StreamingContext ctxt) :
             base(info)
         {
@@ -43,6 +46,7 @@ namespace gearit
             serializePiece(info);
             info.AddValue("Size", _size, typeof(float));
         }
+		//--------- END SERIALISATION
 
         override public float getSize()
         {

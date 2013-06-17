@@ -46,6 +46,9 @@ namespace gearit.src.robot
             move(p1, p1.Position);
         }
 
+		//
+		// SERIALISATION
+		//
         public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
             base(
     SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
@@ -88,6 +91,7 @@ namespace gearit.src.robot
             info.AddValue("UpperLimit", UpperLimit, typeof(float));
             info.AddValue("LowerLimit", LowerLimit, typeof(float));
         }
+		//--------- END SERIALISATION
 
         public static void initTex(AssetCreator asset)
         {

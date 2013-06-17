@@ -31,6 +31,9 @@ namespace gearit.src.robot
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
         }
 
+		//
+		// SERIALISATION
+		//
         public Rod(SerializationInfo info, StreamingContext ctxt) :
             base(info)
         {
@@ -46,6 +49,7 @@ namespace gearit.src.robot
             info.AddValue("Size", _size, typeof(float));
             info.AddValue("Rotation", Rotation, typeof(float));
         }
+		//--------- END SERIALISATION
 
         public bool getSide(Vector2 pos)
         {

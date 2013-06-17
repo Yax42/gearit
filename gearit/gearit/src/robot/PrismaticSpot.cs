@@ -42,6 +42,9 @@ namespace gearit.src.robot
             robot.addSpot(this);
         }
 
+		//
+		// SERIALISATION
+		//
         public PrismaticSpot(SerializationInfo info, StreamingContext ctxt) :
             base(SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
         SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
@@ -70,6 +73,7 @@ namespace gearit.src.robot
             info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
             info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
         }
+		//--------- END SERIALISATION
 
         public void updateLimit()
         {

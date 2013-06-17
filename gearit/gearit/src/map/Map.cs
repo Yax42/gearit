@@ -29,6 +29,9 @@ namespace gearit.src.map
             _chunks = new List<MapChunk>();
         }
 
+		//
+		// SERIALISATION
+		//
         public Map(SerializationInfo info, StreamingContext ctxt)
         {
             _world = SerializerHelper.World;
@@ -41,6 +44,7 @@ namespace gearit.src.map
             info.AddValue("Chunks", _chunks, typeof(List<MapChunk>));
             info.AddValue("Name", _name, typeof(string));
         }
+		//--------- END SERIALISATION
 
         public MapChunk getChunk(Vector2 p)
         {

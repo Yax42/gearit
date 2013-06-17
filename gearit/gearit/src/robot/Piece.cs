@@ -48,6 +48,9 @@ namespace gearit
             Shown = true;
         }
 
+		//
+		// SERIALISATION
+		//
         internal Piece(SerializationInfo info) :
             base(SerializerHelper.World)
         {
@@ -68,6 +71,7 @@ namespace gearit
             info.AddValue("Density", _shape.Density, typeof(float));
             info.AddValue("Weight", this.Weight, typeof(float));
         }
+		//--------- END SERIALISATION
 
         public void setTexture(DrawGame dg, MaterialType mater)
         {

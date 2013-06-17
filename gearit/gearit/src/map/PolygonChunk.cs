@@ -26,6 +26,9 @@ namespace gearit.src.map
             Friction = 100;
         }
 
+		//
+		// SERIALISATION
+		//
         public PolygonChunk(SerializationInfo info, StreamingContext ctxt)
             : base(SerializerHelper.World)
         {
@@ -37,6 +40,7 @@ namespace gearit.src.map
         {
             info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
         }
+		//--------- END SERIALISATION
 
         public void selectVertice(Vector2 p)
         {
