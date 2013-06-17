@@ -27,6 +27,11 @@ namespace gearit.src.utility
             batch.Draw(_tex, _rec, _color);
         }
 
+        public void Draw(SpriteBatch batch, Vector2 pos)
+        {
+            batch.Draw(_tex, new Rectangle((int)pos.X, (int)pos.Y, _rec.Width, _rec.Height), _color);
+        }
+
         public Rectangle Geometry
         {
             get { return _rec; }

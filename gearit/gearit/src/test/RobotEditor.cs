@@ -20,6 +20,7 @@ namespace gearit.src.utility
         // Graphic
         private RectangleOverlay _background;
         private MenuOverlay _menu_properties;
+        private MenuOverlay _menu_tools;
 
         // Mouse
         private MouseState _old_mouse_state;
@@ -53,7 +54,7 @@ namespace gearit.src.utility
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             // Graphic
-            Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
+            Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
             _background = new RectangleOverlay(rec, new Color(126, 126, 126, 245), ScreenManager.GraphicsDevice);
 
             // Menu
@@ -61,9 +62,15 @@ namespace gearit.src.utility
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
             _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, new Color(120, 120, 120, 245), MenuLayout.Vertical);
             _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
-            _menu_properties.addItemMenu("Common/stick", new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter, 1.5f);
-            _menu_properties.addItemMenu("TEST", ScreenManager.Fonts.DetailsFont, Color.Red, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Right, 1f);
-            _menu_properties.Movable = true;
+
+            pos.X = 200;
+            size = new Vector2(400, 50);
+            _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, new Color(120, 120, 120, 245), MenuLayout.Horizontal);
+            MenuItem item;
+            item = _menu_tools.addItemMenu("Circle", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus(1, new Color(120, 120, 120, 255), ScreenManager.GraphicsDevice);
+            item = _menu_tools.addItemMenu("Line", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus(2, new Color(120, 120, 120, 255), ScreenManager.GraphicsDevice);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -83,8 +90,9 @@ namespace gearit.src.utility
             if (mouse != _old_mouse_state)
             {
                 _menu_properties.Update(mouse);
+                _menu_tools.Update(mouse);
                 _old_mouse_state = mouse;
-            }
+            }            
         }
 
         public override void Draw(GameTime gameTime)
@@ -98,7 +106,7 @@ namespace gearit.src.utility
             ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
             _background.Draw(ScreenManager.SpriteBatch);
             _menu_properties.Draw(ScreenManager.SpriteBatch);
-            //ScreenManager.SpriteBatch.DrawString(font, "Properties", textPosition, Color.White, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+            _menu_tools.Draw(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
 
             base.Draw(gameTime);

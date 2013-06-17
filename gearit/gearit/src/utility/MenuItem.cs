@@ -36,20 +36,25 @@ namespace gearit.src.utility
         private ItemMenuAlignement _alignement;
         private Vector2 _padding;
         private ContentManager _content;
+
         // Text
         private SpriteFont _font;
         private string _text;
         private Color _color;
+
         // Sprite
         private Texture2D _sprite = null;
 
         // Focus
-        private bool _is_focusable = false;
-        private int _id;
+        private bool _focusable = false;
+        private int _id = 0;
         private Color _bg_focus;
+        private bool _focused = false;
+        private RectangleOverlay _rectangle_bg;
 
         // Refreshing
         private Vector2 _pos;
+        private Vector2 _pos_rsrc;
         private Vector2 _size;
 
         public MenuItem(MenuOverlay menu, string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
@@ -78,39 +83,49 @@ namespace gearit.src.utility
         public void refresh(Vector2 pos, Vector2 size)
         {
             _pos = pos;
+            _pos_rsrc = _pos;
             _size = size;
-
+   
+            // Refreshing position ressource depending on alignment
             switch (_alignement)
             {
                 case ItemMenuAlignement.Default:
-                    _pos += _padding;
+                    _pos_rsrc += _padding;
                     break;
                 case ItemMenuAlignement.Bottom:
-                    _pos += new Vector2(_padding.X, size.Y - _padding.Y);
+                    _pos_rsrc += new Vector2(_padding.X, size.Y - _padding.Y);
                     break;
                 case ItemMenuAlignement.HorizontalCenter:
-                    _pos += new Vector2(size.X / 2 - getSize().X / 2, _padding.Y);
+                    _pos_rsrc += new Vector2(size.X / 2 - getSize().X / 2, _padding.Y);
                     break;
                 case ItemMenuAlignement.VerticalCenter:
-                    _pos += new Vector2(_padding.X, size.Y / 2 - getSize().Y / 2);
+                    _pos_rsrc += new Vector2(_padding.X, size.Y / 2 - getRsrcSize().Y / 2);
                     break;
                 case ItemMenuAlignement.Right:
-                    _pos += new Vector2(size.X - _padding.X - getSize().X, _padding.Y);
+                    _pos_rsrc += new Vector2(size.X - _padding.X - getRsrcSize().X, _padding.Y);
                     break;
             }
         }
 
-        public void focus(int id, Color bg_focus)
+        public void addFocus(int id, Color bg_focus, GraphicsDevice graph)
         {
             _id = id;
-            _is_focusable = true;
+            _focusable = true;
             _bg_focus = bg_focus;
+            Rectangle rec = new Rectangle((int)(_pos.X + _menu.Position.X), (int)_pos.Y + (int)_menu.Position.Y, (int)_size.X, (int)_size.Y);
+            _rectangle_bg = new RectangleOverlay(rec, _bg_focus, graph);
+        }
+
+        public bool Focused
+        {
+            set { _focused = value; }
+            get { return _focused; }
         }
 
         public bool Focusable
         {
-            set { _is_focusable = value; }
-            get { return _is_focusable; }
+            set { _focusable = value; }
+            get { return _focusable; }
         }
 
         public int Id
@@ -121,10 +136,20 @@ namespace gearit.src.utility
 
         public void Draw(SpriteBatch batch)
         {
+            // Focus background
+            if (_focusable && _focused)
+                _rectangle_bg.Draw(batch, _pos + _menu.Position);
+            // Draw texture or string
             if (_sprite == null)
-                batch.DrawString(_font, _text, _pos + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+                batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
             else
-                batch.Draw(_sprite, _pos + _menu.Position, Color.White);
+                batch.Draw(_sprite, _pos_rsrc + _menu.Position, Color.White);
+        }
+
+        public Rectangle getRectangle()
+        {
+            return (new Rectangle((int)_pos.X + (int)_menu.Position.X, (int)_pos.Y + (int)_menu.Position.Y,
+                (int)_size.X, (int)_size.Y));
         }
 
         public Vector2 getTextSize()
@@ -142,6 +167,13 @@ namespace gearit.src.utility
             if (_sprite == null)
                 return (getTextSize() + _padding * 2);
             return (getSpriteSize() + _padding * 2);
+        }
+
+        public Vector2 getRsrcSize()
+        {
+            if (_sprite == null)
+                return (getTextSize());
+            return (getSpriteSize());
         }
 
         public Color Color
