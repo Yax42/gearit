@@ -101,12 +101,20 @@ namespace gearit.src.utility
             /***************** ROBOT ***************/
             /***************************************/
             _robot = new Robot(World, ScreenManager.GraphicsDevice);
-	    Piece p1 = new Wheel(_robot, 2f);
-            new PrismaticSpot(_robot, _robot.getHeart(), p1);
-	    Piece p2 = new Wheel(_robot, 2f);
-                // You cannot create a rotation limit between bodies that
-                // both have fixed rotation. : Ceci est la raison du bug
-            new RevoluteSpot(_robot, _robot.getHeart(), p2);
+	    /*
+	    Piece wheel1 = new Wheel(_robot, 1f);
+	    Piece dot1 = new Wheel(_robot, 0.2f);
+            new PrismaticSpot(_robot, _robot.getHeart(), dot1);//.moveAnchor(_robot.getHeart(), new Vector2(-0.5f, -0.5f));
+            new RevoluteSpot(_robot, wheel1, dot1);
+	    dot1.move(new Vector2(1, 1));
+	    */
+
+	    Piece wheel2 = new Wheel(_robot, 1f);
+	    Piece dot2 = new Wheel(_robot, 0.2f);
+            dot2.move(new Vector2(1, -1));
+            new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
+            new PrismaticSpot(_robot, wheel2, dot2);
+	    
 
         }
 
@@ -133,15 +141,10 @@ namespace gearit.src.utility
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
-            //_batch.Begin();
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Width),
-                                                 ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Height), 0f, 0f, 1f);
-            Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(_camera_position) -
-            ConvertUnits.ToSimUnits(_screen_center)), 0f)) *
-            Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(_screen_center), 0f));
-            //_debug.RenderDebugData(ref projection, ref view);
-            _drawGame.Begin(ref projection, ref view);
+            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, _camera_position, _screen_center);
+
             _robot.drawDebug(_drawGame);
+
             _drawGame.End();
 
             //_batch.End();

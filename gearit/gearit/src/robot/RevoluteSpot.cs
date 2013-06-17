@@ -13,7 +13,7 @@ namespace gearit.src.robot
 {
     class RevoluteSpot : RevoluteJoint, ISpot
     {
-	private static float _spotSize = 0.1f;
+	private static float _spotSize = 0.05f;
         private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
         private static Vector2 _topRight = new Vector2(_spotSize, -_spotSize);
         private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
@@ -36,7 +36,7 @@ namespace gearit.src.robot
             MaxMotorTorque = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-            ColorValue = Color.Yellow;
+            ColorValue = Color.White;
         }
 
         public static void initTex(AssetCreator asset)
@@ -75,6 +75,12 @@ namespace gearit.src.robot
         {
             BodyA.Position = pos - LocalAnchorA;
             BodyB.Position = pos - LocalAnchorB;
+        }
+
+        public void move(Piece piece, Vector2 pos)
+        {
+            if (piece == BodyA)
+                ((Piece)BodyB).move(pos + LocalAnchorA - LocalAnchorB);
         }
 
         public float getSize() { return (0); }

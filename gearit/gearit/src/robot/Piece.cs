@@ -91,9 +91,16 @@ namespace gearit
 
         public void move(Vector2 pos)
         {
+            if (Position.X == pos.X && Position.Y == pos.Y)
+                return ;
+            Position = pos;
             for (JointEdge i = JointList; i != null; i = i.Next)
-              if (i.Joint.GetType() == typeof(RevoluteSpot))
-                ((RevoluteSpot)i.Joint).move(pos);
+            {
+                if (i.Joint.GetType() == typeof(RevoluteSpot))
+                    ((RevoluteSpot)i.Joint).move(this, pos);
+                else
+                    ((PrismaticSpot)i.Joint).updateAxis();
+            }
         }
 
         public bool areSpotsOk()

@@ -36,8 +36,14 @@ namespace gearit.src
             return (_batch);
         }
 
-        public void Begin(ref Matrix projection, ref Matrix view)
+        public void Begin(Viewport viewport, Vector2 cameraPosition, Vector2 screenCenter)
         {
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(viewport.Width),
+                                                 ConvertUnits.ToSimUnits(viewport.Height), 0f, 0f, 1f);
+            Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(cameraPosition) -
+            ConvertUnits.ToSimUnits(screenCenter)), 0f)) *
+            Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screenCenter), 0f));
+
             //tell our basic effect to begin.
             _batch.Begin();
             _basicEffect.Projection = projection;

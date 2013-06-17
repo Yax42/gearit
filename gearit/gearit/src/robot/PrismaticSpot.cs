@@ -26,6 +26,7 @@ namespace gearit.src.robot
         public PrismaticSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 	  base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
         {
+            updateAxis();
             robot.getWorld().AddJoint(this);
             robot.addSpot(this);
             Enabled = true;
@@ -43,6 +44,12 @@ namespace gearit.src.robot
             LowerLimit = _size / 2;
             UpperLimit = _size * 2;
             LimitEnabled = true;
+        }
+
+        public void updateAxis()
+        {
+            LocalXAxis1 = ((BodyA.Position + LocalAnchorA) -
+                    (BodyB.Position + LocalAnchorB));
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
