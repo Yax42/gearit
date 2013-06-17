@@ -46,7 +46,7 @@ namespace gearit.src.utility
         {
             base.LoadContent();
 
-            World.Gravity = new Vector2(0f, 8f);
+            World.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
             EnableCameraControl = true;
             HasVirtualStick = true;
@@ -56,7 +56,7 @@ namespace gearit.src.utility
             _robot = new Robot(World, ScreenManager.GraphicsDevice);
 
             // Initialize camera controls
-            _cameraPosition = Vector2.Zero;
+            _cameraPosition = new Vector2(300, 300);
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             // Graphic
