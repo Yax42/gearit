@@ -12,7 +12,6 @@ namespace gearit.src.utility
 {
     class RobotEditor : PhysicsGameScreen, IDemoScreen
     {
-        private Matrix _view;
         private Vector2 _cameraPosition;
         private Vector2 _screenCenter;
         private const int PropertiesMenuSize = 200;
@@ -24,6 +23,10 @@ namespace gearit.src.utility
 
         // Mouse
         private MouseState _old_mouse_state;
+
+        // Robot
+        private DrawGame _draw_game;
+        private Robot _robot;
 
         #region IDemoScreen Members
 
@@ -48,8 +51,11 @@ namespace gearit.src.utility
             EnableCameraControl = true;
             HasVirtualStick = true;
 
+            // Robot
+            _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
+            _robot = new Robot(World, ScreenManager.GraphicsDevice);
+
             // Initialize camera controls
-            _view = Matrix.Identity;
             _cameraPosition = Vector2.Zero;
             _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
@@ -97,17 +103,14 @@ namespace gearit.src.utility
 
         public override void Draw(GameTime gameTime)
         {
-            SpriteFont font = ScreenManager.Fonts.DetailsFont;
-            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-            Vector2 textSize = font.MeasureString("Properties") * 1.5f;
-            Vector2 textPosition = new Vector2(viewportSize.X - PropertiesMenuSize / 2 - textSize.X / 2f, 10f);
+            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _cameraPosition, _screenCenter);
 
-            ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
-            _background.Draw(ScreenManager.SpriteBatch);
-            _menu_properties.Draw(ScreenManager.SpriteBatch);
-            _menu_tools.Draw(ScreenManager.SpriteBatch);
-            ScreenManager.SpriteBatch.End();
+            _background.Draw(_draw_game.Batch());
+            _menu_properties.Draw(_draw_game.Batch());
+            _menu_tools.Draw(_draw_game.Batch());
+            _robot.drawDebug(_draw_game);
+
+            _draw_game.End();
 
             base.Draw(gameTime);
         }
