@@ -101,12 +101,12 @@ namespace gearit.src.utility
             /***************** ROBOT ***************/
             /***************************************/
             _robot = new Robot(World, ScreenManager.GraphicsDevice);
-	    Piece p1 = new Wheel(_robot, 3f);
+	    Piece p1 = new Wheel(_robot, 2f);
             new PrismaticSpot(_robot, _robot.getHeart(), p1);
-	    Piece p2 = new Wheel(_robot, 4f);
+	    Piece p2 = new Wheel(_robot, 2f);
                 // You cannot create a rotation limit between bodies that
                 // both have fixed rotation. : Ceci est la raison du bug
-            new PrismaticSpot(_robot, _robot.getHeart(), p2);
+            new RevoluteSpot(_robot, _robot.getHeart(), p2);
 
         }
 

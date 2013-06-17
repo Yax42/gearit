@@ -26,7 +26,6 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             robot.addPiece(this);
             ColorValue = Color.Green;
-            FixedRotation = false;
         }
 
         internal Piece(Robot robot, Shape shape) :
