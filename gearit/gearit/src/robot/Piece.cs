@@ -10,10 +10,11 @@ using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src.robot;
+using gearit.src;
 
 namespace gearit
 {
-    abstract class Piece : Body, IPrintableVertices
+    abstract class Piece : Body
     {
         internal Shape _shape;
         internal Fixture _fix;
@@ -25,6 +26,7 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             robot.addPiece(this);
             ColorValue = Color.Green;
+            FixedRotation = false;
         }
 
         internal Piece(Robot robot, Shape shape) :
@@ -111,10 +113,9 @@ namespace gearit
             return (true);
         }
 
-
         public abstract void draw(SpriteBatch batch);
 
-        public abstract void vertices(VertexPositionColor[] vertices, ref int count);
+        public abstract void drawLines(DrawGame game);
         public Color ColorValue { get; set; }
     }
 }

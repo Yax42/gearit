@@ -16,7 +16,6 @@ namespace gearit.src.robot
     {
         private DistanceJoint _distJoint;
         private float _size;
-        static private Texture2D _tex = null;
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2) :
 	    this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
@@ -33,8 +32,6 @@ namespace gearit.src.robot
             MaxMotorForce = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-            if (_tex != null)
-                _tex = robot.getAsset().CreateCircle(2, Color.Red);
             _size = ((BodyA.Position + LocalAnchorA) -
                     (BodyB.Position + LocalAnchorB)).Length();
             LimitEnabled = false;
@@ -82,10 +79,9 @@ namespace gearit.src.robot
             return (_size);
         }
 
-        public void vertices(VertexPositionColor[] vertices, ref int count)
+        public void draw(DrawGame game)
         {
-	    vertices[count++] = new VertexPositionColor(new Vector3(BodyA.Position, 0f), ColorValue);
-	    vertices[count++] = new VertexPositionColor(new Vector3(BodyB.Position, 0f), ColorValue);
+          game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
         }
 
         public Color ColorValue { get; set; }

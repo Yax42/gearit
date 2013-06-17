@@ -311,10 +311,12 @@ namespace gearit.src.utility
         {
         }
 
+	/*
         public KeyboardState getKeyboardState()
         {
             //return (this.HandleKeyboard.
         }
+	*/
 
         private void HandleKeyboard()
         {

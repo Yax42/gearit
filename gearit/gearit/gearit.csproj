@@ -115,6 +115,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
+    <Compile Include="src\DrawGame.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
     <Compile Include="src\farseer\Collision\DynamicTree.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
-    <Compile Include="src\robot\IPrintableVertices.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\MenuItem.cs" />

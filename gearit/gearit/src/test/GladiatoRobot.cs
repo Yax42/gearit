@@ -29,6 +29,7 @@ namespace gearit.src.utility
         private Vector2 _camera_position;
         private Vector2 _screen_center;
         private DebugViewXNA _debug;
+        private DrawGame _drawGame;
 
         private Body _ground;
         private Body _ground_up_right;
@@ -55,16 +56,19 @@ namespace gearit.src.utility
         public override void LoadContent()
         {
             base.LoadContent();
+            _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
             World.Gravity = new Vector2(0f, 9.8f);
+
             _debug = new DebugViewXNA(World);
             _debug.AppendFlags(DebugViewFlags.DebugPanel);
             _debug.DefaultShapeColor = Color.White;
             _debug.SleepingShapeColor = Color.LightGray;
             _debug.LoadContent(ScreenManager.Game.GraphicsDevice, ScreenManager.Game.Content);
             _view = Matrix.Identity;
-            _camera_position = Vector2.Zero;
+            _camera_position = new Vector2(300, 300);
             _screen_center = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
                                                 ScreenManager.GraphicsDevice.Viewport.Height / 2f);
+
 
             // Link painter to window 
             _batch = new SpriteBatch(ScreenManager.GraphicsDevice);
@@ -97,9 +101,12 @@ namespace gearit.src.utility
             /***************** ROBOT ***************/
             /***************************************/
             _robot = new Robot(World, ScreenManager.GraphicsDevice);
-            _robot.getHeart();
 	    Piece p1 = new Wheel(_robot, 3f);
-        new PrismaticSpot(_robot, _robot.getHeart(), p1);
+            new PrismaticSpot(_robot, _robot.getHeart(), p1);
+	    Piece p2 = new Wheel(_robot, 4f);
+                // You cannot create a rotation limit between bodies that
+                // both have fixed rotation. : Ceci est la raison du bug
+            new PrismaticSpot(_robot, _robot.getHeart(), p2);
 
         }
 
@@ -126,16 +133,18 @@ namespace gearit.src.utility
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
-            _batch.Begin();
+            //_batch.Begin();
             Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Width),
                                                  ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Height), 0f, 0f, 1f);
             Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(_camera_position) -
             ConvertUnits.ToSimUnits(_screen_center)), 0f)) *
             Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(_screen_center), 0f));
-            _debug.RenderDebugData(ref projection, ref view);
-            _robot.draw(_batch);
+            //_debug.RenderDebugData(ref projection, ref view);
+            _drawGame.Begin(ref projection, ref view);
+            _robot.drawDebug(_drawGame);
+            _drawGame.End();
 
-            _batch.End();
+            //_batch.End();
         }
     }
 }
