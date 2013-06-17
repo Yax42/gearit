@@ -21,7 +21,6 @@ namespace gearit
             _fix = CreateFixture(_shape, null);
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Heart created.");
-            ColorValue = Color.Red;
         }
 
         public override void draw(SpriteBatch batch)

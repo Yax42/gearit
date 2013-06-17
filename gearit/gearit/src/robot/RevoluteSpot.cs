@@ -31,12 +31,11 @@ namespace gearit.src.robot
 	  base(p1, p2, anchor1, anchor2)
         {
             robot.getWorld().AddJoint(this);
-            robot.addSpot(this);
             Enabled = true;
             MaxMotorTorque = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-            ColorValue = Color.White;
+            ColorValue = Color.Black;
         }
 
         public static void initTex(AssetCreator asset)

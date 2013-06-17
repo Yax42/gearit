@@ -111,9 +111,11 @@ namespace gearit.src.utility
 
 	    Piece wheel2 = new Wheel(_robot, 1f);
 	    Piece dot2 = new Wheel(_robot, 0.2f);
+        _robot.addPiece(wheel2);
+        _robot.addPiece(dot2);
             dot2.move(new Vector2(1, -1));
-            new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
-            new PrismaticSpot(_robot, wheel2, dot2);
+            _robot.addSpot(new PrismaticSpot(_robot, _robot.getHeart(), dot2));//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
+            _robot.addSpot(new PrismaticSpot(_robot, wheel2, dot2));
 	    
 
         }

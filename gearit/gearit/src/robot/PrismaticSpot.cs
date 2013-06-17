@@ -28,7 +28,6 @@ namespace gearit.src.robot
         {
             updateAxis();
             robot.getWorld().AddJoint(this);
-            robot.addSpot(this);
             Enabled = true;
             MaxMotorForce = 100;
             MotorSpeed = 0f;
@@ -36,7 +35,7 @@ namespace gearit.src.robot
             _size = ((BodyA.Position + LocalAnchorA) -
                     (BodyB.Position + LocalAnchorB)).Length();
             LimitEnabled = false;
-            ColorValue = Color.Cyan;
+            ColorValue = Color.Black;
         }
 
         public void updateLimit()

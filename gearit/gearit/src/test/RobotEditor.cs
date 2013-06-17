@@ -46,7 +46,7 @@ namespace gearit.src.utility
         {
             base.LoadContent();
 
-            World.Gravity = new Vector2(0f, 0f);
+            World.Gravity = new Vector2(0f, 8f);
             HasCursor = true;
             EnableCameraControl = true;
             HasVirtualStick = true;

@@ -24,7 +24,6 @@ namespace gearit
             base(robot.getWorld())
         {
             BodyType = BodyType.Dynamic;
-            robot.addPiece(this);
             ColorValue = Color.Green;
         }
 
@@ -32,9 +31,8 @@ namespace gearit
             base(robot.getWorld())
         {
             BodyType = BodyType.Dynamic;
-            robot.addPiece(this);
             setShape(shape, robot.getId());
-            ColorValue = Color.Green;
+            ColorValue = Color.Black;
         }
 
         internal void setShape(Shape shape, int id)
