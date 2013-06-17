@@ -10,24 +10,21 @@ using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src.robot;
 using FarseerPhysics.Dynamics.Joints;
+using gearit.src;
 
 namespace gearit
 {
     class Robot
     {
+
         private static int _robotIdCounter = 1;
-        private VertexPositionColor[] _lineVertices = new VertexPositionColor[5000];
         private int _id;
         private List<Piece> _pieces;
         private List<ISpot> _spots;
         private World _world;
-        private GraphicsDevice _graph;
-        private AssetCreator _asset;
 
-        public Robot(World world, GraphicsDevice graph)
+        public Robot(World world, GraphicsDevice device)
         {
-            _graph = graph;
-            _asset = new AssetCreator(_graph);
             _world = world;
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
@@ -35,17 +32,19 @@ namespace gearit
 	    _spots = new List<ISpot>();
             new Heart(this);
             //x_heart = new Heart();
+
         }
 
-        public GraphicsDevice getGraphic()
+	/*
+        public GraphicsDevice getDevice()
         {
-            return (_graph);
+            return (_device);
         }
 
         public AssetCreator getAsset()
         {
             return (_asset);
-        }
+        }*/
 
         public void addSpot(ISpot spot)
         {
@@ -80,17 +79,6 @@ namespace gearit
             return (getHeart());
         }
 
-        public void drawDebug(SpriteBatch batch)
-        {
-	    int	    count = 0;
-
-            for (int i = 0; i < _pieces.Count; i++)
-                _pieces[i].vertices(_lineVertices, ref count);
-            for (int i = 0; i < _spots.Count; i++)
-	      _spots[i].vertices(_lineVertices, ref count);
-            _graph.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
-        }
-
         public float getWeight()
         {
 	    float res = 0;
@@ -107,8 +95,17 @@ namespace gearit
             return (res);
         }
 
+        public void drawDebug(DrawGame game)
+        {
+            for (int i = 0; i < _pieces.Count; i++)
+                _pieces[i].drawLines(game);
+            for (int i = 0; i < _spots.Count; i++)
+                _spots[i].draw(game);
+        }
+
         public void draw(SpriteBatch batch)
         {
+	    /*
 	    int	    count = 0;
 
             for (int i = 0; i < _pieces.Count; i++)
@@ -116,10 +113,11 @@ namespace gearit
             for (int i = 0; i < _spots.Count; i++)
                if (_spots[i].GetType() == typeof(PrismaticSpot))
 	         _spots[i].vertices(_lineVertices, ref count);
-            _graph.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
+            _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
             for (int i = 1; i < _pieces.Count; i++)
                 _pieces[i].draw(batch);
             _pieces[0].draw(batch);
+	    */
         }
 
         public void remove(Piece p)
@@ -135,7 +133,7 @@ namespace gearit
         public void remove(ISpot s)
         {
             _spots.Remove(s);
-            _world.RemoveJoint((Joint)s);
+            _world.RemoveJoint((Joint) s);
         }
     }
 }

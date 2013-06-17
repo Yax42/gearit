@@ -352,12 +352,6 @@ namespace gearit.src.utility
         {
         }
 
-
-        public KeyboardState getKeyboardState()
-        {
-            return (state);
-        }
-
         private void HandleKeyboard()
         {
             state = Keyboard.GetState();

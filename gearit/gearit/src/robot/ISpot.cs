@@ -7,10 +7,11 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.robot;
+using gearit.src;
 
 namespace gearit
 {
-    interface ISpot : IPrintableVertices
+    interface ISpot
     {
         void swap(Piece p1, Piece p2, Vector2 anchor);
 
@@ -21,5 +22,7 @@ namespace gearit
         float getSize();
 
         float MotorStrength  { get; set; }
+
+        void draw(DrawGame game);
     }
 }
