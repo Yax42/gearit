@@ -68,11 +68,14 @@ namespace gearit.src.utility
 
             _luaInterpret = new Lua();
             _luaInterpret.RegisterFunction("ChangeWheel", _game, _game.GetType().GetMethod("ChangeWheel"));
+            _luaInterpret.RegisterFunction("getKeyboardState", _game, _game.GetType().GetMethod("getKeyboardState"));
+            _luaInterpret.RegisterFunction("getKeysAction", _game, _game.GetType().GetMethod("getKeysAction"));
+            _luaInterpret.RegisterFunction("getWheel", _game, _game.GetType().GetMethod("getWheel"));
         }
 
         public void execFile()
         {
-            _luaInterpret.DoFile(@"scripts/test.lua");
+            _luaInterpret.DoFile(@"scripts/MyRobot.lua");
         }
     }
 }
