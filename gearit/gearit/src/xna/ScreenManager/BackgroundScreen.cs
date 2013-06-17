@@ -84,7 +84,7 @@ namespace gearit.xna
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(_backgroundTexture, _viewport, Color.White);
+            ScreenManager.SpriteBatch.Draw(_backgroundTexture, ScreenManager.GraphicsDevice.Viewport.Bounds, Color.White);
             //ScreenManager.SpriteBatch.Draw(_logoTexture, _logoDestination, Color.White * 0.6f);
             //ScreenManager.SpriteBatch.Draw(_logoGearit, _logoGearitDestination, Color.White * 0.6f);
             ScreenManager.SpriteBatch.End();
