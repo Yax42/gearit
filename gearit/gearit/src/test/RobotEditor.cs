@@ -46,7 +46,7 @@ namespace gearit.src.utility
         {
             base.LoadContent();
 
-            World.Gravity = new Vector2(0f, 8f);
+            World.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
             EnableCameraControl = true;
             HasVirtualStick = true;
@@ -61,22 +61,22 @@ namespace gearit.src.utility
 
             // Graphic
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-            _background = new RectangleOverlay(rec, new Color(126, 126, 126, 245), ScreenManager.GraphicsDevice);
+            _background = new RectangleOverlay(rec, Color.WhiteSmoke, ScreenManager.GraphicsDevice);
 
             // Menu
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, new Color(120, 120, 120, 245), MenuLayout.Vertical);
+            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Vertical);
             _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
 
             pos.X = 200;
             size = new Vector2(400, 50);
-            _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, new Color(120, 120, 120, 245), MenuLayout.Horizontal);
+            _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Horizontal);
             MenuItem item;
             item = _menu_tools.addItemMenu("Circle", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus(1, new Color(120, 120, 120, 255), ScreenManager.GraphicsDevice);
+            item.addFocus(1, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
             item = _menu_tools.addItemMenu("Line", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus(2, new Color(120, 120, 120, 255), ScreenManager.GraphicsDevice);
+            item.addFocus(2, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -98,7 +98,9 @@ namespace gearit.src.utility
                 _menu_properties.Update(mouse);
                 _menu_tools.Update(mouse);
                 _old_mouse_state = mouse;
-            }            
+            }
+            if (mouse.LeftButton == ButtonState.Pressed)
+                _robot.addPiece(new Wheel(_robot, 0.5f));
         }
 
         public override void Draw(GameTime gameTime)
