@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace gearit.src.utility
 {
@@ -34,12 +35,18 @@ namespace gearit.src.utility
         private ItemMenuLayout _layout;
         private ItemMenuAlignement _alignement;
         private Vector2 _padding;
+        private ContentManager _content;
         // Text
         private SpriteFont _font;
         private string _text;
         private Color _color;
         // Sprite
         private Texture2D _sprite = null;
+
+        // Focus
+        private bool _is_focusable = false;
+        private int _id;
+        private Color _bg_focus;
 
         // Refreshing
         private Vector2 _pos;
@@ -57,19 +64,20 @@ namespace gearit.src.utility
             _padding = padding;
         }
 
-        public MenuItem(MenuOverlay menu, Texture2D sprite, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
+        public MenuItem(ContentManager content, MenuOverlay menu, string rsrc_name, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
         {
             _menu = menu;
             _scale = scale;
             _layout = layout;
             _alignement = alignement;
             _padding = padding;
-            _sprite = sprite;
+            _content = content;
+            _sprite = _content.Load<Texture2D>(rsrc_name);
         }
 
         public void refresh(Vector2 pos, Vector2 size)
         {
-            _pos = _menu.Position + pos;
+            _pos = pos;
             _size = size;
 
             switch (_alignement)
@@ -92,12 +100,31 @@ namespace gearit.src.utility
             }
         }
 
+        public void focus(int id, Color bg_focus)
+        {
+            _id = id;
+            _is_focusable = true;
+            _bg_focus = bg_focus;
+        }
+
+        public bool Focusable
+        {
+            set { _is_focusable = value; }
+            get { return _is_focusable; }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
         public void Draw(SpriteBatch batch)
         {
             if (_sprite == null)
-                batch.DrawString(_font, _text, _pos + _padding, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+                batch.DrawString(_font, _text, _pos + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
             else
-                batch.Draw(_sprite, _pos + _padding, Color.White);
+                batch.Draw(_sprite, _pos + _menu.Position, Color.White);
         }
 
         public Vector2 getTextSize()
@@ -123,10 +150,21 @@ namespace gearit.src.utility
             set { _color = value; }
         }
 
-        public string Text
+        public string Display
         {
-            get { return _text; }
-            set { _text = value; }
+            get 
+            { 
+                if (_sprite == null)
+                    return _text;
+                return _sprite.Name;
+            }
+            set
+            {
+                if (_sprite == null)
+                    _text = value;
+                else
+                    _sprite = _content.Load<Texture2D>(value);
+            }
         }
 
         public Vector2 Position

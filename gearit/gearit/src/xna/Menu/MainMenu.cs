@@ -53,7 +53,7 @@ namespace gearit.xna
 
             _sound = new SoundManager(_screenManager, "Audio/MenuSound");
             _sound.ActiveLoop();
-            _sound.playSound();
+            //_sound.playSound();
 
             _Gearit = new MyGame();
             _bruteRobot = new BruteRobot();

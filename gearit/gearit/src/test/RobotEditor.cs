@@ -6,6 +6,7 @@ using gearit.xna;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.utility
 {
@@ -19,6 +20,9 @@ namespace gearit.src.utility
         // Graphic
         private RectangleOverlay _background;
         private MenuOverlay _menu_properties;
+
+        // Mouse
+        private MouseState _old_mouse_state;
 
         #region IDemoScreen Members
 
@@ -59,11 +63,12 @@ namespace gearit.src.utility
             _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
             _menu_properties.addItemMenu("Common/stick", new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter, 1.5f);
             _menu_properties.addItemMenu("TEST", ScreenManager.Fonts.DetailsFont, Color.Red, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Right, 1f);
+            _menu_properties.Movable = true;
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            HandleKeyboard();
+            HandleMouse();
 
             //We update the world
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
@@ -71,8 +76,15 @@ namespace gearit.src.utility
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        private void HandleKeyboard()
+        private void HandleMouse()
         {
+            MouseState mouse = Mouse.GetState();
+
+            if (mouse != _old_mouse_state)
+            {
+                _menu_properties.Update(mouse);
+                _old_mouse_state = mouse;
+            }
         }
 
         public override void Draw(GameTime gameTime)

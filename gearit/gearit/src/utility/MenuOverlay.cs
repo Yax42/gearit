@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.utility
 {
@@ -17,15 +18,26 @@ namespace gearit.src.utility
 
     class MenuOverlay
     {
-        public Vector2 _pos;
-        private Vector2 _size;
-        private Color _bg_color;
-        private List<MenuItem> _items;
-        private RectangleOverlay _background;
+        // Persistant
         private GraphicsDevice _graph;
         private ContentManager _content;
         private MenuLayout _layout;
+        private RectangleOverlay _rectangle;
 
+        // Properties
+        private Vector2 _size;
+        public Vector2 _pos;
+        private Color _bg_color;
+
+        // Items
+        private List<MenuItem> _items;
+        private int _item_focused;
+        
+        // Focus
+        private bool _movable = false;
+        private bool _moving = false;
+        private Vector2 _focus_pos;
+        
         public MenuOverlay(GraphicsDevice graph, ContentManager content, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
         {
             _items = new List<MenuItem>();
@@ -33,17 +45,20 @@ namespace gearit.src.utility
             _content = content;
             _graph = graph;
             _bg_color = bg;
-            setGeometry(pos, size);
+            Rectangle rec = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+            _rectangle = new RectangleOverlay(rec, _bg_color, _graph);
+            Geometry = rec;
         }
 
-        public void setGeometry(Vector2 pos, Vector2 size)
+        public Rectangle Geometry
         {
-            _pos = pos;
-            _size = size;
-
-            // Init background
-            Rectangle rec = new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y);
-            _background = new RectangleOverlay(rec, _bg_color, _graph);
+            set
+            {
+                _rectangle.Geometry = value;
+                _pos = new Vector2(value.X, value.Y);
+                _size = new Vector2(value.Width, value.Height);
+            }
+            get { return _rectangle.Geometry; }
         }
 
         public bool canAdd(string text, SpriteFont font, Vector2 padding)
@@ -59,18 +74,38 @@ namespace gearit.src.utility
                 return (false);
             return (true);
         }
-       
-        public void addItemMenu(string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+
+        public MenuItem getItem(string rsrc)
         {
-            _items.Add(new MenuItem(this, text, font, color, padding, layout, alignement, scale));
-            refreshMenu();
+            foreach (MenuItem item in _items)
+                if (item.Display == rsrc)
+                    return (item);
+            return (null);
         }
 
-        public void addItemMenu(string rsrc_name, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        public MenuItem getItem(int id)
         {
-            Texture2D sprite = _content.Load<Texture2D>(rsrc_name);
-            _items.Add(new MenuItem(this, sprite, padding, layout, alignement, scale));
+            foreach (MenuItem item in _items)
+                if (item.Id == id)
+                    return (item);
+            return (null);
+        }
+       
+        public MenuItem addItemMenu(string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        {
+            MenuItem item = new MenuItem(this, text, font, color, padding, layout, alignement, scale);
+            _items.Add(item);
             refreshMenu();
+            return (item);
+        }
+
+        public MenuItem addItemMenu(string rsrc_name, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        {
+            
+            MenuItem item = new MenuItem(_content, this, rsrc_name, padding, layout, alignement, scale);
+            _items.Add(item);
+            refreshMenu();
+            return (item);
         }
 
         public void refreshMenu()
@@ -113,15 +148,41 @@ namespace gearit.src.utility
             }
         }
 
-        public MenuItem getItem(int index)
+        // Refreshing focus by mouse
+        public void Update(MouseState mouse)
         {
-            return (_items[index]);
+            if (_moving)
+            {
+                if (mouse.LeftButton == ButtonState.Released)
+                    _moving = false;
+                // Need to move 
+                else if (_movable)
+                    Geometry = new Rectangle((int)_pos.X + mouse.X - (int)_focus_pos.X, (int)_pos.Y + mouse.Y - (int)_focus_pos.Y, (int)_size.X, (int)_size.Y);
+            }
+            else
+            {
+                // Menu properties got focus
+                if (mouse.X > _pos.X && mouse.X < _pos.X + _size.X
+                    && mouse.Y > _pos.Y && mouse.Y < _pos.Y + _size.Y)
+                {
+                    // User wants to move it
+                    if (!_moving && mouse.LeftButton == ButtonState.Pressed)
+                        _moving = true;
+                }
+            }
+            _focus_pos = new Vector2(mouse.X, mouse.Y);
+        }
+
+        public bool Movable
+        {
+            get { return _movable; }
+            set { _movable = value; }
         }
 
         // Drawing - Loop on all itemMenu and draw them
         public void Draw(SpriteBatch batch)
         {
-            _background.Draw(batch);
+            _rectangle.Draw(batch);
             foreach (MenuItem item in _items)
                 item.Draw(batch);
         }
