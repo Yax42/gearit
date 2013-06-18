@@ -23,7 +23,7 @@ namespace gearit
         private List<ISpot> _spots;
         private World _world;
 
-        public Robot(World world, GraphicsDevice device)
+        public Robot(World world)
         {
             _world = world;
             _id = _robotIdCounter++;

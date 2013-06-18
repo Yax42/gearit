@@ -53,7 +53,7 @@ namespace gearit.src.utility
 
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-            _robot = new Robot(World, ScreenManager.GraphicsDevice);
+            _robot = new Robot(World);
 
             // Initialize camera controls
             _cameraPosition = new Vector2(300, 300);

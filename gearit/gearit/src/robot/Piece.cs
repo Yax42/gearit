@@ -24,7 +24,7 @@ namespace gearit
             base(robot.getWorld())
         {
             BodyType = BodyType.Dynamic;
-            ColorValue = Color.Green;
+            ColorValue = Color.Black;
         }
 
         internal Piece(Robot robot, Shape shape) :

@@ -100,7 +100,7 @@ namespace gearit.src.utility
             /***************************************/
             /***************** ROBOT ***************/
             /***************************************/
-            _robot = new Robot(World, ScreenManager.GraphicsDevice);
+            _robot = new Robot(World);
 	    /*
 	    Piece wheel1 = new Wheel(_robot, 1f);
 	    Piece dot1 = new Wheel(_robot, 0.2f);
