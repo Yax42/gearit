@@ -139,13 +139,7 @@ namespace gearit.src.utility
             if (state == 0)
                 return (false);
             if (state == (int)Action.PRIS_SPOT)
-            {
-                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
-                _robot.addPiece(p);
-                _robot.addSpot(new PrismaticSpot(_robot, _selected, p));
-                _selected = p;
                 _action = Action.PRIS_SPOT;
-            }
             else if (state == (int)Action.REV_SPOT)
                 _action = Action.REV_SPOT;
             return (true);
@@ -164,18 +158,16 @@ namespace gearit.src.utility
             {
                 Selected = _robot.getPiece(sim_mouse_pos());
             }
-            if (_action == Action.PRIS_SPOT)
-            {
-                if (_mouse.LeftButton == ButtonState.Pressed && _old_mouse_state.LeftButton != ButtonState.Pressed)
-                  _selected.move(sim_mouse_pos());
-                else
-                  _action = Action.NONE;
+            if (_action == Action.PRIS_SPOT && _mouse.RightButton == ButtonState.Pressed)
+	    {
+                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
+                new PrismaticSpot(_robot, _selected, p);
+                _action = Action.NONE;
             }
             else if (_mouse.RightButton == ButtonState.Pressed && _action == Action.REV_SPOT)
             {
                 Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
-                _robot.addPiece(p);
-                _robot.addSpot(new RevoluteSpot(_robot, _selected, p));
+                new RevoluteSpot(_robot, _selected, p);
                 _action = Action.NONE;
             }
             else if (_mouse.RightButton == ButtonState.Pressed && _old_mouse_state.RightButton != ButtonState.Pressed && _action == Action.NONE)

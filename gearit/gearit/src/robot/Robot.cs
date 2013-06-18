@@ -35,7 +35,7 @@ namespace gearit
             Console.WriteLine("Robot created.");
 	    _pieces = new List<Piece>();
 	    _spots = new List<ISpot>();
-            addPiece(new Heart(this));
+            new Heart(this);
             //x_heart = new Heart();
 
         }
