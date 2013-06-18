@@ -25,9 +25,11 @@ namespace gearit.src.utility
         private RectangleOverlay _rectangle;
 
         // Properties
+        private bool _adjusting = false;
         private Vector2 _size;
         public Vector2 _pos;
         private Color _bg_color;
+        private Vector2 _filled;
 
         // Items
         private List<MenuItem> _items;
@@ -38,7 +40,6 @@ namespace gearit.src.utility
         private bool _movable = false;
         private bool _moving = false;
         private MouseState _old_mouse;
-        private Vector2 _focus_pos;
         
         public MenuOverlay(GraphicsDevice graph, ContentManager content, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
         {
@@ -72,7 +73,7 @@ namespace gearit.src.utility
 
         public void refreshMenu()
         {
-            Vector2 filled = Vector2.Zero;
+            _filled = Vector2.Zero;
             Vector2 size = Vector2.Zero;
             bool is_w_min = (_size.X > _size.Y ? false : true);
 
@@ -95,19 +96,20 @@ namespace gearit.src.utility
                         size = new Vector2(_size.X, item.getSize().Y);
                         break;
                     case ItemMenuLayout.Maximum:
-                        size = _size - filled;
+                        size = _size - _filled;
                         break;
                 }
 
                 // Refreshing our item
-                item.refresh(filled, size);
+                item.refresh(_filled, size);
 
                 // Adjusting the filled area of the menu depending on the orientation
                 if (_layout == MenuLayout.Horizontal)
-                    filled.X += size.X;
+                    _filled.X += size.X;
                 else
-                    filled.Y += size.Y;
+                    _filled.Y += size.Y;
             }
+            adjust();
         }
 
         // Refreshing focus by mouse
@@ -140,8 +142,21 @@ namespace gearit.src.utility
 
         private bool itemToggle(MouseState mouse, Vector2 mouse_pos)
         {
+            // Checking if item (un)pressed
             if (mouse.LeftButton == ButtonState.Pressed && _item_focused != 0)
-                _item_pressed = _item_focused;
+            {
+                if (getItem(_item_focused).Pressed)
+                {
+                    getItem(_item_focused).Pressed = false;
+                    _item_pressed = 0;
+                }
+                else
+                {
+                    getItem(_item_focused).Pressed = true;
+                    _item_pressed = _item_focused;
+                }
+            }
+            // Checking if in on an item
             foreach (MenuItem item in _items)
                 if (item.Focusable && isIn(item.getRectangle(), mouse_pos))
                 {
@@ -160,11 +175,13 @@ namespace gearit.src.utility
         {
             if (mouse.LeftButton == ButtonState.Released)
                 _moving = false;
+
             // Need to move 
             else if (_movable)
             {
                 int x = (int)_pos.X + mouse.X - (int)_old_mouse.X;
                 int y = (int)_pos.Y + mouse.Y - (int)_old_mouse.Y;
+
                 // Don't move if out of window
                 if (y < 0)
                     y = 0;
@@ -187,16 +204,43 @@ namespace gearit.src.utility
             }
         }
 
-        public int itemPressed()
+        public int getPressed()
         {
             int item = _item_pressed;
 
-            if (_item_pressed != 0)
+            _item_pressed = 0;
+            return (item);
+        }
+
+        // Adjusting the size if needed
+        private void adjust()
+        {
+            if (_adjusting)
             {
-                _item_pressed = 0;
-                return (item);
+                if (_layout == MenuLayout.Horizontal)
+                    _size.X = _filled.X;
+                else
+                    _size.Y = _filled.Y;
+                Geometry = new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y);
             }
-            return (0);
+        }
+
+        public bool Adjusting
+        {
+            get { return _adjusting; }
+            set
+            {
+                _adjusting = value;
+                adjust();
+            }
+        }
+
+        public bool hasItemPressed()
+        {
+            foreach (MenuItem item in _items)
+                if (item.Pressed)
+                    return (true);
+            return (false);
         }
 
         public int getFocused()
