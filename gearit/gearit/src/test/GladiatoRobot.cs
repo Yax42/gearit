@@ -109,8 +109,8 @@ namespace gearit.src.utility
 	    dot1.move(new Vector2(1, 1));
 	    */
 
-	    Piece wheel2 = new Wheel(_robot, 1f);
-	    Piece dot2 = new Wheel(_robot, 0.2f);
+	    Piece wheel2 = new Wheel(_robot, 1f, Vector2.Zero);
+	    Piece dot2 = new Wheel(_robot, 0.2f, Vector2.Zero);
         _robot.addPiece(wheel2);
         _robot.addPiece(dot2);
             dot2.move(new Vector2(1, -1));

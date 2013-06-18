@@ -16,8 +16,13 @@ namespace gearit
         private float _size;
 
         public Wheel(Robot robot, float size) :
+	    this(robot, size, Vector2.Zero)
+        {
+        }
+        public Wheel(Robot robot, float size, Vector2 pos) :
             base(robot, new CircleShape(size, 1f)) //density 0 ~= poids
         {
+            Position = pos;
             _size = size;
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Wheel created.");
