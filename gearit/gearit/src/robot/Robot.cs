@@ -11,16 +11,21 @@ using gearit.src.utility;
 using gearit.src.robot;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace gearit
 {
-    class Robot
+    [Serializable()]
+    class Robot : ISerializable
     {
 
-        private static int _robotIdCounter = 1;
-        private int _id;
         private List<Piece> _pieces;
         private List<ISpot> _spots;
+
+	[NonSerialized]
+        private static int _robotIdCounter = 1;
+        private int _id;
         private World _world;
 
         public Robot(World world)
@@ -34,6 +39,18 @@ namespace gearit
             //x_heart = new Heart();
 
         }
+
+	public Robot(SerializationInfo info, StreamingContext ctxt)
+	{
+	  this._pieces = (List<Piece>) info.GetValue("Pieces", typeof(List<Piece>));
+	  this._spots = (List<ISpot>) info.GetValue("Spots", typeof(List<ISpot>));
+	}
+
+	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+	{
+	  info.AddValue("Pieces", typeof(List<Piece>));
+	  info.AddValue("Spots", typeof(List<ISpot>));
+	}
 
 	/*
         public GraphicsDevice getDevice()
