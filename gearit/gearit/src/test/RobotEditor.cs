@@ -11,6 +11,15 @@ using gearit.src.robot;
 
 namespace gearit.src.utility
 {
+    enum Action
+    {
+	NONE,
+	PRIS_SPOT,
+	REV_SPOT,
+	MOVE,
+	REMOVE,
+	COUNT
+    }
     class RobotEditor : PhysicsGameScreen, IDemoScreen
     {
         private Vector2 _cameraPosition;
@@ -24,10 +33,15 @@ namespace gearit.src.utility
 
         // Mouse
         private MouseState _old_mouse_state;
+        private MouseState _mouse;
 
         // Robot
         private DrawGame _draw_game;
         private Robot _robot;
+
+	// Action
+        private Piece _selected;
+        private Action _action;
 
         #region IDemoScreen Members
 
@@ -55,6 +69,9 @@ namespace gearit.src.utility
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             _robot = new Robot(World);
+	    _selected = null;
+            Selected = _robot.getHeart();
+            _action = Action.NONE;
 
             // Initialize camera controls
             _cameraPosition = new Vector2(300, 300);
@@ -74,10 +91,22 @@ namespace gearit.src.utility
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Horizontal);
             MenuItem item;
-            item = _menu_tools.addItemMenu("Circle", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item = _menu_tools.addItemMenu("Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus(1, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
-            item = _menu_tools.addItemMenu("Line", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus(2, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+        }
+
+        public Piece Selected
+        {
+            get { return _selected; }
+            set
+            {
+                if (_selected != null)
+                  _selected.ColorValue = Color.Black;
+                _selected = value;
+                _selected.ColorValue = Color.Red;
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -90,22 +119,36 @@ namespace gearit.src.utility
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
+        public Vector2 sim_mouse_pos()
+        {
+          return (ConvertUnits.ToSimUnits(new Vector2(_mouse.X, _mouse.Y) - _cameraPosition));
+        }
+
         private void HandleMouse()
         {
-            MouseState mouse = Mouse.GetState();
+            _mouse = Mouse.GetState();
 
-           if (mouse.LeftButton == ButtonState.Pressed &&
-	     _old_mouse_state.LeftButton != ButtonState.Pressed)
+            if (_mouse.LeftButton == ButtonState.Pressed &&
+          _old_mouse_state.LeftButton != ButtonState.Pressed)
             {
-	       Piece p = new Wheel(_robot, 0.5f);
-               _robot.addPiece(p);
-	       _robot.addSpot(new PrismaticSpot(_robot, p, _robot.getHeart()));
+                Selected = _robot.getPiece(sim_mouse_pos());
             }
-            if (mouse != _old_mouse_state)
+            if (_mouse.RightButton == ButtonState.Pressed &&
+          _old_mouse_state.RightButton != ButtonState.Pressed)
             {
-                _old_mouse_state = mouse;
-                _menu_properties.Update(mouse);
-                _menu_tools.Update(mouse);
+                Piece p = new Wheel(_robot, 0.5f);
+                _robot.addPiece(p);
+                _robot.addSpot(new PrismaticSpot(_robot, _selected, p));
+            }
+            if (_mouse.MiddleButton == ButtonState.Pressed)
+            {
+                _cameraPosition += new Vector2(_mouse.X - _old_mouse_state.X, _mouse.Y - _old_mouse_state.Y);
+            }
+            if (_mouse != _old_mouse_state)
+            {
+                _old_mouse_state = _mouse;
+                _menu_properties.Update(_mouse);
+                _menu_tools.Update(_mouse);
             }
         }
 

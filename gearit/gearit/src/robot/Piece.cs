@@ -60,6 +60,8 @@ namespace gearit
 
         public bool isOn(Vector2 p)
         {
+            Console.WriteLine(p);
+            Console.WriteLine(Position);
             Transform t;
             base.GetTransform(out t);
             return (_shape.TestPoint(ref t, ref p));

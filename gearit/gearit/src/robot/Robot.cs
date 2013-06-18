@@ -73,6 +73,7 @@ namespace gearit
 
         public Piece getPiece(Vector2 p)
         {
+            //getHeart().Position = p;
             for (int i = 1; i < _pieces.Count; i++)
                 if (_pieces[i].isOn(p))
                     return (_pieces[i]);

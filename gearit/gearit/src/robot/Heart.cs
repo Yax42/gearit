@@ -16,6 +16,7 @@ namespace gearit
         public Heart(Robot robot) :
             base(robot)
         {
+            Position = new Vector2(3, 3);
             _vertices = PolygonTools.CreateRectangle(1, 1);
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape, null);
