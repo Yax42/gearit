@@ -36,6 +36,7 @@ namespace gearit.src.robot
                     (BodyB.Position + LocalAnchorB)).Length();
             LimitEnabled = false;
             ColorValue = Color.Black;
+            robot.addSpot(this);
         }
 
         public void updateLimit()

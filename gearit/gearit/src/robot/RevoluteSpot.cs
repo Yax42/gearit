@@ -36,6 +36,7 @@ namespace gearit.src.robot
             MotorSpeed = 0f;
             MotorEnabled = true;
             ColorValue = Color.Black;
+            robot.addSpot(this);
         }
 
         public static void initTex(AssetCreator asset)

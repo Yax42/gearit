@@ -35,6 +35,10 @@ namespace gearit.src.utility
         private MouseState _old_mouse_state;
         private MouseState _mouse;
 
+	// Keyboard
+        private KeyboardState _keyboard;
+        private KeyboardState _old_keyboard;
+
         // Robot
         private DrawGame _draw_game;
         private Robot _robot;
@@ -92,9 +96,13 @@ namespace gearit.src.utility
             _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Horizontal);
             MenuItem item;
             item = _menu_tools.addItemMenu("Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus(1, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+            item.addFocus((int) Action.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
             item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus(2, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+            item.addFocus((int) Action.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+
+	    // input
+	    _old_keyboard = Keyboard.GetState();
+            _old_mouse_state = Mouse.GetState();
         }
 
         public Piece Selected
@@ -111,7 +119,7 @@ namespace gearit.src.utility
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            HandleMouse();
+            HandleInput();
 
             //We update the world
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
@@ -124,32 +132,54 @@ namespace gearit.src.utility
           return (ConvertUnits.ToSimUnits(new Vector2(_mouse.X, _mouse.Y) - _cameraPosition));
         }
 
-        private void HandleMouse()
+        private bool updateAction()
+        {
+            int state = _menu_tools.itemPressed();
+
+            if (state == 0)
+                return (false);
+            if (state == (int)Action.PRIS_SPOT)
+                _action = Action.PRIS_SPOT;
+            else if (state == (int)Action.REV_SPOT)
+                _action = Action.REV_SPOT;
+            return (true);
+        }
+
+        private void HandleInput()
         {
             _mouse = Mouse.GetState();
+	    _keyboard = Keyboard.GetState();
 
-            if (_mouse.LeftButton == ButtonState.Pressed &&
-          _old_mouse_state.LeftButton != ButtonState.Pressed)
+            if (_mouse == _old_mouse_state)
+                return;
+            _menu_properties.Update(_mouse);
+            _menu_tools.Update(_mouse);
+            if (updateAction() == false && _mouse.LeftButton == ButtonState.Pressed && _old_mouse_state.LeftButton != ButtonState.Pressed)
             {
                 Selected = _robot.getPiece(sim_mouse_pos());
             }
-            if (_mouse.RightButton == ButtonState.Pressed &&
-          _old_mouse_state.RightButton != ButtonState.Pressed)
-            {
-                Piece p = new Wheel(_robot, 0.5f);
-                _robot.addPiece(p);
-                _robot.addSpot(new PrismaticSpot(_robot, _selected, p));
+            if (_action == Action.PRIS_SPOT && _mouse.RightButton == ButtonState.Pressed)
+	    {
+                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
+                new PrismaticSpot(_robot, _selected, p);
+                _action = Action.NONE;
             }
-            if (_mouse.MiddleButton == ButtonState.Pressed)
+            else if (_mouse.RightButton == ButtonState.Pressed && _action == Action.REV_SPOT)
+            {
+                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
+                new RevoluteSpot(_robot, _selected, p);
+                _action = Action.NONE;
+            }
+            else if (_mouse.RightButton == ButtonState.Pressed && _old_mouse_state.RightButton != ButtonState.Pressed && _action == Action.NONE)
+            {
+                _selected.move(sim_mouse_pos());
+            }
+            if (_mouse.MiddleButton == ButtonState.Pressed || _keyboard.IsKeyDown(Keys.LeftShift))
             {
                 _cameraPosition += new Vector2(_mouse.X - _old_mouse_state.X, _mouse.Y - _old_mouse_state.Y);
             }
-            if (_mouse != _old_mouse_state)
-            {
-                _old_mouse_state = _mouse;
-                _menu_properties.Update(_mouse);
-                _menu_tools.Update(_mouse);
-            }
+            _old_mouse_state = _mouse;
+            _old_keyboard = _keyboard;
         }
 
         public override void Draw(GameTime gameTime)

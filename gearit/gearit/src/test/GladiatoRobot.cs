@@ -109,13 +109,11 @@ namespace gearit.src.utility
 	    dot1.move(new Vector2(1, 1));
 	    */
 
-	    Piece wheel2 = new Wheel(_robot, 1f);
-	    Piece dot2 = new Wheel(_robot, 0.2f);
-        _robot.addPiece(wheel2);
-        _robot.addPiece(dot2);
+	    Piece wheel2 = new Wheel(_robot, 1f, Vector2.Zero);
+	    Piece dot2 = new Wheel(_robot, 0.2f, Vector2.Zero);
             dot2.move(new Vector2(1, -1));
-            _robot.addSpot(new PrismaticSpot(_robot, _robot.getHeart(), dot2));//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
-            _robot.addSpot(new PrismaticSpot(_robot, wheel2, dot2));
+            new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
+            new PrismaticSpot(_robot, wheel2, dot2);
 	    
 
         }
