@@ -6,10 +6,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace gearit
 {
-    class Heart : Piece
+    [Serializable()]
+    class Heart : Piece, ISerializable
     {
         private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
 
@@ -23,6 +26,23 @@ namespace gearit
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Heart created.");
         }
+
+	public Heart(SerializationInfo info, StreamingContext ctxt) :
+	  base()
+	{
+	  // Position = (Vector2) info.GetValue("Position", typeof(Vector2));
+	  _vertices = (Vertices) info.GetValue("Vertices", typeof(Vertices));
+	  _shape = (PolygonShape) info.GetValue("Shape", typeof(PolygonShape));
+	  _fix = (Fixture) info.GetValue("Fixture", typeof(Fixture));
+	}
+
+	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+	{
+	  // info.AddValue("Position", Position);
+	  info.AddValue("Vertices", _vertices);
+	  info.AddValue("Shape", _shape);
+	  info.AddValue("Fixture", _fix);
+	}
 
         public override void draw(SpriteBatch batch)
         {

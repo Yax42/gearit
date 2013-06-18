@@ -6,10 +6,12 @@ using FarseerPhysics.Common;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace gearit
 {
-    class Wheel : Piece
+    class Wheel : Piece, ISerializable
     {
         private const int _circleSegments = 32;
 
@@ -22,6 +24,23 @@ namespace gearit
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Wheel created.");
         }
+
+	public Wheel(SerializationInfo info, StreamingContext ctxt) :
+	  base()
+	{
+	  _size = (float) info.GetValue("Size", typeof(float));
+	  // Position = (Vector2) info.GetValue("Position", typeof(Vector2));
+	  _shape = (PolygonShape) info.GetValue("Shape", typeof(PolygonShape));
+	  _fix = (Fixture) info.GetValue("Fixture", typeof(Fixture));
+	}
+
+	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+	{
+	  info.AddValue("Size", _size);
+	  // info.AddValue("Position", Position);
+	  info.AddValue("Shape", _shape);
+	  info.AddValue("Fixture", _fix);
+	}
 
         public override void draw(SpriteBatch batch)
         {

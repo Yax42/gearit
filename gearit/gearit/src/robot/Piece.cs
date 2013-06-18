@@ -35,6 +35,11 @@ namespace gearit
             ColorValue = Color.Black;
         }
 
+	internal Piece()
+	{
+	  // Useless.
+	}
+
         internal void setShape(Shape shape, int id)
         {
             _shape = shape;
