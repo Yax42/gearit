@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.robot;
 
 namespace gearit.src.utility
 {
@@ -93,14 +94,19 @@ namespace gearit.src.utility
         {
             MouseState mouse = Mouse.GetState();
 
+           if (mouse.LeftButton == ButtonState.Pressed &&
+	     _old_mouse_state.LeftButton != ButtonState.Pressed)
+            {
+	       Piece p = new Wheel(_robot, 0.5f);
+               _robot.addPiece(p);
+	       _robot.addSpot(new PrismaticSpot(_robot, p, _robot.getHeart()));
+            }
             if (mouse != _old_mouse_state)
             {
+                _old_mouse_state = mouse;
                 _menu_properties.Update(mouse);
                 _menu_tools.Update(mouse);
-                _old_mouse_state = mouse;
             }
-            if (mouse.LeftButton == ButtonState.Pressed)
-                _robot.addPiece(new Wheel(_robot, 0.5f));
         }
 
         public override void Draw(GameTime gameTime)
@@ -110,8 +116,11 @@ namespace gearit.src.utility
             _background.Draw(_draw_game.Batch());
             _menu_properties.Draw(_draw_game.Batch());
             _menu_tools.Draw(_draw_game.Batch());
-            _robot.drawDebug(_draw_game);
 
+            _draw_game.End();
+
+            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _cameraPosition, _screenCenter);
+            _robot.drawDebug(_draw_game);
             _draw_game.End();
 
             base.Draw(gameTime);
