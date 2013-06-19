@@ -27,21 +27,36 @@ namespace gearit.src.editor
         /// <param name="obj">The object to serialize.</param>
         public void SerializeItem(string filename, ISerializable obj)
         {
-            FileStream s = new FileStream(filename, FileMode.Create);
-            _formatter.Serialize(s, obj);
-            s.Close();
+            try
+            {
+                FileStream s = new FileStream(filename, FileMode.Create);
+                _formatter.Serialize(s, obj);
+                s.Close();
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error while opening/creating the file {0}.", filename);
+            }
         }
 
         /// <summary>
         /// Deserializes an object.
         /// </summary>
-        /// <param name="filename">The file where in which the object is stored.</param>
+        /// <param name="filename">The file in which the object is stored.</param>
         /// <returns>The object as an ISerializable if the deserialization worked, null otherwise.</returns>
         public ISerializable DeserializeItem(string filename)
         {
-            FileStream s = new FileStream(filename, FileMode.Open);
-            ISerializable obj = (ISerializable)_formatter.Deserialize(s);
-            return (obj);
+            try
+            {
+                FileStream s = new FileStream(filename, FileMode.Open);
+                ISerializable obj = (ISerializable)_formatter.Deserialize(s);
+                return (obj);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error while opening the file {0}.", filename);
+                return (null);
+            }
         }
     }
 

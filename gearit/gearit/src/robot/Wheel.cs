@@ -18,7 +18,7 @@ namespace gearit
         private float _size;
 
         public Wheel(Robot robot, float size) :
-	    this(robot, size, Vector2.Zero)
+            this(robot, size, Vector2.Zero)
         {
         }
         public Wheel(Robot robot, float size, Vector2 pos) :
@@ -30,22 +30,19 @@ namespace gearit
             Console.WriteLine("Wheel created.");
         }
 
-	public Wheel(SerializationInfo info, StreamingContext ctxt) :
-	  base()
-	{
-	  _size = (float) info.GetValue("Size", typeof(float));
-	  // Position = (Vector2) info.GetValue("Position", typeof(Vector2));
-	  _shape = (PolygonShape) info.GetValue("Shape", typeof(PolygonShape));
-	  _fix = (Fixture) info.GetValue("Fixture", typeof(Fixture));
-	}
+        public Wheel(SerializationInfo info, StreamingContext ctxt) :
+            base(info, ctxt)
+        {
+            Position = Vector2.Zero;
+            _size = (float)info.GetValue("Size", typeof(float));
+            _shape = new CircleShape(_size, 1f);
+        }
 
-	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-	{
-	  info.AddValue("Size", _size);
-	  // info.AddValue("Position", Position);
-	  info.AddValue("Shape", _shape);
-	  info.AddValue("Fixture", _fix);
-	}
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            base.GetObjectData(info, ctxt);
+            info.AddValue("Size", _size, typeof(float));
+        }
 
         public override void draw(SpriteBatch batch)
         {
@@ -77,10 +74,10 @@ namespace gearit
             set
             {
                 ((CircleShape)_shape).Radius = value;
-		if (areSpotsOk() == false)
-                  ((CircleShape)_shape).Radius = _size;
-		else
-                  _size = value;
+                if (areSpotsOk() == false)
+                    ((CircleShape)_shape).Radius = _size;
+                else
+                    _size = value;
             }
         }
     }

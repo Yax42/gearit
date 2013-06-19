@@ -23,7 +23,7 @@ namespace gearit
         private List<Piece> _pieces;
         private List<ISpot> _spots;
 
-	[NonSerialized]
+        [NonSerialized]
         private static int _robotIdCounter = 1;
         private int _id;
         private World _world;
@@ -33,22 +33,27 @@ namespace gearit
             _world = world;
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
-	    _pieces = new List<Piece>();
-	    _spots = new List<ISpot>();
+            _pieces = new List<Piece>();
+            _spots = new List<ISpot>();
             new Heart(this);
         }
 
-	public Robot(SerializationInfo info, StreamingContext ctxt)
-	{
-	  this._pieces = (List<Piece>) info.GetValue("Pieces", typeof(List<Piece>));
-	  this._spots = (List<ISpot>) info.GetValue("Spots", typeof(List<ISpot>));
-	}
+        public Robot(SerializationInfo info, StreamingContext ctxt)
+        {
+            this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
+            // Call `addPiece` on each Pieces.
 
-	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-	{
-	  info.AddValue("Pieces", typeof(List<Piece>));
-	  info.AddValue("Spots", typeof(List<ISpot>));
-	}
+            this._spots = (List<ISpot>)info.GetValue("Spots", typeof(List<ISpot>));
+            // Call `addJoint` on each Spots.
+            _id = _robotIdCounter++;
+            Console.WriteLine("Unserializing object.");
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Pieces", _pieces, typeof(List<Piece>));
+            info.AddValue("Spots", _spots, typeof(List<ISpot>));
+        }
 
         public void addSpot(ISpot spot)
         {
@@ -85,17 +90,17 @@ namespace gearit
 
         public float getWeight()
         {
-	    float res = 0;
+            float res = 0;
             for (int i = 0; i < _pieces.Count; i++)
-              res += _pieces[i].Weight;
+                res += _pieces[i].Weight;
             return (res);
         }
 
         public float getMotorStrength()
         {
-	    float res = 0;
+            float res = 0;
             for (int i = 0; i < _spots.Count; i++)
-              res += _spots[i].MotorStrength;
+                res += _spots[i].MotorStrength;
             return (res);
         }
 
@@ -109,19 +114,19 @@ namespace gearit
 
         public void draw(SpriteBatch batch)
         {
-	    /*
-	    int	    count = 0;
+            /*
+            int	    count = 0;
 
-            for (int i = 0; i < _pieces.Count; i++)
-               _pieces[i].vertices(_lineVertices, ref count);
-            for (int i = 0; i < _spots.Count; i++)
-               if (_spots[i].GetType() == typeof(PrismaticSpot))
-	         _spots[i].vertices(_lineVertices, ref count);
-            _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
-            for (int i = 1; i < _pieces.Count; i++)
-                _pieces[i].draw(batch);
-            _pieces[0].draw(batch);
-	    */
+                for (int i = 0; i < _pieces.Count; i++)
+                   _pieces[i].vertices(_lineVertices, ref count);
+                for (int i = 0; i < _spots.Count; i++)
+                   if (_spots[i].GetType() == typeof(PrismaticSpot))
+                 _spots[i].vertices(_lineVertices, ref count);
+                _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
+                for (int i = 1; i < _pieces.Count; i++)
+                    _pieces[i].draw(batch);
+                _pieces[0].draw(batch);
+            */
         }
 
         public void showAll()
@@ -131,35 +136,35 @@ namespace gearit
         }
 
         public void remove(Piece p)
-	{
+        {
             if (p == getHeart())
-              return ;
+                return;
             for (JointEdge i = p.JointList; i != null; i = i.Next)
-              _spots.Remove((ISpot) i.Joint);
+                _spots.Remove((ISpot)i.Joint);
             _pieces.Remove(p);
             _world.RemoveBody(p);
-	}
+        }
 
         public void remove(ISpot s)
         {
             _spots.Remove(s);
-            _world.RemoveJoint((Joint) s);
+            _world.RemoveJoint((Joint)s);
         }
 
         public void wake()
         {
             for (int i = 0; i < _pieces.Count; i++)
-              _world.RemoveBody(_pieces[i]);
+                _world.RemoveBody(_pieces[i]);
             for (int i = 0; i < _spots.Count; i++)
-              _world.RemoveJoint((Joint) _spots[i]);
+                _world.RemoveJoint((Joint)_spots[i]);
         }
 
         public void sleep()
         {
             for (int i = 0; i < _pieces.Count; i++)
-              _world.AddBody(_pieces[i]);
+                _world.AddBody(_pieces[i]);
             for (int i = 0; i < _spots.Count; i++)
-              _world.AddJoint((Joint) _spots[i]);
+                _world.AddJoint((Joint)_spots[i]);
         }
     }
 }

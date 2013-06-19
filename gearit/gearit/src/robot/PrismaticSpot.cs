@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
@@ -14,17 +16,16 @@ namespace gearit.src.robot
 {
     class PrismaticSpot : PrismaticJoint, ISpot
     {
-        private DistanceJoint _distJoint;
+        // private DistanceJoint _distJoint;
         private float _size;
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2) :
-	    this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
-
+            this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
         {
         }
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
-	  base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
+            base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
         {
             updateAxis();
             robot.getWorld().AddJoint(this);
@@ -37,6 +38,23 @@ namespace gearit.src.robot
             LimitEnabled = false;
             ColorValue = Color.Black;
             robot.addSpot(this);
+        }
+
+        public PrismaticSpot(SerializationInfo info, StreamingContext ctxt)
+        {
+            _size = (float)info.GetValue("Size", typeof(float));
+            updateAxis();
+            Enabled = true;
+            MaxMotorForce = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+            LimitEnabled = false;
+            ColorValue = Color.Black;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Size", _size, typeof(float));
         }
 
         public void updateLimit()
@@ -88,9 +106,9 @@ namespace gearit.src.robot
 
         public void draw(DrawGame game)
         {
-	  if (((Piece) BodyA).Shown == false || ((Piece) BodyB).Shown == false)
+            if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
                 return;
-          game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
+            game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
         }
 
         public Color ColorValue { get; set; }

@@ -27,22 +27,19 @@ namespace gearit
             Console.WriteLine("Heart created.");
         }
 
-	public Heart(SerializationInfo info, StreamingContext ctxt) :
-	  base()
-	{
-	  // Position = (Vector2) info.GetValue("Position", typeof(Vector2));
-	  _vertices = (Vertices) info.GetValue("Vertices", typeof(Vertices));
-	  _shape = (PolygonShape) info.GetValue("Shape", typeof(PolygonShape));
-	  _fix = (Fixture) info.GetValue("Fixture", typeof(Fixture));
-	}
+        public Heart(SerializationInfo info, StreamingContext ctxt) :
+            base(info, ctxt)
+        {
+            // Position = new Vector2(3, 3);
+            // _vertices = PolygonTools.CreateRectangle(1, 1);
+            // _shape = new PolygonShape(_vertices, 50f);
+            // _fix = CreateFixture(_shape, null);
+        }
 
-	public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-	{
-	  // info.AddValue("Position", Position);
-	  info.AddValue("Vertices", _vertices);
-	  info.AddValue("Shape", _shape);
-	  info.AddValue("Fixture", _fix);
-	}
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            base.GetObjectData(info, ctxt);
+        }
 
         public override void draw(SpriteBatch batch)
         {
@@ -55,8 +52,8 @@ namespace gearit
             if (Shown == false)
                 return;
             for (int i = 0; i < _vertices.Count - 1; i++)
-		game.addLine(Position + _vertices[i], Position + _vertices[i + 1], ColorValue);
-	    game.addLine(Position + _vertices[_vertices.Count - 1], Position + _vertices[0], ColorValue);
+                game.addLine(Position + _vertices[i], Position + _vertices[i + 1], ColorValue);
+            game.addLine(Position + _vertices[_vertices.Count - 1], Position + _vertices[0], ColorValue);
         }
 
         private bool checkShape()
@@ -75,7 +72,7 @@ namespace gearit
                     dist = (_vertices[i] - p).Length();
                     res = i;
                 }
-	    return (res);
+            return (res);
         }
 
         public Vector2 getCorner(int id)
@@ -100,14 +97,14 @@ namespace gearit
         public void addCorner(Vector2 p)
         {
             if (_vertices.Contains(p))
-                return ;
+                return;
             _vertices.Add(p);
             if (checkShape() == false)
                 _vertices.Remove(p);
-	      
+
             //else
-                //FixtureList[0].Shape = _shape;
-	    //update shape
+            //FixtureList[0].Shape = _shape;
+            //update shape
         }
 
         public void removeCorner(int id)

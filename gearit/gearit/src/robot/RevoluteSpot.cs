@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
@@ -13,13 +15,13 @@ namespace gearit.src.robot
 {
     class RevoluteSpot : RevoluteJoint, ISpot
     {
-	private static float _spotSize = 0.05f;
+        private static float _spotSize = 0.05f;
         private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
         private static Vector2 _topRight = new Vector2(_spotSize, -_spotSize);
         private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
         private static Vector2 _botRight = new Vector2(_spotSize, _spotSize);
 
-        private AngleJoint _angleJoint;
+        // private AngleJoint _angleJoint;
         static private Texture2D _tex;
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
@@ -28,7 +30,7 @@ namespace gearit.src.robot
         }
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
-	  base(p1, p2, anchor1, anchor2)
+            base(p1, p2, anchor1, anchor2)
         {
             robot.getWorld().AddJoint(this);
             Enabled = true;
@@ -39,9 +41,22 @@ namespace gearit.src.robot
             robot.addSpot(this);
         }
 
+        public RevoluteSpot(SerializationInfo info, StreamingContext ctxt)
+        {
+            Enabled = true;
+            MaxMotorTorque = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+            ColorValue = Color.Black;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+        }
+
         public static void initTex(AssetCreator asset)
         {
-          _tex = asset.CreateCircle(2, Color.Red);
+            _tex = asset.CreateCircle(2, Color.Red);
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
