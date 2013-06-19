@@ -172,7 +172,7 @@ namespace gearit.src.utility
 		/*
 		Je pense que c'est plus propre comme ça :
 
-                Vector2 pos = pos + input.mouseOffset();
+                Vector2 pos = _pos + input.mouseOffset();
 
                 // Don't move if out of window
                 if (pos.Y < 0)

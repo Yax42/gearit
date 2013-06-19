@@ -13,6 +13,7 @@ using FarseerPhysics.Dynamics.Joints;
 using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using gearit.src.robot.api;
 
 namespace gearit
 {
@@ -22,6 +23,10 @@ namespace gearit
 
         private List<Piece> _pieces;
         private List<ISpot> _spots;
+
+	// a serialiser
+        private int _prismaticCounter = 0;
+        private int _revoluteCounter = 0;
 
 	[NonSerialized]
         private static int _robotIdCounter = 1;
@@ -95,7 +100,7 @@ namespace gearit
         {
 	    float res = 0;
             for (int i = 0; i < _spots.Count; i++)
-              res += _spots[i].MotorStrength;
+              res += _spots[i].MaxForce;
             return (res);
         }
 
@@ -161,5 +166,21 @@ namespace gearit
             for (int i = 0; i < _spots.Count; i++)
               _world.AddJoint((Joint) _spots[i]);
         }
+
+        public List<Api> getApi()
+        {
+            List<Api> res = new List<Api>();
+            for (int i = 0; i < _spots.Count; i++)
+            {
+                if (_spots[i].GetType() == typeof(PrismaticSpot))
+                    res.Add(new PrismaticApi(_spots[i]));
+                else
+                    res.Add(new RevoluteApi(_spots[i]));
+            }
+            return (res);
+        }
+
+        public int revCount(){ return (_revoluteCounter++); }
+        public int prisCount(){ return (_prismaticCounter++); }
     }
 }

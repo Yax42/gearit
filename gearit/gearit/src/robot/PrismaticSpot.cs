@@ -18,14 +18,14 @@ namespace gearit.src.robot
         private float _size;
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2) :
-	    this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
-
+            this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
         {
         }
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
-	  base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
+            base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
         {
+            Name = "piston" + robot.revCount();
             updateAxis();
             robot.getWorld().AddJoint(this);
             Enabled = true;
@@ -88,17 +88,24 @@ namespace gearit.src.robot
 
         public void draw(DrawGame game)
         {
-	  if (((Piece) BodyA).Shown == false || ((Piece) BodyB).Shown == false)
+            if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
                 return;
-          game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
+            game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
+        }
+
+        public float Force
+        {
+            get { return MotorForce; }
+            set { MotorForce = value; }
+        }
+
+        public float MaxForce
+        {
+            get { return MaxMotorForce; }
+            set { MaxMotorForce = value; }
         }
 
         public Color ColorValue { get; set; }
-
-        public float MotorStrength
-        {
-            get { return MotorStrength; }
-            set { MotorStrength = value; }
-        }
+        public string Name { get; set; }
     }
 }

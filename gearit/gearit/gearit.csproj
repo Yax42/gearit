@@ -224,6 +224,9 @@
     <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionNone.cs" />
     <Compile Include="src\editor\robot\action\IAction.cs" />
+    <Compile Include="src\robot\api\Api.cs" />
+    <Compile Include="src\robot\api\PrismaticApi.cs" />
+    <Compile Include="src\robot\api\RevoluteApi.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\Input.cs" />

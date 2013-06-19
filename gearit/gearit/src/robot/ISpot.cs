@@ -21,7 +21,11 @@ namespace gearit
 
         float getSize();
 
-        float MotorStrength  { get; set; }
+        float MaxForce  { get; set; }
+
+        float Force { get; set; }
+
+        string Name { get; set; }
 
         void draw(DrawGame game);
     }

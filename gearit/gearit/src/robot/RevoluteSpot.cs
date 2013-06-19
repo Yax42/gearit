@@ -30,6 +30,7 @@ namespace gearit.src.robot
         public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 	  base(p1, p2, anchor1, anchor2)
         {
+            Name = "spot" + robot.revCount();
             robot.getWorld().AddJoint(this);
             Enabled = true;
             MaxMotorTorque = 100;
@@ -101,12 +102,19 @@ namespace gearit.src.robot
         }
 
 
-        public Color ColorValue { get; set; }
-
-        public float MotorStrength
+        public float Force
         {
-            get { return MotorStrength; }
-            set { MotorStrength = value; }
+            get { return MotorTorque; }
+            set { MotorTorque = value; }
         }
+
+        public float MaxForce
+        {
+            get { return MaxMotorTorque; }
+            set { MaxMotorTorque = value; }
+        }
+
+        public string Name { get; set; }
+        public Color ColorValue { get; set; }
     }
 }
