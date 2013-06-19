@@ -26,6 +26,7 @@ namespace gearit.src.utility
 
         // Properties
         private bool _adjusting = false;
+        private bool _visible = true;
         private Vector2 _size;
         public Vector2 _pos;
         private Color _bg_color;
@@ -187,9 +188,12 @@ namespace gearit.src.utility
         // Drawing - Loop on all itemMenu and draw them
         public void Draw(SpriteBatch batch)
         {
-            _rectangle.Draw(batch);
-            foreach (MenuItem item in _items)
-                item.Draw(batch);
+            if (_visible)
+            {
+                _rectangle.Draw(batch);
+                foreach (MenuItem item in _items)
+                    item.Draw(batch);
+            }
         }
 
         public void releaseFocus()
@@ -230,6 +234,12 @@ namespace gearit.src.utility
                 _adjusting = value;
                 adjust();
             }
+        }
+
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
         }
 
         public bool hasItemPressed()
