@@ -100,6 +100,7 @@ namespace gearit.src.utility
             item.addFocus((int) ActionTypes.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
             item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int) ActionTypes.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+            _menu_tools.Adjusting = true;
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -117,13 +118,13 @@ namespace gearit.src.utility
 
         private void HandleInput()
         {
-	    if (_actionType == ActionTypes.NONE || _menu_tools.hasItemPressed())
-	    {
-               _actionType = (ActionTypes)_menu_tools.getPressed();
-	       _actions[(int) _actionType].init();
-	       if (_actionType != ActionTypes.NONE)
-                 Console.WriteLine(_actionType);
-	    }
+            if (_actionType == ActionTypes.NONE || _menu_tools.hasItemPressed())
+            {
+                _actionType = (ActionTypes)_menu_tools.getPressed();
+                _actions[(int)_actionType].init();
+                if (_actionType != ActionTypes.NONE)
+                    Console.WriteLine(_actionType);
+            }
             _actionType = _actions[(int)_actionType].run(_input, _robot, ref _selected);
             if (_input.pressed(MouseKeys.MIDDLE) || _input.pressed(Keys.LeftShift))
                 _cameraPosition += _input.mouseOffset();
