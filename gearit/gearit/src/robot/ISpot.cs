@@ -21,9 +21,11 @@ namespace gearit
 
         void moveAnchor(Piece p, Vector2 anchor);
 
-        float getSize();
+        float MaxForce  { get; set; }
 
-        float MotorStrength { get; set; }
+        float Force { get; set; }
+
+        string Name { get; set; }
 
         void draw(DrawGame game);
     }

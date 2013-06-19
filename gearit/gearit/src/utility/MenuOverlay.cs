@@ -26,6 +26,7 @@ namespace gearit.src.utility
 
         // Properties
         private bool _adjusting = false;
+        private bool _visible = true;
         private Vector2 _size;
         public Vector2 _pos;
         private Color _bg_color;
@@ -169,10 +170,7 @@ namespace gearit.src.utility
             // Need to move 
             else if (_movable)
             {
-		/*
-		Je pense que c'est plus propre comme ça :
-
-                Vector2 pos = pos + input.mouseOffset();
+                Vector2 pos = _pos + input.mouseOffset();
 
                 // Don't move if out of window
                 if (pos.Y < 0)
@@ -183,31 +181,19 @@ namespace gearit.src.utility
                     pos.X = 0;
                 else if ((int)pos.X + _size.X > _graph.Viewport.Width)
                     pos.X = _pos.X;
-                Geometry = new Rectangle(pos.X, pos.Y, (int)_size.X, (int)_size.Y);
-		*/
-                Vector2 offset = input.mouseOffset();
-                int x = (int)_pos.X + (int)offset.X;
-                int y = (int)_pos.Y + (int)offset.Y;
-
-                // Don't move if out of window
-                if (y < 0)
-                    y = 0;
-                else if (y + _size.Y > _graph.Viewport.Height)
-                    y = (int)_pos.Y;
-                if (x < 0)
-                    x = 0;
-                else if (x + _size.X > _graph.Viewport.Width)
-                    x = (int)_pos.X;
-                Geometry = new Rectangle(x, y, (int)_size.X, (int)_size.Y);
+                Geometry = new Rectangle((int) pos.X, (int) pos.Y, (int)_size.X, (int)_size.Y);
             }
         }
 
         // Drawing - Loop on all itemMenu and draw them
         public void Draw(SpriteBatch batch)
         {
-            _rectangle.Draw(batch);
-            foreach (MenuItem item in _items)
-                item.Draw(batch);
+            if (_visible)
+            {
+                _rectangle.Draw(batch);
+                foreach (MenuItem item in _items)
+                    item.Draw(batch);
+            }
         }
 
         public void releaseFocus()
@@ -248,6 +234,12 @@ namespace gearit.src.utility
                 _adjusting = value;
                 adjust();
             }
+        }
+
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
         }
 
         public bool hasItemPressed()

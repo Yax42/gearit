@@ -12,7 +12,7 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public ActionTypes run(Input input, Robot robot, ref Piece selected)
+        public bool run(Input input, Robot robot, ref Piece selected)
         {
             if (input.justPressed(MouseKeys.LEFT) && input.position().Y > 50)
                 selected = robot.getPiece(input.simUnitPosition());
@@ -27,7 +27,7 @@ namespace gearit.src.editor.robot.action
                 robot.remove(selected);
                 selected = robot.getHeart();
             }
-            return (ActionTypes.NONE);
+            return (true);
         }
     }
 }

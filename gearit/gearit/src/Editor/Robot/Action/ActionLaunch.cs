@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.src.utility;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionMoveAnchor : IAction
+    class ActionLaunch : IAction
     {
-        private bool _firstStep;
-
-        public void init()
-        {
-            _firstStep = true;
-        }
+        public void init() { }
 
         public bool run(Input input, Robot robot, ref Piece selected)
         {
-            if (_firstStep == false)
-            {
-
-            }
-            selected.move(input.simUnitPosition());
+            robot.getWorld().Gravity = new Vector2(0f, 9.8f);
             return (true);
         }
     }

@@ -14,12 +14,14 @@ namespace gearit.src.editor.robot
 {
     enum ActionTypes
     {
-	NONE,
-	PRIS_SPOT,
-	REV_SPOT,
-	COUNT,
-	MOVE_ANCHOR,
+        NONE,
+        PRIS_SPOT,
+        REV_SPOT,
+        LAUNCH,
+        COUNT,
+        MOVE_ANCHOR,
     }
+
     class RobotEditor : PhysicsGameScreen, IDemoScreen
     {
         private Input _input;
@@ -73,9 +75,10 @@ namespace gearit.src.editor.robot
             _actionType = ActionTypes.NONE;
 
 	    //actions
-            _actions[(int) ActionTypes.NONE] = new ActionNone();
+            _actions[(int)ActionTypes.NONE] = new ActionNone();
             _actions[(int) ActionTypes.PRIS_SPOT] = new ActionPrisSpot();
             _actions[(int) ActionTypes.REV_SPOT] = new ActionRevSpot();
+            _actions[(int) ActionTypes.LAUNCH] = new ActionLaunch();
             //_actions[(int) ActionTypes.REMOVE] = new ActionRemove();
 
             // Initialize camera controls
@@ -100,6 +103,9 @@ namespace gearit.src.editor.robot
             item.addFocus((int) ActionTypes.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
             item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int) ActionTypes.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+            item = _menu_tools.addItemMenu("Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120), ScreenManager.GraphicsDevice);
+
             _menu_tools.Adjusting = true;
         }
 
@@ -111,6 +117,7 @@ namespace gearit.src.editor.robot
             HandleInput();
 
             //We update the world
+	    // /!\ Faut pas pas faire ça, c'est deja fait dans base.Update(...)
             //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -125,7 +132,12 @@ namespace gearit.src.editor.robot
                 if (_actionType != ActionTypes.NONE)
                     Console.WriteLine(_actionType);
             }
-            _actionType = _actions[(int)_actionType].run(_input, _robot, ref _selected);
+            if (_actions[(int)_actionType].run(_input, _robot, ref _selected) == false)
+            {
+                _menu_tools.getItem((int)_actionType).Pressed = false;
+                _actionType = ActionTypes.NONE;
+            }
+
             if (_input.pressed(MouseKeys.MIDDLE) || _input.pressed(Keys.LeftShift))
                 _cameraPosition += _input.mouseOffset();
         }
