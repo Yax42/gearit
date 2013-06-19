@@ -14,7 +14,7 @@ namespace gearit.src.robot.api
 
         public float size()
         {
-            return (_spot.getSize());
+            return (((PrismaticSpot)_spot).getSize());
         }
     }
 }

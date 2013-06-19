@@ -19,8 +19,6 @@ namespace gearit
 
         void moveAnchor(Piece p, Vector2 anchor);
 
-        float getSize();
-
         float MaxForce  { get; set; }
 
         float Force { get; set; }

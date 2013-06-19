@@ -19,7 +19,7 @@ namespace gearit.src.robot.api
             return (_spot.Name);
         }
 
-        public float MotorForce 
+        public float motorForce 
         {
             get { return _spot.Force; }
             set

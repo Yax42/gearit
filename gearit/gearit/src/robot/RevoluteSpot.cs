@@ -84,8 +84,6 @@ namespace gearit.src.robot
                 ((Piece)BodyB).move(pos + LocalAnchorA - LocalAnchorB);
         }
 
-        public float getSize() { return (0); }
-
         public void draw(DrawGame game)
         {
             if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
