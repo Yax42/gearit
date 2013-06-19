@@ -5,6 +5,7 @@ using System.Text;
 using LuaInterface;
 using gearit.xna;
 using gearit.src.robot;
+using gearit.src.robot.api;
 
 namespace gearit.src.utility
 {
@@ -13,10 +14,10 @@ namespace gearit.src.utility
     class LuaTest
     {
         private Robot _robot;
+        private List<Api> _api;
         private InputHelper _input;
         private String _name;
         private MyGame _game;
-        public Lua lua;
         public Lua _luaInterpret;
 
         public void saySomething(string something)
@@ -27,6 +28,7 @@ namespace gearit.src.utility
         public LuaTest(ScreenManager screen, Robot robot, string name)
         {
             _input = new InputHelper(screen);
+            _input.LoadContent();
             _robot = robot;
             _name = name;
             /*// Creating interpreter
@@ -73,17 +75,24 @@ namespace gearit.src.utility
             double entier = (double) luaInterpret["entier"];
             Console.WriteLine("chaine = {0}= {1}", chaine, entier);*/
             
+            _api = robot.getApi();
+
             _luaInterpret = new Lua();
             /*_luaInterpret.RegisterFunction("ChangeWheel", _game, _game.GetType().GetMethod("ChangeWheel"));*/
             /*_luaInterpret.RegisterFunction("getKeyboardState", _game, _game.GetType().GetMethod("getKeyboardState"));*/
             _luaInterpret.RegisterFunction("getRobot", this, this.GetType().GetMethod("getRobot"));
             _luaInterpret.RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
             /*_luaInterpret.RegisterFunction("getWheel", _game, _game.GetType().GetMethod("getWheel"));*/
+
+            //_luaInterpret["piece1"] = _api[1];
+            for (int i = _api.Count - 1; i >= 0; i--)
+                _luaInterpret[_api[i].name()] = _api[i];
         }
 
-        public Robot getRobot()
+        public void getRobot()
         {
-            return (_robot);
+            Console.WriteLine(" {0} = {1}", _api[0].name(), _api[0].MotorForce);
+            Console.WriteLine(" {0} = {1}", _api[1].name(), _api[1].MotorForce);
         }
 
         public void execFile()
