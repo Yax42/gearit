@@ -15,14 +15,14 @@ namespace gearit.src.editor.robot.action
             _firstStep = true;
         }
 
-        public ActionTypes run(Input input, Robot robot, ref Piece selected)
+        public bool run(Input input, Robot robot, ref Piece selected)
         {
             if (_firstStep == false)
             {
 
             }
             selected.move(input.simUnitPosition());
-            return (ActionTypes.PRIS_SPOT);
+            return (true);
         }
     }
 }
