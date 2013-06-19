@@ -51,6 +51,7 @@ namespace gearit.src.utility
         private Color _bg_focus;
         private bool _focused = false;
         private RectangleOverlay _rectangle_bg;
+        private bool _pressed = false;
 
         // Refreshing
         private Vector2 _pos;
@@ -137,13 +138,19 @@ namespace gearit.src.utility
         public void Draw(SpriteBatch batch)
         {
             // Focus background
-            if (_focusable && _focused)
+            if (_focusable && (_focused || _pressed))
                 _rectangle_bg.Draw(batch, _pos + _menu.Position);
             // Draw texture or string
             if (_sprite == null)
                 batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
             else
                 batch.Draw(_sprite, _pos_rsrc + _menu.Position, Color.White);
+        }
+
+        public bool Pressed
+        {
+            get { return _pressed; }
+            set { _pressed = value; }
         }
 
         public Rectangle getRectangle()

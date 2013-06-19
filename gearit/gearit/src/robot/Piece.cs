@@ -39,6 +39,11 @@ namespace gearit
             Shown = true;
         }
 
+	internal Piece()
+	{
+	  // Useless.
+	}
+
         internal void setShape(Shape shape, int id)
         {
             _shape = shape;
