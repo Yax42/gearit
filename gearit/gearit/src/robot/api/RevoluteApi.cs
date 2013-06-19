@@ -11,5 +11,10 @@ namespace gearit.src.robot.api
 	    base(spot)
         {
         }
+
+        public float angle()
+        {
+	    return (((RevoluteSpot)_spot).JointAngle);
+        }
     }
 }
