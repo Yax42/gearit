@@ -44,6 +44,11 @@ namespace gearit.src.utility
             return (_mouse);
         }
 
+        public bool mouseChanged()
+        {
+            return (_old_mouse != _mouse);
+        }
+
 /*******************/
 /* MOUSE POSITIONS */
 /*******************/

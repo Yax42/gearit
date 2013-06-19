@@ -105,6 +105,8 @@ namespace gearit.src.utility
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             _input.update(_cameraPosition);
+            _menu_properties.Update(_input.mouse());
+            _menu_tools.Update(_input.mouse());
             HandleInput();
 
             //We update the world
@@ -115,15 +117,13 @@ namespace gearit.src.utility
 
         private void HandleInput()
         {
-	    if (_actionType == ActionTypes.NONE)
+	    if (_actionType == ActionTypes.NONE || _menu_tools.hasItemPressed())
 	    {
-               _actionType = (ActionTypes)_menu_tools.itemPressed();
+               _actionType = (ActionTypes)_menu_tools.getPressed();
 	       _actions[(int) _actionType].init();
 	       if (_actionType != ActionTypes.NONE)
                  Console.WriteLine(_actionType);
 	    }
-            _menu_properties.Update(_input.mouse());
-            _menu_tools.Update(_input.mouse());
             _actionType = _actions[(int)_actionType].run(_input, _robot, ref _selected);
             if (_input.pressed(MouseKeys.MIDDLE) || _input.pressed(Keys.LeftShift))
                 _cameraPosition += _input.mouseOffset();
