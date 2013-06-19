@@ -39,7 +39,6 @@ namespace gearit.src.utility
         // Focus
         private bool _movable = false;
         private bool _moving = false;
-        private MouseState _old_mouse;
         
         public MenuOverlay(GraphicsDevice graph, ContentManager content, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
         {
@@ -113,37 +112,26 @@ namespace gearit.src.utility
         }
 
         // Refreshing focus by mouse
-        public void Update(MouseState mouse)
+        public void Update(Input input)
         {
-            Vector2 mouse_pos = new Vector2(mouse.X, mouse.Y);
-
             if (_moving)
-                manageMovement(mouse);
-            else if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), mouse_pos))
+                manageMovement(input);
+            else if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), input.position()))
             {
                 // Manage all state/position of mouse
-                if (itemToggle(mouse, mouse_pos))
+                if (itemToggle(input))
                     return;
                 // Manage movable
-                if (mouse.LeftButton == ButtonState.Pressed && _movable && !_moving)
+                if (input.mouse().LeftButton == ButtonState.Pressed && _movable && !_moving)
                     _moving = true;
             }
             releaseFocus();
-            _old_mouse = mouse;
         }
 
-        // Drawing - Loop on all itemMenu and draw them
-        public void Draw(SpriteBatch batch)
-        {
-            _rectangle.Draw(batch);
-            foreach (MenuItem item in _items)
-                item.Draw(batch);
-        }
-
-        private bool itemToggle(MouseState mouse, Vector2 mouse_pos)
+        private bool itemToggle(Input input)
         {
             // Checking if item (un)pressed
-            if (mouse.LeftButton == ButtonState.Pressed && _item_focused != 0)
+            if (input.mouse().LeftButton == ButtonState.Pressed && _item_focused != 0)
             {
                 if (getItem(_item_focused).Pressed)
                 {
@@ -158,7 +146,7 @@ namespace gearit.src.utility
             }
             // Checking if in on an item
             foreach (MenuItem item in _items)
-                if (item.Focusable && isIn(item.getRectangle(), mouse_pos))
+                if (item.Focusable && isIn(item.getRectangle(), input.position()))
                 {
                     if (!item.Focused)
                     {
@@ -171,16 +159,17 @@ namespace gearit.src.utility
             return (false);
         }
 
-        private void manageMovement(MouseState mouse)
+        private void manageMovement(Input input)
         {
-            if (mouse.LeftButton == ButtonState.Released)
+            if (input.justReleased(MouseKeys.LEFT))
                 _moving = false;
 
             // Need to move 
             else if (_movable)
             {
-                int x = (int)_pos.X + mouse.X - (int)_old_mouse.X;
-                int y = (int)_pos.Y + mouse.Y - (int)_old_mouse.Y;
+                Vector2 offset = input.mouseOffset();
+                int x = (int)_pos.X + (int)offset.X;
+                int y = (int)_pos.Y + (int)offset.Y;
 
                 // Don't move if out of window
                 if (y < 0)
@@ -193,6 +182,14 @@ namespace gearit.src.utility
                     x = (int)_pos.X;
                 Geometry = new Rectangle(x, y, (int)_size.X, (int)_size.Y);
             }
+        }
+
+        // Drawing - Loop on all itemMenu and draw them
+        public void Draw(SpriteBatch batch)
+        {
+            _rectangle.Draw(batch);
+            foreach (MenuItem item in _items)
+                item.Draw(batch);
         }
 
         public void releaseFocus()
