@@ -167,6 +167,22 @@ namespace gearit.src.utility
             // Need to move 
             else if (_movable)
             {
+		/*
+		Je pense que c'est plus propre comme ça :
+
+                Vector2 pos = pos + input.mouseOffset();
+
+                // Don't move if out of window
+                if (pos.Y < 0)
+                    pos.Y = 0;
+                else if ((int)pos.Y + _size.Y > _graph.Viewport.Height)
+                    pos.Y = _pos.Y;
+                if (pos.X < 0)
+                    pos.X = 0;
+                else if ((int)pos.X + _size.X > _graph.Viewport.Width)
+                    pos.X = _pos.X;
+                Geometry = new Rectangle(pos.X, pos.Y, (int)_size.X, (int)_size.Y);
+		*/
                 Vector2 offset = input.mouseOffset();
                 int x = (int)_pos.X + (int)offset.X;
                 int y = (int)_pos.Y + (int)offset.Y;
