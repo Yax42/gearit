@@ -39,11 +39,6 @@ namespace gearit.src.utility
 	    _cameraPos = cameraPos;
         }
 
-        public MouseState mouse()
-        {
-            return (_mouse);
-        }
-
         public bool mouseChanged()
         {
             return (_old_mouse != _mouse);
@@ -52,7 +47,6 @@ namespace gearit.src.utility
 /*******************/
 /* MOUSE POSITIONS */
 /*******************/
-
         public Vector2 position()
         {
             return (new Vector2(_mouse.X, _mouse.Y));
@@ -66,6 +60,7 @@ namespace gearit.src.utility
         {
             return (new Vector2(_mouse.X - _old_mouse.X, _mouse.Y - _old_mouse.Y));
         }
+
 /*****************/
 /* MOUSE ACTIONS */
 /*****************/

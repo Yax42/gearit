@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using gearit.src.utility;
+﻿using gearit.src.utility;
+using gearit.src.robot;
 
-namespace gearit.src.robot.Editor.Action
+namespace gearit.src.editor.robot.action
 {
     class ActionRevSpot : IAction
     {

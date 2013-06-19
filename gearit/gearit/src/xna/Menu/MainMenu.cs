@@ -1,16 +1,7 @@
 ﻿using System.Text;
-using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
-using FarseerPhysics.Common;
-using FarseerPhysics.DebugViews;
-using FarseerPhysics.Collision.Shapes;
-using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
+using gearit.src.editor.robot;
 
 namespace gearit.xna
 {

@@ -6,7 +6,7 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace gearit.src.robot.Editor.Action
+namespace gearit.src.editor.robot.action
 {
     class ActionNone : IAction
     {
