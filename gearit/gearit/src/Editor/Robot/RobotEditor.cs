@@ -105,8 +105,8 @@ namespace gearit.src.editor.robot
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             _input.update(_cameraPosition);
-            _menu_properties.Update(_input.mouse());
-            _menu_tools.Update(_input.mouse());
+            _menu_properties.Update(_input);
+            _menu_tools.Update(_input);
             HandleInput();
 
             //We update the world
