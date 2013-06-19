@@ -116,6 +116,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\action\ActionMoveAnchor.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
     <Compile Include="src\farseer\Collision\DynamicTree.cs" />
@@ -219,10 +220,10 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
-    <Compile Include="src\Editor\Robot\Action\ActionPrisSpot.cs" />
-    <Compile Include="src\Editor\Robot\Action\ActionRevSpot.cs" />
-    <Compile Include="src\Editor\Robot\Action\ActionNone.cs" />
-    <Compile Include="src\Editor\Robot\Action\IAction.cs" />
+    <Compile Include="src\editor\robot\action\ActionPrisSpot.cs" />
+    <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
+    <Compile Include="src\editor\robot\action\ActionNone.cs" />
+    <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\Input.cs" />
@@ -241,7 +242,7 @@
     <Compile Include="src\test\BruteRobot.cs" />
     <Compile Include="src\test\LuaTest.cs" />
     <Compile Include="src\test\Pyramid.cs" />
-    <Compile Include="src\Editor\Robot\RobotEditor.cs" />
+    <Compile Include="src\editor\robot\RobotEditor.cs" />
     <Compile Include="src\test\SpiderBot.cs" />
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />

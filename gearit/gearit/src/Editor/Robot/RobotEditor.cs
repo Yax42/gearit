@@ -8,9 +8,9 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
-using gearit.src.robot.Editor.Action;
+using gearit.src.editor.robot.action;
 
-namespace gearit.src.utility
+namespace gearit.src.editor.robot
 {
     enum ActionTypes
     {
