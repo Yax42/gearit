@@ -87,6 +87,8 @@ namespace gearit.src.robot
 
         public void draw(DrawGame game)
         {
+            if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
+                return;
             Vector2 pos = BodyA.Position + LocalAnchorA;
             Vector2 corner = BodyA.Position + LocalAnchorA - _topLeft;
             //Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;

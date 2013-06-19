@@ -88,6 +88,8 @@ namespace gearit.src.robot
 
         public void draw(DrawGame game)
         {
+	  if (((Piece) BodyA).Shown == false || ((Piece) BodyB).Shown == false)
+                return;
           game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
         }
 

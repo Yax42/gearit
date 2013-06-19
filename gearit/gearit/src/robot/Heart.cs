@@ -32,6 +32,8 @@ namespace gearit
 
         public override void drawLines(DrawGame game)
         {
+            if (Shown == false)
+                return;
             for (int i = 0; i < _vertices.Count - 1; i++)
 		game.addLine(Position + _vertices[i], Position + _vertices[i + 1], ColorValue);
 	    game.addLine(Position + _vertices[_vertices.Count - 1], Position + _vertices[0], ColorValue);

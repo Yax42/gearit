@@ -39,6 +39,8 @@ namespace gearit
             const double increment = Math.PI * 2.0 / _circleSegments;
             double theta = 0.0;
 
+            if (Shown == false)
+                return;
             for (int i = 0; i < _circleSegments; i++)
             {
                 Vector2 v1 = Position + _size * new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));

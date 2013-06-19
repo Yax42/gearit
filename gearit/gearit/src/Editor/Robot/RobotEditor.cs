@@ -8,20 +8,21 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
+using gearit.src.robot.Editor.Action;
 
 namespace gearit.src.utility
 {
-    enum Action
+    enum ActionTypes
     {
 	NONE,
 	PRIS_SPOT,
 	REV_SPOT,
-	MOVE,
-	REMOVE,
-	COUNT
+	COUNT,
+	MOVE_ANCHOR,
     }
     class RobotEditor : PhysicsGameScreen, IDemoScreen
     {
+        private Input _input;
         private Vector2 _cameraPosition;
         private Vector2 _screenCenter;
         private const int PropertiesMenuSize = 200;
@@ -31,13 +32,6 @@ namespace gearit.src.utility
         private MenuOverlay _menu_properties;
         private MenuOverlay _menu_tools;
 
-        // Mouse
-        private MouseState _old_mouse_state;
-        private MouseState _mouse;
-
-	// Keyboard
-        private KeyboardState _keyboard;
-        private KeyboardState _old_keyboard;
 
         // Robot
         private DrawGame _draw_game;
@@ -45,7 +39,8 @@ namespace gearit.src.utility
 
 	// Action
         private Piece _selected;
-        private Action _action;
+        private ActionTypes _actionType;
+        private IAction[] _actions = new IAction[(int) ActionTypes.COUNT];
 
         #region IDemoScreen Members
 
@@ -65,6 +60,7 @@ namespace gearit.src.utility
         {
             base.LoadContent();
 
+            _input = new Input();
             World.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
             EnableCameraControl = true;
@@ -73,9 +69,14 @@ namespace gearit.src.utility
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             _robot = new Robot(World);
-	    _selected = null;
-            Selected = _robot.getHeart();
-            _action = Action.NONE;
+            _selected = _robot.getHeart();
+            _actionType = ActionTypes.NONE;
+
+	    //actions
+            _actions[(int) ActionTypes.NONE] = new ActionNone();
+            _actions[(int) ActionTypes.PRIS_SPOT] = new ActionPrisSpot();
+            _actions[(int) ActionTypes.REV_SPOT] = new ActionRevSpot();
+            //_actions[(int) ActionTypes.REMOVE] = new ActionRemove();
 
             // Initialize camera controls
             _cameraPosition = new Vector2(300, 300);
@@ -96,90 +97,36 @@ namespace gearit.src.utility
             _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Horizontal);
             MenuItem item;
             item = _menu_tools.addItemMenu("Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int) Action.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
+            item.addFocus((int) ActionTypes.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
             item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int) Action.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
-
-	    // input
-	    _old_keyboard = Keyboard.GetState();
-            _old_mouse_state = Mouse.GetState();
-        }
-
-        public Piece Selected
-        {
-            get { return _selected; }
-            set
-            {
-                if (_selected != null)
-                  _selected.ColorValue = Color.Black;
-                _selected = value;
-                _selected.ColorValue = Color.Red;
-            }
+            item.addFocus((int) ActionTypes.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
+            _input.update(_cameraPosition);
             HandleInput();
 
             //We update the world
-            World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+            //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        public Vector2 sim_mouse_pos()
-        {
-          return (ConvertUnits.ToSimUnits(new Vector2(_mouse.X, _mouse.Y) - _cameraPosition));
-        }
-
-        private bool updateAction()
-        {
-            int state = _menu_tools.itemPressed();
-
-            if (state == 0)
-                return (false);
-            if (state == (int)Action.PRIS_SPOT)
-                _action = Action.PRIS_SPOT;
-            else if (state == (int)Action.REV_SPOT)
-                _action = Action.REV_SPOT;
-            return (true);
-        }
-
         private void HandleInput()
         {
-            _mouse = Mouse.GetState();
-	    _keyboard = Keyboard.GetState();
-
-            if (_mouse == _old_mouse_state)
-                return;
-            _menu_properties.Update(_mouse);
-            _menu_tools.Update(_mouse);
-            if (updateAction() == false && _mouse.LeftButton == ButtonState.Pressed && _old_mouse_state.LeftButton != ButtonState.Pressed)
-            {
-                Selected = _robot.getPiece(sim_mouse_pos());
-            }
-            if (_action == Action.PRIS_SPOT && _mouse.RightButton == ButtonState.Pressed)
+	    if (_actionType == ActionTypes.NONE)
 	    {
-                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
-                new PrismaticSpot(_robot, _selected, p);
-                _action = Action.NONE;
-            }
-            else if (_mouse.RightButton == ButtonState.Pressed && _action == Action.REV_SPOT)
-            {
-                Piece p = new Wheel(_robot, 0.5f, sim_mouse_pos());
-                new RevoluteSpot(_robot, _selected, p);
-                _action = Action.NONE;
-            }
-            else if (_mouse.RightButton == ButtonState.Pressed && _old_mouse_state.RightButton != ButtonState.Pressed && _action == Action.NONE)
-            {
-                _selected.move(sim_mouse_pos());
-            }
-            if (_mouse.MiddleButton == ButtonState.Pressed || _keyboard.IsKeyDown(Keys.LeftShift))
-            {
-                _cameraPosition += new Vector2(_mouse.X - _old_mouse_state.X, _mouse.Y - _old_mouse_state.Y);
-            }
-            _old_mouse_state = _mouse;
-            _old_keyboard = _keyboard;
+               _actionType = (ActionTypes)_menu_tools.itemPressed();
+	       _actions[(int) _actionType].init();
+	       if (_actionType != ActionTypes.NONE)
+                 Console.WriteLine(_actionType);
+	    }
+            _menu_properties.Update(_input.mouse());
+            _menu_tools.Update(_input.mouse());
+            _actionType = _actions[(int)_actionType].run(_input, _robot, ref _selected);
+            if (_input.pressed(MouseKeys.MIDDLE) || _input.pressed(Keys.LeftShift))
+                _cameraPosition += _input.mouseOffset();
         }
 
         public override void Draw(GameTime gameTime)
@@ -193,7 +140,9 @@ namespace gearit.src.utility
             _draw_game.End();
 
             _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _cameraPosition, _screenCenter);
+            _selected.ColorValue = Color.Red;
             _robot.drawDebug(_draw_game);
+            _selected.ColorValue = Color.Black;
             _draw_game.End();
 
             base.Draw(gameTime);

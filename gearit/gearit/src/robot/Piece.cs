@@ -26,6 +26,7 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
             robot.addPiece(this);
+            Shown = true;
         }
 
         internal Piece(Robot robot, Shape shape) :
@@ -35,6 +36,7 @@ namespace gearit
             setShape(shape, robot.getId());
             ColorValue = Color.Black;
             robot.addPiece(this);
+            Shown = true;
         }
 
         internal void setShape(Shape shape, int id)
@@ -125,5 +127,6 @@ namespace gearit
 
         public abstract void drawLines(DrawGame game);
         public Color ColorValue { get; set; }
+        public bool Shown { get; set; }
     }
 }

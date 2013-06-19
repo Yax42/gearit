@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using gearit.src.utility;
 
 namespace gearit.src.robot.Editor.Action
 {
-    class IAction
+    interface IAction
     {
+        void init();
+        ActionTypes run(Input input, Robot robot, ref Piece selected);
     }
 }

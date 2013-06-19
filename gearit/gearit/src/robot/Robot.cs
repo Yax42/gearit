@@ -36,8 +36,6 @@ namespace gearit
 	    _pieces = new List<Piece>();
 	    _spots = new List<ISpot>();
             new Heart(this);
-            //x_heart = new Heart();
-
         }
 
 	public Robot(SerializationInfo info, StreamingContext ctxt)
@@ -51,17 +49,6 @@ namespace gearit
 	  info.AddValue("Pieces", typeof(List<Piece>));
 	  info.AddValue("Spots", typeof(List<ISpot>));
 	}
-
-	/*
-        public GraphicsDevice getDevice()
-        {
-            return (_device);
-        }
-
-        public AssetCreator getAsset()
-        {
-            return (_asset);
-        }*/
 
         public void addSpot(ISpot spot)
         {
@@ -90,9 +77,8 @@ namespace gearit
 
         public Piece getPiece(Vector2 p)
         {
-            //getHeart().Position = p;
-            for (int i = 1; i < _pieces.Count; i++)
-                if (_pieces[i].isOn(p))
+            for (int i = _pieces.Count - 1; i > 0; i--)
+                if (_pieces[i].Shown && _pieces[i].isOn(p))
                     return (_pieces[i]);
             return (getHeart());
         }
@@ -138,6 +124,12 @@ namespace gearit
 	    */
         }
 
+        public void showAll()
+        {
+            for (int i = 0; i < _pieces.Count; i++)
+                _pieces[i].Shown = true;
+        }
+
         public void remove(Piece p)
 	{
             if (p == getHeart())
@@ -152,6 +144,22 @@ namespace gearit
         {
             _spots.Remove(s);
             _world.RemoveJoint((Joint) s);
+        }
+
+        public void wake()
+        {
+            for (int i = 0; i < _pieces.Count; i++)
+              _world.RemoveBody(_pieces[i]);
+            for (int i = 0; i < _spots.Count; i++)
+              _world.RemoveJoint((Joint) _spots[i]);
+        }
+
+        public void sleep()
+        {
+            for (int i = 0; i < _pieces.Count; i++)
+              _world.AddBody(_pieces[i]);
+            for (int i = 0; i < _spots.Count; i++)
+              _world.AddJoint((Joint) _spots[i]);
         }
     }
 }
