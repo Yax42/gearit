@@ -21,6 +21,7 @@ namespace gearit
 	    this(robot, size, Vector2.Zero)
         {
         }
+
         public Wheel(Robot robot, float size, Vector2 pos) :
             base(robot, new CircleShape(size, 1f)) //density 0 ~= poids
         {

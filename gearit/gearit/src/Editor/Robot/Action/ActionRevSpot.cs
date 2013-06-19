@@ -9,13 +9,9 @@ namespace gearit.src.editor.robot.action
 
         public ActionTypes run(Input input, Robot robot, ref Piece selected)
         {
-            if (input.justPressed(MouseKeys.RIGHT))
-            {
-                Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
-                new RevoluteSpot(robot, selected, p);
-                return (ActionTypes.NONE);
-            }
-            return (ActionTypes.REV_SPOT);
+            Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
+            new RevoluteSpot(robot, selected, p);
+            return (ActionTypes.NONE);
         }
     }
 }
