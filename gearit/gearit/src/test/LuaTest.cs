@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LuaInterface;
+using gearit.xna;
+using gearit.src.robot;
 
 namespace gearit.src.utility
 {
@@ -10,6 +12,9 @@ namespace gearit.src.utility
 
     class LuaTest
     {
+        private Robot _robot;
+        private InputHelper _input;
+        private String _name;
         private MyGame _game;
         public Lua lua;
         public Lua _luaInterpret;
@@ -19,9 +24,11 @@ namespace gearit.src.utility
             Console.WriteLine(something);
         }
 
-        public LuaTest(MyGame game)
+        public LuaTest(ScreenManager screen, Robot robot, string name)
         {
-            _game = game;
+            _input = new InputHelper(screen);
+            _robot = robot;
+            _name = name;
             /*// Creating interpreter
             lua = new Lua();
 
@@ -65,17 +72,23 @@ namespace gearit.src.utility
             string chaine = (string) luaInterpret["chaine"];
             double entier = (double) luaInterpret["entier"];
             Console.WriteLine("chaine = {0}= {1}", chaine, entier);*/
-
+            
             _luaInterpret = new Lua();
-            _luaInterpret.RegisterFunction("ChangeWheel", _game, _game.GetType().GetMethod("ChangeWheel"));
+            /*_luaInterpret.RegisterFunction("ChangeWheel", _game, _game.GetType().GetMethod("ChangeWheel"));*/
             /*_luaInterpret.RegisterFunction("getKeyboardState", _game, _game.GetType().GetMethod("getKeyboardState"));*/
-            _luaInterpret.RegisterFunction("getKeysAction", _game, _game.GetType().GetMethod("getKeysAction"));
-            _luaInterpret.RegisterFunction("getWheel", _game, _game.GetType().GetMethod("getWheel"));
+            _luaInterpret.RegisterFunction("getRobot", this, this.GetType().GetMethod("getRobot"));
+            _luaInterpret.RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
+            /*_luaInterpret.RegisterFunction("getWheel", _game, _game.GetType().GetMethod("getWheel"));*/
+        }
+
+        public Robot getRobot()
+        {
+            return (_robot);
         }
 
         public void execFile()
         {
-            _luaInterpret.DoFile(@"scripts/MyRobot.lua");
+            _luaInterpret.DoFile(@"scripts/" + _name + ".lua");
         }
     }
 }

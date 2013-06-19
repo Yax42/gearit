@@ -21,8 +21,6 @@ namespace gearit.src.utility
     /// </summary>
     internal class MyGame : PhysicsGameScreen, IDemoScreen
     {
-        private SortedList<string, Keys> _keys;
-
         private SoundManager _sound;
 
         private KeyboardState state;
@@ -121,18 +119,8 @@ namespace gearit.src.utility
 
             _sound = new SoundManager(ScreenManager, "Audio/soupeGame");
             _sound.ActiveLoop();
-
-            _lua = new LuaTest(this);
-            _keys = new SortedList<string, Keys>();
-            _keys.Add("Q", Keys.Q);
-            _keys.Add("D", Keys.D);
-            _keys.Add("S", Keys.S);
-            _keys.Add("A", Keys.A);
-            _keys.Add("Z", Keys.Z);
-            _keys.Add("W", Keys.W);
-            _keys.Add("X", Keys.X);
-            _keys.Add("E", Keys.E);
-            _keys.Add("Space", Keys.Space);
+            
+            //_lua = new LuaTest(ScreenManager, );
 
             // Initialize camera controls
             _view = Matrix.Identity;
@@ -290,7 +278,6 @@ namespace gearit.src.utility
             HandleGamePad();
             HandleKeyboard();
 
-            _lua.execFile();
             //We update the world
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
@@ -301,15 +288,6 @@ namespace gearit.src.utility
             if (this.IsExiting)
                 _sound.StopSound();
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-        }
-
-        public bool getKeysAction(string key)
-        {
-            state = Keyboard.GetState();
-            if (state.IsKeyDown(_keys[key]))
-                return (true);
-            else
-                return (false);
         }
 
         public void ChangeWheel(float value)

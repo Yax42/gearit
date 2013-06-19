@@ -20,6 +20,8 @@ namespace gearit.xna
 
     public class InputHelper
     {
+        private SortedList<string, Keys> _keys;
+
         private GamePadState _currentGamePadState;
         private KeyboardState _currentKeyboardState;
         private MouseState _currentMouseState;
@@ -115,6 +117,16 @@ namespace gearit.xna
             get { return _lastVirtualState; }
         }
 
+
+        public bool getKeysAction(string key)
+        {
+            _currentKeyboardState = Keyboard.GetState();
+            if (_currentKeyboardState.IsKeyDown(_keys[key]))
+                return (true);
+            else
+                return (false);
+        }
+
         public bool ShowCursor
         {
             get { return _cursorIsVisible && _cursorIsValid; }
@@ -144,6 +156,17 @@ namespace gearit.xna
 
         public void LoadContent()
         {
+            _keys = new SortedList<string, Keys>();
+            _keys.Add("Q", Keys.Q);
+            _keys.Add("D", Keys.D);
+            _keys.Add("S", Keys.S);
+            _keys.Add("A", Keys.A);
+            _keys.Add("Z", Keys.Z);
+            _keys.Add("W", Keys.W);
+            _keys.Add("X", Keys.X);
+            _keys.Add("E", Keys.E);
+            _keys.Add("Space", Keys.Space);
+
             _cursorSprite = new Sprite(_manager.Content.Load<Texture2D>("Common/cursor"));
             _viewport = _manager.GraphicsDevice.Viewport;
         }

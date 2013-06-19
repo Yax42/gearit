@@ -24,6 +24,7 @@ namespace gearit.src.utility
 
     internal class GladiatoRobot : PhysicsGameScreen, IDemoScreen
     {
+        private LuaTest _lua;
         private SpriteBatch _batch;
         private Matrix _view;
         private Vector2 _camera_position;
@@ -115,12 +116,14 @@ namespace gearit.src.utility
             new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
             new PrismaticSpot(_robot, wheel2, dot2);
 	    
-
+            _lua = new LuaTest(ScreenManager, _robot, "bruterobot");
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             HandleKeyboard();
+            
+            _lua.execFile();
 
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
