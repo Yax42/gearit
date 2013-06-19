@@ -36,6 +36,7 @@ namespace gearit.src.utility
         private ItemMenuAlignement _alignement;
         private Vector2 _padding;
         private ContentManager _content;
+        private bool _visible = true;
 
         // Text
         private SpriteFont _font;
@@ -137,14 +138,23 @@ namespace gearit.src.utility
 
         public void Draw(SpriteBatch batch)
         {
-            // Focus background
-            if (_focusable && (_focused || _pressed))
-                _rectangle_bg.Draw(batch, _pos + _menu.Position);
-            // Draw texture or string
-            if (_sprite == null)
-                batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
-            else
-                batch.Draw(_sprite, _pos_rsrc + _menu.Position, Color.White);
+            if (_visible)
+            {
+                // Focus background
+                if (_focusable && (_focused || _pressed))
+                    _rectangle_bg.Draw(batch, _pos + _menu.Position);
+                // Draw texture or string
+                if (_sprite == null)
+                    batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+                else
+                    batch.Draw(_sprite, _pos_rsrc + _menu.Position, Color.White);
+            }
+        }
+
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
         }
 
         public bool Pressed
