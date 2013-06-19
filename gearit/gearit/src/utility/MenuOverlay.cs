@@ -122,7 +122,7 @@ namespace gearit.src.utility
                 if (itemToggle(input))
                     return;
                 // Manage movable
-                if (input.mouse().LeftButton == ButtonState.Pressed && _movable && !_moving)
+                if (input.justPressed(MouseKeys.LEFT) && _movable && !_moving)
                     _moving = true;
             }
             releaseFocus();
@@ -131,20 +131,22 @@ namespace gearit.src.utility
         private bool itemToggle(Input input)
         {
             // Checking if item (un)pressed
-            if (input.mouse().LeftButton == ButtonState.Pressed && _item_focused != 0)
+            if (input.justPressed(MouseKeys.LEFT) && _item_focused != 0)
             {
-                if (getItem(_item_focused).Pressed)
+                MenuItem item_focused = getItem(_item_focused);
+
+                if (item_focused.Pressed)
                 {
-                    getItem(_item_focused).Pressed = false;
+                    item_focused.Pressed = false;
                     _item_pressed = 0;
                 }
                 else
                 {
-                    getItem(_item_focused).Pressed = true;
+                    item_focused.Pressed = true;
                     _item_pressed = _item_focused;
                 }
             }
-            // Checking if in on an item
+            // Checking if in an item
             foreach (MenuItem item in _items)
                 if (item.Focusable && isIn(item.getRectangle(), input.position()))
                 {
