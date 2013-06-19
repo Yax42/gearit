@@ -7,11 +7,11 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public ActionTypes run(Input input, Robot robot, ref Piece selected)
+        public bool run(Input input, Robot robot, ref Piece selected)
         {
             Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
             new RevoluteSpot(robot, selected, p);
-            return (ActionTypes.NONE);
+            return (false);
         }
     }
 }

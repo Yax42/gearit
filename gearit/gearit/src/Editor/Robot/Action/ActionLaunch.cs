@@ -12,10 +12,10 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public ActionTypes run(Input input, Robot robot, ref Piece selected)
+        public bool run(Input input, Robot robot, ref Piece selected)
         {
             robot.getWorld().Gravity = new Vector2(0f, 9.8f);
-            return (ActionTypes.LAUNCH);
+            return (true);
         }
     }
 }

@@ -117,7 +117,8 @@ namespace gearit.src.editor.robot
             HandleInput();
 
             //We update the world
-            World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+	    // /!\ Faut pas pas faire ça, c'est deja fait dans base.Update(...)
+            //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
@@ -131,7 +132,12 @@ namespace gearit.src.editor.robot
                 if (_actionType != ActionTypes.NONE)
                     Console.WriteLine(_actionType);
             }
-            _actionType = _actions[(int)_actionType].run(_input, _robot, ref _selected);
+            if (_actions[(int)_actionType].run(_input, _robot, ref _selected) == false)
+            {
+                _menu_tools.getItem((int)_actionType).Pressed = false;
+                _actionType = ActionTypes.NONE;
+            }
+
             if (_input.pressed(MouseKeys.MIDDLE) || _input.pressed(Keys.LeftShift))
                 _cameraPosition += _input.mouseOffset();
         }

@@ -16,7 +16,7 @@ namespace gearit.src.editor.robot.action
             _state = 0;
         }
 
-        public ActionTypes run(Input input, Robot robot, ref Piece selected)
+        public bool run(Input input, Robot robot, ref Piece selected)
         {
             if (_state == 0)
             {
@@ -32,10 +32,10 @@ namespace gearit.src.editor.robot.action
             }
             else if (input.justPressed(MouseKeys.LEFT))
             {
-                return (ActionTypes.NONE);
+                return (false);
             }
             selected.move(input.simUnitPosition());
-            return (ActionTypes.PRIS_SPOT);
+            return (true);
         }
     }
 }
