@@ -116,6 +116,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\action\ActionLaunch.cs" />
     <Compile Include="src\editor\robot\action\ActionMoveAnchor.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
