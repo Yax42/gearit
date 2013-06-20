@@ -120,7 +120,6 @@ namespace gearit.src.utility
                                                 ScreenManager.GraphicsDevice.Viewport.Height / 2f);
             // Link painter to window 
             _batch = new SpriteBatch(ScreenManager.GraphicsDevice);
-
             // Utility
             _asset = new AssetCreator(ScreenManager.Game.GraphicsDevice);
             
@@ -147,7 +146,7 @@ namespace gearit.src.utility
             _ball = BodyFactory.CreateCircle(World, 0.5f, 1f, _screen_center);
             _ball.BodyType = BodyType.Dynamic;
             _ball_tex = _asset.TextureFromShape(_ball.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
-            _ball.SetTransform(_screen_center, 1f);
+            _ball.Position = new Vector2(10, 0); //SetTransform(_screen_center, 1f);
 
             // Pyramid
             _pyramid = new Pyramid(World, new Vector2(0.3f, 0f), 5, 1f, _asset);
@@ -176,7 +175,6 @@ namespace gearit.src.utility
             vertices.Add(new Vector2(-1.15f, 0.9f));
             vertices.Add(new Vector2(-1.5f, 0.2f));
 	    */
-
             _heart = new Body(World);
             _heart.BodyType = BodyType.Dynamic;
             _heart.CreateFixture(new PolygonShape(vertices, 20f));
@@ -184,7 +182,7 @@ namespace gearit.src.utility
             _heart.ResetMassData();
             _heart.FixtureList[0].CollisionGroup = 42;
             _heart_tex = _asset.TextureFromVertices(vertices, MaterialType.Blank, Color.Blue * 0.8f, 1f);
-            _heart.SetTransform(new Vector2(14, 0), 3.1415926f);
+            _heart.SetTransform(new Vector2(14, 0), 0); // 3.1415926f
 
 	    //Rod
 	    /*
@@ -213,7 +211,7 @@ namespace gearit.src.utility
             _rod2End.BodyType = BodyType.Dynamic;
 	    */
 
-
+            
 	    _rod1End = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod1End.CollisionGroup = 42;
             _rod1End.BodyType = BodyType.Dynamic;
@@ -229,7 +227,7 @@ namespace gearit.src.utility
 	    _rod2Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
             _rod2Start.CollisionGroup = 42;
             _rod2Start.BodyType = BodyType.Dynamic;
-
+            
 	    /*
 	    _rod1End = BodyFactory.CreateCircle(World, 0.5f, 0.1f, Vector2.Zero);
             _rod1End.BodyType = BodyType.Dynamic;
@@ -251,7 +249,7 @@ namespace gearit.src.utility
             _jointRod2.LimitEnabled = true;
             _jointRod2.Enabled = true;
             _jointRod2.LowerLimit = 1;
-            _jointRod2.UpperLimit = _sizeRod1 * 3;
+            _jointRod2.UpperLimit = _sizeRod2 * 3;
             _jointRod2.MotorEnabled = true;
             _jointRod2.MaxMotorForce = 100;
             _jointRod2.MotorSpeed = 0f;
@@ -265,7 +263,8 @@ namespace gearit.src.utility
             _wheel_right.BodyType = BodyType.Dynamic;
             _wheel_right_tex = _asset.TextureFromShape(_wheel_right.FixtureList[0].Shape, MaterialType.Blank, Color.Gray, 1f);
             _wheel_right.CollisionGroup = 42;
-            _wheel_right.Position = new Vector2(13, 4);
+           // _wheel_right.Position = new Vector2(13, 4);
+            _wheel_right.Position = new Vector2(_heart.Position.X -1, _heart.Position.Y + 2);
 
             _wheel_left = BodyFactory.CreateCircle(World, 0.5f, 1f, Vector2.Zero);
             _wheel_left.FixtureList[0].Shape.Density = 1f;
@@ -273,7 +272,8 @@ namespace gearit.src.utility
             _wheel_left.BodyType = BodyType.Dynamic;
             _wheel_left_tex = _asset.TextureFromShape(_wheel_left.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
             _wheel_left.FixtureList[0].CollisionGroup = 42;
-            _wheel_left.Position = new Vector2(12, 4);
+            //_wheel_left.Position = new Vector2(12, 4);
+            _wheel_left.Position = new Vector2(_heart.Position.X -1, _heart.Position.Y + 2);
 
             //Joint test
             _spotJoint[1] = new RevoluteJoint(_wheel_right, _rod1End, Vector2.Zero, Vector2.Zero);
@@ -413,13 +413,13 @@ namespace gearit.src.utility
         private void HandleKeyboard()
         {
             KeyboardState state = Keyboard.GetState();
-	    
-            if (state.IsKeyDown(Keys.D))
+
+            if (state.IsKeyDown(Keys.D) || state.IsKeyDown(Keys.Right))
             {
                 _spotJoint[0].MotorSpeed = -10f;
                 _spotJoint[1].MotorSpeed = -10f;
             }
-            else if (state.IsKeyDown(Keys.A))
+            else if (state.IsKeyDown(Keys.A) || state.IsKeyDown(Keys.Left))
             {
                 _spotJoint[0].MotorSpeed = 10f;
                 _spotJoint[1].MotorSpeed = 10f;
@@ -429,26 +429,37 @@ namespace gearit.src.utility
                 _spotJoint[0].MotorSpeed = 0f;
                 _spotJoint[1].MotorSpeed = 0f;
             }
-	    
 
-            if (state.IsKeyDown(Keys.W))
+
+            if (state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.RightAlt))
             {
-                _jointRod1.MotorSpeed = -20f;
-                _jointRod2.MotorSpeed = -20f;
+                _jointRod1.MotorSpeed = -10f;
+                _jointRod2.MotorSpeed = -10f;
             }
-            else if (state.IsKeyDown(Keys.S))
+
+            else if (state.IsKeyDown(Keys.S) || state.IsKeyDown(Keys.Space))
             {
-                _jointRod1.MotorSpeed = 20f;
-                _jointRod2.MotorSpeed = 20f;
+                _jointRod1.MotorSpeed = 10f;
+                _jointRod2.MotorSpeed = 10f;
+            }
+            else if (state.IsKeyDown(Keys.Up))
+            {
+                _jointRod2.MotorSpeed = 1f;
+            }
+            else if (state.IsKeyDown(Keys.Down))
+            {
+                _jointRod2.MotorSpeed = -1f;
             }
             else
             {
                 _jointRod1.MotorSpeed = 0f;
                 _jointRod2.MotorSpeed = 0f;
             }
-
-            if (state.IsKeyDown(Keys.Space))
+            if (state.IsKeyDown(Keys.LeftAlt))
             {
+                _heart.SetTransform(new Vector2(14, 0), 0);
+                _wheel_left.SetTransform(new Vector2(_heart.Position.X +2, _heart.Position.Y +1), 0);
+                _wheel_right.SetTransform(new Vector2(_heart.Position.X -2, _heart.Position.Y +1), 0);
             }
         }
 

@@ -49,6 +49,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Map\" />
     <Folder Include="Materials\" />
   </ItemGroup>
   <ItemGroup>

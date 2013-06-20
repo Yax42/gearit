@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using gearit.src.editor.robot;
+using gearit.src.editor.map;
 
 namespace gearit.xna
 {
@@ -14,6 +15,7 @@ namespace gearit.xna
         private GladiatoRobot _gladiator;
         private SpiderBot _spiderBot;
         private RobotEditor _robot_editor;
+        private MapEditor _map_editor;
         private MainOptions _Options;
         private SoundManager _sound;
 
@@ -51,12 +53,14 @@ namespace gearit.xna
             _spiderBot = new SpiderBot();
             _gladiator = new GladiatoRobot();
             _robot_editor = new RobotEditor();
+            _map_editor = new MapEditor();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
 
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_robot_editor.GetTitle(), EntryType.Screen, _robot_editor);
+            _menuScreen.AddMenuItem(_map_editor.GetTitle(), EntryType.Screen, _map_editor);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
             _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
@@ -66,7 +70,7 @@ namespace gearit.xna
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
-            _screenManager.AddScreen(_robot_editor);
+            //_screenManager.AddScreen(_robot_editor);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
