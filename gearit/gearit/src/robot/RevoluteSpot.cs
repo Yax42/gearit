@@ -56,6 +56,19 @@ namespace gearit.src.robot
         {
         }
 
+        public RevoluteSpot(SerializationInfo info, StreamingContext ctxt)
+        {
+            Enabled = true;
+            MaxMotorTorque = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+            ColorValue = Color.Black;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+        }
+
         public static void initTex(AssetCreator asset)
         {
             _tex = asset.CreateCircle(2, Color.Red);
