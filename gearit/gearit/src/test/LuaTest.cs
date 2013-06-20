@@ -26,9 +26,9 @@ namespace gearit.src.utility
             Console.WriteLine(something);
         }
 
-        public LuaTest(Robot robot, string name)
+        public LuaTest(Camera2D camera, Robot robot, string name)
         {
-            _input = new Input();
+            _input = new Input(camera);
             _robot = robot;
             _name = name;
             _api = robot.getApi();

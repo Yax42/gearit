@@ -116,7 +116,7 @@ namespace gearit.src.utility
             new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
             new RevoluteSpot(_robot, wheel2, dot2);
 	    
-            _lua = new LuaTest(_robot, "bruterobot");
+            _lua = new LuaTest(Camera, _robot, "bruterobot");
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
