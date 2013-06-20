@@ -116,7 +116,7 @@ namespace gearit.src.utility
             new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
             new RevoluteSpot(_robot, wheel2, dot2);
 	    
-            _lua = new LuaTest(ScreenManager, _robot, "bruterobot");
+            _lua = new LuaTest(Camera, _robot, "bruterobot");
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -124,7 +124,6 @@ namespace gearit.src.utility
             HandleKeyboard();
             
             _lua.execFile();
-            _robot.getApi()[1].motorForce = 1;
             
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -145,7 +144,7 @@ namespace gearit.src.utility
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
-            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, _camera_position, _screen_center);
+            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, Camera);
 
             _robot.drawDebug(_drawGame);
 

@@ -11,32 +11,70 @@ namespace gearit.src.utility
 	{
 	LEFT,
 	RIGHT,
-	MIDDLE
+	MIDDLE,
+	WHEEL_UP,
+	WHEEL_DOWN
 	}
     class Input
     {
+        // Input for LUA
+        private SortedList<string, Keys> _keys;
+
         // Mouse
         private MouseState _old_mouse;
         private MouseState _mouse;
+        private ICamera _camera;
 
         // Keyboard
         private KeyboardState _keyboard;
         private KeyboardState _old_keyboard;
-        private Vector2 _cameraPos;
 
-        public Input()
+        public Input(ICamera camera)
         {
+            _camera = camera;
+
+            _keys = new SortedList<string, Keys>();
+            _keys.Add("A", Keys.A);
+            _keys.Add("B", Keys.B);
+            _keys.Add("C", Keys.C);
+            _keys.Add("D", Keys.D);
+            _keys.Add("E", Keys.E);
+            _keys.Add("F", Keys.F);
+            _keys.Add("G", Keys.G);
+            _keys.Add("H", Keys.H);
+            _keys.Add("I", Keys.I);
+            _keys.Add("J", Keys.J);
+            _keys.Add("K", Keys.K);
+            _keys.Add("L", Keys.L);
+            _keys.Add("M", Keys.M);
+            _keys.Add("N", Keys.N);
+            _keys.Add("O", Keys.O);
+            _keys.Add("P", Keys.P);
+            _keys.Add("Q", Keys.Q);
+            _keys.Add("R", Keys.R);
+            _keys.Add("S", Keys.S);
+            _keys.Add("T", Keys.T);
+            _keys.Add("U", Keys.U);
+            _keys.Add("V", Keys.V);
+            _keys.Add("W", Keys.W);
+            _keys.Add("X", Keys.X);
+            _keys.Add("Y", Keys.Y);
+            _keys.Add("Z", Keys.Z);
+            _keys.Add("Space", Keys.Space);
+            _keys.Add("Shift", Keys.LeftShift);
+            _keys.Add("Ctrl-L", Keys.LeftControl);
+            _keys.Add("Ctrl-R", Keys.RightControl);
+
             _keyboard = Keyboard.GetState();
             _mouse = Mouse.GetState();
         }
 
-        public void update(Vector2 cameraPos)
+        public void update()
         {
             _old_mouse = _mouse;
             _old_keyboard = _keyboard;
             _mouse = Mouse.GetState();
             _keyboard = Keyboard.GetState();
-	    _cameraPos = cameraPos;
         }
 
         public bool mouseChanged()
@@ -54,8 +92,9 @@ namespace gearit.src.utility
 
         public Vector2 simUnitPosition()
         {
-            return (ConvertUnits.ToSimUnits(new Vector2(_mouse.X, _mouse.Y) - _cameraPos));
+            return (ConvertUnits.ToSimUnits(position()) / _camera.Zoom + _camera.Position + (_camera.center() - _camera.center() / _camera.Zoom));
         }
+
         public Vector2 mouseOffset()
         {
             return (new Vector2(_mouse.X - _old_mouse.X, _mouse.Y - _old_mouse.Y));
@@ -71,7 +110,9 @@ namespace gearit.src.utility
                 return (_mouse.LeftButton == ButtonState.Pressed);
             if (key == MouseKeys.RIGHT)
                 return (_mouse.RightButton == ButtonState.Pressed);
-            return (_mouse.MiddleButton == ButtonState.Pressed);
+            if (key == MouseKeys.MIDDLE)
+               return (_mouse.MiddleButton == ButtonState.Pressed);
+	    return (false);
         }
 
         public bool released(MouseKeys key)
@@ -85,7 +126,13 @@ namespace gearit.src.utility
                 return (_mouse.LeftButton == ButtonState.Pressed && _old_mouse.LeftButton != ButtonState.Pressed);
             if (key == MouseKeys.RIGHT)
                 return (_mouse.RightButton == ButtonState.Pressed && _old_mouse.RightButton != ButtonState.Pressed);
-            return (_mouse.MiddleButton == ButtonState.Pressed && _old_mouse.MiddleButton != ButtonState.Pressed);
+            if (key == MouseKeys.MIDDLE)
+                return (_mouse.MiddleButton == ButtonState.Pressed && _old_mouse.MiddleButton != ButtonState.Pressed);
+            if (key == MouseKeys.WHEEL_UP)
+                return (_mouse.ScrollWheelValue - _old_mouse.ScrollWheelValue < 0);
+            if (key == MouseKeys.WHEEL_DOWN)
+                return (_mouse.ScrollWheelValue - _old_mouse.ScrollWheelValue > 0);
+	    return (false);
         }
 
         public bool justReleased(MouseKeys key)
@@ -94,7 +141,9 @@ namespace gearit.src.utility
                 return (_mouse.LeftButton != ButtonState.Pressed && _old_mouse.LeftButton == ButtonState.Pressed);
             if (key == MouseKeys.RIGHT)
                 return (_mouse.MiddleButton != ButtonState.Pressed && _old_mouse.MiddleButton == ButtonState.Pressed);
-            return (_mouse.MiddleButton != ButtonState.Pressed && _old_mouse.MiddleButton == ButtonState.Pressed);
+            if (key == MouseKeys.MIDDLE)
+                return (_mouse.MiddleButton != ButtonState.Pressed && _old_mouse.MiddleButton == ButtonState.Pressed);
+            return (false);
         }
 
 /********************/
@@ -123,6 +172,19 @@ namespace gearit.src.utility
         public bool ctrlAltShift(bool ctrl, bool alt, bool shift)
         {
             return (pressed(Keys.LeftControl) == ctrl && pressed(Keys.LeftAlt) == alt && pressed(Keys.LeftShift) == shift);
+        }
+
+        /********************/
+        /* KEYBOARD ACTIONS */
+        /********************/
+
+        public bool getKeysAction(string key)
+        {
+            _keyboard = Keyboard.GetState();
+            if (_keyboard.IsKeyDown(_keys[key]))
+                return (true);
+            else
+                return (false);
         }
     }
 }
