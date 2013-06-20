@@ -131,6 +131,7 @@ namespace gearit
             return (true);
         }
 
+<<<<<<< HEAD
         public bool isConnected(Piece other)
         {
             return (getConnection(other) != null);
@@ -146,6 +147,8 @@ namespace gearit
             return (null);
         }
 
+=======
+>>>>>>> 4009a2fa5823fe4ce1efc286aa8ed773b15b8f52
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
         }
