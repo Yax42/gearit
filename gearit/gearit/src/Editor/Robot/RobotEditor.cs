@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
 using gearit.src.editor.robot.action;
+using FarseerPhysics.Dynamics;
 
 namespace gearit.src.editor.robot
 {
@@ -33,8 +34,9 @@ namespace gearit.src.editor.robot
         COUNT
     }
 
-    class RobotEditor : PhysicsGameScreen, IDemoScreen
+    class RobotEditor : GameScreen, IDemoScreen
     {
+        private World _world;
         private Input _input;
         private Vector2 _cameraPosition;
         private Vector2 _screenCenter;
@@ -57,6 +59,15 @@ namespace gearit.src.editor.robot
         private IAction[] _actions = new IAction[(int) ActionTypes.COUNT];
         private int _time = 0;
 
+
+	public RobotEditor()
+        {
+            TransitionOnTime = TimeSpan.FromSeconds(0.75);
+            TransitionOffTime = TimeSpan.FromSeconds(0.75);
+            HasCursor = true;
+            _world = null;
+        }
+
         #region IDemoScreen Members
 
         public string GetTitle()
@@ -75,15 +86,22 @@ namespace gearit.src.editor.robot
         {
             base.LoadContent();
 
+            if (_world == null)
+                _world = new World(Vector2.Zero);
+            else
+                _world.Clear();
+
+            // Loading may take a while... so prevent the game from "catching up" once we finished loading
+            ScreenManager.Game.ResetElapsedTime();
+
             _input = new Input();
-            World.Gravity = new Vector2(0f, 0f);
+            _world.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
-            EnableCameraControl = true;
             HasVirtualStick = true;
 
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-            _robot = new Robot(World);
+            _robot = new Robot(_world);
             _mainSelected = _robot.getHeart();
             _selected2 = _robot.getHeart();
             _actionType = ActionTypes.NONE;
@@ -142,9 +160,11 @@ namespace gearit.src.editor.robot
             _menu_tools.Update(_input);
             HandleInput();
 
-            //We update the world
-	    // /!\ Faut pas pas faire ça, c'est deja fait dans base.Update(...)
-            //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+	    // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
+            _world.Step(0f);
+            //_world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+            // variable time step but never less then 30 Hz
+            //World.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
