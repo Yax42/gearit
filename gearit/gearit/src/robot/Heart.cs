@@ -103,10 +103,6 @@ namespace gearit
             _vertices.Add(p);
             if (checkShape() == false)
                 _vertices.Remove(p);
-<<<<<<< HEAD
-=======
-
->>>>>>> 4009a2fa5823fe4ce1efc286aa8ed773b15b8f52
             //else
             //FixtureList[0].Shape = _shape;
             //update shape

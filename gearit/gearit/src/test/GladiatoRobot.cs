@@ -124,7 +124,7 @@ namespace gearit.src.utility
             HandleKeyboard();
             
             _lua.execFile();
-            _robot.getApi()[1].MotorForce = 1;
+            _robot.getApi()[1].motorForce = 1;
             
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);

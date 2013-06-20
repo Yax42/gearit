@@ -91,8 +91,8 @@ namespace gearit.src.utility
 
         public void getRobot()
         {
-            Console.WriteLine(" {0} = {1}", _api[0].name(), _api[0].MotorForce);
-            Console.WriteLine(" {0} = {1}", _api[1].name(), _api[1].MotorForce);
+            Console.WriteLine(" {0} = {1}", _api[0].name(), _api[0].motorForce);
+            Console.WriteLine(" {0} = {1}", _api[1].name(), _api[1].motorForce);
         }
 
         public void execFile()
