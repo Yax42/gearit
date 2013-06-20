@@ -1,5 +1,4 @@
 Content\blank.xnb
-Content\font.xnb
 Content\Common\arrow.xnb
 Content\Common\bg.xnb
 Content\Common\bg_gearit.xnb
@@ -14,6 +13,7 @@ Content\Common\socket.xnb
 Content\Common\stick.xnb
 Content\circleSprite.xnb
 Content\groundSprite.xnb
+Content\font.xnb
 Content\Fonts\detailsFont.xnb
 Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb

@@ -10,12 +10,12 @@ namespace gearit.src.map
     [Serializable()]
     class Map : ISerializable
     {
-         private string _mapName;
+        private string _mapName;
 
         //[NonSerialized]
 
-         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-         {
-         }
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+        }
     }
 }

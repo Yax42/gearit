@@ -116,6 +116,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\map\MapEditor.cs" />
     <Compile Include="src\editor\robot\action\ActionDeletePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionHide.cs" />
     <Compile Include="src\editor\robot\action\ActionLaunch.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionMainSelect.cs" />
     <Compile Include="src\editor\robot\action\IAction.cs" />
+    <Compile Include="src\map\Map.cs" />
     <Compile Include="src\robot\api\Api.cs" />
     <Compile Include="src\robot\api\PrismaticApi.cs" />
     <Compile Include="src\robot\api\RevoluteApi.cs" />
