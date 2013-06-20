@@ -22,7 +22,7 @@ namespace gearit
             Position = new Vector2(3, 3);
             _vertices = PolygonTools.CreateRectangle(1, 1);
             _shape = new PolygonShape(_vertices, 50f);
-            _fix = CreateFixture(_shape, null);
+            _fix = CreateFixture(_shape);
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Heart created.");
         }
@@ -68,6 +68,7 @@ namespace gearit
         {
             float dist = 99999;
             int res = 0;
+            p -= Position;
 
             for (int i = 0; i < _vertices.Count; i++)
                 if ((_vertices[i] - p).Length() < dist)
@@ -90,7 +91,7 @@ namespace gearit
             if (id >= _vertices.Count)
                 return;
             Vector2 backupPos = _vertices[id];
-            _vertices[id] = pos;
+            _vertices[id] = pos - Position;
             if (checkShape())
                 return;
             _vertices[id] = backupPos;
@@ -99,14 +100,16 @@ namespace gearit
 
         public void addCorner(Vector2 p)
         {
+            p -= Position;
             if (_vertices.Contains(p))
                 return ;
             _vertices.Add(p);
             if (checkShape() == false)
                 _vertices.Remove(p);
-	      
-            //else
-                //FixtureList[0].Shape = _shape;
+		/*
+            else
+                ((PolygonShape)FixtureList[0].Shape).Vertices = _vertices;
+	    */
 	    //update shape
         }
 

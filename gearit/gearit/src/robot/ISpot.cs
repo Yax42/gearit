@@ -25,6 +25,8 @@ namespace gearit
 
         string Name { get; set; }
 
+        Color ColorValue { get; set; }
+
         void draw(DrawGame game);
     }
 }

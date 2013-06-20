@@ -1,22 +1,24 @@
-﻿using gearit.src.utility;
-using gearit.src.robot;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionRevSpot : IAction
+    class ActionHide : IAction
     {
         public void init() { }
 
         public bool shortcut(Input input)
         {
-            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.Q));
+            return (input.justPressed(Keys.E));
         }
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
-            new RevoluteSpot(robot, selected1, p);
+            selected1.Shown = !selected1.Shown;
             return (false);
         }
     }

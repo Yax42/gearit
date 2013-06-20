@@ -116,8 +116,18 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\action\ActionDeletePiece.cs" />
+    <Compile Include="src\editor\robot\action\ActionHide.cs" />
     <Compile Include="src\editor\robot\action\ActionLaunch.cs" />
     <Compile Include="src\editor\robot\action\ActionMoveAnchor.cs" />
+    <Compile Include="src\editor\robot\action\ActionMovePiece.cs" />
+    <Compile Include="src\editor\robot\action\ActionPrisLink.cs" />
+    <Compile Include="src\editor\robot\action\ActionDeleteSpot.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizeWheel.cs" />
+    <Compile Include="src\editor\robot\action\ActionRevLink.cs" />
+    <Compile Include="src\editor\robot\action\ActionSelect2.cs" />
+    <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
@@ -224,7 +234,7 @@
     <Compile Include="src\farseer\Settings.cs" />
     <Compile Include="src\editor\robot\action\ActionPrisSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
-    <Compile Include="src\editor\robot\action\ActionNone.cs" />
+    <Compile Include="src\editor\robot\action\ActionMainSelect.cs" />
     <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\robot\api\Api.cs" />
     <Compile Include="src\robot\api\PrismaticApi.cs" />

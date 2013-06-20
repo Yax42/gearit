@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using gearit.src.robot;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
@@ -16,25 +17,23 @@ namespace gearit.src.editor.robot.action
             _state = 0;
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected)
+        public bool shortcut(Input input)
+        {
+            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.W));
+        }
+
+        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
             if (_state == 0)
             {
                 _state = 1;
                 Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
-                new PrismaticSpot(robot, selected, p);
-                selected = p;
-            }
-            else if (_state == 1)
-            {
-                if (input.released(MouseKeys.LEFT))
-                    _state = 2;
+                new PrismaticSpot(robot, selected1, p);
+                selected1 = p;
             }
             else if (input.justPressed(MouseKeys.LEFT))
-            {
                 return (false);
-            }
-            selected.move(input.simUnitPosition());
+            selected1.move(input.simUnitPosition());
             return (true);
         }
     }

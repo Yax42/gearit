@@ -13,7 +13,7 @@ namespace gearit.src.robot
 {
     class RevoluteSpot : RevoluteJoint, ISpot
     {
-	private static float _spotSize = 0.05f;
+        private static float _spotSize = 0.05f;
         private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
         private static Vector2 _topRight = new Vector2(_spotSize, -_spotSize);
         private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
@@ -28,7 +28,7 @@ namespace gearit.src.robot
         }
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
-	  base(p1, p2, anchor1, anchor2)
+            base(p1, p2, anchor1, anchor2)
         {
             Name = "spot" + robot.revCount();
             robot.getWorld().AddJoint(this);
@@ -38,11 +38,12 @@ namespace gearit.src.robot
             MotorEnabled = true;
             ColorValue = Color.Black;
             robot.addSpot(this);
+            move(p1, p1.Position);
         }
 
         public static void initTex(AssetCreator asset)
         {
-          _tex = asset.CreateCircle(2, Color.Red);
+            _tex = asset.CreateCircle(2, Color.Red);
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
@@ -67,21 +68,28 @@ namespace gearit.src.robot
         public void moveAnchor(Piece p, Vector2 anchor)
         {
             if (BodyA == p)
-                LocalAnchorA = anchor;
+                LocalAnchorA = anchor - p.Position;
             if (BodyB == p)
-                LocalAnchorB = anchor;
+                LocalAnchorB = anchor - p.Position;
+            move(p, p.Position);
         }
 
+	/*
         public void move(Vector2 pos)
         {
-            BodyA.Position = pos - LocalAnchorA;
-            BodyB.Position = pos - LocalAnchorB;
+            //BodyA.Position = pos - LocalAnchorA;
+            //BodyB.Position = pos - LocalAnchorB;
+            ((Piece)BodyA).move(pos - LocalAnchorA);
+            ((Piece)BodyB).move(pos - LocalAnchorB);
         }
+	*/
 
         public void move(Piece piece, Vector2 pos)
         {
             if (piece == BodyA)
                 ((Piece)BodyB).move(pos + LocalAnchorA - LocalAnchorB);
+            else
+                ((Piece)BodyA).move(pos + LocalAnchorB - LocalAnchorA);
         }
 
         public void draw(DrawGame game)

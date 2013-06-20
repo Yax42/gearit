@@ -9,6 +9,7 @@ namespace gearit.src.editor.robot.action
     interface IAction
     {
         void init();
-        bool run(Input input, Robot robot, ref Piece selected);
+        bool shortcut(Input input);
+        bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2);
     }
 }

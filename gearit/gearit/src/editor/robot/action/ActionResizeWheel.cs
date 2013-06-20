@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.src.utility;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionLaunch : IAction
+    class ActionResizeWheel : IAction
     {
         public void init() { }
 
         public bool shortcut(Input input)
         {
-            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.Enter));
+            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.S));
         }
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            robot.getWorld().Gravity = new Vector2(0f, 9.8f);
-            return (true);
+            if (selected1 == robot.getHeart())
+		return (false);
+            ((Wheel)selected1).Size = (input.simUnitPosition() - selected1.Position).Length();
+            return (input.justPressed(MouseKeys.LEFT) == false);
         }
     }
 }

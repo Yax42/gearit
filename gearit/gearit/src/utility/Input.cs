@@ -119,5 +119,10 @@ namespace gearit.src.utility
         {
             return (!_keyboard.IsKeyDown(key) && _old_keyboard.IsKeyDown(key));
         }
+
+        public bool ctrlAltShift(bool ctrl, bool alt, bool shift)
+        {
+            return (pressed(Keys.LeftControl) == ctrl && pressed(Keys.LeftAlt) == alt && pressed(Keys.LeftShift) == shift);
+        }
     }
 }

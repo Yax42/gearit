@@ -69,8 +69,6 @@ namespace gearit
 
         public bool isOn(Vector2 p)
         {
-            Console.WriteLine(p);
-            Console.WriteLine(Position);
             Transform t;
             base.GetTransform(out t);
             return (_shape.TestPoint(ref t, ref p));
@@ -126,6 +124,21 @@ namespace gearit
                     return (false);
             }
             return (true);
+        }
+
+        public bool isConnected(Piece other)
+        {
+            return (getConnection(other) != null);
+        }
+
+        public ISpot getConnection(Piece other)
+        {
+            if (other == this)
+                return (null);
+            for (JointEdge i = JointList; i != null; i = i.Next)
+                if (i.Other == other)
+                    return ((ISpot) i.Joint);
+            return (null);
         }
 
         public abstract void draw(SpriteBatch batch);

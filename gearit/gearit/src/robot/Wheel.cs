@@ -23,7 +23,7 @@ namespace gearit
         }
 
         public Wheel(Robot robot, float size, Vector2 pos) :
-            base(robot, new CircleShape(size, 1f)) //density 0 ~= poids
+            base(robot, new CircleShape(size, 1f)) //density ~= poids
         {
             Position = pos;
             _size = size;

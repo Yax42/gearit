@@ -32,8 +32,7 @@ namespace gearit.src.robot
             MaxMotorForce = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-            _size = ((BodyA.Position + LocalAnchorA) -
-                    (BodyB.Position + LocalAnchorB)).Length();
+	    updateLimit();
             LimitEnabled = false;
             ColorValue = Color.Black;
             robot.addSpot(this);
@@ -41,6 +40,8 @@ namespace gearit.src.robot
 
         public void updateLimit()
         {
+            _size = ((BodyA.Position + LocalAnchorA) -
+                    (BodyB.Position + LocalAnchorB)).Length();
             LowerLimit = _size / 2;
             UpperLimit = _size * 2;
             LimitEnabled = true;
@@ -74,11 +75,10 @@ namespace gearit.src.robot
         public void moveAnchor(Piece p, Vector2 anchor)
         {
             if (BodyA == p)
-                LocalAnchorA = anchor;
-            if (BodyB == p)
-                LocalAnchorB = anchor;
-            _size = ((BodyA.Position + LocalAnchorA) -
-                    (BodyB.Position + LocalAnchorB)).Length();
+                LocalAnchorA = anchor - p.Position;
+            else if (BodyB == p)
+                LocalAnchorB = anchor - p.Position;
+            updateAxis();
         }
 
         public float getSize()
@@ -90,7 +90,7 @@ namespace gearit.src.robot
         {
             if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
                 return;
-            game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorA, ColorValue);
+            game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorB, ColorValue);
         }
 
         public float Force

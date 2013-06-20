@@ -70,9 +70,9 @@ namespace gearit
             return (_world);
         }
 
-        public Piece getHeart()
+        public Heart getHeart()
         {
-            return (_pieces.First());
+            return ((Heart) _pieces.First());
         }
 
         public int getId()

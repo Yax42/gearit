@@ -4,25 +4,24 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionMoveAnchor : IAction
+    class ActionRevLink : IAction
     {
         public void init() { }
 
         public bool shortcut(Input input)
         {
-            return (input.ctrlAltShift(false, false, true) && input.justPressed(MouseKeys.RIGHT));
+            return (input.ctrlAltShift(false, false, true) && input.justPressed(Keys.Q));
         }
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
             if (selected1.isConnected(selected2) == false)
-                return (false);
-            if (selected1.isOn(input.simUnitPosition()))
-                selected1.getConnection(selected2).moveAnchor(selected1, input.simUnitPosition());
-            return (input.pressed(MouseKeys.RIGHT));
+              new RevoluteSpot(robot, selected1, selected2);
+            return (false);
         }
     }
 }
