@@ -7,8 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using gearit.xna;
 
-namespace gearit.src.utility
+namespace gearit.src.utility.Menu
 {
     enum MenuLayout
     {
@@ -19,8 +20,7 @@ namespace gearit.src.utility
     class MenuOverlay
     {
         // Persistant
-        private GraphicsDevice _graph;
-        private ContentManager _content;
+        private ScreenManager _screen;
         private MenuLayout _layout;
         private RectangleOverlay _rectangle;
 
@@ -34,38 +34,26 @@ namespace gearit.src.utility
 
         // Items
         private List<MenuItem> _items;
-        private int _item_focused = 0;
-        private int _item_pressed = 0;
+        private MenuItem _item_focused = null;
+        private MenuItem _item_pressed = null;
         
         // Focus
         private bool _movable = false;
         private bool _moving = false;
         
-        public MenuOverlay(GraphicsDevice graph, ContentManager content, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
+        public MenuOverlay(ScreenManager screen, Vector2 pos, Vector2 size, Color bg, MenuLayout layout)
         {
+            _screen = screen;
             _items = new List<MenuItem>();
             _layout = layout;
-            _content = content;
-            _graph = graph;
             _bg_color = bg;
             Rectangle rec = new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
-            _rectangle = new RectangleOverlay(rec, _bg_color, _graph);
+            _rectangle = new RectangleOverlay(rec, _bg_color, _screen.GraphicsDevice);
             Geometry = rec;
         }
        
-        public MenuItem addItemMenu(string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
+        public MenuItem addItemMenu(MenuItem item)
         {
-            MenuItem item = new MenuItem(this, text, font, color, padding, layout, alignement, scale);
-
-            _items.Add(item);
-            refreshMenu();
-            return (item);
-        }
-
-        public MenuItem addItemMenu(string rsrc_name, Vector2 padding, ItemMenuLayout layout = ItemMenuLayout.MaxFromMin, ItemMenuAlignement alignement = ItemMenuAlignement.Default, float scale = 1f)
-        {
-            MenuItem item = new MenuItem(_content, this, rsrc_name, padding, layout, alignement, scale);
-
             _items.Add(item);
             refreshMenu();
             return (item);
@@ -115,35 +103,44 @@ namespace gearit.src.utility
         // Refreshing focus by mouse
         public void Update(Input input)
         {
-            if (_moving)
-                manageMovement(input);
-            else if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), input.position()))
+            if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), input.position()))
             {
+                // Moving
+                if (_moving)
+                {
+                    manageMovement(input);
+                    return;
+                }
                 // Manage all state/position of mouse
                 if (itemToggle(input))
                     return;
                 // Manage movable
-                if (input.justPressed(MouseKeys.LEFT) && _movable && !_moving)
+                if (_movable && input.justPressed(MouseKeys.LEFT) && !_moving)
                     _moving = true;
             }
+            // Nothing happens - release
             releaseFocus();
+        }
+
+        public ScreenManager Screen
+        {
+            get { return _screen; }
+            set { _screen = value; }
         }
 
         private bool itemToggle(Input input)
         {
             // Checking if item (un)pressed
-            if (input.justPressed(MouseKeys.LEFT) && _item_focused != 0)
+            if (input.justPressed(MouseKeys.LEFT) && _item_focused != null)
             {
-                MenuItem item_focused = getItem(_item_focused);
-
-                if (item_focused.Pressed)
+                if (_item_focused.Pressed)
                 {
-                    item_focused.Pressed = false;
-                    _item_pressed = 0;
+                    _item_focused.Pressed = false;
+                    _item_pressed = null;
                 }
                 else
                 {
-                    item_focused.Pressed = true;
+                    _item_focused.Pressed = true;
                     _item_pressed = _item_focused;
                 }
             }
@@ -155,10 +152,13 @@ namespace gearit.src.utility
                     {
                         releaseFocus();
                         item.Focused = true;
-                        _item_focused = item.Id;
+                        _item_focused = item;
                     }
                     return (true);
                 }
+            // Update focused item if any
+            if (_item_pressed != null)
+                _item_pressed.inputHandler(input);
             return (false);
         }
 
@@ -175,14 +175,20 @@ namespace gearit.src.utility
                 // Don't move if out of window
                 if (pos.Y < 0)
                     pos.Y = 0;
-                else if ((int)pos.Y + _size.Y > _graph.Viewport.Height)
+                else if ((int)pos.Y + _size.Y > _screen.GraphicsDevice.Viewport.Height)
                     pos.Y = _pos.Y;
                 if (pos.X < 0)
                     pos.X = 0;
-                else if ((int)pos.X + _size.X > _graph.Viewport.Width)
+                else if ((int)pos.X + _size.X > _screen.GraphicsDevice.Viewport.Width)
                     pos.X = _pos.X;
                 Geometry = new Rectangle((int) pos.X, (int) pos.Y, (int)_size.X, (int)_size.Y);
             }
+        }
+
+        public Color Color
+        {
+            get { return _bg_color; }
+            set { _bg_color = value; }
         }
 
         // Drawing - Loop on all itemMenu and draw them
@@ -198,18 +204,18 @@ namespace gearit.src.utility
 
         public void releaseFocus()
         {
-            if (_item_focused != 0)
+            if (_item_focused != null)
             {
-                getItem(_item_focused).Focused = false;
-                _item_focused = 0;
+                _item_focused.Focused = false;
+                _item_focused = null;
             }
         }
 
-        public int getPressed()
+        public MenuItem getPressed()
         {
-            int item = _item_pressed;
+            MenuItem item = _item_pressed;
 
-            _item_pressed = 0;
+            _item_pressed = null;
             return (item);
         }
 
@@ -250,7 +256,7 @@ namespace gearit.src.utility
             return (false);
         }
 
-        public int getFocused()
+        public MenuItem getFocused()
         {
             return (_item_focused);
         }

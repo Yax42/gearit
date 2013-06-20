@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
 using gearit.src.editor.robot.action;
 using FarseerPhysics.Dynamics;
+using gearit.src.utility.Menu;
 
 namespace gearit.src.editor.robot
 {
@@ -133,21 +134,22 @@ namespace gearit.src.editor.robot
             _background = new RectangleOverlay(rec, Color.WhiteSmoke, ScreenManager.GraphicsDevice);
 
             // Menu
+            MenuItem item;
+
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _menu_properties = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Vertical);
-            _menu_properties.addItemMenu("Properties", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.Default, 1.5f);
+            _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
+            item = new InputMenuItem(_menu_properties, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
 
             pos.X = 200;
             size = new Vector2(400, 50);
-            _menu_tools = new MenuOverlay(ScreenManager.GraphicsDevice, ScreenManager.Content, pos, size, Color.LightGray, MenuLayout.Horizontal);
-            MenuItem item;
-            item = _menu_tools.addItemMenu("Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int) ActionTypes.REV_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
-            item = _menu_tools.addItemMenu("Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int) ActionTypes.PRIS_SPOT, new Color(120, 120, 120), ScreenManager.GraphicsDevice);
-            item = _menu_tools.addItemMenu("Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120), ScreenManager.GraphicsDevice);
+            _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
+            item = new TextMenuItem(_menu_tools, "Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
+            item = new TextMenuItem(_menu_tools, "Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
+            item = new TextMenuItem(_menu_tools, "Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
 
             _menu_tools.Adjusting = true;
         }
@@ -186,7 +188,7 @@ namespace gearit.src.editor.robot
             {
                 if (_menu_tools.hasItemPressed() && false) // enlever false pour que le menu marche
                 {
-                    _actionType = (ActionTypes)_menu_tools.getPressed();
+                    _actionType = (ActionTypes)_menu_tools.getPressed().Id;
                     _actions[(int)_actionType].init();
                 }
                 else if (runShortcut())

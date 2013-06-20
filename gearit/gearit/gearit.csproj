@@ -242,8 +242,9 @@
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\Input.cs" />
-    <Compile Include="src\utility\MenuItem.cs" />
-    <Compile Include="src\utility\MenuOverlay.cs" />
+    <Compile Include="src\utility\Menu\InputMenuItem.cs" />
+    <Compile Include="src\utility\Menu\MenuItem.cs" />
+    <Compile Include="src\utility\Menu\MenuOverlay.cs" />
     <Compile Include="src\test\MyGame.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
@@ -262,6 +263,8 @@
     <Compile Include="src\test\Sprite.cs" />
     <Compile Include="src\utility\AssetCreator.cs" />
     <Compile Include="src\utility\ConvertUnit.cs" />
+    <Compile Include="src\utility\Menu\SpriteMenuItem.cs" />
+    <Compile Include="src\utility\Menu\TextMenuItem.cs" />
     <Compile Include="src\utility\RectangleOverlay.cs" />
     <Compile Include="src\xna\Drawing System\LineBatch.cs" />
     <Compile Include="src\xna\Drawing System\Sprite.cs" />

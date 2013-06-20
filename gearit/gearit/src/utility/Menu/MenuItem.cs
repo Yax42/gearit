@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-namespace gearit.src.utility
+namespace gearit.src.utility.Menu
 {
     enum ItemMenuLayout
     {
@@ -27,62 +27,43 @@ namespace gearit.src.utility
         Bottom = 8
     }
 
-    class MenuItem
+    abstract class MenuItem
     {
         // Persistant
-        MenuOverlay _menu;
-        private float _scale;
-        private ItemMenuLayout _layout;
-        private ItemMenuAlignement _alignement;
-        private Vector2 _padding;
-        private ContentManager _content;
-        private bool _visible = true;
-
-        // Text
-        private SpriteFont _font;
-        private string _text;
-        private Color _color;
-
-        // Sprite
-        private Texture2D _sprite = null;
+        protected MenuOverlay _menu;
+        protected float _scale;
+        protected ItemMenuLayout _layout;
+        protected ItemMenuAlignement _alignement;
+        protected Vector2 _padding;
+        protected bool _visible = true;
 
         // Focus
-        private bool _focusable = false;
-        private int _id = 0;
-        private Color _bg_focus;
-        private bool _focused = false;
-        private RectangleOverlay _rectangle_bg;
-        private bool _pressed = false;
+        protected bool _focusable = false;
+        protected int _id = 0;
+        protected Color _bg_focus;
+        protected bool _focused = false;
+        protected RectangleOverlay _rectangle_bg;
+        protected bool _pressed = false;
 
         // Refreshing
-        private Vector2 _pos;
-        private Vector2 _pos_rsrc;
-        private Vector2 _size;
+        protected Vector2 _pos;
+        protected Vector2 _pos_rsrc;
+        protected Vector2 _size;
 
-        public MenuItem(MenuOverlay menu, string text, SpriteFont font, Color color, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
-        {
-            _menu = menu;
-            _font = font;
-            _scale = scale;
-            _layout = layout;
-            _color = color;
-            _alignement = alignement;
-            _text = text;
-            _padding = padding;
-        }
-
-        public MenuItem(ContentManager content, MenuOverlay menu, string rsrc_name, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
+        public MenuItem(MenuOverlay menu, Vector2 padding, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
         {
             _menu = menu;
             _scale = scale;
             _layout = layout;
             _alignement = alignement;
             _padding = padding;
-            _content = content;
-            _sprite = _content.Load<Texture2D>(rsrc_name);
         }
 
-        public void refresh(Vector2 pos, Vector2 size)
+        virtual public void inputHandler(Input input)
+        {
+        }
+
+        virtual public void refresh(Vector2 pos, Vector2 size)
         {
             _pos = pos;
             _pos_rsrc = _pos;
@@ -109,13 +90,13 @@ namespace gearit.src.utility
             }
         }
 
-        public void addFocus(int id, Color bg_focus, GraphicsDevice graph)
+        public void addFocus(int id, Color bg_focus)
         {
             _id = id;
             _focusable = true;
             _bg_focus = bg_focus;
             Rectangle rec = new Rectangle((int)(_pos.X + _menu.Position.X), (int)_pos.Y + (int)_menu.Position.Y, (int)_size.X, (int)_size.Y);
-            _rectangle_bg = new RectangleOverlay(rec, _bg_focus, graph);
+            _rectangle_bg = new RectangleOverlay(rec, _bg_focus, _menu.Screen.GraphicsDevice);
         }
 
         public bool Focused
@@ -136,19 +117,11 @@ namespace gearit.src.utility
             set { _id = value; }
         }
 
-        public void Draw(SpriteBatch batch)
+        virtual public void Draw(SpriteBatch batch)
         {
-            if (_visible)
-            {
-                // Focus background
-                if (_focusable && (_focused || _pressed))
-                    _rectangle_bg.Draw(batch, _pos + _menu.Position);
-                // Draw texture or string
-                if (_sprite == null)
-                    batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
-                else
-                    batch.Draw(_sprite, _pos_rsrc + _menu.Position, Color.White);
-            }
+            // Focus background
+            if (_focusable && (_focused || _pressed))
+                _rectangle_bg.Draw(batch, _pos + _menu.Position);
         }
 
         public bool Visible
@@ -169,51 +142,17 @@ namespace gearit.src.utility
                 (int)_size.X, (int)_size.Y));
         }
 
-        public Vector2 getTextSize()
-        {
-            return (_font.MeasureString(_text) * _scale);
-        }
-
-        public Vector2 getSpriteSize()
-        {
-            return (new Vector2(_sprite.Width, _sprite.Height));
-        }
+        abstract public  Vector2 getRsrcSize();
 
         public Vector2 getSize()
         {
-            if (_sprite == null)
-                return (getTextSize() + _padding * 2);
-            return (getSpriteSize() + _padding * 2);
+            return (getRsrcSize() + _padding * 2);
         }
 
-        public Vector2 getRsrcSize()
+        virtual public string Display
         {
-            if (_sprite == null)
-                return (getTextSize());
-            return (getSpriteSize());
-        }
-
-        public Color Color
-        {
-            get { return _color; }
-            set { _color = value; }
-        }
-
-        public string Display
-        {
-            get 
-            { 
-                if (_sprite == null)
-                    return _text;
-                return _sprite.Name;
-            }
-            set
-            {
-                if (_sprite == null)
-                    _text = value;
-                else
-                    _sprite = _content.Load<Texture2D>(value);
-            }
+            get;
+            set;
         }
 
         public Vector2 Position
@@ -232,12 +171,6 @@ namespace gearit.src.utility
         {
             get { return _padding; }
             set { _padding = value; }
-        }
-
-        public SpriteFont Font
-        {
-            get { return _font; }
-            set { _font = value; }
         }
 
         public float Scale
