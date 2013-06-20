@@ -109,12 +109,12 @@ namespace gearit.src.utility
             new RevoluteSpot(_robot, wheel1, dot1);
 	    dot1.move(new Vector2(1, 1));
 	    */
-
+            
 	    Piece wheel2 = new Wheel(_robot, 1f, Vector2.Zero);
 	    Piece dot2 = new Wheel(_robot, 0.2f, Vector2.Zero);
             dot2.move(new Vector2(1, -1));
             new PrismaticSpot(_robot, _robot.getHeart(), dot2);//).moveAnchor(_robot.getHeart(), new Vector2(0.5f, -0.5f));
-            new PrismaticSpot(_robot, wheel2, dot2);
+            new RevoluteSpot(_robot, wheel2, dot2);
 	    
             _lua = new LuaTest(ScreenManager, _robot, "bruterobot");
         }
@@ -124,7 +124,8 @@ namespace gearit.src.utility
             HandleKeyboard();
             
             _lua.execFile();
-
+            _robot.getApi()[1].MotorForce = 1;
+            
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }

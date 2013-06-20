@@ -3,6 +3,7 @@ using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using FarseerPhysics;
+using gearit.src.editor;
 
 namespace gearit
 {
@@ -19,7 +20,14 @@ namespace gearit
             {
                 game.Run();
             }
-            //World world = new World(new Vector2(0, 9.82f));
+
+            // Test Serialization.
+            // Serializer s = new Serializer();
+            // World world = new World(new Vector2(0, 9.82f));
+            // Robot r = new Robot(world);
+            // string filename = "gally.robot";
+            // s.SerializeItem(filename, r);
+            // Robot r2 = (Robot)s.DeserializeItem(filename);
 
             // Test robot
             //BruteRobot game = new BruteRobot();
@@ -27,7 +35,7 @@ namespace gearit
 
             // Test lua
             //BruteRobot game = new BruteRobot();
-            
+
             //SpiderBot game = new SpiderBot();
             //game.Run();
             //LuaTest l = new LuaTest();
@@ -35,4 +43,3 @@ namespace gearit
     }
 #endif
 }
-

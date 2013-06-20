@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
@@ -19,7 +21,7 @@ namespace gearit.src.robot
         private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
         private static Vector2 _botRight = new Vector2(_spotSize, _spotSize);
 
-        private AngleJoint _angleJoint;
+        // private AngleJoint _angleJoint;
         static private Texture2D _tex;
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
@@ -39,6 +41,19 @@ namespace gearit.src.robot
             ColorValue = Color.Black;
             robot.addSpot(this);
             move(p1, p1.Position);
+        }
+
+        public RevoluteSpot(SerializationInfo info, StreamingContext ctxt)
+        {
+            Enabled = true;
+            MaxMotorTorque = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+            ColorValue = Color.Black;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
         }
 
         public static void initTex(AssetCreator asset)

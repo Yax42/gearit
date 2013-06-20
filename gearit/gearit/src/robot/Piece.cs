@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
@@ -14,7 +16,8 @@ using gearit.src;
 
 namespace gearit
 {
-    abstract class Piece : Body
+    [Serializable()]
+    abstract class Piece : Body, ISerializable
     {
         internal Shape _shape;
         internal Fixture _fix;
@@ -39,16 +42,18 @@ namespace gearit
             Shown = true;
         }
 
-	internal Piece()
-	{
-	  // Useless.
-	}
+        internal Piece(SerializationInfo info, StreamingContext ctxt)
+        {
+            BodyType = BodyType.Dynamic;
+            ColorValue = Color.Black;
+            Shown = true;
+        }
 
         internal void setShape(Shape shape, int id)
         {
             _shape = shape;
             _fix = CreateFixture(_shape, null);
-            _fix.CollisionGroup = (short) id;
+            _fix.CollisionGroup = (short)id;
         }
 
         internal void initShapeAndFixture(Shape shape)
@@ -74,7 +79,7 @@ namespace gearit
             return (_shape.TestPoint(ref t, ref p));
         }
 
-	//  return the closest spot
+        //  return the closest spot
         public ISpot getSpot(Vector2 p)
         {
             Joint res = null;
@@ -99,7 +104,7 @@ namespace gearit
         public void move(Vector2 pos)
         {
             if (Position.X == pos.X && Position.Y == pos.Y)
-                return ;
+                return;
             Position = pos;
             for (JointEdge i = JointList; i != null; i = i.Next)
             {
@@ -137,8 +142,12 @@ namespace gearit
                 return (null);
             for (JointEdge i = JointList; i != null; i = i.Next)
                 if (i.Other == other)
-                    return ((ISpot) i.Joint);
+                    return ((ISpot)i.Joint);
             return (null);
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
         }
 
         public abstract void draw(SpriteBatch batch);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
@@ -14,7 +16,7 @@ namespace gearit.src.robot
 {
     class PrismaticSpot : PrismaticJoint, ISpot
     {
-        private DistanceJoint _distJoint;
+        // private DistanceJoint _distJoint;
         private float _size;
 
         public PrismaticSpot(Robot robot, Piece p1, Piece p2) :
@@ -36,6 +38,23 @@ namespace gearit.src.robot
             LimitEnabled = false;
             ColorValue = Color.Black;
             robot.addSpot(this);
+        }
+
+        public PrismaticSpot(SerializationInfo info, StreamingContext ctxt)
+        {
+            _size = (float)info.GetValue("Size", typeof(float));
+            updateAxis();
+            Enabled = true;
+            MaxMotorForce = 100;
+            MotorSpeed = 0f;
+            MotorEnabled = true;
+            LimitEnabled = false;
+            ColorValue = Color.Black;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("Size", _size, typeof(float));
         }
 
         public void updateLimit()
