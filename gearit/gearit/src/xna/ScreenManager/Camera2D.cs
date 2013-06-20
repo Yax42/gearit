@@ -6,7 +6,7 @@ using gearit.src.utility;
 
 namespace gearit.xna
 {
-    public class Camera2D
+    public class Camera2D : ICamera
     {
         private const float _minZoom = 0.02f;
         private const float _maxZoom = 20f;
@@ -64,6 +64,18 @@ namespace gearit.xna
         public Matrix SimProjection
         {
             get { return _projection; }
+        }
+
+
+	/**** ICamera methods ****/
+        public Matrix view()
+        {
+            return (SimView);
+        }
+	
+        public Matrix projection()
+        {
+            return (SimProjection);
         }
 
         /// <summary>
@@ -256,6 +268,11 @@ namespace gearit.xna
             _currentZoom = 1f;
 
             SetView();
+        }
+
+        public Vector2 center()
+        {
+            return (_translateCenter);
         }
 
         public void Jump2Target()

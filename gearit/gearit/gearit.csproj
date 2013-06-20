@@ -128,6 +128,7 @@
     <Compile Include="src\editor\robot\action\ActionSelect2.cs" />
     <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
     <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
+    <Compile Include="src\editor\robot\EditorCamera.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="src\robot\api\RevoluteApi.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
+    <Compile Include="src\utility\ICamera.cs" />
     <Compile Include="src\utility\Input.cs" />
     <Compile Include="src\utility\MenuItem.cs" />
     <Compile Include="src\utility\MenuOverlay.cs" />

@@ -38,8 +38,7 @@ namespace gearit.src.editor.robot
     {
         private World _world;
         private Input _input;
-        private Vector2 _cameraPosition;
-        private Vector2 _screenCenter;
+        private EditorCamera _camera;
         private const int PropertiesMenuSize = 200;
 
         // Graphic
@@ -94,7 +93,12 @@ namespace gearit.src.editor.robot
             // Loading may take a while... so prevent the game from "catching up" once we finished loading
             ScreenManager.Game.ResetElapsedTime();
 
-            _input = new Input();
+            // Initialize camera controls
+            _camera = new EditorCamera(ScreenManager.GraphicsDevice);
+            _camera.Position = new Vector2(0, 0);
+            //_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
+
+            _input = new Input(_camera);
             _world.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
             HasVirtualStick = true;
@@ -124,10 +128,6 @@ namespace gearit.src.editor.robot
             _actions[(int) ActionTypes.RESIZE_WHEEL] = new ActionResizeWheel();
             _actions[(int) ActionTypes.RESIZE_HEART] = new ActionResizeHeart();
 
-            // Initialize camera controls
-            _cameraPosition = new Vector2(300, 300);
-            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
-
             // Graphic
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
             _background = new RectangleOverlay(rec, Color.WhiteSmoke, ScreenManager.GraphicsDevice);
@@ -155,7 +155,8 @@ namespace gearit.src.editor.robot
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             _time++;
-            _input.update(_cameraPosition);
+            _camera.flush();
+            _input.update();
             _menu_properties.Update(_input);
             _menu_tools.Update(_input);
             HandleInput();
@@ -199,12 +200,20 @@ namespace gearit.src.editor.robot
                 _actionType = ActionTypes.NONE;
             }
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
-                _cameraPosition += _input.mouseOffset();
+                _camera.move(_input.mouseOffset() / _camera.Zoom);
+            if (_input.justPressed(MouseKeys.WHEEL_DOWN))
+                _camera.Zoom *= 2;
+            if (_input.justPressed(MouseKeys.WHEEL_UP))
+                _camera.Zoom /= 2;
+            if (_input.pressed(Keys.Escape))
+            {
+                ScreenManager.RemoveScreen(this);
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _cameraPosition, _screenCenter);
+            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
 
             _background.Draw(_draw_game.Batch());
             _menu_properties.Draw(_draw_game.Batch());
@@ -212,7 +221,7 @@ namespace gearit.src.editor.robot
 
             _draw_game.End();
 
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _cameraPosition, _screenCenter);
+            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
 
             if (_selected2 == _mainSelected)
                 _selected2.ColorValue = Color.Violet;
@@ -234,6 +243,5 @@ namespace gearit.src.editor.robot
 
             base.Draw(gameTime);
         }
-
     }
 }

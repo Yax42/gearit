@@ -145,7 +145,7 @@ namespace gearit.src.utility
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // Drawing
-            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, _camera_position, _screen_center);
+            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, Camera);
 
             _robot.drawDebug(_drawGame);
 
