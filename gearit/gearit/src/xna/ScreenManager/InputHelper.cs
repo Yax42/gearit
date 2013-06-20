@@ -20,8 +20,6 @@ namespace gearit.xna
 
     public class InputHelper
     {
-        private SortedList<string, Keys> _keys;
-
         private GamePadState _currentGamePadState;
         private KeyboardState _currentKeyboardState;
         private MouseState _currentMouseState;
@@ -117,16 +115,6 @@ namespace gearit.xna
             get { return _lastVirtualState; }
         }
 
-
-        public bool getKeysAction(string key)
-        {
-            _currentKeyboardState = Keyboard.GetState();
-            if (_currentKeyboardState.IsKeyDown(_keys[key]))
-                return (true);
-            else
-                return (false);
-        }
-
         public bool ShowCursor
         {
             get { return _cursorIsVisible && _cursorIsValid; }
@@ -156,38 +144,6 @@ namespace gearit.xna
 
         public void LoadContent()
         {
-            _keys = new SortedList<string, Keys>();
-            _keys.Add("A", Keys.A);
-            _keys.Add("B", Keys.B);
-            _keys.Add("C", Keys.C);
-            _keys.Add("D", Keys.D);
-            _keys.Add("E", Keys.E);
-            _keys.Add("F", Keys.F);
-            _keys.Add("G", Keys.G);
-            _keys.Add("H", Keys.H);
-            _keys.Add("I", Keys.I);
-            _keys.Add("J", Keys.J);
-            _keys.Add("K", Keys.K);
-            _keys.Add("L", Keys.L);
-            _keys.Add("M", Keys.M);
-            _keys.Add("N", Keys.N);
-            _keys.Add("O", Keys.O);
-            _keys.Add("P", Keys.P);
-            _keys.Add("Q", Keys.Q);
-            _keys.Add("R", Keys.R);
-            _keys.Add("S", Keys.S);
-            _keys.Add("T", Keys.T);
-            _keys.Add("U", Keys.U);
-            _keys.Add("V", Keys.V);
-            _keys.Add("W", Keys.W);
-            _keys.Add("X", Keys.X);
-            _keys.Add("Y", Keys.Y);
-            _keys.Add("Z", Keys.Z);
-            _keys.Add("Space", Keys.Space);
-            _keys.Add("Shift", Keys.LeftShift);
-            _keys.Add("Ctrl-L", Keys.LeftControl);
-            _keys.Add("Ctrl-R", Keys.RightControl);
-
             _cursorSprite = new Sprite(_manager.Content.Load<Texture2D>("Common/cursor"));
             _viewport = _manager.GraphicsDevice.Viewport;
         }
