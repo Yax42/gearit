@@ -167,9 +167,6 @@ namespace gearit.src.editor.robot
 
 	    // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
             _world.Step(0f);
-            //_world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-            // variable time step but never less then 30 Hz
-            //World.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
