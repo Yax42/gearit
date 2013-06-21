@@ -17,6 +17,7 @@ namespace gearit.src.editor.map
 {
     class MapEditor : GameScreen, IDemoScreen
     {
+        private World               _world;
         private Map                 _map;
         private Input               _input;
         private EditorCamera        _camera;
@@ -24,6 +25,10 @@ namespace gearit.src.editor.map
         private RectangleOverlay    _background;
         private MenuOverlay         _menu_tools;
         private const int PropertiesMenuSize = 200;
+
+        private Matrix _view;
+        private Vector2 _cameraPosition;
+        private Vector2 _screenCenter;
 
         #region IDemoScreen Members
 
@@ -41,10 +46,9 @@ namespace gearit.src.editor.map
 
         public MapEditor()
         {
-            _map = new Map();
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
-            _map.world = null;
+            _world = null;
             HasCursor = true;
         }
 
@@ -52,17 +56,22 @@ namespace gearit.src.editor.map
         {
             base.LoadContent();
 
-            if (_map.world == null)
-                _map.world = new World(Vector2.Zero);
-            else
-                _map.world.Clear();
 
+            if (_world == null)
+                _world = new World(Vector2.Zero);
+            else
+                _world.Clear();
+            _map = new Map(_world);
             ScreenManager.Game.ResetElapsedTime();
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
             _camera.Position = new Vector2(0, 0);
             _input = new Input(_camera);
-            _map.world.Gravity = new Vector2(0f, 0f);
+            _world.Gravity = new Vector2(0f, 0f);
             HasVirtualStick = true;
+            _view = Matrix.Identity;
+            _cameraPosition = Vector2.Zero;
+            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
+                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
@@ -91,7 +100,7 @@ namespace gearit.src.editor.map
             _input.update();
             _menu_tools.Update(_input);
             HandleInput();
-            _map.world.Step(0f);
+            _world.Step(0f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
@@ -101,14 +110,19 @@ namespace gearit.src.editor.map
             {
                 ScreenManager.RemoveScreen(this);
             }
-            /*
-            if (_input.pressed(MouseKeys.LEFT))
+            
+            if (_input.justPressed(MouseKeys.LEFT))
             {
-                Body tmp = BodyFactory.CreateRectangle(_map.world, 8f, 0.5f, 1f, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+                Body tmp = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, _input.simUnitPosition());
                // _ground_tex = _asset.TextureFromShape(tmp.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
                 _map.addBody(tmp);
             }
-             * */
+            if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
+                _camera.move(_input.mouseOffset() / _camera.Zoom);
+            if (_input.justPressed(MouseKeys.WHEEL_DOWN))
+                _camera.Zoom *= 2;
+            if (_input.justPressed(MouseKeys.WHEEL_UP))
+                _camera.Zoom /= 2;
         }
 
         public override void Draw(GameTime gameTime)
@@ -116,9 +130,11 @@ namespace gearit.src.editor.map
             
             _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
             _background.Draw(_draw_game.Batch());
-
             _menu_tools.Draw(_draw_game.Batch());
+            _draw_game.End();
 
+            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
+            _map.drawDebug(_draw_game);
             _draw_game.End();
             base.Draw(gameTime);
         }
