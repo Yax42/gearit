@@ -14,7 +14,7 @@ namespace gearit.src.editor.robot.action
 
         public bool shortcut(Input input)
         {
-          return (input.ctrlAltShift(false, false, false) && input.justPressed(MouseKeys.LEFT) && input.position().Y > 50);
+            return (input.ctrlAltShift(false, false, false) && input.justPressed(MouseKeys.LEFT));
         }
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
