@@ -37,6 +37,28 @@ namespace gearit.src.map
         {
         }
 
+        public Body getBody(Vector2 p)
+        {
+            Transform t;
+            for (int i = 0; i < _mapBody.Count(); i++)
+            {
+                _mapBody[i].GetTransform(out t);
+                if (_mapBody[i].FixtureList[0].Shape.TestPoint(ref t, ref p))
+                    return (_mapBody[i]);
+            }
+            return null;
+        }
+
+        public void deleteBody(Body tmp)
+        {
+            _mapBody.Remove(tmp);
+        }
+
+        public List<Body> getBodies()
+        {
+            return (_mapBody);
+        }
+
         public string name
         {
             get { return _mapName; }

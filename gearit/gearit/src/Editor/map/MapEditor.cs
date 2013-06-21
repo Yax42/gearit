@@ -15,6 +15,13 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map
 {
+    enum Mode
+    {
+        MOVE = 0,
+        ROTATE,
+        DELETE,
+        PLACE
+    }
     class MapEditor : GameScreen, IDemoScreen
     {
         private World               _world;
@@ -24,7 +31,9 @@ namespace gearit.src.editor.map
         private DrawGame            _draw_game;
         private RectangleOverlay    _background;
         private MenuOverlay         _menu_tools;
-        private const int PropertiesMenuSize = 200;
+        private MenuOverlay         _menu_properties;
+        private Mode                _mode;
+        private const int PropertiesMenuSize = 50;
 
         private Matrix _view;
         private Vector2 _cameraPosition;
@@ -62,6 +71,7 @@ namespace gearit.src.editor.map
             else
                 _world.Clear();
             _map = new Map(_world);
+            _mode = Mode.PLACE;
             ScreenManager.Game.ResetElapsedTime();
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
             _camera.Position = new Vector2(0, 0);
@@ -79,9 +89,12 @@ namespace gearit.src.editor.map
 
             // Menu
             MenuItem item;
-            Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
-            Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
+            Vector2 pos = new Vector2(0, 50);
+            Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
+            _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightSteelBlue, MenuLayout.Vertical);
+            item = new InputMenuItem(_menu_properties, 1, new Vector2(8), new Vector2(48, 48), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
             pos.X = 0;
+            pos.Y = 0;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
             item = new TextMenuItem(_menu_tools, "New", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
@@ -110,12 +123,41 @@ namespace gearit.src.editor.map
             {
                 ScreenManager.RemoveScreen(this);
             }
-            
+            if (_input.pressed(Keys.P))
+            {
+                _mode = Mode.PLACE;
+            }
+            if (_input.pressed(Keys.D))
+            {
+                _mode = Mode.DELETE;
+            }
+            if (_input.pressed(Keys.R))
+            {
+                _mode = Mode.ROTATE;
+            }
+            if (_input.pressed(Keys.M))
+            {
+                _mode = Mode.MOVE;
+            }
+
             if (_input.justPressed(MouseKeys.LEFT))
             {
-                Body tmp = BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, _input.simUnitPosition());
-               // _ground_tex = _asset.TextureFromShape(tmp.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
-                _map.addBody(tmp);
+                switch (_mode)
+                {
+                    case Mode.MOVE:
+                        break;
+                    case Mode.PLACE:
+                        _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, _input.simUnitPosition()));
+                        break;
+                    case Mode.ROTATE:
+                        break;
+                    case Mode.DELETE:
+                        for (int i = 0; i < _map.getBodies().Count(); i++)
+                        {
+                            _map.getBodies().Remove(_map.getBody(_input.simUnitPosition()));
+                        }
+                        break;
+                }
             }
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
                 _camera.move(_input.mouseOffset() / _camera.Zoom);
@@ -130,11 +172,11 @@ namespace gearit.src.editor.map
             
             _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
             _background.Draw(_draw_game.Batch());
-            _menu_tools.Draw(_draw_game.Batch());
             _draw_game.End();
-
             _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
             _map.drawDebug(_draw_game);
+            _menu_tools.Draw(_draw_game.Batch());
+            _menu_properties.Draw(_draw_game.Batch());
             _draw_game.End();
             base.Draw(gameTime);
         }
