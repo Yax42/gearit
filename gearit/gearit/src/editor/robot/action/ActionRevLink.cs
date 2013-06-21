@@ -19,7 +19,7 @@ namespace gearit.src.editor.robot.action
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            if (selected1.isConnected(selected2) == false)
+            if (selected1 != selected2 && selected1.isConnected(selected2) == false)
               new RevoluteSpot(robot, selected1, selected2);
             return (false);
         }

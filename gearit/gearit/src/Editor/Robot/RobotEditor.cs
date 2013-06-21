@@ -47,7 +47,6 @@ namespace gearit.src.editor.robot
         private MenuOverlay _menu_properties;
         private MenuOverlay _menu_tools;
 
-
         // Robot
         private DrawGame _draw_game;
         private Robot _robot;
@@ -59,6 +58,7 @@ namespace gearit.src.editor.robot
         private IAction[] _actions = new IAction[(int) ActionTypes.COUNT];
         private int _time = 0;
 
+        private Serializer _serial;
 
 	public RobotEditor()
         {
@@ -110,6 +110,9 @@ namespace gearit.src.editor.robot
             _mainSelected = _robot.getHeart();
             _selected2 = _robot.getHeart();
             _actionType = ActionTypes.NONE;
+
+            _serial = new Serializer();
+            Piece.SetWorld(_world);
 
 	    //actions
             _actions[(int) ActionTypes.NONE] = null;
@@ -209,6 +212,10 @@ namespace gearit.src.editor.robot
             if (_input.pressed(Keys.Escape))
             {
                 ScreenManager.RemoveScreen(this);
+            }
+            if (_input.justPressed(Keys.P))
+            {
+                _serial.SerializeItem("wall-e.bot", _robot);
             }
         }
 

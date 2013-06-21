@@ -56,7 +56,11 @@ namespace gearit
                 if (areSpotsOk() == false)
                     ((CircleShape)_shape).Radius = _size;
                 else
+                {
                     _size = value;
+                    DestroyFixture(_fix);
+                    _fix = CreateFixture(_shape);
+                }
             }
         }
     }
