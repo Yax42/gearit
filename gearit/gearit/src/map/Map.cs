@@ -14,13 +14,11 @@ namespace gearit.src.map
     [Serializable()]
     class Map : ISerializable
     {
-        private string      _mapName;
-        private World       _world;
-        private List<Body>  _mapBody;
+        private string _mapName;
+        private List<Body> _mapBody;
 
-        //[NonSerialized]
-        
-
+        [NonSerialized]
+        private World _world;
 
         public Map(World world)
         {
@@ -31,10 +29,12 @@ namespace gearit.src.map
 
         public Map(SerializationInfo info, StreamingContext ctxt)
         {
+            _mapName = (string)info.GetValue("Name", typeof(string));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            info.AddValue("Name", _mapName, typeof(string));
         }
 
         public Body getBody(Vector2 p)
