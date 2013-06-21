@@ -23,6 +23,7 @@ namespace gearit
             _vertices = PolygonTools.CreateRectangle(1, 1);
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape);
+            //_vertices = ((PolygonShape)_fix.Shape).Vertices;
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
             Console.WriteLine("Heart created.");
         }
@@ -49,11 +50,12 @@ namespace gearit
 
         public override void drawLines(DrawGame game)
         {
+            PolygonShape shape = (PolygonShape)_fix.Shape;
             if (Shown == false)
                 return;
             for (int i = 0; i < _vertices.Count - 1; i++)
-                game.addLine(Position + _vertices[i], Position + _vertices[i + 1], ColorValue);
-            game.addLine(Position + _vertices[_vertices.Count - 1], Position + _vertices[0], ColorValue);
+                game.addLine(Position + shape.Vertices[i], Position + shape.Vertices[i + 1], ColorValue);
+            game.addLine(Position + shape.Vertices[_vertices.Count - 1], Position + shape.Vertices[0], ColorValue);
         }
 
         private bool checkShape()
@@ -76,6 +78,13 @@ namespace gearit
             return (res);
         }
 
+        private void updateShape()
+        {
+            _shape = new PolygonShape(_vertices, _shape.Density);
+            DestroyFixture(_fix);
+            _fix = CreateFixture(_shape);
+        }
+
         public Vector2 getCorner(int id)
         {
             if (id >= _vertices.Count)
@@ -89,10 +98,10 @@ namespace gearit
                 return;
             Vector2 backupPos = _vertices[id];
             _vertices[id] = pos - Position;
-            if (checkShape())
-                return;
-            _vertices[id] = backupPos;
-            //update shape
+            if (checkShape() == false)
+              _vertices[id] = backupPos;
+            else
+              updateShape();
         }
 
         public void addCorner(Vector2 p)
@@ -103,9 +112,8 @@ namespace gearit
             _vertices.Add(p);
             if (checkShape() == false)
                 _vertices.Remove(p);
-            //else
-            //FixtureList[0].Shape = _shape;
-            //update shape
+            else
+              updateShape();
         }
 
         public void removeCorner(int id)
@@ -114,9 +122,10 @@ namespace gearit
                 return;
             Vector2 backupPos = _vertices[id];
             _vertices.RemoveAt(id);
-            if (checkShape())
-                return;
-            _vertices.Insert(id, backupPos);
+            if (checkShape() == false)
+              _vertices.Insert(id, backupPos);
+            else
+              updateShape();
         }
 
         public override float Weight
