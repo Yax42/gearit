@@ -150,9 +150,6 @@ namespace gearit
         {
         }
 
-        public abstract void draw(SpriteBatch batch);
-
-        public abstract void drawLines(DrawGame game);
         public Color ColorValue { get; set; }
         public bool Shown { get; set; }
     }

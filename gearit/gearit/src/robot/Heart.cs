@@ -42,20 +42,10 @@ namespace gearit
             base.GetObjectData(info, ctxt);
         }
 
-        public override void draw(SpriteBatch batch)
+        public void draw(SpriteBatch batch)
         {
             batch.Draw(_tex, ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
                        new Vector2(_tex.Width / 2f, _tex.Height / 3f), 1f, SpriteEffects.None, 0f);
-        }
-
-        public override void drawLines(DrawGame game)
-        {
-            PolygonShape shape = (PolygonShape)_fix.Shape;
-            if (Shown == false)
-                return;
-            for (int i = 0; i < _vertices.Count - 1; i++)
-                game.addLine(Position + shape.Vertices[i], Position + shape.Vertices[i + 1], ColorValue);
-            game.addLine(Position + shape.Vertices[_vertices.Count - 1], Position + shape.Vertices[0], ColorValue);
         }
 
         private bool checkShape()

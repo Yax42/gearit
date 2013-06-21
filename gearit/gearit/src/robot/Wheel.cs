@@ -45,30 +45,6 @@ namespace gearit
             info.AddValue("Size", _size, typeof(float));
         }
 
-        public override void draw(SpriteBatch batch)
-        {
-            batch.Draw(_tex, ConvertUnits.ToDisplayUnits(this.Position), null, Color.LightGreen, this.Rotation,
-                       new Vector2(_tex.Width / 2f, _tex.Height / 2f), 1f, SpriteEffects.None, 0f);
-        }
-
-        public override void drawLines(DrawGame game)
-        {
-            const double increment = Math.PI * 2.0 / _circleSegments;
-            double theta = 0.0;
-
-            if (Shown == false)
-                return;
-            for (int i = 0; i < _circleSegments; i++)
-            {
-                Vector2 v1 = Position + _size * new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
-                Vector2 v2 = Position + _size *
-                             new Vector2((float)Math.Cos(theta + increment), (float)Math.Sin(theta + increment));
-
-                game.addLine(v1, v2, ColorValue);
-                theta += increment;
-            }
-        }
-
         public float Size
         {
             get { return _size; }

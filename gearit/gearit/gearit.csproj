@@ -129,7 +129,7 @@
     <Compile Include="src\editor\robot\action\ActionSelect2.cs" />
     <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
     <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
-    <Compile Include="src\editor\robot\EditorCamera.cs" />
+    <Compile Include="src\editor\EditorCamera.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
     <Compile Include="src\farseer\Collision\Distance.cs" />

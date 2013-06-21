@@ -72,18 +72,13 @@ namespace gearit.src.map
             _mapBody.Add(body);
         }
 
-        private void drawPoly(DrawGame game, Vertices vertices, Vector2 pos)
-        {
-            for (int i = 0; i < vertices.Count - 1; i++)
-                game.addLine(pos + vertices[i], pos + vertices[i + 1], Color.Black);
-            game.addLine(pos + vertices[vertices.Count - 1], pos + vertices[0], Color.Black);
-        }
-
         public void drawDebug(DrawGame game)
         {
             for (int i = 0; i < _mapBody.Count; i++)
             {
-                drawPoly(game, ((PolygonShape)_mapBody[i].FixtureList[0].Shape).Vertices, _mapBody[i].Position);
+                game.draw(_mapBody[i], Color.Black);
+
+                //drawPoly(game, ((PolygonShape)_mapBody[i].FixtureList[0].Shape).Vertices, _mapBody[i].Position);
             }
         }
     }

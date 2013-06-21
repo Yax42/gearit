@@ -110,7 +110,8 @@ namespace gearit
         public void drawDebug(DrawGame game)
         {
             for (int i = 0; i < _pieces.Count; i++)
-                _pieces[i].drawLines(game);
+                if (_pieces[i].Shown)
+                    game.draw(_pieces[i], _pieces[i].ColorValue);
             for (int i = 0; i < _spots.Count; i++)
                 _spots[i].draw(game);
         }

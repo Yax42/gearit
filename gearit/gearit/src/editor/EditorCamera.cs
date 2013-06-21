@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
 
-namespace gearit.src.editor.robot
+namespace gearit.src.editor
 {
     class EditorCamera : ICamera
     {

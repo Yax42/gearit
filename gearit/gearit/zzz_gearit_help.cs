@@ -12,6 +12,11 @@
        set { _size = value; } //value is a keyword
     }
 
+EXEMPLE D'AWSOME SHORTCUT ICI /!\
+/////////////////////
+            foreach (Fixture f in b.FixtureList)
+                DrawLines(f, xf, col);
+/////////////////////
 
 
     // Serialization d'objet:
