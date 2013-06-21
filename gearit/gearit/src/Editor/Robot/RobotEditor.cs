@@ -197,10 +197,10 @@ namespace gearit.src.editor.robot
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
-            else if (_actions[(int)_actionType].run(_input, _robot, ref _mainSelected, ref _selected2) == false)
+            else if (_actions[(int)_actionType].run(_input, _robot, ref _mainSelected, ref _selected2))
             {
 	       // à decomenter pour avoir un menu effectif.
-               // _menu_tools.getItem((int)_actionType).Pressed = false;
+                _menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
