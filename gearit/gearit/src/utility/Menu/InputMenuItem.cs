@@ -22,10 +22,10 @@ namespace gearit.src.utility.Menu
         private RectangleOverlay _input_bg;
         private InputMenuItemType _type = InputMenuItemType.AlphaNumeric;
         private int _border_size;
-        private List<Keys> _keys;
+        private const int PADDING_X = 4;
 
         // Properties
-        private Vector2 _size;
+        private Vector2 _size_input;
         private string _text = "";
         private SpriteFont _text_font;
         private Color _bg_color;
@@ -39,11 +39,12 @@ namespace gearit.src.utility.Menu
         private Color _label_color;
 
         // Focus
+        private Color _focus_color = new Color(173, 216, 230);
         private int _cursor_pos = 0;
-        private int _pos_selection = -1;
         private int _char_selected = 0;
+        private RectangleOverlay _selected_bg;
 
-        public InputMenuItem(MenuOverlay menu, SpriteFont text_font, Color text_color, int border_size, Vector2 padding, Vector2 size, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
+        public InputMenuItem(MenuOverlay menu, SpriteFont text_font, Color text_color, int border_size, Vector2 padding, Vector2 size_input, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
             : base(menu, padding, layout, alignement, scale)
         {
             _text_font = text_font;
@@ -51,9 +52,10 @@ namespace gearit.src.utility.Menu
             _border_size = border_size;
             _border_color = Color.Black;
             _bg_color = _menu.Color;
-            _size = size;
+            _size_input = size_input;
             _border_bg = new RectangleOverlay(Rectangle.Empty, _border_color, _menu.Screen.GraphicsDevice);
             _input_bg = new RectangleOverlay(Rectangle.Empty, _bg_color, _menu.Screen.GraphicsDevice);
+            _selected_bg = new RectangleOverlay(Rectangle.Empty, _focus_color, _menu.Screen.GraphicsDevice);
             updateGeometry();
 
             // Adding to menu
@@ -69,21 +71,83 @@ namespace gearit.src.utility.Menu
             {
                 foreach (Keys key in keys)
                 {
-                    if (!manageSpecialKey(key))
+                    // Check special key first
+                    if (!manageSpecialKey(input, key))
+                    {
+                        // Clear selection
+                        if (_char_selected > 0)
+                            clearSelection();
                         _text += input.keyToString(key);
+                        ++_cursor_pos;
+                    }
                 }
             }
         }
 
-        public bool manageSpecialKey(Keys key)
+        public bool manageSpecialKey(Input input, Keys key)
         {
+            // Delete selection
+            if (key == Keys.Delete)
+            {
+                clearSelection();
+                return (true);
+            }
+            // Delete selection or left cursor char
+            else if (key == Keys.Back)
+            {
+                if (_char_selected > 0)
+                    clearSelection();
+                else if (_cursor_pos > 0)
+                {
+                    _text = _text.Remove(_cursor_pos - 1, 1);
+                    --_cursor_pos;
+                }
+                return (true);
+            }
+            // Manage CTRL+A - Select all
+            else if ((key == Keys.A || key == Keys.LeftControl) && (input.pressed(Keys.A) && input.pressed(Keys.LeftControl)))
+            {
+                _char_selected = _text.Length;
+                _cursor_pos = 0;
+                return (true);
+            }
             // Manage cursor
-            if (key == Keys.Right || key == Keys.Left)
+            else if (key == Keys.Right || key == Keys.Left)
             {
                 int dir = (key == Keys.Right ? 1 : -1);
                 return (true);
             }
             return (false);
+        }
+
+        override public void Draw(SpriteBatch batch)
+        {
+            if (_visible)
+            {
+                base.Draw(batch);
+                _border_bg.Draw(batch);
+                _input_bg.Draw(batch);
+
+                // Manage selection
+                if (_char_selected > 0)
+                {
+                    Rectangle rec = _input_bg.Geometry;
+                    rec.Width = (int)_text_font.MeasureString(_text.Substring(_cursor_pos, _char_selected)).X + PADDING_X * 2;
+                    _selected_bg.Geometry = rec;
+                    _selected_bg.Draw(batch);
+                }
+
+                batch.DrawString(_text_font, _text, _pos_text, _text_color);
+            }
+        }
+
+        public void clearSelection()
+        {
+            if (_char_selected > 0)
+            {
+                _text = _text.Remove(_cursor_pos, _char_selected);
+                _char_selected = 0;
+            }
         }
 
         public void setLabel(string text, SpriteFont font, Color color)
@@ -101,7 +165,7 @@ namespace gearit.src.utility.Menu
 
         private void updateGeometry()
         {
-            Rectangle rec = new Rectangle((int)_pos_rsrc.X + (int)_menu.Position.X, (int)_pos_rsrc.Y + (int)_menu.Position.Y, (int)_size.X, (int)_size.Y);
+            Rectangle rec = new Rectangle((int)_pos_rsrc.X + (int)_menu.Position.X, (int)_pos_rsrc.Y + (int)_menu.Position.Y, (int)_size_input.X, (int)_size_input.Y);
 
             _border_bg.Geometry = rec;
             rec.X += _border_size;
@@ -111,15 +175,14 @@ namespace gearit.src.utility.Menu
             _input_bg.Geometry = rec;
 
             // Update text if possible
-            _pos_text.X = rec.X + 4;
+            _pos_text.X = rec.X + PADDING_X;
             _pos_text.Y = rec.Y + rec.Height / 2 - _text_font.MeasureString("X").Y / 2;
         }
 
         public InputMenuItemType Type
         {
             get { return _type; }
-            set 
-            { _type = value; }
+            set { _type = value; }
         }
 
         public Color BackgroundColor
@@ -140,26 +203,21 @@ namespace gearit.src.utility.Menu
             set { _text_color = value; }
         }
 
+        public Color FocusColor
+        {
+            get { return _focus_color; }
+            set { _focus_color = value; }
+        }
+
         public Color BorderColor
         {
             get { return _border_color; }
             set { _border_color = value; }
         }
 
-        override public void Draw(SpriteBatch batch)
-        {
-            if (_visible)
-            {
-                base.Draw(batch);
-                _border_bg.Draw(batch);
-                _input_bg.Draw(batch);
-                batch.DrawString(_text_font, _text, _pos_text, _text_color);
-            }
-        }
-
         override public Vector2 getRsrcSize()
         {
-            Vector2 size = _size;
+            Vector2 size = _size_input;
             if (_label_font != null)
                 size += _label_font.MeasureString(_label_text) * _scale;
             return (size);
