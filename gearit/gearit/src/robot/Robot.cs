@@ -26,8 +26,8 @@ namespace gearit
         private int _prismaticCounter = 0;
         private int _revoluteCounter = 0;
 
-	[NonSerialized]
-        private static int _robotIdCounter = 1;
+        [NonSerialized]
+        public static int _robotIdCounter = 1;
         private int _id;
         private World _world;
 
@@ -35,21 +35,18 @@ namespace gearit
         {
             _world = world;
             _id = _robotIdCounter++;
-            Console.WriteLine("Robot created.");
             _pieces = new List<Piece>();
             _spots = new List<ISpot>();
             new Heart(this);
+            Console.WriteLine("Robot created.");
         }
 
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
             this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
-            // Call `addPiece` on each Pieces.
-
             this._spots = (List<ISpot>)info.GetValue("Spots", typeof(List<ISpot>));
-            // Call `addJoint` on each Spots.
             _id = _robotIdCounter++;
-            Console.WriteLine("Unserializing object.");
+            Console.WriteLine("Robot created.");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -75,7 +72,7 @@ namespace gearit
 
         public Heart getHeart()
         {
-            return ((Heart) _pieces.First());
+            return ((Heart)_pieces.First());
         }
 
         public int getId()
@@ -103,7 +100,7 @@ namespace gearit
         {
             float res = 0;
             for (int i = 0; i < _spots.Count; i++)
-		res += _spots[i].MaxForce;
+                res += _spots[i].MaxForce;
             return (res);
         }
 
@@ -184,7 +181,7 @@ namespace gearit
             return (res);
         }
 
-        public int revCount(){ return (_revoluteCounter++); }
-        public int prisCount(){ return (_prismaticCounter++); }
+        public int revCount() { return (_revoluteCounter++); }
+        public int prisCount() { return (_prismaticCounter++); }
     }
 }

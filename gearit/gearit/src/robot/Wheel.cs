@@ -37,6 +37,8 @@ namespace gearit
             Position = Vector2.Zero;
             _size = (float)info.GetValue("Size", typeof(float));
             _shape = new CircleShape(_size, 1f);
+            setShape(_shape, Robot._robotIdCounter);
+            Console.WriteLine("Wheel created.");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
