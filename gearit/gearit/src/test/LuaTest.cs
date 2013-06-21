@@ -47,7 +47,7 @@ namespace gearit.src.utility
 
         public void execFile()
         {
-            _luaInterpret.DoFile(@"scripts/" + _name + ".lua");
+            //_luaInterpret.DoFile(@"scripts/" + _name + ".lua");
         }
     }
 }
