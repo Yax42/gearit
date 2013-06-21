@@ -10,18 +10,20 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using FarseerPhysics.Dynamics;
 using gearit.src.editor.robot;
+using FarseerPhysics.Factories;
+using gearit.src.map;
 
 namespace gearit.src.editor.map
 {
     class MapEditor : GameScreen, IDemoScreen
     {
-        private World _world;
-        private Input _input;
-        private EditorCamera _camera;
+        private Map                 _map;
+        private Input               _input;
+        private EditorCamera        _camera;
+        private DrawGame            _draw_game;
+        private RectangleOverlay    _background;
+        private MenuOverlay         _menu_tools;
         private const int PropertiesMenuSize = 200;
-        private DrawGame _draw_game;
-        private RectangleOverlay _background;
-        private MenuOverlay _menu_tools;
 
         #region IDemoScreen Members
 
@@ -39,9 +41,10 @@ namespace gearit.src.editor.map
 
         public MapEditor()
         {
+            _map = new Map();
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
-            _world = null;
+            _map.world = null;
             HasCursor = true;
         }
 
@@ -49,16 +52,16 @@ namespace gearit.src.editor.map
         {
             base.LoadContent();
 
-            if (_world == null)
-                _world = new World(Vector2.Zero);
+            if (_map.world == null)
+                _map.world = new World(Vector2.Zero);
             else
-                _world.Clear();
+                _map.world.Clear();
 
             ScreenManager.Game.ResetElapsedTime();
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
             _camera.Position = new Vector2(0, 0);
             _input = new Input(_camera);
-            _world.Gravity = new Vector2(0f, 0f);
+            _map.world.Gravity = new Vector2(0f, 0f);
             HasVirtualStick = true;
 
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
@@ -88,7 +91,7 @@ namespace gearit.src.editor.map
             _input.update();
             _menu_tools.Update(_input);
             HandleInput();
-            _world.Step(0f);
+            _map.world.Step(0f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
@@ -98,6 +101,14 @@ namespace gearit.src.editor.map
             {
                 ScreenManager.RemoveScreen(this);
             }
+            /*
+            if (_input.pressed(MouseKeys.LEFT))
+            {
+                Body tmp = BodyFactory.CreateRectangle(_map.world, 8f, 0.5f, 1f, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+               // _ground_tex = _asset.TextureFromShape(tmp.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
+                _map.addBody(tmp);
+            }
+             * */
         }
 
         public override void Draw(GameTime gameTime)

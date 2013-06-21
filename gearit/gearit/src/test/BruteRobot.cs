@@ -125,22 +125,22 @@ namespace gearit.src.utility
             
             _asset.LoadContent(ScreenManager.Game.Content);
 
+            #region Grounds
             // Initialize grounds
             //Vector2 wall_position = new Vector2(_screen_center.X, _screen_center.Y + 2f);
+
             Vector2 wall_position = (ConvertUnits.ToSimUnits(_screen_center)) + new Vector2(-5f, 1.25f);
+            
             _ground = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
             _ground_tex = _asset.TextureFromShape(_ground.FixtureList[0].Shape, MaterialType.Blank, Color.LightGreen, 1f);
-            _ground.BodyType = BodyType.Static;
-            //_ground.SetTransform(_ground.Position, 1.5f);
-            // Up grounds
+            
             wall_position -= new Vector2(7f, 2f);
             _ground_up_left = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
-            //_ground_up_left.SetTransform(wall_position, 1.5f);
-            _ground.BodyType = BodyType.Static;
+           
             wall_position += new Vector2(14f, 1f);
             _ground_up_right = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
-            //_ground_up_right.SetTransform(wall_position, 1.5f);
-            _ground.BodyType = BodyType.Static;
+
+            #endregion
 
             // Ball
             _ball = BodyFactory.CreateCircle(World, 0.5f, 1f, _screen_center);
@@ -273,7 +273,7 @@ namespace gearit.src.utility
             _wheel_left_tex = _asset.TextureFromShape(_wheel_left.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);
             _wheel_left.FixtureList[0].CollisionGroup = 42;
             //_wheel_left.Position = new Vector2(12, 4);
-            _wheel_left.Position = new Vector2(_heart.Position.X -1, _heart.Position.Y + 2);
+            _wheel_left.Position = new Vector2(_heart.Position.X +1, _heart.Position.Y + 2);
 
             //Joint test
             _spotJoint[1] = new RevoluteJoint(_wheel_right, _rod1End, Vector2.Zero, Vector2.Zero);
