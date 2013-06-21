@@ -23,6 +23,7 @@ namespace gearit.src.utility.Menu
         private InputMenuItemType _type = InputMenuItemType.AlphaNumeric;
         private int _border_size;
         private const int PADDING_X = 4;
+        private int _max_text_size = -1;
 
         // Properties
         private Vector2 _size_input;
@@ -78,7 +79,11 @@ namespace gearit.src.utility.Menu
                         if (_char_selected > 0)
                             clearSelection();
                         _text += input.keyToString(key);
-                        ++_cursor_pos;
+                         // If not possible, revert
+                        if (_text.Length == _max_text_size || _text_font.MeasureString(_text).X + PADDING_X * 2 > _size_input.X)
+                            _text = _text.Remove(_text.Length - 1);
+                        else
+                            ++_cursor_pos;
                     }
                 }
             }
@@ -157,6 +162,12 @@ namespace gearit.src.utility.Menu
             _label_text = text;
         }
 
+        public int MaxSize
+        {
+            get { return _max_text_size; }
+            set { _max_text_size = value; }
+        }
+
         override public void refresh(Vector2 pos, Vector2 size)
         {
             base.refresh(pos, size);
@@ -177,6 +188,12 @@ namespace gearit.src.utility.Menu
             // Update text if possible
             _pos_text.X = rec.X + PADDING_X;
             _pos_text.Y = rec.Y + rec.Height / 2 - _text_font.MeasureString("X").Y / 2;
+        }
+
+        public string Input
+        {
+            get { return _text; }
+            set { _text = value; }
         }
 
         public InputMenuItemType Type

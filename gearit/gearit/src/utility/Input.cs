@@ -73,6 +73,7 @@ namespace gearit.src.utility
             _map_keys.Add(Keys.NumPad7, "7");
             _map_keys.Add(Keys.NumPad8, "8");
             _map_keys.Add(Keys.NumPad9, "9");
+            _map_keys.Add(Keys.Space, " ");
             // END MAPPING
 
             _keys = new SortedList<string, Keys>();

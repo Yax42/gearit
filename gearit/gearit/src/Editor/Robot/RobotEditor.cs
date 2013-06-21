@@ -52,7 +52,7 @@ namespace gearit.src.editor.robot
         private DrawGame _draw_game;
         private Robot _robot;
 
-	// Action
+	    // Action
         private Piece _mainSelected;
         private Piece _selected2;
         private ActionTypes _actionType;
@@ -139,7 +139,7 @@ namespace gearit.src.editor.robot
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
-            input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(50, 18), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
+            input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
             input_item.addFocus(42, new Color(120, 120, 120));
 
             MenuItem item;
