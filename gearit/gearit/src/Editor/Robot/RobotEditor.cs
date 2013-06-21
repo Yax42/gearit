@@ -17,21 +17,21 @@ namespace gearit.src.editor.robot
     enum ActionTypes
     {
         NONE = 0,
-	MAIN_SELECT,
-	SELECT2,
-	DELETE_PIECE,
-	MOVE_PIECE,
+        MAIN_SELECT,
+        SELECT2,
+        DELETE_PIECE,
+        MOVE_PIECE,
         PRIS_SPOT,
         REV_SPOT,
-	SHOW_ALL,
-	HIDE,
+        SHOW_ALL,
+        HIDE,
         LAUNCH,
         MOVE_ANCHOR,
-	DELETE_SPOT,
-	PRIS_LINK,
-	REV_LINK,
-	RESIZE_WHEEL,
-	RESIZE_HEART,
+        DELETE_SPOT,
+        PRIS_LINK,
+        REV_LINK,
+        RESIZE_WHEEL,
+        RESIZE_HEART,
         COUNT
     }
 
@@ -134,13 +134,15 @@ namespace gearit.src.editor.robot
             _background = new RectangleOverlay(rec, Color.WhiteSmoke, ScreenManager.GraphicsDevice);
 
             // Menu
-            MenuItem item;
+            InputMenuItem input_item;
 
             Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
-            item = new InputMenuItem(_menu_properties, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
+            input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
+            input_item.addFocus(42, new Color(120, 120, 120));
 
+            MenuItem item;
             pos.X = 200;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);

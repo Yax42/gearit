@@ -38,6 +38,7 @@ namespace gearit.src.utility.Menu
         private MenuItem _item_pressed = null;
         
         // Focus
+        private bool _mouse_on = false;
         private bool _movable = false;
         private bool _moving = false;
         
@@ -105,6 +106,7 @@ namespace gearit.src.utility.Menu
         {
             if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), input.position()))
             {
+                _mouse_on = true;
                 // Moving
                 if (_moving)
                 {
@@ -118,8 +120,15 @@ namespace gearit.src.utility.Menu
                 if (_movable && input.justPressed(MouseKeys.LEFT) && !_moving)
                     _moving = true;
             }
+            else
+                _mouse_on = false;
             // Nothing happens - release
             releaseFocus();
+        }
+
+        public bool isMouseOn()
+        {
+            return (_mouse_on);
         }
 
         public ScreenManager Screen

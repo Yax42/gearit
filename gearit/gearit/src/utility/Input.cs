@@ -19,6 +19,7 @@ namespace gearit.src.utility
     {
         // Input for LUA
         private SortedList<string, Keys> _keys;
+        Dictionary<Keys, string> _map_keys;
 
         // Mouse
         private MouseState _old_mouse;
@@ -32,6 +33,47 @@ namespace gearit.src.utility
         public Input(ICamera camera)
         {
             _camera = camera;
+
+
+            // MAPPING DICTONARY KEYBOARD
+            _map_keys = new Dictionary<Keys, string>();
+            _map_keys.Add(Keys.A, "A");
+            _map_keys.Add(Keys.B, "B");
+            _map_keys.Add(Keys.C, "C");
+            _map_keys.Add(Keys.D, "D");
+            _map_keys.Add(Keys.E, "E");
+            _map_keys.Add(Keys.F, "F");
+            _map_keys.Add(Keys.G, "G");
+            _map_keys.Add(Keys.H, "H");
+            _map_keys.Add(Keys.I, "I");
+            _map_keys.Add(Keys.J, "J");
+            _map_keys.Add(Keys.K, "K");
+            _map_keys.Add(Keys.L, "L");
+            _map_keys.Add(Keys.M, "M");
+            _map_keys.Add(Keys.N, "N");
+            _map_keys.Add(Keys.O, "O");
+            _map_keys.Add(Keys.P, "P");
+            _map_keys.Add(Keys.Q, "Q");
+            _map_keys.Add(Keys.R, "R");
+            _map_keys.Add(Keys.S, "S");
+            _map_keys.Add(Keys.T, "T");
+            _map_keys.Add(Keys.U, "U");
+            _map_keys.Add(Keys.V, "V");
+            _map_keys.Add(Keys.W, "W");
+            _map_keys.Add(Keys.X, "X");
+            _map_keys.Add(Keys.Y, "Y");
+            _map_keys.Add(Keys.Z, "Z");
+            _map_keys.Add(Keys.NumPad0, "0");
+            _map_keys.Add(Keys.NumPad1, "1");
+            _map_keys.Add(Keys.NumPad2, "2");
+            _map_keys.Add(Keys.NumPad3, "3");
+            _map_keys.Add(Keys.NumPad4, "4");
+            _map_keys.Add(Keys.NumPad5, "5");
+            _map_keys.Add(Keys.NumPad6, "6");
+            _map_keys.Add(Keys.NumPad7, "7");
+            _map_keys.Add(Keys.NumPad8, "8");
+            _map_keys.Add(Keys.NumPad9, "9");
+            // END MAPPING
 
             _keys = new SortedList<string, Keys>();
             _keys.Add("A", Keys.A);
@@ -167,6 +209,66 @@ namespace gearit.src.utility
         public bool justReleased(Keys key)
         {
             return (!_keyboard.IsKeyDown(key) && _old_keyboard.IsKeyDown(key));
+        }
+
+        public List<Keys> getJustPressed()
+        {
+            List<Keys> keys = new List<Keys>();
+
+            if (_keyboard != _old_keyboard)
+            {
+                bool found;
+                Keys[] new_keys = _keyboard.GetPressedKeys();
+                Keys[] old_keys = _old_keyboard.GetPressedKeys();
+
+                foreach (Keys new_key in new_keys)
+                {
+                    found = false;
+                    foreach (Keys old_key in old_keys)
+                        if (new_key == old_key)
+                        {
+                            found = true;
+                            break;
+                        }
+                    if (!found)
+                        keys.Add(new_key);
+                }
+            }
+            return (keys);
+        }
+
+        public List<Keys> getJustReleased()
+        {
+            List<Keys> keys = new List<Keys>();
+
+            if (_keyboard != _old_keyboard)
+            {
+                bool found;
+                Keys[] new_keys = _keyboard.GetPressedKeys();
+                Keys[] old_keys = _old_keyboard.GetPressedKeys();
+
+                foreach (Keys old_key in old_keys)
+                {
+                    found = false;
+                    foreach (Keys new_key in new_keys)
+                        if (new_key == old_key)
+                        {
+                            found = true;
+                            break;
+                        }
+                    if (!found)
+                        keys.Add(old_key);
+                }
+            }
+            return (keys);
+        }
+
+        public string keyToString(Keys key)
+        {
+            if (_map_keys.ContainsKey(key))
+                return (_map_keys[key]);
+            else
+                return ("");
         }
 
         public bool ctrlAltShift(bool ctrl, bool alt, bool shift)

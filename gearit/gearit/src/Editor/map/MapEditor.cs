@@ -92,7 +92,6 @@ namespace gearit.src.editor.map
             Vector2 pos = new Vector2(0, 50);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightSteelBlue, MenuLayout.Vertical);
-            item = new InputMenuItem(_menu_properties, 1, new Vector2(8), new Vector2(48, 48), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
             pos.X = 0;
             pos.Y = 0;
             size = new Vector2(400, 50);

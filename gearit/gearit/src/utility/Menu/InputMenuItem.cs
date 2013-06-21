@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.utility.Menu
 {
@@ -21,12 +22,14 @@ namespace gearit.src.utility.Menu
         private RectangleOverlay _input_bg;
         private InputMenuItemType _type = InputMenuItemType.AlphaNumeric;
         private int _border_size;
+        private List<Keys> _keys;
 
         // Properties
         private Vector2 _size;
-        private string _text;
-        private SpriteFont _text_font = null;
+        private string _text = "";
+        private SpriteFont _text_font;
         private Color _bg_color;
+        private Vector2 _pos_text;
         private Color _border_color;
         private Color _text_color;
 
@@ -35,9 +38,16 @@ namespace gearit.src.utility.Menu
         private string _label_text = "";
         private Color _label_color;
 
-        public InputMenuItem(MenuOverlay menu, int border_size, Vector2 padding, Vector2 size, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
+        // Focus
+        private int _cursor_pos = 0;
+        private int _pos_selection = -1;
+        private int _char_selected = 0;
+
+        public InputMenuItem(MenuOverlay menu, SpriteFont text_font, Color text_color, int border_size, Vector2 padding, Vector2 size, ItemMenuLayout layout, ItemMenuAlignement alignement, float scale)
             : base(menu, padding, layout, alignement, scale)
         {
+            _text_font = text_font;
+            _text_color = text_color;
             _border_size = border_size;
             _border_color = Color.Black;
             _bg_color = _menu.Color;
@@ -50,9 +60,30 @@ namespace gearit.src.utility.Menu
             _menu.addItemMenu(this);
         }
 
+        // Item is pressed - manage input
         override public void inputHandler(Input input)
         {
+            List<Keys> keys;
 
+            if ((keys = input.getJustPressed()).Count > 0)
+            {
+                foreach (Keys key in keys)
+                {
+                    if (!manageSpecialKey(key))
+                        _text += input.keyToString(key);
+                }
+            }
+        }
+
+        public bool manageSpecialKey(Keys key)
+        {
+            // Manage cursor
+            if (key == Keys.Right || key == Keys.Left)
+            {
+                int dir = (key == Keys.Right ? 1 : -1);
+                return (true);
+            }
+            return (false);
         }
 
         public void setLabel(string text, SpriteFont font, Color color)
@@ -78,12 +109,17 @@ namespace gearit.src.utility.Menu
             rec.Width -= _border_size * 2;
             rec.Height -= _border_size * 2;
             _input_bg.Geometry = rec;
+
+            // Update text if possible
+            _pos_text.X = rec.X + 4;
+            _pos_text.Y = rec.Y + rec.Height / 2 - _text_font.MeasureString("X").Y / 2;
         }
 
         public InputMenuItemType Type
         {
             get { return _type; }
-            set { _type = value; }
+            set 
+            { _type = value; }
         }
 
         public Color BackgroundColor
@@ -117,14 +153,15 @@ namespace gearit.src.utility.Menu
                 base.Draw(batch);
                 _border_bg.Draw(batch);
                 _input_bg.Draw(batch);
+                batch.DrawString(_text_font, _text, _pos_text, _text_color);
             }
         }
 
         override public Vector2 getRsrcSize()
         {
             Vector2 size = _size;
-            if (_text_font != null)
-                size += _text_font.MeasureString(_text) * _scale;
+            if (_label_font != null)
+                size += _label_font.MeasureString(_label_text) * _scale;
             return (size);
         }
 
@@ -132,12 +169,6 @@ namespace gearit.src.utility.Menu
         {
             get { return _text; }
             set { _text = value; }
-        }
-
-        public Color Color
-        {
-            get { return _label_color; }
-            set { _label_color = value; }
         }
 
         public SpriteFont TextFont

@@ -63,6 +63,11 @@ namespace gearit.src.utility.Menu
         {
         }
 
+        public bool hasFlag(ItemMenuAlignement alignement, ItemMenuAlignement flag)
+        {
+            return ((alignement & flag) == flag);
+        }
+
         virtual public void refresh(Vector2 pos, Vector2 size)
         {
             _pos = pos;
@@ -70,24 +75,15 @@ namespace gearit.src.utility.Menu
             _size = size;
    
             // Refreshing position ressource depending on alignment
-            switch (_alignement)
-            {
-                case ItemMenuAlignement.Default:
-                    _pos_rsrc += _padding;
-                    break;
-                case ItemMenuAlignement.Bottom:
-                    _pos_rsrc += new Vector2(_padding.X, size.Y - _padding.Y);
-                    break;
-                case ItemMenuAlignement.HorizontalCenter:
-                    _pos_rsrc += new Vector2(size.X / 2 - getSize().X / 2, _padding.Y);
-                    break;
-                case ItemMenuAlignement.VerticalCenter:
-                    _pos_rsrc += new Vector2(_padding.X, size.Y / 2 - getRsrcSize().Y / 2);
-                    break;
-                case ItemMenuAlignement.Right:
-                    _pos_rsrc += new Vector2(size.X - _padding.X - getRsrcSize().X, _padding.Y);
-                    break;
-            }
+            _pos_rsrc += _padding;
+            if (hasFlag(_alignement, ItemMenuAlignement.Bottom))
+                _pos_rsrc += new Vector2(_padding.X, size.Y - getRsrcSize().Y);
+            if (hasFlag(_alignement, ItemMenuAlignement.HorizontalCenter))
+                _pos_rsrc += new Vector2(size.X / 2 - getSize().X / 2 - _padding.X, 0);
+            if (hasFlag(_alignement, ItemMenuAlignement.VerticalCenter))
+                _pos_rsrc += new Vector2(_padding.X, size.Y / 2 - getRsrcSize().Y / 2 - padding.Y);
+            if (hasFlag(_alignement, ItemMenuAlignement.Right))
+                _pos_rsrc += new Vector2(size.X - _padding.X - getRsrcSize().X, _padding.Y);
         }
 
         public void addFocus(int id, Color bg_focus)
