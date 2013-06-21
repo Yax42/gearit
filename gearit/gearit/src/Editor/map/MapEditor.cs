@@ -160,13 +160,16 @@ namespace gearit.src.editor.map
                 Body tmp = _map.getBody(_input.simUnitPosition());
                 if (tmp != null)
                 {
-                    tmp.Rotation += 0.5f;
-                    //tmp.SetTransform(new Vector2(tmp.Position.X, tmp.Position.Y), 3.1415926f);
+                    tmp.Rotation += 0.02f;
                 }
             }
             if (_input.pressed(MouseKeys.RIGHT) && _mode == Mode.ROTATE)
             {
-
+                Body tmp = _map.getBody(_input.simUnitPosition());
+                if (tmp != null)
+                {
+                    tmp.Rotation -= 0.02f;
+                }
             }
 
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
