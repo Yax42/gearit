@@ -238,6 +238,7 @@
     <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionMainSelect.cs" />
     <Compile Include="src\editor\robot\action\IAction.cs" />
+    <Compile Include="src\game\Game.cs" />
     <Compile Include="src\map\Map.cs" />
     <Compile Include="src\robot\api\Api.cs" />
     <Compile Include="src\robot\api\PrismaticApi.cs" />
