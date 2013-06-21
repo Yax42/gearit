@@ -152,13 +152,23 @@ namespace gearit.src.editor.map
                     case Mode.ROTATE:
                         break;
                     case Mode.DELETE:
-                        for (int i = 0; i < _map.getBodies().Count(); i++)
-                        {
-                            _map.getBodies().Remove(_map.getBody(_input.simUnitPosition()));
-                        }
+                        _map.getBodies().Remove(_map.getBody(_input.simUnitPosition()));
                         break;
                 }
             }
+            if (_input.pressed(MouseKeys.LEFT) && _mode == Mode.ROTATE)
+            {
+                Body tmp = _map.getBody(_input.simUnitPosition());
+                if (tmp != null)
+                {
+                    tmp.SetTransform(new Vector2(tmp.Position.X, tmp.Position.Y), 3.1415926f);
+                }
+            }
+            if (_input.pressed(MouseKeys.RIGHT) && _mode == Mode.ROTATE)
+            {
+
+            }
+
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
                 _camera.move(_input.mouseOffset() / _camera.Zoom);
             if (_input.justPressed(MouseKeys.WHEEL_DOWN))
