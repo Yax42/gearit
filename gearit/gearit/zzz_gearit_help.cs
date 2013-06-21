@@ -19,7 +19,7 @@ EXEMPLE D'AWSOME SHORTCUT ICI /!\
 /////////////////////
 
 
-    // Serialization d'objet:
+    // Serialization d'objet: {
     * Ajouter les "using" suivant:
        * `using System.Runtime.Serialization;`
        * `using System.Runtime.Serialization.Formatters.Binary;`
@@ -30,6 +30,7 @@ EXEMPLE D'AWSOME SHORTCUT ICI /!\
     * Creer une founction `GetObjectData` pour mettre les valeurs dans la map de
 	  Serialisation.
     * Exemple:
+    }
 
     [Serializable()]
     class Coucou : ISerializable
@@ -48,7 +49,7 @@ EXEMPLE D'AWSOME SHORTCUT ICI /!\
 
       public GetObjectData(SerializationInfo info, StreamingContext ctxt)
       {
-        info.AddValue("Bisoux", this._nbBisoux);
+        info.AddValue("Bisoux", this._nbBisoux, typeof(int));
       }
 
       [...]
@@ -62,5 +63,5 @@ EXEMPLE D'AWSOME SHORTCUT ICI /!\
 
 
 
-
 */
+

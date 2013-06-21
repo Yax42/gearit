@@ -31,10 +31,12 @@ namespace gearit
         public Heart(SerializationInfo info, StreamingContext ctxt) :
             base(info, ctxt)
         {
-            // Position = new Vector2(3, 3);
-            // _vertices = PolygonTools.CreateRectangle(1, 1);
-            // _shape = new PolygonShape(_vertices, 50f);
-            // _fix = CreateFixture(_shape, null);
+            Position = new Vector2(3, 3);
+            _vertices = PolygonTools.CreateRectangle(1, 1);
+            _shape = new PolygonShape(_vertices, 50f);
+            _fix = CreateFixture(_shape, null);
+            setShape(_shape, Robot._robotIdCounter);
+            Console.WriteLine("Heart created.");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -89,9 +91,9 @@ namespace gearit
             Vector2 backupPos = _vertices[id];
             _vertices[id] = pos - Position;
             if (checkShape() == false)
-              _vertices[id] = backupPos;
+                _vertices[id] = backupPos;
             else
-              updateShape();
+                updateShape();
         }
 
         public void addCorner(Vector2 p)
@@ -103,7 +105,7 @@ namespace gearit
             if (checkShape() == false)
                 _vertices.Remove(p);
             else
-              updateShape();
+                updateShape();
         }
 
         public void removeCorner(int id)
@@ -113,9 +115,9 @@ namespace gearit
             Vector2 backupPos = _vertices[id];
             _vertices.RemoveAt(id);
             if (checkShape() == false)
-              _vertices.Insert(id, backupPos);
+                _vertices.Insert(id, backupPos);
             else
-              updateShape();
+                updateShape();
         }
 
         public override float Weight

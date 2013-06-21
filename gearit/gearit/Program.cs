@@ -22,8 +22,10 @@ namespace gearit
             }
 
             // Test Serialization.
+
             // Serializer s = new Serializer();
             // World world = new World(new Vector2(0, 9.82f));
+            // Piece.SetWorld(world);
             // Robot r = new Robot(world);
             // string filename = "gally.robot";
             // s.SerializeItem(filename, r);
