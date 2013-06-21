@@ -51,7 +51,7 @@ namespace gearit.src.editor.robot
         private DrawGame _draw_game;
         private Robot _robot;
 
-	// Action
+	    // Action
         private Piece _mainSelected;
         private Piece _selected2;
         private ActionTypes _actionType;
@@ -128,7 +128,7 @@ namespace gearit.src.editor.robot
             _actions[(int) ActionTypes.MOVE_ANCHOR] = new ActionMoveAnchor();
             _actions[(int) ActionTypes.DELETE_SPOT] = new ActionDeleteSpot();
             _actions[(int) ActionTypes.PRIS_LINK] = new ActionPrisLink();
-	    _actions[(int) ActionTypes.REV_LINK] = new ActionRevLink();
+	        _actions[(int) ActionTypes.REV_LINK] = new ActionRevLink();
             _actions[(int) ActionTypes.RESIZE_WHEEL] = new ActionResizeWheel();
             _actions[(int) ActionTypes.RESIZE_HEART] = new ActionResizeHeart();
 
