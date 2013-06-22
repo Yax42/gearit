@@ -17,7 +17,7 @@ namespace gearit.src
         // primitives. (it's about gpu)
         private const int _circleSegments = 32;
         private BasicEffect _basicEffect;
-        private VertexPositionColor[] _lineVertices =  new VertexPositionColor[50000];
+        private VertexPositionColor[] _lineVertices = new VertexPositionColor[50000];
         private Vector2[] _tempVertices = new Vector2[500];
         private AssetCreator _asset;
         private GraphicsDevice _device;
@@ -147,6 +147,14 @@ namespace gearit.src
             }
         }
 
+        public void drawString(SpriteFont font, string text, Vector2 pos, Color col)
+        {
+            _batch.DrawString(font, text, pos, col);
+        }
 
+        public void drawTexture(Texture2D texture, Rectangle rect, Color col)
+        {
+            _batch.Draw(texture, rect, col);
+        }
     }
 }

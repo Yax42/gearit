@@ -1,43 +1,128 @@
-﻿/*
-using System;
-using FarseerPhysics.Collision.Shapes;
-using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
-using FarseerPhysics.Dynamics.Joints;
+using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
+using FarseerPhysics.Dynamics.Joints;
 
-namespace gearit
+namespace gearit.src.robot
 {
-    class Rod
+    class Rod : Piece, ISerializable
     {
+
+        private const float _width = 0.02f;
+
         private float _size;
-        private float _strength;
-        private Piece _start;
-        private Piece _end;
-        private PrismaticJoint _prisJoint;
-        //private LineJoint _lineJoint;
 
-
-        public Rod(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2)
+        public Rod(Robot robot, float size) :
+            this(robot, size, Vector2.Zero)
         {
-            //_lineJoint = new LineJoint(_side1, _side2, new Vector2(0, 0), new Vector2(0, size));
-            //robot.getWorld().AddJoint(_lineJoint);
-            _prisJoint = new PrismaticJoint(p1, p2, anchor1, anchor2, Vector2.Zero);
-            _prisJoint.LimitEnabled = true;
-            _prisJoint.Enabled = true;
-            robot.getWorld().AddJoint(_prisJoint);
-            Strength = 0;
-            //Size = size;
-            //spot.connect(robot.getWorld(), this, true);
-            Console.WriteLine("Rod created.");
         }
 
-        public Piece getPiece(int v)
+        public Rod(Robot robot, float size, Vector2 pos) :
+            base(robot, new PolygonShape(PolygonTools.CreateRectangle(size, _width), 1f)) //density ~= poids
         {
-	    if (v == 0)
-	      return (_start);
-            return (_end);
+            Position = pos;
+            _size = size;
+            //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
+        }
+
+        public Rod(SerializationInfo info, StreamingContext ctxt) :
+            base(info, ctxt)
+        {
+            Position = Vector2.Zero;
+            _size = (float)info.GetValue("Size", typeof(float));
+            _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1f);
+            setShape(_shape, Robot._robotIdCounter);
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            base.GetObjectData(info, ctxt);
+            info.AddValue("Size", _size, typeof(float));
+        }
+
+        public bool getSide(Vector2 pos)
+        {
+            Transform xf;
+            GetTransform(out xf);
+            Vector2 v1 = ((PolygonShape)_shape).Vertices[0];
+            Vector2 v2 = ((PolygonShape)_shape).Vertices[2];
+
+            return ((MathUtils.Multiply(ref xf, v1) - pos).Length() > (MathUtils.Multiply(ref xf, v1) - pos).Length());
+
+        }
+
+        public void resetShape()
+        {
+            _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+            DestroyFixture(_fix);
+            _fix = CreateFixture(_shape);
+        }
+        public void setPos2(Vector2 pos, bool side)
+        {
+            Vector2 dif = Position - pos;
+            float angle = (float)Math.Atan2(dif.X, -dif.Y) + (float) Math.PI / 2;
+	    float backup = _size;
+            _size = dif.Length();
+
+            resetShape();
+
+            if (areSpotsOk() == false)
+            {
+                _size = backup;
+                resetShape();
+            }
+            else
+            {
+                float oldAngle = Rotation;
+                Rotation = angle;
+                if (areSpotsOk() == false)
+                    Rotation = oldAngle;
+		/*
+                foreach (Joint spot in JointList)
+                {
+
+
+		  ((ISpot) spot).moveAnchor(this,
+			 (spot.BodyA == this) ?
+			(spot.WorldAnchorA.Length *  new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle));
+                }
+		*/
+
+                //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
+            }
+            /*
+            Transform xf;
+            GetTransform(out xf);
+            Vector2 relMainPos = ((PolygonShape)_shape).Vertices[(side ? 0 : 2)];
+            Vector2 absMainPos = MathUtils.Multiply(ref xf, relMainPos);
+
+            Vector2 dif = absMainPos - pos;
+            float angle = (float)Math.Atan2(dif.X, -dif.Y) * (side ? 1 : -1);
+            float newSize = dif.Length();
+
+            _shape = new PolygonShape(PolygonTools.CreateRectangle(newSize, _width), _shape.Density);
+
+            if (areSpotsOk() == false)
+                _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+            else
+            {
+                _size = newSize;
+                DestroyFixture(_fix);
+                _fix = CreateFixture(_shape);
+                //Rotation = angle;
+                //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
+            }
+	    */
+        }
+
+        override public float getSize()
+        {
+            return (_size);
         }
 
         public float Size
@@ -45,69 +130,17 @@ namespace gearit
             get { return _size; }
             set
             {
-                _size = value;
-                if (_size < 3)
-                    _size = 3;
-                if (_size > 300)
-                    _size = 300;
-                _prisJoint.LowerLimit = _size / 3;
-                _prisJoint.UpperLimit = _size * 3;
+                _shape = new PolygonShape(PolygonTools.CreateRectangle(value, _width), _shape.Density);
+
+                if (areSpotsOk() == false)
+                    _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+                else
+                {
+                    _size = value;
+                    DestroyFixture(_fix);
+                    _fix = CreateFixture(_shape);
+                }
             }
-        }
-
-        public float Strength
-        {
-            get { return _strength; }
-            set
-            {
-                _strength = value;
-                if (_strength < 0)
-                    _strength = 0;
-                if (_strength > 300)
-                    _strength = 300;
-                _prisJoint.MotorEnabled = (_strength != 0);
-                _prisJoint.MaxMotorForce = _strength;
-                _prisJoint.MotorSpeed = 0f;
-            }
-        }
-
-    /*	
-        public void refreshShape()
-        {
-            EdgeShape s = (EdgeShape)_shape;
-            s.Vertex1 = _side1.Position;
-            s.Vertex2 = _side2.Position;
-            _shape = s;
-        }
-
-        private float distance(, Vector2 p)
-        {
-            Vector2 p2;
-
-            p2 = side.Position;
-            p2 -= p;
-            return (p2.Length());
-        }
-
-        public override Vector2 getSpotPos(Vector2 p)
-        {
-            if (distance(_side1, p) > distance(_side2, p))
-                return (_side2.Position);
-            else
-                return (_side1.Position);
-        }
-
-        public override bool isOn(Vector2 p)
-        {
-            Transform t;
-            base.GetTransform(out t);
-            return (base._shape.TestPoint(ref t, ref p));
-        }
-
-        public override bool isRod()
-        {
-            return (true);
         }
     }
 }
-*/

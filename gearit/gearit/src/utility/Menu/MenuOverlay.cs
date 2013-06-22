@@ -36,6 +36,7 @@ namespace gearit.src.utility.Menu
         private List<MenuItem> _items;
         private MenuItem _item_focused = null;
         private MenuItem _item_pressed = null;
+        private MenuItem _just_pressed = null;
         
         // Focus
         private bool _mouse_on = false;
@@ -142,16 +143,8 @@ namespace gearit.src.utility.Menu
             // Checking if item (un)pressed
             if (input.justPressed(MouseKeys.LEFT) && _item_focused != null)
             {
-                if (_item_focused.Pressed)
-                {
-                    _item_focused.Pressed = false;
-                    _item_pressed = null;
-                }
-                else
-                {
-                    _item_focused.Pressed = true;
-                    _item_pressed = _item_focused;
-                }
+                togglePressed();
+                return (true);
             }
             // Checking if in an item
             foreach (MenuItem item in _items)
@@ -169,6 +162,32 @@ namespace gearit.src.utility.Menu
             if (_item_pressed != null)
                 _item_pressed.inputHandler(input);
             return (false);
+        }
+
+        // (UN)Press item
+        public void togglePressed()
+        {
+            // Release old pressed if not focused
+            if (_item_pressed != null && _item_pressed != _item_focused)
+            {
+                _item_pressed.Pressed = false;
+                _item_pressed = null;
+                Console.WriteLine("in");
+            }
+            
+            // Toggle current
+            if (_item_pressed != null)
+            {
+                _item_pressed.Pressed = false;
+                _item_pressed = null;
+            }
+            else
+            {
+                _just_pressed = _item_focused;
+                _item_pressed = _item_focused;
+                _item_pressed.Pressed = true;
+                Console.WriteLine("-> Pressed: " + _item_pressed + " | Focused: " + _item_focused);
+            }
         }
 
         private void manageMovement(Input input)
@@ -220,11 +239,12 @@ namespace gearit.src.utility.Menu
             }
         }
 
-        public MenuItem getPressed()
+        // Get last pressed - reset it
+        public MenuItem justPressed()
         {
-            MenuItem item = _item_pressed;
+            MenuItem item = _just_pressed;
 
-            _item_pressed = null;
+            _just_pressed = null;
             return (item);
         }
 
@@ -259,14 +279,10 @@ namespace gearit.src.utility.Menu
 
         public bool hasItemPressed()
         {
-            // J'avais un bug ici moi, j'ai fais une modif qui a résolu mon probleme.
-            /*
-                foreach (MenuItem item in _items)
-                    if (item.Pressed)
-                        return (true);
-                return (false);
-            */
-            return (_item_pressed != null);
+            foreach (MenuItem item in _items)
+                if (item.Pressed)
+                    return (true);
+            return (false);
         }
 
         public MenuItem getFocused()

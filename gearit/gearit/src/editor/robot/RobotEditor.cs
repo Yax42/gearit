@@ -31,7 +31,7 @@ namespace gearit.src.editor.robot
         PRIS_LINK,
         REV_LINK,
         RESIZE_WHEEL,
-        RESIZE_HEART,
+	CHOOSE_SET,
         COUNT
     }
 
@@ -128,9 +128,9 @@ namespace gearit.src.editor.robot
             _actions[(int) ActionTypes.MOVE_ANCHOR] = new ActionMoveAnchor();
             _actions[(int) ActionTypes.DELETE_SPOT] = new ActionDeleteSpot();
             _actions[(int) ActionTypes.PRIS_LINK] = new ActionPrisLink();
-	        _actions[(int) ActionTypes.REV_LINK] = new ActionRevLink();
-            _actions[(int) ActionTypes.RESIZE_WHEEL] = new ActionResizeWheel();
-            _actions[(int) ActionTypes.RESIZE_HEART] = new ActionResizeHeart();
+	    _actions[(int) ActionTypes.REV_LINK] = new ActionRevLink();
+            _actions[(int) ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
+            _actions[(int) ActionTypes.CHOOSE_SET] = new ActionChooseSet();
 
             // Graphic
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
@@ -191,9 +191,10 @@ namespace gearit.src.editor.robot
                 ScreenManager.RemoveScreen(this);
             if (_actionType == ActionTypes.NONE)
             {
-                if (_menu_tools.hasItemPressed())
+                MenuItem pressed;
+                if ((pressed = _menu_tools.justPressed()) != null)
                 {
-                    _actionType = (ActionTypes)_menu_tools.getPressed().Id;
+                    _actionType = (ActionTypes)pressed.Id;
                     _actions[(int)_actionType].init();
                 }
                 else if (_menu_properties.isMouseOn() || _menu_properties.getFocused() != null || _menu_tools.isMouseOn() || _menu_properties.getFocused() != null)

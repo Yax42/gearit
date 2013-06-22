@@ -158,5 +158,6 @@ namespace gearit
 
         public Color ColorValue { get; set; }
         public bool Shown { get; set; }
+        abstract public float getSize();
     }
 }

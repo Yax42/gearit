@@ -35,11 +35,7 @@ namespace gearit.src.utility
         public Rectangle Geometry
         {
             get { return _rec; }
-            set {
-                Console.WriteLine(value + " // " + _rec);
-                _rec = value;
-            
-            }
+            set { _rec = value; }
         }
     }
 }
