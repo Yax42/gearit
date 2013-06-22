@@ -27,7 +27,11 @@ namespace gearit.src.editor.robot.action
             if (_state == 0)
             {
                 _state = 1;
-                Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
+                Piece p;
+                if (ActionChooseSet.value)
+                    p = new Wheel(robot, 0.5f, input.simUnitPosition());
+                else
+                    p = new Rod(robot, 2, input.simUnitPosition());
                 new PrismaticSpot(robot, selected1, p);
                 selected1 = p;
             }

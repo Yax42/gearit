@@ -117,6 +117,7 @@
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
     <Compile Include="src\editor\map\MapEditor.cs" />
+    <Compile Include="src\editor\robot\action\ActionChooseSet.cs" />
     <Compile Include="src\editor\robot\action\ActionDeletePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionHide.cs" />
     <Compile Include="src\editor\robot\action\ActionLaunch.cs" />
@@ -124,11 +125,10 @@
     <Compile Include="src\editor\robot\action\ActionMovePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionPrisLink.cs" />
     <Compile Include="src\editor\robot\action\ActionDeleteSpot.cs" />
-    <Compile Include="src\editor\robot\action\ActionResizeWheel.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionRevLink.cs" />
     <Compile Include="src\editor\robot\action\ActionSelect2.cs" />
     <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
-    <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
     <Compile Include="src\editor\EditorCamera.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
@@ -243,6 +243,7 @@
     <Compile Include="src\robot\api\Api.cs" />
     <Compile Include="src\robot\api\PrismaticApi.cs" />
     <Compile Include="src\robot\api\RevoluteApi.cs" />
+    <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\ICamera.cs" />
@@ -256,7 +257,6 @@
     <Compile Include="src\robot\PrismaticSpot.cs" />
     <Compile Include="src\robot\RevoluteSpot.cs" />
     <Compile Include="src\robot\Robot.cs" />
-    <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\robot\ISpot.cs" />
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />

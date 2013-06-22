@@ -25,7 +25,6 @@ namespace gearit
             _fix = CreateFixture(_shape);
             //_vertices = ((PolygonShape)_fix.Shape).Vertices;
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
-            Console.WriteLine("Heart created.");
         }
 
         public Heart(SerializationInfo info, StreamingContext ctxt) :
@@ -36,7 +35,6 @@ namespace gearit
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape, null);
             setShape(_shape, Robot._robotIdCounter);
-            Console.WriteLine("Heart created.");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -130,6 +128,11 @@ namespace gearit
                 ResetMassData();
             }
             get { return FixtureList[0].Shape.Density; }
+        }
+
+        override public float getSize()
+        {
+            return (_shape.MassData.Area);
         }
     }
 }

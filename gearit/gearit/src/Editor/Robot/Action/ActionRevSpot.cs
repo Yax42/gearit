@@ -15,7 +15,11 @@ namespace gearit.src.editor.robot.action
 
         public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            Piece p = new Wheel(robot, 0.5f, input.simUnitPosition());
+            Piece p;
+	    if (ActionChooseSet.value)
+	      p = new Wheel(robot, 0.5f, input.simUnitPosition());
+	    else
+	      p = new Rod(robot, 2f, input.simUnitPosition());
             new RevoluteSpot(robot, selected1, p);
             return (false);
         }

@@ -75,6 +75,12 @@ namespace gearit
             return ((Heart)_pieces.First());
         }
 
+        public void setColor(Color col)
+        {
+            foreach (Piece p in _pieces)
+                p.ColorValue = col;
+        }
+
         public int getId()
         {
             return (_id);

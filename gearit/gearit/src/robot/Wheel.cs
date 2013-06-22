@@ -28,7 +28,6 @@ namespace gearit
             Position = pos;
             _size = size;
             //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
-            Console.WriteLine("Wheel created.");
         }
 
         public Wheel(SerializationInfo info, StreamingContext ctxt) :
@@ -38,7 +37,6 @@ namespace gearit
             _size = (float)info.GetValue("Size", typeof(float));
             _shape = new CircleShape(_size, 1f);
             setShape(_shape, Robot._robotIdCounter);
-            Console.WriteLine("Wheel created.");
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -47,19 +45,30 @@ namespace gearit
             info.AddValue("Size", _size, typeof(float));
         }
 
+        override public float getSize()
+        {
+            return (_size);
+        }
+
+        public void resetShape()
+        {
+            ((CircleShape)_shape).Radius = _size;
+            DestroyFixture(_fix);
+            _fix = CreateFixture(_shape);
+        }
+
         public float Size
         {
             get { return _size; }
             set
             {
-                ((CircleShape)_shape).Radius = value;
+                float backup = _size;
+                _size = value;
+                resetShape();
                 if (areSpotsOk() == false)
-                    ((CircleShape)_shape).Radius = _size;
-                else
                 {
-                    _size = value;
-                    DestroyFixture(_fix);
-                    _fix = CreateFixture(_shape);
+                    _size = backup;
+                    resetShape();
                 }
             }
         }
