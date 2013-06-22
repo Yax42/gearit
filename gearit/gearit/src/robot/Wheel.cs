@@ -27,7 +27,6 @@ namespace gearit
         {
             Position = pos;
             _size = size;
-            //_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
         }
 
         public Wheel(SerializationInfo info, StreamingContext ctxt) :

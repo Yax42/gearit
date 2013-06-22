@@ -33,6 +33,7 @@ namespace gearit
             ColorValue = Color.Black;
             robot.addPiece(this);
             Shown = true;
+            _tex = null;
         }
 
         internal Piece(Robot robot, Shape shape) :
@@ -53,6 +54,11 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
             Shown = true;
+        }
+
+        public void setTexture(DrawGame dg, MaterialType mater)
+        {
+            _tex = dg.textureFromShape(_shape, mater);
         }
 
         internal void setShape(Shape shape, int id)
@@ -159,5 +165,12 @@ namespace gearit
         public Color ColorValue { get; set; }
         public bool Shown { get; set; }
         abstract public float getSize();
+
+        public void draw(DrawGame dg)
+        {
+          dg.draw(this, ColorValue);
+          if (_tex != null)
+              dg.drawTexture(_tex, _tex.Bounds, Color.White);
+        }
     }
 }

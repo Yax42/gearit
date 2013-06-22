@@ -156,5 +156,10 @@ namespace gearit.src
         {
             _batch.Draw(texture, rect, col);
         }
+
+        public Texture2D textureFromShape(Shape shape, MaterialType mater)
+        {
+	    return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
+        }
     }
 }

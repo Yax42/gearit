@@ -128,21 +128,13 @@ namespace gearit
                 _spots[i].draw(game);
         }
 
-        public void draw(SpriteBatch batch)
+        public void draw(DrawGame dg)
         {
-            /*
-            int	    count = 0;
-
-                for (int i = 0; i < _pieces.Count; i++)
-                   _pieces[i].vertices(_lineVertices, ref count);
-                for (int i = 0; i < _spots.Count; i++)
-                   if (_spots[i].GetType() == typeof(PrismaticSpot))
-                 _spots[i].vertices(_lineVertices, ref count);
-                _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, count);
-                for (int i = 1; i < _pieces.Count; i++)
-                    _pieces[i].draw(batch);
-                _pieces[0].draw(batch);
-            */
+            for (int i = 0; i < _pieces.Count; i++)
+                _pieces[i].draw(dg);
+            for (int i = 0; i < _spots.Count; i++)
+                if (_spots[i].GetType() == typeof(PrismaticSpot))
+                    _spots[i].draw(dg);
         }
 
         public void showAll()
