@@ -13,6 +13,7 @@ namespace gearit.src.editor
     {
         public static World _world = null;
         public static Robot _currentRobot = null;
+        public static Dictionary<int, Piece> _ptrmap = null;
     }
 
     /// <summary>

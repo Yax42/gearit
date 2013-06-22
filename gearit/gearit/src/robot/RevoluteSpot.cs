@@ -45,7 +45,9 @@ namespace gearit.src.robot
         }
 
         public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
-            base(null, null, Vector2.Zero, Vector2.Zero)
+            base(SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+        SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+        Vector2.Zero, Vector2.Zero)
         {
             Name = "spot" + SerializerHelper._currentRobot.revCount();
             Enabled = true;
@@ -57,6 +59,8 @@ namespace gearit.src.robot
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
+            info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
         }
 
         public static void initTex(AssetCreator asset)

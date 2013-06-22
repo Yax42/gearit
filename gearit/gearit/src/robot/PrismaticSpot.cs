@@ -42,7 +42,9 @@ namespace gearit.src.robot
         }
 
         public PrismaticSpot(SerializationInfo info, StreamingContext ctxt) :
-            base()
+            base(SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+        SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+        Vector2.Zero, Vector2.Zero, new Vector2(1, 1))
         {
             Name = "piston" + SerializerHelper._currentRobot.revCount();
             _size = (float)info.GetValue("Size", typeof(float));
@@ -53,11 +55,19 @@ namespace gearit.src.robot
             MotorEnabled = true;
             LimitEnabled = false;
             ColorValue = Color.Black;
+
+            // int PAHashCode = (int) info.GetValue("PAHashCode", typeof(int));
+            // int PBHashCode = (int) info.GetValue("PBHashCode", typeof(int));
+
+            // Piece bodyA = SerializerHelper._ptrmap[PAHashCode];
+            // Piece bodyB = SerializerHelper._ptrmap[PBHashCode];
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("Size", _size, typeof(float));
+            info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
+            info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
         }
 
         public void updateLimit()
