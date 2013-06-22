@@ -29,7 +29,6 @@ namespace gearit.src.editor.map
         private Input               _input;
         private EditorCamera        _camera;
         private DrawGame            _draw_game;
-        private RectangleOverlay    _background;
         private MenuOverlay         _menu_tools;
         private MenuOverlay         _menu_properties;
         private Mode                _mode;
@@ -85,7 +84,6 @@ namespace gearit.src.editor.map
 
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-            _background = new RectangleOverlay(rec, Color.LightSkyBlue, ScreenManager.GraphicsDevice);
 
             // Menu
             MenuItem item;
@@ -173,20 +171,17 @@ namespace gearit.src.editor.map
             }
 
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
-                _camera.move(_input.mouseOffset() / _camera.Zoom);
+                _camera.move(_input.mouseOffset());
             if (_input.justPressed(MouseKeys.WHEEL_DOWN))
-                _camera.Zoom *= 2;
+                _camera.zoomIn();
             if (_input.justPressed(MouseKeys.WHEEL_UP))
-                _camera.Zoom /= 2;
+                _camera.zoomOut();
         }
 
         public override void Draw(GameTime gameTime)
         {
-            
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
-            _background.Draw(_draw_game.Batch());
-            _draw_game.End();
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
+            ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
+            _draw_game.Begin(_camera);
             _map.drawDebug(_draw_game);
             _menu_tools.Draw(_draw_game.Batch());
             _menu_properties.Draw(_draw_game.Batch());

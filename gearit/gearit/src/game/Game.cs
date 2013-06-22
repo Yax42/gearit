@@ -111,7 +111,8 @@ namespace gearit.src.game
 
         public override void Draw(GameTime gameTime)
         {
-            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
+            ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
+            _drawGame.Begin(_camera);
 
             foreach (Robot r in _robots)
                 r.drawDebug(_drawGame);

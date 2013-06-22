@@ -81,7 +81,7 @@ namespace gearit
         public bool isOn(Vector2 p)
         {
             Transform t;
-            base.GetTransform(out t);
+            GetTransform(out t);
             return (_shape.TestPoint(ref t, ref p));
         }
 

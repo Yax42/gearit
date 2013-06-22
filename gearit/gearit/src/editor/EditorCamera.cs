@@ -101,6 +101,16 @@ namespace gearit.src.editor
         /// <summary>
         /// The current zoom
         /// </summary>
+        public void zoomIn()
+        {
+            Zoom *= 1.1f;
+        }
+
+        public void zoomOut()
+        {
+            Zoom /= 1.1f;
+        }
+
         public float Zoom
         {
             get { return _currentZoom; }
@@ -113,7 +123,7 @@ namespace gearit.src.editor
 
         public void move(Vector2 amount)
         {
-            _currentPosition -= ConvertUnits.ToSimUnits(amount);
+            _currentPosition -= ConvertUnits.ToSimUnits(amount / Zoom);
             if (_minPosition != _maxPosition)
             {
                 Vector2.Clamp(ref _currentPosition, ref _minPosition, ref _maxPosition, out _currentPosition);

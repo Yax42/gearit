@@ -142,9 +142,8 @@ namespace gearit.src.utility
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // Drawing
-            _drawGame.Begin(ScreenManager.GraphicsDevice.Viewport, Camera);
+            _drawGame.Begin(Camera);
 
             _robot.drawDebug(_drawGame);
 

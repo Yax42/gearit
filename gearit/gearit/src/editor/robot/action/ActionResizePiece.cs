@@ -53,17 +53,25 @@ namespace gearit.src.editor.robot.action
                 return (input.justPressed(Keys.S) == false);
             }
             else if (selected1.GetType() == typeof(Wheel))
+            {
                 ((Wheel)selected1).Size = (input.simUnitPosition() - selected1.Position).Length();
+                return (input.justPressed(MouseKeys.LEFT) == false);
+            }
             else
             {
-                if (_begin)
+                if (input.justPressed(MouseKeys.LEFT))
                 {
-                    _side = ((Rod)selected1).getSide(input.simUnitPosition());
-                    _begin = false;
+                    if (_begin)
+                        _begin = false;
+                    else
+                        return (false);
                 }
-                ((Rod)selected1).setPos2(input.simUnitPosition(), _side);
+                if (_begin)
+                    ((Rod)selected1).Size = (input.simUnitPosition() - selected1.Position).Length();
+                else
+                    ((Rod)selected1).setPos2(input.simUnitPosition(), true);
+                return (true);
             }
-            return (input.justPressed(MouseKeys.LEFT) == false);
         }
     }
 }

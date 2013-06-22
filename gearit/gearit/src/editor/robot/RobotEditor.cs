@@ -132,9 +132,6 @@ namespace gearit.src.editor.robot
             _actions[(int) ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
             _actions[(int) ActionTypes.CHOOSE_SET] = new ActionChooseSet();
 
-            // Graphic
-            Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-            _background = new RectangleOverlay(rec, Color.WhiteSmoke, ScreenManager.GraphicsDevice);
 
             // Menu
             InputMenuItem input_item;
@@ -209,11 +206,11 @@ namespace gearit.src.editor.robot
                 _actionType = ActionTypes.NONE;
             }
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
-                _camera.move(_input.mouseOffset() / _camera.Zoom);
+                _camera.move(_input.mouseOffset());
             if (_input.justPressed(MouseKeys.WHEEL_DOWN))
-                _camera.Zoom *= 2;
+                _camera.zoomIn();
             if (_input.justPressed(MouseKeys.WHEEL_UP))
-                _camera.Zoom /= 2;
+                _camera.zoomOut();
             if (_input.justPressed(Keys.P))
             {
                 _serial.SerializeItem("wall-e.bot", _robot);
@@ -222,15 +219,11 @@ namespace gearit.src.editor.robot
 
         public override void Draw(GameTime gameTime)
         {
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
+            _draw_game.Begin(_camera);
 
-            _background.Draw(_draw_game.Batch());
+            ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
             _menu_properties.Draw(_draw_game.Batch());
             _menu_tools.Draw(_draw_game.Batch());
-
-            _draw_game.End();
-
-            _draw_game.Begin(ScreenManager.GraphicsDevice.Viewport, _camera);
 
             if (_selected2 == _mainSelected)
                 _selected2.ColorValue = Color.Violet;
