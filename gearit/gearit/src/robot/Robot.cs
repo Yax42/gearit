@@ -44,6 +44,7 @@ namespace gearit
 
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
+	    SerializerHelper._currentRobot = this;
             this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
             foreach (Piece p in _pieces)
                 SerializerHelper._world.AddBody((Body)p);
@@ -54,6 +55,7 @@ namespace gearit
 
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
+	    SerializerHelper._currentRobot = null;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
