@@ -191,9 +191,10 @@ namespace gearit.src.editor.robot
                 ScreenManager.RemoveScreen(this);
             if (_actionType == ActionTypes.NONE)
             {
-                if (_menu_tools.getPressed() != null)
+                MenuItem pressed;
+                if ((pressed = _menu_tools.justPressed()) != null)
                 {
-                    _actionType = (ActionTypes)_menu_tools.getPressed().Id;
+                    _actionType = (ActionTypes)pressed.Id;
                     _actions[(int)_actionType].init();
                 }
                 else if (_menu_properties.isMouseOn() || _menu_properties.getFocused() != null || _menu_tools.isMouseOn() || _menu_properties.getFocused() != null)
