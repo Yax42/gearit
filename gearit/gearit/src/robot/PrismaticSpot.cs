@@ -11,10 +11,11 @@ using Microsoft.Xna.Framework.Graphics;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Collision.Shapes;
 using gearit.src.utility;
+using gearit.src.editor;
 
 namespace gearit.src.robot
 {
-    class PrismaticSpot : PrismaticJoint, ISpot
+    class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
     {
         // private DistanceJoint _distJoint;
         private float _size;
@@ -34,14 +35,16 @@ namespace gearit.src.robot
             MaxMotorForce = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-	    updateLimit();
+            updateLimit();
             LimitEnabled = false;
             ColorValue = Color.Black;
             robot.addSpot(this);
         }
 
-        public PrismaticSpot(SerializationInfo info, StreamingContext ctxt)
+        public PrismaticSpot(SerializationInfo info, StreamingContext ctxt) :
+            base()
         {
+            Name = "piston" + SerializerHelper._currentRobot.revCount();
             _size = (float)info.GetValue("Size", typeof(float));
             updateAxis();
             Enabled = true;

@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
+using gearit.src.editor;
 using FarseerPhysics.Collision.Shapes;
 
 namespace gearit.src.robot
 {
-    class RevoluteSpot : RevoluteJoint, ISpot
+    class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
     {
         private static float _spotSize = 0.05f;
         private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
@@ -43,8 +44,10 @@ namespace gearit.src.robot
             move(p1, p1.Position);
         }
 
-        public RevoluteSpot(SerializationInfo info, StreamingContext ctxt)
+        public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
+            base(null, null, Vector2.Zero, Vector2.Zero)
         {
+            Name = "spot" + SerializerHelper._currentRobot.revCount();
             Enabled = true;
             MaxMotorTorque = 100;
             MotorSpeed = 0f;
@@ -89,15 +92,15 @@ namespace gearit.src.robot
             move(p, p.Position);
         }
 
-	/*
-        public void move(Vector2 pos)
-        {
-            //BodyA.Position = pos - LocalAnchorA;
-            //BodyB.Position = pos - LocalAnchorB;
-            ((Piece)BodyA).move(pos - LocalAnchorA);
-            ((Piece)BodyB).move(pos - LocalAnchorB);
-        }
-	*/
+        /*
+            public void move(Vector2 pos)
+            {
+                //BodyA.Position = pos - LocalAnchorA;
+                //BodyB.Position = pos - LocalAnchorB;
+                ((Piece)BodyA).move(pos - LocalAnchorA);
+                ((Piece)BodyB).move(pos - LocalAnchorB);
+            }
+        */
 
         public void move(Piece piece, Vector2 pos)
         {

@@ -11,6 +11,7 @@ using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
+using gearit.src.editor;
 using gearit.src.robot;
 using gearit.src;
 
@@ -19,7 +20,6 @@ namespace gearit
     [Serializable()]
     abstract class Piece : Body, ISerializable
     {
-        private static World _world = null;
         internal Shape _shape;
         internal Fixture _fix;
         internal Texture2D _tex;
@@ -27,8 +27,8 @@ namespace gearit
         internal Piece(Robot robot) :
             base(robot.getWorld())
         {
-            if (_world == null)
-                _world = robot.getWorld();
+            if (SerializerHelper._world == null)
+                SerializerHelper._world = robot.getWorld();
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
             robot.addPiece(this);
@@ -38,8 +38,8 @@ namespace gearit
         internal Piece(Robot robot, Shape shape) :
             base(robot.getWorld())
         {
-            if (_world == null)
-                _world = robot.getWorld();
+            if (SerializerHelper._world == null)
+                SerializerHelper._world = robot.getWorld();
             BodyType = BodyType.Dynamic;
             setShape(shape, robot.getId());
             ColorValue = Color.Black;
@@ -48,7 +48,7 @@ namespace gearit
         }
 
         internal Piece(SerializationInfo info, StreamingContext ctxt) :
-            base(_world)
+            base(SerializerHelper._world)
         {
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
@@ -154,11 +154,6 @@ namespace gearit
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-        }
-
-        public static void SetWorld(World w)
-        {
-            _world = w;
         }
 
         public Color ColorValue { get; set; }

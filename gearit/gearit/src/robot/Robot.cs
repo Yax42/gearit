@@ -11,6 +11,7 @@ using gearit.src.utility;
 using gearit.src.robot;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src;
+using gearit.src.editor;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using gearit.src.robot.api;
@@ -43,10 +44,18 @@ namespace gearit
 
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
+            SerializerHelper._currentRobot = this;
             this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
+            foreach (Piece p in _pieces)
+                SerializerHelper._world.AddBody((Body)p);
+
             this._spots = (List<ISpot>)info.GetValue("Spots", typeof(List<ISpot>));
+            foreach (ISpot s in _spots)
+                SerializerHelper._world.AddJoint((Joint)s);
+
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
+            SerializerHelper._currentRobot = null;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

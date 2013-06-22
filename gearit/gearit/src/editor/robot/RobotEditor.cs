@@ -112,7 +112,7 @@ namespace gearit.src.editor.robot
             _actionType = ActionTypes.NONE;
 
             _serial = new Serializer();
-            Piece.SetWorld(_world);
+            SerializerHelper._world = _world;
 
 	    //actions
             _actions[(int) ActionTypes.NONE] = null;
