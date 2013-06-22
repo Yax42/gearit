@@ -11,7 +11,7 @@ namespace gearit.src.editor
     /// </summary>
     static class SerializerHelper
     {
-	public static World _world = null;
-	public static Robot _currentRobot = null;
+        public static World _world = null;
+        public static Robot _currentRobot = null;
     }
 }
