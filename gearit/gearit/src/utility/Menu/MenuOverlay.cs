@@ -259,10 +259,14 @@ namespace gearit.src.utility.Menu
 
         public bool hasItemPressed()
         {
-            foreach (MenuItem item in _items)
-                if (item.Pressed)
-                    return (true);
-            return (false);
+            // J'avais un bug ici moi, j'ai fais une modif qui a résolu mon probleme.
+            /*
+                foreach (MenuItem item in _items)
+                    if (item.Pressed)
+                        return (true);
+                return (false);
+            */
+            return (_item_pressed != null);
         }
 
         public MenuItem getFocused()

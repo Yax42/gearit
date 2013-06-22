@@ -187,20 +187,24 @@ namespace gearit.src.editor.robot
 
         private void HandleInput()
         {
+            if (_input.pressed(Keys.Escape))
+                ScreenManager.RemoveScreen(this);
             if (_actionType == ActionTypes.NONE)
             {
-                if (_menu_tools.hasItemPressed() && false) // enlever false pour que le menu marche
+                if (_menu_tools.hasItemPressed())
                 {
                     _actionType = (ActionTypes)_menu_tools.getPressed().Id;
                     _actions[(int)_actionType].init();
                 }
+                else if (_menu_properties.isMouseOn() || _menu_properties.getFocused() != null || _menu_tools.isMouseOn() || _menu_properties.getFocused() != null)
+                    return;
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(_input, _robot, ref _mainSelected, ref _selected2) == false)
             {
 	       // à decomenter pour avoir un menu effectif.
-               // _menu_tools.getItem((int)_actionType).Pressed = false;
+                //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
@@ -209,10 +213,6 @@ namespace gearit.src.editor.robot
                 _camera.Zoom *= 2;
             if (_input.justPressed(MouseKeys.WHEEL_UP))
                 _camera.Zoom /= 2;
-            if (_input.pressed(Keys.Escape))
-            {
-                ScreenManager.RemoveScreen(this);
-            }
             if (_input.justPressed(Keys.P))
             {
                 _serial.SerializeItem("wall-e.bot", _robot);
