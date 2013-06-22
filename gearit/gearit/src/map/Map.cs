@@ -8,6 +8,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using gearit.src.editor;
 
 namespace gearit.src.map
 {
@@ -29,12 +30,24 @@ namespace gearit.src.map
 
         public Map(SerializationInfo info, StreamingContext ctxt)
         {
+            _world = SerializerHelper._world;
             _mapName = (string)info.GetValue("Name", typeof(string));
+            List<SeralizedBody> bodyList = (List<SeralizedBody>)
+              info.GetValue("Bodies", typeof(List<SeralizedBody>));
+
+            _mapBody = new List<Body>();
+            foreach (SeralizedBody sb in bodyList)
+                _mapBody.Add(SeralizedBody.convertSBody(sb));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            List<SeralizedBody> bodyList = new List<SeralizedBody>();
+            foreach (Body b in _mapBody)
+                bodyList.Add(SeralizedBody.convertBody(b));
+
             info.AddValue("Name", _mapName, typeof(string));
+            info.AddValue("Bodies", bodyList, typeof(List<SeralizedBody>));
         }
 
         public Body getBody(Vector2 p)

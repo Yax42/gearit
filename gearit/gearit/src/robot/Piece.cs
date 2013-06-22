@@ -54,6 +54,13 @@ namespace gearit
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
             Shown = true;
+            int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
+            SerializerHelper._ptrmap.Add(oldHashMap, this);
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        {
+            info.AddValue("HashCode", this.GetHashCode(), typeof(int));
         }
 
         public void setTexture(DrawGame dg, MaterialType mater)
@@ -156,10 +163,6 @@ namespace gearit
                 if (i.Other == other)
                     return ((ISpot)i.Joint);
             return (null);
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
         }
 
         public Color ColorValue { get; set; }
