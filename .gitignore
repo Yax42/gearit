@@ -1,5 +1,5 @@
+*.exe
 obj/
 bin/
-*.exe
 *.suo
 *.user
