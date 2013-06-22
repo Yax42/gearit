@@ -17,7 +17,8 @@ namespace gearit.src.editor.map
 {
     enum Mode
     {
-        MOVE = 0,
+        NONE = 0,
+        MOVE,
         ROTATE,
         DELETE,
         PLACE
@@ -90,16 +91,16 @@ namespace gearit.src.editor.map
             Vector2 pos = new Vector2(0, 50);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightSteelBlue, MenuLayout.Vertical);
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/rotate", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.ROTATE, new Color(120, 120, 120));
+
             pos.X = 0;
             pos.Y = 0;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
-            item = new TextMenuItem(_menu_tools, "New", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
+            item = new TextMenuItem(_menu_tools, "New", ScreenManager.Fonts.DetailsFont, Color.Black, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item = new TextMenuItem(_menu_tools, "Open", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
             item = new TextMenuItem(_menu_tools, "Save", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
 
             _menu_tools.Adjusting = true;
         }
@@ -109,6 +110,7 @@ namespace gearit.src.editor.map
             _camera.flush();
             _input.update();
             _menu_tools.Update(_input);
+            _menu_properties.Update(_input);
             HandleInput();
             _world.Step(0f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -116,6 +118,14 @@ namespace gearit.src.editor.map
 
         private void HandleInput()
         {
+            /* test */
+            MenuItem pressed;
+            if ((pressed = _menu_properties.justPressed()) != null)
+            {
+                _mode = (Mode)pressed.Id;
+            }
+            /**/
+
             if (_input.pressed(Keys.Escape))
             {
                 ScreenManager.RemoveScreen(this);
