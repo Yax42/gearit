@@ -29,7 +29,7 @@ namespace gearit.src.editor
         /// <returns>The converted body.</returns>
         public static SeralizedBody convertBody(Body body)
         {
-            SeralizedBody sb;
+            SeralizedBody sb = new SeralizedBody();
 
             sb._bodytype = body.BodyType;
             return (sb);
