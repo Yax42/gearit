@@ -59,7 +59,7 @@ namespace gearit.src.utility.Menu
             _padding = padding;
         }
 
-        virtual public void inputHandler(Input input)
+        virtual public void inputHandler()
         {
         }
 

@@ -159,8 +159,8 @@ namespace gearit.src.editor.robot
             _time++;
             Input.update();
             _camera.flush();
-            _menu_properties.Update(_input);
-            _menu_tools.Update(_input);
+            _menu_properties.Update();
+            _menu_tools.Update();
             HandleInput();
 
 	    // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)

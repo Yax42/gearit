@@ -25,13 +25,13 @@ namespace gearit.src.editor.map
     }
     class MapEditor : GameScreen, IDemoScreen
     {
-        private World               _world;
-        private Map                 _map;
-        private EditorCamera        _camera;
-        private DrawGame            _draw_game;
-        private MenuOverlay         _menu_tools;
-        private MenuOverlay         _menu_properties;
-        private Mode                _mode;
+        private World _world;
+        private Map _map;
+        private EditorCamera _camera;
+        private DrawGame _draw_game;
+        private MenuOverlay _menu_tools;
+        private MenuOverlay _menu_properties;
+        private Mode _mode;
         private const int PropertiesMenuSize = 50;
 
         private Matrix _view;
@@ -108,8 +108,8 @@ namespace gearit.src.editor.map
             Input.update();
             _camera.flush();
 
-            _menu_tools.Update(_input);
-            _menu_properties.Update(_input);
+            _menu_tools.Update();
+            _menu_properties.Update();
             HandleInput();
             _world.Step(0f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
@@ -125,65 +125,65 @@ namespace gearit.src.editor.map
             }
             /**/
 
-            if (_input.pressed(Keys.Escape))
+            if (Input.pressed(Keys.Escape))
             {
                 ScreenManager.RemoveScreen(this);
             }
-            if (_input.pressed(Keys.P))
+            if (Input.pressed(Keys.P))
             {
                 _mode = Mode.PLACE;
             }
-            if (_input.pressed(Keys.D))
+            if (Input.pressed(Keys.D))
             {
                 _mode = Mode.DELETE;
             }
-            if (_input.pressed(Keys.R))
+            if (Input.pressed(Keys.R))
             {
                 _mode = Mode.ROTATE;
             }
-            if (_input.pressed(Keys.M))
+            if (Input.pressed(Keys.M))
             {
                 _mode = Mode.MOVE;
             }
 
-            if (_input.justPressed(MouseKeys.LEFT))
+            if (Input.justPressed(MouseKeys.LEFT))
             {
                 switch (_mode)
                 {
                     case Mode.MOVE:
                         break;
                     case Mode.PLACE:
-                        _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, _input.simUnitPosition()));
+                        _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, Input.SimMousePos));
                         break;
                     case Mode.ROTATE:
                         break;
                     case Mode.DELETE:
-                        _map.getBodies().Remove(_map.getBody(_input.simUnitPosition()));
+                        _map.getBodies().Remove(_map.getBody(Input.SimMousePos));
                         break;
                 }
             }
-            if (_input.pressed(MouseKeys.LEFT) && _mode == Mode.ROTATE)
+            if (Input.pressed(MouseKeys.LEFT) && _mode == Mode.ROTATE)
             {
-                Body tmp = _map.getBody(_input.simUnitPosition());
+                Body tmp = _map.getBody(Input.SimMousePos);
                 if (tmp != null)
                 {
                     tmp.Rotation += 0.02f;
                 }
             }
-            if (_input.pressed(MouseKeys.RIGHT) && _mode == Mode.ROTATE)
+            if (Input.pressed(MouseKeys.RIGHT) && _mode == Mode.ROTATE)
             {
-                Body tmp = _map.getBody(_input.simUnitPosition());
+                Body tmp = _map.getBody(Input.SimMousePos);
                 if (tmp != null)
                 {
                     tmp.Rotation -= 0.02f;
                 }
             }
 
-            if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
-                _camera.move(_input.mouseOffset());
-            if (_input.justPressed(MouseKeys.WHEEL_DOWN))
+            if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
+                _camera.move(Input.mouseOffset());
+            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
                 _camera.zoomIn();
-            if (_input.justPressed(MouseKeys.WHEEL_UP))
+            if (Input.justPressed(MouseKeys.WHEEL_UP))
                 _camera.zoomOut();
         }
 

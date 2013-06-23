@@ -101,7 +101,7 @@ namespace gearit.src.game
 
         private void HandleInput()
         {
-            if (_input.pressed(Keys.Escape))
+            if (Input.pressed(Keys.Escape))
             {
                 ScreenManager.RemoveScreen(this);
             }
