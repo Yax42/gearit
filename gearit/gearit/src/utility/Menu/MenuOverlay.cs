@@ -125,7 +125,11 @@ namespace gearit.src.utility.Menu
                     _moving = true;
             }
             else
+            {
+                if (Input.justPressed(MouseKeys.LEFT))
+                    releasePressed();
                 _mouse_on = false;
+            }
             // Nothing happens - release
             releaseFocus();
         }
@@ -238,6 +242,15 @@ namespace gearit.src.utility.Menu
             }
         }
 
+        public void releasePressed()
+        {
+            if (_item_pressed != null)
+            {
+                _item_pressed.Pressed = false;
+                _item_pressed = null;
+            }
+        }
+
         // Get last pressed - reset it
         public MenuItem justPressed()
         {
@@ -278,10 +291,7 @@ namespace gearit.src.utility.Menu
 
         public bool hasItemPressed()
         {
-            foreach (MenuItem item in _items)
-                if (item.Pressed)
-                    return (true);
-            return (false);
+            return (_item_pressed != null);
         }
 
         public MenuItem getFocused()

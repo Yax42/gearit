@@ -77,12 +77,7 @@ namespace gearit.src.utility.Menu
                 {
                     // Check special key first
                     if (!manageSpecialKey(key))
-                    {
-                        // Clear selection
-                        if (_char_selected > 0)
-                            clearSelection();
                         insertInput(key);
-                    }
                 }
             }
         }
@@ -92,6 +87,11 @@ namespace gearit.src.utility.Menu
             string input = Input.keyToString(key);
             string concat = input + _text;
 
+            // Clear selection
+            if (input == "")
+                return (false);
+
+            clearSelection();
 
             // Check length
             if (_text.Length + input.Length >= _max_text_size || _text_font.MeasureString(concat).X + PADDING_X * 2 > _size_input.X)
@@ -108,6 +108,9 @@ namespace gearit.src.utility.Menu
 
         public bool manageSpecialKey(Keys key)
         {
+            // Enter : unfocus
+            if (key == Keys.Enter)
+                _menu.releasePressed();
             // Delete selection
             if (key == Keys.Delete)
             {
@@ -219,14 +222,12 @@ namespace gearit.src.utility.Menu
                 {
                     rec.X += (int)_text_font.MeasureString(_text.Substring(0, _cursor_pos)).X;
                     rec.Width = (int)_text_font.MeasureString(_text.Substring(_cursor_pos, _char_selected)).X;
+                    rec.Y += 2;
+                    rec.Height -= 4;
 
                     // FIX PADDING
-                    if (_cursor_pos > 0)
-                        rec.X += PADDING_X + 1;
-                    else
-                    {
-                        rec.Width += PADDING_X * 2;
-                    }
+                    rec.X += PADDING_X;
+                    rec.Width += 1;
 
                     _selected_bg.Geometry = rec;
                     _selected_bg.draw(drawer);
