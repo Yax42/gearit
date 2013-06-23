@@ -47,7 +47,7 @@ namespace gearit.src.robot
         SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
         Vector2.Zero, Vector2.Zero, new Vector2(1, 1))
         {
-            Name = "piston" + SerializerHelper._currentRobot.revCount();
+            // Name = "piston" + SerializerHelper._currentRobot.revCount();
             _size = (float)info.GetValue("Size", typeof(float));
             updateAxis();
             Enabled = true;

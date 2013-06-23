@@ -55,6 +55,9 @@ namespace gearit
             ColorValue = Color.Black;
             Shown = true;
             int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
+            Console.WriteLine("Created Piece with code {0}.", oldHashMap);
+            if (SerializerHelper._ptrmap == null)
+                SerializerHelper._ptrmap = new Dictionary<int, Piece>();
             SerializerHelper._ptrmap.Add(oldHashMap, this);
         }
 
@@ -171,9 +174,9 @@ namespace gearit
 
         public void draw(DrawGame dg)
         {
-          dg.draw(this, ColorValue);
-          if (_tex != null)
-              dg.drawTexture(_tex, _tex.Bounds, Color.White);
+            dg.draw(this, ColorValue);
+            if (_tex != null)
+                dg.drawTexture(_tex, _tex.Bounds, Color.White);
         }
     }
 }
