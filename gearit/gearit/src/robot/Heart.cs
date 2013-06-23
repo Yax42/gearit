@@ -32,7 +32,7 @@ namespace gearit
         {
             List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
             _vertices = new Vertices(v);
-            _shape = new PolygonShape(_vertices, 50f);
+            _shape = new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float)));
             _fix = CreateFixture(_shape, null);
             setShape(_shape, Robot._robotIdCounter);
         }

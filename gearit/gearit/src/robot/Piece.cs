@@ -65,6 +65,7 @@ namespace gearit
         {
             info.AddValue("HashCode", this.GetHashCode(), typeof(int));
             info.AddValue("Position", this.Position, typeof(Vector2));
+            info.AddValue("Density", _shape.Density, typeof(float));
         }
 
         public void setTexture(DrawGame dg, MaterialType mater)
