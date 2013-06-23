@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace gearit.src.utility
 {
-    public class RectangleOverlay
+    class RectangleOverlay
     {
         Texture2D _tex;
         Rectangle _rec;
@@ -22,14 +22,14 @@ namespace gearit.src.utility
             _tex.SetData(new Color[] { Color.White });
         }
 
-        public void Draw(SpriteBatch batch)
+        public void draw(DrawGame drawer)
         {
-            batch.Draw(_tex, _rec, _color);
+            drawer.drawTexture(_tex, _rec, _color);
         }
 
-        public void Draw(SpriteBatch batch, Vector2 pos)
+        public void draw(DrawGame drawer, Vector2 pos)
         {
-            batch.Draw(_tex, new Rectangle((int)pos.X, (int)pos.Y, _rec.Width, _rec.Height), _color);
+            drawer.drawTexture(_tex, new Rectangle((int)pos.X, (int)pos.Y, _rec.Width, _rec.Height), _color);
         }
 
         public Rectangle Geometry

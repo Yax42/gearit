@@ -125,13 +125,13 @@ namespace gearit.src.utility.Menu
             return (false);
         }
 
-        override public void Draw(SpriteBatch batch)
+        override public void draw(DrawGame drawer)
         {
             if (_visible)
             {
-                base.Draw(batch);
-                _border_bg.Draw(batch);
-                _input_bg.Draw(batch);
+                base.draw(drawer);
+                _border_bg.draw(drawer);
+                _input_bg.draw(drawer);
 
                 // Manage selection
                 if (_char_selected > 0)
@@ -139,10 +139,10 @@ namespace gearit.src.utility.Menu
                     Rectangle rec = _input_bg.Geometry;
                     rec.Width = (int)_text_font.MeasureString(_text.Substring(_cursor_pos, _char_selected)).X + PADDING_X * 2;
                     _selected_bg.Geometry = rec;
-                    _selected_bg.Draw(batch);
+                    _selected_bg.draw(drawer);
                 }
 
-                batch.DrawString(_text_font, _text, _pos_text, _text_color);
+                drawer.drawString(_text_font, _text,_pos_text, _text_color, 0f, _scale, SpriteEffects.None, 0f);
             }
         }
 

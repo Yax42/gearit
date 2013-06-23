@@ -113,11 +113,11 @@ namespace gearit.src.utility.Menu
             set { _id = value; }
         }
 
-        virtual public void Draw(SpriteBatch batch)
+        virtual public void draw(DrawGame drawer)
         {
             // Focus background
             if (_focusable && (_focused || _pressed))
-                _rectangle_bg.Draw(batch, _pos + _menu.Position);
+                _rectangle_bg.draw(drawer, _pos + _menu.Position);
         }
 
         public bool Visible

@@ -222,8 +222,8 @@ namespace gearit.src.editor.robot
             _draw_game.Begin(_camera);
 
             ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
-            _menu_properties.Draw(_draw_game.Batch());
-            _menu_tools.Draw(_draw_game.Batch());
+            _menu_properties.draw(_draw_game);
+            _menu_tools.draw(_draw_game);
 
             if (_selected2 == _mainSelected)
                 _selected2.ColorValue = Color.Violet;
@@ -232,8 +232,8 @@ namespace gearit.src.editor.robot
                 _selected2.ColorValue = Color.Blue;
                 _mainSelected.ColorValue = Color.Red;
             }
-            if (_mainSelected.isConnected(_selected2))
-                _mainSelected.getConnection(_selected2).ColorValue = new Color(255, (_time * 10) % 255, (_time * 10) % 255);
+            //if (_mainSelected.isConnected(_selected2));
+            //    _mainSelected.getConnection(_selected2).ColorValue = new Color(255, (_time * 10) % 255, (_time * 10) % 255);
 
             _robot.drawDebug(_draw_game);
 

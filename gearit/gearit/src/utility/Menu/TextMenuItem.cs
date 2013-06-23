@@ -24,12 +24,12 @@ namespace gearit.src.utility.Menu
             _menu.addItemMenu(this);
         }
 
-        override public void Draw(SpriteBatch batch)
+        override public void draw(DrawGame drawer)
         {
             if (_visible)
             {
-                base.Draw(batch);
-                batch.DrawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, Vector2.Zero, _scale, SpriteEffects.None, 0f);
+                base.draw(drawer);
+                drawer.drawString(_font, _text, _pos_rsrc + _menu.Position, _color, 0f, _scale, SpriteEffects.None, 0f);
             }
         }
 

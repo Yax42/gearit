@@ -147,14 +147,19 @@ namespace gearit.src
             }
         }
 
-        public void drawString(SpriteFont font, string text, Vector2 pos, Color col)
+        public void drawString(SpriteFont font, string text, Vector2 pos, Color col, float rotation = 0f, float scale = 0f, SpriteEffects effects = SpriteEffects.None, float depth = 0f)
         {
-            _batch.DrawString(font, text, pos, col);
+            _batch.DrawString(font, text, pos, col, rotation, Vector2.Zero, scale, effects, depth);
         }
 
         public void drawTexture(Texture2D texture, Rectangle rect, Color col)
         {
             _batch.Draw(texture, rect, col);
+        }
+
+        public void drawTexture(Texture2D texture, Vector2 pos, Color col)
+        {
+            _batch.Draw(texture, pos, col);
         }
 
         public Texture2D textureFromShape(Shape shape, MaterialType mater)
