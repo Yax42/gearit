@@ -12,12 +12,12 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, true) && input.justPressed(Keys.Q));
+            return (Input.ctrlAltShift(false, false, true) && Input.justPressed(Keys.Q));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
             if (selected1 != selected2 && selected1.isConnected(selected2) == false)
               new RevoluteSpot(robot, selected1, selected2);

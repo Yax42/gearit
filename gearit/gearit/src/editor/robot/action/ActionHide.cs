@@ -11,12 +11,12 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.justPressed(Keys.E));
+            return (Input.justPressed(Keys.E));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
             selected1.Shown = !selected1.Shown;
             return (false);

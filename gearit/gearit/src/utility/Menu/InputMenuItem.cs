@@ -64,21 +64,22 @@ namespace gearit.src.utility.Menu
         }
 
         // Item is pressed - manage input
-        override public void inputHandler(Input input)
+        override public void inputHandler()
         {
             List<Keys> keys;
 
-            if ((keys = input.getJustPressed()).Count > 0)
+
+            if ((keys = Input.getJustPressed()).Count > 0)
             {
                 foreach (Keys key in keys)
                 {
                     // Check special key first
-                    if (!manageSpecialKey(input, key))
+                    if (!manageSpecialKey(key))
                     {
                         // Clear selection
                         if (_char_selected > 0)
                             clearSelection();
-                        _text += input.keyToString(key);
+                        _text += Input.keyToString(key);
                          // If not possible, revert
                         if (_text.Length == _max_text_size || _text_font.MeasureString(_text).X + PADDING_X * 2 > _size_input.X)
                             _text = _text.Remove(_text.Length - 1);
@@ -89,7 +90,7 @@ namespace gearit.src.utility.Menu
             }
         }
 
-        public bool manageSpecialKey(Input input, Keys key)
+        public bool manageSpecialKey(Keys key)
         {
             // Delete selection
             if (key == Keys.Delete)
@@ -110,7 +111,7 @@ namespace gearit.src.utility.Menu
                 return (true);
             }
             // Manage CTRL+A - Select all
-            else if ((key == Keys.A || key == Keys.LeftControl) && (input.pressed(Keys.A) && input.pressed(Keys.LeftControl)))
+            else if ((key == Keys.A || key == Keys.LeftControl) && (Input.pressed(Keys.A) && Input.pressed(Keys.LeftControl)))
             {
                 _char_selected = _text.Length;
                 _cursor_pos = 0;
@@ -125,13 +126,13 @@ namespace gearit.src.utility.Menu
             return (false);
         }
 
-        override public void Draw(SpriteBatch batch)
+        override public void draw(DrawGame drawer)
         {
             if (_visible)
             {
-                base.Draw(batch);
-                _border_bg.Draw(batch);
-                _input_bg.Draw(batch);
+                base.draw(drawer);
+                _border_bg.draw(drawer);
+                _input_bg.draw(drawer);
 
                 // Manage selection
                 if (_char_selected > 0)
@@ -139,10 +140,10 @@ namespace gearit.src.utility.Menu
                     Rectangle rec = _input_bg.Geometry;
                     rec.Width = (int)_text_font.MeasureString(_text.Substring(_cursor_pos, _char_selected)).X + PADDING_X * 2;
                     _selected_bg.Geometry = rec;
-                    _selected_bg.Draw(batch);
+                    _selected_bg.draw(drawer);
                 }
 
-                batch.DrawString(_text_font, _text, _pos_text, _text_color);
+                drawer.drawString(_text_font, _text,_pos_text, _text_color, 0f, _scale, SpriteEffects.None, 0f);
             }
         }
 
@@ -190,7 +191,7 @@ namespace gearit.src.utility.Menu
             _pos_text.Y = rec.Y + rec.Height / 2 - _text_font.MeasureString("X").Y / 2;
         }
 
-        public string Input
+        public string Text
         {
             get { return _text; }
             set { _text = value; }

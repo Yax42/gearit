@@ -11,18 +11,18 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, true) && input.justPressed(MouseKeys.RIGHT));
+            return (Input.ctrlAltShift(false, false, true) && Input.justPressed(MouseKeys.RIGHT));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
             if (selected1.isConnected(selected2) == false)
                 return (false);
-            if (selected1.isOn(input.simUnitPosition()))
-                selected1.getConnection(selected2).moveAnchor(selected1, input.simUnitPosition());
-            return (input.pressed(MouseKeys.RIGHT));
+            if (selected1.isOn(Input.SimMousePos))
+                selected1.getConnection(selected2).moveAnchor(selected1, Input.SimMousePos);
+            return (Input.pressed(MouseKeys.RIGHT));
         }
     }
 }

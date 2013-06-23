@@ -103,22 +103,22 @@ namespace gearit.src.utility.Menu
         }
 
         // Refreshing focus by mouse
-        public void Update(Input input)
+        public void Update()
         {
-            if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), input.position()))
+            if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), Input.position()))
             {
                 _mouse_on = true;
                 // Moving
                 if (_moving)
                 {
-                    manageMovement(input);
+                    manageMovement();
                     return;
                 }
                 // Manage all state/position of mouse
-                if (itemToggle(input))
+                if (itemToggle())
                     return;
                 // Manage movable
-                if (_movable && input.justPressed(MouseKeys.LEFT) && !_moving)
+                if (_movable && Input.justPressed(MouseKeys.LEFT) && !_moving)
                     _moving = true;
             }
             else
@@ -138,17 +138,17 @@ namespace gearit.src.utility.Menu
             set { _screen = value; }
         }
 
-        private bool itemToggle(Input input)
+        private bool itemToggle()
         {
             // Checking if item (un)pressed
-            if (input.justPressed(MouseKeys.LEFT) && _item_focused != null)
+            if (Input.justPressed(MouseKeys.LEFT) && _item_focused != null)
             {
                 togglePressed();
                 return (true);
             }
             // Checking if in an item
             foreach (MenuItem item in _items)
-                if (item.Focusable && isIn(item.getRectangle(), input.position()))
+                if (item.Focusable && isIn(item.getRectangle(), Input.position()))
                 {
                     if (!item.Focused)
                     {
@@ -160,7 +160,7 @@ namespace gearit.src.utility.Menu
                 }
             // Update focused item if any
             if (_item_pressed != null)
-                _item_pressed.inputHandler(input);
+                _item_pressed.inputHandler();
             return (false);
         }
 
@@ -190,15 +190,15 @@ namespace gearit.src.utility.Menu
             }
         }
 
-        private void manageMovement(Input input)
+        private void manageMovement()
         {
-            if (input.justReleased(MouseKeys.LEFT))
+            if (Input.justReleased(MouseKeys.LEFT))
                 _moving = false;
 
             // Need to move 
             else if (_movable)
             {
-                Vector2 pos = _pos + input.mouseOffset();
+                Vector2 pos = _pos + Input.mouseOffset();
 
                 // Don't move if out of window
                 if (pos.Y < 0)
@@ -220,13 +220,13 @@ namespace gearit.src.utility.Menu
         }
 
         // Drawing - Loop on all itemMenu and draw them
-        public void Draw(SpriteBatch batch)
+        public void draw(DrawGame drawer)
         {
             if (_visible)
             {
-                _rectangle.Draw(batch);
+                _rectangle.draw(drawer);
                 foreach (MenuItem item in _items)
-                    item.Draw(batch);
+                    item.draw(drawer);
             }
         }
 

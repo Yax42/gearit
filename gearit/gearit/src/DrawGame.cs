@@ -40,7 +40,7 @@ namespace gearit.src
             return (_batch);
         }
 
-        public void Begin(Viewport viewport, ICamera camera)
+        public void Begin(ICamera camera)
         {
             //tell our basic effect to begin.
             _batch.Begin();
@@ -83,7 +83,7 @@ namespace gearit.src
                 draw(f, xf, col);
         }
 
-        public void draw(Fixture fixture, Transform xf, Color color)
+        private void draw(Fixture fixture, Transform xf, Color color)
         {
             switch (fixture.ShapeType)
             {
@@ -123,14 +123,14 @@ namespace gearit.src
             }
         }
 
-        public void drawPolygon(Vector2[] vertices, int count, Color color)
+        private void drawPolygon(Vector2[] vertices, int count, Color color)
         {
             for (int i = 0; i < count - 1; i++)
                 addLine(vertices[i], vertices[i + 1], color);
             addLine(vertices[count - 1], vertices[0], color);
         }
 
-        public void drawCircle(Vector2 center, float radius, Color color)
+        private void drawCircle(Vector2 center, float radius, Color color)
         {
             const double increment = Math.PI * 2.0 / _circleSegments;
             double theta = 0.0;
@@ -147,14 +147,24 @@ namespace gearit.src
             }
         }
 
-        public void drawString(SpriteFont font, string text, Vector2 pos, Color col)
+        public void drawString(SpriteFont font, string text, Vector2 pos, Color col, float rotation = 0f, float scale = 0f, SpriteEffects effects = SpriteEffects.None, float depth = 0f)
         {
-            _batch.DrawString(font, text, pos, col);
+            _batch.DrawString(font, text, pos, col, rotation, Vector2.Zero, scale, effects, depth);
         }
 
         public void drawTexture(Texture2D texture, Rectangle rect, Color col)
         {
             _batch.Draw(texture, rect, col);
+        }
+
+        public void drawTexture(Texture2D texture, Vector2 pos, Color col)
+        {
+            _batch.Draw(texture, pos, col);
+        }
+
+        public Texture2D textureFromShape(Shape shape, MaterialType mater)
+        {
+	    return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
         }
     }
 }

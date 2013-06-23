@@ -12,12 +12,12 @@ namespace gearit.src.editor.robot.action
         static public bool value = true;
         public void init() { value = !value;  }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, false) && (input.justPressed(Keys.A)));
+            return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.A)));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
             return (false);
         }

@@ -33,6 +33,7 @@ namespace gearit
             ColorValue = Color.Black;
             robot.addPiece(this);
             Shown = true;
+            _tex = null;
         }
 
         internal Piece(Robot robot, Shape shape) :
@@ -62,6 +63,11 @@ namespace gearit
             info.AddValue("HashCode", this.GetHashCode(), typeof(int));
         }
 
+        public void setTexture(DrawGame dg, MaterialType mater)
+        {
+            _tex = dg.textureFromShape(_shape, mater);
+        }
+
         internal void setShape(Shape shape, int id)
         {
             _shape = shape;
@@ -88,7 +94,7 @@ namespace gearit
         public bool isOn(Vector2 p)
         {
             Transform t;
-            base.GetTransform(out t);
+            GetTransform(out t);
             return (_shape.TestPoint(ref t, ref p));
         }
 
@@ -162,5 +168,12 @@ namespace gearit
         public Color ColorValue { get; set; }
         public bool Shown { get; set; }
         abstract public float getSize();
+
+        public void draw(DrawGame dg)
+        {
+          dg.draw(this, ColorValue);
+          if (_tex != null)
+              dg.drawTexture(_tex, _tex.Bounds, Color.White);
+        }
     }
 }

@@ -65,33 +65,30 @@ namespace gearit.src.robot
         public void setPos2(Vector2 pos, bool side)
         {
             Vector2 dif = Position - pos;
-            float angle = (float)Math.Atan2(dif.X, -dif.Y) + (float) Math.PI / 2;
-	    float backup = _size;
-            _size = dif.Length();
+            float angle = (float)Math.Atan2(dif.X, -dif.Y);
 
-            resetShape();
-
-            if (areSpotsOk() == false)
-            {
-                _size = backup;
-                resetShape();
-            }
-            else
-            {
                 float oldAngle = Rotation;
-                Rotation = angle;
+                Rotation = angle + (float)Math.PI / 2;
+
+	    return ;
+		/*
                 if (areSpotsOk() == false)
                     Rotation = oldAngle;
-		/*
-                foreach (Joint spot in JointList)
-                {
-
-
-		  ((ISpot) spot).moveAnchor(this,
-			 (spot.BodyA == this) ?
-			(spot.WorldAnchorA.Length *  new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle));
-                }
 		*/
+
+                Vector2 anchor;
+
+                for (JointEdge i = JointList; i != null; i = i.Next)
+                {
+                    if (i.Joint.BodyA == this)
+                        anchor = i.Joint.WorldAnchorA;
+                    else
+                        anchor = i.Joint.WorldAnchorB;
+                    anchor -= Position;
+
+                    ((ISpot)i.Joint).moveAnchor(this,
+                      (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle))) * anchor.Length() + Position);
+                }
 
                 //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
             }
@@ -118,7 +115,6 @@ namespace gearit.src.robot
                 //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
             }
 	    */
-        }
 
         override public float getSize()
         {
@@ -130,15 +126,14 @@ namespace gearit.src.robot
             get { return _size; }
             set
             {
-                _shape = new PolygonShape(PolygonTools.CreateRectangle(value, _width), _shape.Density);
+                float backup = _size;
+                _size = value;
+                resetShape();
 
                 if (areSpotsOk() == false)
-                    _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
-                else
                 {
-                    _size = value;
-                    DestroyFixture(_fix);
-                    _fix = CreateFixture(_shape);
+                    _size = backup;
+                    resetShape();
                 }
             }
         }

@@ -16,6 +16,7 @@ namespace gearit
         static void Main(string[] args)
         {
             Settings.UseFPECollisionCategories = true;
+            Input.init();
             using (GearIt game = new GearIt())
             {
                 game.Run();

@@ -15,25 +15,25 @@ namespace gearit.src.utility
 	WHEEL_UP,
 	WHEEL_DOWN
 	}
-    class Input
+    static class Input
     {
         // Input for LUA
-        private SortedList<string, Keys> _keys;
-        Dictionary<Keys, string> _map_keys;
+        static private SortedList<string, Keys> _keys;
+        static Dictionary<Keys, string> _map_keys;
 
         // Mouse
-        private MouseState _old_mouse;
-        private MouseState _mouse;
-        private ICamera _camera;
+        static private MouseState _old_mouse;
+        static private MouseState _mouse;
 
         // Keyboard
-        private KeyboardState _keyboard;
-        private KeyboardState _old_keyboard;
+        static private KeyboardState _keyboard;
+        static private KeyboardState _old_keyboard;
 
-        public Input(ICamera camera)
+        static public void init()
         {
-            _camera = camera;
-
+            _keyboard = Keyboard.GetState();
+            _mouse = Mouse.GetState();
+            SimMousePos = Vector2.Zero;
 
             // MAPPING DICTONARY KEYBOARD
             _map_keys = new Dictionary<Keys, string>();
@@ -107,12 +107,9 @@ namespace gearit.src.utility
             _keys.Add("Shift", Keys.LeftShift);
             _keys.Add("Ctrl-L", Keys.LeftControl);
             _keys.Add("Ctrl-R", Keys.RightControl);
-
-            _keyboard = Keyboard.GetState();
-            _mouse = Mouse.GetState();
         }
 
-        public void update()
+        static public void update()
         {
             _old_mouse = _mouse;
             _old_keyboard = _keyboard;
@@ -120,7 +117,13 @@ namespace gearit.src.utility
             _keyboard = Keyboard.GetState();
         }
 
-        public bool mouseChanged()
+        static public Vector2 SimMousePos
+        {
+            get;
+            set;
+        }
+
+        static public bool mouseChanged()
         {
             return (_old_mouse != _mouse);
         }
@@ -128,17 +131,12 @@ namespace gearit.src.utility
 /*******************/
 /* MOUSE POSITIONS */
 /*******************/
-        public Vector2 position()
+        static public Vector2 position()
         {
             return (new Vector2(_mouse.X, _mouse.Y));
         }
 
-        public Vector2 simUnitPosition()
-        {
-            return (ConvertUnits.ToSimUnits(position()) / _camera.Zoom + _camera.Position + (_camera.center() - _camera.center() / _camera.Zoom));
-        }
-
-        public Vector2 mouseOffset()
+        static public Vector2 mouseOffset()
         {
             return (new Vector2(_mouse.X - _old_mouse.X, _mouse.Y - _old_mouse.Y));
         }
@@ -147,7 +145,7 @@ namespace gearit.src.utility
 /* MOUSE ACTIONS */
 /*****************/
 
-        public bool pressed(MouseKeys key)
+        static public bool pressed(MouseKeys key)
         {
             if (key == MouseKeys.LEFT)
                 return (_mouse.LeftButton == ButtonState.Pressed);
@@ -158,12 +156,12 @@ namespace gearit.src.utility
 	    return (false);
         }
 
-        public bool released(MouseKeys key)
+        static public bool released(MouseKeys key)
         {
             return (!pressed(key));
         }
 
-        public bool justPressed(MouseKeys key)
+        static public bool justPressed(MouseKeys key)
         {
             if (key == MouseKeys.LEFT)
                 return (_mouse.LeftButton == ButtonState.Pressed && _old_mouse.LeftButton != ButtonState.Pressed);
@@ -178,7 +176,7 @@ namespace gearit.src.utility
 	    return (false);
         }
 
-        public bool justReleased(MouseKeys key)
+        static public bool justReleased(MouseKeys key)
         {
             if (key == MouseKeys.LEFT)
                 return (_mouse.LeftButton != ButtonState.Pressed && _old_mouse.LeftButton == ButtonState.Pressed);
@@ -192,27 +190,27 @@ namespace gearit.src.utility
 /********************/
 /* KEYBOARD ACTIONS */
 /********************/
-        public bool pressed(Keys key)
+        static public bool pressed(Keys key)
         {
             return (_keyboard.IsKeyDown(key));
         }
 
-        public bool released(Keys key)
+        static public bool released(Keys key)
         {
             return (!pressed(key));
         }
 
-        public bool justPressed(Keys key)
+        static public bool justPressed(Keys key)
         {
             return (_keyboard.IsKeyDown(key) && !_old_keyboard.IsKeyDown(key));
         }
 
-        public bool justReleased(Keys key)
+        static public bool justReleased(Keys key)
         {
             return (!_keyboard.IsKeyDown(key) && _old_keyboard.IsKeyDown(key));
         }
 
-        public List<Keys> getJustPressed()
+        static public List<Keys> getJustPressed()
         {
             List<Keys> keys = new List<Keys>();
 
@@ -238,7 +236,7 @@ namespace gearit.src.utility
             return (keys);
         }
 
-        public List<Keys> getJustReleased()
+        static public List<Keys> getJustReleased()
         {
             List<Keys> keys = new List<Keys>();
 
@@ -264,7 +262,7 @@ namespace gearit.src.utility
             return (keys);
         }
 
-        public string keyToString(Keys key)
+        static public string keyToString(Keys key)
         {
             if (_map_keys.ContainsKey(key))
                 return (_map_keys[key]);
@@ -272,7 +270,7 @@ namespace gearit.src.utility
                 return ("");
         }
 
-        public bool ctrlAltShift(bool ctrl, bool alt, bool shift)
+        static public bool ctrlAltShift(bool ctrl, bool alt, bool shift)
         {
             return (pressed(Keys.LeftControl) == ctrl && pressed(Keys.LeftAlt) == alt && pressed(Keys.LeftShift) == shift);
         }
@@ -281,7 +279,7 @@ namespace gearit.src.utility
         /* KEYBOARD ACTIONS */
         /********************/
 
-        public bool getKeysAction(string key)
+        static public bool getKeysAction(string key)
         {
             _keyboard = Keyboard.GetState();
             if (_keyboard.IsKeyDown(_keys[key]))
