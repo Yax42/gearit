@@ -102,15 +102,16 @@ namespace gearit.src.editor.robot
             HasCursor = true;
             HasVirtualStick = true;
 
+            _serial = new Serializer();
+            SerializerHelper._world = _world;
+
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             _robot = new Robot(_world);
+            //_robot = (Robot)_serial.DeserializeItem("r2d2.bot");
             _mainSelected = _robot.getHeart();
             _selected2 = _robot.getHeart();
             _actionType = ActionTypes.NONE;
-
-            _serial = new Serializer();
-            SerializerHelper._world = _world;
 
 	    //actions
             _actions[(int) ActionTypes.NONE] = null;
@@ -211,7 +212,7 @@ namespace gearit.src.editor.robot
                 _camera.zoomOut();
             if (Input.justPressed(Keys.P))
             {
-                _serial.SerializeItem("wall-e.bot", _robot);
+                _serial.SerializeItem("r2d2.bot", _robot);
             }
         }
 

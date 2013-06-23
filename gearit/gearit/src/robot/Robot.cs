@@ -46,12 +46,12 @@ namespace gearit
         {
             SerializerHelper._currentRobot = this;
             this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
-            foreach (Piece p in _pieces)
-                SerializerHelper._world.AddBody((Body)p);
+            //foreach (Piece p in _pieces)
+                //SerializerHelper._world.AddBody((Body)p);
 
             this._spots = (List<ISpot>)info.GetValue("Spots", typeof(List<ISpot>));
-            foreach (ISpot s in _spots)
-                SerializerHelper._world.AddJoint((Joint)s);
+            //foreach (ISpot s in _spots)
+                //SerializerHelper._world.AddJoint((Joint)s);
 
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
