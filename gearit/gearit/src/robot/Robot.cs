@@ -190,5 +190,11 @@ namespace gearit
 
         public int revCount() { return (_revoluteCounter++); }
         public int prisCount() { return (_prismaticCounter++); }
+
+        public string Name
+        {
+            get;
+            set;
+        }
     }
 }

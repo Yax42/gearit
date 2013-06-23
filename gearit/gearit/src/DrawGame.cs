@@ -51,8 +51,6 @@ namespace gearit.src
         {
             //tell our basic effect to begin.
             _batch.Begin();
-
-
             _basicEffect.Projection = camera.projection();
             _basicEffect.View = camera.view();
             _basicEffect.CurrentTechnique.Passes[0].Apply();
