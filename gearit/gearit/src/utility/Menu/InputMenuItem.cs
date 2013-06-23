@@ -206,7 +206,7 @@ namespace gearit.src.utility.Menu
                 // Draw cursor
                 if (_char_selected == 0)
                 {
-                    if (_focused || _pressed)
+                    if (_pressed)
                     {
                         Rectangle pos = rec;
 
