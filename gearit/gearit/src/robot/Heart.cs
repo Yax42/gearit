@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
@@ -19,7 +20,6 @@ namespace gearit
         public Heart(Robot robot) :
             base(robot)
         {
-            Position = new Vector2(3, 3);
             _vertices = PolygonTools.CreateRectangle(1, 1);
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape);
@@ -30,8 +30,8 @@ namespace gearit
         public Heart(SerializationInfo info, StreamingContext ctxt) :
             base(info, ctxt)
         {
-            Position = new Vector2(3, 3);
-            _vertices = PolygonTools.CreateRectangle(1, 1);
+            List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
+            _vertices = new Vertices(v);
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape, null);
             setShape(_shape, Robot._robotIdCounter);
@@ -39,6 +39,10 @@ namespace gearit
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            List<Vector2> v = new List<Vector2>();
+            foreach (Vector2 vert in _vertices)
+                v.Add(vert);
+            info.AddValue("Vertices", v, typeof(List<Vector2>));
             base.GetObjectData(info, ctxt);
         }
 
