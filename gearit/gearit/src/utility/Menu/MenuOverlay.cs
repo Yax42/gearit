@@ -105,6 +105,9 @@ namespace gearit.src.utility.Menu
         // Refreshing focus by mouse
         public void Update()
         {
+            // Update focused item if any
+            if (_item_pressed != null)
+                _item_pressed.inputHandler();
             if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), Input.position()))
             {
                 _mouse_on = true;
@@ -158,9 +161,6 @@ namespace gearit.src.utility.Menu
                     }
                     return (true);
                 }
-            // Update focused item if any
-            if (_item_pressed != null)
-                _item_pressed.inputHandler();
             return (false);
         }
 
@@ -186,7 +186,6 @@ namespace gearit.src.utility.Menu
                 _just_pressed = _item_focused;
                 _item_pressed = _item_focused;
                 _item_pressed.Pressed = true;
-                Console.WriteLine("-> Pressed: " + _item_pressed + " | Focused: " + _item_focused);
             }
         }
 
