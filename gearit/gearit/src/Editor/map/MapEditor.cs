@@ -192,8 +192,8 @@ namespace gearit.src.editor.map
             ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
             _draw_game.Begin(_camera);
             _map.drawDebug(_draw_game);
-            _menu_tools.Draw(_draw_game.Batch());
-            _menu_properties.Draw(_draw_game.Batch());
+            _menu_tools.draw(_draw_game);
+            _menu_properties.draw(_draw_game);
             _draw_game.End();
             base.Draw(gameTime);
         }

@@ -220,13 +220,13 @@ namespace gearit.src.utility.Menu
         }
 
         // Drawing - Loop on all itemMenu and draw them
-        public void Draw(SpriteBatch batch)
+        public void draw(DrawGame drawer)
         {
             if (_visible)
             {
-                _rectangle.Draw(batch);
+                _rectangle.draw(drawer);
                 foreach (MenuItem item in _items)
-                    item.Draw(batch);
+                    item.draw(drawer);
             }
         }
 
