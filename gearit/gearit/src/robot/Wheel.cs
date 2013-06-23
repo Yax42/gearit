@@ -33,7 +33,6 @@ namespace gearit
         public Wheel(SerializationInfo info, StreamingContext ctxt) :
             base(info, ctxt)
         {
-            Position = Vector2.Zero;
             _size = (float)info.GetValue("Size", typeof(float));
             _shape = new CircleShape(_size, 1f);
             setShape(_shape, Robot._robotIdCounter);

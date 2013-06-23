@@ -55,15 +55,16 @@ namespace gearit
             ColorValue = Color.Black;
             Shown = true;
             int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
-            Console.WriteLine("Created Piece with code {0}.", oldHashMap);
             if (SerializerHelper._ptrmap == null)
                 SerializerHelper._ptrmap = new Dictionary<int, Piece>();
             SerializerHelper._ptrmap.Add(oldHashMap, this);
+            Position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("HashCode", this.GetHashCode(), typeof(int));
+            info.AddValue("Position", this.Position, typeof(Vector2));
         }
 
         public void setTexture(DrawGame dg, MaterialType mater)
