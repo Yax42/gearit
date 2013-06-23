@@ -46,13 +46,16 @@ namespace gearit.src.robot
         }
 
         public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
-            base(SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+            base(
+    SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
         SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
-        Vector2.Zero, Vector2.Zero)
+        (Vector2)info.GetValue("AnchorA", typeof(Vector2)),
+        (Vector2)info.GetValue("AnchorB", typeof(Vector2)))
         {
-            Name = "spot" + SerializerHelper._currentRobot.revCount();
+            Name = (string)info.GetValue("Name", typeof(string));
+            SerializerHelper._world.AddJoint(this);
             Enabled = true;
-            MaxMotorTorque = 100;
+            MaxMotorTorque = (float)info.GetValue("Force", typeof(float));
             MotorSpeed = 0f;
             MotorEnabled = true;
             ColorValue = Color.Black;
@@ -60,8 +63,12 @@ namespace gearit.src.robot
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            info.AddValue("Name", Name, typeof(string));
+            info.AddValue("Force", MaxMotorTorque, typeof(float));
             info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
             info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
+            info.AddValue("AnchorA", WorldAnchorA, typeof(Vector2));
+            info.AddValue("AnchorB", WorldAnchorB, typeof(Vector2));
         }
 
         public static void initTex(AssetCreator asset)

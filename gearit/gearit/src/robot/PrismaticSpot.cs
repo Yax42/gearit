@@ -45,23 +45,20 @@ namespace gearit.src.robot
         public PrismaticSpot(SerializationInfo info, StreamingContext ctxt) :
             base(SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
         SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
-        Vector2.Zero, Vector2.Zero, new Vector2(1, 1))
+        (Vector2)info.GetValue("AnchorA", typeof(Vector2)),
+        (Vector2)info.GetValue("AnchorB", typeof(Vector2)), new Vector2(1, 1))
         {
-            // Name = "piston" + SerializerHelper._currentRobot.revCount();
+            Name = (string)info.GetValue("Name", typeof(string));
             _size = (float)info.GetValue("Size", typeof(float));
             updateAxis();
+            SerializerHelper._world.AddJoint(this);
             Enabled = true;
-            MaxMotorForce = 100;
+            MaxMotorForce = (float)info.GetValue("Force", typeof(float));
             MotorSpeed = 0f;
+            updateLimit();
             MotorEnabled = true;
             LimitEnabled = false;
             ColorValue = Color.Black;
-
-            // int PAHashCode = (int) info.GetValue("PAHashCode", typeof(int));
-            // int PBHashCode = (int) info.GetValue("PBHashCode", typeof(int));
-
-            // Piece bodyA = SerializerHelper._ptrmap[PAHashCode];
-            // Piece bodyB = SerializerHelper._ptrmap[PBHashCode];
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -69,6 +66,10 @@ namespace gearit.src.robot
             info.AddValue("Size", _size, typeof(float));
             info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
             info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
+            info.AddValue("Name", Name, typeof(string));
+            info.AddValue("Force", MaxMotorForce, typeof(float));
+            info.AddValue("AnchorA", WorldAnchorA, typeof(Vector2));
+            info.AddValue("AnchorB", WorldAnchorB, typeof(Vector2));
         }
 
         public void updateLimit()
