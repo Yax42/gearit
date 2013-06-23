@@ -105,6 +105,9 @@ namespace gearit.src.utility.Menu
         // Refreshing focus by mouse
         public void Update()
         {
+            // Update focused item if any
+            if (_item_pressed != null)
+                _item_pressed.inputHandler();
             if (isIn(new Rectangle((int)_pos.X, (int)_pos.Y, (int)_size.X, (int)_size.Y), Input.position()))
             {
                 _mouse_on = true;
@@ -122,7 +125,11 @@ namespace gearit.src.utility.Menu
                     _moving = true;
             }
             else
+            {
+                if (Input.justPressed(MouseKeys.LEFT))
+                    releasePressed();
                 _mouse_on = false;
+            }
             // Nothing happens - release
             releaseFocus();
         }
@@ -158,9 +165,6 @@ namespace gearit.src.utility.Menu
                     }
                     return (true);
                 }
-            // Update focused item if any
-            if (_item_pressed != null)
-                _item_pressed.inputHandler();
             return (false);
         }
 
@@ -186,7 +190,6 @@ namespace gearit.src.utility.Menu
                 _just_pressed = _item_focused;
                 _item_pressed = _item_focused;
                 _item_pressed.Pressed = true;
-                Console.WriteLine("-> Pressed: " + _item_pressed + " | Focused: " + _item_focused);
             }
         }
 
@@ -239,6 +242,15 @@ namespace gearit.src.utility.Menu
             }
         }
 
+        public void releasePressed()
+        {
+            if (_item_pressed != null)
+            {
+                _item_pressed.Pressed = false;
+                _item_pressed = null;
+            }
+        }
+
         // Get last pressed - reset it
         public MenuItem justPressed()
         {
@@ -279,10 +291,7 @@ namespace gearit.src.utility.Menu
 
         public bool hasItemPressed()
         {
-            foreach (MenuItem item in _items)
-                if (item.Pressed)
-                    return (true);
-            return (false);
+            return (_item_pressed != null);
         }
 
         public MenuItem getFocused()
