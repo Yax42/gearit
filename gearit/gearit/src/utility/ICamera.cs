@@ -10,9 +10,11 @@ namespace gearit.src.utility
     {
         Matrix view();
         Matrix projection();
+	/*
         Vector2 Position { get; set; }
         float Zoom { get; set; }
         float Rotation { get; set; }
         Vector2 center();
+	*/
     }
 }

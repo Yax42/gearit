@@ -22,44 +22,44 @@ namespace gearit.src.editor.robot.action
             _begin = true;
         }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.S));
+            return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.S));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
 
             if (selected1.GetType() == typeof(Heart))
             {
-                if (input.justPressed(MouseKeys.LEFT))
+                if (Input.justPressed(MouseKeys.LEFT))
                 {
                     _moving = true;
-                    _corner = robot.getHeart().getCorner(input.simUnitPosition());
+                    _corner = robot.getHeart().getCorner(Input.SimMousePos);
                 }
-                if (input.pressed(MouseKeys.LEFT))
+                if (Input.pressed(MouseKeys.LEFT))
                 {
-                    if (input.justPressed(MouseKeys.RIGHT))
+                    if (Input.justPressed(MouseKeys.RIGHT))
                     {
                         robot.getHeart().removeCorner(_corner);
                         _corner = 0;
                         _moving = false;
                     }
                     else if (_moving)
-                        robot.getHeart().moveCorner(_corner, input.simUnitPosition());
+                        robot.getHeart().moveCorner(_corner, Input.SimMousePos);
                 }
-                else if (input.justPressed(MouseKeys.RIGHT))
-                    robot.getHeart().addCorner(input.simUnitPosition());
-                return (input.justPressed(Keys.S) == false);
+                else if (Input.justPressed(MouseKeys.RIGHT))
+                    robot.getHeart().addCorner(Input.SimMousePos);
+                return (Input.justPressed(Keys.S) == false);
             }
             else if (selected1.GetType() == typeof(Wheel))
             {
-                ((Wheel)selected1).Size = (input.simUnitPosition() - selected1.Position).Length();
-                return (input.justPressed(MouseKeys.LEFT) == false);
+                ((Wheel)selected1).Size = (Input.SimMousePos - selected1.Position).Length();
+                return (Input.justPressed(MouseKeys.LEFT) == false);
             }
             else
             {
-                if (input.justPressed(MouseKeys.LEFT))
+                if (Input.justPressed(MouseKeys.LEFT))
                 {
                     if (_begin)
                         _begin = false;
@@ -67,9 +67,9 @@ namespace gearit.src.editor.robot.action
                         return (false);
                 }
                 if (_begin)
-                    ((Rod)selected1).Size = (input.simUnitPosition() - selected1.Position).Length();
+                    ((Rod)selected1).Size = (Input.SimMousePos - selected1.Position).Length();
                 else
-                    ((Rod)selected1).setPos2(input.simUnitPosition(), true);
+                    ((Rod)selected1).setPos2(Input.SimMousePos, true);
                 return (true);
             }
         }

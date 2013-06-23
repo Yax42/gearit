@@ -17,27 +17,27 @@ namespace gearit.src.editor.robot.action
             _state = 0;
         }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, false) && input.justPressed(Keys.W));
+            return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.W));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
             if (_state == 0)
             {
                 _state = 1;
                 Piece p;
                 if (ActionChooseSet.value)
-                    p = new Wheel(robot, 0.5f, input.simUnitPosition());
+                    p = new Wheel(robot, 0.5f, Input.SimMousePos);
                 else
-                    p = new Rod(robot, 2, input.simUnitPosition());
+                    p = new Rod(robot, 2, Input.SimMousePos);
                 new PrismaticSpot(robot, selected1, p);
                 selected1 = p;
             }
-            else if (input.justPressed(MouseKeys.LEFT))
+            else if (Input.justPressed(MouseKeys.LEFT))
                 return (false);
-            selected1.move(input.simUnitPosition());
+            selected1.move(Input.SimMousePos);
             return (true);
         }
     }

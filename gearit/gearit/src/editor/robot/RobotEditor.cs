@@ -38,7 +38,6 @@ namespace gearit.src.editor.robot
     class RobotEditor : GameScreen, IDemoScreen
     {
         private World _world;
-        private Input _input;
         private EditorCamera _camera;
         private const int PropertiesMenuSize = 200;
 
@@ -99,7 +98,6 @@ namespace gearit.src.editor.robot
             _camera.Position = new Vector2(0, 0);
             //_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-            _input = new Input(_camera);
             _world.Gravity = new Vector2(0f, 0f);
             HasCursor = true;
             HasVirtualStick = true;
@@ -159,8 +157,8 @@ namespace gearit.src.editor.robot
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             _time++;
+            Input.update();
             _camera.flush();
-            _input.update();
             _menu_properties.Update(_input);
             _menu_tools.Update(_input);
             HandleInput();
@@ -174,7 +172,7 @@ namespace gearit.src.editor.robot
         private bool runShortcut()
         {
             for (int i = 1; i < (int)ActionTypes.COUNT; i++)
-                if (_actions[i].shortcut(_input))
+                if (_actions[i].shortcut())
                 {
                     _actionType = (ActionTypes)i;
                     return (true);
@@ -184,7 +182,7 @@ namespace gearit.src.editor.robot
 
         private void HandleInput()
         {
-            if (_input.pressed(Keys.Escape))
+            if (Input.pressed(Keys.Escape))
                 ScreenManager.RemoveScreen(this);
             if (_actionType == ActionTypes.NONE)
             {
@@ -199,19 +197,19 @@ namespace gearit.src.editor.robot
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
-            else if (_actions[(int)_actionType].run(_input, _robot, ref _mainSelected, ref _selected2) == false)
+            else if (_actions[(int)_actionType].run(_robot, ref _mainSelected, ref _selected2) == false)
             {
 	       // à decomenter pour avoir un menu effectif.
                 //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
-            if (_input.pressed(MouseKeys.MIDDLE) || (_input.pressed(Keys.V)))
-                _camera.move(_input.mouseOffset());
-            if (_input.justPressed(MouseKeys.WHEEL_DOWN))
+            if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
+                _camera.move(Input.mouseOffset());
+            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
                 _camera.zoomIn();
-            if (_input.justPressed(MouseKeys.WHEEL_UP))
+            if (Input.justPressed(MouseKeys.WHEEL_UP))
                 _camera.zoomOut();
-            if (_input.justPressed(Keys.P))
+            if (Input.justPressed(Keys.P))
             {
                 _serial.SerializeItem("wall-e.bot", _robot);
             }

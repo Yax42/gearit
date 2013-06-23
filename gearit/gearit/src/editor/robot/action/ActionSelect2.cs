@@ -10,14 +10,14 @@ namespace gearit.src.editor.robot.action
     {
         public void init() { }
 
-        public bool shortcut(Input input)
+        public bool shortcut()
         {
-            return (input.ctrlAltShift(false, false, true) && input.justPressed(MouseKeys.LEFT));
+            return (Input.ctrlAltShift(false, false, true) && Input.justPressed(MouseKeys.LEFT));
         }
 
-        public bool run(Input input, Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            selected2 = robot.getPiece(input.simUnitPosition());
+            selected2 = robot.getPiece(Input.SimMousePos);
             return (false);
         }
     }

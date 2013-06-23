@@ -14,7 +14,6 @@ namespace gearit.src.game
     class Game : GameScreen, IDemoScreen
     {
         private World _world;
-        private Input _input;
         private Camera2D _camera;
 
         private Map _map;
@@ -37,7 +36,6 @@ namespace gearit.src.game
             _world = new World(Vector2.Zero);
             _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
             _camera = new Camera2D(ScreenManager.GraphicsDevice);
-            _input = new Input(_camera);
         }
 
 
@@ -91,7 +89,7 @@ namespace gearit.src.game
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             _time++;
-            _input.update();
+            Input.update();
             HandleInput();
 
             _world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));

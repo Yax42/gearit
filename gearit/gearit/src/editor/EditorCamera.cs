@@ -51,6 +51,7 @@ namespace gearit.src.editor
             reset();
         }
 
+
         public Matrix View
         {
             get { return _batchView; }
@@ -163,13 +164,6 @@ namespace gearit.src.editor
             Vector3 translateCenter = new Vector3(_translateCenter, 0f);
             Vector3 translateBody = new Vector3(-_currentPosition, 0f);
 
-            //Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(cameraPosition) -
-            //ConvertUnits.ToSimUnits(screenCenter)), 0f)) *
-            //Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screenCenter), 0f));
-
-            //_view = Matrix.CreateTranslation(translateBody) *
-            //        matRotation * matZoom * Matrix.CreateTranslation(translateCenter);
-
             _view = Matrix.CreateTranslation(translateBody - translateCenter) * matZoom *
             Matrix.CreateTranslation(translateCenter);
 
@@ -180,6 +174,7 @@ namespace gearit.src.editor
                          matRotation *
                          matZoom *
                          Matrix.CreateTranslation(translateCenter);
+            Input.SimMousePos = (ConvertUnits.ToSimUnits(Input.position()) / Zoom + Position + (center() - center() / Zoom));
         }
 
         public Vector2 center()

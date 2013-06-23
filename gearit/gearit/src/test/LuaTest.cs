@@ -16,7 +16,6 @@ namespace gearit.src.utility
     {
         private Robot _robot;
         private List<Api> _api;
-        private Input _input;
         private String _name;
         private MyGame _game;
         public Lua _luaInterpret;
@@ -28,13 +27,13 @@ namespace gearit.src.utility
 
         public LuaTest(Camera2D camera, Robot robot, string name)
         {
-            _input = new Input(camera);
             _robot = robot;
             _name = name;
             _api = robot.getApi();
             _luaInterpret = new Lua();
+	    // Salut alex, j'ai changé la class input, elle est static maintenant, on en parlera pour regler ça.
             _luaInterpret.RegisterFunction("getRobot", this, this.GetType().GetMethod("getRobot"));
-            _luaInterpret.RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
+            //_luaInterpret.RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
             for (int i = _api.Count - 1; i >= 0; i--)
                 _luaInterpret[_api[i].name()] = _api[i];
         }

@@ -27,7 +27,6 @@ namespace gearit.src.editor.map
     {
         private World               _world;
         private Map                 _map;
-        private Input               _input;
         private EditorCamera        _camera;
         private DrawGame            _draw_game;
         private MenuOverlay         _menu_tools;
@@ -75,7 +74,6 @@ namespace gearit.src.editor.map
             ScreenManager.Game.ResetElapsedTime();
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
             _camera.Position = new Vector2(0, 0);
-            _input = new Input(_camera);
             _world.Gravity = new Vector2(0f, 0f);
             HasVirtualStick = true;
             _view = Matrix.Identity;
@@ -107,8 +105,9 @@ namespace gearit.src.editor.map
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
+            Input.update();
             _camera.flush();
-            _input.update();
+
             _menu_tools.Update(_input);
             _menu_properties.Update(_input);
             HandleInput();
