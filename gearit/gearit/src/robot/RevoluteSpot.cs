@@ -124,10 +124,10 @@ namespace gearit.src.robot
             //Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
 
             //game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
-            game.addLine(pos + _topLeft, pos + _topRight, ColorValue);
-            game.addLine(pos + _topRight, pos + _botRight, ColorValue);
-            game.addLine(pos + _botRight, pos + _botLeft, ColorValue);
-            game.addLine(pos + _botLeft, pos + _topLeft, ColorValue);
+            game.drawLine(pos + _topLeft, pos + _topRight, ColorValue);
+            game.drawLine(pos + _topRight, pos + _botRight, ColorValue);
+            game.drawLine(pos + _botRight, pos + _botLeft, ColorValue);
+            game.drawLine(pos + _botLeft, pos + _topLeft, ColorValue);
         }
 
 

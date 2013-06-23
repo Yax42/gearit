@@ -218,12 +218,9 @@ namespace gearit.src.editor.robot
 
         public override void Draw(GameTime gameTime)
         {
-            _draw_game.Begin(_camera);
-
             ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
-            _menu_properties.draw(_draw_game);
-            _menu_tools.draw(_draw_game);
 
+            _draw_game.Begin(_camera);
             if (_selected2 == _mainSelected)
                 _selected2.ColorValue = Color.Violet;
             else
@@ -240,6 +237,11 @@ namespace gearit.src.editor.robot
               _mainSelected.getConnection(_selected2).ColorValue = Color.Black;
             _selected2.ColorValue = Color.Black;
             _mainSelected.ColorValue = Color.Black;
+            _draw_game.End();
+
+            _draw_game.Begin();
+            _menu_properties.draw(_draw_game);
+            _menu_tools.draw(_draw_game);
             _draw_game.End();
 
             base.Draw(gameTime);
