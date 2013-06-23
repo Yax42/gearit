@@ -16,9 +16,9 @@ namespace gearit.src.editor
         private IFormatter _formatter;
 
         public Serializer()
-	{
+        {
             _formatter = new BinaryFormatter();
-	}
+        }
 
         /// <summary>
         /// Serializes an object.
@@ -37,7 +37,7 @@ namespace gearit.src.editor
             {
                 Console.WriteLine("Error while opening/creating the file {0}.", filename);
             }
-	}
+        }
 
 
         /// <summary>
@@ -51,6 +51,7 @@ namespace gearit.src.editor
             {
                 FileStream s = new FileStream(filename, FileMode.Open);
                 ISerializable obj = (ISerializable)_formatter.Deserialize(s);
+                s.Close();
                 return (obj);
             }
             catch (IOException e)
