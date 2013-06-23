@@ -33,7 +33,7 @@ namespace gearit.src.editor
                 _formatter.Serialize(s, obj);
                 s.Close();
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 Console.WriteLine("Error while opening/creating the file {0}.", filename);
             }
@@ -53,7 +53,7 @@ namespace gearit.src.editor
                 ISerializable obj = (ISerializable)_formatter.Deserialize(s);
                 return (obj);
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 Console.WriteLine("Error while opening the file {0}.", filename);
                 return (null);

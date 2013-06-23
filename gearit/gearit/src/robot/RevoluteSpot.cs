@@ -14,6 +14,7 @@ using FarseerPhysics.Collision.Shapes;
 
 namespace gearit.src.robot
 {
+    [Serializable()]
     class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
     {
         private static float _spotSize = 0.05f;

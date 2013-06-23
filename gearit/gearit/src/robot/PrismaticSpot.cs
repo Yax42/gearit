@@ -15,6 +15,7 @@ using gearit.src.editor;
 
 namespace gearit.src.robot
 {
+    [Serializable()]
     class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
     {
         // private DistanceJoint _distJoint;

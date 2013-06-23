@@ -11,6 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace gearit
 {
+    [Serializable()]
     class Wheel : Piece, ISerializable
     {
         private const int _circleSegments = 32;
