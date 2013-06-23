@@ -10,6 +10,7 @@ using FarseerPhysics.Dynamics.Joints;
 
 namespace gearit.src.robot
 {
+    [Serializable()]
     class Rod : Piece, ISerializable
     {
 
@@ -33,16 +34,16 @@ namespace gearit.src.robot
         public Rod(SerializationInfo info, StreamingContext ctxt) :
             base(info, ctxt)
         {
-            Position = Vector2.Zero;
             _size = (float)info.GetValue("Size", typeof(float));
-            _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1f);
-            setShape(_shape, Robot._robotIdCounter);
+            Rotation = (float)info.GetValue("Rotation", typeof(float));
+            setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             base.GetObjectData(info, ctxt);
             info.AddValue("Size", _size, typeof(float));
+            info.AddValue("Rotation", Rotation, typeof(float));
         }
 
         public bool getSide(Vector2 pos)
@@ -67,54 +68,54 @@ namespace gearit.src.robot
             Vector2 dif = Position - pos;
             float angle = (float)Math.Atan2(dif.X, -dif.Y);
 
-                float oldAngle = Rotation;
-                Rotation = angle + (float)Math.PI / 2;
+            float oldAngle = Rotation;
+            Rotation = angle + (float)Math.PI / 2;
 
-	    return ;
-		/*
-                if (areSpotsOk() == false)
-                    Rotation = oldAngle;
-		*/
-
-                Vector2 anchor;
-
-                for (JointEdge i = JointList; i != null; i = i.Next)
-                {
-                    if (i.Joint.BodyA == this)
-                        anchor = i.Joint.WorldAnchorA;
-                    else
-                        anchor = i.Joint.WorldAnchorB;
-                    anchor -= Position;
-
-                    ((ISpot)i.Joint).moveAnchor(this,
-                      (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle))) * anchor.Length() + Position);
-                }
-
-                //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
-            }
+            return;
             /*
-            Transform xf;
-            GetTransform(out xf);
-            Vector2 relMainPos = ((PolygonShape)_shape).Vertices[(side ? 0 : 2)];
-            Vector2 absMainPos = MathUtils.Multiply(ref xf, relMainPos);
+                    if (areSpotsOk() == false)
+                        Rotation = oldAngle;
+            */
 
-            Vector2 dif = absMainPos - pos;
-            float angle = (float)Math.Atan2(dif.X, -dif.Y) * (side ? 1 : -1);
-            float newSize = dif.Length();
+            Vector2 anchor;
 
-            _shape = new PolygonShape(PolygonTools.CreateRectangle(newSize, _width), _shape.Density);
-
-            if (areSpotsOk() == false)
-                _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
-            else
+            for (JointEdge i = JointList; i != null; i = i.Next)
             {
-                _size = newSize;
-                DestroyFixture(_fix);
-                _fix = CreateFixture(_shape);
-                //Rotation = angle;
-                //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
+                if (i.Joint.BodyA == this)
+                    anchor = i.Joint.WorldAnchorA;
+                else
+                    anchor = i.Joint.WorldAnchorB;
+                anchor -= Position;
+
+                ((ISpot)i.Joint).moveAnchor(this,
+                  (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle))) * anchor.Length() + Position);
             }
-	    */
+
+            //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
+        }
+        /*
+        Transform xf;
+        GetTransform(out xf);
+        Vector2 relMainPos = ((PolygonShape)_shape).Vertices[(side ? 0 : 2)];
+        Vector2 absMainPos = MathUtils.Multiply(ref xf, relMainPos);
+
+        Vector2 dif = absMainPos - pos;
+        float angle = (float)Math.Atan2(dif.X, -dif.Y) * (side ? 1 : -1);
+        float newSize = dif.Length();
+
+        _shape = new PolygonShape(PolygonTools.CreateRectangle(newSize, _width), _shape.Density);
+
+        if (areSpotsOk() == false)
+            _shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+        else
+        {
+            _size = newSize;
+            DestroyFixture(_fix);
+            _fix = CreateFixture(_shape);
+            //Rotation = angle;
+            //Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
+        }
+    */
 
         override public float getSize()
         {

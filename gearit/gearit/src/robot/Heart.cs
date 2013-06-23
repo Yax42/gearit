@@ -20,6 +20,7 @@ namespace gearit
         public Heart(Robot robot) :
             base(robot)
         {
+            Position = new Vector2(3, 3);
             _vertices = PolygonTools.CreateRectangle(1, 1);
             _shape = new PolygonShape(_vertices, 50f);
             _fix = CreateFixture(_shape);
@@ -32,9 +33,7 @@ namespace gearit
         {
             List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
             _vertices = new Vertices(v);
-            _shape = new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float)));
-            _fix = CreateFixture(_shape, null);
-            setShape(_shape, Robot._robotIdCounter);
+            setShape(new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

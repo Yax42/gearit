@@ -34,8 +34,7 @@ namespace gearit
             base(info, ctxt)
         {
             _size = (float)info.GetValue("Size", typeof(float));
-            _shape = new CircleShape(_size, (float)info.GetValue("Density", typeof(float)));
-            setShape(_shape, Robot._robotIdCounter);
+            setShape(new CircleShape(_size, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
