@@ -46,6 +46,9 @@ namespace gearit
         {
             SerializerHelper._currentRobot = this;
             _world = SerializerHelper._world;
+            Name = (string)info.GetValue("Name", typeof(string));
+            _revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
+            _prismaticCounter = (int)info.GetValue("SpotCount", typeof(int));
             this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
             //foreach (Piece p in _pieces)
             //SerializerHelper._world.AddBody((Body)p);
@@ -61,6 +64,9 @@ namespace gearit
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
+            info.AddValue("Name", Name, typeof(string));
+            info.AddValue("RevCount", _revoluteCounter, typeof(int));
+            info.AddValue("SpotCount", _prismaticCounter, typeof(int));
             info.AddValue("Pieces", _pieces, typeof(List<Piece>));
             info.AddValue("Spots", _spots, typeof(List<ISpot>));
         }
