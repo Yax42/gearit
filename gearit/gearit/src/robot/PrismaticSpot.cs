@@ -123,7 +123,7 @@ namespace gearit.src.robot
         {
             if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
                 return;
-            game.addLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorB, ColorValue);
+            game.drawLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorB, ColorValue);
         }
 
         public float Force

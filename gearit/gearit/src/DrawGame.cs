@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
+using gearit.src.editor;
 
 namespace gearit.src
 {
@@ -23,12 +24,18 @@ namespace gearit.src
         private GraphicsDevice _device;
         private int _count;
         private SpriteBatch _batch;
+        private Matrix _staticProj;
+        private Matrix _staticView;
 
         public DrawGame(GraphicsDevice device)
         {
+            _staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
+            Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);
+            _staticView = Matrix.CreateTranslation( -translateCenter) * Matrix.CreateTranslation(translateCenter);
+
             _batch = new SpriteBatch(device);
-            _device = device;
             _asset = new AssetCreator(device);
+            _device = device;
 
             // set up a new basic effect, and enable vertex colors.
             _basicEffect = new BasicEffect(device);
@@ -44,12 +51,23 @@ namespace gearit.src
         {
             //tell our basic effect to begin.
             _batch.Begin();
+
+
             _basicEffect.Projection = camera.projection();
             _basicEffect.View = camera.view();
             _basicEffect.CurrentTechnique.Passes[0].Apply();
         }
 
-        public void addLine(Vector2 p1, Vector2 p2, Color col)
+        public void Begin()
+        {
+            //tell our basic effect to begin.
+            _batch.Begin();
+            _basicEffect.Projection = _staticProj;
+            _basicEffect.View = _staticView;
+            _basicEffect.CurrentTechnique.Passes[0].Apply();
+        }
+
+        public void drawLine(Vector2 p1, Vector2 p2, Color col)
         {
             if (_count >= _lineVertices.Length)
             {
@@ -117,7 +135,7 @@ namespace gearit.src
                         EdgeShape edge = (EdgeShape)fixture.Shape;
                         Vector2 v1 = MathUtils.Multiply(ref xf, edge.Vertex1);
                         Vector2 v2 = MathUtils.Multiply(ref xf, edge.Vertex2);
-                        addLine(v1, v2, color);
+                        drawLine(v1, v2, color);
                     }
                     break;
             }
@@ -126,8 +144,8 @@ namespace gearit.src
         private void drawPolygon(Vector2[] vertices, int count, Color color)
         {
             for (int i = 0; i < count - 1; i++)
-                addLine(vertices[i], vertices[i + 1], color);
-            addLine(vertices[count - 1], vertices[0], color);
+                drawLine(vertices[i], vertices[i + 1], color);
+            drawLine(vertices[count - 1], vertices[0], color);
         }
 
         private void drawCircle(Vector2 center, float radius, Color color)
@@ -142,7 +160,7 @@ namespace gearit.src
                              radius *
                              new Vector2((float)Math.Cos(theta + increment), (float)Math.Sin(theta + increment));
 
-                addLine(v1, v2, color);
+                drawLine(v1, v2, color);
                 theta += increment;
             }
         }
