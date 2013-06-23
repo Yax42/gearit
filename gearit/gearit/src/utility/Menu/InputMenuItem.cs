@@ -206,16 +206,19 @@ namespace gearit.src.utility.Menu
                 // Draw cursor
                 if (_char_selected == 0)
                 {
-                    Rectangle pos = rec;
+                    if (_focused || _pressed)
+                    {
+                        Rectangle pos = rec;
 
-                    pos.Width = 1;
-                    pos.Height -= 8;
-                    pos.Y += 4;
-                    int text_x = (int)_text_font.MeasureString(_text.Substring(0, _cursor_pos)).X;
-                    int cursor_x = text_x + PADDING_X + 1;
-                    pos.X += cursor_x;
-                    _cursor.Geometry = pos;
-                    _cursor.draw(drawer);
+                        pos.Width = 1;
+                        pos.Height -= 8;
+                        pos.Y += 4;
+                        int text_x = (int)_text_font.MeasureString(_text.Substring(0, _cursor_pos)).X;
+                        int cursor_x = text_x + PADDING_X + 1;
+                        pos.X += cursor_x;
+                        _cursor.Geometry = pos;
+                        _cursor.draw(drawer);
+                    }
                 }
                 // Manage selection
                 else
