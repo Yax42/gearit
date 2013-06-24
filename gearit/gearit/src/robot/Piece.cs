@@ -88,10 +88,10 @@ namespace gearit
         {
             set
             {
-                FixtureList[0].Shape.Density = value;
+                _fix.Shape.Density = value * (_fix.Shape.MassData.Mass / _fix.Shape.Density);
                 ResetMassData();
             }
-            get { return FixtureList[0].Shape.Density; }
+            get { return _fix.Shape.MassData.Mass; }
         }
 
         public bool isOn(Vector2 p)
