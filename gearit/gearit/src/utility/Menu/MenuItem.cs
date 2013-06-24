@@ -134,8 +134,7 @@ namespace gearit.src.utility.Menu
 
         public Rectangle getRectangle()
         {
-            return (new Rectangle((int)_pos.X + (int)_menu.Position.X, (int)_pos.Y + (int)_menu.Position.Y,
-                (int)_size.X, (int)_size.Y));
+            return (new Rectangle((int)_pos.X + (int)_menu.Position.X, (int)_pos.Y + (int)_menu.Position.Y, (int)_size.X, (int)_size.Y));
         }
 
         abstract public  Vector2 getRsrcSize();
