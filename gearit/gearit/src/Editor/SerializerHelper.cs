@@ -14,6 +14,14 @@ namespace gearit.src.editor
         public static World _world = null;
         public static Robot _currentRobot = null;
         public static Dictionary<int, Piece> _ptrmap = null;
+
+        public static void Add(int code, Piece p)
+        {
+            if (_ptrmap == null)
+                _ptrmap = new Dictionary<int, Piece>();
+            if (!_ptrmap.ContainsKey(code))
+                _ptrmap.Add(code, p);
+        }
     }
 
     /// <summary>
