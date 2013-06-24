@@ -154,10 +154,10 @@ namespace gearit.src.editor
 
             _currentZoom = 1f;
 
-            flush();
+            update();
         }
 
-        public void flush()
+        public void update()
         {
 
             Matrix matRotation = Matrix.CreateRotationZ(_currentRotation);

@@ -212,8 +212,9 @@ namespace gearit
 
         public void turnOn()
         {
-            foreach (PrismaticSpot i in _spots)
-                i.updateLimit();
+            foreach (ISpot i in _spots)
+                if (i.GetType() == typeof(PrismaticSpot))
+                    ((PrismaticSpot)i).updateLimit();
         }
 
         public int revCount() { return (_revoluteCounter++); }

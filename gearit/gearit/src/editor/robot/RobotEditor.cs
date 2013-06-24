@@ -162,7 +162,7 @@ namespace gearit.src.editor.robot
         {
             _time++;
             Input.update();
-            _camera.flush();
+            _camera.update();
             _menu_properties.Update();
             _menu_tools.Update();
             HandleInput();

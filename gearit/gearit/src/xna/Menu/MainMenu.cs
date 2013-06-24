@@ -3,12 +3,14 @@ using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using gearit.src.editor.robot;
 using gearit.src.editor.map;
+using gearit.src.game;
 
 namespace gearit.xna
 {
     class MainMenu : GameScreen, IDemoScreen
     {
         private ScreenManager _screenManager;
+
         private MenuScreen _menuScreen;
         private MyGame _Gearit;
         private BruteRobot _bruteRobot;
@@ -18,6 +20,7 @@ namespace gearit.xna
         private MapEditor _map_editor;
         private MainOptions _Options;
         private SoundManager _sound;
+        private GearitGame _game;
 
         #region IDemoScreen Members
 
@@ -54,11 +57,13 @@ namespace gearit.xna
             _gladiator = new GladiatoRobot();
             _robot_editor = new RobotEditor();
             _map_editor = new MapEditor();
+            _game = new GearitGame();
             _Options = new MainOptions("Options", _screenManager);
             _Options.LoadMenu();
 
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
+            _menuScreen.AddMenuItem(_game.GetTitle(), EntryType.Screen, _game);
             _menuScreen.AddMenuItem(_robot_editor.GetTitle(), EntryType.Screen, _robot_editor);
             _menuScreen.AddMenuItem(_map_editor.GetTitle(), EntryType.Screen, _map_editor);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);

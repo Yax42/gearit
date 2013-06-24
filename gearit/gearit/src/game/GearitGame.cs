@@ -8,13 +8,15 @@ using FarseerPhysics.Dynamics;
 using gearit.src.map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.editor;
 
 namespace gearit.src.game
 {
-    class Game : GameScreen, IDemoScreen
+    class GearitGame : GameScreen, IDemoScreen
     {
         private World _world;
-        private Camera2D _camera;
+        //private Camera2D _camera;
+        private EditorCamera _camera;
 
         private Map _map;
         private List<Robot> _robots;
@@ -28,14 +30,13 @@ namespace gearit.src.game
 
         #region IDemoScreen Members
 
-        public Game()
+        public GearitGame()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
             HasCursor = true;
+            _robots = new List<Robot>();
             _world = new World(new Vector2(0, 9.8f));
-            _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
-            _camera = new Camera2D(ScreenManager.GraphicsDevice);
         }
 
 
@@ -54,10 +55,15 @@ namespace gearit.src.game
         public override void LoadContent()
         {
             base.LoadContent();
+            _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+            _camera = new EditorCamera(ScreenManager.GraphicsDevice);
             _world.Clear();
+            _robots.Clear();
             _world.Gravity = new Vector2(0f, 9.8f);
-            //addRobot((Robot)_serial.DeserializeItem("r2d2.bot"));
-
+            //clearRobot();
+            SerializerHelper.World = _world;
+	    addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
+            _map = (Map)Serializer.DeserializeItem("moon.gim");
             // Loading may take a while... so prevent the game from "catching up" once we finished loading
             ScreenManager.Game.ResetElapsedTime();
 
@@ -85,9 +91,10 @@ namespace gearit.src.game
         public void addRobot(Robot robot)
         {
             _robots.Add(robot);
-            if (_robots.Count == 1)
-                _camera.TrackingBody = robot.getHeart();
+            //if (_robots.Count == 1)
+            //    _camera.TrackingBody = robot.getHeart();
             robot.turnOn();
+	    robot.move(new Vector2(0, -10));
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -98,7 +105,9 @@ namespace gearit.src.game
 
             _world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
-            _camera.Update(gameTime);
+            _camera.update();
+            //_camera.Update(gameTime);
+            _camera.input();
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 

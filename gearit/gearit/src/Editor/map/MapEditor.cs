@@ -34,9 +34,6 @@ namespace gearit.src.editor.map
         private Mode _mode;
         private const int PropertiesMenuSize = 50;
 
-        private Matrix _view;
-        private Vector2 _cameraPosition;
-        private Vector2 _screenCenter;
 
         #region IDemoScreen Members
 
@@ -77,10 +74,6 @@ namespace gearit.src.editor.map
             _camera.Position = new Vector2(0, 0);
             _world.Gravity = new Vector2(0f, 0f);
             HasVirtualStick = true;
-            _view = Matrix.Identity;
-            _cameraPosition = Vector2.Zero;
-            _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
-                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
@@ -107,7 +100,7 @@ namespace gearit.src.editor.map
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             Input.update();
-            _camera.flush();
+            _camera.update();
 
             _menu_tools.Update();
             _menu_properties.Update();
