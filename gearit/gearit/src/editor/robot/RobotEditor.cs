@@ -107,8 +107,7 @@ namespace gearit.src.editor.robot
 
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-            // _robot = new Robot(_world);
-            _robot = (Robot)_serial.DeserializeItem("r2d2.bot");
+            _robot = new Robot(_world);
             _mainSelected = _robot.getHeart();
             _selected2 = _robot.getHeart();
             _actionType = ActionTypes.NONE;
@@ -209,6 +208,13 @@ namespace gearit.src.editor.robot
             if (Input.justPressed(Keys.P))
             {
                 _serial.SerializeItem("r2d2.bot", _robot);
+            }
+            if (Input.justPressed(Keys.M))
+            {
+                _robot.remove();
+                _robot = (Robot)_serial.DeserializeItem("r2d2.bot");
+                _selected2 = _robot.getHeart();
+                _mainSelected = _robot.getHeart();
             }
         }
 
