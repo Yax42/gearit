@@ -40,7 +40,7 @@ namespace gearit.src.editor.robot
 
     class RobotEditor : GameScreen, IDemoScreen
     {
-        private World _world;
+        static public World _world; // (static public) est temporaire
         private EditorCamera _camera;
         private const int PropertiesMenuSize = 200;
 
@@ -60,7 +60,7 @@ namespace gearit.src.editor.robot
         private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
         private int _time = 0;
 
-        static public Serializer _serial;
+        static public Serializer _serial; // (static public) est temporaire
 
         public RobotEditor()
         {

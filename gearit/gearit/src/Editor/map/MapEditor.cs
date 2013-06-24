@@ -37,6 +37,7 @@ namespace gearit.src.editor.map
         private Matrix _view;
         private Vector2 _cameraPosition;
         private Vector2 _screenCenter;
+        private Serializer _serial;
 
         #region IDemoScreen Members
 
@@ -69,6 +70,8 @@ namespace gearit.src.editor.map
                 _world = new World(Vector2.Zero);
             else
                 _world.Clear();
+            _serial = new Serializer();
+            SerializerHelper._world = _world;
             _map = new Map(_world);
             _mode = Mode.PLACE;
             ScreenManager.Game.ResetElapsedTime();
@@ -144,6 +147,17 @@ namespace gearit.src.editor.map
             if (Input.pressed(Keys.M))
             {
                 _mode = Mode.MOVE;
+            }
+
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
+            {
+                _serial.SerializeItem("moon.gim", _map);
+            }
+
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
+            {
+                _world.Clear();
+                _map = (Map)_serial.DeserializeItem("moon.gim");
             }
 
             if (Input.justPressed(MouseKeys.LEFT))

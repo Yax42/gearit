@@ -19,7 +19,7 @@ namespace gearit.src.editor.robot.action
         public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
             robot.remove();
-            robot = (Robot)RobotEditor._serial.DeserializeItem("r2d2.bot");
+            robot = new Robot(RobotEditor._world);// (Robot)RobotEditor._serial.DeserializeItem("r2d2.gir");
             selected2 = robot.getHeart();
             selected1 = robot.getHeart();
             return (false);
