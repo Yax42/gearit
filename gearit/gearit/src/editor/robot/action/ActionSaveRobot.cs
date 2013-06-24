@@ -18,7 +18,7 @@ namespace gearit.src.editor.robot.action
 
         public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            RobotEditor._serial.SerializeItem("r2d2.gir", robot);
+            Serializer.SerializeItem("r2d2.gir", robot);
             return (false);
         }
     }
