@@ -27,8 +27,8 @@ namespace gearit
         internal Piece(Robot robot) :
             base(robot.getWorld())
         {
-            if (SerializerHelper._world == null)
-                SerializerHelper._world = robot.getWorld();
+            if (SerializerHelper.World == null)
+                SerializerHelper.World = robot.getWorld();
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;
             robot.addPiece(this);
@@ -39,8 +39,8 @@ namespace gearit
         internal Piece(Robot robot, Shape shape) :
             base(robot.getWorld())
         {
-            if (SerializerHelper._world == null)
-                SerializerHelper._world = robot.getWorld();
+            if (SerializerHelper.World == null)
+                SerializerHelper.World = robot.getWorld();
             BodyType = BodyType.Dynamic;
             setShape(shape, robot.getId());
             ColorValue = Color.Black;
@@ -49,7 +49,7 @@ namespace gearit
         }
 
         internal Piece(SerializationInfo info, StreamingContext ctxt) :
-            base(SerializerHelper._world)
+            base(SerializerHelper.World)
         {
             BodyType = BodyType.Dynamic;
             ColorValue = Color.Black;

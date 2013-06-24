@@ -13,16 +13,16 @@ namespace gearit.src.editor
     /// </summary>
     static class SerializerHelper
     {
-        public static World _world = null;
-        public static Robot _currentRobot = null;
-        public static Dictionary<int, Piece> _ptrmap = null;
+        public static World World = null;
+        public static Robot CurrentRobot = null;
+        public static Dictionary<int, Piece> Ptrmap = null;
 
         public static void Add(int code, Piece p)
         {
-            if (_ptrmap == null)
-                _ptrmap = new Dictionary<int, Piece>();
-            if (!_ptrmap.ContainsKey(code))
-                _ptrmap.Add(code, p);
+            if (Ptrmap == null)
+                Ptrmap = new Dictionary<int, Piece>();
+            if (!Ptrmap.ContainsKey(code))
+                Ptrmap.Add(code, p);
         }
     }
 
@@ -95,7 +95,7 @@ namespace gearit.src.editor
         /// <returns>The converted SeralizedBody.</returns>
         public static Body convertSBody(SeralizedBody sbody)
         {
-            Body b = new Body(SerializerHelper._world);
+            Body b = new Body(SerializerHelper.World);
 
             b.Position = sbody._position;
             b.Rotation = sbody._rotation;

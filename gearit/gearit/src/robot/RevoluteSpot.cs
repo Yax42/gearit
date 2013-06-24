@@ -47,13 +47,13 @@ namespace gearit.src.robot
 
         public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
             base(
-    SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
-        SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+    SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+        SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
         (Vector2)info.GetValue("AnchorA", typeof(Vector2)),
         (Vector2)info.GetValue("AnchorB", typeof(Vector2)))
         {
             Name = (string)info.GetValue("Name", typeof(string));
-            SerializerHelper._world.AddJoint(this);
+            SerializerHelper.World.AddJoint(this);
             Enabled = true;
             MaxMotorTorque = (float)info.GetValue("Force", typeof(float));
             MotorSpeed = 0f;

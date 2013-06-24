@@ -44,8 +44,8 @@ namespace gearit
 
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
-            SerializerHelper._currentRobot = this;
-            _world = SerializerHelper._world;
+            SerializerHelper.CurrentRobot = this;
+            _world = SerializerHelper.World;
             Name = (string)info.GetValue("Name", typeof(string));
             _revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
             _prismaticCounter = (int)info.GetValue("SpotCount", typeof(int));
@@ -59,7 +59,7 @@ namespace gearit
 
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
-            SerializerHelper._currentRobot = null;
+            SerializerHelper.CurrentRobot = null;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

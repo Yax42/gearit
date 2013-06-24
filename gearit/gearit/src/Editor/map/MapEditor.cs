@@ -69,7 +69,7 @@ namespace gearit.src.editor.map
                 _world = new World(Vector2.Zero);
             else
                 _world.Clear();
-            SerializerHelper._world = _world;
+            SerializerHelper.World = _world;
             _map = new Map(_world);
             _mode = Mode.PLACE;
             ScreenManager.Game.ResetElapsedTime();

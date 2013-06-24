@@ -15,6 +15,7 @@ namespace gearit
         /// </summary>
         static void Main(string[] args)
         {
+	    Serializer.init();
             Settings.UseFPECollisionCategories = true;
             Input.init();
             using (GearIt game = new GearIt())
