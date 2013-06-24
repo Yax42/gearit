@@ -39,6 +39,9 @@ namespace gearit.src.utility.Menu
         private SpriteFont _label_font = null;
         private string _label_text = "";
         private Color _label_color;
+        private Vector2 _label_pos;
+        private float _label_scale;
+        private const int LABEL_SPACING = 16;
 
         // Focus
         private Color _focus_color = new Color(173, 216, 230);
@@ -203,6 +206,10 @@ namespace gearit.src.utility.Menu
                 _border_bg.draw(drawer);
                 _input_bg.draw(drawer);
 
+                // Draw label
+                if (_label_font != null)
+                    drawer.drawString(_label_font, _label_text, _label_pos, _label_color, 0f, _scale, SpriteEffects.None, _label_scale);
+
                 // Draw cursor
                 if (_char_selected == 0)
                 {
@@ -249,11 +256,14 @@ namespace gearit.src.utility.Menu
             }
         }
 
-        public void setLabel(string text, SpriteFont font, Color color)
+        public void setLabel(string text, SpriteFont font, Color color, float label_scale = 1f)
         {
             _label_font = font;
             _label_color = color;
             _label_text = text;
+            _label_scale = label_scale;
+
+            _menu.refreshMenu();
         }
 
         public int MaxSize
@@ -271,6 +281,15 @@ namespace gearit.src.utility.Menu
         private void updateGeometry()
         {
             Rectangle rec = new Rectangle((int)_pos_rsrc.X + (int)_menu.Position.X, (int)_pos_rsrc.Y + (int)_menu.Position.Y, (int)_size_input.X, (int)_size_input.Y);
+
+            // Adjust if label
+            if (_label_font != null)
+            {
+                Vector2 label_size = _label_font.MeasureString(_label_text) * _label_scale;
+
+                _label_pos = new Vector2(rec.X, rec.Y + rec.Height / 2 - label_size.Y / 2);
+                rec.X += (int)label_size.X + LABEL_SPACING;
+            }
 
             _border_bg.Geometry = rec;
             rec.X += _border_size;
@@ -329,8 +348,13 @@ namespace gearit.src.utility.Menu
         override public Vector2 getRsrcSize()
         {
             Vector2 size = _size_input;
+
             if (_label_font != null)
-                size += _label_font.MeasureString(_label_text) * _scale;
+            {
+                size += _label_font.MeasureString(_label_text) * _label_scale;
+                size.X += LABEL_SPACING;
+            }
+
             return (size);
         }
 

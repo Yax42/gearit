@@ -140,19 +140,19 @@ namespace gearit.src.editor.robot
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
             input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
-            input_item.addFocus(42, new Color(120, 120, 120));
-            input_item.setLabel("Test", ScreenManager.Fonts.DetailsFont, Color.White);
+            input_item.addFocus(42, new Color(180, 180, 180), new Color(140, 140, 140));
+            input_item.setLabel("Test", ScreenManager.Fonts.DetailsFont, Color.Black);
 
             MenuItem item;
             pos.X = 200;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
             item = new TextMenuItem(_menu_tools, "Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
+            //item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
             item = new TextMenuItem(_menu_tools, "Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
+            //item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
             item = new TextMenuItem(_menu_tools, "Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
+            //item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
 
             _menu_tools.Adjusting = true;
         }

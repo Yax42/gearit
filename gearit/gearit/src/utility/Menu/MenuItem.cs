@@ -39,11 +39,14 @@ namespace gearit.src.utility.Menu
 
         // Focus
         protected bool _focusable = false;
-        protected int _id = 0;
         protected Color _bg_focus;
         protected bool _focused = false;
         protected RectangleOverlay _rectangle_bg;
+
+        // Pressed
+        protected int _id = 0;
         protected bool _pressed = false;
+        protected Color _bg_pressed;
 
         // Refreshing
         protected Vector2 _pos;
@@ -86,11 +89,12 @@ namespace gearit.src.utility.Menu
                 _pos_rsrc += new Vector2(size.X - _padding.X - getRsrcSize().X, _padding.Y);
         }
 
-        public void addFocus(int id, Color bg_focus)
+        public void addFocus(int id, Color bg_focus, Color bg_pressed)
         {
             _id = id;
             _focusable = true;
             _bg_focus = bg_focus;
+            _bg_pressed = bg_pressed;
             Rectangle rec = new Rectangle((int)(_pos.X + _menu.Position.X), (int)_pos.Y + (int)_menu.Position.Y, (int)_size.X, (int)_size.Y);
             _rectangle_bg = new RectangleOverlay(rec, _bg_focus, _menu.Screen.GraphicsDevice);
         }
@@ -116,7 +120,7 @@ namespace gearit.src.utility.Menu
         virtual public void draw(DrawGame drawer)
         {
             // Focus background
-            if (_focusable && (_focused || _pressed))
+            if ((_focused || _pressed))
                 _rectangle_bg.draw(drawer, _pos + _menu.Position);
         }
 
@@ -129,7 +133,12 @@ namespace gearit.src.utility.Menu
         public bool Pressed
         {
             get { return _pressed; }
-            set { _pressed = value; }
+            set
+            {
+                Color new_bg = (value ? _bg_pressed : _bg_focus);
+                _rectangle_bg.Color = new_bg;
+                _pressed = value;
+            }
         }
 
         public Rectangle getRectangle()

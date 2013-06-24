@@ -5,6 +5,5 @@ brunie_j:
  - Game
 
 monner_r:
- - Add different background Menu focused/pressed.
- - Fix padding TextItemMenu.
+ - Fix padding TextItemMenu horizontal.
  - Create Menu Manager for RobotEditor.
