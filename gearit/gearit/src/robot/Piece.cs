@@ -55,9 +55,7 @@ namespace gearit
             ColorValue = Color.Black;
             Shown = true;
             int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
-            if (SerializerHelper._ptrmap == null)
-                SerializerHelper._ptrmap = new Dictionary<int, Piece>();
-            SerializerHelper._ptrmap.Add(oldHashMap, this);
+            SerializerHelper.Add(oldHashMap, this);
             Position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
 
