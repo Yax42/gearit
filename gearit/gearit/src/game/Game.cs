@@ -56,6 +56,7 @@ namespace gearit.src.game
             base.LoadContent();
             _world.Clear();
             _world.Gravity = new Vector2(0f, 0f);
+            //addRobot((Robot)_serial.DeserializeItem("r2d2.bot"));
 
             // Loading may take a while... so prevent the game from "catching up" once we finished loading
             ScreenManager.Game.ResetElapsedTime();
@@ -76,6 +77,8 @@ namespace gearit.src.game
 
         public void clearRobot()
         {
+            foreach (Robot r in _robots)
+                r.remove();
             _robots.Clear();
         }
 

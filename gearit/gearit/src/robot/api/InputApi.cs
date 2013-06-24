@@ -9,10 +9,9 @@ namespace gearit.src.robot.api
 {
     class InputApi
     {
-        static private SortedList<string, Keys> _keysMap;
-
         public InputApi()
         {
+	    /*
             _keysMap = new SortedList<string, Keys>();
             _keysMap.Add("A", Keys.A);
             _keysMap.Add("B", Keys.B);
@@ -70,6 +69,7 @@ namespace gearit.src.robot.api
             _keysMap.Add("Up", Keys.Up);
             _keysMap.Add("Down", Keys.Down);
             _keysMap.Add("Enter", Keys.Enter);
+	    */
         }
 
         public bool justPressed(int key)
@@ -90,14 +90,6 @@ namespace gearit.src.robot.api
         public bool released(int key)
         {
             return (Input.released((Keys)key));
-        }
-
-        public bool justPressed(string key)
-        {
-            if (_keysMap.ContainsKey(key))
-                return (Input.justPressed(_keysMap[key]));
-            else
-                return (false);
         }
     }
 }
