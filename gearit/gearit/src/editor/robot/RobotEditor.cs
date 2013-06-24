@@ -103,7 +103,7 @@ namespace gearit.src.editor.robot
             HasCursor = true;
             HasVirtualStick = true;
 
-            SerializerHelper._world = _world;
+            SerializerHelper.World = _world;
 
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);

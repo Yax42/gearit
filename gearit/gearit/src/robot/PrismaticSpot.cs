@@ -43,15 +43,15 @@ namespace gearit.src.robot
         }
 
         public PrismaticSpot(SerializationInfo info, StreamingContext ctxt) :
-            base(SerializerHelper._ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
-        SerializerHelper._ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+            base(SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+        SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
         (Vector2)info.GetValue("AnchorA", typeof(Vector2)),
         (Vector2)info.GetValue("AnchorB", typeof(Vector2)), new Vector2(1, 1))
         {
             Name = (string)info.GetValue("Name", typeof(string));
             _size = (float)info.GetValue("Size", typeof(float));
             updateAxis();
-            SerializerHelper._world.AddJoint(this);
+            SerializerHelper.World.AddJoint(this);
             Enabled = true;
             MaxMotorForce = (float)info.GetValue("Force", typeof(float));
             MotorSpeed = 0f;

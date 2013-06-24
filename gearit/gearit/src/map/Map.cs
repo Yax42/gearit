@@ -30,7 +30,7 @@ namespace gearit.src.map
 
         public Map(SerializationInfo info, StreamingContext ctxt)
         {
-            _world = SerializerHelper._world;
+            _world = SerializerHelper.World;
             _mapName = (string)info.GetValue("Name", typeof(string));
             List<SeralizedBody> bodyList = (List<SeralizedBody>)
               info.GetValue("Bodies", typeof(List<SeralizedBody>));
