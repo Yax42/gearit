@@ -33,7 +33,7 @@ namespace gearit.src.game
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
             HasCursor = true;
-            _world = new World(Vector2.Zero);
+            _world = new World(new Vector2(0, 9.8f));
             _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
             _camera = new Camera2D(ScreenManager.GraphicsDevice);
         }
@@ -55,7 +55,7 @@ namespace gearit.src.game
         {
             base.LoadContent();
             _world.Clear();
-            _world.Gravity = new Vector2(0f, 0f);
+            _world.Gravity = new Vector2(0f, 9.8f);
             //addRobot((Robot)_serial.DeserializeItem("r2d2.bot"));
 
             // Loading may take a while... so prevent the game from "catching up" once we finished loading
@@ -87,6 +87,7 @@ namespace gearit.src.game
             _robots.Add(robot);
             if (_robots.Count == 1)
                 _camera.TrackingBody = robot.getHeart();
+            robot.turnOn();
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

@@ -210,13 +210,15 @@ namespace gearit
             return (res);
         }
 
+        public void turnOn()
+        {
+            foreach (PrismaticSpot i in _spots)
+                i.updateLimit();
+        }
+
         public int revCount() { return (_revoluteCounter++); }
         public int prisCount() { return (_prismaticCounter++); }
 
-        public string Name
-        {
-            get;
-            set;
-        }
+        public string Name { get; set; }
     }
 }
