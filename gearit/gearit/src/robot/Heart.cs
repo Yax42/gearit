@@ -53,7 +53,7 @@ namespace gearit
 
         private bool checkShape()
         {
-            return (_vertices.IsConvex() && areSpotsOk() && _vertices.GetArea() > 0.5f);
+            return (areSpotsOk() && _vertices.GetArea() > 5f);
         }
 
         public int getCorner(Vector2 p)
@@ -91,10 +91,17 @@ namespace gearit
                 return;
             Vector2 backupPos = _vertices[id];
             _vertices[id] = pos - Position;
-            if (checkShape() == false)
+            if (_vertices.IsConvex() == false)
                 _vertices[id] = backupPos;
             else
+            {
                 updateShape();
+                if (checkShape() == false)
+                {
+                    _vertices[id] = backupPos;
+                    updateShape();
+                }
+            }
         }
 
         public void addCorner(Vector2 p)
@@ -103,10 +110,17 @@ namespace gearit
             if (_vertices.Contains(p))
                 return;
             _vertices.Add(p);
-            if (checkShape() == false)
-                _vertices.Remove(p);
+            if (_vertices.IsConvex() == false)
+                    _vertices.Remove(p);
             else
+            {
                 updateShape();
+                if (checkShape() == false)
+                {
+                    _vertices.Remove(p);
+                    updateShape();
+                }
+            }
         }
 
         public void removeCorner(int id)
@@ -115,10 +129,17 @@ namespace gearit
                 return;
             Vector2 backupPos = _vertices[id];
             _vertices.RemoveAt(id);
-            if (checkShape() == false)
-                _vertices.Insert(id, backupPos);
+            if (_vertices.IsConvex() == false)
+                _vertices[id] = backupPos;
             else
+            {
                 updateShape();
+                if (checkShape() == false)
+                {
+                    _vertices.Insert(id, backupPos);
+                    updateShape();
+                }
+            }
         }
 
         public override float Weight
