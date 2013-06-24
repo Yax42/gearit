@@ -14,9 +14,12 @@ namespace gearit.src.editor
         /// Serializer used for the serialization. (Duh!)
         /// </summary>
         private static IFormatter _formatter;
+        private const string _path = "data/";
 
         public static void init()
         {
+            if (!System.IO.Directory.Exists(_path))
+                System.IO.Directory.CreateDirectory(_path);
             _formatter = new BinaryFormatter();
             SerializerHelper.Ptrmap = new Dictionary<int, Piece>();
         }
@@ -30,7 +33,7 @@ namespace gearit.src.editor
         {
             try
             {
-                FileStream s = new FileStream(filename, FileMode.Create);
+                FileStream s = new FileStream(_path + filename, FileMode.Create);
                 _formatter.Serialize(s, obj);
                 s.Close();
             }
@@ -49,7 +52,7 @@ namespace gearit.src.editor
         {
             try
             {
-                FileStream s = new FileStream(filename, FileMode.Open);
+                FileStream s = new FileStream(_path + filename, FileMode.Open);
                 ISerializable obj = (ISerializable)_formatter.Deserialize(s);
                 s.Close();
                 return (obj);
