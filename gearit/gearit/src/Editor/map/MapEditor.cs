@@ -178,13 +178,7 @@ namespace gearit.src.editor.map
                     tmp.Rotation -= 0.02f;
                 }
             }
-
-            if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
-                _camera.move(Input.mouseOffset());
-            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-                _camera.zoomIn();
-            if (Input.justPressed(MouseKeys.WHEEL_UP))
-                _camera.zoomOut();
+            _camera.input();
         }
 
         public override void Draw(GameTime gameTime)

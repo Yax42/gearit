@@ -166,6 +166,14 @@ namespace gearit
             _world.RemoveJoint((Joint)s);
         }
 
+        public void remove()
+        {
+            foreach (ISpot i in _spots)
+              _world.RemoveJoint((Joint) i);
+            foreach (Piece i in _pieces)
+              _world.RemoveBody(i);
+        }
+
         public void wake()
         {
             for (int i = 0; i < _pieces.Count; i++)

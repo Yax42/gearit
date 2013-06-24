@@ -204,12 +204,7 @@ namespace gearit.src.editor.robot
                 //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
-            if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
-                _camera.move(Input.mouseOffset());
-            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-                _camera.zoomIn();
-            if (Input.justPressed(MouseKeys.WHEEL_UP))
-                _camera.zoomOut();
+            _camera.input();
             if (Input.justPressed(Keys.P))
             {
                 _serial.SerializeItem("r2d2.bot", _robot);
