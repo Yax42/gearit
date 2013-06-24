@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.utility;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionMovePiece : IAction
+    class ActionSaveRobot : IAction
     {
         public void init() { }
 
         public bool shortcut()
         {
-            return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
+            return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)));
         }
 
         public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            selected1.move(Input.SimMousePos);
-            return (Input.pressed(MouseKeys.RIGHT));
+            RobotEditor._serial.SerializeItem("r2d2.bot", robot);
+            return (false);
         }
     }
 }

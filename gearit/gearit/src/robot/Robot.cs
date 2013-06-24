@@ -174,7 +174,7 @@ namespace gearit
               _world.RemoveBody(i);
         }
 
-        public void wake()
+        public void sleep()
         {
             for (int i = 0; i < _pieces.Count; i++)
                 _world.RemoveBody(_pieces[i]);
@@ -182,12 +182,19 @@ namespace gearit
                 _world.RemoveJoint((Joint)_spots[i]);
         }
 
-        public void sleep()
+        public void wake()
         {
-            for (int i = 0; i < _pieces.Count; i++)
-                _world.AddBody(_pieces[i]);
+            foreach (Piece i in _pieces)
+                _world.AddBody(i);
             for (int i = 0; i < _spots.Count; i++)
                 _world.AddJoint((Joint)_spots[i]);
+        }
+
+        public void move(Vector2 pos)
+        {
+            for (int i = 1; i < _pieces.Count; i++)
+              _pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
+            getHeart().Position = pos;
         }
 
         public List<Api> getApi()

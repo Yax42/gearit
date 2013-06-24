@@ -8,17 +8,16 @@ using Microsoft.Xna.Framework;
 namespace gearit.src.utility
 {
     enum MouseKeys
-	{
-	LEFT,
-	RIGHT,
-	MIDDLE,
-	WHEEL_UP,
-	WHEEL_DOWN
-	}
+    {
+        LEFT,
+        RIGHT,
+        MIDDLE,
+        WHEEL_UP,
+        WHEEL_DOWN
+    }
     static class Input
     {
         // Input for LUA
-        static private SortedList<string, Keys> _keys;
         static Dictionary<Keys, string> _map_keys;
 
         // Mouse
@@ -73,40 +72,18 @@ namespace gearit.src.utility
             _map_keys.Add(Keys.NumPad7, "7");
             _map_keys.Add(Keys.NumPad8, "8");
             _map_keys.Add(Keys.NumPad9, "9");
+            _map_keys.Add(Keys.D0, "0");
+            _map_keys.Add(Keys.D1, "1");
+            _map_keys.Add(Keys.D2, "2");
+            _map_keys.Add(Keys.D3, "3");
+            _map_keys.Add(Keys.D4, "4");
+            _map_keys.Add(Keys.D5, "5");
+            _map_keys.Add(Keys.D6, "6");
+            _map_keys.Add(Keys.D7, "7");
+            _map_keys.Add(Keys.D8, "8");
+            _map_keys.Add(Keys.D9, "9");
             _map_keys.Add(Keys.Space, " ");
             // END MAPPING
-
-            _keys = new SortedList<string, Keys>();
-            _keys.Add("A", Keys.A);
-            _keys.Add("B", Keys.B);
-            _keys.Add("C", Keys.C);
-            _keys.Add("D", Keys.D);
-            _keys.Add("E", Keys.E);
-            _keys.Add("F", Keys.F);
-            _keys.Add("G", Keys.G);
-            _keys.Add("H", Keys.H);
-            _keys.Add("I", Keys.I);
-            _keys.Add("J", Keys.J);
-            _keys.Add("K", Keys.K);
-            _keys.Add("L", Keys.L);
-            _keys.Add("M", Keys.M);
-            _keys.Add("N", Keys.N);
-            _keys.Add("O", Keys.O);
-            _keys.Add("P", Keys.P);
-            _keys.Add("Q", Keys.Q);
-            _keys.Add("R", Keys.R);
-            _keys.Add("S", Keys.S);
-            _keys.Add("T", Keys.T);
-            _keys.Add("U", Keys.U);
-            _keys.Add("V", Keys.V);
-            _keys.Add("W", Keys.W);
-            _keys.Add("X", Keys.X);
-            _keys.Add("Y", Keys.Y);
-            _keys.Add("Z", Keys.Z);
-            _keys.Add("Space", Keys.Space);
-            _keys.Add("Shift", Keys.LeftShift);
-            _keys.Add("Ctrl-L", Keys.LeftControl);
-            _keys.Add("Ctrl-R", Keys.RightControl);
         }
 
         static public void update()
@@ -279,6 +256,7 @@ namespace gearit.src.utility
         /* KEYBOARD ACTIONS */
         /********************/
 
+	/*
         static public bool getKeysAction(string key)
         {
             _keyboard = Keyboard.GetState();
@@ -287,5 +265,6 @@ namespace gearit.src.utility
             else
                 return (false);
         }
+	*/
     }
 }

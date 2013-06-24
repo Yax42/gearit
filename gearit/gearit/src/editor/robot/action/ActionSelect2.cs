@@ -15,7 +15,7 @@ namespace gearit.src.editor.robot.action
             return (Input.ctrlAltShift(false, false, true) && Input.justPressed(MouseKeys.LEFT));
         }
 
-        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
             selected2 = robot.getPiece(Input.SimMousePos);
             return (false);

@@ -90,7 +90,7 @@ namespace gearit.src.editor.map
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightSteelBlue, MenuLayout.Vertical);
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/rotate", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)Mode.ROTATE, new Color(120, 120, 120));
+            item.addFocus((int)Mode.ROTATE, new Color(110, 110, 110), new Color(120, 120, 120));
 
             pos.X = 0;
             pos.Y = 0;

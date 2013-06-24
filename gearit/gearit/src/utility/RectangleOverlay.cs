@@ -22,6 +22,12 @@ namespace gearit.src.utility
             _tex.SetData(new Color[] { Color.White });
         }
 
+        public Color Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+
         public void draw(DrawGame drawer)
         {
             drawer.drawTexture(_tex, _rec, _color);

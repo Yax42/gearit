@@ -17,7 +17,7 @@ namespace gearit.src.editor.robot.action
             return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.Enter));
         }
 
-        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
             robot.getWorld().Gravity = new Vector2(0f, 9.8f);
             return (true);

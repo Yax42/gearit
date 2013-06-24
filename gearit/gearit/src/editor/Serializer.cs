@@ -39,7 +39,6 @@ namespace gearit.src.editor
             }
         }
 
-
         /// <summary>
         /// Deserializes an object.
         /// </summary>

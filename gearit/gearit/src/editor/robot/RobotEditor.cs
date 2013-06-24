@@ -32,6 +32,9 @@ namespace gearit.src.editor.robot
         REV_LINK,
         RESIZE_WHEEL,
         CHOOSE_SET,
+	MOVE_ROBOT,
+	LOAD_ROBOT,
+	SAVE_ROBOT,
         COUNT
     }
 
@@ -57,7 +60,7 @@ namespace gearit.src.editor.robot
         private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
         private int _time = 0;
 
-        private Serializer _serial;
+        static public Serializer _serial;
 
         public RobotEditor()
         {
@@ -107,8 +110,7 @@ namespace gearit.src.editor.robot
 
             // Robot
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-            // _robot = new Robot(_world);
-            _robot = (Robot)_serial.DeserializeItem("r2d2.bot");
+            _robot = new Robot(_world);
             _mainSelected = _robot.getHeart();
             _selected2 = _robot.getHeart();
             _actionType = ActionTypes.NONE;
@@ -130,6 +132,9 @@ namespace gearit.src.editor.robot
             _actions[(int)ActionTypes.REV_LINK] = new ActionRevLink();
             _actions[(int)ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
             _actions[(int)ActionTypes.CHOOSE_SET] = new ActionChooseSet();
+            _actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
+            _actions[(int)ActionTypes.SAVE_ROBOT] = new ActionSaveRobot();
+            _actions[(int)ActionTypes.LOAD_ROBOT] = new ActionLoadRobot();
 
 
             // Menu
@@ -139,18 +144,19 @@ namespace gearit.src.editor.robot
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
             input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
-            input_item.addFocus(42, new Color(120, 120, 120));
+            input_item.addFocus(42, new Color(180, 180, 180), new Color(140, 140, 140));
+            input_item.setLabel("Test", ScreenManager.Fonts.DetailsFont, Color.Black);
 
             MenuItem item;
             pos.X = 200;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
-            item = new TextMenuItem(_menu_tools, "Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
-            item = new TextMenuItem(_menu_tools, "Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
-            item = new TextMenuItem(_menu_tools, "Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
+            item = new TextMenuItem(_menu_tools, "Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
+            item = new TextMenuItem(_menu_tools, "Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
+            item = new TextMenuItem(_menu_tools, "Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
 
             _menu_tools.Adjusting = true;
         }
@@ -198,17 +204,13 @@ namespace gearit.src.editor.robot
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
-            else if (_actions[(int)_actionType].run(_robot, ref _mainSelected, ref _selected2) == false)
+            else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
             {
                 // à decomenter pour avoir un menu effectif.
                 //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
-            if (Input.justPressed(Keys.P))
-            {
-                _serial.SerializeItem("r2d2.bot", _robot);
-            }
         }
 
         public override void Draw(GameTime gameTime)

@@ -70,6 +70,7 @@ namespace gearit.src.utility.Menu
             // Resettings position and size of every MenuItem
             foreach (MenuItem item in _items)
             {
+
                 // Getting the size depending on the layout
                 switch (item.Layout)
                 {
@@ -99,6 +100,7 @@ namespace gearit.src.utility.Menu
                 else
                     _filled.Y += size.Y;
             }
+
             adjust();
         }
 
@@ -176,7 +178,6 @@ namespace gearit.src.utility.Menu
             {
                 _item_pressed.Pressed = false;
                 _item_pressed = null;
-                Console.WriteLine("in");
             }
             
             // Toggle current
@@ -263,8 +264,10 @@ namespace gearit.src.utility.Menu
         // Adjusting the size if needed
         private void adjust()
         {
+            Console.WriteLine(_size + " // " + _filled);
             if (_adjusting)
             {
+                
                 if (_layout == MenuLayout.Horizontal)
                     _size.X = _filled.X;
                 else

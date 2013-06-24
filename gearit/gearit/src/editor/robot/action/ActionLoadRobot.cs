@@ -7,19 +7,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionMovePiece : IAction
+    class ActionLoadRobot : IAction
     {
         public void init() { }
 
         public bool shortcut()
         {
-            return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
+            return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)));
         }
 
         public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
-            selected1.move(Input.SimMousePos);
-            return (Input.pressed(MouseKeys.RIGHT));
+            robot.remove();
+            robot = (Robot)RobotEditor._serial.DeserializeItem("r2d2.bot");
+            selected2 = robot.getHeart();
+            selected1 = robot.getHeart();
+            return (false);
         }
     }
 }
