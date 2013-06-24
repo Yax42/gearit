@@ -13,7 +13,7 @@ namespace gearit.src.editor.robot.action
             return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.Q));
         }
 
-        public bool run(Robot robot, ref Piece selected1, ref Piece selected2)
+        public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
             Piece p;
 	    if (ActionChooseSet.value)

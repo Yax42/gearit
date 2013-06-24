@@ -33,6 +33,8 @@ namespace gearit.src.editor.robot
         RESIZE_WHEEL,
         CHOOSE_SET,
 	MOVE_ROBOT,
+	LOAD_ROBOT,
+	SAVE_ROBOT,
         COUNT
     }
 
@@ -58,7 +60,7 @@ namespace gearit.src.editor.robot
         private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
         private int _time = 0;
 
-        private Serializer _serial;
+        static public Serializer _serial;
 
         public RobotEditor()
         {
@@ -131,6 +133,8 @@ namespace gearit.src.editor.robot
             _actions[(int)ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
             _actions[(int)ActionTypes.CHOOSE_SET] = new ActionChooseSet();
             _actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
+            _actions[(int)ActionTypes.SAVE_ROBOT] = new ActionSaveRobot();
+            _actions[(int)ActionTypes.LOAD_ROBOT] = new ActionLoadRobot();
 
 
             // Menu
@@ -200,25 +204,13 @@ namespace gearit.src.editor.robot
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
-            else if (_actions[(int)_actionType].run(_robot, ref _mainSelected, ref _selected2) == false)
+            else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
             {
                 // à decomenter pour avoir un menu effectif.
                 //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
-            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
-            {
-                _serial.SerializeItem("r2d2.bot", _robot);
-            }
-
-            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
-            {
-                _robot.remove();
-                _robot = (Robot)_serial.DeserializeItem("r2d2.bot");
-                _selected2 = _robot.getHeart();
-                _mainSelected = _robot.getHeart();
-            }
         }
 
         public override void Draw(GameTime gameTime)
