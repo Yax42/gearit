@@ -53,7 +53,7 @@ namespace gearit
 
         private bool checkShape()
         {
-            return (areSpotsOk() && _vertices.GetArea() > 5f);
+            return (areSpotsOk() && _vertices.GetArea() > 3f);
         }
 
         public int getCorner(Vector2 p)

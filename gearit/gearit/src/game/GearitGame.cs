@@ -16,7 +16,7 @@ namespace gearit.src.game
     {
         private World _world;
         //private Camera2D _camera;
-        private EditorCamera _camera;
+        private Camera2D _camera;
 
         private Map _map;
         private List<Robot> _robots;
@@ -56,7 +56,7 @@ namespace gearit.src.game
         {
             base.LoadContent();
             _drawGame = new DrawGame(ScreenManager.GraphicsDevice);
-            _camera = new EditorCamera(ScreenManager.GraphicsDevice);
+            _camera = new Camera2D(ScreenManager.GraphicsDevice);
             _world.Clear();
             _robots.Clear();
             _world.Gravity = new Vector2(0f, 9.8f);
@@ -91,9 +91,9 @@ namespace gearit.src.game
         public void addRobot(Robot robot)
         {
             _robots.Add(robot);
-            //if (_robots.Count == 1)
-            //    _camera.TrackingBody = robot.getHeart();
-            robot.turnOn();
+            if (_robots.Count == 1)
+                _camera.TrackingBody = robot.getHeart();
+            //robot.turnOn();
 	    robot.move(new Vector2(0, -10));
         }
 
@@ -105,9 +105,9 @@ namespace gearit.src.game
 
             _world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
-            _camera.update();
-            //_camera.Update(gameTime);
-            _camera.input();
+            //_camera.update();
+            //_camera.input();
+            _camera.Update(gameTime);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
@@ -115,9 +115,11 @@ namespace gearit.src.game
         private void HandleInput()
         {
             if (Input.pressed(Keys.Escape))
-            {
                 ScreenManager.RemoveScreen(this);
-            }
+            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
+                _camera.zoomIn();
+            if (Input.justPressed(MouseKeys.WHEEL_UP))
+                _camera.zoomOut();
         }
 
         public override void Draw(GameTime gameTime)
@@ -126,7 +128,7 @@ namespace gearit.src.game
             _drawGame.Begin(_camera);
 
             foreach (Robot r in _robots)
-                r.drawDebug(_drawGame);
+                r.draw(_drawGame);
             _map.drawDebug(_drawGame);
             _drawGame.End();
 

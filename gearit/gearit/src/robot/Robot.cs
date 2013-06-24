@@ -127,19 +127,20 @@ namespace gearit
             return (res);
         }
 
-        public void drawDebug(DrawGame game)
+        public void drawDebug(DrawGame dg)
         {
             for (int i = 0; i < _pieces.Count; i++)
                 if (_pieces[i].Shown)
-                    game.draw(_pieces[i], _pieces[i].ColorValue);
+                    dg.draw(_pieces[i], _pieces[i].ColorValue);
             for (int i = 0; i < _spots.Count; i++)
-                _spots[i].draw(game);
+                _spots[i].draw(dg);
         }
 
         public void draw(DrawGame dg)
         {
             for (int i = 0; i < _pieces.Count; i++)
-                _pieces[i].draw(dg);
+                    dg.draw(_pieces[i], _pieces[i].ColorValue);
+                //_pieces[i].draw(dg);
             for (int i = 0; i < _spots.Count; i++)
                 if (_spots[i].GetType() == typeof(PrismaticSpot))
                     _spots[i].draw(dg);

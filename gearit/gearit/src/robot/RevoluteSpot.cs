@@ -23,7 +23,7 @@ namespace gearit.src.robot
         private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
         private static Vector2 _botRight = new Vector2(_spotSize, _spotSize);
 
-        // private AngleJoint _angleJoint;
+         //private AngleJoint _angleJoint;
         static private Texture2D _tex;
 
         public RevoluteSpot(Robot robot, Piece p1, Piece p2) :

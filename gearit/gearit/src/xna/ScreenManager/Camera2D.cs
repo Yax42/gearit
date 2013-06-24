@@ -153,7 +153,7 @@ namespace gearit.xna
         }
 
         /// <summary>
-        /// The current rotation of the camera in radians.
+        /// The current zoom
         /// </summary>
         public float Zoom
         {
@@ -163,6 +163,16 @@ namespace gearit.xna
                 _currentZoom = value;
                 _currentZoom = MathHelper.Clamp(_currentZoom, _minZoom, _maxZoom);
             }
+        }
+
+        public void zoomIn()
+        {
+            Zoom *= 1.1f;
+        }
+
+        public void zoomOut()
+        {
+            Zoom /= 1.1f;
         }
 
         /// <summary>
