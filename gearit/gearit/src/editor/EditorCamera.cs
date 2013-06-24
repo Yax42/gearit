@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor
 {
@@ -198,6 +199,16 @@ namespace gearit.src.editor
             t = _graphics.Viewport.Project(t, _projection, _view, Matrix.Identity);
 
             return new Vector2(t.X, t.Y);
+        }
+
+        public void input()
+        {
+            if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
+                move(Input.mouseOffset());
+            if (Input.justPressed(MouseKeys.WHEEL_DOWN))
+                zoomIn();
+            if (Input.justPressed(MouseKeys.WHEEL_UP))
+                zoomOut();
         }
     }
 }

@@ -68,8 +68,8 @@ namespace gearit.src.robot
             info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
             info.AddValue("Name", Name, typeof(string));
             info.AddValue("Force", MaxMotorForce, typeof(float));
-            info.AddValue("AnchorA", WorldAnchorA, typeof(Vector2));
-            info.AddValue("AnchorB", WorldAnchorB, typeof(Vector2));
+            info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
+            info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
         }
 
         public void updateLimit()
