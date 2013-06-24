@@ -67,8 +67,8 @@ namespace gearit.src.robot
             info.AddValue("Force", MaxMotorTorque, typeof(float));
             info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
             info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
-            info.AddValue("AnchorA", WorldAnchorA, typeof(Vector2));
-            info.AddValue("AnchorB", WorldAnchorB, typeof(Vector2));
+            info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
+            info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
         }
 
         public static void initTex(AssetCreator asset)
