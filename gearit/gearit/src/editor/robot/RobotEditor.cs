@@ -205,6 +205,10 @@ namespace gearit.src.editor.robot
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
+
+            if (Input.pressed(Keys.C))
+                _robot.move(Input.SimMousePos);
+
             if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
             {
                 _serial.SerializeItem("r2d2.bot", _robot);
