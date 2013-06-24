@@ -69,6 +69,7 @@ namespace gearit.src.editor.map
                 _world = new World(Vector2.Zero);
             else
                 _world.Clear();
+            SerializerHelper.World = _world;
             _map = new Map(_world);
             _mode = Mode.PLACE;
             ScreenManager.Game.ResetElapsedTime();
@@ -144,6 +145,17 @@ namespace gearit.src.editor.map
             if (Input.pressed(Keys.M))
             {
                 _mode = Mode.MOVE;
+            }
+
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
+            {
+                Serializer.SerializeItem("moon.gim", _map);
+            }
+
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
+            {
+                _world.Clear();
+                _map = (Map)Serializer.DeserializeItem("moon.gim");
             }
 
             if (Input.justPressed(MouseKeys.LEFT))

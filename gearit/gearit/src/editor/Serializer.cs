@@ -8,7 +8,7 @@ using System.Text;
 
 namespace gearit.src.editor
 {
-    class Serializer
+    static class Serializer
     {
         /// <summary>
         /// Serializer used for the serialization. (Duh!)
