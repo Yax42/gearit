@@ -32,9 +32,9 @@ namespace gearit.src.editor.robot
         REV_LINK,
         RESIZE_WHEEL,
         CHOOSE_SET,
-	MOVE_ROBOT,
-	LOAD_ROBOT,
-	SAVE_ROBOT,
+        MOVE_ROBOT,
+        LOAD_ROBOT,
+        SAVE_ROBOT,
         COUNT
     }
 
@@ -59,8 +59,6 @@ namespace gearit.src.editor.robot
         private ActionTypes _actionType;
         private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
         private int _time = 0;
-
-        static public Serializer _serial;
 
         public RobotEditor()
         {
@@ -105,7 +103,6 @@ namespace gearit.src.editor.robot
             HasCursor = true;
             HasVirtualStick = true;
 
-            _serial = new Serializer();
             SerializerHelper._world = _world;
 
             // Robot

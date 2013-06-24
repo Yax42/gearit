@@ -13,9 +13,9 @@ namespace gearit.src.editor
         /// <summary>
         /// Serializer used for the serialization. (Duh!)
         /// </summary>
-        private IFormatter _formatter;
+        private static IFormatter _formatter;
 
-        public Serializer()
+        public static void init()
         {
             _formatter = new BinaryFormatter();
         }
@@ -25,7 +25,7 @@ namespace gearit.src.editor
         /// </summary>
         /// <param name="filename">The file to store the object.</param>
         /// <param name="obj">The object to serialize.</param>
-        public void SerializeItem(string filename, ISerializable obj)
+        public static void SerializeItem(string filename, ISerializable obj)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace gearit.src.editor
         /// </summary>
         /// <param name="filename">The file in which the object is stored.</param>
         /// <returns>The object as an ISerializable if the deserialization worked, null otherwise.</returns>
-        public ISerializable DeserializeItem(string filename)
+        public static ISerializable DeserializeItem(string filename)
         {
             try
             {
