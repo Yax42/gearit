@@ -45,6 +45,7 @@ namespace gearit
         public Robot(SerializationInfo info, StreamingContext ctxt)
         {
             SerializerHelper.CurrentRobot = this;
+            SerializerHelper.Ptrmap.Clear();
             _world = SerializerHelper.World;
             Name = (string)info.GetValue("Name", typeof(string));
             _revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
@@ -169,9 +170,9 @@ namespace gearit
         public void remove()
         {
             foreach (ISpot i in _spots)
-              _world.RemoveJoint((Joint) i);
+                _world.RemoveJoint((Joint)i);
             foreach (Piece i in _pieces)
-              _world.RemoveBody(i);
+                _world.RemoveBody(i);
         }
 
         public void sleep()
@@ -193,7 +194,7 @@ namespace gearit
         public void move(Vector2 pos)
         {
             for (int i = 1; i < _pieces.Count; i++)
-              _pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
+                _pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
             getHeart().Position = pos;
         }
 

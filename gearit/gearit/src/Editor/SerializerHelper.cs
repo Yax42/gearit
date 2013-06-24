@@ -24,6 +24,8 @@ namespace gearit.src.editor
                 Ptrmap = new Dictionary<int, Piece>();
             if (!Ptrmap.ContainsKey(code))
                 Ptrmap.Add(code, p);
+            else
+                Ptrmap[code] = p;
         }
     }
 

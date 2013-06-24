@@ -18,6 +18,7 @@ namespace gearit.src.editor
         public static void init()
         {
             _formatter = new BinaryFormatter();
+            SerializerHelper.Ptrmap = new Dictionary<int, Piece>();
         }
 
         /// <summary>
