@@ -124,6 +124,7 @@
     <Compile Include="src\editor\robot\action\ActionLaunch.cs" />
     <Compile Include="src\editor\robot\action\ActionMoveAnchor.cs" />
     <Compile Include="src\editor\robot\action\ActionMovePiece.cs" />
+    <Compile Include="src\editor\robot\action\ActionMoveRobot.cs" />
     <Compile Include="src\editor\robot\action\ActionPrisLink.cs" />
     <Compile Include="src\editor\robot\action\ActionDeleteSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionResizePiece.cs" />

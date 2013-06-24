@@ -32,6 +32,7 @@ namespace gearit.src.editor.robot
         REV_LINK,
         RESIZE_WHEEL,
         CHOOSE_SET,
+	MOVE_ROBOT,
         COUNT
     }
 
@@ -129,6 +130,7 @@ namespace gearit.src.editor.robot
             _actions[(int)ActionTypes.REV_LINK] = new ActionRevLink();
             _actions[(int)ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
             _actions[(int)ActionTypes.CHOOSE_SET] = new ActionChooseSet();
+            _actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
 
 
             // Menu
@@ -205,10 +207,6 @@ namespace gearit.src.editor.robot
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
-
-            if (Input.pressed(Keys.C))
-                _robot.move(Input.SimMousePos);
-
             if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
             {
                 _serial.SerializeItem("r2d2.bot", _robot);
