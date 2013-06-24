@@ -243,6 +243,7 @@
     <Compile Include="src\game\Game.cs" />
     <Compile Include="src\map\Map.cs" />
     <Compile Include="src\robot\api\Api.cs" />
+    <Compile Include="src\robot\api\InputApi.cs" />
     <Compile Include="src\robot\api\PrismaticApi.cs" />
     <Compile Include="src\robot\api\RevoluteApi.cs" />
     <Compile Include="src\robot\Rod.cs" />

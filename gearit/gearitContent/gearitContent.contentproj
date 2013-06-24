@@ -51,6 +51,7 @@
   <ItemGroup>
     <Folder Include="Map\" />
     <Folder Include="Materials\" />
+    <Folder Include="Script\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="font.spritefont">
