@@ -205,11 +205,12 @@ namespace gearit.src.editor.robot
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
-            if (Input.justPressed(Keys.P))
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
             {
                 _serial.SerializeItem("r2d2.bot", _robot);
             }
-            if (Input.justPressed(Keys.M))
+
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
             {
                 _robot.remove();
                 _robot = (Robot)_serial.DeserializeItem("r2d2.bot");
