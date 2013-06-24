@@ -5,6 +5,7 @@ using System.Text;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Common;
 
 namespace gearit.src.editor
 {
@@ -29,10 +30,12 @@ namespace gearit.src.editor
     /// <summary>
     /// Structure holding the necessary information to recreate a Fixture.
     /// </summary>
+    [Serializable()]
     public struct SerializedFixture
     {
         private float _density;
         private float _friction;
+        private List<Vector2> _vertices;
 
         /// <summary>
         /// Converts a fixture to a SerializedFixture.
@@ -45,6 +48,9 @@ namespace gearit.src.editor
 
             sf._density = f.Shape.Density;
             sf._friction = f.Friction;
+            sf._vertices = new List<Vector2>();
+            foreach (Vector2 vert in ((PolygonShape)f.Shape).Vertices)
+                sf._vertices.Add(vert);
             return (sf);
         }
 
@@ -56,9 +62,9 @@ namespace gearit.src.editor
         /// <returns>The converted SerializedFixture.</returns>
         public static Fixture convertSFixture(SerializedFixture sf, Body b)
         {
-            Fixture f = new Fixture(b, new PolygonShape(sf._density));
+            Vertices v = new Vertices(sf._vertices);
+            Fixture f = b.CreateFixture(new PolygonShape(v, sf._density));
             f.Friction = sf._friction;
-
             return (f);
         }
     }
@@ -66,6 +72,7 @@ namespace gearit.src.editor
     /// <summary>
     /// Structure holding the necessary information to recreate a Body.
     /// </summary>
+    [Serializable()]
     public struct SeralizedBody
     {
         private Vector2 _position;
@@ -100,7 +107,7 @@ namespace gearit.src.editor
             b.Position = sbody._position;
             b.Rotation = sbody._rotation;
             foreach (SerializedFixture sf in sbody._fixtures)
-                b.FixtureList.Add(SerializedFixture.convertSFixture(sf, b));
+                SerializedFixture.convertSFixture(sf, b);
             return (b);
         }
     }
