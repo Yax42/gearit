@@ -36,7 +36,6 @@ namespace gearit.src.robot
             MaxMotorForce = 100;
             MotorSpeed = 0f;
             MotorEnabled = true;
-            updateLimit();
             LimitEnabled = false;
             ColorValue = Color.Black;
             robot.addSpot(this);
@@ -55,7 +54,6 @@ namespace gearit.src.robot
             Enabled = true;
             MaxMotorForce = (float)info.GetValue("Force", typeof(float));
             MotorSpeed = 0f;
-            updateLimit();
             MotorEnabled = true;
             LimitEnabled = false;
             ColorValue = Color.Black;
