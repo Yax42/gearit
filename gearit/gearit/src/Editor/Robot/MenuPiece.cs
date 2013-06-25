@@ -105,6 +105,16 @@ namespace gearit.src.editor.robot
 
                 _menu_properties.refreshMenu();
             }
+            // Update info
+            else
+            {
+                piece.Weight = Convert.ToSingle(_p_weight.Display);
+                if (spot != null)
+                {
+                    spot.Name = _s_name.Display;
+                    spot.MaxForce = Convert.ToSingle(_s_maxforce.Display);
+                }
+            }
         }
 
         public bool hasFocus()
@@ -130,7 +140,7 @@ namespace gearit.src.editor.robot
                 // Check if Prismatic
                 if (spot.GetType() == typeof(PrismaticSpot))
                 {
-                    _s_size.Display = "Size: " + ((PrismaticSpot)spot).getSize().ToString();
+                    _s_size.Display = "Distance: " + ((PrismaticSpot)spot).getSize().ToString();
                     _s_size.Visible = true;
                 }
                 else
