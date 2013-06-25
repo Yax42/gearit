@@ -42,12 +42,10 @@ namespace gearit.src.editor.robot
     {
         private World _world;
         private EditorCamera _camera;
-        private const int PropertiesMenuSize = 200;
 
         // Graphic
         private RectangleOverlay _background;
-        private MenuOverlay _menu_properties;
-        private MenuOverlay _menu_tools;
+        private MenuPiece _menus;
 
         // Robot
         private DrawGame _draw_game;
@@ -135,27 +133,7 @@ namespace gearit.src.editor.robot
 
 
             // Menu
-            InputMenuItem input_item;
-
-            Vector2 pos = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - PropertiesMenuSize, 0);
-            Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height);
-            _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Vertical);
-            input_item = new InputMenuItem(_menu_properties, ScreenManager.Fonts.DetailsFont, Color.Black, 1, new Vector2(8), new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
-            input_item.addFocus(42, new Color(180, 180, 180), new Color(140, 140, 140));
-            input_item.setLabel("Test", ScreenManager.Fonts.DetailsFont, Color.Black);
-
-            MenuItem item;
-            pos.X = 200;
-            size = new Vector2(400, 50);
-            _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
-            item = new TextMenuItem(_menu_tools, "Rotation", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            //item.addFocus((int)ActionTypes.REV_SPOT, new Color(120, 120, 120));
-            item = new TextMenuItem(_menu_tools, "Spring", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            //item.addFocus((int)ActionTypes.PRIS_SPOT, new Color(120, 120, 120));
-            item = new TextMenuItem(_menu_tools, "Launch", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            //item.addFocus((int)ActionTypes.LAUNCH, new Color(120, 180, 120));
-
-            _menu_tools.Adjusting = true;
+            _menus = new MenuPiece(ScreenManager);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -163,9 +141,8 @@ namespace gearit.src.editor.robot
             _time++;
             Input.update();
             _camera.update();
-            _menu_properties.Update();
-            _menu_tools.Update();
             HandleInput();
+            _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
             _world.Step(0f);
@@ -188,17 +165,10 @@ namespace gearit.src.editor.robot
         {
             if (Input.pressed(Keys.Escape))
                 ScreenManager.RemoveScreen(this);
+
             if (_actionType == ActionTypes.NONE)
             {
-                MenuItem pressed;
-                if ((pressed = _menu_tools.justPressed()) != null)
-                {
-                    _actionType = (ActionTypes)pressed.Id;
-                    _actions[(int)_actionType].init();
-                }
-                else if (_menu_properties.isMouseOn() || _menu_properties.hasItemPressed() || _menu_tools.isMouseOn() || _menu_properties.hasItemPressed())
-                    return;
-                else if (runShortcut())
+                if (runShortcut())
                     _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
@@ -240,10 +210,7 @@ namespace gearit.src.editor.robot
             drawRobot();
             _draw_game.End();
 
-            _draw_game.Begin();
-            _menu_properties.draw(_draw_game);
-            _menu_tools.draw(_draw_game);
-            _draw_game.End();
+            _menus.Draw(_draw_game);
 
             base.Draw(gameTime);
         }

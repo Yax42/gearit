@@ -70,6 +70,8 @@ namespace gearit.src.utility.Menu
             // Resettings position and size of every MenuItem
             foreach (MenuItem item in _items)
             {
+                if (!item.Visible)
+                    continue;
 
                 // Getting the size depending on the layout
                 switch (item.Layout)
