@@ -55,11 +55,11 @@ namespace gearit.src.editor.robot.action
             else if (selected1.GetType() == typeof(Wheel))
             {
                 ((Wheel)selected1).Size = (Input.SimMousePos - selected1.Position).Length();
-                return (Input.justPressed(MouseKeys.LEFT) == false);
+                return (Input.justPressed(MouseKeys.LEFT) == false && Input.justReleased(Keys.S) == false);
             }
             else
             {
-                if (Input.justPressed(MouseKeys.LEFT))
+                if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.S))
                 {
                     if (_begin)
                         _begin = false;

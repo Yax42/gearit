@@ -35,7 +35,7 @@ namespace gearit.src.editor.robot.action
                 new PrismaticSpot(robot, selected1, p);
                 selected1 = p;
             }
-            else if (Input.justPressed(MouseKeys.LEFT))
+            else if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.W))
                 return (false);
             selected1.move(Input.SimMousePos);
             return (true);

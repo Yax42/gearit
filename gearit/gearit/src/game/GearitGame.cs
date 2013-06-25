@@ -93,8 +93,8 @@ namespace gearit.src.game
             _robots.Add(robot);
             if (_robots.Count == 1)
                 _camera.TrackingBody = robot.getHeart();
-            //robot.turnOn();
-	    robot.move(new Vector2(0, -10));
+            robot.turnOn();
+	    robot.move(new Vector2(0, -100));
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

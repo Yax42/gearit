@@ -19,7 +19,7 @@ namespace gearit.src.editor.robot.action
         public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
         {
             robot.move(Input.SimMousePos);
-            return (Input.pressed(Keys.C));
+            return (Input.justReleased(Keys.C) == false && Input.justPressed(MouseKeys.LEFT) == false);
         }
     }
 }

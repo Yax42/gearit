@@ -405,7 +405,7 @@ namespace gearit.src.utility
             HandleKeyboard();
 
             // Update the world
-            World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+            //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 

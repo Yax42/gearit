@@ -12,6 +12,7 @@ using FarseerPhysics.Factories;
 using FarseerPhysics.Collision.Shapes;
 using gearit.src.utility;
 using gearit.src.editor;
+using FarseerPhysics.Common;
 
 namespace gearit.src.robot
 {
@@ -72,8 +73,7 @@ namespace gearit.src.robot
 
         public void updateLimit()
         {
-            _size = ((BodyA.Position + LocalAnchorA) -
-                    (BodyB.Position + LocalAnchorB)).Length();
+            _size = (WorldAnchorA - WorldAnchorB).Length();
             LowerLimit = _size / 2;
             UpperLimit = _size * 2;
             LimitEnabled = true;
@@ -81,8 +81,9 @@ namespace gearit.src.robot
 
         public void updateAxis()
         {
-            LocalXAxis1 = ((BodyA.Position + LocalAnchorA) -
-                    (BodyB.Position + LocalAnchorB));
+            LocalXAxis1 = WorldAnchorA - WorldAnchorB;
+            LocalXAxis1 /= LocalXAxis1.Length();
+
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)
