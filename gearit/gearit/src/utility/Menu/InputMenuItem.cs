@@ -306,7 +306,11 @@ namespace gearit.src.utility.Menu
         public string Text
         {
             get { return _text; }
-            set { _text = value; }
+            set
+            {
+                _text = value;
+                _cursor_pos = _text.Length;
+            }
         }
 
         public InputMenuItemType Type
@@ -351,7 +355,10 @@ namespace gearit.src.utility.Menu
 
             if (_label_font != null)
             {
-                size += _label_font.MeasureString(_label_text) * _label_scale;
+                Vector2 label_size = _label_font.MeasureString(_label_text) * _label_scale;
+                size.X += label_size.X;
+                if (label_size.Y > size.Y)
+                    size.Y = label_size.Y;
                 size.X += LABEL_SPACING;
             }
 

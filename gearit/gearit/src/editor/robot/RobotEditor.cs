@@ -142,7 +142,7 @@ namespace gearit.src.editor.robot
             Input.update();
             _camera.update();
             HandleInput();
-            _menus.Update();
+            _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
             _world.Step(0f);
@@ -168,16 +168,8 @@ namespace gearit.src.editor.robot
 
             if (_actionType == ActionTypes.NONE)
             {
-            //    MenuItem pressed;
-            //    if ((pressed = _menu_tools.justPressed()) != null)
-            //    {
-            //        _actionType = (ActionTypes)pressed.Id;
-            //        _actions[(int)_actionType].init();
-            //    }
-            //    else if (_menu_properties.isMouseOn() || _menu_properties.hasItemPressed() || _menu_tools.isMouseOn() || _menu_properties.hasItemPressed())
-            //        return;
-            //    else if (runShortcut())
-            //        _actions[(int)_actionType].init();
+                if (runShortcut())
+                    _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
             {
