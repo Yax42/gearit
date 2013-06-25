@@ -93,15 +93,18 @@ namespace gearit.src.editor.robot
             _menu_properties.Update();
             _menu_tools.Update();
 
-            // Update piece
-            _p_weight.Text = piece.Weight.ToString();
-            _p_size.Display = "Size: " + piece.getSize().ToString();
-            _p_position.Display = piece.Position.ToString();
+            if (!hasFocus())
+            {
+                // Update piece
+                _p_weight.Display = piece.Weight.ToString();
+                _p_size.Display = "Size: " + piece.getSize().ToString();
+                _p_position.Display = piece.Position.ToString();
 
-            updateRod(piece);
-            updateSpot(spot);
+                updateRod(piece);
+                updateSpot(spot);
 
-            _menu_properties.refreshMenu();
+                _menu_properties.refreshMenu();
+            }
         }
 
         public bool hasFocus()
@@ -118,6 +121,7 @@ namespace gearit.src.editor.robot
             _s_maxforce.Visible = visible;
             _s_size.Visible = visible;
             _t_spot.Visible = visible;
+
             if (visible)
             {
                 _s_name.Display = spot.Name;

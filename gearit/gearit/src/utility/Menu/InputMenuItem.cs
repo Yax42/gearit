@@ -303,16 +303,6 @@ namespace gearit.src.utility.Menu
             _pos_text.Y = rec.Y + rec.Height / 2 - _text_font.MeasureString("X").Y / 2;
         }
 
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                _text = value;
-                _cursor_pos = _text.Length;
-            }
-        }
-
         public InputMenuItemType Type
         {
             get { return _type; }
@@ -368,7 +358,11 @@ namespace gearit.src.utility.Menu
         override public string Display
         {
             get { return _text; }
-            set { _text = value; }
+            set
+            {
+                _text = value;
+                _cursor_pos = _text.Length;
+            }
         }
 
         public SpriteFont TextFont
