@@ -37,7 +37,7 @@ namespace gearit.src.robot
             _size = (float)info.GetValue("Size", typeof(float));
             Rotation = (float)info.GetValue("Rotation", typeof(float));
             setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
-            Weight = 1f;
+            Weight = (float)info.GetValue("Weight", typeof(float));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

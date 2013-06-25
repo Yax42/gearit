@@ -54,7 +54,6 @@ namespace gearit.src.robot
             SerializerHelper.World.AddJoint(this);
             Enabled = true;
             MaxMotorForce = (float)info.GetValue("Force", typeof(float));
-            MaxMotorForce = 10;
             MotorSpeed = 0f;
             MotorEnabled = true;
             LimitEnabled = false;

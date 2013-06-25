@@ -104,6 +104,11 @@ namespace gearit.src.editor.robot
             _menu_properties.refreshMenu();
         }
 
+        public bool hasFocus()
+        {
+            return (_menu_properties.isMouseOn() || _menu_properties.hasItemPressed() || _menu_tools.isMouseOn() || _menu_properties.hasItemPressed());
+        }
+
         private void updateSpot(ISpot spot)
         {
             // Update ISpot

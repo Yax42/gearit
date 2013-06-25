@@ -168,7 +168,15 @@ namespace gearit.src.editor.robot
 
             if (_actionType == ActionTypes.NONE)
             {
-                if (runShortcut())
+                //    MenuItem pressed;
+                //    if ((pressed = _menu_tools.justPressed()) != null)
+                //    {
+                //        _actionType = (ActionTypes)pressed.Id;
+                //        _actions[(int)_actionType].init();
+                //    }
+                if (_menus.hasFocus())
+                    return;
+                else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)

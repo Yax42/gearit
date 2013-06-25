@@ -36,32 +36,32 @@ namespace gearit.src.utility
 
             // MAPPING DICTONARY KEYBOARD
             _map_keys = new Dictionary<Keys, string>();
-            _map_keys.Add(Keys.A, "A");
-            _map_keys.Add(Keys.B, "B");
-            _map_keys.Add(Keys.C, "C");
-            _map_keys.Add(Keys.D, "D");
-            _map_keys.Add(Keys.E, "E");
-            _map_keys.Add(Keys.F, "F");
-            _map_keys.Add(Keys.G, "G");
-            _map_keys.Add(Keys.H, "H");
-            _map_keys.Add(Keys.I, "I");
-            _map_keys.Add(Keys.J, "J");
-            _map_keys.Add(Keys.K, "K");
-            _map_keys.Add(Keys.L, "L");
-            _map_keys.Add(Keys.M, "M");
-            _map_keys.Add(Keys.N, "N");
-            _map_keys.Add(Keys.O, "O");
-            _map_keys.Add(Keys.P, "P");
-            _map_keys.Add(Keys.Q, "Q");
-            _map_keys.Add(Keys.R, "R");
-            _map_keys.Add(Keys.S, "S");
-            _map_keys.Add(Keys.T, "T");
-            _map_keys.Add(Keys.U, "U");
-            _map_keys.Add(Keys.V, "V");
-            _map_keys.Add(Keys.W, "W");
-            _map_keys.Add(Keys.X, "X");
-            _map_keys.Add(Keys.Y, "Y");
-            _map_keys.Add(Keys.Z, "Z");
+            _map_keys.Add(Keys.A, "a");
+            _map_keys.Add(Keys.B, "b");
+            _map_keys.Add(Keys.C, "c");
+            _map_keys.Add(Keys.D, "d");
+            _map_keys.Add(Keys.E, "e");
+            _map_keys.Add(Keys.F, "f");
+            _map_keys.Add(Keys.G, "g");
+            _map_keys.Add(Keys.H, "h");
+            _map_keys.Add(Keys.I, "i");
+            _map_keys.Add(Keys.J, "j");
+            _map_keys.Add(Keys.K, "k");
+            _map_keys.Add(Keys.L, "l");
+            _map_keys.Add(Keys.M, "m");
+            _map_keys.Add(Keys.N, "n");
+            _map_keys.Add(Keys.O, "o");
+            _map_keys.Add(Keys.P, "p");
+            _map_keys.Add(Keys.Q, "q");
+            _map_keys.Add(Keys.R, "r");
+            _map_keys.Add(Keys.S, "s");
+            _map_keys.Add(Keys.T, "t");
+            _map_keys.Add(Keys.U, "u");
+            _map_keys.Add(Keys.V, "v");
+            _map_keys.Add(Keys.W, "w");
+            _map_keys.Add(Keys.X, "x");
+            _map_keys.Add(Keys.Y, "y");
+            _map_keys.Add(Keys.Z, "z");
             _map_keys.Add(Keys.NumPad0, "0");
             _map_keys.Add(Keys.NumPad1, "1");
             _map_keys.Add(Keys.NumPad2, "2");
@@ -82,7 +82,7 @@ namespace gearit.src.utility
             _map_keys.Add(Keys.D7, "7");
             _map_keys.Add(Keys.D8, "8");
             _map_keys.Add(Keys.D9, "9");
-            _map_keys.Add(Keys.Space, " ");
+            //_map_keys.Add(Keys.Space, " "); rajoute le si tu veux, je l'ai désactivé pour pas qu'on mette d'espaces dans les noms
             // END MAPPING
         }
 
