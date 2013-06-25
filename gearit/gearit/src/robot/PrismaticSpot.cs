@@ -83,7 +83,7 @@ namespace gearit.src.robot
         {
             LocalXAxis1 = WorldAnchorA - WorldAnchorB;
             LocalXAxis1 /= LocalXAxis1.Length();
-
+            _size = (WorldAnchorA - WorldAnchorB).Length();
         }
 
         public void swap(Piece p1, Piece p2, Vector2 anchor)

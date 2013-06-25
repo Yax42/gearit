@@ -82,6 +82,7 @@ namespace gearit.src.utility
             _map_keys.Add(Keys.D7, "7");
             _map_keys.Add(Keys.D8, "8");
             _map_keys.Add(Keys.D9, "9");
+            _map_keys.Add(Keys.OemComma, ",");
             //_map_keys.Add(Keys.Space, " "); rajoute le si tu veux, je l'ai désactivé pour pas qu'on mette d'espaces dans les noms
             // END MAPPING
         }
