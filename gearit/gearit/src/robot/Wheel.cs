@@ -35,6 +35,7 @@ namespace gearit
         {
             _size = (float)info.GetValue("Size", typeof(float));
             setShape(new CircleShape(_size, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+            Weight = 0.1f;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

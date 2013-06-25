@@ -13,24 +13,26 @@ namespace gearit.src.editor.api
         {
         }
 
-        public bool justPressed(int key)
-        {
-            return (Input.justPressed((Keys)key));
-        }
-
         public bool pressed(int key)
         {
             return (Input.pressed((Keys)key));
-        }
-
-        public bool justReleased(int key)
-        {
-            return (Input.justReleased((Keys)key));
         }
 
         public bool released(int key)
         {
             return (Input.released((Keys)key));
         }
+
+	/*
+        public bool justPressed(int key)
+        {
+            return (Input.justPressed((Keys)key));
+        }
+
+        public bool justReleased(int key)
+        {
+            return (Input.justReleased((Keys)key));
+        }
+	*/
     }
 }

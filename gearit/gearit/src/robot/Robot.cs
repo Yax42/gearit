@@ -29,6 +29,7 @@ namespace gearit
 
         [NonSerialized]
         public static int _robotIdCounter = 1;
+        private LuaScript _script;
         private int _id;
         private World _world;
 
@@ -40,6 +41,7 @@ namespace gearit
             _spots = new List<ISpot>();
             new Heart(this);
             Console.WriteLine("Robot created.");
+            _script = null;
         }
 
         public Robot(SerializationInfo info, StreamingContext ctxt)
@@ -61,6 +63,7 @@ namespace gearit
             _id = _robotIdCounter++;
             Console.WriteLine("Robot created.");
             SerializerHelper.CurrentRobot = null;
+            _script = null;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -170,6 +173,9 @@ namespace gearit
 
         public void remove()
         {
+	    if (_script != null)
+              _script.stop();
+            _script = null;
             foreach (ISpot i in _spots)
                 _world.RemoveJoint((Joint)i);
             foreach (Piece i in _pieces)
@@ -199,9 +205,9 @@ namespace gearit
             getHeart().Position = pos;
         }
 
-        public List<Api> getApi()
+        public List<PieceApi> getApi()
         {
-            List<Api> res = new List<Api>();
+            List<PieceApi> res = new List<PieceApi>();
             for (int i = 0; i < _spots.Count; i++)
             {
                 if (_spots[i].GetType() == typeof(PrismaticSpot))
@@ -217,6 +223,8 @@ namespace gearit
             foreach (ISpot i in _spots)
                 if (i.GetType() == typeof(PrismaticSpot))
                     ((PrismaticSpot)i).updateLimit();
+	    if (_script == null)
+              _script = new LuaScript(getApi(), "r2d2");
         }
 
         public int revCount() { return (_revoluteCounter++); }

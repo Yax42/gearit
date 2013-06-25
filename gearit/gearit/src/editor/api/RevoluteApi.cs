@@ -6,7 +6,7 @@ using gearit.src.robot;
 
 namespace gearit.src.editor.api
 {
-    class RevoluteApi : Api
+    class RevoluteApi : PieceApi
     {
         public RevoluteApi(ISpot spot) :
 	    base(spot)

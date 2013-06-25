@@ -5,11 +5,11 @@ using System.Text;
 
 namespace gearit.src.editor.api
 {
-    abstract class Api
+    abstract class PieceApi
     {
         internal ISpot _spot;
 
-        public Api(ISpot spot)
+        public PieceApi(ISpot spot)
         {
             _spot = spot;
         }
@@ -19,7 +19,7 @@ namespace gearit.src.editor.api
             return (_spot.Name);
         }
 
-        public float motorForce 
+        public float motor 
         {
             get { return _spot.Force; }
             set

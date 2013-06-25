@@ -37,7 +37,7 @@ namespace gearit.src.robot
             Name = "spot" + robot.revCount();
             robot.getWorld().AddJoint(this);
             Enabled = true;
-            MaxMotorTorque = 100;
+            MaxMotorTorque = 1;
             MotorSpeed = 0f;
             MotorEnabled = true;
             ColorValue = Color.Black;
@@ -59,6 +59,12 @@ namespace gearit.src.robot
             MotorSpeed = 0f;
             MotorEnabled = true;
             ColorValue = Color.Black;
+            MaxMotorTorque = 100;
+	    /*
+            LimitEnabled = true;
+	    LowerLimit = MathHelper.ToRadians(90);
+	    UpperLimit = MathHelper.ToRadians(-90);
+	    */
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

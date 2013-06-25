@@ -6,7 +6,7 @@ using gearit.src.robot;
 
 namespace gearit.src.editor.api
 {
-    class PrismaticApi : Api
+    class PrismaticApi : PieceApi
     {
         public PrismaticApi(ISpot spot) :
 	    base(spot)

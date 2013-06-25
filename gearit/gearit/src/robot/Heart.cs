@@ -34,6 +34,7 @@ namespace gearit
             List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
             _vertices = new Vertices(v);
             setShape(new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+            Weight = 3;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

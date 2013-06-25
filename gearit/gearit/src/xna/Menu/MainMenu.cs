@@ -75,7 +75,7 @@ namespace gearit.xna
             _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
-            _screenManager.AddScreen(_robot_editor);
+            //_screenManager.AddScreen(_game);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

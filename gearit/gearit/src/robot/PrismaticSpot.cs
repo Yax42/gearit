@@ -30,11 +30,11 @@ namespace gearit.src.robot
         public PrismaticSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
             base(p1, p2, anchor1, anchor2, new Vector2(1, 1))
         {
-            Name = "piston" + robot.revCount();
+            Name = "spot" + robot.revCount();
             updateAxis();
             robot.getWorld().AddJoint(this);
             Enabled = true;
-            MaxMotorForce = 100;
+            MaxMotorForce = 10;
             MotorSpeed = 0f;
             MotorEnabled = true;
             LimitEnabled = false;
@@ -54,6 +54,7 @@ namespace gearit.src.robot
             SerializerHelper.World.AddJoint(this);
             Enabled = true;
             MaxMotorForce = (float)info.GetValue("Force", typeof(float));
+            MaxMotorForce = 10;
             MotorSpeed = 0f;
             MotorEnabled = true;
             LimitEnabled = false;
@@ -74,8 +75,8 @@ namespace gearit.src.robot
         public void updateLimit()
         {
             _size = (WorldAnchorA - WorldAnchorB).Length();
-            LowerLimit = _size / 2;
-            UpperLimit = _size * 2;
+            LowerLimit = -_size * 2;
+            UpperLimit = -_size / 2;
             LimitEnabled = true;
         }
 
