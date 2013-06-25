@@ -143,6 +143,7 @@ namespace gearit
             }
         }
 
+	/*
         public override float Weight
         {
             set
@@ -154,6 +155,7 @@ namespace gearit
             }
             get { return FixtureList[0].Shape.Density; }
         }
+	*/
 
         override public float getSize()
         {
