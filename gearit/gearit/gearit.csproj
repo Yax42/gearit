@@ -245,10 +245,10 @@
     <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\game\GearitGame.cs" />
     <Compile Include="src\map\Map.cs" />
-    <Compile Include="src\robot\api\Api.cs" />
-    <Compile Include="src\robot\api\InputApi.cs" />
-    <Compile Include="src\robot\api\PrismaticApi.cs" />
-    <Compile Include="src\robot\api\RevoluteApi.cs" />
+    <Compile Include="src\editor\api\Api.cs" />
+    <Compile Include="src\editor\api\InputApi.cs" />
+    <Compile Include="src\editor\api\PrismaticApi.cs" />
+    <Compile Include="src\editor\api\RevoluteApi.cs" />
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />

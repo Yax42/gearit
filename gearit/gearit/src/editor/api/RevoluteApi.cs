@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using gearit.src.robot;
 
-namespace gearit.src.robot.api
+namespace gearit.src.editor.api
 {
     class RevoluteApi : Api
     {

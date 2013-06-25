@@ -6,7 +6,7 @@ using LuaInterface;
 using gearit.xna;
 
 using gearit.src.robot;
-using gearit.src.robot.api;
+using gearit.src.editor.api;
 
 namespace gearit.src.utility
 {
