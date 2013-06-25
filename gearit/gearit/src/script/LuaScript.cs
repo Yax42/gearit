@@ -11,8 +11,7 @@ using gearit.src.editor.api;
 namespace gearit.src.utility
 {
 
-
-    class LuaTest
+    class LuaScript
     {
         private Robot _robot;
         private List<Api> _api;
@@ -25,7 +24,7 @@ namespace gearit.src.utility
             Console.WriteLine(something);
         }
 
-        public LuaTest(Camera2D camera, Robot robot, string name)
+        public LuaScript(Camera2D camera, Robot robot, string name)
         {
             _robot = robot;
             _name = name;

@@ -67,7 +67,7 @@ namespace gearit.src.utility
         /*// physics simulator debug view
         DebugViewXNA _debugView;*/
 
-        private LuaTest _lua;
+        //private LuaTest _lua;
 
         #region IDemoScreen Members
 
