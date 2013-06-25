@@ -267,7 +267,7 @@
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
-    <Compile Include="src\test\LuaTest.cs" />
+    <Compile Include="src\script\LuaScript.cs" />
     <Compile Include="src\test\Pyramid.cs" />
     <Compile Include="src\editor\robot\RobotEditor.cs" />
     <Compile Include="src\test\SpiderBot.cs" />

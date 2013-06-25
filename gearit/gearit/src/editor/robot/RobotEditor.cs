@@ -30,7 +30,7 @@ namespace gearit.src.editor.robot
         DELETE_SPOT,
         PRIS_LINK,
         REV_LINK,
-        RESIZE_WHEEL,
+        RESIZE_PIECE,
         CHOOSE_SET,
         MOVE_ROBOT,
         LOAD_ROBOT,
@@ -127,7 +127,7 @@ namespace gearit.src.editor.robot
             _actions[(int)ActionTypes.DELETE_SPOT] = new ActionDeleteSpot();
             _actions[(int)ActionTypes.PRIS_LINK] = new ActionPrisLink();
             _actions[(int)ActionTypes.REV_LINK] = new ActionRevLink();
-            _actions[(int)ActionTypes.RESIZE_WHEEL] = new ActionResizePiece();
+            _actions[(int)ActionTypes.RESIZE_PIECE] = new ActionResizePiece();
             _actions[(int)ActionTypes.CHOOSE_SET] = new ActionChooseSet();
             _actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
             _actions[(int)ActionTypes.SAVE_ROBOT] = new ActionSaveRobot();
@@ -210,12 +210,11 @@ namespace gearit.src.editor.robot
             _camera.input();
         }
 
-        public override void Draw(GameTime gameTime)
+        private void drawRobot()
         {
-            ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
-
-            _draw_game.Begin(_camera);
-            if (_selected2 == _mainSelected)
+	    if (_actionType == ActionTypes.RESIZE_PIECE && _mainSelected == _robot.getHeart())
+                _mainSelected.ColorValue = Color.GreenYellow;
+            else if (_selected2 == _mainSelected)
                 _selected2.ColorValue = Color.Violet;
             else
             {
@@ -231,6 +230,14 @@ namespace gearit.src.editor.robot
                 _mainSelected.getConnection(_selected2).ColorValue = Color.Black;
             _selected2.ColorValue = Color.Black;
             _mainSelected.ColorValue = Color.Black;
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
+
+            _draw_game.Begin(_camera);
+            drawRobot();
             _draw_game.End();
 
             _draw_game.Begin();
