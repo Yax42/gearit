@@ -1,5 +1,4 @@
 Content\blank.xnb
-Content\font.xnb
 Content\Common\arrow.xnb
 Content\Common\bg.xnb
 Content\Common\bg_gearit.xnb
@@ -21,3 +20,6 @@ Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb
 Content\Audio\MenuSound.xnb
 Content\Audio\soupeGame.xnb
+Content\RobotEditor\prismatic.xnb
+Content\RobotEditor\revolute.xnb
+Content\RobotEditor\run.xnb

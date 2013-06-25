@@ -50,11 +50,11 @@ namespace gearit.src.editor.robot
             MenuItem item;
             size = new Vector2(MenuWidth, ToolsMenuHeight);
             _menu_tools = new MenuOverlay(_screen, pos, size, new Color(200, 200, 200), MenuLayout.Horizontal);
-            item = new TextMenuItem(_menu_tools, "Rotation", _screen.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            item = new SpriteMenuItem(_menu_tools, "RobotEditor/revolute", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
             item.addFocus((int)ActionTypes.REV_SPOT, bg_focus, bg_pressed);
-            item = new TextMenuItem(_menu_tools, "Spring", _screen.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            item = new SpriteMenuItem(_menu_tools, "RobotEditor/prismatic", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
             item.addFocus((int)ActionTypes.PRIS_SPOT, bg_focus, bg_pressed);
-            item = new TextMenuItem(_menu_tools, "Launch", _screen.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            item = new SpriteMenuItem(_menu_tools, "RobotEditor/run", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
             item.addFocus((int)ActionTypes.LAUNCH, bg_focus, bg_pressed);
 
             // Menu properties
@@ -84,8 +84,6 @@ namespace gearit.src.editor.robot
             
             // Prismatic spot
             _s_size = new TextMenuItem(_menu_properties, "Size", _screen.Fonts.DetailsFont, c_text, padding, ItemMenuLayout.MaxFromMin, align, 1f);
-
-            _menu_tools.Adjusting = true;
          }
 
         public void Update(Piece piece, ISpot spot)
