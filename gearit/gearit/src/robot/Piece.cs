@@ -89,7 +89,7 @@ namespace gearit
         {
             set
             {
-                _fix.Shape.Density = value * (_fix.Shape.MassData.Mass / _fix.Shape.Density);
+                _fix.Shape.Density = value * _fix.Shape.Density / _fix.Shape.MassData.Mass;
                 ResetMassData();
             }
             get { return _fix.Shape.MassData.Mass; }
