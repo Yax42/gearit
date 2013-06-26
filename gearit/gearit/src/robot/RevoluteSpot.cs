@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using gearit.src.editor;
 using FarseerPhysics.Collision.Shapes;
+using FarseerPhysics.Common;
 
 namespace gearit.src.robot
 {
@@ -56,14 +57,23 @@ namespace gearit.src.robot
             SerializerHelper.World.AddJoint(this);
             Enabled = true;
             MaxMotorTorque = (float)info.GetValue("Force", typeof(float));
+	    LimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));
+	    UpperLimit = (float)info.GetValue("UpperLimit", typeof(float));
+	    LowerLimit = (float)info.GetValue("LowerLimit", typeof(float));
+	    /*
+        if (UpperLimit < LowerLimit)
+        {
+            float tmp = UpperLimit;
+            UpperLimit = LowerLimit;
+            LowerLimit = tmp;
+
+        }
+	    Console.WriteLine((int) MathHelper.ToDegrees(LowerLimit) + " " + (int) MathHelper.ToDegrees(UpperLimit));
+        //Console.WriteLine((LowerLimit) + " " + (UpperLimit));
+	    */
             MotorSpeed = 0f;
             MotorEnabled = true;
             ColorValue = Color.Black;
-	    /*
-            LimitEnabled = true;
-	    LowerLimit = MathHelper.ToRadians(90);
-	    UpperLimit = MathHelper.ToRadians(-90);
-	    */
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -74,6 +84,9 @@ namespace gearit.src.robot
             info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
             info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
             info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
+            info.AddValue("LimitEnabled", LimitEnabled, typeof(bool));
+            info.AddValue("UpperLimit", UpperLimit, typeof(float));
+            info.AddValue("LowerLimit", LowerLimit, typeof(float));
         }
 
         public static void initTex(AssetCreator asset)
@@ -131,15 +144,39 @@ namespace gearit.src.robot
         {
             if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
                 return;
-            Vector2 pos = BodyA.Position + LocalAnchorA;
-            Vector2 corner = BodyA.Position + LocalAnchorA - _topLeft;
+            Vector2 pos = WorldAnchorA;
+            Vector2 corner = WorldAnchorA - _topLeft;
             //Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
 
             //game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
+            Color tmp = ColorValue;
+            if (LimitEnabled)
+                ColorValue = Color.Pink;
             game.drawLine(pos + _topLeft, pos + _topRight, ColorValue);
             game.drawLine(pos + _topRight, pos + _botRight, ColorValue);
             game.drawLine(pos + _botRight, pos + _botLeft, ColorValue);
             game.drawLine(pos + _botLeft, pos + _topLeft, ColorValue);
+            ColorValue = tmp;
+
+            if (LimitEnabled == false)
+                return;
+            Vector2 target;
+            //float tmpUpper = UpperLimit/ +(LowerLimit > UpperLimit ? (float)Math.PI * 2 : 0);
+            int count = 0;
+            bool limitReached = false;
+            for (float angle = LowerLimit; angle < UpperLimit; angle += 0.01f)
+            {
+                count++;
+                target.X = (float)Math.Cos(angle) * 0.1f;
+                target.Y = (float)Math.Sin(angle) * 0.1f;
+                if (angle >= 0 && limitReached == false)
+                {
+                    game.drawLine(pos, pos + target, new Color(0, 255, 0));
+                    limitReached = true;
+                }
+                else
+                    game.drawLine(pos, pos + target, new Color(255, 255 - count * 2, 255 - count * 2));
+            }
         }
 
 

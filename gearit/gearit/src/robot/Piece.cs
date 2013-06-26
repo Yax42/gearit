@@ -126,7 +126,7 @@ namespace gearit
 
         public void move(Vector2 pos)
         {
-            if (Position.X == pos.X && Position.Y == pos.Y)
+            if ((int) (Position.X * 1000) == (int) (pos.X * 1000) && (int) (Position.Y * 1000) == (int) (pos.Y * 1000))
                 return;
             Position = pos;
             for (JointEdge i = JointList; i != null; i = i.Next)

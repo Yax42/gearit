@@ -35,6 +35,8 @@ namespace gearit.src.editor.robot
         MOVE_ROBOT,
         LOAD_ROBOT,
         SAVE_ROBOT,
+	CHANGE_LIMIT,
+	SWAP_LIMIT,
         COUNT
     }
 
@@ -130,6 +132,8 @@ namespace gearit.src.editor.robot
             _actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
             _actions[(int)ActionTypes.SAVE_ROBOT] = new ActionSaveRobot();
             _actions[(int)ActionTypes.LOAD_ROBOT] = new ActionLoadRobot();
+            _actions[(int)ActionTypes.CHANGE_LIMIT] = new ActionChangeLimit();
+            _actions[(int)ActionTypes.SWAP_LIMIT] = new ActionSwapLimit();
 
 
             // Menu

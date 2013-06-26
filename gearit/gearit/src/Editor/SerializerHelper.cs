@@ -110,7 +110,7 @@ namespace gearit.src.editor
             b.Rotation = sbody._rotation;
             foreach (SerializedFixture sf in sbody._fixtures)
                 SerializedFixture.convertSFixture(sf, b);
-            //b.Friction = 100;
+            b.Friction = 10;
             return (b);
         }
     }

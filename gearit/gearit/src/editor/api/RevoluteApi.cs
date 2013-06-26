@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.src.robot;
+using FarseerPhysics.Common;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.api
 {
@@ -15,7 +17,7 @@ namespace gearit.src.editor.api
 
         public float angle()
         {
-	    return (((RevoluteSpot)_spot).JointAngle);
+	    return (MathHelper.ToDegrees(((RevoluteSpot)_spot).JointAngle));
         }
     }
 }
