@@ -33,7 +33,7 @@ namespace gearit.src.editor.map
         private MenuOverlay _menu_properties;
         private Mode _mode;
         private const int PropertiesMenuSize = 40;
-
+        private Body _selected;
 
         #region IDemoScreen Members
 
@@ -53,6 +53,7 @@ namespace gearit.src.editor.map
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
+            _selected = null;
             _world = null;
             HasCursor = true;
         }
@@ -78,15 +79,21 @@ namespace gearit.src.editor.map
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 
-            // Menu
+            #region MENU
             MenuItem item;
             Vector2 pos = new Vector2(0, 50);
             Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
             _menu_properties = new MenuOverlay(ScreenManager, pos, size, Color.LightSteelBlue, MenuLayout.Vertical);
+
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/place", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.PLACE, new Color(110, 110, 110), new Color(120, 120, 120));
+
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/rotate", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.ROTATE, new Color(110, 110, 110), new Color(120, 120, 120));
+
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/move", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.MOVE, new Color(110, 110, 110), new Color(120, 120, 120));
+
             pos.X = 0;
             pos.Y = 0;
             size = new Vector2(400, 50);
@@ -96,13 +103,14 @@ namespace gearit.src.editor.map
             item = new TextMenuItem(_menu_tools, "Save", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
 
             _menu_tools.Adjusting = true;
+            #endregion
+ 
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             Input.update();
             _camera.update();
-
             _menu_tools.Update();
             _menu_properties.Update();
             HandleInput();
@@ -110,17 +118,8 @@ namespace gearit.src.editor.map
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        private void HandleInput()
+        private void changeMode()
         {
-            MenuItem pressed;
-            if ((pressed = _menu_properties.justPressed()) != null)
-            {
-                _mode = (Mode)pressed.Id;
-            }
-            if (Input.pressed(Keys.Escape))
-            {
-                ScreenManager.RemoveScreen(this);
-            }
             if (Input.pressed(Keys.E))
             {
                 _mode = Mode.PLACE;
@@ -133,52 +132,84 @@ namespace gearit.src.editor.map
             {
                 _mode = Mode.ROTATE;
             }
-            if (Input.pressed(Keys.M))
+            if (Input.pressed(Keys.A))
             {
                 _mode = Mode.MOVE;
+            }
+        }
+
+        private void select()
+        {
+            if (_selected != null)
+                _selected = null;
+            else
+            {
+                _selected = _map.getBody(Input.SimMousePos);
+            }
+        }
+
+        private void HandleInput()
+        {
+            changeMode();
+            MenuItem pressed;
+            if ((pressed = _menu_properties.justPressed()) != null)
+            {
+                _mode = (Mode)pressed.Id;
+            }
+            if (Input.pressed(Keys.Escape))
+            {
+                ScreenManager.RemoveScreen(this);
+            }
+
+            if (Input.justPressed(MouseKeys.LEFT) && !_menu_properties.isMouseOn())
+            {
+                switch (_mode)
+                {
+                    case Mode.MOVE:
+                            select();
+                        break;
+                    case Mode.PLACE:
+                            _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, Input.SimMousePos));
+                        break;
+                    case Mode.DELETE:
+                            _map.getBodies().Remove(_map.getBody(Input.SimMousePos));
+                        break;
+                }
+            }
+
+            if (_mode == Mode.MOVE && _selected != null)
+            {
+                _selected.Position = Input.SimMousePos; /*(Input.SimMousePos - _selected.Position) + Input.SimMousePos*/
+            }
+
+            if (_mode == Mode.ROTATE && !_menu_properties.isMouseOn())
+            {
+                if (Input.pressed(MouseKeys.LEFT))
+                {
+                    Body tmp = _map.getBody(Input.SimMousePos);
+                    if (tmp != null)
+                    {
+                        tmp.Rotation += 0.01f;
+                    }
+                }
+                if (Input.pressed(MouseKeys.RIGHT))
+                {
+                    Body tmp = _map.getBody(Input.SimMousePos);
+                    if (tmp != null)
+                    {
+                        tmp.Rotation -= 0.01f;
+                    }
+                }
             }
 
             if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
             {
                 Serializer.SerializeItem("moon.gim", _map);
             }
-
             if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
             {
                 _world.Clear();
                 _map = (Map)Serializer.DeserializeItem("moon.gim");
-            }
-
-            if (Input.justPressed(MouseKeys.LEFT))
-            {
-                switch (_mode)
-                {
-                    case Mode.MOVE:
-                        break;
-                    case Mode.PLACE:
-                        if (!_menu_properties.isMouseOn())
-                            _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, Input.SimMousePos));
-                        break;
-                    case Mode.DELETE:
-                        _map.getBodies().Remove(_map.getBody(Input.SimMousePos));
-                        break;
-                }
-            }
-            if (Input.pressed(MouseKeys.LEFT) && _mode == Mode.ROTATE)
-            {
-                Body tmp = _map.getBody(Input.SimMousePos);
-                if (tmp != null)
-                {
-                    tmp.Rotation += 0.01f;
-                }
-            }
-            if (Input.pressed(MouseKeys.RIGHT) && _mode == Mode.ROTATE)
-            {
-                Body tmp = _map.getBody(Input.SimMousePos);
-                if (tmp != null)
-                {
-                    tmp.Rotation -= 0.01f;
-                }
             }
             _camera.input();
         }
@@ -193,6 +224,5 @@ namespace gearit.src.editor.map
             _draw_game.End();
             base.Draw(gameTime);
         }
-
     }
 }
