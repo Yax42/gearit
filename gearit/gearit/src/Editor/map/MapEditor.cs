@@ -152,7 +152,7 @@ namespace gearit.src.editor.map
                 _selected = null;
             else
             {
-                _selected = _map.getBody(Input.SimMousePos);
+                _selected = _map.getChunk(Input.SimMousePos);
             }
         }
 
@@ -177,15 +177,13 @@ namespace gearit.src.editor.map
                             select();
                         break;
                     case Mode.PLACE:
-                            _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, Input.SimMousePos));
+                            _map.addChunk(new MapChunk(ChunkType.RECTANGLE, false, Input.SimMousePos, _world));
                         break;
                     case Mode.BALL:
-                            Body tmp = BodyFactory.CreateCircle(_world, 0.5f, 1f, Input.SimMousePos);
-                            tmp.BodyType = BodyType.Dynamic;
-                            _map.addBody(tmp);
+                            _map.addChunk(new MapChunk(ChunkType.CIRCLE, true, Input.SimMousePos, _world));
                         break;
                     case Mode.DELETE:
-                            _map.getBodies().Remove(_map.getBody(Input.SimMousePos));
+                            _map.getChunks().Remove(_map.getChunk(Input.SimMousePos));
                         break;
                 }
             }
@@ -199,7 +197,7 @@ namespace gearit.src.editor.map
             {
                 if (Input.pressed(MouseKeys.LEFT))
                 {
-                    Body tmp = _map.getBody(Input.SimMousePos);
+                    MapChunk tmp = _map.getChunk(Input.SimMousePos);
                     if (tmp != null)
                     {
                         tmp.Rotation += 0.01f;
@@ -207,7 +205,7 @@ namespace gearit.src.editor.map
                 }
                 if (Input.pressed(MouseKeys.RIGHT))
                 {
-                    Body tmp = _map.getBody(Input.SimMousePos);
+                    MapChunk tmp = _map.getChunk(Input.SimMousePos);
                     if (tmp != null)
                     {
                         tmp.Rotation -= 0.01f;

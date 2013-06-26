@@ -9,6 +9,7 @@ using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
+using gearit.src.editor.map;
 
 namespace gearit.src.map
 {
@@ -16,7 +17,7 @@ namespace gearit.src.map
     class Map : ISerializable
     {
         private string _mapName;
-        private List<Body> _mapBody;
+        private List<MapChunk> _mapChunk;
 
         [NonSerialized]
         private World _world;
@@ -25,7 +26,7 @@ namespace gearit.src.map
         {
             _world = world;
             _mapName = "test";
-            _mapBody = new List<Body>();
+            _mapChunk = new List<MapChunk>();
         }
 
         public Map(SerializationInfo info, StreamingContext ctxt)
@@ -34,42 +35,41 @@ namespace gearit.src.map
             _mapName = (string)info.GetValue("Name", typeof(string));
             List<SeralizedBody> bodyList = (List<SeralizedBody>)
               info.GetValue("Bodies", typeof(List<SeralizedBody>));
-
-            _mapBody = new List<Body>();
+            _mapChunk = new List<MapChunk>();
             foreach (SeralizedBody sb in bodyList)
-                _mapBody.Add(SeralizedBody.convertSBody(sb));
+                _mapChunk.Add(SeralizedBody.convertSBody(sb));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             List<SeralizedBody> bodyList = new List<SeralizedBody>();
-            foreach (Body b in _mapBody)
+            foreach (Body b in _mapChunk)
                 bodyList.Add(SeralizedBody.convertBody(b));
 
             info.AddValue("Name", _mapName, typeof(string));
             info.AddValue("Bodies", bodyList, typeof(List<SeralizedBody>));
         }
 
-        public Body getBody(Vector2 p)
+        public MapChunk getChunk(Vector2 p)
         {
             Transform t;
-            for (int i = 0; i < _mapBody.Count(); i++)
+            for (int i = 0; i < _mapChunk.Count(); i++)
             {
-                _mapBody[i].GetTransform(out t);
-                if (_mapBody[i].FixtureList[0].Shape.TestPoint(ref t, ref p))
-                    return (_mapBody[i]);
+                _mapChunk[i].GetTransform(out t);
+                if (_mapChunk[i].FixtureList[0].Shape.TestPoint(ref t, ref p))
+                    return (_mapChunk[i]);
             }
             return null;
         }
 
-        public void deleteBody(Body tmp)
+        public void deleteChunk(MapChunk tmp)
         {
-            _mapBody.Remove(tmp);
+            _mapChunk.Remove(tmp);
         }
 
-        public List<Body> getBodies()
+        public List<MapChunk> getChunks()
         {
-            return (_mapBody);
+            return (_mapChunk);
         }
 
         public string name
@@ -78,20 +78,16 @@ namespace gearit.src.map
             set { _mapName = value; }
         }
 
-        public void addBody(Body body)
+        public void addChunk(MapChunk chunk)
         {
-            body.BodyType = BodyType.Static;
-            body.FixtureList[0].CollisionGroup = 1337;
-            _mapBody.Add(body);
+            _mapChunk.Add(chunk);
         }
 
         public void drawDebug(DrawGame game)
         {
-            for (int i = 0; i < _mapBody.Count; i++)
+            for (int i = 0; i < _mapChunk.Count; i++)
             {
-                game.draw(_mapBody[i], Color.Black);
-
-                //drawPoly(game, ((PolygonShape)_mapBody[i].FixtureList[0].Shape).Vertices, _mapBody[i].Position);
+                game.draw(_mapChunk[i], Color.Black);
             }
         }
     }
