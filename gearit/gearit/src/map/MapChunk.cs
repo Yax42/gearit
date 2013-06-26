@@ -28,7 +28,7 @@ namespace gearit.src.editor.map
             _type = t;
             this.Position = pos;
             if (phys)
-                this.BodyType = BodyType.Dynamic;
+                BodyType = BodyType.Dynamic;
             switch (t)
             {
                 case ChunkType.RECTANGLE:
@@ -43,30 +43,16 @@ namespace gearit.src.editor.map
         }
 
         public MapChunk(SerializationInfo info, StreamingContext ctxt)
-            : base(SerializerHelper.World, (Vector2)info.GetValue("Position", typeof(Vector2)))
+            : base(SerializerHelper.World)
         {
             _type = (ChunkType)info.GetValue("Type", typeof(ChunkType));
-            BodyType = (BodyType)info.GetValue("BodyType", typeof(BodyType));
-            Rotation = (float)info.GetValue("Rotation", typeof(float));
-            switch (_type)
-            {
-                case ChunkType.RECTANGLE:
-                    SerializedFixture.convertSFixture((SerializedFixture)info.GetValue("Fixture", typeof(SerializedFixture)), this);
-                    break;
-                case ChunkType.CIRCLE:
-                    FixtureFactory.AttachCircle(0.5f, 1f, this);
-                    break;
-            }
+            SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            List<SeralizedBody> bodyList = new List<SeralizedBody>();
-            foreach (Body b in _mapChunk)
-                bodyList.Add(SeralizedBody.convertBody(b));
-
-            info.AddValue("Name", _mapName, typeof(string));
-            info.AddValue("Bodies", bodyList, typeof(List<SeralizedBody>));
+            info.AddValue("Type", _type, typeof(ChunkType));
+            info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
         }
     }
 }

@@ -38,6 +38,8 @@ namespace gearit.src.editor
         private float _density;
         private float _friction;
         private List<Vector2> _vertices;
+        private bool _isCircle;
+        private float _radius;
 
         /// <summary>
         /// Converts a fixture to a SerializedFixture.
@@ -51,8 +53,17 @@ namespace gearit.src.editor
             sf._density = f.Shape.Density;
             sf._friction = f.Friction;
             sf._vertices = new List<Vector2>();
-            foreach (Vector2 vert in ((PolygonShape)f.Shape).Vertices)
-                sf._vertices.Add(vert);
+            if (f.Shape.GetType() == typeof(PolygonShape))
+            {
+                sf._isCircle = false;
+                foreach (Vector2 vert in ((PolygonShape)f.Shape).Vertices)
+                    sf._vertices.Add(vert);
+            }
+            else
+            {
+                sf._isCircle = true;
+                sf._radius = ((CircleShape)f.Shape).Radius;
+            }
             return (sf);
         }
 
@@ -64,8 +75,14 @@ namespace gearit.src.editor
         /// <returns>The converted SerializedFixture.</returns>
         public static Fixture convertSFixture(SerializedFixture sf, Body b)
         {
-            Vertices v = new Vertices(sf._vertices);
-            Fixture f = b.CreateFixture(new PolygonShape(v, sf._density));
+            Fixture f;
+            if (sf._isCircle)
+                f = b.CreateFixture(new CircleShape(sf._radius, sf._density));
+            else
+            {
+                Vertices v = new Vertices(sf._vertices);
+                f = b.CreateFixture(new PolygonShape(v, sf._density));
+            }
             f.Friction = sf._friction;
             return (f);
         }
@@ -75,21 +92,26 @@ namespace gearit.src.editor
     /// Structure holding the necessary information to recreate a Body.
     /// </summary>
     [Serializable()]
-    public struct SeralizedBody
+    public struct SerializedBody
     {
         private Vector2 _position;
         private float _rotation;
+        private float _friction;
         private List<SerializedFixture> _fixtures;
+	private BodyType _bodyType;
+
 
         /// <summary>
-        /// Converts a Body to a SeralizedBody.
+        /// Converts a Body to a SerializedBody.
         /// </summary>
         /// <param name="body">The body to convert.</param>
         /// <returns>The converted body.</returns>
-        public static SeralizedBody convertBody(Body body)
+        public static SerializedBody convertBody(Body body)
         {
-            SeralizedBody sb = new SeralizedBody();
+            SerializedBody sb = new SerializedBody();
 
+            sb._bodyType = body.BodyType;
+            sb._friction = body.Friction;
             sb._position = body.Position;
             sb._rotation = body.Rotation;
             sb._fixtures = new List<SerializedFixture>(body.FixtureList.Count());
@@ -97,21 +119,33 @@ namespace gearit.src.editor
                 sb._fixtures.Add(SerializedFixture.convertFixture(f));
             return (sb);
         }
+
         /// <summary>
-        /// Converts a SeralizedBody to a Body.
+        /// Converts a SerializedBody to a Body.
         /// </summary>
-        /// <param name="body">The SeralizedBody to convert.</param>
-        /// <returns>The converted SeralizedBody.</returns>
-        public static Body convertSBody(SeralizedBody sbody)
+        /// <param name="body">The SerializedBody to convert.</param>
+        /// <returns>The converted SerializedBody.</returns>
+        public static Body convertSBody(SerializedBody sbody)
         {
             Body b = new Body(SerializerHelper.World);
+            convertSBody(sbody, b);
+            return (b);
+        }
 
+
+        /// <summary>
+        /// Converts a SerializedBody to a Body.
+        /// </summary>
+        /// <param name="body">The SerializedBody to convert.</param>
+        /// <returns>The converted SerializedBody.</returns>
+        public static void convertSBody(SerializedBody sbody, Body b)
+        {
+            b.BodyType = sbody._bodyType;
+            b.Friction = sbody._friction;
             b.Position = sbody._position;
             b.Rotation = sbody._rotation;
             foreach (SerializedFixture sf in sbody._fixtures)
                 SerializedFixture.convertSFixture(sf, b);
-            b.Friction = 10;
-            return (b);
         }
     }
 }
