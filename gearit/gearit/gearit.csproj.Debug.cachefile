@@ -14,12 +14,13 @@ Content\Common\stick.xnb
 Content\circleSprite.xnb
 Content\groundSprite.xnb
 Content\EditorIcon\rotate.xnb
+Content\RobotEditor\prismatic.xnb
+Content\RobotEditor\revolute.xnb
+Content\RobotEditor\run.xnb
 Content\font.xnb
 Content\Fonts\detailsFont.xnb
 Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb
 Content\Audio\MenuSound.xnb
 Content\Audio\soupeGame.xnb
-Content\RobotEditor\prismatic.xnb
-Content\RobotEditor\revolute.xnb
-Content\RobotEditor\run.xnb
+Content\EditorIcon\place.xnb
