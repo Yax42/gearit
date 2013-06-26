@@ -6,4 +6,3 @@ brunie_j:
 
 monner_r:
  - Fix padding TextItemMenu horizontal.
- - Create Menu Manager for RobotEditor.

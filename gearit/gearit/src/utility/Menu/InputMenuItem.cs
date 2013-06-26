@@ -10,8 +10,8 @@ namespace gearit.src.utility.Menu
 {
     enum InputMenuItemType
     {
-        Numeric,
-        Alpha,
+        Decimal,
+        Float,
         AlphaNumeric
     }
 
@@ -90,9 +90,28 @@ namespace gearit.src.utility.Menu
             string input = Input.keyToString(key);
             string concat = input + _text;
 
-            // Clear selection
-            if (input == "")
+            // Check Type
+            try
+            {
+                if (input == "")
+                    return (false);
+                if (_type == InputMenuItemType.Decimal)
+                    Convert.ToInt32(input);
+                else if (_type == InputMenuItemType.Float)
+                {
+                    if (input == ",")
+                    {
+                        if (_text.IndexOf(",") >= 0)
+                            return (false);
+                    }
+                    else
+                      Convert.ToInt32(input);
+                }
+            }
+            catch (FormatException e)
+            {
                 return (false);
+            }
 
             clearSelection();
 
@@ -149,6 +168,24 @@ namespace gearit.src.utility.Menu
                 return (true);
             }
             return (false);
+        }
+
+        public int getDecimal()
+        {
+            try
+            {
+                return (Convert.ToInt32(Display));
+            }
+            catch { return (0); }
+        }
+
+        public float getFloat()
+        {
+            try
+            {
+                return (Convert.ToSingle(Display));
+            }
+            catch { return (0); }
         }
 
         public bool tryMoveCursor(int direction)
