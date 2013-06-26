@@ -26,3 +26,6 @@ Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb
 Content\Audio\MenuSound.xnb
 Content\Audio\soupeGame.xnb
+Content\EditorIcon\dynamic.xnb
+Content\EditorIcon\static.xnb
+Content\EditorIcon\delete.xnb

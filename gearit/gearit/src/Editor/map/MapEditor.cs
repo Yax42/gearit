@@ -22,7 +22,15 @@ namespace gearit.src.editor.map
         ROTATE,
         DELETE,
         PLACE,
+        DYNAMIC,
+        STATIC,
         BALL
+    }
+    enum Act
+    {
+        NEW = 0,
+        LOAD,
+        SAVE
     }
     class MapEditor : GameScreen, IDemoScreen
     {
@@ -98,13 +106,27 @@ namespace gearit.src.editor.map
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/move", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.MOVE, new Color(110, 110, 110), new Color(120, 120, 120));
 
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/static", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.STATIC, new Color(110, 110, 110), new Color(120, 120, 120));
+
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/dynamic", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.DYNAMIC, new Color(110, 110, 110), new Color(120, 120, 120));
+
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/delete", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.DELETE, new Color(110, 110, 110), new Color(120, 120, 120));
+
             pos.X = 0;
             pos.Y = 0;
             size = new Vector2(400, 50);
             _menu_tools = new MenuOverlay(ScreenManager, pos, size, Color.LightGray, MenuLayout.Horizontal);
             item = new TextMenuItem(_menu_tools, "New", ScreenManager.Fonts.DetailsFont, Color.Black, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Act.NEW, new Color(110, 110, 110), new Color(120, 120, 120));
+
             item = new TextMenuItem(_menu_tools, "Open", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Act.LOAD, new Color(110, 110, 110), new Color(120, 120, 120));
+
             item = new TextMenuItem(_menu_tools, "Save", ScreenManager.Fonts.DetailsFont, Color.White, new Vector2(8), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Act.SAVE, new Color(110, 110, 110), new Color(120, 120, 120));
 
             _menu_tools.Adjusting = true;
             #endregion
@@ -122,8 +144,16 @@ namespace gearit.src.editor.map
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
-        private void changeMode()
+        private void changeModeDebug()
         {
+            if (Input.pressed(Keys.S))
+            {
+                _mode = Mode.STATIC;
+            }
+            if (Input.pressed(Keys.T))
+            {
+                _mode = Mode.DYNAMIC;
+            }
             if (Input.pressed(Keys.E))
             {
                 _mode = Mode.PLACE;
@@ -144,6 +174,15 @@ namespace gearit.src.editor.map
             {
                 _mode = Mode.BALL;
             }
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
+            {
+                Serializer.SerializeItem("moon.gim", _map);
+            }
+            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
+            {
+                _world.Clear();
+                _map = (Map)Serializer.DeserializeItem("moon.gim");
+            }
         }
 
         private void select()
@@ -158,7 +197,7 @@ namespace gearit.src.editor.map
 
         private void HandleInput()
         {
-            changeMode();
+            changeModeDebug();
             MenuItem pressed;
             if ((pressed = _menu_properties.justPressed()) != null)
             {
@@ -168,11 +207,36 @@ namespace gearit.src.editor.map
             {
                 ScreenManager.RemoveScreen(this);
             }
-
-            if (Input.justPressed(MouseKeys.LEFT) && !_menu_properties.isMouseOn())
+            if ((pressed = _menu_tools.justPressed()) != null)
             {
+                switch (pressed.Id)
+                {
+                    case (int)Act.LOAD:
+                        _world.Clear();
+                        _map = (Map)Serializer.DeserializeItem("moon.gim");
+                        break;
+                    case (int)Act.SAVE:
+                        Serializer.SerializeItem("moon.gim", _map);
+                        break;
+                    case (int)Act.NEW:
+                        //_world.Clear();
+                        break;
+                }
+            }
+
+            if (Input.justPressed(MouseKeys.LEFT) && !_menu_properties.isMouseOn() && !_menu_tools.isMouseOn())
+            {
+                MapChunk t = _map.getChunk(Input.SimMousePos);
                 switch (_mode)
                 {
+                    case Mode.STATIC:
+                        if (t != null)
+                            t.BodyType = BodyType.Static;
+                        break;
+                    case Mode.DYNAMIC:
+                        if (t != null)
+                            t.BodyType = BodyType.Dynamic;
+                        break;
                     case Mode.MOVE:
                             select();
                         break;
@@ -193,7 +257,7 @@ namespace gearit.src.editor.map
                 _selected.Position = Input.SimMousePos; /*(Input.SimMousePos - _selected.Position) + Input.SimMousePos*/
             }
 
-            if (_mode == Mode.ROTATE && !_menu_properties.isMouseOn())
+            if (_mode == Mode.ROTATE && !_menu_properties.isMouseOn() && !_menu_tools.isMouseOn())
             {
                 if (Input.pressed(MouseKeys.LEFT))
                 {
@@ -211,16 +275,6 @@ namespace gearit.src.editor.map
                         tmp.Rotation -= 0.01f;
                     }
                 }
-            }
-
-            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
-            {
-                Serializer.SerializeItem("moon.gim", _map);
-            }
-            if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
-            {
-                _world.Clear();
-                _map = (Map)Serializer.DeserializeItem("moon.gim");
             }
             _camera.input();
         }

@@ -77,9 +77,12 @@ namespace gearit.src.map
 
         public void drawDebug(DrawGame game)
         {
+            Color col;
+
             for (int i = 0; i < _chunks.Count; i++)
             {
-                game.draw(_chunks[i], Color.Black);
+                col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Red;
+                game.draw(_chunks[i], col);
             }
         }
     }
