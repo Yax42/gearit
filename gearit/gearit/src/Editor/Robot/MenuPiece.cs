@@ -67,6 +67,7 @@ namespace gearit.src.editor.robot
             _p_weight = new InputMenuItem(_menu_properties, _screen.Fonts.DetailsFont, Color.Black, 1, padding, new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
             _p_weight.addFocus(42, new Color(180, 180, 180), new Color(140, 140, 140));
             _p_weight.setLabel("Weight", _screen.Fonts.DetailsFont, Color.Black);
+            _p_weight.Type = InputMenuItemType.Float;
             _p_size = new TextMenuItem(_menu_properties, "Size", _screen.Fonts.DetailsFont, c_text, padding, ItemMenuLayout.MaxFromMin, align, 1f);
             _p_position = new TextMenuItem(_menu_properties, "Position", _screen.Fonts.DetailsFont, c_text, padding, ItemMenuLayout.MaxFromMin, align, 1f);
 
@@ -81,6 +82,7 @@ namespace gearit.src.editor.robot
             _s_maxforce = new InputMenuItem(_menu_properties, _screen.Fonts.DetailsFont, Color.Black, 1, padding, new Vector2(100, 28), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.HorizontalCenter | ItemMenuAlignement.VerticalCenter, 1f);
             _s_maxforce.addFocus(42, new Color(180, 180, 180), new Color(140, 140, 140));
             _s_maxforce.setLabel("Max force", _screen.Fonts.DetailsFont, Color.Black);
+            _s_maxforce.Type = InputMenuItemType.Decimal;
             
             // Prismatic spot
             _s_size = new TextMenuItem(_menu_properties, "Size", _screen.Fonts.DetailsFont, c_text, padding, ItemMenuLayout.MaxFromMin, align, 1f);
@@ -106,11 +108,11 @@ namespace gearit.src.editor.robot
             // Update info
             else
             {
-                piece.Weight = Convert.ToSingle(_p_weight.Display);
+                piece.Weight = _p_weight.getFloat();
                 if (spot != null)
                 {
                     spot.Name = _s_name.Display;
-                    spot.MaxForce = Convert.ToSingle(_s_maxforce.Display);
+                    spot.MaxForce = _s_maxforce.getDecimal();
                 }
             }
         }
