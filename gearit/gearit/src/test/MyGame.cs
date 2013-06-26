@@ -136,7 +136,7 @@ namespace gearit.src.utility
 
             /* Circle */
             // Convert screen center from pixels to meters
-            Vector2 circlePosition = ConvertUnits.ToSimUnits(_screenCenter) + new Vector2(0, -1.5f);
+            Vector2 circlePosition = ConvertUnits.ToSimUnits(_screenCenter) + new Vector2(0, -5.5f);
 
             // Create the circle fixture
 

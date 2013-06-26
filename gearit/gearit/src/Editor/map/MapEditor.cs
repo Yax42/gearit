@@ -21,7 +21,8 @@ namespace gearit.src.editor.map
         MOVE,
         ROTATE,
         DELETE,
-        PLACE
+        PLACE,
+        BALL
     }
     class MapEditor : GameScreen, IDemoScreen
     {
@@ -88,6 +89,9 @@ namespace gearit.src.editor.map
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/place", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.PLACE, new Color(110, 110, 110), new Color(120, 120, 120));
 
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/ball", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.BALL, new Color(110, 110, 110), new Color(120, 120, 120));
+
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/rotate", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.ROTATE, new Color(110, 110, 110), new Color(120, 120, 120));
 
@@ -136,6 +140,10 @@ namespace gearit.src.editor.map
             {
                 _mode = Mode.MOVE;
             }
+            if (Input.pressed(Keys.Z))
+            {
+                _mode = Mode.BALL;
+            }
         }
 
         private void select()
@@ -170,6 +178,11 @@ namespace gearit.src.editor.map
                         break;
                     case Mode.PLACE:
                             _map.addBody(BodyFactory.CreateRectangle(_world, 8f, 0.5f, 1f, Input.SimMousePos));
+                        break;
+                    case Mode.BALL:
+                            Body tmp = BodyFactory.CreateCircle(_world, 0.5f, 1f, Input.SimMousePos);
+                            tmp.BodyType = BodyType.Dynamic;
+                            _map.addBody(tmp);
                         break;
                     case Mode.DELETE:
                             _map.getBodies().Remove(_map.getBody(Input.SimMousePos));
