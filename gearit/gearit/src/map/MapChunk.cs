@@ -23,7 +23,7 @@ namespace gearit.src.editor.map
             Friction = 10;
         }
 
-        public MapChunk(World world)
+        internal MapChunk(World world)
             : base(world)
         {
         }

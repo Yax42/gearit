@@ -48,7 +48,7 @@ namespace gearit
             Shown = true;
         }
 
-        internal Piece(SerializationInfo info, StreamingContext ctxt) :
+        internal Piece(SerializationInfo info) :
             base(SerializerHelper.World)
         {
             BodyType = BodyType.Dynamic;
@@ -59,7 +59,9 @@ namespace gearit
             Position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
+
+        internal void serializePiece(SerializationInfo info)
         {
             info.AddValue("HashCode", this.GetHashCode(), typeof(int));
             info.AddValue("Position", this.Position, typeof(Vector2));

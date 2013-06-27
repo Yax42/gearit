@@ -29,7 +29,7 @@ namespace gearit
         }
 
         public Heart(SerializationInfo info, StreamingContext ctxt) :
-            base(info, ctxt)
+            base(info)
         {
             List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
             _vertices = new Vertices(v);
@@ -37,13 +37,13 @@ namespace gearit
             Weight = (float)info.GetValue("Weight", typeof(float));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        override public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             List<Vector2> v = new List<Vector2>();
             foreach (Vector2 vert in _vertices)
                 v.Add(vert);
             info.AddValue("Vertices", v, typeof(List<Vector2>));
-            base.GetObjectData(info, ctxt);
+            serializePiece(info);
         }
 
         public void draw(SpriteBatch batch)

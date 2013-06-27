@@ -291,7 +291,7 @@ namespace gearit.src.editor.map
                 if (Input.justPressed(MouseKeys.LEFT))
                 {
                     MapChunk backup = _selected;
-                    select();
+                    _selected = _map.getChunk(Input.SimMousePos);
                     if (_selected == null)
                         _selected = backup;
                     if (_selected != null && _selected.GetType() == typeof(PolygonChunk))

@@ -32,7 +32,7 @@ namespace gearit.src.robot
         }
 
         public Rod(SerializationInfo info, StreamingContext ctxt) :
-            base(info, ctxt)
+            base(info)
         {
             _size = (float)info.GetValue("Size", typeof(float));
             Rotation = (float)info.GetValue("Rotation", typeof(float));
@@ -40,9 +40,9 @@ namespace gearit.src.robot
             Weight = (float)info.GetValue("Weight", typeof(float));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        override public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            base.GetObjectData(info, ctxt);
+            serializePiece(info);
             info.AddValue("Size", _size, typeof(float));
             info.AddValue("Rotation", Rotation, typeof(float));
         }

@@ -31,16 +31,16 @@ namespace gearit
         }
 
         public Wheel(SerializationInfo info, StreamingContext ctxt) :
-            base(info, ctxt)
+            base(info)
         {
             _size = (float)info.GetValue("Size", typeof(float));
             setShape(new CircleShape(_size, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
             Weight = (float)info.GetValue("Weight", typeof(float));
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        override public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            base.GetObjectData(info, ctxt);
+            serializePiece(info);
             info.AddValue("Size", _size, typeof(float));
         }
 
