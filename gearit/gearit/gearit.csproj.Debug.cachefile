@@ -1,4 +1,5 @@
 Content\blank.xnb
+Content\font.xnb
 Content\Common\arrow.xnb
 Content\Common\bg.xnb
 Content\Common\bg_gearit.xnb
@@ -13,6 +14,11 @@ Content\Common\socket.xnb
 Content\Common\stick.xnb
 Content\circleSprite.xnb
 Content\groundSprite.xnb
+Content\Fonts\detailsFont.xnb
+Content\Fonts\frameRateCounterFont.xnb
+Content\Fonts\menufont.xnb
+Content\Audio\MenuSound.xnb
+Content\Audio\soupeGame.xnb
 Content\EditorIcon\rotate.xnb
 Content\RobotEditor\prismatic.xnb
 Content\RobotEditor\revolute.xnb
@@ -20,12 +26,6 @@ Content\RobotEditor\run.xnb
 Content\EditorIcon\place.xnb
 Content\EditorIcon\move.xnb
 Content\EditorIcon\ball.xnb
-Content\font.xnb
-Content\Fonts\detailsFont.xnb
-Content\Fonts\frameRateCounterFont.xnb
-Content\Fonts\menufont.xnb
-Content\Audio\MenuSound.xnb
-Content\Audio\soupeGame.xnb
 Content\EditorIcon\dynamic.xnb
 Content\EditorIcon\static.xnb
 Content\EditorIcon\delete.xnb

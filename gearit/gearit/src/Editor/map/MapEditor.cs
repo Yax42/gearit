@@ -241,10 +241,10 @@ namespace gearit.src.editor.map
                             select();
                         break;
                     case Mode.PLACE:
-                            _map.addChunk(new MapChunk(ChunkType.RECTANGLE, false, Input.SimMousePos, _world));
+                        _map.addChunk(new PolygonChunk(_world, false, Input.SimMousePos));
                         break;
                     case Mode.BALL:
-                            _map.addChunk(new MapChunk(ChunkType.CIRCLE, true, Input.SimMousePos, _world));
+                            _map.addChunk(new CircleChunk(_world, true, Input.SimMousePos));
                         break;
                     case Mode.DELETE:
                             _map.getChunks().Remove(_map.getChunk(Input.SimMousePos));

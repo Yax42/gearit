@@ -11,48 +11,29 @@ using System.Runtime.Serialization;
 
 namespace gearit.src.editor.map
 {
-    enum ChunkType
-    {
-        RECTANGLE = 0,
-        CIRCLE
-    }
-
     [Serializable()]
-    class MapChunk : Body, ISerializable
+    abstract class MapChunk : Body, ISerializable
     {
-        private ChunkType _type;
-
-        public MapChunk(ChunkType t, Boolean phys, Vector2 pos, World world)
-            : base(world, pos)
+        public MapChunk(World world, bool isDynamic, Vector2 pos)
+            : base(world)
         {
-            _type = t;
-            this.Position = pos;
-            if (phys)
+            Position = pos;
+            if (isDynamic)
                 BodyType = BodyType.Dynamic;
-            switch (t)
-            {
-                case ChunkType.RECTANGLE:
-                    Vertices rectangleVertices = PolygonTools.CreateRectangle(8f / 2, 0.5f / 2);
-                    PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
-                    this.CreateFixture(rectangleShape);
-                    break;
-                case ChunkType.CIRCLE:
-                    FixtureFactory.AttachCircle(0.5f, 1f, this);
-                    break;
-            }
         }
 
-        public MapChunk(SerializationInfo info, StreamingContext ctxt)
-            : base(SerializerHelper.World)
+        public MapChunk(World world)
+            : base(world)
         {
-            _type = (ChunkType)info.GetValue("Type", typeof(ChunkType));
-            SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+        abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
+
+        public bool isOn(Vector2 p)
         {
-            info.AddValue("Type", _type, typeof(ChunkType));
-            info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
+            Transform t;
+            GetTransform(out t);
+            return (FixtureList[0].Shape.TestPoint(ref t, ref p));
         }
     }
 }
