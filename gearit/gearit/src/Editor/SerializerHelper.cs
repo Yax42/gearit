@@ -83,7 +83,6 @@ namespace gearit.src.editor
                 Vertices v = new Vertices(sf._vertices);
                 f = b.CreateFixture(new PolygonShape(v, sf._density));
             }
-            f.Friction = sf._friction;
             return (f);
         }
     }

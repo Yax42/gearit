@@ -26,6 +26,7 @@ namespace gearit.src.editor.map
         internal MapChunk(World world)
             : base(world)
         {
+            Friction = 100;
         }
 
         public bool isOn(Vector2 p)

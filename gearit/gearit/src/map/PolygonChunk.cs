@@ -23,12 +23,14 @@ namespace gearit.src.map
             Vertices rectangleVertices = PolygonTools.CreateRectangle(8f / 2, 0.5f / 2);
             PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
             this.CreateFixture(rectangleShape);
+            Friction = 100;
         }
 
         public PolygonChunk(SerializationInfo info, StreamingContext ctxt)
             : base(SerializerHelper.World)
         {
             SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
+            Friction = 100;
         }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
