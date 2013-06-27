@@ -25,8 +25,8 @@ namespace gearit.src.editor.map
         DYNAMIC,
         STATIC,
         BALL,
-	RESIZE,
-	COUNT // utilise cette valeur quand tu veux savoir combien t'as de mode
+        RESIZE,
+        COUNT // utilise cette valeur quand tu veux savoir combien t'as de mode
     }
     enum Act
     {
@@ -108,6 +108,9 @@ namespace gearit.src.editor.map
 
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/move", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.MOVE, new Color(110, 110, 110), new Color(120, 120, 120));
+
+            item = new SpriteMenuItem(_menu_properties, "EditorIcon/resize", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
+            item.addFocus((int)Mode.RESIZE, new Color(110, 110, 110), new Color(120, 120, 120));
 
             item = new SpriteMenuItem(_menu_properties, "EditorIcon/static", new Vector2(1), ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter, 1.5f);
             item.addFocus((int)Mode.STATIC, new Color(110, 110, 110), new Color(120, 120, 120));
