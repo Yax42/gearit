@@ -32,5 +32,13 @@ namespace gearit.src.map
         {
             info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
         }
+
+        override public void resize(Vector2 p)
+        {
+	    float density = FixtureList[0].Shape.Density;
+	    float size = (Position - p).Length();
+            DestroyFixture(FixtureList[0]);
+            FixtureFactory.AttachCircle(size, density, this);
+        }
     }
 }

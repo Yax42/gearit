@@ -44,14 +44,12 @@ namespace gearit.src.map
 
         public MapChunk getChunk(Vector2 p)
         {
-            Transform t;
-            for (int i = 0; i < _chunks.Count(); i++)
+            foreach (MapChunk i in _chunks)
             {
-                _chunks[i].GetTransform(out t);
-                if (_chunks[i].FixtureList[0].Shape.TestPoint(ref t, ref p))
-                    return (_chunks[i]);
+                if (i.isOn(p))
+                    return (i);
             }
-            return null;
+            return (null);
         }
 
         public void deleteChunk(MapChunk tmp)

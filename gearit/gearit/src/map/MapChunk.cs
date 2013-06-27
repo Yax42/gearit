@@ -20,6 +20,7 @@ namespace gearit.src.editor.map
             Position = pos;
             if (isDynamic)
                 BodyType = BodyType.Dynamic;
+            Friction = 10;
         }
 
         public MapChunk(World world)
@@ -27,13 +28,14 @@ namespace gearit.src.editor.map
         {
         }
 
-        abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
-
         public bool isOn(Vector2 p)
         {
             Transform t;
             GetTransform(out t);
             return (FixtureList[0].Shape.TestPoint(ref t, ref p));
         }
+
+        abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
+        abstract public void resize(Vector2 p);
     }
 }

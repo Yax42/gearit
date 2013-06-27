@@ -24,7 +24,9 @@ namespace gearit.src.editor.map
         PLACE,
         DYNAMIC,
         STATIC,
-        BALL
+        BALL,
+	RESIZE,
+	COUNT // utilise cette valeur quand tu veux savoir combien t'as de mode
     }
     enum Act
     {
@@ -42,7 +44,7 @@ namespace gearit.src.editor.map
         private MenuOverlay _menu_properties;
         private Mode _mode;
         private const int PropertiesMenuSize = 40;
-        private Body _selected;
+        private MapChunk _selected;
 
         #region IDemoScreen Members
 
@@ -84,6 +86,7 @@ namespace gearit.src.editor.map
             _camera.Position = new Vector2(0, 0);
             _world.Gravity = new Vector2(0f, 0f);
             HasVirtualStick = true;
+            _selected = null;
 
             _draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
@@ -174,6 +177,10 @@ namespace gearit.src.editor.map
             {
                 _mode = Mode.BALL;
             }
+            if (Input.pressed(Keys.X))
+            {
+                _mode = Mode.RESIZE;
+            }
             if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
             {
                 Serializer.SerializeItem("moon.gim", _map);
@@ -249,6 +256,8 @@ namespace gearit.src.editor.map
                     case Mode.DELETE:
                             _map.getChunks().Remove(_map.getChunk(Input.SimMousePos));
                         break;
+                    case Mode.RESIZE:
+                        break;
                 }
             }
 
@@ -275,6 +284,22 @@ namespace gearit.src.editor.map
                         tmp.Rotation -= 0.01f;
                     }
                 }
+            }
+
+            if (_mode == Mode.RESIZE)
+            {
+                if (Input.justPressed(MouseKeys.LEFT))
+                {
+                    MapChunk backup = _selected;
+                    select();
+                    if (_selected == null)
+                        _selected = backup;
+                    if (_selected != null && _selected.GetType() == typeof(PolygonChunk))
+                        ((PolygonChunk)_selected).selectVertice(Input.SimMousePos);
+                }
+
+		if (Input.pressed(MouseKeys.LEFT) && _selected != null)
+                  _selected.resize(Input.SimMousePos); /*(Input.SimMousePos - ;_selected.Position) + Input.SimMousePos*/
             }
             _camera.input();
         }
