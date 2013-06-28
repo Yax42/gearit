@@ -66,13 +66,18 @@ namespace gearit.xna
             _menuScreen.AddMenuItem(_game.GetTitle(), EntryType.Screen, _game);
             _menuScreen.AddMenuItem(_robot_editor.GetTitle(), EntryType.Screen, _robot_editor);
             _menuScreen.AddMenuItem(_map_editor.GetTitle(), EntryType.Screen, _map_editor);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
+            _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
+            _menuScreen.AddMenuItem("Test", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_Gearit.GetTitle(), EntryType.Screen, _Gearit);
             _menuScreen.AddMenuItem(_bruteRobot.GetTitle(), EntryType.Screen, _bruteRobot);
             _menuScreen.AddMenuItem(_spiderBot.GetTitle(), EntryType.Screen, _spiderBot);
             _menuScreen.AddMenuItem(_gladiator.GetTitle(), EntryType.Screen, _gladiator);
-            _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
-            _menuScreen.AddMenuItem(_Options.GetTitle(), EntryType.Screen, _Options);
-            _menuScreen.AddMenuItem("Quitter", EntryType.ExitItem, null);
 
             _screenManager.AddScreen(_menuScreen);
             //_screenManager.AddScreen(_game);
