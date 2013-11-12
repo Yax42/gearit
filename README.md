@@ -5,4 +5,4 @@ brunie_j:
  - Game
 
 monner_r:
- - Fix padding TextItemMenu horizontal.
+ - Fix padding TextItemMenu horizontal
