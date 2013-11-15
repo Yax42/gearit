@@ -13,6 +13,7 @@ namespace gearit.xna
 
         private MenuScreen _menuScreen;
         private MyGame _Gearit;
+        private MainMulti _Multi;
         private BruteRobot _bruteRobot;
         private GladiatoRobot _gladiator;
         private SpiderBot _spiderBot;
@@ -52,6 +53,8 @@ namespace gearit.xna
             //_sound.playSound();
 
             _Gearit = new MyGame();
+            _Multi = new MainMulti("Multiplayer", _screenManager);
+            _Multi.LoadMenu();
             _bruteRobot = new BruteRobot();
             _spiderBot = new SpiderBot();
             _gladiator = new GladiatoRobot();
@@ -64,6 +67,7 @@ namespace gearit.xna
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
             _menuScreen.AddMenuItem(_game.GetTitle(), EntryType.Screen, _game);
+            _menuScreen.AddMenuItem(_Multi.GetTitle(), EntryType.Screen, _Multi);
             _menuScreen.AddMenuItem(_robot_editor.GetTitle(), EntryType.Screen, _robot_editor);
             _menuScreen.AddMenuItem(_map_editor.GetTitle(), EntryType.Screen, _map_editor);
             _menuScreen.AddMenuItem("\n", EntryType.Separator, null);
