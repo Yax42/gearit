@@ -13,7 +13,7 @@ namespace gearit.src.game
   class GearitNetworkGame : GearitGame
   {
     const int maxGamers = 4;
-    const int maxGamers = 1;
+    const int maxLocalGamers = 1;
 
     private NetworkSession networkSession;
 
@@ -21,12 +21,14 @@ namespace gearit.src.game
     private PacketReader packetReader;
 
     private bool isHost;
+
     public GearitNetworkGame() : base()
     {
       packetWriter = new PacketWriter();
       packetReader = new PacketReader();
     }
 
+    // TODO: Call `base.LoadContent()`.
     public override void LoadContent()
     {
       // We should call our base class method, but we won't for now since it
@@ -41,13 +43,16 @@ namespace gearit.src.game
       SerializerHelper.World = _world;
 
       // Load robots and map from network. (From files for now).
-      addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
-      _map = (Map)Serializer.DeserializeItem("moon.gim");
+      // addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
+      _map = (Map) Serializer.DeserializeItem("moon.gim");
 
       // Reset time elapsed time that happened during loading.
       ScreenManager.Game.ResetElapsedTime();
     }
 
+    /// <summary>
+    /// Allows the game to run logic.
+    /// </summary>
     public override void Update(GameTime gameTime, bool otherScreenHasFocus,
         bool coveredByOtherScreen)
     {
@@ -55,6 +60,10 @@ namespace gearit.src.game
       base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
     }
 
+    /// <summary>
+    /// Updates the state of the network session, moving the robots
+    /// around and synchronizing their state over the network.
+    /// </summary>
     private void UpdateNetworkSession()
     {
       // TODO: For each local player (only one?), read imput and send them to
