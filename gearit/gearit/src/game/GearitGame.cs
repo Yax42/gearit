@@ -14,19 +14,19 @@ namespace gearit.src.game
 {
     class GearitGame : GameScreen, IDemoScreen
     {
-        private World _world;
+        protected World _world;
         //private Camera2D _camera;
-        private Camera2D _camera;
+        protected Camera2D _camera;
 
-        private Map _map;
-        private List<Robot> _robots;
-        private DrawGame _drawGame;
+        protected Map _map;
+        protected List<Robot> _robots;
+        protected DrawGame _drawGame;
 
         // Graphic
         private RectangleOverlay _background;
 
         // Action
-        private int _time = 0;
+        protected int _time = 0;
 
         #region IDemoScreen Members
 

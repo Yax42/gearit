@@ -117,6 +117,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\game\GearitNetworkGame.cs" />
     <Compile Include="src\map\CircleChunk.cs" />
     <Compile Include="src\map\MapChunk.cs" />
     <Compile Include="src\editor\map\MapEditor.cs" />
