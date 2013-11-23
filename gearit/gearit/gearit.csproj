@@ -117,6 +117,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\game\GearitNetworkGame.cs" />
     <Compile Include="src\map\CircleChunk.cs" />
     <Compile Include="src\map\MapChunk.cs" />
     <Compile Include="src\editor\map\MapEditor.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="src\utility\RectangleOverlay.cs" />
     <Compile Include="src\xna\Drawing System\LineBatch.cs" />
     <Compile Include="src\xna\Drawing System\Sprite.cs" />
+    <Compile Include="src\xna\Menu\MainMulti.cs" />
     <Compile Include="src\xna\ScreenManager\FullScreen.cs" />
     <Compile Include="src\xna\Menu\MainMenu.cs" />
     <Compile Include="src\xna\Menu\MainOptions.cs" />
