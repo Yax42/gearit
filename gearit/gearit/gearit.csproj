@@ -138,7 +138,7 @@
     <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
     <Compile Include="src\editor\EditorCamera.cs" />
     <Compile Include="src\editor\robot\action\ActionSwapLimit.cs" />
-    <Compile Include="src\editor\robot\MenuPiece.cs" />
+    <Compile Include="src\editor\robot\action\MenuPiece.cs" />
     <Compile Include="src\Editor\Serializer.cs" />
     <Compile Include="src\editor\SerializerHelper.cs" />
     <Compile Include="src\farseer\Collision\Collision.cs" />
@@ -250,7 +250,7 @@
     <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\game\GearitGame.cs" />
     <Compile Include="src\map\Map.cs" />
-    <Compile Include="src\editor\api\PieceApi.cs" />
+    <Compile Include="src\editor\api\SpotApi.cs" />
     <Compile Include="src\editor\api\InputApi.cs" />
     <Compile Include="src\editor\api\PrismaticApi.cs" />
     <Compile Include="src\editor\api\RevoluteApi.cs" />

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.api
 {
-    class RevoluteApi : PieceApi
+    class RevoluteApi : SpotApi
     {
         public RevoluteApi(ISpot spot) :
 	    base(spot)

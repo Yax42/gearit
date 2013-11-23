@@ -21,7 +21,7 @@ namespace gearit
     abstract class Piece : Body, ISerializable
     {
         internal Shape _shape;
-        internal Fixture _fix;
+        internal Fixture _fix; //punaise
         internal Texture2D _tex;
 
         internal Piece(Robot robot) :
@@ -94,7 +94,7 @@ namespace gearit
                 _fix.Shape.Density = value * _fix.Shape.Density / _fix.Shape.MassData.Mass;
                 ResetMassData();
             }
-            get { return _fix.Shape.MassData.Mass; }
+            get { return _fix.Shape.MassData.Mass; } // a check
         }
 
         public bool isOn(Vector2 p)

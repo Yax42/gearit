@@ -5,11 +5,11 @@ using System.Text;
 
 namespace gearit.src.editor.api
 {
-    abstract class PieceApi
+    abstract class SpotApi
     {
         internal ISpot _spot;
 
-        public PieceApi(ISpot spot)
+        public SpotApi(ISpot spot)
         {
             _spot = spot;
         }

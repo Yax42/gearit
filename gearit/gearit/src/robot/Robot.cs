@@ -205,9 +205,9 @@ namespace gearit
             getHeart().Position = pos;
         }
 
-        public List<PieceApi> getApi()
+        public List<SpotApi> getApi()
         {
-            List<PieceApi> res = new List<PieceApi>();
+            List<SpotApi> res = new List<SpotApi>();
             for (int i = 0; i < _spots.Count; i++)
             {
                 if (_spots[i].GetType() == typeof(PrismaticSpot))
