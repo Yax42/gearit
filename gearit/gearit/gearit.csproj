@@ -255,6 +255,9 @@
     <Compile Include="src\editor\api\PrismaticApi.cs" />
     <Compile Include="src\editor\api\RevoluteApi.cs" />
     <Compile Include="src\map\PolygonChunk.cs" />
+    <Compile Include="src\output\OutputManager.cs" />
+    <Compile Include="src\output\OutputMessageManager\IOutputMessageManager.cs" />
+    <Compile Include="src\output\OutputMessageManager\OutputMessageManagerConsole.cs" />
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />

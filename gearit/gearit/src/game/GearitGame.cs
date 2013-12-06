@@ -61,6 +61,7 @@ namespace gearit.src.game
             _world.Gravity = new Vector2(0f, 9.8f);
             //clearRobot();
             SerializerHelper.World = _world;
+            Console.Write("One ");
 	    addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
         _robots[0].getPiece(Vector2.Zero).Weight = 30;
             _map = (Map)Serializer.DeserializeItem("moon.gim");

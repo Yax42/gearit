@@ -8,7 +8,7 @@ using System.Threading;
 
 using gearit.src.robot;
 using gearit.src.editor.api;
-
+using gearit.src.output;
 namespace gearit.src.utility
 {
 
@@ -37,14 +37,22 @@ namespace gearit.src.utility
             run();
         }
 	
-	private void run()
-	{
-	    _thread.Start();
-	}
+	    private void run()
+	    {
+	        _thread.Start();
+	    }
 
         private void exec()
         {
-            DoFile(@"data/script/" + _name + ".lua");
+            try
+            {
+                DoFile(@"data/script/" + _name + ".lua");
+            }
+            catch (LuaException ex)
+            {
+                //OutputManager.GetInstance()
+                Console.WriteLine("Lua exception: {0}", ex.Message);
+            }
         }
 
         public void stop()
