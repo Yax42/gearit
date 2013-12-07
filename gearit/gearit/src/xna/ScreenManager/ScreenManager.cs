@@ -18,12 +18,11 @@ namespace gearit.xna
         private ContentManager _contentManager;
         private GraphicsDeviceManager _graphics;
 
-        private InputHelper _input;
         private bool _isInitialized;
         private LineBatch _lineBatch;
 
         private List<GameScreen> _screens;
-        private List<GameScreen> _screensToUpdate;
+        private List<GameScreen> _screensTemp;
 
         private SpriteBatch _spriteBatch;
 
@@ -44,10 +43,9 @@ namespace gearit.xna
             // we don't assume the game wants to read them.
             _contentManager = game.Content;
             _contentManager.RootDirectory = "Content";
-            _input = new InputHelper(this);
 
             _screens = new List<GameScreen>();
-            _screensToUpdate = new List<GameScreen>();
+            _screensTemp = new List<GameScreen>();
             _transitions = new List<RenderTarget2D>();
             _graphics = new GraphicsDeviceManager(game);
             _graphics.PreferMultiSampling = true;
@@ -159,7 +157,6 @@ namespace gearit.xna
             _lineBatch = new LineBatch(GraphicsDevice);
             _assetCreator = new AssetCreator(GraphicsDevice);
             _assetCreator.LoadContent(_contentManager);
-            _input.LoadContent();
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in _screens)
@@ -185,52 +182,21 @@ namespace gearit.xna
         /// </summary>
         public override void Update(GameTime gameTime)
         {
-            // Read the keyboard and gamepad.
-            _input.Update(gameTime);
-
             // Make a copy of the master screen list, to avoid confusion if
             // the process of updating one screen adds or removes others.
-            _screensToUpdate.Clear();
+            _screensTemp.Clear();
 
             foreach (GameScreen screen in _screens)
-            {
-                _screensToUpdate.Add(screen);
-            }
-
-            bool otherScreenHasFocus = !Game.IsActive;
-            bool coveredByOtherScreen = false;
+                _screensTemp.Add(screen);
 
             // Loop as long as there are screens waiting to be updated.
-            while (_screensToUpdate.Count > 0)
+            while (_screensTemp.Count > 0)
             {
                 // Pop the topmost screen off the waiting list.
-                GameScreen screen = _screensToUpdate[_screensToUpdate.Count - 1];
+                GameScreen screen = _screensTemp[_screensTemp.Count - 1];
 
-                _screensToUpdate.RemoveAt(_screensToUpdate.Count - 1);
-
-                // Update the screen.
-                screen.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
-                if (screen.ScreenState == ScreenState.TransitionOn ||
-                    screen.ScreenState == ScreenState.Active)
-                {
-                    // If this is the first active screen we came across,
-                    // give it a chance to handle input.
-                    if (!otherScreenHasFocus)
-                    {
-                        _input.ShowCursor = screen.HasCursor;
-                        _input.EnableVirtualStick = screen.HasVirtualStick;
-                        screen.HandleInput(_input, gameTime);
-                        otherScreenHasFocus = true;
-                    }
-
-                    // If this is an active non-popup, inform any subsequent
-                    // screens that they are covered by it.
-                    if (!screen.IsPopup)
-                    {
-                        coveredByOtherScreen = true;
-                    }
-                }
+                _screensTemp.RemoveAt(_screensTemp.Count - 1);
+                screen.Update(gameTime);
             }
         }
 
@@ -239,54 +205,29 @@ namespace gearit.xna
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            int transitionCount = 0;
-            foreach (GameScreen screen in _screens)
-            {
-                if (screen.ScreenState == ScreenState.TransitionOn ||
-                    screen.ScreenState == ScreenState.TransitionOff)
-                {
-                    ++transitionCount;
-                    if (_transitions.Count < transitionCount)
-                    {
-                        PresentationParameters _pp = GraphicsDevice.PresentationParameters;
-                        _transitions.Add(new RenderTarget2D(GraphicsDevice, _pp.BackBufferWidth, _pp.BackBufferHeight,
-                                                            false,
-                                                            SurfaceFormat.Color, _pp.DepthStencilFormat,
-                                                            _pp.MultiSampleCount,
-                                                            RenderTargetUsage.DiscardContents));
-                    }
-                    GraphicsDevice.SetRenderTarget(_transitions[transitionCount - 1]);
-                    GraphicsDevice.Clear(Color.Transparent);
-                    screen.Draw(gameTime);
-                    GraphicsDevice.SetRenderTarget(null);
-                }
-            }
+            // Remove if problem with Squid
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
 
-            GraphicsDevice.Clear(Color.Black);
-
-            transitionCount = 0;
             foreach (GameScreen screen in _screens)
             {
                 if (screen.ScreenState == ScreenState.Hidden)
-                {
                     continue;
-                }
 
-                if (screen.ScreenState == ScreenState.TransitionOn ||
-                    screen.ScreenState == ScreenState.TransitionOff)
-                {
-                    _spriteBatch.Begin(0, BlendState.AlphaBlend);
-                    _spriteBatch.Draw(_transitions[transitionCount], Vector2.Zero, Color.White * screen.TransitionAlpha);
-                    _spriteBatch.End();
-
-                    ++transitionCount;
-                }
-                else
-                {
-                    screen.Draw(gameTime);
-                }
+                screen.Draw(gameTime);
             }
-            _input.Draw();
+        }
+
+        /// <summary>
+        /// Sort the list by Draw priority
+        /// </summary>
+        public void UpdatePriority()
+        {
+            _screens.Sort(
+                delegate(GameScreen p1, GameScreen p2)
+                {
+                    return p1.DrawPriority.CompareTo(p2.DrawPriority);
+                }
+            );
         }
 
         /// <summary>
@@ -299,11 +240,10 @@ namespace gearit.xna
 
             // If we have a graphics device, tell the screen to load content.
             if (_isInitialized)
-            {
                 screen.LoadContent();
-            }
 
             _screens.Add(screen);
+            UpdatePriority();
         }
 
         /// <summary>
@@ -321,7 +261,7 @@ namespace gearit.xna
             }
 
             _screens.Remove(screen);
-            _screensToUpdate.Remove(screen);
+            _screensTemp.Remove(screen);
         }
 
         /// <summary>

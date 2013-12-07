@@ -46,6 +46,7 @@ namespace gearit.src.editor.robot
         private EditorCamera _camera;
 
         // Graphic
+        private MenuRobotEditor _menu;
         private RectangleOverlay _background;
         private MenuPiece _menus;
 
@@ -86,6 +87,10 @@ namespace gearit.src.editor.robot
         {
             base.LoadContent();
 
+            // Menu
+            _menu = new MenuRobotEditor(ScreenManager);
+
+            // World
             if (_world == null)
                 _world = new World(Vector2.Zero);
             else
@@ -140,8 +145,10 @@ namespace gearit.src.editor.robot
             _menus = new MenuPiece(ScreenManager);
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
+            _menu.Update();
+
             _time++;
             Input.update();
             _camera.update();
@@ -151,7 +158,7 @@ namespace gearit.src.editor.robot
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
             _world.Step(0f);
 
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         private bool runShortcut()
@@ -216,13 +223,12 @@ namespace gearit.src.editor.robot
 
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
-
             _draw_game.Begin(_camera);
             drawRobot();
             _draw_game.End();
 
             _menus.Draw(_draw_game);
+            _menu.Draw();
 
             base.Draw(gameTime);
         }

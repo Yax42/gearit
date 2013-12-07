@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using gearit.xna;
+using GUI;
 
 namespace gearit.src.utility
 {
@@ -43,8 +44,7 @@ namespace gearit.src.utility
 
         protected void LoadMenu()
         {
-            MainMenu main = new MainMenu(ScreenManager);
-            main.LoadContent();
+ 
         }
     }
 }

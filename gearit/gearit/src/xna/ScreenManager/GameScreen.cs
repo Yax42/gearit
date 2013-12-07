@@ -39,6 +39,7 @@ namespace gearit.xna
 
         public GameScreen()
         {
+            DrawPriority = 0;
             ScreenState = ScreenState.TransitionOn;
             TransitionPosition = 1;
             TransitionOffTime = TimeSpan.Zero;
@@ -78,6 +79,8 @@ namespace gearit.xna
         /// fully off to nothing).
         /// </summary>
         public float TransitionPosition { get; protected set; }
+
+        public int DrawPriority { get; set; }
 
         /// <summary>
         /// Gets the current alpha of the screen transition, ranging
@@ -141,83 +144,12 @@ namespace gearit.xna
         /// Unlike HandleInput, this method is called regardless of whether the screen
         /// is active, hidden, or in the middle of a transition.
         /// </summary>
-        public virtual void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                   bool coveredByOtherScreen)
+        public virtual void Update(GameTime gameTime)
         {
-            _otherScreenHasFocus = otherScreenHasFocus;
-
             if (IsExiting)
-            {
-                // If the screen is going away to die, it should transition off.
-                ScreenState = ScreenState.TransitionOff;
-
-                if (!UpdateTransition(gameTime, TransitionOffTime, 1))
-                {
-                    // When the transition finishes, remove the screen.
-                    ScreenManager.RemoveScreen(this);
-                }
-            }
-            else if (coveredByOtherScreen)
-            {
-                // If the screen is covered by another, it should transition off.
-                if (UpdateTransition(gameTime, TransitionOffTime, 1))
-                {
-                    // Still busy transitioning.
-                    ScreenState = ScreenState.TransitionOff;
-                }
-                else
-                {
-                    // Transition finished!
-                    ScreenState = ScreenState.Hidden;
-                }
-            }
+                ScreenManager.RemoveScreen(this);
             else
-            {
-                // Otherwise the screen should transition on and become active.
-                if (UpdateTransition(gameTime, TransitionOnTime, -1))
-                {
-                    // Still busy transitioning.
-                    ScreenState = ScreenState.TransitionOn;
-                }
-                else
-                {
-                    // Transition finished!
-                    ScreenState = ScreenState.Active;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Helper for updating the screen transition position.
-        /// </summary>
-        private bool UpdateTransition(GameTime gameTime, TimeSpan time, int direction)
-        {
-            // How much should we move by?
-            float transitionDelta;
-
-            if (time == TimeSpan.Zero)
-            {
-                transitionDelta = 1f;
-            }
-            else
-            {
-                transitionDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds /
-                                           time.TotalMilliseconds);
-            }
-
-            // Update the transition position.
-            TransitionPosition += transitionDelta * direction;
-
-            // Did we reach the end of the transition?
-            if (((direction < 0) && (TransitionPosition <= 0)) ||
-                ((direction > 0) && (TransitionPosition >= 1)))
-            {
-                TransitionPosition = MathHelper.Clamp(TransitionPosition, 0, 1);
-                return false;
-            }
-
-            // Otherwise we are still busy transitioning.
-            return true;
+                ScreenState = ScreenState.Active;
         }
 
         /// <summary>

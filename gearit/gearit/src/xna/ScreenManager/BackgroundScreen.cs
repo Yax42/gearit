@@ -72,10 +72,9 @@ namespace gearit.xna
         /// coveredByOtherScreen parameter to false in order to stop the base
         /// Update method wanting to transition off.
         /// </summary>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                    bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, otherScreenHasFocus, false);
+            base.Update(gameTime);
         }
 
         /// <summary>

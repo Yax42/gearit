@@ -139,7 +139,7 @@ namespace gearit.src.editor.map
  
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             Input.update();
             _camera.update();
@@ -147,7 +147,7 @@ namespace gearit.src.editor.map
             _menu_properties.Update();
             HandleInput();
             _world.Step(0f);
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         private void changeModeDebug()

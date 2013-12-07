@@ -264,10 +264,9 @@ namespace gearit.xna
         /// <summary>
         /// Updates the menu.
         /// </summary>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                    bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
 
             // Update each nested MenuEntry object.
             for (int i = 0; i < _menuEntries.Count; ++i)

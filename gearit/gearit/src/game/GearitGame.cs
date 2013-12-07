@@ -97,7 +97,7 @@ namespace gearit.src.game
 	    robot.move(new Vector2(0, -20));
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             _time++;
             Input.update();
@@ -108,7 +108,7 @@ namespace gearit.src.game
             //_camera.update();
             //_camera.input();
             _camera.Update(gameTime);
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
 

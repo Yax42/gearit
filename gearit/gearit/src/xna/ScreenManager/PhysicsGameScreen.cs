@@ -82,19 +82,12 @@ namespace gearit.xna
             ScreenManager.Game.ResetElapsedTime();
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
-            if (!coveredByOtherScreen && !otherScreenHasFocus)
-            {
-                // variable time step but never less then 30 Hz
-                World.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
-            }
-            else
-            {
-                World.Step(0f);
-            }
+            // variable time step but never less then 30 Hz
+            World.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
             Camera.Update(gameTime);
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         public override void HandleInput(InputHelper input, GameTime gameTime)

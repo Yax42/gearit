@@ -273,7 +273,7 @@ namespace gearit.src.utility
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             HandleGamePad();
             HandleKeyboard();
@@ -287,7 +287,7 @@ namespace gearit.src.utility
 
             if (this.IsExiting)
                 _sound.StopSound();
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         public void ChangeWheel(float value)
