@@ -101,7 +101,7 @@ namespace gearit.src.editor.robot
 
             // Initialize camera controls
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
-            _camera.Position = new Vector2(0, 0);
+            _camera.Position = new Vector2(-500f, -100f);
             //_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             _world.Gravity = new Vector2(0f, 0f);
@@ -147,12 +147,12 @@ namespace gearit.src.editor.robot
 
         public override void Update(GameTime gameTime)
         {
-            _menu.Update();
-
             _time++;
-            Input.update();
             _camera.update();
             HandleInput();
+
+            _menu.Update();
+            _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
             _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
@@ -174,9 +174,6 @@ namespace gearit.src.editor.robot
 
         private void HandleInput()
         {
-            if (Input.pressed(Keys.Escape))
-                ScreenManager.RemoveScreen(this);
-
             if (_actionType == ActionTypes.NONE)
             {
                 //    MenuItem pressed;

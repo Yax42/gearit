@@ -171,17 +171,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RobotEditor\prismatic.png">
+    <Compile Include="GUI\RobotEditor\prismatic.png">
       <Name>prismatic</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="RobotEditor\revolute.png">
+    <Compile Include="GUI\RobotEditor\revolute.png">
       <Name>revolute</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="RobotEditor\run.png">
+    <Compile Include="GUI\RobotEditor\run.png">
       <Name>run</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

@@ -59,7 +59,7 @@ namespace GUI
             menu_listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
             menu_listbox.Multiselect = false;
             menu_listbox.Parent = this;
-            menu_listbox.Style = "menu";
+            menu_listbox.Style = "mainMenu";
 
             _Gearit = new MyGame();
             _bruteRobot = new BruteRobot();
@@ -80,9 +80,24 @@ namespace GUI
             addMenuItem(_game2, _game2.GetTitle());
             addMenuItem(_Options, _Options.GetTitle());
 
-            //ScreenManager.AddScreen(_robot_editor);
+            menu_listbox.Items[4].Click(0);
+            ScreenManager.AddScreen(_robot_editor);
+            current_screen = _robot_editor;
 
             #endregion
+        }
+
+        public void goBack()
+        {
+            if (current_screen == null)
+            {
+                _ScreenManager.Exit();
+                return;
+            }
+            
+            _ScreenManager.RemoveScreen(current_screen);
+            current_screen = null;
+            menu_listbox.SelectedItem.Selected = false;
         }
 
         public void addMenuItem(GameScreen screen, string title)
@@ -91,7 +106,7 @@ namespace GUI
             item.Text = title;
             item.BBCodeEnabled = true;
             item.Size = new Squid.Point(MENU_WIDTH, 42);
-            item.Style = "itemMenu";
+            item.Style = "itemMainMenu";
             menu_listbox.Items.Add(item);
 
             // Callback

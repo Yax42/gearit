@@ -20,9 +20,6 @@ Content\Fonts\frameRateCounterFont.xnb
 Content\Fonts\menufont.xnb
 Content\Audio\MenuSound.xnb
 Content\Audio\soupeGame.xnb
-Content\RobotEditor\prismatic.xnb
-Content\RobotEditor\revolute.xnb
-Content\RobotEditor\run.xnb
 Content\EditorIcon\place.xnb
 Content\EditorIcon\move.xnb
 Content\EditorIcon\ball.xnb
@@ -76,3 +73,6 @@ Content\GUI\Cursors\SizeNWSE.xnb
 Content\GUI\Cursors\SizeWE.xnb
 Content\GUI\xna_logo.xnb
 Content\GUI\Arial10.xnb
+Content\GUI\RobotEditor\prismatic.xnb
+Content\GUI\RobotEditor\revolute.xnb
+Content\GUI\RobotEditor\run.xnb

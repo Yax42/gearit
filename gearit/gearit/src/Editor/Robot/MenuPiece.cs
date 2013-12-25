@@ -50,12 +50,12 @@ namespace gearit.src.editor.robot
             MenuItem item;
             size = new Vector2(MenuWidth, ToolsMenuHeight);
             _menu_tools = new MenuOverlay(_screen, pos, size, new Color(200, 200, 200), MenuLayout.Horizontal);
-            item = new SpriteMenuItem(_menu_tools, "RobotEditor/revolute", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.REV_SPOT, bg_focus, bg_pressed);
-            item = new SpriteMenuItem(_menu_tools, "RobotEditor/prismatic", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.PRIS_SPOT, bg_focus, bg_pressed);
-            item = new SpriteMenuItem(_menu_tools, "RobotEditor/run", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-            item.addFocus((int)ActionTypes.LAUNCH, bg_focus, bg_pressed);
+            //item = new SpriteMenuItem(_menu_tools, "RobotEditor/revolute", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.REV_SPOT, bg_focus, bg_pressed);
+            //item = new SpriteMenuItem(_menu_tools, "RobotEditor/prismatic", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.PRIS_SPOT, bg_focus, bg_pressed);
+            //item = new SpriteMenuItem(_menu_tools, "RobotEditor/run", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
+            //item.addFocus((int)ActionTypes.LAUNCH, bg_focus, bg_pressed);
 
             // Menu properties
             pos += new Vector2(0, ToolsMenuHeight);

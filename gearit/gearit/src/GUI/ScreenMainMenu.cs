@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using gearit.xna;
 using Microsoft.Xna.Framework;
-using Squid;
+using gearit.src.utility;
+using Microsoft.Xna.Framework.Input;
 
 namespace GUI
 {
@@ -26,6 +27,9 @@ namespace GUI
 
         public override void Update(GameTime gameTime)
         {
+            if (Input.justPressed(Keys.Escape))
+                _menu.goBack();
+
             _menu.Update();
 
             base.Update(gameTime);

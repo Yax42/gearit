@@ -182,6 +182,9 @@ namespace gearit.xna
         /// </summary>
         public override void Update(GameTime gameTime)
         {
+            // Update input
+            Input.update();
+
             // Make a copy of the master screen list, to avoid confusion if
             // the process of updating one screen adds or removes others.
             _screensTemp.Clear();
@@ -228,6 +231,11 @@ namespace gearit.xna
                     return p1.DrawPriority.CompareTo(p2.DrawPriority);
                 }
             );
+        }
+
+        public void Exit()
+        {
+            Game.Exit();
         }
 
         /// <summary>

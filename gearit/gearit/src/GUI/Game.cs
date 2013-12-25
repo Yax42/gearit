@@ -66,9 +66,9 @@ namespace SquidXNA
             inputStyle.Texture = "input_default.dds";
             inputStyle.Hot.Texture = "input_focused.dds";
             inputStyle.Focused.Texture = "input_focused.dds";
-            inputStyle.TextPadding = new Margin(0);
+            inputStyle.TextPadding = new Margin(4);
             inputStyle.Tiling = TextureMode.Grid;
-            inputStyle.Focused.Tint = ColorInt.RGBA(0, 1, 0, 1);
+            inputStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1);
 
 
             ControlStyle windowStyle = new ControlStyle();
@@ -154,17 +154,31 @@ namespace SquidXNA
             labelStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.1f);
             labelStyle.Default.BackColor = 0;
 
+            ControlStyle mainMenuStyle = new ControlStyle();
+            mainMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+            mainMenuStyle.BackColor = ColorInt.RGBA(0, 0, 0, 0.6f);
+
+            ControlStyle itemMainMenuStyle = new ControlStyle();
+            itemMainMenuStyle.TextAlign = Alignment.MiddleCenter;
+            itemMainMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+            itemMainMenuStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.02f);
+            itemMainMenuStyle.Default.BackColor = 0;
+            itemMainMenuStyle.Selected.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+            itemMainMenuStyle.SelectedHot.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+
             ControlStyle menuStyle = new ControlStyle();
             menuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-            menuStyle.BackColor = ColorInt.RGBA(0, 0, 0, 0.6f);
+            menuStyle.BackColor = ColorInt.RGBA(0, 0, 0, 0.528f);
 
             ControlStyle itemMenuStyle = new ControlStyle();
-            itemMenuStyle.TextAlign = Alignment.MiddleCenter;
             itemMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-            itemMenuStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.02f);
             itemMenuStyle.Default.BackColor = 0;
-            itemMenuStyle.Selected.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
-            itemMenuStyle.SelectedHot.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+
+            ControlStyle itemMenuTitleStyle = new ControlStyle();
+            itemMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+            itemMenuTitleStyle.TextAlign = Alignment.MiddleLeft;
+            itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
+
 
             skin.Styles.Add("item", itemStyle);
             skin.Styles.Add("textbox", inputStyle);
@@ -183,8 +197,11 @@ namespace SquidXNA
             skin.Styles.Add("multiline", multilineStyle);
             skin.Styles.Add("tooltip", tooltipStyle);
             skin.Styles.Add("label", labelStyle);
+            skin.Styles.Add("mainMenu", mainMenuStyle);
+            skin.Styles.Add("itemMainMenu", itemMainMenuStyle);
             skin.Styles.Add("menu", menuStyle);
             skin.Styles.Add("itemMenu", itemMenuStyle);
+            skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
 
             GuiHost.SetSkin(skin);
 
