@@ -151,8 +151,8 @@ namespace gearit.src.editor.robot
             _camera.update();
             HandleInput();
 
-            _menu.Update();
             _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
+            _menu.Update();
             _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
