@@ -199,12 +199,15 @@ namespace SquidXNA
 
         public void StartBatch()
         {
-            Batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Sampler, null, Rasterizer); 
+            Batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Sampler, null, Rasterizer);
         }
 
         public void EndBatch(bool final)
         {
             Batch.End();
+
+            // Fix double cursor - LOLOL
+            Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.ScreenManager.Width, Game.ScreenManager.Height);
         }
 
         public void Dispose() { }

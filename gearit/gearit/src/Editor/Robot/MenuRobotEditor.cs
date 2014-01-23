@@ -41,15 +41,22 @@ namespace gearit.src.editor.robot
 
         public MenuRobotEditor(ScreenManager ScreenManager)
         {
+           
             #region main
+
+            #region init
 
             _ScreenManager = ScreenManager;
 
             ShowCursor = true;
             Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
-            Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
+
+            // Full width to get the cursor propagation
+            Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
 
             int y = 0;
+
+            #endregion
 
             // Background
             background.Parent = this;

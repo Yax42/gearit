@@ -217,7 +217,8 @@ namespace gearit.xna
                     continue;
 
                 screen.Draw(gameTime);
-            }
+                
+            } 
         }
 
         /// <summary>

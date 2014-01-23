@@ -43,7 +43,7 @@ namespace GUI
             #region main
 
             Position = new Squid.Point(0, 0);
-            Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);
+            Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
 
             // MainMenu
             menu_listbox = new ListBox();

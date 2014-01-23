@@ -11,6 +11,7 @@ namespace GUI
 {
     class ScreenMainMenu : GameScreen
     {
+        private Squid.Desktop _background;
         private MainMenu _menu;
 
         public ScreenMainMenu()
@@ -23,23 +24,28 @@ namespace GUI
             base.LoadContent();
 
             _menu = new GUI.MainMenu(ScreenManager);
+
+            // Mouse Cursor bug fix
+            //_background = new Squid.Desktop();
+            //_background.ShowCursor = false;
+            //_background.Size = new Squid.Point(ScreenManager.Height, ScreenManager.Height);
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (Input.justPressed(Keys.Escape))
                 _menu.goBack();
 
             _menu.Update();
-
-            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            _menu.Draw();
-
             base.Draw(gameTime);
+
+            _menu.Draw();
         }
     }
 }

@@ -63,6 +63,7 @@ namespace gearit.src.editor.robot
 
         public RobotEditor()
         {
+            DrawPriority = 1;
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
             HasCursor = true;
@@ -153,6 +154,7 @@ namespace gearit.src.editor.robot
 
             _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
             _menu.Update();
+            // To delete
             _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
@@ -220,14 +222,14 @@ namespace gearit.src.editor.robot
 
         public override void Draw(GameTime gameTime)
         {
+            base.Draw(gameTime);
+
             _draw_game.Begin(_camera);
             drawRobot();
             _draw_game.End();
 
-            _menus.Draw(_draw_game);
             _menu.Draw();
-
-            base.Draw(gameTime);
+            _menus.Draw(_draw_game);
         }
     }
 }
