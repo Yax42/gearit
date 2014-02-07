@@ -89,7 +89,7 @@ namespace gearit.src.editor.robot
             base.LoadContent();
 
             // Menu
-            _menu = new MenuRobotEditor(ScreenManager);
+            _menu = new MenuRobotEditor(ScreenManager, this);
 
             // World
             if (_world == null)
@@ -154,6 +154,7 @@ namespace gearit.src.editor.robot
 
             _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
             _menu.Update();
+
             // To delete
             _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
@@ -174,25 +175,23 @@ namespace gearit.src.editor.robot
             return (false);
         }
 
+        public void doAction(ActionTypes action)
+        {
+            _actions[(int)action].init();
+            _actions[(int)action].run(ref _robot, ref _mainSelected, ref _selected2);
+        }
+
         private void HandleInput()
         {
             if (_actionType == ActionTypes.NONE)
             {
-                //    MenuItem pressed;
-                //    if ((pressed = _menu_tools.justPressed()) != null)
-                //    {
-                //        _actionType = (ActionTypes)pressed.Id;
-                //        _actions[(int)_actionType].init();
-                //    }
-                if (_menus.hasFocus())
+                if (_menu.hasFocus())
                     return;
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
             {
-                // à decomenter pour avoir un menu effectif.
-                //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();

@@ -80,9 +80,8 @@ namespace GUI
             addMenuItem(_game2, _game2.GetTitle());
             addMenuItem(_Options, _Options.GetTitle());
 
+            // ToRemove - Popup robot editor
             menu_listbox.Items[4].Click(0);
-            ScreenManager.AddScreen(_robot_editor);
-            current_screen = _robot_editor;
 
             #endregion
         }
@@ -110,7 +109,7 @@ namespace GUI
             menu_listbox.Items.Add(item);
 
             // Callback
-            item.MousePress += delegate(Control snd, MouseEventArgs e)
+            item.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
                 if (current_screen == screen)
                     return;

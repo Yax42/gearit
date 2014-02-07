@@ -179,6 +179,14 @@ namespace SquidXNA
             itemMenuTitleStyle.TextAlign = Alignment.MiddleLeft;
             itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
+            ControlStyle itemMenuButtonStyle = new ControlStyle();
+            itemMenuButtonStyle.TextAlign = Alignment.MiddleCenter;
+            itemMenuButtonStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+            itemMenuButtonStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+            itemMenuButtonStyle.Default.BackColor = ColorInt.RGBA(1, 1, 1, 0.04f);
+            itemMenuButtonStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+            itemMenuButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+
 
             skin.Styles.Add("item", itemStyle);
             skin.Styles.Add("textbox", inputStyle);
@@ -202,6 +210,7 @@ namespace SquidXNA
             skin.Styles.Add("menu", menuStyle);
             skin.Styles.Add("itemMenu", itemMenuStyle);
             skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
+            skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
 
             GuiHost.SetSkin(skin);
 

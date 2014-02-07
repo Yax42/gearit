@@ -6,11 +6,28 @@ using Squid;
 using gearit.xna;
 using GUI;
 using gearit.src.robot;
+using gearit.src.utility;
 
 namespace gearit.src.editor.robot
 {
     class MenuRobotEditor : Desktop
     {
+        enum FPiece
+        {
+            Circle = 1,
+            Pipe = 2,
+            None
+        }
+
+        enum FJointure
+        {
+            Prismatic,
+            Revolute
+        }
+
+        // Editor
+        RobotEditor _robot_editor;
+
         // Propertie
         static public int MENU_WIDTH = 200;
         static public int TOOLS_HEIGHT = 32;
@@ -19,7 +36,17 @@ namespace gearit.src.editor.robot
         static public int ITEM_HEIGHT = 42;
         static public int PADDING = 4;
 
-        // Gui
+        //// Gui
+        private bool _has_focus = false;
+
+        // Tools
+        private ListBox lb_jointure;
+        private FPiece flag_piece;
+        private FJointure flag_jointure;
+        private Button rb_revolute = new Button();
+        private Button rb_prismatic = new Button();
+
+        // Piece & Spot
         private ScreenManager _ScreenManager;
         private ListBox menu_listbox = new ListBox();
         private Control background = new Control();
@@ -39,7 +66,7 @@ namespace gearit.src.editor.robot
         private TextBox piece_y = new TextBox();
 
 
-        public MenuRobotEditor(ScreenManager ScreenManager)
+        public MenuRobotEditor(ScreenManager ScreenManager, RobotEditor robot_editor)
         {
            
             #region main
@@ -47,6 +74,7 @@ namespace gearit.src.editor.robot
             #region init
 
             _ScreenManager = ScreenManager;
+            _robot_editor = robot_editor;
 
             ShowCursor = true;
             Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
@@ -64,21 +92,107 @@ namespace gearit.src.editor.robot
             background.Position = new Point(0, y);
             background.Size = new Point(MENU_WIDTH, _ScreenManager.Height);
 
-            // Tools section
-            ImageControl img = new ImageControl();
-            img.Texture = "RobotEditor/revolute.png";
-            img.Size = new Squid.Point(32, TOOLS_HEIGHT);
-            img.Position = new Squid.Point(0, y);
-            img.Style = "itemMainMenu";
-            img.Parent = this;
+            // Drop callback
+            AllowDrop = true;
+            DragDrop += dropPiece;
 
-            y += TOOLS_HEIGHT + PADDING * 4;
+            #region tools
+
+            //// Tools section
+            // Auto select menu tools
+            flag_piece = FPiece.None;
+            flag_jointure = FJointure.Prismatic;
+            rb_revolute.Checked = true;
+
+            // Title
+            Label lb = new Label();
+            lb.Text = "Pieces";
+            lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            lb.Position = new Squid.Point(0, y);
+            lb.Style = "itemMenuTitle";
+            lb.Parent = this;
+
+            y += lb.Size.y + PADDING;
+
+            #region piecedrop
+
+            //// Circle and Pipe
+            // Circle
+            Button btn = new Button();
+            btn.Text = "Circle";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(0, y);
+            btn.Parent = this;
+            btn.Tag = FPiece.Circle;
+            btn.MouseDrag += dragPiece;
+            btn.Cursor = Cursors.Move;
+
+            y += btn.Size.y + 2;
+
+            btn = new Button();
+            btn.Text = "Pipe";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(0, y);
+            btn.Parent = this;
+            btn.Tag = FPiece.Pipe;
+            btn.MouseDrag += dragPiece;
+            btn.Cursor = Cursors.Move;
+
+            y += btn.Size.y + PADDING; 
+
+            #endregion
+
+            #region jointuretype
+
+            // Title
+            lb = new Label();
+            lb.Text = "Jointure";
+            lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            lb.Position = new Squid.Point(0, y);
+            lb.Style = "itemMenuTitle";
+            lb.Parent = this;
+
+            y += lb.Size.y + PADDING;
+
+            // Piece jointure type
+            rb_revolute.Text = "Revolute";
+            rb_revolute.Style = "itemMenuButton";
+            rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+            rb_revolute.Position = new Squid.Point(0, y);
+            rb_revolute.Parent = this;
+
+            rb_prismatic.Text = "Prismatic";
+            rb_prismatic.Style = "itemMenuButton";
+            rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+            rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2, y);
+            rb_prismatic.Parent = this;
+
+            // Callback button
+            rb_revolute.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                if (!rb_revolute.Checked)
+                    swap_jointure();
+            };
+
+            rb_prismatic.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                if (!rb_prismatic.Checked)
+                    swap_jointure();
+            };
+
+            y += ITEM_HEIGHT + PADDING * 4;
+
+            #endregion
+
+            #endregion
 
             #region piece
 
             // Piece section
-            Label lb = new Label();
-            lb.Text = "Piece";
+            lb = new Label();
+            lb.Text = "Piece information";
             lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
             lb.Position = new Squid.Point(0, y);
             lb.Style = "itemMenuTitle";
@@ -168,7 +282,7 @@ namespace gearit.src.editor.robot
             piece_rotation.Parent = piece_rotation_conainer;
             piece_rotation.Enabled = false;
 
-            y += lb.Size.y + PADDING * 8;
+            y += lb.Size.y + PADDING * 2;
 
             // Spot section
             spot_container = new Frame();
@@ -179,7 +293,7 @@ namespace gearit.src.editor.robot
             y = 0;
 
             lb = new Label();
-            lb.Text = "Spot";
+            lb.Text = "Spot information";
             lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
             lb.Position = new Squid.Point(0, y);
             lb.Style = "itemMenuTitle";
@@ -240,8 +354,102 @@ namespace gearit.src.editor.robot
 
             #endregion
 
+            #region action
+
+            y = ScreenManager.Height - PADDING - ITEM_HEIGHT;
+
+            // Link
+            btn = new Button();
+            btn.Text = "Link";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(0, y);
+            btn.Parent = this;
+            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                if (flag_jointure == FJointure.Prismatic)
+                    _robot_editor.doAction(ActionTypes.PRIS_LINK);
+                else
+                    _robot_editor.doAction(ActionTypes.REV_LINK);
+            };
+
+            y -= btn.Size.y + PADDING;
+
+            // Remove
+            btn = new Button();
+            btn.Text = "Delete";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(0, y);
+            btn.Parent = this;
+
+            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                _robot_editor.doAction(ActionTypes.DELETE_PIECE);
+            };
+
+            y -= btn.Size.y + PADDING;
+
+            // Title
+            lb = new Label();
+            lb.Text = "Actions";
+            lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            lb.Position = new Squid.Point(0, y);
+            lb.Style = "itemMenuTitle";
+            lb.Parent = this;
 
             #endregion
+
+            #endregion
+        }
+
+        void dragPiece(Control sender, MouseEventArgs e)
+        {
+            ImageControl img = new ImageControl();
+
+            if (sender.Tag.Equals(FPiece.Circle))
+                img.Texture = "RobotEditor/revolute.png";
+            else
+                img.Texture = "RobotEditor/prismatic.png";
+
+            img.Size = new Squid.Point(32, 32);
+            img.Position = new Point((int) Input.position().X - MainMenu.MENU_WIDTH - 16, (int) Input.position().Y - 16);
+            img.Style = "itemMainMenu";
+            img.Tag = sender.Tag;
+
+            DoDragDrop(img);
+        }
+
+        void dropPiece(Control sender, DragDropEventArgs e)
+        {
+            // Change set
+             if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
+                 _robot_editor.doAction(ActionTypes.CHOOSE_SET);
+
+             if (flag_jointure == FJointure.Prismatic)
+                _robot_editor.doAction(ActionTypes.PRIS_SPOT);
+            else
+                _robot_editor.doAction(ActionTypes.REV_SPOT);
+
+            // Restore set
+            if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
+                _robot_editor.doAction(ActionTypes.CHOOSE_SET);
+        }
+
+        public bool hasFocus()
+        {
+            return (background.Position.x + MainMenu.MENU_WIDTH <= Input.position().X &&
+                background.Position.x + background.Size.x + MainMenu.MENU_WIDTH >= Input.position().X &&
+                background.Position.y <= Input.position().Y &&
+                background.Position.y + background.Size.y >= Input.position().Y);
+        }
+
+        public void swap_jointure()
+        {
+            rb_revolute.Checked = !rb_revolute.Checked;
+            rb_prismatic.Checked = !rb_prismatic.Checked;
+
+            flag_jointure = (flag_jointure == FJointure.Prismatic ? FJointure.Revolute : FJointure.Prismatic);
         }
 
         public void Update(Piece piece, ISpot spot)
