@@ -102,7 +102,7 @@ namespace gearit.src.editor.robot
             // Auto select menu tools
             flag_piece = FPiece.None;
             flag_jointure = FJointure.Prismatic;
-            rb_revolute.Checked = true;
+            rb_prismatic.Checked = true;
 
             // Title
             Label lb = new Label();
@@ -127,6 +127,7 @@ namespace gearit.src.editor.robot
             btn.Tag = FPiece.Circle;
             btn.MouseDrag += dragPiece;
             btn.Cursor = Cursors.Move;
+            btn.Tooltip = "Drag to the specified location";
 
             y += btn.Size.y + 2;
 
@@ -139,6 +140,7 @@ namespace gearit.src.editor.robot
             btn.Tag = FPiece.Pipe;
             btn.MouseDrag += dragPiece;
             btn.Cursor = Cursors.Move;
+            btn.Tooltip = "Drag to the specified location";
 
             y += btn.Size.y + PADDING; 
 
@@ -162,12 +164,14 @@ namespace gearit.src.editor.robot
             rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
             rb_revolute.Position = new Squid.Point(0, y);
             rb_revolute.Parent = this;
+            rb_revolute.Tooltip = "Circular motor";
 
             rb_prismatic.Text = "Prismatic";
             rb_prismatic.Style = "itemMenuButton";
             rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
             rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2, y);
             rb_prismatic.Parent = this;
+            rb_prismatic.Tooltip = "Piston motor";
 
             // Callback button
             rb_revolute.MouseClick += delegate(Control snd, MouseEventArgs e)
@@ -229,6 +233,7 @@ namespace gearit.src.editor.robot
             piece_size.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
             piece_size.Style = "textbox";
             piece_size.Parent = this;
+            piece_size.Mode = TextBoxMode.Numeric;
 
             y += ITEM_HEIGHT;
             
@@ -365,6 +370,7 @@ namespace gearit.src.editor.robot
             btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
             btn.Position = new Squid.Point(0, y);
             btn.Parent = this;
+            btn.Tooltip = "Link two pieces together with specified jointure";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
                 if (flag_jointure == FJointure.Prismatic)
@@ -382,7 +388,7 @@ namespace gearit.src.editor.robot
             btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
             btn.Position = new Squid.Point(0, y);
             btn.Parent = this;
-
+            btn.Tooltip = "Remove selected piece";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
                 _robot_editor.doAction(ActionTypes.DELETE_PIECE);

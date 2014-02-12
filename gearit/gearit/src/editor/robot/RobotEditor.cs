@@ -228,7 +228,8 @@ namespace gearit.src.editor.robot
             _draw_game.End();
 
             _menu.Draw();
-            _menus.Draw(_draw_game);
+            // to delete
+            //_menus.Draw(_draw_game);
         }
     }
 }

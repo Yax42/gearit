@@ -187,7 +187,6 @@ namespace SquidXNA
             itemMenuButtonStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
             itemMenuButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
-
             skin.Styles.Add("item", itemStyle);
             skin.Styles.Add("textbox", inputStyle);
             skin.Styles.Add("button", buttonStyle);
