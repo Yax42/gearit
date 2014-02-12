@@ -40,11 +40,11 @@ namespace gearit.xna
             base.LoadContent();
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             ScreenManager.SetResolutionScreen(_width, _height);
             this.ExitScreen();
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
     }
 }

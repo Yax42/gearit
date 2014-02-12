@@ -152,6 +152,7 @@ namespace FarseerPhysics.Collision.Shapes
                     // has colinear edges.
                     float s = edge.X * r.Y - edge.Y * r.X;
 
+                    // TODO wtf bug
                     Debug.Assert(s > 0.0f);
                 }
             }

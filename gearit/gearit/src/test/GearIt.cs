@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using gearit.xna;
-using gearit.src.output;
+using GUI;
 
 namespace gearit.src.utility
 {
@@ -40,16 +40,11 @@ namespace gearit.src.utility
             ScreenManager.AddScreen(new BackgroundScreen());
             ScreenManager.AddScreen(new LogoScreen(TimeSpan.FromSeconds(2.0)));
             LoadMenu();
-
-            //OutputMessageManager has been set to an OutputMessageManagerConsole instance
-            OutputManager.GetInstance().SetOutputMessageManager(new OutputMessageManagerConsole());
-            
         }
 
         protected void LoadMenu()
         {
-            MainMenu main = new MainMenu(ScreenManager);
-            main.LoadContent();
+ 
         }
     }
 }

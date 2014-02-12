@@ -29,7 +29,8 @@ namespace gearit.xna
         {
             ScreenManager = manager;
         }
-        public void LoadMenu()
+
+        public void LoadContent()
         {
             base.LoadContent();
 

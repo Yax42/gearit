@@ -46,6 +46,7 @@ namespace gearit.src.editor.robot
         private EditorCamera _camera;
 
         // Graphic
+        private MenuRobotEditor _menu;
         private RectangleOverlay _background;
         private MenuPiece _menus;
 
@@ -62,6 +63,7 @@ namespace gearit.src.editor.robot
 
         public RobotEditor()
         {
+            DrawPriority = 1;
             TransitionOnTime = TimeSpan.FromSeconds(0.75);
             TransitionOffTime = TimeSpan.FromSeconds(0.75);
             HasCursor = true;
@@ -86,6 +88,10 @@ namespace gearit.src.editor.robot
         {
             base.LoadContent();
 
+            // Menu
+            _menu = new MenuRobotEditor(ScreenManager, this);
+
+            // World
             if (_world == null)
                 _world = new World(Vector2.Zero);
             else
@@ -96,7 +102,7 @@ namespace gearit.src.editor.robot
 
             // Initialize camera controls
             _camera = new EditorCamera(ScreenManager.GraphicsDevice);
-            _camera.Position = new Vector2(0, 0);
+            _camera.Position = new Vector2(-500f, -100f);
             //_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
             _world.Gravity = new Vector2(0f, 0f);
@@ -140,18 +146,22 @@ namespace gearit.src.editor.robot
             _menus = new MenuPiece(ScreenManager);
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             _time++;
-            Input.update();
             _camera.update();
             HandleInput();
+
+            _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
+            _menu.Update();
+
+            // To delete
             _menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 
             // Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
             _world.Step(0f);
 
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         private bool runShortcut()
@@ -165,28 +175,23 @@ namespace gearit.src.editor.robot
             return (false);
         }
 
+        public void doAction(ActionTypes action)
+        {
+            _actions[(int)action].init();
+            _actions[(int)action].run(ref _robot, ref _mainSelected, ref _selected2);
+        }
+
         private void HandleInput()
         {
-            if (Input.pressed(Keys.Escape))
-                ScreenManager.RemoveScreen(this);
-
             if (_actionType == ActionTypes.NONE)
             {
-                //    MenuItem pressed;
-                //    if ((pressed = _menu_tools.justPressed()) != null)
-                //    {
-                //        _actionType = (ActionTypes)pressed.Id;
-                //        _actions[(int)_actionType].init();
-                //    }
-                if (_menus.hasFocus())
+                if (_menu.hasFocus())
                     return;
                 else if (runShortcut())
                     _actions[(int)_actionType].init();
             }
             else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
             {
-                // à decomenter pour avoir un menu effectif.
-                //_menu_tools.getItem((int)_actionType).Pressed = false;
                 _actionType = ActionTypes.NONE;
             }
             _camera.input();
@@ -216,15 +221,15 @@ namespace gearit.src.editor.robot
 
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.LightSkyBlue);
+            base.Draw(gameTime);
 
             _draw_game.Begin(_camera);
             drawRobot();
             _draw_game.End();
 
-            _menus.Draw(_draw_game);
-
-            base.Draw(gameTime);
+            _menu.Draw();
+            // to delete
+            //_menus.Draw(_draw_game);
         }
     }
 }

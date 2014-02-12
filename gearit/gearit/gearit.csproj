@@ -95,6 +95,9 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Squid">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\SquidTest\SquidTest\SquidTest\Squid.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
@@ -117,6 +120,13 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\MenuRobotEditor.cs" />
+    <Compile Include="src\GUI\InputManager.cs" />
+    <Compile Include="src\GUI\Program.cs" />
+    <Compile Include="src\GUI\RendererXNA.cs" />
+    <Compile Include="src\GUI\MainMenu.cs" />
+    <Compile Include="src\GUI\Game.cs" />
+    <Compile Include="src\GUI\ScreenMainMenu.cs" />
     <Compile Include="src\map\CircleChunk.cs" />
     <Compile Include="src\map\MapChunk.cs" />
     <Compile Include="src\editor\map\MapEditor.cs" />

@@ -66,8 +66,7 @@ namespace gearit.xna
             }
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                    bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             _duration -= gameTime.ElapsedGameTime;
             if (_duration <= TimeSpan.Zero)
@@ -75,7 +74,7 @@ namespace gearit.xna
                 ExitScreen();
             }
 
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
