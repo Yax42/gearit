@@ -7,6 +7,7 @@ using gearit.xna;
 using GUI;
 using gearit.src.robot;
 using gearit.src.utility;
+using System.Globalization;
 
 namespace gearit.src.editor.robot
 {
@@ -27,6 +28,8 @@ namespace gearit.src.editor.robot
 
         // Editor
         RobotEditor _robot_editor;
+        Piece _piece;
+        ISpot _spot;
 
         // Propertie
         static public int MENU_WIDTH = 200;
@@ -217,6 +220,7 @@ namespace gearit.src.editor.robot
             piece_weight.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
             piece_weight.Style = "textbox";
             piece_weight.Parent = this;
+            piece_weight.Enabled = false;
 
             y += ITEM_HEIGHT;
 
@@ -234,6 +238,7 @@ namespace gearit.src.editor.robot
             piece_size.Style = "textbox";
             piece_size.Parent = this;
             piece_size.Mode = TextBoxMode.Numeric;
+            piece_size.Enabled = false;
 
             y += ITEM_HEIGHT;
             
@@ -319,6 +324,10 @@ namespace gearit.src.editor.robot
             spot_name.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
             spot_name.Style = "textbox";
             spot_name.Parent = spot_container;
+            spot_name.TextChanged += delegate(Control snd)
+            {
+                _spot.Name = ((TextBox)snd).Text;
+            };
 
             y += ITEM_HEIGHT;
 
@@ -335,6 +344,14 @@ namespace gearit.src.editor.robot
             spot_force.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
             spot_force.Style = "textbox";
             spot_force.Parent = spot_container;
+            spot_force.Mode = TextBoxMode.Numeric;
+            spot_force.TextChanged += delegate(Control snd)
+            {
+                if (((TextBox)snd).Text == "")
+                    _spot.Force = 0;
+                else
+                    _spot.Force = float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+            };
 
             y += ITEM_HEIGHT;
 
@@ -460,6 +477,9 @@ namespace gearit.src.editor.robot
 
         public void Update(Piece piece, ISpot spot)
         {
+            _piece = piece;
+            _spot = spot;
+
             piece_weight.Text = piece.Weight.ToString();
             piece_size.Text = piece.getSize().ToString();
             piece_x.Text = piece.Position.X.ToString();
@@ -479,7 +499,7 @@ namespace gearit.src.editor.robot
             if (visible)
             {
                 spot_name.Text = spot.Name;
-                spot_force.Text = spot.MaxForce.ToString();
+                spot_force.Text = spot.Force.ToString();
 
                 // Check if Prismatic
                 if (spot.GetType() == typeof(PrismaticSpot))
