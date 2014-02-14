@@ -95,8 +95,9 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Squid">
-      <HintPath>..\..\..\..\Visual Studio 2010\Projects\SquidTest\SquidTest\SquidTest\Squid.dll</HintPath>
+    <Reference Include="Squid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ba804b1072f6e05, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Squid.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
