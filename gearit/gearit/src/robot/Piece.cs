@@ -129,6 +129,28 @@ namespace gearit
 			}
 			return ((ISpot)res);
 		}
+		public void rotate(float angle)
+		{
+			rotateDelta(angle - Rotation);
+		}
+
+		public void rotateDelta(float angle)
+		{
+			if ((int)(Rotation * 1000) == (int)(angle * 1000))
+				return;
+			Rotation += angle;
+			for (JointEdge i = JointList; i != null; i = i.Next)
+			{
+				if (i.Joint.GetType() == typeof(RevoluteSpot))
+					((RevoluteSpot)i.Joint).rotate(this, angle);
+			}
+		}
+
+
+		public void moveDelta(Vector2 pos)
+		{
+			move(pos + Position);
+		}
 
 		public void move(Vector2 pos)
 		{

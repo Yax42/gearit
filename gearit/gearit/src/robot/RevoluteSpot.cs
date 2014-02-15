@@ -144,6 +144,14 @@ namespace gearit.src.robot
 				((Piece)BodyA).move(pos + LocalAnchorB - LocalAnchorA);
 		}
 
+		public void rotate(Piece piece, float angle)
+		{
+			if (piece == BodyA)
+				((Piece)BodyB).rotateDelta(angle);
+			else
+				((Piece)BodyA).rotateDelta(angle);
+		}
+
 		public void draw(DrawGame game)
 		{
 			if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)

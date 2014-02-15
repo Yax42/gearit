@@ -19,6 +19,9 @@ namespace gearit.src.robot
 
 		private float _size;
 
+		private Vector2 _endA;
+		private Vector2 _endB;
+
 		public Rod(Robot robot, float size) :
 			this(robot, size, Vector2.Zero)
 		{
@@ -177,12 +180,51 @@ namespace gearit.src.robot
 				_size = value;
 				resetShape();
 
+				return;
 				if (areSpotsOk() == false)
 				{
 					_size = backup;
 					resetShape();
 				}
 			}
+		}
+
+		private void updateEnds()
+		{
+			float newSize = endsSize();
+			float scale = newSize / _size;
+
+			move(endsPosition());
+			//rotate(endsAngle());
+			
+			_size = endsSize();
+			resetShape();
+			Position = endsPosition();
+		}
+		public void setEnds(Vector2 A, Vector2 B)
+		{
+			_endA = A;
+			_endB = B;
+			updateEnds();
+		}
+
+		public void setEnd(Vector2 end, bool isA)
+		{
+			if (isA)
+				_endA = end;
+			else
+				_endB = end;
+			updateEnds();
+		}
+
+		private Vector2 endsPosition()
+		{
+			return (_endA + _endB) / 2;
+		}
+
+		private float endsSize()
+		{
+			return (_endB - _endA).Length();// / 2; not sure about the division
 		}
 	}
 }
