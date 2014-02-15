@@ -400,13 +400,13 @@ namespace gearit.src.utility
 
         // Allows the game to run logic such as updating the world,
         // checking for collisions, gathering input, and playing audio.
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             HandleKeyboard();
 
             // Update the world
             //World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         // Manage the keyboard.

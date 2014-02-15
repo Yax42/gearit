@@ -4,8 +4,9 @@ using gearit.src.utility;
 using gearit.src.editor.robot;
 using gearit.src.editor.map;
 using gearit.src.game;
+using gearit.xna;
 
-namespace gearit.xna
+namespace GUI2
 {
     class MainMenu : GameScreen, IDemoScreen
     {
@@ -41,6 +42,7 @@ namespace gearit.xna
         public MainMenu(ScreenManager screenManager)
         {
             _screenManager = screenManager;
+            DrawPriority = 999;
         }
 
         public override void LoadContent()
@@ -59,7 +61,7 @@ namespace gearit.xna
             _map_editor = new MapEditor();
             _game = new GearitGame();
             _Options = new MainOptions("Options", _screenManager);
-            _Options.LoadMenu();
+            //_Options.LoadMenu();
 
             _menuScreen = new MenuScreen("Gear it!");
             //_menuScreen.AddMenuItem("Play Game", EntryType.Separator, null);
@@ -83,11 +85,11 @@ namespace gearit.xna
             //_screenManager.AddScreen(_game);
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             /*if (ScreenManager.IsFullScreen == false)
                 ScreenManager.activeFullScreen();*/
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

@@ -119,14 +119,14 @@ namespace gearit.src.utility
             //_lua = new LuaTest(Camera, _robot, "bruterobot");
         }
 
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        public override void Update(GameTime gameTime)
         {
             HandleKeyboard();
             
             //_lua.execFile();
             
             World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            base.Update(gameTime);
         }
 
         private void HandleKeyboard()
