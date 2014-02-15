@@ -266,7 +266,7 @@ namespace gearit.src.utility.Menu
         // Adjusting the size if needed
         private void adjust()
         {
-            Console.WriteLine(_size + " // " + _filled);
+//            Console.WriteLine(_size + " // " + _filled);
             if (_adjusting)
             {
                 

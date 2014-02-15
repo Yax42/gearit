@@ -68,14 +68,53 @@ namespace gearit.src.robot
             DestroyFixture(_fix);
             _fix = CreateFixture(_shape);
         }
+        /// <summary>
+        /// Converts an angle in decimal degress to radians.
+        /// </summary>
+        static double DegreesToRadians(double angleInDegrees)
+        {
+            return angleInDegrees * (Math.PI / 180);
+        }
+
+        static double RadiansToDegrees(double angleInRadian)
+        {
+            return angleInRadian * (180 / Math.PI);
+        }
+
+        static Vector2 RotatePoint(Vector2 pointToRotate, Vector2 centerPoint, double angleInDegrees)
+        {
+            double angleInRadians = angleInDegrees * (Math.PI / 180);
+            double cosTheta = Math.Cos(angleInRadians);
+            double sinTheta = Math.Sin(angleInRadians);
+            return new Vector2
+            {
+                X =
+                    (float)
+                    (cosTheta * (pointToRotate.X - centerPoint.X) -
+                    sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
+                Y =
+                    (float)
+                    (sinTheta * (pointToRotate.X - centerPoint.X) +
+                    cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
+            };
+        }
+
         public void setPos2(Vector2 pos, bool side)
         {
+            
             Vector2 dif = Position - pos;
             float angle = (float)Math.Atan2(dif.X, -dif.Y);
 
-            float oldAngle = Rotation;
+            double oldAngle = RadiansToDegrees(Rotation);
             Rotation = angle + (float)Math.PI / 2;
+            double diffAngle = RadiansToDegrees(Rotation) - oldAngle;
 
+            if (JointList.Joint.WorldAnchorA != null)
+            {
+//                Position = JointList.Joint.WorldAnchorA;
+                Position = RotatePoint(Position, JointList.Joint.WorldAnchorA, diffAngle);
+                
+            }
             return;
             /*
                     if (areSpotsOk() == false)

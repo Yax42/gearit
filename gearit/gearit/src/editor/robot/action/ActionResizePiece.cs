@@ -20,6 +20,7 @@ namespace gearit.src.editor.robot.action
             _corner = 0;
             _moving = false;
             _begin = true;
+            Console.WriteLine("INIT");
         }
 
         public bool shortcut()
@@ -69,7 +70,10 @@ namespace gearit.src.editor.robot.action
                 if (_begin)
                     ((Rod)selected1).Size = (Input.SimMousePos - selected1.Position).Length();
                 else
+                {
+                    Console.WriteLine("ca bouge");
                     ((Rod)selected1).setPos2(Input.SimMousePos, true);
+                }
                 return (true);
             }
         }
