@@ -32,6 +32,7 @@ namespace gearit.src.robot
 		{
 			Position = pos;
 			_size = size;
+			GenerateEnds();
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
 		}
 
@@ -166,6 +167,11 @@ namespace gearit.src.robot
 		}
 	*/
 
+		virtual public void updateCharacteristics()
+		{
+			GenerateEnds();
+		}
+
 		override public float getSize()
 		{
 			return (_size);
@@ -188,6 +194,8 @@ namespace gearit.src.robot
 				}
 			}
 		}
+		
+		//--------ENDS----------
 
 		private void updateEnds()
 		{
@@ -197,10 +205,10 @@ namespace gearit.src.robot
 			move(endsPosition());
 			//rotate(endsAngle());
 			
-			_size = endsSize();
-			resetShape();
-			Position = endsPosition();
+			//_size = endsSize();
+			//resetShape();
 		}
+
 		public void setEnds(Vector2 A, Vector2 B)
 		{
 			_endA = A;
@@ -225,6 +233,18 @@ namespace gearit.src.robot
 		private float endsSize()
 		{
 			return (_endB - _endA).Length();// / 2; not sure about the division
+		}
+
+		private float endsAngle()
+		{
+			return (MathLib.Angle(_endB - _endA));
+		}
+		
+		private void GenerateEnds()
+		{
+			Vector2 semiEnd = MathLib.PolarCoor(_size / 2, Rotation);
+			_endA = Position - semiEnd;
+			_endB = Position + semiEnd;
 		}
 	}
 }

@@ -144,15 +144,15 @@ namespace gearit
 				if (i.Joint.GetType() == typeof(RevoluteSpot))
 					((RevoluteSpot)i.Joint).rotate(this, angle);
 			}
+			updateCharacteristics();
 		}
-
 
 		public void moveDelta(Vector2 pos)
 		{
 			move(pos + Position);
 		}
 
-		public void move(Vector2 pos)
+		virtual public void move(Vector2 pos)
 		{
 			if ((int) (Position.X * 1000) == (int) (pos.X * 1000) && (int) (Position.Y * 1000) == (int) (pos.Y * 1000))
 				return;
@@ -164,7 +164,10 @@ namespace gearit
 				else
 					((PrismaticSpot)i.Joint).updateAxis();
 			}
+			updateCharacteristics();
 		}
+
+		virtual public void updateCharacteristics() { }
 
 		public bool areSpotsOk()
 		{

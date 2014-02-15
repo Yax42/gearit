@@ -142,6 +142,21 @@ namespace gearit.src.robot
 			set { MaxMotorForce = value; }
 		}
 
+		public void rotate(Piece piece, float angle)
+		{
+			if (piece == BodyA)
+			{
+				((Piece)BodyB).moveDelta(MathLib.RotateDelta(WorldAnchorA, WorldAnchorB, angle) - WorldAnchorB);
+				((Piece)BodyB).rotateDelta(angle);
+			}
+			else
+			{
+				((Piece)BodyA).moveDelta(MathLib.RotateDelta(WorldAnchorB, WorldAnchorA, angle) - WorldAnchorA);
+				((Piece)BodyA).rotateDelta(angle);
+			}
+			updateAxis();
+		}
+
 		public Color ColorValue { get; set; }
 		public string Name { get; set; }
 	}

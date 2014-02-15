@@ -60,6 +60,9 @@ namespace gearit.src.editor.robot.action
 			}
 			else
 			{
+				((Rod)selected1).setEnd(Input.SimMousePos, Input.pressed(Keys.LeftShift));
+				return (!Input.justPressed(MouseKeys.LEFT));
+				/*
 				if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.S))
 				{
 					if (_begin)
@@ -74,7 +77,7 @@ namespace gearit.src.editor.robot.action
 					Console.WriteLine("ca bouge");
 					((Rod)selected1).setPos2(Input.SimMousePos, true);
 				}
-				return (true);
+				*/
 			}
 		}
 	}
