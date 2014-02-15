@@ -13,79 +13,79 @@ using gearit.src.editor.map;
 
 namespace gearit.src.map
 {
-    [Serializable()]
-    class Map : ISerializable
-    {
-        private string _name;
-        private List<MapChunk> _chunks;
+	[Serializable()]
+	class Map : ISerializable
+	{
+		private string _name;
+		private List<MapChunk> _chunks;
 
-        [NonSerialized]
-        private World _world;
+		[NonSerialized]
+		private World _world;
 
-        public Map(World world)
-        {
-            _world = world;
-            _name = "test";
-            _chunks = new List<MapChunk>();
-        }
+		public Map(World world)
+		{
+			_world = world;
+			_name = "test";
+			_chunks = new List<MapChunk>();
+		}
 
 		//
 		// SERIALISATION
 		//
-        public Map(SerializationInfo info, StreamingContext ctxt)
-        {
-            _world = SerializerHelper.World;
-            _name = (string)info.GetValue("Name", typeof(string));
-	    _chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
-        }
+		public Map(SerializationInfo info, StreamingContext ctxt)
+		{
+			_world = SerializerHelper.World;
+			_name = (string)info.GetValue("Name", typeof(string));
+		_chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
+		}
 
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("Chunks", _chunks, typeof(List<MapChunk>));
-            info.AddValue("Name", _name, typeof(string));
-        }
+		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+		{
+			info.AddValue("Chunks", _chunks, typeof(List<MapChunk>));
+			info.AddValue("Name", _name, typeof(string));
+		}
 		//--------- END SERIALISATION
 
-        public MapChunk getChunk(Vector2 p)
-        {
-            foreach (MapChunk i in _chunks)
-            {
-                if (i.isOn(p))
-                    return (i);
-            }
-            return (null);
-        }
+		public MapChunk getChunk(Vector2 p)
+		{
+			foreach (MapChunk i in _chunks)
+			{
+				if (i.isOn(p))
+					return (i);
+			}
+			return (null);
+		}
 
-        public void deleteChunk(MapChunk tmp)
-        {
-            _chunks.Remove(tmp);
-        }
+		public void deleteChunk(MapChunk tmp)
+		{
+			_chunks.Remove(tmp);
+		}
 
-        public List<MapChunk> getChunks()
-        {
-            return (_chunks);
-        }
+		public List<MapChunk> getChunks()
+		{
+			return (_chunks);
+		}
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+		public string Name
+		{
+			get { return _name; }
+			set { _name = value; }
+		}
 
-        public void addChunk(MapChunk chunk)
-        {
-            _chunks.Add(chunk);
-        }
+		public void addChunk(MapChunk chunk)
+		{
+			_chunks.Add(chunk);
+		}
 
-        public void drawDebug(DrawGame game)
-        {
-            Color col;
+		public void drawDebug(DrawGame game)
+		{
+			Color col;
 
-            for (int i = 0; i < _chunks.Count; i++)
-            {
-                col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Red;
-                game.draw(_chunks[i], col);
-            }
-        }
-    }
+			for (int i = 0; i < _chunks.Count; i++)
+			{
+				col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Red;
+				game.draw(_chunks[i], col);
+			}
+		}
+	}
 }

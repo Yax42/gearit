@@ -10,35 +10,35 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.xna
 {
-    class FullScreen : GameScreen, IDemoScreen
-    {
-        #region IDemoScreen Members
+	class FullScreen : GameScreen, IDemoScreen
+	{
+		#region IDemoScreen Members
 
-        public string GetTitle()
-        {
-            return "FullScreen";
-        }
+		public string GetTitle()
+		{
+			return "FullScreen";
+		}
 
-        public string GetDetails()
-        {
-            return (string.Empty);
-        }
+		public string GetDetails()
+		{
+			return (string.Empty);
+		}
 
-        #endregion
+		#endregion
 
-        public void LoadMenu()
-        {
-            base.LoadContent();
-        }
+		public void LoadMenu()
+		{
+			base.LoadContent();
+		}
 
-        public override void Update(GameTime gameTime)
-        {
-            if (ScreenManager.IsFullScreen == false)
-                ScreenManager.activeFullScreen();
-            else
-                ScreenManager.deactivFullScreen();
-            this.ExitScreen();
-            base.Update(gameTime);
-        }
-    }
+		public override void Update(GameTime gameTime)
+		{
+			if (ScreenManager.IsFullScreen == false)
+				ScreenManager.activeFullScreen();
+			else
+				ScreenManager.deactivFullScreen();
+			this.ExitScreen();
+			base.Update(gameTime);
+		}
+	}
 }

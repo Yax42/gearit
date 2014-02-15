@@ -1,8 +1,8 @@
 ﻿namespace gearit.xna
 {
-    public interface IDemoScreen
-    {
-        string GetTitle();
-        string GetDetails();
-    }
+	public interface IDemoScreen
+	{
+		string GetTitle();
+		string GetDetails();
+	}
 }

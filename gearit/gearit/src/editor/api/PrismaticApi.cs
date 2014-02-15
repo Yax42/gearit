@@ -6,16 +6,16 @@ using gearit.src.robot;
 
 namespace gearit.src.editor.api
 {
-    class PrismaticApi : SpotApi
-    {
-        public PrismaticApi(ISpot spot) :
-	    base(spot)
-        {
-        }
+	class PrismaticApi : SpotApi
+	{
+		public PrismaticApi(ISpot spot) :
+		base(spot)
+		{
+		}
 
-        public float size()
-        {
-            return (((PrismaticSpot)_spot).getSize());
-        }
-    }
+		public float size()
+		{
+			return (((PrismaticSpot)_spot).getSize());
+		}
+	}
 }

@@ -34,51 +34,51 @@ using Poly2Tri.Triangulation.Delaunay;
 
 namespace Poly2Tri.Triangulation.Sets
 {
-    public class PointSet : Triangulatable
-    {
-        public PointSet(List<TriangulationPoint> points)
-        {
-            Points = new List<TriangulationPoint>(points);
-        }
+	public class PointSet : Triangulatable
+	{
+		public PointSet(List<TriangulationPoint> points)
+		{
+			Points = new List<TriangulationPoint>(points);
+		}
 
-        #region Triangulatable Members
+		#region Triangulatable Members
 
-        public IList<TriangulationPoint> Points { get; private set; }
-        public IList<DelaunayTriangle> Triangles { get; private set; }
+		public IList<TriangulationPoint> Points { get; private set; }
+		public IList<DelaunayTriangle> Triangles { get; private set; }
 
-        public virtual TriangulationMode TriangulationMode
-        {
-            get { return TriangulationMode.Unconstrained; }
-        }
+		public virtual TriangulationMode TriangulationMode
+		{
+			get { return TriangulationMode.Unconstrained; }
+		}
 
-        public void AddTriangle(DelaunayTriangle t)
-        {
-            Triangles.Add(t);
-        }
+		public void AddTriangle(DelaunayTriangle t)
+		{
+			Triangles.Add(t);
+		}
 
-        public void AddTriangles(IEnumerable<DelaunayTriangle> list)
-        {
-            foreach (DelaunayTriangle tri in list) Triangles.Add(tri);
-        }
+		public void AddTriangles(IEnumerable<DelaunayTriangle> list)
+		{
+			foreach (DelaunayTriangle tri in list) Triangles.Add(tri);
+		}
 
-        public void ClearTriangles()
-        {
-            Triangles.Clear();
-        }
+		public void ClearTriangles()
+		{
+			Triangles.Clear();
+		}
 
-        public virtual void PrepareTriangulation(TriangulationContext tcx)
-        {
-            if (Triangles == null)
-            {
-                Triangles = new List<DelaunayTriangle>(Points.Count);
-            }
-            else
-            {
-                Triangles.Clear();
-            }
-            tcx.Points.AddRange(Points);
-        }
+		public virtual void PrepareTriangulation(TriangulationContext tcx)
+		{
+			if (Triangles == null)
+			{
+				Triangles = new List<DelaunayTriangle>(Points.Count);
+			}
+			else
+			{
+				Triangles.Clear();
+			}
+			tcx.Points.AddRange(Points);
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

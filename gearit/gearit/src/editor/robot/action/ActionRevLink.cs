@@ -8,20 +8,20 @@ using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionRevLink : IAction
-    {
-        public void init() { }
+	class ActionRevLink : IAction
+	{
+		public void init() { }
 
-        public bool shortcut()
-        {
-            return (Input.ctrlAltShift(false, false, true) && Input.justPressed(Keys.Q));
-        }
+		public bool shortcut()
+		{
+			return (Input.ctrlAltShift(false, false, true) && Input.justPressed(Keys.Q));
+		}
 
-        public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
-        {
-            if (selected1 != selected2 && selected1.isConnected(selected2) == false)
-              new RevoluteSpot(robot, selected1, selected2);
-            return (false);
-        }
-    }
+		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		{
+			if (selected1 != selected2 && selected1.isConnected(selected2) == false)
+			  new RevoluteSpot(robot, selected1, selected2);
+			return (false);
+		}
+	}
 }

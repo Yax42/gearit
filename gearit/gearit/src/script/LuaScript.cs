@@ -12,53 +12,53 @@ using gearit.src.output;
 namespace gearit.src.utility
 {
 
-    class LuaScript : Lua
-    {
-        private String _name;
-        private List<SpotApi> _api;
-        private InputApi _inputApi;
-        private Thread _thread;
+	class LuaScript : Lua
+	{
+		private String _name;
+		private List<SpotApi> _api;
+		private InputApi _inputApi;
+		private Thread _thread;
 
-        public void saySomething(string something)
-        {
-            Console.WriteLine(something);
-        }
+		public void saySomething(string something)
+		{
+			Console.WriteLine(something);
+		}
 
-        public LuaScript(List<SpotApi> api, string name)
-        {
-            _name = name;
+		public LuaScript(List<SpotApi> api, string name)
+		{
+			_name = name;
 			_api = api;
-            _inputApi = new InputApi();
+			_inputApi = new InputApi();
 			_thread = new Thread(new ThreadStart(exec));
-            for (int i = 0; i < api.Count; i++)
-                this[api[i].name()] = api[i];
-            this["Input"] = _inputApi;
-            //RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
-            run();
-        }
+			for (int i = 0; i < api.Count; i++)
+				this[api[i].name()] = api[i];
+			this["Input"] = _inputApi;
+			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
+			run();
+		}
 	
-	    private void run()
-	    {
-	        _thread.Start();
-	    }
+		private void run()
+		{
+			_thread.Start();
+		}
 
-        private void exec()
-        {
-            try
-            {
-                DoFile(@"data/script/" + _name + ".lua");
-            }
-            catch (LuaException ex)
-            {
-                //OutputManager.GetInstance()
-                Console.WriteLine("Lua exception: {0}", ex.Message);
-            }
-        }
+		private void exec()
+		{
+			try
+			{
+				DoFile(@"data/script/" + _name + ".lua");
+			}
+			catch (LuaException ex)
+			{
+				//OutputManager.GetInstance()
+				Console.WriteLine("Lua exception: {0}", ex.Message);
+			}
+		}
 
-        public void stop()
-        {
-            _thread.Abort();
-            base.Close();
-        }
-    }
+		public void stop()
+		{
+			_thread.Abort();
+			base.Close();
+		}
+	}
 }

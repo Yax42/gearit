@@ -7,19 +7,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-    class ActionShowAll : IAction
-    {
-        public void init() { }
+	class ActionShowAll : IAction
+	{
+		public void init() { }
 
-        public bool shortcut()
-        {
-            return (Input.justPressed(Keys.Space));
-        }
+		public bool shortcut()
+		{
+			return (Input.justPressed(Keys.Space));
+		}
 
-        public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
-        {
-            robot.showAll();
-            return (false);
-        }
-    }
+		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		{
+			robot.showAll();
+			return (false);
+		}
+	}
 }

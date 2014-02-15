@@ -8,16 +8,16 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.api
 {
-    class RevoluteApi : SpotApi
-    {
-        public RevoluteApi(ISpot spot) :
-	    base(spot)
-        {
-        }
+	class RevoluteApi : SpotApi
+	{
+		public RevoluteApi(ISpot spot) :
+		base(spot)
+		{
+		}
 
-        public float angle()
-        {
-	    return (MathHelper.ToDegrees(((RevoluteSpot)_spot).JointAngle));
-        }
-    }
+		public float angle()
+		{
+		return (MathHelper.ToDegrees(((RevoluteSpot)_spot).JointAngle));
+		}
+	}
 }

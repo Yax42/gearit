@@ -7,40 +7,40 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.xna
 {
-    class MainOptions : MenuScreen, IDemoScreen
-    {
-        private VideoOption _video;
-        #region IDemoScreen Members
+	class MainOptions : MenuScreen, IDemoScreen
+	{
+		private VideoOption _video;
+		#region IDemoScreen Members
 
-        public string GetTitle()
-        {
-            return "Options";
-        }
+		public string GetTitle()
+		{
+			return "Options";
+		}
 
-        public string GetDetails()
-        {
-            return (string.Empty);
-        }
+		public string GetDetails()
+		{
+			return (string.Empty);
+		}
 
-        #endregion
+		#endregion
 
-        public MainOptions(string menuTitle, ScreenManager manager)
-            : base(menuTitle)
-        {
-            ScreenManager = manager;
-        }
+		public MainOptions(string menuTitle, ScreenManager manager)
+			: base(menuTitle)
+		{
+			ScreenManager = manager;
+		}
 
-        public void LoadContent()
-        {
-            base.LoadContent();
+		public void LoadContent()
+		{
+			base.LoadContent();
 
-            _video = new VideoOption("Video Option", ScreenManager);
-            _video.LoadMenu();
+			_video = new VideoOption("Video Option", ScreenManager);
+			_video.LoadMenu();
 
-            AddMenuItem("Video", EntryType.Screen, _video);
-            AddMenuItem("Audio", EntryType.Separator, null);
-            AddMenuItem("", EntryType.Separator, null);
-            AddMenuItem("Retour", EntryType.Cancel, null);
-        }
-    }
+			AddMenuItem("Video", EntryType.Screen, _video);
+			AddMenuItem("Audio", EntryType.Separator, null);
+			AddMenuItem("", EntryType.Separator, null);
+			AddMenuItem("Retour", EntryType.Cancel, null);
+		}
+	}
 }

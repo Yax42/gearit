@@ -10,41 +10,41 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.xna
 {
-    class ResolutionChanger : GameScreen, IDemoScreen
-    {
-        private int _width;
-        private int _height;
+	class ResolutionChanger : GameScreen, IDemoScreen
+	{
+		private int _width;
+		private int _height;
 
-        #region IDemoScreen Members
+		#region IDemoScreen Members
 
-        public string GetTitle()
-        {
-            return (string.Empty);
-        }
+		public string GetTitle()
+		{
+			return (string.Empty);
+		}
 
-        public string GetDetails()
-        {
-            return (string.Empty);
-        }
+		public string GetDetails()
+		{
+			return (string.Empty);
+		}
 
-        #endregion
+		#endregion
 
-        public ResolutionChanger(int width, int height)
-        {
-            _width = width;
-            _height = height;
-        }
+		public ResolutionChanger(int width, int height)
+		{
+			_width = width;
+			_height = height;
+		}
 
-        public void LoadMenu()
-        {
-            base.LoadContent();
-        }
+		public void LoadMenu()
+		{
+			base.LoadContent();
+		}
 
-        public override void Update(GameTime gameTime)
-        {
-            ScreenManager.SetResolutionScreen(_width, _height);
-            this.ExitScreen();
-            base.Update(gameTime);
-        }
-    }
+		public override void Update(GameTime gameTime)
+		{
+			ScreenManager.SetResolutionScreen(_width, _height);
+			this.ExitScreen();
+			base.Update(gameTime);
+		}
+	}
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace gearit.src.output
 {
-    interface IOutputMessageManager
-    {
-        void DisplayRobotScriptingErrorMessage(String msg);
-    }
+	interface IOutputMessageManager
+	{
+		void DisplayRobotScriptingErrorMessage(String msg);
+	}
 }

@@ -11,32 +11,32 @@ using System.Runtime.Serialization;
 
 namespace gearit.src.editor.map
 {
-    [Serializable()]
-    abstract class MapChunk : Body, ISerializable
-    {
-        public MapChunk(World world, bool isDynamic, Vector2 pos)
-            : base(world)
-        {
-            Position = pos;
-            if (isDynamic)
-                BodyType = BodyType.Dynamic;
-            Friction = 10;
-        }
+	[Serializable()]
+	abstract class MapChunk : Body, ISerializable
+	{
+		public MapChunk(World world, bool isDynamic, Vector2 pos)
+			: base(world)
+		{
+			Position = pos;
+			if (isDynamic)
+				BodyType = BodyType.Dynamic;
+			Friction = 10;
+		}
 
-        internal MapChunk(World world)
-            : base(world)
-        {
-            Friction = 100;
-        }
+		internal MapChunk(World world)
+			: base(world)
+		{
+			Friction = 100;
+		}
 
-        public bool isOn(Vector2 p)
-        {
-            Transform t;
-            GetTransform(out t);
-            return (FixtureList[0].Shape.TestPoint(ref t, ref p));
-        }
+		public bool isOn(Vector2 p)
+		{
+			Transform t;
+			GetTransform(out t);
+			return (FixtureList[0].Shape.TestPoint(ref t, ref p));
+		}
 
-        abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
-        abstract public void resize(Vector2 p);
-    }
+		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
+		abstract public void resize(Vector2 p);
+	}
 }
