@@ -275,6 +275,7 @@
     <Compile Include="src\utility\ICamera.cs" />
     <Compile Include="src\utility\Input.cs" />
     <Compile Include="src\utility\Menu\InputMenuItem.cs" />
+    <Compile Include="src\utility\MathLib.cs" />
     <Compile Include="src\utility\Menu\MenuItem.cs" />
     <Compile Include="src\utility\Menu\MenuOverlay.cs" />
     <Compile Include="src\test\MyGame.cs" />

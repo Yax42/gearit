@@ -5,6 +5,7 @@ using gearit.src.editor.robot;
 using gearit.src.editor.map;
 using gearit.src.game;
 using gearit.xna;
+using System;
 
 namespace GUI2
 {
@@ -41,6 +42,7 @@ namespace GUI2
 
 		public MainMenu(ScreenManager screenManager)
 		{
+
 			_screenManager = screenManager;
 			DrawPriority = 999;
 		}

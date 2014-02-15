@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Joints;
+using gearit.src.utility;
 
 namespace gearit.src.robot
 {
@@ -101,7 +102,8 @@ namespace gearit.src.robot
 
 		public void setPos2(Vector2 pos, bool side)
 		{
-			
+//            Console.WriteLine("angle: {0}", MathLib.AngleFromUp(new Vector2(1, 0)));
+
 			Vector2 dif = Position - pos;
 			float angle = (float)Math.Atan2(dif.X, -dif.Y);
 
