@@ -67,6 +67,8 @@ namespace gearit.src.robot
 
 		override public void resetShape()
 		{
+			if (_size < 0.01)
+				_size = 0.01f;
 			_shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
 			DestroyFixture(_fix);
 			_fix = CreateFixture(_shape);

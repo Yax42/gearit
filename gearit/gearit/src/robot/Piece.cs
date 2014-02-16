@@ -185,7 +185,7 @@ namespace gearit
 
 		virtual public void resize(float size)
 		{
-			if (size == 0)
+			if (_size == 0)
 				_size = size;
 			else
 			{
