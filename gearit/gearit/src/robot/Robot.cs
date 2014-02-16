@@ -79,6 +79,12 @@ namespace gearit
 		}
 		//--------- END SERIALISATION
 
+		public void frameReset()
+		{
+			foreach (Piece p in _pieces)
+				p.frameReset();
+		}
+
 		public void addSpot(ISpot spot)
 		{
 			_spots.Add(spot);

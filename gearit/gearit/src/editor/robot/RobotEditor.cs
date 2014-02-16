@@ -149,6 +149,7 @@ namespace gearit.src.editor.robot
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
+			_robot.frameReset();
 			_camera.update();
 			HandleInput();
 

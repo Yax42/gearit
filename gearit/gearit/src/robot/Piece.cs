@@ -21,8 +21,10 @@ namespace gearit
 	abstract class Piece : Body, ISerializable
 	{
 		internal Shape _shape;
-		internal Fixture _fix; //punaise
+		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
+		internal bool _didMove;
+		internal bool _didRotate;
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
@@ -91,6 +93,12 @@ namespace gearit
 			_fix = CreateFixture(_shape, null);
 		}
 
+		public void frameReset()
+		{
+			_didMove = false;
+			_didRotate = false;
+		}
+
 		public virtual float Weight
 		{
 			set
@@ -136,8 +144,9 @@ namespace gearit
 
 		public void rotateDelta(float angle)
 		{
-			if ((int)(Rotation * 1000) == (int)(angle * 1000))
+			if (_didRotate)
 				return;
+			_didRotate = true;
 			Rotation += angle;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
@@ -154,8 +163,9 @@ namespace gearit
 
 		virtual public void move(Vector2 pos)
 		{
-			if ((int) (Position.X * 1000) == (int) (pos.X * 1000) && (int) (Position.Y * 1000) == (int) (pos.Y * 1000))
+			if (_didMove)
 				return;
+			_didMove = true;
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
