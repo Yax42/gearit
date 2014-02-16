@@ -73,18 +73,6 @@ namespace gearit.src.robot
 			DestroyFixture(_fix);
 			_fix = CreateFixture(_shape);
 		}
-		/// <summary>
-		/// Converts an angle in decimal degress to radians.
-		/// </summary>
-		static double DegreesToRadians(double angleInDegrees)
-		{
-			return angleInDegrees * (Math.PI / 180);
-		}
-
-		static double RadiansToDegrees(double angleInRadian)
-		{
-			return angleInRadian * (180 / Math.PI);
-		}
 
 		static Vector2 RotatePoint(Vector2 pointToRotate, Vector2 centerPoint, double angleInDegrees)
 		{
@@ -111,9 +99,9 @@ namespace gearit.src.robot
 			Vector2 dif = Position - pos;
 			float angle = (float)Math.Atan2(dif.X, -dif.Y);
 
-			double oldAngle = RadiansToDegrees(Rotation);
+			double oldAngle = MathLib.RadiansToDegrees(Rotation);
 			Rotation = angle + (float)Math.PI / 2;
-			double diffAngle = RadiansToDegrees(Rotation) - oldAngle;
+			double diffAngle = MathLib.RadiansToDegrees(Rotation) - oldAngle;
 
 			if (JointList.Joint.WorldAnchorA != null)
 			{
@@ -203,10 +191,10 @@ namespace gearit.src.robot
 			float scale = newSize / _size;
 
 			move(endsPosition());
-			//rotate(endsAngle());
+			rotate(endsAngle());
 			
-			//_size = endsSize();
-			//resetShape();
+			_size = endsSize();
+			resetShape();
 		}
 
 		public void setEnds(Vector2 A, Vector2 B)
@@ -232,7 +220,7 @@ namespace gearit.src.robot
 
 		private float endsSize()
 		{
-			return (_endB - _endA).Length();// / 2; not sure about the division
+			return (_endB - _endA).Length() / 2;
 		}
 
 		private float endsAngle()

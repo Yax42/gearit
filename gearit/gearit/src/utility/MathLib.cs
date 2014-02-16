@@ -10,7 +10,9 @@ namespace gearit.src.utility
 	{
 		static float Angle(Vector2 from, Vector2 to)
 		{
-			return (float)Math.Acos(MathHelper.Clamp(Vector2.Dot(Vector2.Normalize(from), Vector2.Normalize(to)), -1f, 1f)) * 57.29578f;
+			if (from == to)
+				return 0;
+			return (float)Math.Acos(MathHelper.Clamp(Vector2.Dot(Vector2.Normalize(from), Vector2.Normalize(to)), -1f, 1f));
 		}
 
 		static public float AngleFromUp(Vector2 v)
@@ -41,5 +43,19 @@ namespace gearit.src.utility
 		{
 			return new Vector2(length * (float)Math.Cos(angle), length * (float)Math.Sin(angle));
 		}
+
+		/// <summary>
+		/// Converts an angle in decimal degress to radians.
+		/// </summary>
+		static public double DegreesToRadians(float angleInDegrees)
+		{
+			return angleInDegrees * ((float) Math.PI / 180);
+		}
+
+		static public double RadiansToDegrees(float angleInRadian)
+		{
+			return angleInRadian * (180 / (float) Math.PI);
+		}
+
 	}
 }
