@@ -30,5 +30,11 @@ namespace gearit
 		Color ColorValue { get; set; }
 
 		void draw(DrawGame game);
+
+		Vector2 getLocalAnchor(Piece piece);
+
+		Vector2 getWorldAnchor(Piece piece);
+
+		void moveLocal(Piece p, Vector2 pos);
 	}
 }

@@ -25,6 +25,7 @@ namespace gearit
 		internal Texture2D _tex;
 		internal bool _didAct;
 		internal Robot _robot;
+		internal float _size; //useless for the heart, but more simple for implementation
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
@@ -76,6 +77,8 @@ namespace gearit
 			info.AddValue("Weight", this.Weight, typeof(float));
 		}
 		//--------- END SERIALISATION
+
+		virtual public void resetShape() { }
 
 		public void setTexture(DrawGame dg, MaterialType mater)
 		{
@@ -138,6 +141,8 @@ namespace gearit
 			}
 			return ((ISpot)res);
 		}
+
+		//----------AFFECTING-SPOTS-ACTIONS--------------
 		public void rotate(float angle)
 		{
 			rotateDelta(angle - Rotation);
@@ -177,6 +182,34 @@ namespace gearit
 			}
 			updateCharacteristics();
 		}
+
+		virtual public void resize(float size)
+		{
+			if (size == 0)
+				_size = size;
+			else
+			{
+				scale(size / _size);
+				resetShape();
+				updateCharacteristics();
+			}
+		}
+
+		virtual public void scale(float scale)
+		{
+			if (_didAct)
+				return;
+			_didAct = true;
+			_size *= scale;
+			for (JointEdge i = JointList; i != null; i = i.Next)
+			{
+				((ISpot)i.Joint).moveLocal(this, ((ISpot)i.Joint).getLocalAnchor(this) * scale);
+			}
+			resetShape();
+			updateCharacteristics();
+		}
+
+		//------------------------------------
 
 		virtual public void updateCharacteristics() { }
 

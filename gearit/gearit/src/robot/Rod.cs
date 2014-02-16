@@ -17,8 +17,6 @@ namespace gearit.src.robot
 
 		private const float _width = 0.02f;
 
-		private float _size;
-
 		private Vector2 _endA;
 		private Vector2 _endB;
 
@@ -67,7 +65,7 @@ namespace gearit.src.robot
 
 		}
 
-		public void resetShape()
+		override public void resetShape()
 		{
 			_shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
 			DestroyFixture(_fix);
@@ -183,20 +181,19 @@ namespace gearit.src.robot
 			}
 		}
 		
-		//--------ENDS----------
+		//--------ENDS-------------
 
 		private void updateEnds()
 		{
-			float newSize = endsSize();
-			float scale = newSize / _size;
+			//float newSize = endsSize();
+			//float scale = newSize / _size;
 
 			move(endsPosition());
 			_robot.resetAct();
 			rotate(endsAngle());
 			_robot.resetAct();
-			
-			_size = endsSize();
-			resetShape();
+			resize(endsSize());
+			_robot.resetAct();
 		}
 
 		public void setEnds(Vector2 A, Vector2 B)

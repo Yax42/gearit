@@ -109,15 +109,6 @@ namespace gearit.src.robot
 			swap(p1, p2, Vector2.Zero);
 		}
 
-		public void moveAnchor(Piece p, Vector2 anchor)
-		{
-			if (BodyA == p)
-				LocalAnchorA = anchor - p.Position;
-			else if (BodyB == p)
-				LocalAnchorB = anchor - p.Position;
-			updateAxis();
-		}
-
 		public float getSize()
 		{
 			return (_size);
@@ -141,7 +132,7 @@ namespace gearit.src.robot
 			get { return MaxMotorForce; }
 			set { MaxMotorForce = value; }
 		}
-
+//ROTATE--------------------------
 		public void rotate(Piece piece, float angle)
 		{
 			if (piece == BodyA)
@@ -154,6 +145,69 @@ namespace gearit.src.robot
 				((Piece)BodyA).moveDelta(MathLib.RotateDelta(WorldAnchorB, WorldAnchorA, angle) - WorldAnchorA);
 				((Piece)BodyA).rotateDelta(angle);
 			}
+			updateAxis();
+		}
+
+//MOVE--------------------------
+		public void moveAnchor(Piece p, Vector2 pos)
+		{
+			if (BodyA == p)
+				LocalAnchorA = pos - p.Position;
+			else if (BodyB == p)
+				LocalAnchorB = pos - p.Position;
+			updateAxis();
+		}
+
+		public void move(Piece piece, Vector2 pos)
+		{
+			moveAnchor(piece, pos);
+		}
+
+		public void moveRigid(Piece piece, Vector2 pos)
+		{
+			if (BodyA == piece)
+				moveRigidDelta(piece, pos - LocalAnchorA);
+			else if (BodyB == piece)
+				moveRigidDelta(piece, pos - LocalAnchorB);
+		}
+
+		public void moveRigidDelta(Piece piece, Vector2 offset)
+		{
+			if (BodyA == piece)
+			{
+				LocalAnchorA += offset;
+				((Piece)BodyB).moveDelta(offset);
+			}
+			else if (BodyB == piece)
+			{
+				LocalAnchorB += offset;
+				((Piece)BodyA).moveDelta(offset);
+			}
+			updateAxis();
+		}
+
+		public Vector2 getLocalAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return LocalAnchorA;
+			else
+				return LocalAnchorB;
+		}
+
+		public Vector2 getWorldAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return WorldAnchorA;
+			else
+				return WorldAnchorB;
+		}
+
+		public void moveLocal(Piece p, Vector2 pos)
+		{
+			if (BodyA == p)
+				LocalAnchorA = pos;
+			else if (BodyB == p)
+				LocalAnchorB = pos;
 			updateAxis();
 		}
 

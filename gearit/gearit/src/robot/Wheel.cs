@@ -16,8 +16,6 @@ namespace gearit
 	{
 		private const int _circleSegments = 32;
 
-		private float _size;
-
 		public Wheel(Robot robot, float size) :
 			this(robot, size, Vector2.Zero)
 		{
@@ -53,7 +51,7 @@ namespace gearit
 			return (_size);
 		}
 
-		public void resetShape()
+		override public void resetShape()
 		{
 			((CircleShape)_shape).Radius = _size;
 			DestroyFixture(_fix);

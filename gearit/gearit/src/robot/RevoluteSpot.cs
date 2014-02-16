@@ -191,6 +191,29 @@ namespace gearit.src.robot
 			}
 		}
 
+		public Vector2 getLocalAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return LocalAnchorA;
+			else
+				return LocalAnchorB;
+		}
+
+		public Vector2 getWorldAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return WorldAnchorA;
+			else
+				return WorldAnchorB;
+		}
+
+		public void moveLocal(Piece p, Vector2 pos)
+		{
+			if (BodyA == p)
+				LocalAnchorA = pos;
+			else if (BodyB == p)
+				LocalAnchorB = pos;
+		}
 
 		public float Force
 		{
