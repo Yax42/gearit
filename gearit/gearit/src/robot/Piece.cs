@@ -23,8 +23,8 @@ namespace gearit
 		internal Shape _shape;
 		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
-		internal bool _didMove;
-		internal bool _didRotate;
+		internal bool _didAct;
+		internal Robot _robot;
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
@@ -34,6 +34,7 @@ namespace gearit
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.Black;
 			robot.addPiece(this);
+			_robot = robot;
 			Shown = true;
 			_tex = null;
 		}
@@ -47,6 +48,7 @@ namespace gearit
 			setShape(shape, robot.getId());
 			ColorValue = Color.Black;
 			robot.addPiece(this);
+			_robot = robot;
 			Shown = true;
 		}
 
@@ -93,10 +95,9 @@ namespace gearit
 			_fix = CreateFixture(_shape, null);
 		}
 
-		public void frameReset()
+		public void resetAct()
 		{
-			_didMove = false;
-			_didRotate = false;
+			_didAct = false;
 		}
 
 		public virtual float Weight
@@ -144,9 +145,9 @@ namespace gearit
 
 		public void rotateDelta(float angle)
 		{
-			if (_didRotate)
+			if (_didAct)
 				return;
-			_didRotate = true;
+			_didAct = true;
 			Rotation += angle;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
@@ -163,9 +164,9 @@ namespace gearit
 
 		virtual public void move(Vector2 pos)
 		{
-			if (_didMove)
+			if (_didAct)
 				return;
-			_didMove = true;
+			_didAct = true;
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{

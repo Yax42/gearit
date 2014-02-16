@@ -10,7 +10,7 @@ namespace gearit.src.utility
 	{
 		static float Angle(Vector2 from, Vector2 to)
 		{
-			if (from == to)
+			if (from.LengthSquared() == 0 || to.LengthSquared() == 0)
 				return 0;
 			return (float)Math.Acos(MathHelper.Clamp(Vector2.Dot(Vector2.Normalize(from), Vector2.Normalize(to)), -1f, 1f));
 		}

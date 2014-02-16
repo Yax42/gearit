@@ -191,7 +191,9 @@ namespace gearit.src.robot
 			float scale = newSize / _size;
 
 			move(endsPosition());
+			_robot.resetAct();
 			rotate(endsAngle());
+			_robot.resetAct();
 			
 			_size = endsSize();
 			resetShape();

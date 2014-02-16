@@ -79,10 +79,10 @@ namespace gearit
 		}
 		//--------- END SERIALISATION
 
-		public void frameReset()
+		public void resetAct()
 		{
 			foreach (Piece p in _pieces)
-				p.frameReset();
+				p.resetAct();
 		}
 
 		public void addSpot(ISpot spot)
