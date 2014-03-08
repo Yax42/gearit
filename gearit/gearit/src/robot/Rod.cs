@@ -185,7 +185,7 @@ namespace gearit.src.robot
 		
 		//--------ENDS-------------
 
-		private void updateEnds()
+        private void updateEnds(double angle_change = 0f)
 		{
 			//float newSize = endsSize();
 			//float scale = newSize / _size;
@@ -196,6 +196,11 @@ namespace gearit.src.robot
 			_robot.resetAct();
 			resize(endsSize());
 			_robot.resetAct();
+            Console.WriteLine("angle change: {0}", angle_change);
+            for (JointEdge i = JointList; i != null; i = i.Next)
+			{
+                ((PrismaticJoint)i.Joint).LocalAnchorB = RotatePoint(((PrismaticJoint)i.Joint).LocalAnchorB, Vector2.Zero, angle_change);
+            }
 		}
 
 		public void setEnds(Vector2 A, Vector2 B)
@@ -207,13 +212,14 @@ namespace gearit.src.robot
 
 		public void setEnd(Vector2 end, bool isA)
 		{
+            double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
 				_endA = end;
 			else
 				_endB = end;
-			updateEnds();
+            updateEnds(MathLib.RadiansToDegrees(endsAngle()) - previous_angle_degree);
 		}
-
+        
 		private Vector2 endsPosition()
 		{
 			return (_endA + _endB) / 2;
