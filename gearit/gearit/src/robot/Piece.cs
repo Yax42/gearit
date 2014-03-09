@@ -159,7 +159,7 @@ namespace gearit
 				if (i.Joint.GetType() == typeof(RevoluteSpot))
 					((RevoluteSpot)i.Joint).rotate(this, angle);
 			}
-			updateCharacteristics();
+			//updateCharacteristics();
 		}
 
 		public void moveDelta(Vector2 pos)

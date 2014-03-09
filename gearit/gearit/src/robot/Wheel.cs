@@ -44,6 +44,7 @@ namespace gearit
 			serializePiece(info);
 			info.AddValue("Size", _size, typeof(float));
 		}
+
 		//--------- END SERIALISATION
 
 		override public float getSize()

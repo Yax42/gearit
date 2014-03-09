@@ -14,12 +14,14 @@ namespace gearit.src.editor.robot.action
 		private bool _moving;
 		private bool _begin;
 		private bool _side;
+		private bool _isInit;
 
 		public void init()
 		{
 			_corner = 0;
 			_moving = false;
 			_begin = true;
+			_isInit = false;
 			Console.WriteLine("INIT");
 		}
 
@@ -29,6 +31,13 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		{
+
+			bool res = privateRun(ref robot, ref selected1, ref selected2);
+			_isInit = res;
+			return res;
+		}
+		private bool privateRun(ref Robot robot, ref Piece selected1, ref Piece selected2)
 		{
 
 			if (selected1.GetType() == typeof(Heart))
@@ -60,6 +69,9 @@ namespace gearit.src.editor.robot.action
 			}
 			else
 			{
+
+				if (!_isInit)
+					((Rod)selected1).GenerateEnds();
 				((Rod)selected1).setEnd(Input.SimMousePos, Input.pressed(Keys.LeftShift));
 				return (!Input.justPressed(MouseKeys.LEFT));
 				/*
