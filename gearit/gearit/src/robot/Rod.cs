@@ -73,23 +73,7 @@ namespace gearit.src.robot
 			_fix = CreateFixture(_shape);
 		}
 
-		static Vector2 RotatePoint(Vector2 pointToRotate, Vector2 centerPoint, double angleInDegrees)
-		{
-			double angleInRadians = angleInDegrees * (Math.PI / 180);
-			double cosTheta = Math.Cos(angleInRadians);
-			double sinTheta = Math.Sin(angleInRadians);
-			return new Vector2
-			{
-				X =
-					(float)
-					(cosTheta * (pointToRotate.X - centerPoint.X) -
-					sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
-				Y =
-					(float)
-					(sinTheta * (pointToRotate.X - centerPoint.X) +
-					cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
-			};
-		}
+		
 
 		public void setPos2(Vector2 pos, bool side)
 		{
@@ -105,7 +89,7 @@ namespace gearit.src.robot
 			if (JointList.Joint.WorldAnchorA != null)
 			{
 //				Position = JointList.Joint.WorldAnchorA;
-				Position = RotatePoint(Position, JointList.Joint.WorldAnchorA, diffAngle);
+				Position = MathLib.RotatePoint(Position, JointList.Joint.WorldAnchorA, diffAngle);
 				
 			}
 			return;
@@ -191,18 +175,17 @@ namespace gearit.src.robot
 
 			move(endsPosition());
 			_robot.resetAct();
-			_didAct = true;
-			//rotate(endsAngle());
-			Rotation = (endsAngle());
+//			_didAct = true;
+			rotate(endsAngle());
+//			Rotation = (endsAngle());
 
 			_robot.resetAct();
 			resize(endsSize());
 			_robot.resetAct();
-            Console.WriteLine("angle change: {0}", angle_change);
-            for (JointEdge i = JointList; i != null; i = i.Next)
-			{
-                ((PrismaticJoint)i.Joint).LocalAnchorB = RotatePoint(((PrismaticJoint)i.Joint).LocalAnchorB, Vector2.Zero, angle_change);
-            }
+			//for (JointEdge i = JointList; i != null; i = i.Next)
+			//{
+			//    ((PrismaticJoint)i.Joint).LocalAnchorB = RotatePoint(((PrismaticJoint)i.Joint).LocalAnchorB, Vector2.Zero, angle_change);
+			//}
 		}
 
 		public void setEnds(Vector2 A, Vector2 B)

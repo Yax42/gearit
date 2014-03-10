@@ -147,7 +147,13 @@ namespace gearit.src.robot
 			}
 			updateAxis();
 		}
-
+		public void rotateNoRepercussion(Piece piece, float angle)
+		{
+			if (piece == BodyA)
+				LocalAnchorA = MathLib.RotatePoint(LocalAnchorA, Vector2.Zero, MathLib.RadiansToDegrees(angle));
+			else
+				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
+		}
 //MOVE--------------------------
 		public void moveAnchor(Piece p, Vector2 pos)
 		{

@@ -146,10 +146,17 @@ namespace gearit.src.robot
 
 		public void rotate(Piece piece, float angle)
 		{
+			
 			if (piece == BodyA)
+			{
 				((Piece)BodyB).rotateDelta(angle);
+				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
+			}
 			else
+			{
 				((Piece)BodyA).rotateDelta(angle);
+				LocalAnchorA = MathLib.RotatePoint(LocalAnchorA, Vector2.Zero, MathLib.RadiansToDegrees(angle));
+			}
 		}
 
 		public void draw(DrawGame game)

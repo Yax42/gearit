@@ -158,6 +158,8 @@ namespace gearit
 			{
 				if (i.Joint.GetType() == typeof(RevoluteSpot))
 					((RevoluteSpot)i.Joint).rotate(this, angle);
+				if (i.Joint.GetType() == typeof(PrismaticSpot))
+					((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
 			}
 			//updateCharacteristics();
 		}

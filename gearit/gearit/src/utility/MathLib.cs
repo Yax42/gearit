@@ -57,5 +57,22 @@ namespace gearit.src.utility
 			return angleInRadian * (180 / (float) Math.PI);
 		}
 
+		static public Vector2 RotatePoint(Vector2 pointToRotate, Vector2 centerPoint, double angleInDegrees)
+		{
+			double angleInRadians = angleInDegrees * (Math.PI / 180);
+			double cosTheta = Math.Cos(angleInRadians);
+			double sinTheta = Math.Sin(angleInRadians);
+			return new Vector2
+			{
+				X =
+					(float)
+					(cosTheta * (pointToRotate.X - centerPoint.X) -
+					sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
+				Y =
+					(float)
+					(sinTheta * (pointToRotate.X - centerPoint.X) +
+					cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
+			};
+		}
 	}
 }
