@@ -270,6 +270,8 @@
     <Compile Include="src\output\OutputMessageManager\IOutputMessageManager.cs" />
     <Compile Include="src\output\OutputMessageManager\OutputMessageManagerConsole.cs" />
     <Compile Include="src\robot\Rod.cs" />
+    <Compile Include="src\server\Ftpclient.cs" />
+    <Compile Include="src\server\FtpState.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\ICamera.cs" />
