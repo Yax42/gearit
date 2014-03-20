@@ -36,5 +36,7 @@ namespace gearit
 		Vector2 getWorldAnchor(Piece piece);
 
 		void moveLocal(Piece p, Vector2 pos);
+
+		void BackIntoWorld(Robot robot);
 	}
 }

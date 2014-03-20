@@ -46,6 +46,12 @@ namespace gearit.src.robot
 			move(p1, p1.Position);
 		}
 
+		public void BackIntoWorld(Robot robot)
+		{
+			robot.getWorld().AddJoint(this);
+			robot.addSpot(this);
+		}
+
 		//
 		// SERIALISATION
 		//

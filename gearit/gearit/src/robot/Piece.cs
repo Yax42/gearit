@@ -53,6 +53,14 @@ namespace gearit
 			Shown = true;
 		}
 
+		public void BackIntoWorld(Robot robot)
+		{
+			robot.getWorld().AddBody(this);
+			robot.addPiece(this);
+			for (JointEdge i = JointList; i != null; i = i.Next)
+				((ISpot)i.Joint).BackIntoWorld(robot);
+		}
+
 		//
 		// SERIALISATION
 		//

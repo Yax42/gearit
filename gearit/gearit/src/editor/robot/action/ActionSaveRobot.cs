@@ -16,10 +16,16 @@ namespace gearit.src.editor.robot.action
 			return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			Serializer.SerializeItem("r2d2.gir", robot);
+			Serializer.SerializeItem("r2d2.gir", RobotEditor.Instance.Robot);
 			return (false);
 		}
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.SAVE_ROBOT; }
 	}
 }

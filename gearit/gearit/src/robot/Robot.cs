@@ -152,7 +152,7 @@ namespace gearit
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
+				dg.draw(_pieces[i], _pieces[i].ColorValue);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				if (_spots[i].GetType() == typeof(PrismaticSpot))
@@ -165,32 +165,46 @@ namespace gearit
 				_pieces[i].Shown = true;
 		}
 
+		//-----------------REMOVE--------------------
+
 		public void remove(Piece p)
+		{
+			weakRemove(p);
+			_world.RemoveBody(p);
+		}
+
+		public void remove(ISpot s)
+		{
+			weakRemove(s);
+			_world.RemoveJoint((Joint)s);
+		}
+
+		public void weakRemove(Piece p)
 		{
 			if (p == getHeart())
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 				_spots.Remove((ISpot)i.Joint);
 			_pieces.Remove(p);
-			_world.RemoveBody(p);
 		}
 
-		public void remove(ISpot s)
+		public void weakRemove(ISpot s)
 		{
 			_spots.Remove(s);
-			_world.RemoveJoint((Joint)s);
 		}
 
 		public void remove()
 		{
-		if (_script != null)
-			  _script.stop();
+			if (_script != null)
+				_script.stop();
 			_script = null;
 			foreach (ISpot i in _spots)
 				_world.RemoveJoint((Joint)i);
 			foreach (Piece i in _pieces)
 				_world.RemoveBody(i);
 		}
+
+		//-------------------------------------
 
 		public void sleep()
 		{
@@ -213,6 +227,14 @@ namespace gearit
 			for (int i = 1; i < _pieces.Count; i++)
 				_pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
 			getHeart().Position = pos;
+		}
+
+		public Vector2 Position
+		{
+			get
+			{
+				return getHeart().Position;
+			}
 		}
 
 		public List<SpotApi> getApi()

@@ -8,6 +8,7 @@ using GUI;
 using gearit.src.robot;
 using gearit.src.utility;
 using System.Globalization;
+using gearit.src.editor.robot.action;
 
 namespace gearit.src.editor.robot
 {

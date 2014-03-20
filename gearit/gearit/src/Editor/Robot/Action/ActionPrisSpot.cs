@@ -10,11 +10,18 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionPrisSpot : IAction
 	{
-		private int _state;
+		Piece P1;
+		bool HasBeenRevert;
 
 		public void init()
 		{
-			_state = 0;
+			HasBeenRevert = false;
+			if (ActionChooseSet.value)
+				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.SimMousePos);
+			else
+				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
+			new PrismaticSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1);
+			RobotEditor.Instance.Select1 = P1;
 		}
 
 		public bool shortcut()
@@ -22,23 +29,24 @@ namespace gearit.src.editor.robot.action
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.W));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			if (_state == 0)
-			{
-				_state = 1;
-				Piece p;
-				if (ActionChooseSet.value)
-					p = new Wheel(robot, 0.5f, Input.SimMousePos);
-				else
-					p = new Rod(robot, 2, Input.SimMousePos);
-				new PrismaticSpot(robot, selected1, p);
-				selected1 = p;
-			}
+			if (HasBeenRevert)
+				P1.BackIntoWorld(RobotEditor.Instance.Robot);
 			else if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.W))
 				return (false);
-			selected1.move(Input.SimMousePos);
-			return (true);
+			P1.move(Input.SimMousePos);
+			return false;
 		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			RobotEditor.Instance.remove(P1);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public ActionTypes type() { return ActionTypes.PRIS_SPOT; }
 	}
 }

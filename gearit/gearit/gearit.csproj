@@ -121,6 +121,9 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\action\ActionDummy.cs" />
+    <Compile Include="src\editor\robot\action\ActionFactory.cs" />
+    <Compile Include="src\editor\robot\action\ActionUndo.cs" />
     <Compile Include="src\editor\robot\MenuRobotEditor.cs" />
     <Compile Include="src\GUI\InputManager.cs" />
     <Compile Include="src\GUI\Program.cs" />

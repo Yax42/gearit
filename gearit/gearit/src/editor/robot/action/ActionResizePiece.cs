@@ -5,24 +5,31 @@ using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionResizePiece : IAction
 	{
+		private Piece P1;
+		private float From;
+		private float To;
+		bool HasBeenRevert;
+
 		private int _corner;
 		private bool _moving;
-		private bool _begin;
 		private bool _side;
 		private bool _isInit;
 
 		public void init()
 		{
+			HasBeenRevert = false;
+			P1 = RobotEditor.Instance.Select1;
+			From = P1.getSize();
+
 			_corner = 0;
 			_moving = false;
-			_begin = true;
 			_isInit = false;
-			Console.WriteLine("INIT");
 		}
 
 		public bool shortcut()
@@ -30,16 +37,15 @@ namespace gearit.src.editor.robot.action
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.S));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-
-			bool res = privateRun(ref robot, ref selected1, ref selected2);
+			bool res = privateRun(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, RobotEditor.Instance.Select2);
 			_isInit = res;
 			return res;
 		}
-		private bool privateRun(ref Robot robot, ref Piece selected1, ref Piece selected2)
-		{
 
+		private bool privateRun(Robot robot, Piece selected1, Piece selected2)
+		{
 			if (selected1.GetType() == typeof(Heart))
 			{
 				if (Input.justPressed(MouseKeys.LEFT))
@@ -69,28 +75,21 @@ namespace gearit.src.editor.robot.action
 			}
 			else
 			{
-
 				if (!_isInit)
 					((Rod)selected1).GenerateEnds();
 				((Rod)selected1).setEnd(Input.SimMousePos, Input.pressed(Keys.LeftShift));
 				return (!Input.justPressed(MouseKeys.LEFT));
-				/*
-				if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.S))
-				{
-					if (_begin)
-						_begin = false;
-					else
-						return (false);
-				}
-				if (_begin)
-					((Rod)selected1).Size = (Input.SimMousePos - selected1.Position).Length();
-				else
-				{
-					Console.WriteLine("ca bouge");
-					((Rod)selected1).setPos2(Input.SimMousePos, true);
-				}
-				*/
 			}
 		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			//P1.move(From);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public ActionTypes type() { return ActionTypes.RESIZE_PIECE; }
 	}
 }

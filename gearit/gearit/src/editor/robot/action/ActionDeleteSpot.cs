@@ -4,23 +4,50 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionDeleteSpot : IAction
 	{
-		public void init() { }
+		private ISpot Spot;
+		private Piece P1;
+		private Piece P2;
+
+		public void init()
+		{
+			P1 = RobotEditor.Instance.Select1;
+			P2 = RobotEditor.Instance.Select2;
+			if (P1.isConnected(P2))
+				Spot = P1.getConnection(P2);
+			else
+				Spot = null;
+		}
 
 		public bool shortcut()
 		{
-		   return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
+			return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			if (selected1.isConnected(selected2))
-			  robot.remove(selected1.getConnection(selected2));
+			if (Spot != null)
+			{
+				Debug.Assert(P1.isConnected(P2));
+				Debug.Assert(P1.getConnection(P2) == Spot);
+				RobotEditor.Instance.remove(Spot);
+			}
 			return (false);
 		}
+
+		public void revert()
+		{
+			Debug.Assert(!P1.isConnected(P2));
+			Spot.BackIntoWorld(RobotEditor.Instance.Robot);
+		}
+
+		public bool canBeReverted() { return (Spot != null); }
+
+		public ActionTypes type() { return ActionTypes.DELETE_SPOT; }
 	}
 }

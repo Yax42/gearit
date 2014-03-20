@@ -16,14 +16,21 @@ namespace gearit.src.editor.robot.action
 			return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			robot.remove();
+			RobotEditor.Instance.Robot.remove();
+			RobotEditor.Instance.clearActionLog();
 			//robot = new Robot(RobotEditor._world);
-			robot = (Robot)Serializer.DeserializeItem("r2d2.gir");
-			selected2 = robot.getHeart();
-			selected1 = robot.getHeart();
+			RobotEditor.Instance.Robot = (Robot)Serializer.DeserializeItem("r2d2.gir");
+			RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getHeart();
+			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getHeart();
 			return (false);
 		}
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.LOAD_ROBOT; }
 	}
 }
