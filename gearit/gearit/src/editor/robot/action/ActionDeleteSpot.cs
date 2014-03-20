@@ -18,8 +18,9 @@ namespace gearit.src.editor.robot.action
 
 		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
 		{
+			Console.WriteLine("ActionDeleteSpot");
 			if (selected1.isConnected(selected2))
-			  robot.remove(selected1.getConnection(selected2));
+				robot.remove(selected1.getConnection(selected2));
 			return (false);
 		}
 	}

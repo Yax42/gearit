@@ -18,12 +18,13 @@ namespace gearit.src.editor.robot.action
 
 		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
 		{
+			Console.WriteLine("ActionDeletePiece");
+			Console.WriteLine("Was connected to heart: " + robot.IsPieceConnectedToHeart(selected1));
 			if (selected1 != robot.getHeart())
 			{
-		if (selected2 == selected1)
-				  selected2 = robot.getHeart();
-
-				robot.remove(selected1);
+				if (selected2 == selected1)
+					selected2 = robot.getHeart();
+				robot.RecursiveRemove(selected1);
 				selected1 = robot.getHeart();
 			}
 			return (false);

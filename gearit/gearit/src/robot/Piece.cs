@@ -256,5 +256,13 @@ namespace gearit
 			if (_tex != null)
 				dg.drawTexture(_tex, _tex.Bounds, Color.White);
 		}
+
+		public List<Piece> GenerateAdjacentPieceList()
+		{
+			List<Piece> adjacentPieces = new List<Piece>();
+			for (JointEdge i = JointList; i != null; i = i.Next)
+				adjacentPieces.Add((Piece)i.Other);
+			return adjacentPieces;
+		}
 	}
 }

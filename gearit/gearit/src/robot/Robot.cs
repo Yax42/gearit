@@ -105,6 +105,27 @@ namespace gearit
 			return ((Heart)_pieces.First());
 		}
 
+		public bool IsPieceConnectedToHeart(Piece piece)
+		{
+			return IsPieceConnectedToHeartAux(piece, new List<Piece>());
+		}
+		bool IsPieceConnectedToHeartAux(Piece piece, List<Piece> alreadyExploredPieces)
+		{
+			alreadyExploredPieces.Add(piece);
+			if (getHeart() == piece || piece.isConnected(getHeart()))
+				return true;
+			for (JointEdge i = piece.JointList; i != null; i = i.Next)
+			{
+				Piece pieceToExplore = (Piece)i.Other;
+				if (alreadyExploredPieces.Contains(pieceToExplore) == false &&
+					IsPieceConnectedToHeartAux(pieceToExplore, alreadyExploredPieces)
+				)
+					return true;
+			}
+			return false;
+		}
+
+
 		public void setColor(Color col)
 		{
 			foreach (Piece p in _pieces)
@@ -165,6 +186,17 @@ namespace gearit
 				_pieces[i].Shown = true;
 		}
 
+		public void RecursiveRemove(Piece piece)
+		{
+			List<Piece> adjacentPieces = piece.GenerateAdjacentPieceList();
+
+			remove(piece);
+			foreach (var adjacentPiece in _pieces)
+			{
+				if (IsPieceConnectedToHeart(adjacentPiece) == false)
+					RecursiveRemove(adjacentPiece);
+			}
+		}
 		public void remove(Piece p)
 		{
 			if (p == getHeart())
