@@ -156,9 +156,6 @@ namespace gearit.src.editor.robot
 			_menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 			_menu.Update();
 
-			// To delete
-			_menus.Update(_mainSelected, _mainSelected.getConnection(_selected2));
-
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);
 
@@ -229,8 +226,6 @@ namespace gearit.src.editor.robot
 			_draw_game.End();
 
 			_menu.Draw();
-			// to delete
-			//_menus.Draw(_draw_game);
 		}
 	}
 }
