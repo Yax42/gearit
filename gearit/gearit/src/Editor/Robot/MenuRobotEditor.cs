@@ -32,7 +32,7 @@ namespace gearit.src.editor.robot
 		ISpot _spot;
 
 		// Propertie
-		static public int MENU_WIDTH = 200;
+		static public int MENU_WIDTH = 220;
 		static public int TOOLS_HEIGHT = 32;
 		static public int PIECE_HEIGHT = 400;
 		static public int SPOT_HEIGHT = 400;
@@ -79,8 +79,9 @@ namespace gearit.src.editor.robot
 			_ScreenManager = ScreenManager;
 			_robot_editor = robot_editor;
 
+            // _robot_editor.VisibleMenu = true;
 			ShowCursor = true;
-			Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
+			Position = new Squid.Point(_robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0, 0);
 
 			// Full width to get the cursor propagation
 			Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);

@@ -23,7 +23,6 @@ namespace GUI
 		private GameScreen current_screen = null;
 
 		// List of item menu
-		private MenuScreen _menuScreen;
 		private MyGame _Gearit;
 		private BruteRobot _bruteRobot;
 		private GladiatoRobot _gladiator;
@@ -97,6 +96,8 @@ namespace GUI
 			_ScreenManager.RemoveScreen(current_screen);
 			current_screen = null;
 			menu_listbox.SelectedItem.Selected = false;
+
+            Visible = true;
 		}
 
 		public void addMenuItem(GameScreen screen, string title)
@@ -119,6 +120,8 @@ namespace GUI
 
 				_ScreenManager.AddScreen(screen);
 				current_screen = screen;
+
+                Visible = current_screen.VisibleMenu;
 			};
 		}
 	}
