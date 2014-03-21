@@ -15,18 +15,21 @@ namespace gearit.src.editor.robot.action
 		private Piece P2;
 		private Vector2 From;
 		private Vector2 To;
-		bool HasBeenRevert;
+		private bool HasBeenRevert;
+		private bool IsOk;
 
 		public void init()
 		{
-			if (P1.isConnected(P2) == false)
-				P1 = null;
-			else
+			P1 = RobotEditor.Instance.Select1;
+			P2 = RobotEditor.Instance.Select2;
+			HasBeenRevert = false;
+
+			IsOk = P1.isConnected(P2);
+			if (IsOk)
 			{
-				P1 = RobotEditor.Instance.Select1;
-				P2 = RobotEditor.Instance.Select2;
-				HasBeenRevert = false;
+				From = P1.getConnection(P2).getWorldAnchor(P1);
 			}
+
 		}
 
 		public bool shortcut()
@@ -36,7 +39,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool run()
 		{
-			if (P1 == null)
+			if (!IsOk)
 				return false;
 			Debug.Assert(P1.isConnected(P2));
 
@@ -56,7 +59,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 
-		public bool canBeReverted() { return (P1 != null); }
+		public bool canBeReverted() { return IsOk; }
 
 		public ActionTypes type() { return ActionTypes.MOVE_ANCHOR; }
 	}
