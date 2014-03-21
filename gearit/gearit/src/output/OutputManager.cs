@@ -7,31 +7,45 @@ namespace gearit.src.output
 {
 	class OutputManager
 	{
-		// STATIC method
-		private static OutputManager _instance;
-		private IOutputMessageManager _output_message_manager;
+		static public void GI_LogError(String msg)
+		{
+			Console.WriteLine("ERROR: #{0}", msg);
+		}
+		public void GI_LogWarning(String msg)
+		{
+			Console.WriteLine("WARNING: #{0}", msg);
+		}
+		public void GI_LogInfo(String msg)
+		{
+			Console.WriteLine("Info: #{0}", msg);
+		}
 
-		public static OutputManager GetInstance()
-		{
-			if (_instance == null)
-				_instance = new OutputManager();
-			return _instance;
-		}
-		public static void SetInstance(OutputManager om)
-		{
-			_instance = om;
-		}
-		// END
+		//// STATIC method
+		//private static OutputManager _instance;
+		//private IOutputMessageManager _output_message_manager;
 
-		public IOutputMessageManager GetOutputMessageManager()
-		{
-			if (_instance == null)
-				throw new System.MethodAccessException("_output_message_manager was not set");
-			return _output_message_manager;
-		}
-		public void SetOutputMessageManager(IOutputMessageManager value)
-		{
-			_output_message_manager = value;
-		}
+		//public static OutputManager GetInstance()
+		//{
+		//    if (_instance == null)
+		//        _instance = new OutputManager();
+		//    return _instance;
+		//}
+		//public static void SetInstance(OutputManager om)
+		//{
+		//    _instance = om;
+		//}
+		//// END
+
+		//public IOutputMessageManager GetOutputMessageManager()
+		//{
+		//    if (_instance == null)
+		//        throw new System.MethodAccessException("_output_message_manager was not set");
+		//    return _output_message_manager;
+		//}
+		//public void SetOutputMessageManager(IOutputMessageManager value)
+		//{
+		//    _output_message_manager = value;
+		//}
+
 	}
 }

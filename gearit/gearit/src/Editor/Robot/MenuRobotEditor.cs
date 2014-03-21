@@ -33,7 +33,7 @@ namespace gearit.src.editor.robot
 		ISpot _spot;
 
 		// Propertie
-		static public int MENU_WIDTH = 200;
+		static public int MENU_WIDTH = 220;
 		static public int TOOLS_HEIGHT = 32;
 		static public int PIECE_HEIGHT = 400;
 		static public int SPOT_HEIGHT = 400;
@@ -80,11 +80,14 @@ namespace gearit.src.editor.robot
 			_ScreenManager = ScreenManager;
 			_robot_editor = robot_editor;
 
+            int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+
+            // _robot_editor.VisibleMenu = true;
 			ShowCursor = true;
-			Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
+            Position = new Squid.Point(padding, 0);
 
 			// Full width to get the cursor propagation
-			Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
+            Size = new Squid.Point(ScreenManager.Width - padding, ScreenManager.Height);
 
 			int y = 0;
 
@@ -125,7 +128,7 @@ namespace gearit.src.editor.robot
 			Button btn = new Button();
 			btn.Text = "Circle";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
 			btn.Tag = FPiece.Circle;
@@ -133,34 +136,32 @@ namespace gearit.src.editor.robot
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "Drag to the specified location";
 
-			y += btn.Size.y + 2;
-
 			btn = new Button();
 			btn.Text = "Pipe";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
 			btn.Tag = FPiece.Pipe;
 			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "Drag to the specified location";
 
-			y += btn.Size.y + PADDING; 
+			y += btn.Size.y + 2; 
 
 			#endregion
 
 			#region jointuretype
 
 			// Title
-			lb = new Label();
-			lb.Text = "Jointure";
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
-			lb.Parent = this;
+            //lb = new Label();
+            //lb.Text = "Jointure";
+            //lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            //lb.Position = new Squid.Point(0, y);
+            //lb.Style = "itemMenuTitle";
+            //lb.Parent = this;
 
-			y += lb.Size.y + PADDING;
+            //y += lb.Size.y + PADDING;
 
 			// Piece jointure type
 			rb_revolute.Text = "Revolute";
@@ -211,7 +212,7 @@ namespace gearit.src.editor.robot
 			// Piece name
 			lb = new Label();
 			lb.Text = "Weight";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, y);
 			lb.Style = "itemMenu";
 			lb.Parent = this;
@@ -228,7 +229,7 @@ namespace gearit.src.editor.robot
 			// Piece size
 			lb = new Label();
 			lb.Text = "Size";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, y);
 			lb.Style = "itemMenu";
 			lb.Parent = this;
@@ -252,7 +253,7 @@ namespace gearit.src.editor.robot
 			lb.Parent = this;
 
 			piece_x.Text = "15";
-			piece_x.Size = new Squid.Point(56, ITEM_HEIGHT - PADDING * 3);
+			piece_x.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
 			piece_x.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
 			piece_x.Style = "textbox";
 			piece_x.Enabled = false;
@@ -266,7 +267,7 @@ namespace gearit.src.editor.robot
 			lb.Parent = this;
 
 			piece_y.Text = "81";
-			piece_y.Size = new Squid.Point(56, ITEM_HEIGHT - PADDING * 3);
+			piece_y.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
 			piece_y.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
 			piece_y.Style = "textbox";
 			piece_y.Enabled = false;
@@ -281,7 +282,7 @@ namespace gearit.src.editor.robot
 
 			lb = new Label();
 			lb.Text = "Rotation";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, 0);
 			lb.Style = "itemMenu";
 			lb.Parent = piece_rotation_conainer;
@@ -315,7 +316,7 @@ namespace gearit.src.editor.robot
 			// Spot name
 			lb = new Label();
 			lb.Text = "Name";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, y);
 			lb.Style = "itemMenu";
 			lb.Parent = spot_container;
@@ -335,7 +336,7 @@ namespace gearit.src.editor.robot
 			// Spot size
 			lb = new Label();
 			lb.Text = "Force";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, y);
 			lb.Style = "itemMenu";
 			lb.Parent = spot_container;
@@ -363,7 +364,7 @@ namespace gearit.src.editor.robot
 
 			lb = new Label();
 			lb.Text = "Distance";
-			lb.Size = new Squid.Point(50, ITEM_HEIGHT);
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, 0);
 			lb.Style = "itemMenu";
 			lb.Parent = spot_distance_container;
@@ -379,13 +380,13 @@ namespace gearit.src.editor.robot
 
 			#region action
 
-			y = ScreenManager.Height - PADDING - ITEM_HEIGHT;
+			y = ScreenManager.Height - ITEM_HEIGHT;
 
 			// Link
 			btn = new Button();
 			btn.Text = "Link";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
 			btn.Tooltip = "Link two pieces together with specified jointure";
@@ -397,14 +398,12 @@ namespace gearit.src.editor.robot
 					_robot_editor.doAction(ActionTypes.REV_LINK);
 			};
 
-			y -= btn.Size.y + PADDING;
-
 			// Remove
 			btn = new Button();
 			btn.Text = "Delete";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
 			btn.Tooltip = "Remove selected piece";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
@@ -412,7 +411,34 @@ namespace gearit.src.editor.robot
 				_robot_editor.doAction(ActionTypes.DELETE_PIECE);
 			};
 
-			y -= btn.Size.y + PADDING;
+			y -= btn.Size.y + 2;
+
+            // Load
+            btn = new Button();
+            btn.Text = "Load";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(0, y);
+            btn.Parent = this;
+            btn.Tooltip = "Load a robot with his script";
+            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                // TODO
+            };
+
+            btn = new Button();
+            btn.Text = "Save";
+            btn.Style = "itemMenuButton";
+            btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+            btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
+            btn.Parent = this;
+            btn.Tooltip = "Save the robot and his script";
+            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+            {
+                // TODO
+            };
+
+            y -= btn.Size.y + PADDING;
 
 			// Title
 			lb = new Label();
@@ -437,7 +463,7 @@ namespace gearit.src.editor.robot
 				img.Texture = "RobotEditor/prismatic.png";
 
 			img.Size = new Squid.Point(32, 32);
-			img.Position = new Point((int) Input.position().X - MainMenu.MENU_WIDTH - 16, (int) Input.position().Y - 16);
+			img.Position = new Point((int) Input.position().X - 16, (int) Input.position().Y - 16);
 			img.Style = "itemMainMenu";
 			img.Tag = sender.Tag;
 
@@ -462,8 +488,10 @@ namespace gearit.src.editor.robot
 
 		public bool hasFocus()
 		{
-			return (background.Position.x + MainMenu.MENU_WIDTH <= Input.position().X &&
-				background.Position.x + background.Size.x + MainMenu.MENU_WIDTH >= Input.position().X &&
+            int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+
+            return (background.Position.x + padding <= Input.position().X &&
+                background.Position.x + background.Size.x + padding >= Input.position().X &&
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y);
 		}

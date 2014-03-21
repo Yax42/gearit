@@ -5,8 +5,10 @@ using System.Text;
 
 namespace gearit.src.output
 {
-	interface IOutputMessageManager
-	{
-		void DisplayRobotScriptingErrorMessage(String msg);
-	}
+	//interface IOutputMessageManager
+	//{
+	//    void GI_LogError(String msg);
+	//    void GI_LogWarning(String msg);
+	//    void GI_LogInfo(String msg);
+	//}
 }

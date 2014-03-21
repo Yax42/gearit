@@ -36,7 +36,7 @@ namespace gearit.src.utility
 			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
 			run();
 		}
-	
+
 		private void run()
 		{
 			_thread.Start();
@@ -44,14 +44,14 @@ namespace gearit.src.utility
 
 		private void exec()
 		{
+			Console.WriteLine("test");
 			try
 			{
 				DoFile(@"data/script/" + _name + ".lua");
 			}
-			catch (LuaException ex)
+			catch (Exception ex)
 			{
-				//OutputManager.GetInstance()
-				Console.WriteLine("Lua exception: {0}", ex.Message);
+				OutputManager.GI_LogError("Lua exception: " + ex.Message);
 			}
 		}
 

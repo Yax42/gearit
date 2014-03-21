@@ -57,7 +57,7 @@ namespace gearit.src.editor
 				s.Close();
 				return (obj);
 			}
-			catch (IOException e)
+			catch (Exception e)
 			{
 				Console.WriteLine("Error while opening the file {0}.", filename);
 				return (null);

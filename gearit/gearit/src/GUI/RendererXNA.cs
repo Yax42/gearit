@@ -186,7 +186,7 @@ namespace SquidXNA
 			source.Y = rect.Top;
 			source.Width = rect.Width;
 			source.Height = rect.Height;
-
+			
 			Batch.Draw(tex, destination, source, ColorFromtInt32(color));
 		}
 
