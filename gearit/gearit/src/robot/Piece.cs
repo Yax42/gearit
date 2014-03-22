@@ -107,13 +107,10 @@ namespace gearit
 			for (JointEdge i = JointList; i != null; i = i.Next)
 				if (i.Joint == spot.Joint)
 				{
-					if (i.Prev == null && i.Next == null)
-					{
-						JointList = null;
-						break;
-					}
 					if (i.Prev != null)
 						i.Prev.Next = i.Next;
+					else
+						JointList = i.Next;
 					if (i.Next != null)
 						i.Next.Prev = i.Prev;
 					break;
