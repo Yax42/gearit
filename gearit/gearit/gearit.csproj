@@ -123,6 +123,8 @@
     <Compile Include="src\DrawGame.cs" />
     <Compile Include="src\editor\robot\action\ActionDummy.cs" />
     <Compile Include="src\editor\robot\action\ActionFactory.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizeRod.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizeWheel.cs" />
     <Compile Include="src\editor\robot\action\ActionUndo.cs" />
     <Compile Include="src\editor\robot\MenuRobotEditor.cs" />
     <Compile Include="src\GUI\InputManager.cs" />
@@ -145,7 +147,7 @@
     <Compile Include="src\editor\robot\action\ActionMoveRobot.cs" />
     <Compile Include="src\editor\robot\action\ActionPrisLink.cs" />
     <Compile Include="src\editor\robot\action\ActionDeleteSpot.cs" />
-    <Compile Include="src\editor\robot\action\ActionResizePiece.cs" />
+    <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
     <Compile Include="src\editor\robot\action\ActionRevLink.cs" />
     <Compile Include="src\editor\robot\action\ActionSaveRobot.cs" />
     <Compile Include="src\editor\robot\action\ActionSelect2.cs" />

@@ -5,7 +5,36 @@ using System.Text;
 using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
-{
+{	enum ActionTypes
+	{
+		NONE = 0,
+		MAIN_SELECT,
+		SELECT2,
+		DELETE_PIECE,
+		MOVE_PIECE,
+		PRIS_SPOT,
+		REV_SPOT,
+		SHOW_ALL,
+		HIDE,
+		LAUNCH,
+		MOVE_ANCHOR,
+		DELETE_SPOT,
+		PRIS_LINK,
+		REV_LINK,
+		RESIZE_HEART,
+		RESIZE_WHEEL,
+		RESIZE_ROD,
+		CHOOSE_SET,
+		MOVE_ROBOT,
+		LOAD_ROBOT,
+		SAVE_ROBOT,
+		CHANGE_LIMIT,
+		SWAP_LIMIT,
+		UNDO,
+		REDO,
+		COUNT
+	}
+
 	class ActionFactory
 	{
 		static private bool _isInit = false;
@@ -60,7 +89,9 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.DELETE_SPOT) return new ActionDeleteSpot();
 			if (action == ActionTypes.PRIS_LINK) return new ActionPrisLink();
 			if (action == ActionTypes.REV_LINK) return new ActionRevLink();
-			if (action == ActionTypes.RESIZE_PIECE) return new ActionResizePiece();
+			if (action == ActionTypes.RESIZE_HEART) return new ActionResizeHeart();
+			if (action == ActionTypes.RESIZE_WHEEL) return new ActionResizeWheel();
+			if (action == ActionTypes.RESIZE_ROD) return new ActionResizeRod();
 			if (action == ActionTypes.CHOOSE_SET) return new ActionChooseSet();
 			if (action == ActionTypes.MOVE_ROBOT) return new ActionMoveRobot();
 			if (action == ActionTypes.SAVE_ROBOT) return new ActionSaveRobot();

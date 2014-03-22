@@ -13,7 +13,7 @@ namespace gearit.src.editor.robot.action
 		private Vector2 From;
 		private Vector2 To;
 		private Piece P1;
-		bool HasBeenRevert;
+		private bool HasBeenRevert;
 
 		public void init()
 		{
