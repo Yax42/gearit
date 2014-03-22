@@ -6,11 +6,13 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionRevSpot : IAction
 	{
-		Piece P1;
-		bool HasBeenRevert;
+		private Piece P1;
+		private bool HasBeenRevert;
+		private SleepingPack Pack;
 
 		public void init()
 		{
+			Pack = new SleepingPack();
 			HasBeenRevert = false;
 			if (ActionChooseSet.value)
 				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.SimMousePos);
@@ -28,7 +30,7 @@ namespace gearit.src.editor.robot.action
 		public bool run()
 		{
 			if (HasBeenRevert)
-				P1.BackIntoWorld(RobotEditor.Instance.Robot);
+				RobotEditor.Instance.Robot.wakeUp(Pack);
 			else if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.W))
 				return (false);
 			P1.move(Input.SimMousePos);
@@ -38,7 +40,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			HasBeenRevert = true;
-			RobotEditor.Instance.remove(P1);
+			RobotEditor.Instance.Robot.fallAsleep(P1, Pack);
 		}
 
 		public bool canBeReverted() { return true; }

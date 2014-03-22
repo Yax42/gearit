@@ -18,6 +18,17 @@ using gearit.src.editor.api;
 
 namespace gearit
 {
+	class SleepingPack
+	{
+		public SleepingPack()
+		{
+			SList = new List<ISpot>();
+			PList = new List<Piece>();
+		}
+		public List<ISpot> SList;
+		public List<Piece> PList;
+
+	}
 	[Serializable()]
 	class Robot : ISerializable
 	{
@@ -193,7 +204,7 @@ namespace gearit
 		{
 			List<Piece> adjacentPieces = piece.GenerateAdjacentPieceList();
 
-			weakRemove(piece);
+			//weakRemove(piece);
 			foreach (var adjacentPiece in _pieces)
 			{
 				if (IsPieceConnectedToHeart(adjacentPiece) == false)
@@ -203,26 +214,64 @@ namespace gearit
 
 		public void remove(Piece p)
 		{
-			weakRemove(p);
-			_world.RemoveBody(p);
-		}
-
-		public void remove(ISpot s)
-		{
-			weakRemove(s);
-			_world.RemoveJoint((Joint)s);
-		}
-
-		public void weakRemove(Piece p)
-		{
 			if (p == getHeart())
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 				_spots.Remove((ISpot)i.Joint);
 			_pieces.Remove(p);
+			_world.RemoveBody(p);
 		}
 
-		public void weakRemove(ISpot s)
+		public void remove(ISpot s)
+		{
+			_spots.Remove(s);
+			_world.RemoveJoint(s.Joint);
+		}
+
+		public void fallAsleep(Piece p, SleepingPack pack, bool DidCheck = false)
+		{
+			if (p == getHeart())
+				return;
+			for (JointEdge i = p.JointList; i != null; i = i.Next)
+			{
+				ISpot spot = (ISpot)i.Joint;
+				spot.fallAsleep(this);
+				pack.SList.Add(spot);
+			}
+			p.JointList = null;
+			_pieces.Remove(p);
+			pack.PList.Add(p);
+
+			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
+
+			foreach (var adjacentPiece in adjacentPieces)
+			{
+				if (DidCheck || IsPieceConnectedToHeart(adjacentPiece) == false)
+					fallAsleep(adjacentPiece, pack, true);
+			}
+		}
+
+		public void fallAsleep(ISpot s, SleepingPack pack)
+		{
+			s.fallAsleep(this, true);
+			pack.SList.Add(s);
+			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyA) == false)
+				fallAsleep((Piece) s.Joint.BodyA, pack, true);
+			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyB) == false)
+				fallAsleep((Piece) s.Joint.BodyB, pack, true);
+		}
+
+		public void wakeUp(SleepingPack pack)
+		{
+			foreach (Piece i in pack.PList)
+				_pieces.Add(i);
+			pack.PList.Clear();
+			foreach (ISpot i in pack.SList)
+				i.wakeUp(this);
+			pack.SList.Clear();
+		}
+
+		public void forget(ISpot s)
 		{
 			_spots.Remove(s);
 		}
@@ -233,7 +282,7 @@ namespace gearit
 				_script.stop();
 			_script = null;
 			foreach (ISpot i in _spots)
-				_world.RemoveJoint((Joint)i);
+				_world.RemoveJoint(i.Joint);
 			foreach (Piece i in _pieces)
 				_world.RemoveBody(i);
 		}
@@ -245,15 +294,7 @@ namespace gearit
 			for (int i = 0; i < _pieces.Count; i++)
 				_world.RemoveBody(_pieces[i]);
 			for (int i = 0; i < _spots.Count; i++)
-				_world.RemoveJoint((Joint)_spots[i]);
-		}
-
-		public void wake()
-		{
-			foreach (Piece i in _pieces)
-				_world.AddBody(i);
-			for (int i = 0; i < _spots.Count; i++)
-				_world.AddJoint((Joint)_spots[i]);
+				_world.RemoveJoint(_spots[i].Joint);
 		}
 
 		public void move(Vector2 pos)

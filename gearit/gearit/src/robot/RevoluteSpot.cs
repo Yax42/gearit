@@ -26,6 +26,9 @@ namespace gearit.src.robot
 
 		 //private AngleJoint _angleJoint;
 		static private Texture2D _tex;
+		private Joint _joint;
+		private CommonSpot _common;
+		public Joint Joint { get { return _joint; } }
 
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
 			this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
@@ -44,12 +47,18 @@ namespace gearit.src.robot
 			ColorValue = Color.Black;
 			robot.addSpot(this);
 			move(p1, p1.Position);
+			_joint = (Joint)this;
+			_common = new CommonSpot(this);
 		}
 
-		public void BackIntoWorld(Robot robot)
+		public void wakeUp(Robot robot)
 		{
-			robot.getWorld().AddJoint(this);
-			robot.addSpot(this);
+			_common.wakeUp(robot);
+		}
+
+		public void fallAsleep(Robot robot, bool toForget = false)
+		{
+			_common.fallAsleep(robot, toForget);
 		}
 
 		//

@@ -14,6 +14,7 @@ using gearit.src.utility;
 using gearit.src.editor;
 using gearit.src.robot;
 using gearit.src;
+using System.Diagnostics;
 
 namespace gearit
 {
@@ -53,14 +54,6 @@ namespace gearit
 			Shown = true;
 		}
 
-		public void BackIntoWorld(Robot robot)
-		{
-			robot.getWorld().AddBody(this);
-			robot.addPiece(this);
-			for (JointEdge i = JointList; i != null; i = i.Next)
-				((ISpot)i.Joint).BackIntoWorld(robot);
-		}
-
 		//
 		// SERIALISATION
 		//
@@ -84,6 +77,7 @@ namespace gearit
 			info.AddValue("Density", _shape.Density, typeof(float));
 			info.AddValue("Weight", this.Weight, typeof(float));
 		}
+
 		//--------- END SERIALISATION
 
 		virtual public void resetShape() { }
@@ -104,6 +98,50 @@ namespace gearit
 		{
 			_shape = shape;
 			_fix = CreateFixture(_shape, null);
+		}
+
+		public void removeSpot(ISpot spot)
+		{
+			if (JointList == null)
+				Debug.Assert(false, "Shouldn't get there");
+			for (JointEdge i = JointList; i != null; i = i.Next)
+				if (i.Joint == spot.Joint)
+				{
+					if (i.Prev == null && i.Next == null)
+					{
+						JointList = null;
+						break;
+					}
+					if (i.Prev != null)
+						i.Prev.Next = i.Next;
+					if (i.Next != null)
+						i.Next.Prev = i.Prev;
+					break;
+				}
+		}
+
+		public void addSpot(ISpot spot)
+		{
+			JointEdge other = new JointEdge();
+			other.Joint = spot.Joint;
+			if (other.Joint.BodyA == this)
+				other.Other = other.Joint.BodyB;
+			else
+				other.Other = other.Joint.BodyA;
+			if (JointList != null)
+			{
+				other.Next = JointList.Next;
+				if (other.Next != null)
+					other.Next.Prev = other;
+				other.Prev = JointList;
+				JointList.Next = other;
+			}
+			else
+			{
+				other.Next = null;
+				other.Prev = null;
+				JointList = other;
+			}
 		}
 
 		public void resetAct()
@@ -151,6 +189,7 @@ namespace gearit
 		}
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
+
 		public void rotate(float angle)
 		{
 			rotateDelta(angle - Rotation);

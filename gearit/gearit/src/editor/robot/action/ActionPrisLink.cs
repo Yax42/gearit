@@ -12,13 +12,15 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionPrisLink : IAction
 	{
-		bool IsOk;
+		private bool IsOk;
 		private Piece P1;
 		private Piece P2;
 		private PrismaticSpot Spot;
+		private SleepingPack Pack;
 
 		public void init()
 		{
+			Pack = new SleepingPack();
 			if (P1.isConnected(P2) || P1 == P2)
 				IsOk = false;
 			else
@@ -44,7 +46,7 @@ namespace gearit.src.editor.robot.action
 				if (Spot == null)
 					Spot = new PrismaticSpot(RobotEditor.Instance.Robot, P1, P2);
 				else
-					Spot.BackIntoWorld(RobotEditor.Instance.Robot);
+					RobotEditor.Instance.Robot.wakeUp(Pack);
 			}
 			return (false);
 		}
@@ -52,7 +54,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			if (IsOk && Spot != null)
-				RobotEditor.Instance.remove(Spot);
+				RobotEditor.Instance.Robot.fallAsleep(Spot, Pack);
 		}
 
 		public bool canBeReverted() { return IsOk; }

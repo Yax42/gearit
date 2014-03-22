@@ -10,12 +10,14 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionDeleteSpot : IAction
 	{
+		private SleepingPack Pack;
 		private ISpot Spot;
 		private Piece P1;
 		private Piece P2;
 
 		public void init()
 		{
+			Pack = new SleepingPack();
 			P1 = RobotEditor.Instance.Select1;
 			P2 = RobotEditor.Instance.Select2;
 			if (P1.isConnected(P2))
@@ -35,7 +37,7 @@ namespace gearit.src.editor.robot.action
 			{
 				Debug.Assert(P1.isConnected(P2));
 				Debug.Assert(P1.getConnection(P2) == Spot);
-				RobotEditor.Instance.remove(Spot);
+				RobotEditor.Instance.Robot.fallAsleep(Spot, Pack);
 			}
 			return (false);
 		}
@@ -43,7 +45,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			Debug.Assert(!P1.isConnected(P2));
-			Spot.BackIntoWorld(RobotEditor.Instance.Robot);
+			RobotEditor.Instance.Robot.wakeUp(Pack);
 		}
 
 		public bool canBeReverted() { return (Spot != null); }

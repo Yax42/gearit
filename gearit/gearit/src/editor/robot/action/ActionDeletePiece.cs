@@ -9,10 +9,12 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionDeletePiece : IAction
 	{
+		private SleepingPack Pack;
 		private Piece P1;
 
 		public void init()
 		{
+			Pack = new SleepingPack();
 			P1 = RobotEditor.Instance.Select1;
 		}
 
@@ -27,20 +29,14 @@ namespace gearit.src.editor.robot.action
 			Console.WriteLine("Was connected to heart: " + RobotEditor.Instance.Robot.IsPieceConnectedToHeart(P1));
 			if (P1 != RobotEditor.Instance.Robot.getHeart())
 			{
-				//This line is behaves correctly with Ctrl Z but no recursive
-				//RobotEditor.Instance.remove(P1);
-				//This part has no Ctrl Z but is recursive
-				if (RobotEditor.Instance.Select2 == P1)
-					RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getHeart();
-				RobotEditor.Instance.Robot.RecursiveRemove(P1);
-				RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getHeart();
+				RobotEditor.Instance.fallAsleep(P1, Pack); //Select sont checkes dans le fallAsleep
 			}
 			return (false);
 		}
 
 		public void revert()
 		{
-			P1.BackIntoWorld(RobotEditor.Instance.Robot);
+			RobotEditor.Instance.Robot.wakeUp(Pack);
 		}
 
 		public bool canBeReverted() { return true; }

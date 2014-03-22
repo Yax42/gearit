@@ -127,14 +127,14 @@ namespace gearit.src.editor.robot
 			base.Update(gameTime);
 		}
 
-		public void remove(ISpot s)
+		public void fallAsleep(ISpot s, SleepingPack pack)
 		{
-			Robot.weakRemove(s);
+			Robot.fallAsleep(s, pack);
 		}
 
-		public void remove(Piece p)
+		public void fallAsleep(Piece p, SleepingPack pack)
 		{
-			Robot.weakRemove(p);
+			Robot.fallAsleep(p, pack);
 			if (Select1 == p)
 				Select1 = Robot.getHeart();
 			if (Select2 == p)
@@ -180,6 +180,8 @@ namespace gearit.src.editor.robot
 
 		public void undo()
 		{
+			if (_actionsLog.Count == 0)
+				return;
 			IAction a = _actionsLog.ElementAt(0);
 			a.revert();
 			_actionsLog.Remove(a);
