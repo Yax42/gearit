@@ -232,6 +232,7 @@ namespace gearit
 		{
 			if (p == getHeart())
 				return;
+			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 			{
 				ISpot spot = (ISpot)i.Joint;
@@ -241,8 +242,6 @@ namespace gearit
 			p.JointList = null;
 			_pieces.Remove(p);
 			pack.PList.Add(p);
-
-			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
 
 			foreach (var adjacentPiece in adjacentPieces)
 			{
