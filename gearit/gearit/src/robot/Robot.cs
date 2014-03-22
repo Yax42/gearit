@@ -200,34 +200,25 @@ namespace gearit
 
 		//-----------------REMOVE--------------------
 
-		public void RecursiveRemove(Piece piece)
-		{
-			List<Piece> adjacentPieces = piece.GenerateAdjacentPieceList();
-
-			//weakRemove(piece);
-			foreach (var adjacentPiece in _pieces)
-			{
-				if (IsPieceConnectedToHeart(adjacentPiece) == false)
-					RecursiveRemove(adjacentPiece);
-			}
-		}
-
+		// For runtime
 		public void remove(Piece p)
 		{
 			if (p == getHeart())
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
-				_spots.Remove((ISpot)i.Joint);
+				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
 			_pieces.Remove(p);
 			_world.RemoveBody(p);
 		}
 
+		// For runtime
 		public void remove(ISpot s)
 		{
 			_spots.Remove(s);
 			_world.RemoveJoint(s.Joint);
 		}
 
+		// For editor
 		public void fallAsleep(Piece p, SleepingPack pack, bool DidCheck = false)
 		{
 			if (p == getHeart())
@@ -250,6 +241,7 @@ namespace gearit
 			}
 		}
 
+		// For editor
 		public void fallAsleep(ISpot s, SleepingPack pack)
 		{
 			s.fallAsleep(this, true);
@@ -260,6 +252,7 @@ namespace gearit
 				fallAsleep((Piece) s.Joint.BodyB, pack, true);
 		}
 
+		// For editor
 		public void wakeUp(SleepingPack pack)
 		{
 			foreach (Piece i in pack.PList)

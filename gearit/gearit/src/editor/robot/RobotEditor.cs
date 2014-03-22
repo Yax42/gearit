@@ -141,19 +141,6 @@ namespace gearit.src.editor.robot
 				Select2 = Robot.getHeart();
 		}
 
-		/*
-		private bool arunShortcut()
-		{
-			for (int i = 1; i < (int)ActionTypes.COUNT; i++)
-				//if (_actions[i].shortcut())
-				{
-					//_actionType = (ActionTypes);
-					return (true);
-				}
-			return (false);
-		}
-		*/
-
 		public void doAction(ActionTypes action)
 		{
 			_currentAction = ActionFactory.create(action);
