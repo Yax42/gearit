@@ -109,6 +109,7 @@ namespace gearit
 		{
 			return IsPieceConnectedToHeartAux(piece, new List<Piece>());
 		}
+
 		bool IsPieceConnectedToHeartAux(Piece piece, List<Piece> alreadyExploredPieces)
 		{
 			alreadyExploredPieces.Add(piece);
@@ -192,7 +193,7 @@ namespace gearit
 		{
 			List<Piece> adjacentPieces = piece.GenerateAdjacentPieceList();
 
-			remove(piece);
+			weakRemove(piece);
 			foreach (var adjacentPiece in _pieces)
 			{
 				if (IsPieceConnectedToHeart(adjacentPiece) == false)
