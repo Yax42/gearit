@@ -21,13 +21,14 @@ namespace gearit.src.editor.robot.action
 		public void init()
 		{
 			Pack = new SleepingPack();
+			P1 = RobotEditor.Instance.Select1;
+			P2 = RobotEditor.Instance.Select2;
+
 			if (P1.isConnected(P2) || P1 == P2)
 				IsOk = false;
 			else
 			{
 				IsOk = true;
-				P1 = RobotEditor.Instance.Select1;
-				P2 = RobotEditor.Instance.Select2;
 				Spot = null;
 			}
 		}
