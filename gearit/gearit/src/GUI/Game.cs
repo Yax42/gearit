@@ -1,5 +1,6 @@
 	using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Squid;
 using GUI;
 
@@ -11,10 +12,14 @@ namespace SquidXNA
 	public class Game : Microsoft.Xna.Framework.Game
 	{
 		public gearit.xna.ScreenManager ScreenManager;
+        private static Game _instanceGame;
+        private static ContentManager _instanceCM;
 
 		public Game()
 		{
 			Content.RootDirectory = "Content";
+            _instanceGame = this;
+            _instanceCM = Content;
 
 			this.IsFixedTimeStep = false;
 
@@ -24,6 +29,16 @@ namespace SquidXNA
 
 			this.Window.Title = "Gear It!";
 		}
+
+        public static Game instGame
+        {
+            get { return _instanceGame; }
+        }
+
+        public static ContentManager ContentManager
+        {
+            get { return _instanceCM; }
+        }
 
 		protected override void Initialize()
 		{

@@ -99,6 +99,14 @@ namespace gearit.src
 				draw(f, xf, col);
 		}
 
+		public void draw(Body b, Color col, Texture2D texture)
+		{
+			Transform xf;
+			b.GetTransform(out xf);
+			foreach (Fixture f in b.FixtureList)
+				draw(f, xf, col);
+		}
+
 		private void draw(Fixture fixture, Transform xf, Color color)
 		{
 			switch (fixture.ShapeType)
@@ -180,7 +188,7 @@ namespace gearit.src
 
 		public Texture2D textureFromShape(Shape shape, MaterialType mater)
 		{
-		return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
+            return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
 		}
 	}
 }
