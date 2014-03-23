@@ -27,7 +27,6 @@ namespace gearit
 		}
 		public List<ISpot> SList;
 		public List<Piece> PList;
-
 	}
 	[Serializable()]
 	class Robot : ISerializable
@@ -227,11 +226,12 @@ namespace gearit
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 			{
 				ISpot spot = (ISpot)i.Joint;
-				spot.fallAsleep(this);
+				spot.fallAsleep(this, p);
 				pack.SList.Add(spot);
 			}
 			p.JointList = null;
 			_pieces.Remove(p);
+			p.Sleeping = true;
 			pack.PList.Add(p);
 
 			foreach (var adjacentPiece in adjacentPieces)
@@ -244,7 +244,7 @@ namespace gearit
 		// For editor
 		public void fallAsleep(ISpot s, SleepingPack pack)
 		{
-			s.fallAsleep(this, true);
+			s.fallAsleep(this);
 			pack.SList.Add(s);
 			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyA) == false)
 				fallAsleep((Piece) s.Joint.BodyA, pack, true);
@@ -256,7 +256,10 @@ namespace gearit
 		public void wakeUp(SleepingPack pack)
 		{
 			foreach (Piece i in pack.PList)
+			{
 				_pieces.Add(i);
+				i.Sleeping = false;
+			}
 			pack.PList.Clear();
 			foreach (ISpot i in pack.SList)
 				i.wakeUp(this);

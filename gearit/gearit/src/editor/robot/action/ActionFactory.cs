@@ -5,7 +5,8 @@ using System.Text;
 using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
-{	enum ActionTypes
+{
+	enum ActionTypes
 	{
 		NONE = 0,
 		MAIN_SELECT,

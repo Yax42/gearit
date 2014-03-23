@@ -55,7 +55,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			if (IsOk && Spot != null)
-				RobotEditor.Instance.Robot.fallAsleep(Spot, Pack);
+				RobotEditor.Instance.fallAsleep(Spot, Pack);
 		}
 
 		public bool canBeReverted() { return IsOk; }

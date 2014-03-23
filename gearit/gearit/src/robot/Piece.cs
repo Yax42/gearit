@@ -27,6 +27,7 @@ namespace gearit
 		internal bool _didAct;
 		internal Robot _robot;
 		internal float _size; //useless for the heart, but more simple for implementation
+		public bool Sleeping { get; set; }
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
@@ -39,6 +40,7 @@ namespace gearit
 			_robot = robot;
 			Shown = true;
 			_tex = null;
+			Sleeping = false;
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -52,6 +54,7 @@ namespace gearit
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
+			Sleeping = false;
 		}
 
 		//

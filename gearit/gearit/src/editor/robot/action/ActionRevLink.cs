@@ -63,7 +63,7 @@ namespace gearit.src.editor.robot.action
 		{
 			if (IsOk && Spot != null)
 			{
-				RobotEditor.Instance.Robot.fallAsleep(Spot, Pack);
+				RobotEditor.Instance.fallAsleep(Spot, Pack);
 				P2.move(From);
 			}
 		}

@@ -40,7 +40,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			HasBeenRevert = true;
-			RobotEditor.Instance.Robot.fallAsleep(P1, Pack);
+			RobotEditor.Instance.fallAsleep(P1, Pack);
 		}
 
 		public bool canBeReverted() { return true; }

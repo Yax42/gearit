@@ -37,7 +37,7 @@ namespace gearit.src.editor.robot.action
 			{
 				Debug.Assert(P1.isConnected(P2));
 				Debug.Assert(P1.getConnection(P2) == Spot);
-				RobotEditor.Instance.Robot.fallAsleep(Spot, Pack);
+				RobotEditor.Instance.fallAsleep(Spot, Pack);
 			}
 			return (false);
 		}

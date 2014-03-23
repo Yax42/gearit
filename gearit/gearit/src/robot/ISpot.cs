@@ -10,6 +10,7 @@ using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.robot;
 using gearit.src;
+using System.Diagnostics;
 
 namespace gearit
 {
@@ -39,7 +40,7 @@ namespace gearit
 
 		void moveLocal(Piece p, Vector2 pos);
 
-		void fallAsleep(Robot robot, bool toForget = false);
+		void fallAsleep(Robot robot, Piece p = null);
 
 		void wakeUp(Robot robot);
 	}
@@ -59,13 +60,22 @@ namespace gearit
 			((Piece)_spot.Joint.BodyB).addSpot(_spot);
 		}
 
-		public void fallAsleep(Robot robot, bool toForget)
+		public void fallAsleep(Robot robot, Body b)
 		{
 			robot.forget(_spot);
-			if (toForget)
+			if (b == null)
 			{
 				((Piece)_spot.Joint.BodyA).removeSpot(_spot);
 				((Piece)_spot.Joint.BodyB).removeSpot(_spot);
+			}
+			if (b == _spot.Joint.BodyA)
+			{
+				((Piece)_spot.Joint.BodyB).removeSpot(_spot);
+			}
+			else
+			{
+				Debug.Assert(b == _spot.Joint.BodyB);
+				((Piece)_spot.Joint.BodyA).removeSpot(_spot);
 			}
 		}
 	}

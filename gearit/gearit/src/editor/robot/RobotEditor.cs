@@ -11,6 +11,7 @@ using gearit.src.robot;
 using gearit.src.editor.robot.action;
 using FarseerPhysics.Dynamics;
 using gearit.src.utility.Menu;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot
 {
@@ -31,10 +32,10 @@ namespace gearit.src.editor.robot
 		// Action
 		public Piece Select1 {get; set;}
 		public Piece Select2 {get; set;}
-		//private ActionTypes _actionType;
-		//private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
 		private List<IAction> _actionsLog;
+		private List<IAction> _redoActionsLog;
 		private IAction _currentAction;
+
 		private int _time = 0;
 
 		public RobotEditor()
@@ -79,6 +80,7 @@ namespace gearit.src.editor.robot
 
 			// Action
 			_actionsLog = new List<IAction>();
+			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.create(ActionTypes.NONE);
 
 			// World
@@ -127,24 +129,31 @@ namespace gearit.src.editor.robot
 			base.Update(gameTime);
 		}
 
-		public void fallAsleep(ISpot s, SleepingPack pack)
+		public void fallAsleep(object o, SleepingPack pack)
 		{
-			Robot.fallAsleep(s, pack);
-		}
+			ISpot s = (ISpot)o;
+			Piece p = (Piece)o;
 
-		public void fallAsleep(Piece p, SleepingPack pack)
-		{
-			Robot.fallAsleep(p, pack);
-			if (Select1 == p)
+			if (o.GetType() == typeof(ISpot))
+				Robot.fallAsleep(s, pack);
+			else if (o.GetType() == typeof(Piece))
+				Robot.fallAsleep(p, pack);
+			else
+				Debug.Assert(false, "wrong type of object");
+
+			if (Select1.Sleeping)
 				Select1 = Robot.getHeart();
-			if (Select2 == p)
+			if (Select2.Sleeping)
 				Select2 = Robot.getHeart();
 		}
 
 		public void doAction(ActionTypes action)
 		{
-			_currentAction = ActionFactory.create(action);
-			_currentAction.init();
+			if (_currentAction.type() == ActionTypes.NONE)
+			{
+				_currentAction = ActionFactory.create(action);
+				_currentAction.init();
+			}
 		}
 
 		private void HandleInput()

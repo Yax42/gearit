@@ -56,9 +56,9 @@ namespace gearit.src.robot
 			_common.wakeUp(robot);
 		}
 
-		public void fallAsleep(Robot robot, bool toForget = false)
+		public void fallAsleep(Robot robot, Piece p)
 		{
-			_common.fallAsleep(robot, toForget);
+			_common.fallAsleep(robot, p);
 		}
 
 		//
