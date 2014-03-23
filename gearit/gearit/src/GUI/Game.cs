@@ -14,6 +14,8 @@ namespace SquidXNA
 
 		public Game()
 		{
+            IsMouseVisible = true;
+
 			Content.RootDirectory = "Content";
 
 			this.IsFixedTimeStep = false;

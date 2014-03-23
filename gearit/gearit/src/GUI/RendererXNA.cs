@@ -207,7 +207,7 @@ namespace SquidXNA
 			Batch.End();
 
 			// Fix double cursor - LOLOL
-			Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.ScreenManager.Width, Game.ScreenManager.Height);
+			// Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.ScreenManager.Width, Game.ScreenManager.Height);
 		}
 
 		public void Dispose() { }

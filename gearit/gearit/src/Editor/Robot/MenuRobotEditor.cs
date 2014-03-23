@@ -42,6 +42,7 @@ namespace gearit.src.editor.robot
 
 		//// Gui
 		private bool _has_focus = false;
+        private int padding_x;
 
 		// Tools
 		private ListBox lb_jointure;
@@ -61,7 +62,7 @@ namespace gearit.src.editor.robot
 		private Frame spot_distance_container = new Frame();
 		private TextBox spot_distance = new TextBox();
 
-		private Frame piece_rotation_conainer = new Frame();
+		private Frame piece_rotation_container = new Frame();
 		private TextBox piece_rotation = new TextBox();
 
 		private TextBox piece_weight = new TextBox();
@@ -82,14 +83,12 @@ namespace gearit.src.editor.robot
 			_ScreenManager = ScreenManager;
 			_robot_editor = robot_editor;
 
-            int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+            padding_x = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
-            // _robot_editor.VisibleMenu = true;
-			ShowCursor = true;
-            Position = new Squid.Point(padding, 0);
+            Position = new Squid.Point(padding_x, 0);
 
 			// Full width to get the cursor propagation
-            Size = new Squid.Point(ScreenManager.Width - padding, ScreenManager.Height);
+            Size = new Squid.Point(ScreenManager.Width - padding_x, ScreenManager.Height);
 
 			int y = 0;
 
@@ -278,22 +277,22 @@ namespace gearit.src.editor.robot
 			y += ITEM_HEIGHT;
 
 			// Piece rotation
-			piece_rotation_conainer.Size = new Squid.Point(Size.x, ITEM_HEIGHT);
-			piece_rotation_conainer.Position = new Squid.Point(0, y);
-			piece_rotation_conainer.Parent = this;
+			piece_rotation_container.Size = new Squid.Point(Size.x, ITEM_HEIGHT);
+			piece_rotation_container.Position = new Squid.Point(0, y);
+			piece_rotation_container.Parent = this;
 
 			lb = new Label();
 			lb.Text = "Rotation";
 			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, 0);
 			lb.Style = "itemMenu";
-			lb.Parent = piece_rotation_conainer;
+			lb.Parent = piece_rotation_container;
 
 			piece_rotation.Text = "8.23";
 			piece_rotation.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			piece_rotation.Position = new Squid.Point(lb.Size.x + 8, PADDING + 1);
 			piece_rotation.Style = "textbox";
-			piece_rotation.Parent = piece_rotation_conainer;
+			piece_rotation.Parent = piece_rotation_container;
 			piece_rotation.Enabled = false;
 
 			y += lb.Size.y + PADDING * 2;
@@ -454,6 +453,21 @@ namespace gearit.src.editor.robot
 
             #region script_editor
 
+            TreeView treeview = new TreeView();
+            treeview.Dock = DockStyle.Fill;
+            treeview.Margin = new Squid.Margin(2);
+            //treeview.Parent = this;
+            treeview.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - 50);
+            treeview.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, 50);
+            treeview.Scrollbar.Size = new Squid.Point(14, 10);
+            treeview.Scrollbar.Slider.Style = "vscrollTrack";
+            treeview.Scrollbar.Slider.Button.Style = "vscrollButton";
+            treeview.Scrollbar.ButtonUp.Style = "vscrollUp";
+            treeview.Scrollbar.ButtonUp.Size = new Squid.Point(10, 20);
+            treeview.Scrollbar.ButtonDown.Style = "vscrollUp";
+            treeview.Scrollbar.ButtonDown.Size = new Squid.Point(10, 20);
+            treeview.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
+            treeview.Indent = 10;
 
             #endregion
 
@@ -470,7 +484,7 @@ namespace gearit.src.editor.robot
 				img.Texture = "RobotEditor/prismatic.png";
 
 			img.Size = new Squid.Point(32, 32);
-			img.Position = new Point((int) Input.position().X - 16, (int) Input.position().Y - 16);
+			img.Position = new Point((int) Input.position().X - 16 - padding_x, (int) Input.position().Y - 16);
 			img.Style = "itemMainMenu";
 			img.Tag = sender.Tag;
 
@@ -552,10 +566,10 @@ namespace gearit.src.editor.robot
 		{
 			// Update Rod if is
 			if (piece.GetType() != typeof(Rod))
-				piece_rotation_conainer.Visible = false;
+				piece_rotation_container.Visible = false;
 			else
 			{
-				piece_rotation_conainer.Visible = true;
+				piece_rotation_container.Visible = true;
 				piece_rotation.Text = ((Rod)piece).Rotation.ToString();
 			}
 		}

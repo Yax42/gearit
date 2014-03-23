@@ -35,8 +35,6 @@ namespace GUI
 
 		public MainMenu(ScreenManager ScreenManager)
 		{
-			ShowCursor = true;
-
 			_ScreenManager = ScreenManager;
 
 			#region main
