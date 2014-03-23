@@ -129,17 +129,19 @@ namespace gearit.src.editor.robot
 			base.Update(gameTime);
 		}
 
-		public void fallAsleep(object o, SleepingPack pack)
+		public void fallAsleep(Piece p, SleepingPack pack)
 		{
-			ISpot s = (ISpot)o;
-			Piece p = (Piece)o;
+			Robot.fallAsleep(p, pack);
 
-			if (o.GetType() == typeof(ISpot))
-				Robot.fallAsleep(s, pack);
-			else if (o.GetType() == typeof(Piece))
-				Robot.fallAsleep(p, pack);
-			else
-				Debug.Assert(false, "wrong type of object");
+			if (Select1.Sleeping)
+				Select1 = Robot.getHeart();
+			if (Select2.Sleeping)
+				Select2 = Robot.getHeart();
+		}
+
+		public void fallAsleep(ISpot s, SleepingPack pack)
+		{
+			Robot.fallAsleep(s, pack);
 
 			if (Select1.Sleeping)
 				Select1 = Robot.getHeart();
