@@ -36,7 +36,7 @@ namespace gearit.xna
 	public abstract class GameScreen
 	{
 		private bool _otherScreenHasFocus;
-        public bool VisibleMenu = true;
+        public bool VisibleMenu = false;
         
 		public GameScreen()
 		{
