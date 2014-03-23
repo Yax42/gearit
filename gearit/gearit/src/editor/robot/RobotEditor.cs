@@ -170,7 +170,10 @@ namespace gearit.src.editor.robot
 			if (_currentAction.run() == false)
 			{
 				if (_currentAction.canBeReverted())
+				{
 					_actionsLog.Insert(0, _currentAction);
+					_redoActionsLog.Clear();
+				}
 				_currentAction = ActionFactory.Dummy;
 			}
 			_camera.input();
@@ -183,6 +186,17 @@ namespace gearit.src.editor.robot
 			IAction a = _actionsLog.ElementAt(0);
 			a.revert();
 			_actionsLog.Remove(a);
+			_redoActionsLog.Insert(0, a);
+		}
+
+		public void redo()
+		{
+			if (_redoActionsLog.Count == 0)
+				return;
+			IAction a = _redoActionsLog.ElementAt(0);
+			a.run();
+			_redoActionsLog.Remove(a);
+			_actionsLog.Insert(0, a);
 		}
 
 		public void clearActionLog()

@@ -30,10 +30,9 @@ namespace gearit.src.editor.robot.action
 		public bool run()
 		{
 			if (HasBeenRevert)
+			{
 				RobotEditor.Instance.Robot.wakeUp(Pack);
-			else if (Input.justPressed(MouseKeys.LEFT) || Input.justReleased(Keys.W))
-				return (false);
-			P1.move(Input.SimMousePos);
+			}
 			return false;
 		}
 

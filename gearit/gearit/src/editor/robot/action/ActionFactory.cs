@@ -100,6 +100,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.CHANGE_LIMIT) return new ActionChangeLimit();
 			if (action == ActionTypes.SWAP_LIMIT) return new ActionSwapLimit();
 			if (action == ActionTypes.UNDO) return new ActionUndo();
+			if (action == ActionTypes.REDO) return new ActionRedo();
 			return _dummy;
 		}
 	}

@@ -21,6 +21,7 @@ namespace gearit.src.editor.robot.action
 		private int _corner;
 		private bool _moving;
 		private bool _isFirstFrame;
+		private bool _didSomething;
 
 		public void init()
 		{
@@ -31,6 +32,7 @@ namespace gearit.src.editor.robot.action
 			_corner = Heart.getCorner(Input.SimMousePos);
 			_moving = true;
 			_isFirstFrame = true;
+			_didSomething = false;
 		}
 
 		public bool shortcut()
@@ -57,14 +59,21 @@ namespace gearit.src.editor.robot.action
 				if (Input.justPressed(MouseKeys.RIGHT))
 				{
 					Heart.removeCorner(_corner);
+					_didSomething = true;
 					_corner = 0;
 					_moving = false;
 				}
 				else if (_moving)
+				{
 					Heart.moveCorner(_corner, Input.SimMousePos);
+					_didSomething = true;
+				}
 			}
 			else if (Input.justPressed(MouseKeys.RIGHT))
+			{
+				_didSomething = true;
 				Heart.addCorner(Input.SimMousePos);
+			}
 			if (Input.justPressed(Keys.S) == true && !_isFirstFrame)
 			{
 				To = Heart.getShapeClone();
@@ -81,7 +90,7 @@ namespace gearit.src.editor.robot.action
 			Heart.setShape(From);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted() { return _didSomething; }
 
 		public ActionTypes type() { return ActionTypes.RESIZE_HEART; }
 	}
