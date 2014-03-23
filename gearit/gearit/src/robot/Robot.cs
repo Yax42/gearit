@@ -272,6 +272,7 @@ namespace gearit
 		public int revCount() { return (_revoluteCounter++); }
 		public int prisCount() { return (_prismaticCounter++); }
 
+        // Filename for robot & lua
 		public string Name { get; set; }
 	}
 }

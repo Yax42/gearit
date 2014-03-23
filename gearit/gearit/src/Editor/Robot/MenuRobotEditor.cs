@@ -8,6 +8,7 @@ using GUI;
 using gearit.src.robot;
 using gearit.src.utility;
 using System.Globalization;
+using gearit.src.editor.robot.action;
 
 namespace gearit.src.editor.robot
 {
@@ -71,6 +72,8 @@ namespace gearit.src.editor.robot
 
 		public MenuRobotEditor(ScreenManager ScreenManager, RobotEditor robot_editor)
 		{
+
+            //piece_rotation_conainer.Enabled = false;
 		   
 			#region main
 
@@ -449,8 +452,13 @@ namespace gearit.src.editor.robot
 
 			#endregion
 
-			#endregion
-		}
+            #region script_editor
+
+
+            #endregion
+
+            #endregion
+        }
 
 		void dragPiece(Control sender, MouseEventArgs e)
 		{
@@ -472,7 +480,7 @@ namespace gearit.src.editor.robot
 		void dropPiece(Control sender, DragDropEventArgs e)
 		{
 			// Change set
-			 if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
+			 if (e.DraggedControl.Tag.Equals(FPiece.Pipe) && ActionChooseSet.value)
 				 _robot_editor.doAction(ActionTypes.CHOOSE_SET);
 
 			 if (flag_jointure == FJointure.Prismatic)
@@ -481,7 +489,7 @@ namespace gearit.src.editor.robot
 				_robot_editor.doAction(ActionTypes.REV_SPOT);
 
 			// Restore set
-			if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
+             if (e.DraggedControl.Tag.Equals(FPiece.Pipe) && ActionChooseSet.value)
 				_robot_editor.doAction(ActionTypes.CHOOSE_SET);
 		}
 
