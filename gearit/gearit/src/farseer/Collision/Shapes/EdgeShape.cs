@@ -25,6 +25,7 @@
 
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -62,6 +63,7 @@ namespace FarseerPhysics.Collision.Shapes
 		{
 			ShapeType = ShapeType.Edge;
 			_radius = Settings.PolygonRadius;
+            Tex = null;
 		}
 
 		public EdgeShape(Vector2 start, Vector2 end)
@@ -69,8 +71,13 @@ namespace FarseerPhysics.Collision.Shapes
 		{
 			ShapeType = ShapeType.Edge;
 			_radius = Settings.PolygonRadius;
+            Tex = null;
 			Set(start, end);
 		}
+
+        public override void ScaleTexture(Texture2D texture)
+        {
+        }
 
 		public override int ChildCount
 		{

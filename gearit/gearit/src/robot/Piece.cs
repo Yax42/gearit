@@ -22,7 +22,7 @@ namespace gearit
 	{
 		internal Shape _shape;
 		internal Fixture _fix; //punaise |---
-		internal Texture2D _tex;
+		//internal Texture2D _tex;
 		internal bool _didAct;
 		internal Robot _robot;
 		internal float _size; //useless for the heart, but more simple for implementation
@@ -37,7 +37,7 @@ namespace gearit
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
-			_tex = null;
+			//_tex = null;
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -51,6 +51,7 @@ namespace gearit
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
+            //_tex = null;
 		}
 
 		//
@@ -82,7 +83,7 @@ namespace gearit
 
 		public void setTexture(DrawGame dg, MaterialType mater)
 		{
-			_tex = dg.textureFromShape(_shape, mater);
+			//_tex = dg.textureFromShape(_shape, mater);
 		}
 
 		internal void setShape(Shape shape, int id)
@@ -253,8 +254,10 @@ namespace gearit
 		public void draw(DrawGame dg)
 		{
 			dg.draw(this, ColorValue);
+            /*
 			if (_tex != null)
 				dg.drawTexture(_tex, _tex.Bounds, Color.White);
+             */
 		}
 
 		public List<Piece> GenerateAdjacentPieceList()

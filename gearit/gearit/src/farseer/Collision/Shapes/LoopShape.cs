@@ -26,6 +26,7 @@
 using System.Diagnostics;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -49,6 +50,7 @@ namespace FarseerPhysics.Collision.Shapes
 		{
 			ShapeType = ShapeType.Loop;
 			_radius = Settings.PolygonRadius;
+            Tex = null;
 		}
 
 		public LoopShape(Vertices vertices)
@@ -62,7 +64,13 @@ namespace FarseerPhysics.Collision.Shapes
 			else
 				// Copy vertices.
 				Vertices = new Vertices(vertices);
+            Tex = null;
 		}
+
+        // TODO
+        public override void ScaleTexture(Texture2D texture)
+        {
+        }
 
 		public override int ChildCount
 		{

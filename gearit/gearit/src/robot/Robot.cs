@@ -165,7 +165,7 @@ namespace gearit
 		{
 			for (int i = 0; i < _pieces.Count; i++)
 				if (_pieces[i].Shown)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
+					dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i]._shape.Tex);
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].draw(dg);
 		}
@@ -173,7 +173,7 @@ namespace gearit
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
+					dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i]._shape.Tex);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				if (_spots[i].GetType() == typeof(PrismaticSpot))

@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 
-namespace gearit.src.xna.ScreenManager
+namespace Textures
 {
     class TextureManager
     {
         public enum ETexture
         {
-            Diamond,
+            Diamond = 0,
             Spade,
             Club,
             Heart

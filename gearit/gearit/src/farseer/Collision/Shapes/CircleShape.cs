@@ -26,6 +26,7 @@
 using System;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -33,15 +34,18 @@ namespace FarseerPhysics.Collision.Shapes
 	{
 		internal Vector2 _position;
 
-		public CircleShape(float radius, float density)
+		public CircleShape(float radius = 0.0f, float density = 0.0f, Texture2D texture = null)
 			: base(density)
 		{
 			ShapeType = ShapeType.Circle;
 			_radius = radius;
 			_position = Vector2.Zero;
-			ComputeProperties();
+            ScaleTexture(texture);
+            if (radius != 0.0f || density != 0.0f)
+                ComputeProperties();
 		}
 
+        /* Useless now ?
 		internal CircleShape()
 			: base(0)
 		{
@@ -49,6 +53,11 @@ namespace FarseerPhysics.Collision.Shapes
 			_radius = 0.0f;
 			_position = Vector2.Zero;
 		}
+         */
+
+        public override void ScaleTexture(Texture2D texture)
+        {
+        }
 
 		public override int ChildCount
 		{

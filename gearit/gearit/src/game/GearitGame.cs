@@ -64,8 +64,8 @@ namespace gearit.src.game
 			//clearRobot();
 			SerializerHelper.World = _world;
 			Console.Write("One ");
-		addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
-		_robots[0].getPiece(Vector2.Zero).Weight = 30;
+            addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
+            _robots[0].getPiece(Vector2.Zero).Weight = 30;
 			_map = (Map)Serializer.DeserializeItem("moon.gim");
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();

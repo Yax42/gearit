@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,38 +92,32 @@ namespace gearit.src
 			}
 		}
 
-		public void draw(Body b, Color col)
+		public void draw(Body b, Color col, Texture2D texture = null)
 		{
 			Transform xf;
 			b.GetTransform(out xf);
-			foreach (Fixture f in b.FixtureList)
-				draw(f, xf, col);
+            foreach (Fixture f in b.FixtureList)
+                draw(f, xf, col, texture);
 		}
 
-		public void draw(Body b, Color col, Texture2D texture)
-		{
-			Transform xf;
-			b.GetTransform(out xf);
-			foreach (Fixture f in b.FixtureList)
-				draw(f, xf, col);
-		}
-
-		private void draw(Fixture fixture, Transform xf, Color color)
+        // Transform vertices' 3D into 2D coordinates
+		private void draw(Fixture fixture, Transform xf, Color color, Texture2D texture)
 		{
 			switch (fixture.ShapeType)
 			{
 				case ShapeType.Circle:
 					{
 						CircleShape circle = (CircleShape)fixture.Shape;
-
 						Vector2 center = MathUtils.Multiply(ref xf, circle.Position);
+
+                        if (texture != null)
+                            drawTexture(texture, center, color);
 						float radius = circle.Radius;
+						drawCircle(center, radius, color, texture);
+                       }
+                    break;
 
-						drawCircle(center, radius, color);
-					}
-					break;
-
-				case ShapeType.Polygon:
+                case ShapeType.Polygon:
 					{
 						PolygonShape poly = (PolygonShape)fixture.Shape;
 						int vertexCount = poly.Vertices.Count;
@@ -154,22 +149,20 @@ namespace gearit.src
 			drawLine(vertices[count - 1], vertices[0], color);
 		}
 
-		private void drawCircle(Vector2 center, float radius, Color color)
+		private void drawCircle(Vector2 center, float radius, Color color, Texture2D texture)
 		{
 			const double increment = Math.PI * 2.0 / _circleSegments;
 			double theta = 0.0;
-
 			for (int i = 0; i < _circleSegments; i++)
 			{
 				Vector2 v1 = center + radius * new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
 				Vector2 v2 = center +
 							 radius *
 							 new Vector2((float)Math.Cos(theta + increment), (float)Math.Sin(theta + increment));
-
 				drawLine(v1, v2, color);
-				theta += increment;
+                theta += increment;
 			}
-		}
+	}
 
 		public void drawString(SpriteFont font, string text, Vector2 pos, Color col, float rotation = 0f, float scale = 0f, SpriteEffects effects = SpriteEffects.None, float depth = 0f)
 		{

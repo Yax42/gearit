@@ -27,6 +27,7 @@ using System.Diagnostics;
 using FarseerPhysics.Common;
 using FarseerPhysics.Common.Decomposition;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -45,7 +46,7 @@ namespace FarseerPhysics.Collision.Shapes
 		/// </summary>
 		/// <param name="vertices">The vertices.</param>
 		/// <param name="density">The density.</param>
-		public PolygonShape(Vertices vertices, float density)
+		public PolygonShape(Vertices vertices, float density, Texture2D texture = null)
 			: base(density)
 		{
 			ShapeType = ShapeType.Polygon;
@@ -54,16 +55,18 @@ namespace FarseerPhysics.Collision.Shapes
 			Set(vertices);
 		}
 
-		public PolygonShape(float density)
+		public PolygonShape(float density = 0.0f, Texture2D texture = null)
 			: base(density)
 		{
 			ShapeType = ShapeType.Polygon;
 			_radius = Settings.PolygonRadius;
 			Normals = new Vertices();
 			Vertices = new Vertices();
+            ScaleTexture(texture);
 		}
 
-		internal PolygonShape()
+        /* Useless now ?
+		internal PolygonShape(Texture2D texture = null)
 			: base(0)
 		{
 			ShapeType = ShapeType.Polygon;
@@ -71,6 +74,11 @@ namespace FarseerPhysics.Collision.Shapes
 			Normals = new Vertices();
 			Vertices = new Vertices();
 		}
+         */
+
+        public override void ScaleTexture(Texture2D texture)
+        {
+        }
 
 		public override int ChildCount
 		{

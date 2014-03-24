@@ -26,6 +26,7 @@
 using System;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -117,6 +118,7 @@ namespace FarseerPhysics.Collision.Shapes
 
 		internal float _density;
 		internal float _radius;
+        public Texture2D Tex { get; set; }
 
 		protected Shape(float density)
 		{
@@ -124,6 +126,9 @@ namespace FarseerPhysics.Collision.Shapes
 			ShapeType = ShapeType.Unknown;
 			ShapeId = _shapeIdCounter++;
 		}
+
+        // Resize and update the apparence of a texture to match the required Shape.
+        public abstract void ScaleTexture(Texture2D texture);
 
 		/// <summary>
 		/// Get the type of this shape.
