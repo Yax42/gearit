@@ -13,7 +13,7 @@ namespace gearit.src.GUI.RobotEditor
         static public int height = 50;
         DropDownList combo = new DropDownList();
 
-        public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove, Action cbEventAdded)
+        public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove)
         {
             int height = MenuRobotEditor.HEIGHT_NODE;
 

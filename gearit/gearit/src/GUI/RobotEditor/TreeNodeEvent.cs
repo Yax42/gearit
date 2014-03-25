@@ -12,12 +12,16 @@ namespace gearit.src.GUI.RobotEditor
         static int PADDING = 16;
         DropDownList combo = new DropDownList();
 
+        Action _cbRefresh;
+
         // Let menu manage nodes
         public List<Panel> _nodes = new List<Panel>();
         public bool Open = false;
 
-        public TreeNodeEvent(int width, Action<TreeNodeEvent> cbEventRemove, Action cbEventAdded)
+        public TreeNodeEvent(int width, Action<TreeNodeEvent> cbEventRemove, Action cbRefresh)
         {
+            _cbRefresh = cbRefresh;
+
             int height = MenuRobotEditor.HEIGHT_NODE;
 
             Size = new Point(width, height);
@@ -99,15 +103,19 @@ namespace gearit.src.GUI.RobotEditor
             btn.Position = new Point(Size.x - 220, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                // TODO
+                // Force open
+                Open = true;
+
+                _nodes.Add(new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode));
+                cbRefresh();
             };
             Content.Controls.Add(btn);
         }
 
-        // Let the menu manage the position
-        public void setPosition(Point pos)
+        public void removeNode(Panel node)
         {
-            Position = pos;
+            _nodes.Remove(node);
+            _cbRefresh();
         }
     }
 }
