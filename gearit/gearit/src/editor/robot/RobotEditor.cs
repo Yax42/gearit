@@ -140,10 +140,6 @@ namespace gearit.src.editor.robot
 			_actions[(int)ActionTypes.LOAD_ROBOT] = new ActionLoadRobot();
 			_actions[(int)ActionTypes.CHANGE_LIMIT] = new ActionChangeLimit();
 			_actions[(int)ActionTypes.SWAP_LIMIT] = new ActionSwapLimit();
-
-
-			// Menu
-			_menus = new MenuPiece(ScreenManager);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -153,7 +149,7 @@ namespace gearit.src.editor.robot
 			_camera.update();
 			HandleInput();
 
-			_menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
+            _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
 			_menu.Update();
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)

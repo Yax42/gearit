@@ -7,16 +7,13 @@ using gearit.src.editor.robot;
 
 namespace gearit.src.GUI.RobotEditor
 {
-    class TreeNodeEvent : Panel
+    class TreeNodeAction : Panel
     {
         static int PADDING = 16;
+        static public int height = 50;
         DropDownList combo = new DropDownList();
 
-        // Let menu manage nodes
-        public List<Panel> _nodes = new List<Panel>();
-        public bool Open = false;
-
-        public TreeNodeEvent(int width, Action<TreeNodeEvent> cbEventRemove, Action cbEventAdded)
+        public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove, Action cbEventAdded)
         {
             int height = MenuRobotEditor.HEIGHT_NODE;
 
@@ -67,16 +64,15 @@ namespace gearit.src.GUI.RobotEditor
             // Autopress button pressed
             item.Selected = true;
 
-            x += combo.Size.x + PADDING;
 
             // Button key press
             Button btn = new Button();
             btn.Text = "Add a key";
             btn.Size = new Point(120, 28);
-            btn.Position = new Point(x, Size.y / 2 - 14);
+            btn.Position = new Point(Size.x - 90, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                ((Button) sender).Text = "Press any key";
+                btn.Text = "Press any key";
             };
             Content.Controls.Add(btn);
 
@@ -89,17 +85,6 @@ namespace gearit.src.GUI.RobotEditor
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
                 cbEventRemove(this);
-            };
-            Content.Controls.Add(btn);
-
-            // Button add action
-            btn = new Button();
-            btn.Text = "Add Action";
-            btn.Size = new Point(120, 28);
-            btn.Position = new Point(Size.x - 220, Size.y / 2 - 14);
-            btn.MouseClick += delegate(Control sender, MouseEventArgs args)
-            {
-                // TODO
             };
             Content.Controls.Add(btn);
         }
