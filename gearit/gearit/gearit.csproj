@@ -121,6 +121,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\GUI\MessageBox.cs" />
     <Compile Include="src\GUI\RobotEditor\TreeNodeAction.cs" />
     <Compile Include="src\GUI\RobotEditor\TreeNodeEvent.cs" />
     <Compile Include="src\GUI\RobotEditor\MenuRobotEditor.cs" />

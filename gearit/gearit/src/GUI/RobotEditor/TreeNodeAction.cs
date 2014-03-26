@@ -18,11 +18,11 @@ namespace gearit.src.GUI.RobotEditor
             int height = MenuRobotEditor.HEIGHT_NODE;
 
             Size = new Point(width, height);
-            Style = "eventPanel";
+
 
             int x = PADDING;
             Label lb = new Label();
-            lb.Text = "Event";
+            lb.Text = "Action";
             lb.Size = new Point(50, height);
             lb.Position = new Point(x, 0);
             lb.Style = "treeNodeText";
@@ -65,20 +65,8 @@ namespace gearit.src.GUI.RobotEditor
             item.Selected = true;
 
 
-            // Button key press
-            Button btn = new Button();
-            btn.Text = "Add a key";
-            btn.Size = new Point(120, 28);
-            btn.Position = new Point(Size.x - 90, Size.y / 2 - 14);
-            btn.MouseClick += delegate(Control sender, MouseEventArgs args)
-            {
-                btn.Text = "Press any key";
-            };
-            Content.Controls.Add(btn);
-
-
             // Button remove
-            btn = new Button();
+            Button btn = new Button();
             btn.Text = "Remove";
             btn.Size = new Point(80, 28);
             btn.Position = new Point(Size.x - 90, Size.y / 2 - 14);

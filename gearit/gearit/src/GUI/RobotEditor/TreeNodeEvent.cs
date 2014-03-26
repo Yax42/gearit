@@ -12,22 +12,33 @@ namespace gearit.src.GUI.RobotEditor
         static int PADDING = 16;
         DropDownList combo = new DropDownList();
 
-        Action _cbRefresh;
+        MenuRobotEditor _robot_editor;
+        Label lb_status = new Label();
 
         // Let menu manage nodes
         public List<Panel> _nodes = new List<Panel>();
-        public bool Open = false;
+        private bool _open = false;
 
-        public TreeNodeEvent(int width, Action<TreeNodeEvent> cbEventRemove, Action cbRefresh)
+        public TreeNodeEvent(int width, MenuRobotEditor robot_editor)
         {
-            _cbRefresh = cbRefresh;
+            _robot_editor = robot_editor;
 
             int height = MenuRobotEditor.HEIGHT_NODE;
 
             Size = new Point(width, height);
             Style = "eventPanel";
 
-            int x = PADDING;
+            int x = 0;
+
+            lb_status.Text = "+";
+            lb_status.Size = new Point(50, height);
+            lb_status.Position = new Point(x, 0);
+            lb_status.Style = "treeNodeText";
+            Content.Controls.Add(lb_status);
+
+
+            x += lb_status.Size.x + PADDING;
+
             Label lb = new Label();
             lb.Text = "Event";
             lb.Size = new Point(50, height);
@@ -80,7 +91,7 @@ namespace gearit.src.GUI.RobotEditor
             btn.Position = new Point(x, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                ((Button) sender).Text = "Press any key";
+                MessageBox msg = MessageBox.Show(new Point(300, 200), "Add Event", "Press any key", MessageBoxButtons.OK, _robot_editor);
             };
             Content.Controls.Add(btn);
 
@@ -92,7 +103,7 @@ namespace gearit.src.GUI.RobotEditor
             btn.Position = new Point(Size.x - 90, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                cbEventRemove(this);
+                _robot_editor.deleteEvent(this);
             };
             Content.Controls.Add(btn);
 
@@ -104,18 +115,45 @@ namespace gearit.src.GUI.RobotEditor
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
                 // Force open
-                Open = true;
+                Open();
 
                 _nodes.Add(new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode));
-                cbRefresh();
+                _robot_editor.refreshScriptEditor();
             };
             Content.Controls.Add(btn);
+
+            MouseClick += delegate(Control sender, MouseEventArgs args)
+            {
+                if (_open)
+                    Close();
+                else
+                    Open();
+
+                _robot_editor.refreshScriptEditor();
+            };
+        }
+
+        public bool isOpen()
+        {
+            return _open;
+        }
+
+        public void Close()
+        {
+            _open = false;
+            lb_status.Text = "+";
+        }
+
+        public void Open()
+        {
+            _open = true;
+            lb_status.Text = "-";
         }
 
         public void removeNode(Panel node)
         {
             _nodes.Remove(node);
-            _cbRefresh();
+            _robot_editor.refreshScriptEditor();
         }
     }
 }
