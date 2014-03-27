@@ -35,9 +35,11 @@ namespace gearit.src.GUI
             Controls.Add(ButtonFrame);
 
             MessageLabel = new Label();
-            MessageLabel.Dock = DockStyle.Fill;
+            MessageLabel.Dock = DockStyle.Top;
+            MessageLabel.Margin = new Margin(16, 12, 0, 0);
             MessageLabel.TextWrap = true;
             MessageLabel.Text = message;
+            MessageLabel.Style = "";
             Controls.Add(MessageLabel);
         }
 
@@ -102,8 +104,7 @@ namespace gearit.src.GUI
             if (args.Button > 0) return;
 
             Animation.Stop();
-            Animation.Custom(FadeAndClose(sender));
-            //Close();
+            Close();
         }
 
         private System.Collections.IEnumerator FadeAndClose(Control sender)
@@ -124,5 +125,6 @@ namespace gearit.src.GUI
         YesNoCancel = 3,
         YesNo = 4,
         RetryCancel = 5,
+        None = 6,
     }
 }

@@ -91,7 +91,7 @@ namespace gearit.src.GUI.RobotEditor
             btn.Position = new Point(x, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                MessageBox msg = MessageBox.Show(new Point(300, 200), "Add Event", "Press any key", MessageBoxButtons.OK, _robot_editor);
+                MessageBox msg = MessageBox.Show(new Point(300, 100), "Add Event", "Press any key", MessageBoxButtons.None, _robot_editor);
             };
             Content.Controls.Add(btn);
 
