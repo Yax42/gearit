@@ -522,11 +522,13 @@ namespace gearit.src.editor.robot
         public void saveRobot(string name)
         {
             setFocus(false);
+            _robot_editor.saveRobot(name);
         }
 
         public void loadRobot(string name)
         {
             setFocus(false);
+            _robot_editor.loadRobot(name);
         }
 
         public void deleteEvent(TreeNodeEvent evt)

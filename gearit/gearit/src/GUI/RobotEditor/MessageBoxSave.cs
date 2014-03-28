@@ -20,8 +20,8 @@ namespace gearit.src.GUI
             _tb.Size = new Squid.Point(158, 34);
             _tb.Position = new Squid.Point(_msg.MessageLabel.Size.x + 16, 70);
             _tb.Text = name;
-
             _msg.Controls.Add(_tb);
+            _tb.Focus();
 
             _msg.GetControl(MessageBoxButtons.OK.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
             {

@@ -11,6 +11,7 @@ using gearit.src.robot;
 using gearit.src.editor.robot.action;
 using FarseerPhysics.Dynamics;
 using gearit.src.utility.Menu;
+using System.Runtime.Serialization;
 
 namespace gearit.src.editor.robot
 {
@@ -52,7 +53,7 @@ namespace gearit.src.editor.robot
 
 		// Robot
 		private DrawGame _draw_game;
-		public Robot _robot;
+        public Robot _robot;
 
 		// Action
 		private Piece _mainSelected;
@@ -63,6 +64,7 @@ namespace gearit.src.editor.robot
 
 		public RobotEditor()
 		{
+            Serializer.init();
 			DrawPriority = 1;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
@@ -141,6 +143,17 @@ namespace gearit.src.editor.robot
 			_actions[(int)ActionTypes.CHANGE_LIMIT] = new ActionChangeLimit();
 			_actions[(int)ActionTypes.SWAP_LIMIT] = new ActionSwapLimit();
 		}
+
+        public void loadRobot(String name)
+        {
+            _robot = (Robot)Serializer.DeserializeItem("robot/" + name);
+            selectHeart();
+        }
+
+        public void saveRobot(string name)
+        {
+            Serializer.SerializeItem("robot/" + name, _robot);
+        }
 
         public void selectHeart()
         {

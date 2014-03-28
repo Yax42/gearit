@@ -31,7 +31,7 @@ namespace gearit
 		public static int _robotIdCounter = 1;
 		private LuaScript _script;
 		private int _id;
-		private World _world;
+		public World _world;
 
 		public Robot(World world)
 		{
