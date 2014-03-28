@@ -152,6 +152,7 @@ namespace gearit.src.editor.robot
 
         public void saveRobot(string name)
         {
+            _robot.Name = name;
             Serializer.SerializeItem("robot/" + name, _robot);
         }
 
