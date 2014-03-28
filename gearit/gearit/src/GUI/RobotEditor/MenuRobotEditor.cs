@@ -10,6 +10,7 @@ using gearit.src.utility;
 using System.Globalization;
 using gearit.src.editor.robot.action;
 using gearit.src.GUI.RobotEditor;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot
 {
@@ -431,7 +432,8 @@ namespace gearit.src.editor.robot
             btn.Tooltip = "Load a robot with his script";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
-                // TODO
+                setFocus(true);
+                new MessageBoxLoad(this, loadRobot);
             };
 
             btn = new Button();
@@ -443,7 +445,8 @@ namespace gearit.src.editor.robot
             btn.Tooltip = "Save the robot and his script";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
-                // TODO
+                setFocus(true);
+                new MessageBoxSave(this, _robot_editor._robot.Name, saveRobot);
             };
 
             y -= btn.Size.y + 2;
@@ -514,6 +517,16 @@ namespace gearit.src.editor.robot
             #endregion
 
             #endregion
+        }
+
+        public void saveRobot(string name)
+        {
+            setFocus(false);
+        }
+
+        public void loadRobot(string name)
+        {
+            setFocus(false);
         }
 
         public void deleteEvent(TreeNodeEvent evt)
@@ -611,7 +624,7 @@ namespace gearit.src.editor.robot
                 panel_script.Position.y <= Input.position().Y &&
                 panel_script.Position.y + panel_script.Size.y >= Input.position().Y;
 
-            return (script_has_focus);
+            return (script_has_focus || menu_has_focus);
 		}
 
 		public void swap_jointure()

@@ -52,7 +52,7 @@ namespace gearit.src.editor.robot
 
 		// Robot
 		private DrawGame _draw_game;
-		private Robot _robot;
+		public Robot _robot;
 
 		// Action
 		private Piece _mainSelected;

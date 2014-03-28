@@ -8,9 +8,9 @@ namespace gearit.src.GUI
 {
     public class MessageBox : Dialog
     {
-        private Label TitleLabel;
-        private Label MessageLabel;
-        private Frame ButtonFrame;
+        public Label TitleLabel;
+        public Label MessageLabel;
+        public Frame ButtonFrame;
 
         private MessageBox(string title, string message)
         {
@@ -19,7 +19,7 @@ namespace gearit.src.GUI
             Padding = new Margin(7);
 
             TitleLabel = new Label();
-            TitleLabel.Size = new Point(100, 35);
+            TitleLabel.Size = new Point(100, 55);
             TitleLabel.Dock = DockStyle.Top;
             TitleLabel.Text = title;
             TitleLabel.MouseDown += delegate(Control sender, MouseEventArgs args) { StartDrag(); };
@@ -94,6 +94,7 @@ namespace gearit.src.GUI
             button.Size = new Point(Size.x / (divide + 1), 35);
             button.Text = text;
             button.Tag = result;
+            button.Name = result.ToString();
             button.Dock = DockStyle.Right;
             button.MouseClick += button_OnMouseClick;
             ButtonFrame.Controls.Add(button);
