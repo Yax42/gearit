@@ -592,6 +592,9 @@ namespace gearit.src.editor.robot
 
 		public bool hasFocus()
 		{
+            if (_has_focus)
+                return (true);
+
             int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
             bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
@@ -655,6 +658,11 @@ namespace gearit.src.editor.robot
 					spot_distance_container.Visible = false;
 			}
 		}
+
+        public void setFocus(bool focus)
+        {
+            _has_focus = focus;
+        }
 
 		private void updateRod(Piece piece)
 		{
