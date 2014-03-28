@@ -18,6 +18,16 @@ using gearit.src.editor.api;
 
 namespace gearit
 {
+	class SleepingPack
+	{
+		public SleepingPack()
+		{
+			SList = new List<ISpot>();
+			PList = new List<Piece>();
+		}
+		public List<ISpot> SList;
+		public List<Piece> PList;
+	}
 	[Serializable()]
 	class Robot : ISerializable
 	{
@@ -109,6 +119,7 @@ namespace gearit
 		{
 			return IsPieceConnectedToHeartAux(piece, new List<Piece>());
 		}
+
 		bool IsPieceConnectedToHeartAux(Piece piece, List<Piece> alreadyExploredPieces)
 		{
 			alreadyExploredPieces.Add(piece);
@@ -173,7 +184,7 @@ namespace gearit
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
+				dg.draw(_pieces[i], _pieces[i].ColorValue);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				if (_spots[i].GetType() == typeof(PrismaticSpot))
@@ -186,58 +197,99 @@ namespace gearit
 				_pieces[i].Shown = true;
 		}
 
-		public void RecursiveRemove(Piece piece)
-		{
-			List<Piece> adjacentPieces = piece.GenerateAdjacentPieceList();
+		//-----------------REMOVE--------------------
 
-			remove(piece);
-			foreach (var adjacentPiece in _pieces)
-			{
-				if (IsPieceConnectedToHeart(adjacentPiece) == false)
-					RecursiveRemove(adjacentPiece);
-			}
-		}
+		// For runtime
 		public void remove(Piece p)
 		{
 			if (p == getHeart())
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
-				_spots.Remove((ISpot)i.Joint);
+				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
 			_pieces.Remove(p);
 			_world.RemoveBody(p);
 		}
 
+		// For runtime
 		public void remove(ISpot s)
 		{
 			_spots.Remove(s);
-			_world.RemoveJoint((Joint)s);
+			_world.RemoveJoint(s.Joint);
+		}
+
+		// For editor
+		public void fallAsleep(Piece p, SleepingPack pack, bool DidCheck = false)
+		{
+			if (p == getHeart())
+				return;
+			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
+			for (JointEdge i = p.JointList; i != null; i = i.Next)
+			{
+				ISpot spot = (ISpot)i.Joint;
+				spot.fallAsleep(this, p);
+				pack.SList.Add(spot);
+			}
+			p.JointList = null;
+			_pieces.Remove(p);
+			p.Sleeping = true;
+			pack.PList.Add(p);
+
+			foreach (var adjacentPiece in adjacentPieces)
+			{
+				if (DidCheck || IsPieceConnectedToHeart(adjacentPiece) == false)
+					fallAsleep(adjacentPiece, pack, true);
+			}
+		}
+
+		// For editor
+		public void fallAsleep(ISpot s, SleepingPack pack)
+		{
+			s.fallAsleep(this);
+			pack.SList.Add(s);
+			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyA) == false)
+				fallAsleep((Piece) s.Joint.BodyA, pack, true);
+			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyB) == false)
+				fallAsleep((Piece) s.Joint.BodyB, pack, true);
+		}
+
+		// For editor
+		public void wakeUp(SleepingPack pack)
+		{
+			foreach (Piece i in pack.PList)
+			{
+				_pieces.Add(i);
+				i.Sleeping = false;
+			}
+			pack.PList.Clear();
+			foreach (ISpot i in pack.SList)
+				i.wakeUp(this);
+			pack.SList.Clear();
+		}
+
+		public void forget(ISpot s)
+		{
+			_spots.Remove(s);
 		}
 
 		public void remove()
 		{
-		if (_script != null)
-			  _script.stop();
+			if (_script != null)
+				_script.stop();
 			_script = null;
 			foreach (ISpot i in _spots)
-				_world.RemoveJoint((Joint)i);
+				_world.RemoveJoint(i.Joint);
 			foreach (Piece i in _pieces)
 				_world.RemoveBody(i);
 		}
+
+		//-------------------------------------
 
 		public void sleep()
 		{
 			for (int i = 0; i < _pieces.Count; i++)
 				_world.RemoveBody(_pieces[i]);
 			for (int i = 0; i < _spots.Count; i++)
-				_world.RemoveJoint((Joint)_spots[i]);
-		}
-
-		public void wake()
-		{
-			foreach (Piece i in _pieces)
-				_world.AddBody(i);
-			for (int i = 0; i < _spots.Count; i++)
-				_world.AddJoint((Joint)_spots[i]);
+				_world.RemoveJoint(_spots[i].Joint);
 		}
 
 		public void move(Vector2 pos)
@@ -245,6 +297,14 @@ namespace gearit
 			for (int i = 1; i < _pieces.Count; i++)
 				_pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
 			getHeart().Position = pos;
+		}
+
+		public Vector2 Position
+		{
+			get
+			{
+				return getHeart().Position;
+			}
 		}
 
 		public List<SpotApi> getApi()

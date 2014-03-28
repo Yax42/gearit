@@ -4,22 +4,48 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionMoveRobot : IAction
 	{
-		public void init() { }
+		private Vector2 From;
+		private Vector2 To;
+		bool HasBeenRevert;
+
+		public void init()
+		{
+			HasBeenRevert = false;
+			From = RobotEditor.Instance.Robot.Position;
+		}
 
 		public bool shortcut()
 		{
 			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.C)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			robot.move(Input.SimMousePos);
-			return (Input.justReleased(Keys.C) == false && Input.justPressed(MouseKeys.LEFT) == false);
+			if (!HasBeenRevert)
+			{
+				To = Input.SimMousePos;
+			}
+
+			RobotEditor.Instance.Robot.move(To);
+			return (!HasBeenRevert
+					&& Input.justReleased(Keys.C) == false
+					&& Input.justPressed(MouseKeys.LEFT) == false);
 		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			RobotEditor.Instance.Robot.move(From);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public ActionTypes type() { return ActionTypes.MOVE_ROBOT; }
 	}
 }

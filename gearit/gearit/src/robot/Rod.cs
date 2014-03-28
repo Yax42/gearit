@@ -73,71 +73,6 @@ namespace gearit.src.robot
 			_fix = CreateFixture(_shape);
 		}
 
-		
-
-		public void setPos2(Vector2 pos, bool side)
-		{
-//            Console.WriteLine("angle: {0}", MathLib.AngleFromUp(new Vector2(1, 0)));
-
-			Vector2 dif = Position - pos;
-			float angle = (float)Math.Atan2(dif.X, -dif.Y);
-
-			double oldAngle = MathLib.RadiansToDegrees(Rotation);
-			Rotation = angle + (float)Math.PI / 2;
-			double diffAngle = MathLib.RadiansToDegrees(Rotation) - oldAngle;
-
-			if (JointList.Joint.WorldAnchorA != null)
-			{
-//				Position = JointList.Joint.WorldAnchorA;
-				Position = MathLib.RotatePoint(Position, JointList.Joint.WorldAnchorA, diffAngle);
-				
-			}
-			return;
-			/*
-					if (areSpotsOk() == false)
-						Rotation = oldAngle;
-			*/
-
-			Vector2 anchor;
-
-			for (JointEdge i = JointList; i != null; i = i.Next)
-			{
-				if (i.Joint.BodyA == this)
-					anchor = i.Joint.WorldAnchorA;
-				else
-					anchor = i.Joint.WorldAnchorB;
-				anchor -= Position;
-
-				((ISpot)i.Joint).moveAnchor(this,
-				  (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle))) * anchor.Length() + Position);
-			}
-
-			//Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
-		}
-		/*
-		Transform xf;
-		GetTransform(out xf);
-		Vector2 relMainPos = ((PolygonShape)_shape).Vertices[(side ? 0 : 2)];
-		Vector2 absMainPos = MathUtils.Multiply(ref xf, relMainPos);
-
-		Vector2 dif = absMainPos - pos;
-		float angle = (float)Math.Atan2(dif.X, -dif.Y) * (side ? 1 : -1);
-		float newSize = dif.Length();
-
-		_shape = new PolygonShape(PolygonTools.CreateRectangle(newSize, _width), _shape.Density);
-
-		if (areSpotsOk() == false)
-			_shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
-		else
-		{
-			_size = newSize;
-			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
-			//Rotation = angle;
-			//Position = absMainPos + (new Vector2((float)Math.Sin(angle), -(float)Math.Cos(angle)) * _size);
-		}
-	*/
-
 		virtual public void updateCharacteristics()
 		{
 			GenerateEnds();
@@ -168,24 +103,16 @@ namespace gearit.src.robot
 		
 		//--------ENDS-------------
 
-        private void updateEnds(double angle_change = 0f)
+		private void updateEnds(double angle_change = 0f)
 		{
-			//float newSize = endsSize();
-			//float scale = newSize / _size;
-
 			move(endsPosition());
 			_robot.resetAct();
-//			_didAct = true;
-			rotate(endsAngle());
-//			Rotation = (endsAngle());
 
+			rotate(endsAngle());
 			_robot.resetAct();
+
 			resize(endsSize());
 			_robot.resetAct();
-			//for (JointEdge i = JointList; i != null; i = i.Next)
-			//{
-			//    ((PrismaticJoint)i.Joint).LocalAnchorB = RotatePoint(((PrismaticJoint)i.Joint).LocalAnchorB, Vector2.Zero, angle_change);
-			//}
 		}
 
 		public void setEnds(Vector2 A, Vector2 B)
@@ -197,14 +124,22 @@ namespace gearit.src.robot
 
 		public void setEnd(Vector2 end, bool isA)
 		{
-            double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
+			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
 				_endA = end;
 			else
 				_endB = end;
-            updateEnds(MathLib.RadiansToDegrees(endsAngle()) - previous_angle_degree);
+			updateEnds(MathLib.RadiansToDegrees(endsAngle()) - previous_angle_degree);
 		}
-        
+
+		public Vector2 getEnd(bool isA)
+		{
+			if (isA)
+				return _endA;
+			else
+				return _endB;
+		}
+
 		private Vector2 endsPosition()
 		{
 			return (_endA + _endB) / 2;

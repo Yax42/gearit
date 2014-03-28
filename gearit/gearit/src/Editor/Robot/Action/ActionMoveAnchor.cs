@@ -4,25 +4,63 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionMoveAnchor : IAction
 	{
-		public void init() { }
+		private Piece P1;
+		private Piece P2;
+		private Vector2 From;
+		private Vector2 To;
+		private bool HasBeenRevert;
+		private bool IsOk;
+
+		public void init()
+		{
+			P1 = RobotEditor.Instance.Select1;
+			P2 = RobotEditor.Instance.Select2;
+			HasBeenRevert = false;
+
+			IsOk = P1.isConnected(P2);
+			if (IsOk)
+			{
+				From = P1.getConnection(P2).getWorldAnchor(P1);
+			}
+
+		}
 
 		public bool shortcut()
 		{
 			return (Input.ctrlAltShift(false, false, true) && Input.justPressed(MouseKeys.RIGHT));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			if (selected1.isConnected(selected2) == false)
-				return (false);
-			if (selected1.isOn(Input.SimMousePos))
-				selected1.getConnection(selected2).moveAnchor(selected1, Input.SimMousePos);
-			return (Input.pressed(MouseKeys.RIGHT));
+			if (!IsOk)
+				return false;
+			Debug.Assert(P1.isConnected(P2));
+
+			if (!HasBeenRevert && P1.isOn(Input.SimMousePos))
+			{
+				To = Input.SimMousePos;
+			}
+			P1.getConnection(P2).moveAnchor(P1, To);
+			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
 		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			Debug.Assert(P1.isConnected(P2));
+			P1.getConnection(P2).moveAnchor(P1, From);
+		}
+
+
+		public bool canBeReverted() { return IsOk; }
+
+		public ActionTypes type() { return ActionTypes.MOVE_ANCHOR; }
 	}
 }

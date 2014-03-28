@@ -6,23 +6,44 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionRevSpot : IAction
 	{
-		public void init() { }
+		private Piece P1;
+		private bool HasBeenRevert;
+		private SleepingPack Pack;
+
+		public void init()
+		{
+			Pack = new SleepingPack();
+			HasBeenRevert = false;
+			if (ActionChooseSet.value)
+				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.SimMousePos);
+			else
+				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
+			new RevoluteSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1);
+			RobotEditor.Instance.Select1 = P1;
+		}
 
 		public bool shortcut()
 		{
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.Q));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			System.Diagnostics.Debug.WriteLine("Mouse Clicked.");
-			Piece p;
-		if (ActionChooseSet.value)
-		  p = new Wheel(robot, 0.5f, Input.SimMousePos);
-		else
-		  p = new Rod(robot, 2f, Input.SimMousePos);
-			new RevoluteSpot(robot, selected1, p);
-			return (false);
+			if (HasBeenRevert)
+			{
+				RobotEditor.Instance.Robot.wakeUp(Pack);
+			}
+			return false;
 		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			RobotEditor.Instance.fallAsleep(P1, Pack);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public ActionTypes type() { return ActionTypes.REV_SPOT; }
 	}
 }
