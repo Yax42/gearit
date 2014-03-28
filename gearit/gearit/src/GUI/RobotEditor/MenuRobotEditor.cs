@@ -30,8 +30,8 @@ namespace gearit.src.editor.robot
 
 		// Editor
 		RobotEditor _robot_editor;
-		Piece _piece;
-		ISpot _spot;
+		public Piece _piece;
+		public ISpot _spot;
 
 		// Propertie
 		static public int MENU_WIDTH = 220;
@@ -537,8 +537,6 @@ namespace gearit.src.editor.robot
                 evt.Position = new Point(0, y);
                 y += evt.Size.y;
 
-                Console.WriteLine("dsad");
-
                 // Loop on all nodes of event
                 if (evt.isOpen())
                     foreach (TreeNodeAction act in evt._nodes)
@@ -573,6 +571,11 @@ namespace gearit.src.editor.robot
 
 			DoDragDrop(img);
 		}
+
+        public void selectHeart()
+        {
+            _robot_editor.selectHeart();
+        }
 
 		void dropPiece(Control sender, DragDropEventArgs e)
 		{

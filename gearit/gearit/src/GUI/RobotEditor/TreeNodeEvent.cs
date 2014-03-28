@@ -37,6 +37,10 @@ namespace gearit.src.GUI.RobotEditor
             lb_status.Size = new Point(50, height);
             lb_status.Position = new Point(x, 0);
             lb_status.Style = "treeNodeText";
+            lb_status.MouseClick += delegate(Control sender, MouseEventArgs args)
+            {
+                toggleVisibility();
+            };
             Content.Controls.Add(lb_status);
 
 
@@ -49,6 +53,10 @@ namespace gearit.src.GUI.RobotEditor
             lb.Style = "treeNodeText";
             Content.Controls.Add(lb);
             x += lb.Size.x + PADDING;
+            lb.MouseClick += delegate(Control sender, MouseEventArgs args)
+            {
+                toggleVisibility();
+            };
 
             // Event type choice
             Content.Controls.Add(combo);
@@ -120,20 +128,25 @@ namespace gearit.src.GUI.RobotEditor
                 // Force open
                 Open();
 
-                _nodes.Add(new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode));
+                _nodes.Add(new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode, _robot_editor));
                 _robot_editor.refreshScriptEditor();
             };
             Content.Controls.Add(btn);
 
             MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                if (_open)
-                    Close();
-                else
-                    Open();
-
-                _robot_editor.refreshScriptEditor();
+                toggleVisibility();
             };
+        }
+
+        public void toggleVisibility()
+        {
+            if (_open)
+                Close();
+            else
+                Open();
+
+            _robot_editor.refreshScriptEditor();
         }
 
         protected override void OnUpdate()

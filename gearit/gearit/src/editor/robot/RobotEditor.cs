@@ -142,6 +142,12 @@ namespace gearit.src.editor.robot
 			_actions[(int)ActionTypes.SWAP_LIMIT] = new ActionSwapLimit();
 		}
 
+        public void selectHeart()
+        {
+            _mainSelected = _robot.getHeart();
+            _selected2 = _robot.getHeart();
+        }
+
 		public override void Update(GameTime gameTime)
 		{
 			_time++;

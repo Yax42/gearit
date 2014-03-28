@@ -12,9 +12,14 @@ namespace gearit.src.GUI.RobotEditor
         static int PADDING = 16;
         static public int height = 50;
         DropDownList combo = new DropDownList();
+        MenuRobotEditor _robot_editor;
+        bool _selecting = false;
+        ISpot _old_spot;
+        Button btn_select = new Button();
 
-        public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove)
+        public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove, MenuRobotEditor robot_editor)
         {
+            _robot_editor = robot_editor;
             int height = MenuRobotEditor.HEIGHT_NODE;
 
             Size = new Point(width, height);
@@ -29,40 +34,17 @@ namespace gearit.src.GUI.RobotEditor
             Content.Controls.Add(lb);
             x += lb.Size.x + PADDING;
 
-            // Event type choice
-            Content.Controls.Add(combo);
-            combo.Size = new Squid.Point(158, height / 2);
-            combo.Position = new Squid.Point(x, height / 2 - combo.Size.y / 2);
-            combo.Label.Style = "comboLabel";
-            combo.Button.Style = "comboButton";
-            combo.Listbox.Margin = new Margin(0, 0, 0, 0);
-            combo.Listbox.Style = "frame";
-            combo.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
-            combo.Listbox.Scrollbar.Margin = new Margin(0, 4, 4, 4);
-            combo.Listbox.Scrollbar.Size = new Squid.Point(14, 10);
-            combo.Listbox.Scrollbar.ButtonUp.Style = "vscrollUp";
-            combo.Listbox.Scrollbar.ButtonUp.Size = new Squid.Point(10, 20);
-            combo.Listbox.Scrollbar.ButtonDown.Style = "vscrollUp";
-            combo.Listbox.Scrollbar.ButtonDown.Size = new Squid.Point(10, 20);
-            combo.Listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
-            combo.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
-            combo.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
-
-            combo.Opened += delegate(Control sender, SquidEventArgs args)
+            // Button add
+            btn_select.Text = "Add a piece";
+            btn_select.Size = new Point(160, 28);
+            btn_select.Position = new Point(x, Size.y / 2 - 14);
+            btn_select.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                combo.Dropdown.Position = new Point(combo.Dropdown.Position.x, combo.Dropdown.Position.y - combo.Dropdown.Size.y - combo.Size.y);
+                btn_select.Text = "Select a piece";
+                _selecting = true;
+                _old_spot = _robot_editor._spot;
             };
-
-            // Button pressed
-            ListBoxItem item = new ListBoxItem();
-            item.Text = "Button Pressed";
-            item.Size = new Squid.Point(100, 35);
-            item.Margin = new Margin(0, 0, 0, 4);
-            item.Style = "item";
-            combo.Items.Add(item);
-
-            // Autopress button pressed
-            item.Selected = true;
+            Content.Controls.Add(btn_select);
 
 
             // Button remove
@@ -81,6 +63,19 @@ namespace gearit.src.GUI.RobotEditor
         public void setPosition(Point pos)
         {
             Position = pos;
+        }
+
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (_selecting)
+            {
+                if (_old_spot != _robot_editor._spot)
+                {
+                    btn_select.Text = _robot_editor._spot.Name;
+                }
+            }
         }
     }
 }
