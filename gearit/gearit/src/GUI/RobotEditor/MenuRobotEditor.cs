@@ -446,7 +446,7 @@ namespace gearit.src.editor.robot
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
                 setFocus(true);
-                new MessageBoxSave(this, _robot_editor._robot.Name, saveRobot);
+                new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, saveRobot);
             };
 
             y -= btn.Size.y + 2;

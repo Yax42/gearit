@@ -9,25 +9,38 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionDeletePiece : IAction
 	{
-		public void init() { }
+		private SleepingPack Pack;
+		private Piece P1;
+
+		public void init()
+		{
+			Pack = new SleepingPack();
+			P1 = RobotEditor.Instance.Select1;
+		}
 
 		public bool shortcut()
 		{
-		   return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
+			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
 			Console.WriteLine("ActionDeletePiece");
-			Console.WriteLine("Was connected to heart: " + robot.IsPieceConnectedToHeart(selected1));
-			if (selected1 != robot.getHeart())
+			Console.WriteLine("Was connected to heart: " + RobotEditor.Instance.Robot.IsPieceConnectedToHeart(P1));
+			if (P1 != RobotEditor.Instance.Robot.getHeart())
 			{
-				if (selected2 == selected1)
-					selected2 = robot.getHeart();
-				robot.RecursiveRemove(selected1);
-				selected1 = robot.getHeart();
+				RobotEditor.Instance.fallAsleep(P1, Pack); //Select sont checkes dans le fallAsleep
 			}
 			return (false);
 		}
+
+		public void revert()
+		{
+			RobotEditor.Instance.Robot.wakeUp(Pack);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public ActionTypes type() { return ActionTypes.DELETE_PIECE; }
 	}
 }

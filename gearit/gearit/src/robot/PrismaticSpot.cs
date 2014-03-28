@@ -21,6 +21,10 @@ namespace gearit.src.robot
 	{
 		// private DistanceJoint _distJoint;
 		private float _size;
+		private Joint _joint;
+		private CommonSpot _common;
+
+		public Joint Joint { get { return _joint; } }
 
 		public PrismaticSpot(Robot robot, Piece p1, Piece p2) :
 			this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
@@ -40,6 +44,18 @@ namespace gearit.src.robot
 			LimitEnabled = false;
 			ColorValue = Color.Black;
 			robot.addSpot(this);
+			_joint = (Joint)this;
+			_common = new CommonSpot(this);
+		}
+
+		public void wakeUp(Robot robot)
+		{
+			_common.wakeUp(robot);
+		}
+
+		public void fallAsleep(Robot robot, Piece p = null)
+		{
+			_common.fallAsleep(robot, p);
 		}
 
 		//

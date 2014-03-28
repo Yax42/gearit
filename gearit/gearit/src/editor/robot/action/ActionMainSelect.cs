@@ -10,17 +10,25 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionMainSelect : IAction
 	{
-		public void init() { }
+		public void init()
+		{
+			RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getPiece(Input.SimMousePos);
+		}
 
 		public bool shortcut()
 		{
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.LEFT));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			selected1 = robot.getPiece(Input.SimMousePos);
 			return (false);
 		}
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.MAIN_SELECT; }
 	}
 }

@@ -53,7 +53,7 @@ namespace gearit
 		public void draw(SpriteBatch batch)
 		{
 			batch.Draw(_tex, ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
-					   new Vector2(_tex.Width / 2f, _tex.Height / 3f), 1f, SpriteEffects.None, 0f);
+					new Vector2(_tex.Width / 2f, _tex.Height / 3f), 1f, SpriteEffects.None, 0f);
 		}
 
 		private bool checkShape()
@@ -61,9 +61,20 @@ namespace gearit
 			return (areSpotsOk() && _vertices.GetArea() > 3f);
 		}
 
+		public void setShape(Vertices v)
+		{
+			_vertices = v;
+			updateShape();
+		}
+
+		public Vertices getShapeClone()
+		{
+			return new Vertices(_vertices);
+		}
+
 		public int getCorner(Vector2 p)
 		{
-			float dist = 99999;
+			float dist = 9999999;
 			int res = 0;
 			p -= Position;
 

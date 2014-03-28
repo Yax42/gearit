@@ -9,17 +9,22 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionHide : IAction
 	{
-		public void init() { }
+		public void init()
+		{
+			RobotEditor.Instance.Select1.Shown = !RobotEditor.Instance.Select1.Shown;
+		}
 
 		public bool shortcut()
 		{
 			return (Input.justPressed(Keys.E));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
-		{
-			selected1.Shown = !selected1.Shown;
-			return (false);
-		}
+		public bool run() { return false; }
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.HIDE; }
 	}
 }

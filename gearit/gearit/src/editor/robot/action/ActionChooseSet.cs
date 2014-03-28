@@ -10,16 +10,22 @@ namespace gearit.src.editor.robot.action
 	class ActionChooseSet : IAction
 	{
 		static public bool value = true;
-		public void init() { value = !value;  }
+		public void init() { value = !value;}
 
 		public bool shortcut()
 		{
 			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.A)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
 			return (false);
 		}
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.CHOOSE_SET; }
 	}
 }
