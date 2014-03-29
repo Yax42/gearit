@@ -32,8 +32,8 @@ namespace gearit.src.editor.robot
 		static public int TOOLS_HEIGHT = 32;
 		static public int PIECE_HEIGHT = 400;
 		static public int SPOT_HEIGHT = 400;
-		static public int ITEM_HEIGHT = 42;
-		static public int PADDING = 4;
+		static public int ITEM_HEIGHT = 30;
+		static public int PADDING = 2;
         static public int PADDING_NODE = 24;
         static public int HEIGHT_NODE = 50;
 
@@ -134,11 +134,6 @@ namespace gearit.src.editor.robot
 			AllowDrop = true;
 			DragDrop += delegate(Control sender, DragDropEventArgs e)
 			{
-				// Change set
-				if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
-					IsWheel = false;
-				else
-					IsWheel = true;
 				RobotEditor.Instance.doAction(ActionTypes.CREATE_PIECE);
 			};
 
@@ -150,6 +145,8 @@ namespace gearit.src.editor.robot
 			rb_prismatic.Checked = true;
 
 			// Title
+			Label lb;
+			/*
 			Label lb = new Label();
 			lb.Text = "Pieces";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
@@ -158,33 +155,43 @@ namespace gearit.src.editor.robot
 			lb.Parent = this;
 
 			y += lb.Size.y + PADDING;
+			*/
 
 			#region piecedrop
+			Button btn = new Button();
+			btn.Text = "Piece";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.MouseDrag += dragPiece;
+			btn.Cursor = Cursors.Move;
+			btn.Tooltip = "(W)";
+			btn.Checked = false;
+			y += btn.Size.y + PADDING;
 
 			//// Circle and Pipe
 			// Circle
-			Button btn = rb_wheel;
-			btn.Text = "Circle (A)";
+			btn = rb_wheel;
+			btn.Text = "Circle";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
 			btn.Tag = FPiece.Circle;
-			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "Drag to the specified location (W)";
+			btn.Tooltip = "(A)";
 			btn.Checked = true;
 
 			btn = rb_rod;
-			btn.Text = "Pipe (A)";
+			btn.Text = "Pipe";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
 			btn.Tag = FPiece.Pipe;
-			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "Drag to the specified location (W)";
+			btn.Tooltip = "(A)";
 
 			y += btn.Size.y + 2; 
 
@@ -218,15 +225,15 @@ namespace gearit.src.editor.robot
 			// Piece jointure type
 			rb_revolute.Text = "Revolute";
 			rb_revolute.Style = "itemMenuButton";
-			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			rb_revolute.Position = new Squid.Point(0, y);
 			rb_revolute.Parent = this;
 			rb_revolute.Tooltip = "Circular motor (Shift+A)";
 
 			rb_prismatic.Text = "Prismatic";
 			rb_prismatic.Style = "itemMenuButton";
-			rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
-			rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2, y);
+			rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			rb_prismatic.Parent = this;
 			rb_prismatic.Tooltip = "Piston motor (Shift+A)";
 
@@ -243,7 +250,7 @@ namespace gearit.src.editor.robot
 					swap_jointure();
 			};
 
-			y += ITEM_HEIGHT + PADDING * 4;
+			y += ITEM_HEIGHT + PADDING;
 
 			#endregion
 
@@ -253,13 +260,14 @@ namespace gearit.src.editor.robot
 
 			// Piece section
 			lb = new Label();
-			lb.Text = "Piece information";
+			lb.Text = "Piece data";
+			lb.TextColor = 255;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
 			lb.Parent = this;
 
-			y += lb.Size.y;
+			y += lb.Size.y + PADDING;
 
 			// Piece name
 			lb = new Label();
@@ -325,8 +333,9 @@ namespace gearit.src.editor.robot
 			piece_y.Enabled = false;
 			piece_y.Parent = this;
 
-			y += ITEM_HEIGHT;
+			y += ITEM_HEIGHT + PADDING;
 
+			/* C'est quoi ça ? en tout cas ça marche pas
 			// Piece rotation
 			piece_rotation_container.Size = new Squid.Point(Size.x, ITEM_HEIGHT);
 			piece_rotation_container.Position = new Squid.Point(0, y);
@@ -336,6 +345,7 @@ namespace gearit.src.editor.robot
 			lb.Text = "Rotation";
 			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(8, 0);
+			//lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenu";
 			lb.Parent = piece_rotation_container;
 
@@ -347,6 +357,7 @@ namespace gearit.src.editor.robot
 			piece_rotation.Enabled = false;
 
 			y += lb.Size.y + PADDING * 2;
+			*/
 
 			// Spot section
 			spot_container = new Frame();
@@ -357,7 +368,7 @@ namespace gearit.src.editor.robot
 			y = 0;
 
 			lb = new Label();
-			lb.Text = "Spot information";
+			lb.Text = "Spot data";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
@@ -449,7 +460,7 @@ namespace gearit.src.editor.robot
 
 			// Remove
 			btn = new Button();
-			btn.Text = "Delete";
+			btn.Text = "Delete (R)";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
             btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
@@ -460,7 +471,18 @@ namespace gearit.src.editor.robot
 				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
 			};
 
-			y -= btn.Size.y + 2;
+			y -= btn.Size.y + PADDING;
+
+			// Fake Resize (c'est juste pour indiquer le raccourcis à le user
+			//Je vais ajouter tous les boutons des actions avec certain fakes et d'autres non.
+			btn = new Button();
+			btn.Text = "Resize (S)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+
+			y -= btn.Size.y + PADDING;
 
             // Load
             btn = new Button();
@@ -491,7 +513,7 @@ namespace gearit.src.editor.robot
                 new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, saveRobot);
             };
 
-            y -= btn.Size.y + 2;
+			y -= btn.Size.y + PADDING;
 
             btn = new Button();
             btn.Text = "Script Editor";
@@ -508,12 +530,14 @@ namespace gearit.src.editor.robot
             y -= btn.Size.y + PADDING;
 
 			// Title
+			/*
 			lb = new Label();
 			lb.Text = "Actions";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
 			lb.Parent = this;
+			*/
 
 			#endregion
 
@@ -558,10 +582,12 @@ namespace gearit.src.editor.robot
 
             #endregion
 
+			/*
             TextArea ta = new TextArea();
             ta.Parent = this;
             ta.Position = new Point(100, 100);
             ta.Size = new Point(200, 200);
+			*/
 
             #endregion
         }
@@ -621,10 +647,7 @@ namespace gearit.src.editor.robot
 		{
 			ImageControl img = new ImageControl();
 
-			if (sender.Tag.Equals(FPiece.Circle))
-				img.Texture = "RobotEditor/revolute.png";
-			else
-				img.Texture = "RobotEditor/prismatic.png";
+			img.Texture = "RobotEditor/revolute.png";
 
 			img.Size = new Squid.Point(32, 32);
 			img.Position = new Point((int) Input.position().X - 16 - padding_x, (int) Input.position().Y - 16);

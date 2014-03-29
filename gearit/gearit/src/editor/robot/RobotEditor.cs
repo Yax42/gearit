@@ -160,8 +160,7 @@ namespace gearit.src.editor.robot
 
 		public void doAction(ActionTypes action)
 		{
-			if (_currentAction.type() == ActionTypes.NONE
-				|| _currentAction.type() == ActionTypes.CREATE_PIECE)
+			if (_currentAction.type() == ActionTypes.NONE)
 			{
 				_currentAction = ActionFactory.create(action);
 				_currentAction.init();

@@ -177,8 +177,9 @@ namespace SquidXNA
 			itemMenuStyle.Default.BackColor = 0;
 
 			ControlStyle itemMenuTitleStyle = new ControlStyle();
-			itemMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			itemMenuTitleStyle.TextAlign = Alignment.MiddleLeft;
+			itemMenuTitleStyle.BackColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			itemMenuTitleStyle.TextColor = ColorInt.RGBA(0f, 0f, 0f, 1);
+			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
 			ControlStyle itemMenuButtonStyle = new ControlStyle();
