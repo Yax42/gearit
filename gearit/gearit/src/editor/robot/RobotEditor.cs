@@ -12,39 +12,15 @@ using gearit.src.editor.robot.action;
 using FarseerPhysics.Dynamics;
 using gearit.src.utility.Menu;
 using System.Runtime.Serialization;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot
 {
-	enum ActionTypes
-	{
-		NONE = 0,
-		MAIN_SELECT,
-		SELECT2,
-		DELETE_PIECE,
-		MOVE_PIECE,
-		PRIS_SPOT,
-		REV_SPOT,
-		SHOW_ALL,
-		HIDE,
-		LAUNCH,
-		MOVE_ANCHOR,
-		DELETE_SPOT,
-		PRIS_LINK,
-		REV_LINK,
-		RESIZE_PIECE,
-		CHOOSE_SET,
-		MOVE_ROBOT,
-		LOAD_ROBOT,
-		SAVE_ROBOT,
-	CHANGE_LIMIT,
-	SWAP_LIMIT,
-		COUNT
-	}
-
 	class RobotEditor : GameScreen, IDemoScreen
 	{
 		private World _world;
 		private EditorCamera _camera;
+		private static RobotEditor instance = null;
 
 		// Graphic
 		private MenuRobotEditor _menu;
@@ -53,23 +29,34 @@ namespace gearit.src.editor.robot
 
 		// Robot
 		private DrawGame _draw_game;
-        public Robot _robot;
 
 		// Action
-		private Piece _mainSelected;
-		private Piece _selected2;
-		private ActionTypes _actionType;
-		private IAction[] _actions = new IAction[(int)ActionTypes.COUNT];
+		public Piece Select1 {get; set;}
+		public Piece Select2 {get; set;}
+		private List<IAction> _actionsLog;
+		private List<IAction> _redoActionsLog;
+		private IAction _currentAction;
+
 		private int _time = 0;
 
 		public RobotEditor()
 		{
             Serializer.init();
+			ActionFactory.init();
+			instance = this;
 			DrawPriority = 1;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			_world = null;
+		}
+
+		public static RobotEditor Instance
+		{
+			get
+			{
+				return instance;
+			}
 		}
 
 		#region IDemoScreen Members
@@ -93,6 +80,11 @@ namespace gearit.src.editor.robot
 			// Menu
 			_menu = new MenuRobotEditor(ScreenManager, this);
 
+			// Action
+			_actionsLog = new List<IAction>();
+			_redoActionsLog = new List<IAction>();
+			_currentAction = ActionFactory.create(ActionTypes.NONE);
+
 			// World
 			if (_world == null)
 				_world = new World(Vector2.Zero);
@@ -115,62 +107,37 @@ namespace gearit.src.editor.robot
 
 			// Robot
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-			_robot = new Robot(_world);
-			_mainSelected = _robot.getHeart();
-			_selected2 = _robot.getHeart();
-			_actionType = ActionTypes.NONE;
-
-			//actions
-			_actions[(int)ActionTypes.NONE] = null;
-			_actions[(int)ActionTypes.MAIN_SELECT] = new ActionMainSelect();
-			_actions[(int)ActionTypes.SELECT2] = new ActionSelect2();
-			_actions[(int)ActionTypes.DELETE_PIECE] = new ActionDeletePiece();
-			_actions[(int)ActionTypes.MOVE_PIECE] = new ActionMovePiece();
-			_actions[(int)ActionTypes.PRIS_SPOT] = new ActionPrisSpot();
-			_actions[(int)ActionTypes.REV_SPOT] = new ActionRevSpot();
-			_actions[(int)ActionTypes.SHOW_ALL] = new ActionShowAll();
-			_actions[(int)ActionTypes.HIDE] = new ActionHide();
-			_actions[(int)ActionTypes.LAUNCH] = new ActionLaunch();
-			_actions[(int)ActionTypes.MOVE_ANCHOR] = new ActionMoveAnchor();
-			_actions[(int)ActionTypes.DELETE_SPOT] = new ActionDeleteSpot();
-			_actions[(int)ActionTypes.PRIS_LINK] = new ActionPrisLink();
-			_actions[(int)ActionTypes.REV_LINK] = new ActionRevLink();
-			_actions[(int)ActionTypes.RESIZE_PIECE] = new ActionResizePiece();
-			_actions[(int)ActionTypes.CHOOSE_SET] = new ActionChooseSet();
-			_actions[(int)ActionTypes.MOVE_ROBOT] = new ActionMoveRobot();
-			_actions[(int)ActionTypes.SAVE_ROBOT] = new ActionSaveRobot();
-			_actions[(int)ActionTypes.LOAD_ROBOT] = new ActionLoadRobot();
-			_actions[(int)ActionTypes.CHANGE_LIMIT] = new ActionChangeLimit();
-			_actions[(int)ActionTypes.SWAP_LIMIT] = new ActionSwapLimit();
+			Robot = new Robot(_world);
+			Select1 = Robot.getHeart();
+			Select2 = Robot.getHeart();
 		}
 
         public void loadRobot(String name)
         {
-            _robot = (Robot)Serializer.DeserializeItem("robot/" + name);
+            Robot = (Robot)Serializer.DeserializeItem("robot/" + name);
             selectHeart();
         }
 
         public void saveRobot(string name)
         {
-            _robot.Name = name;
-            Serializer.SerializeItem("robot/" + name, _robot);
+            Serializer.SerializeItem("robot/" + name, Robot);
         }
 
         public void selectHeart()
         {
-            _mainSelected = _robot.getHeart();
-            _selected2 = _robot.getHeart();
+            Select1 = Robot.getHeart();
+            Select2 = Robot.getHeart();
         }
 
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
-			_robot.resetAct();
+			Robot.resetAct();
 			_camera.update();
 			HandleInput();
 
-            _menu.Update(_mainSelected, _mainSelected.getConnection(_selected2));
-			_menu.Update();
+			_menu.Update(Select1, Select1.getConnection(Select2));
+			_menu.Update(); // really useful ?! on a deja un update juste au dessu !
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);
@@ -178,59 +145,107 @@ namespace gearit.src.editor.robot
 			base.Update(gameTime);
 		}
 
-		private bool runShortcut()
+		public void fallAsleep(Piece p, SleepingPack pack)
 		{
-			for (int i = 1; i < (int)ActionTypes.COUNT; i++)
-				if (_actions[i].shortcut())
-				{
-					_actionType = (ActionTypes)i;
-					return (true);
-				}
-			return (false);
+			Robot.fallAsleep(p, pack);
+
+			if (Select1.Sleeping)
+				Select1 = Robot.getHeart();
+			if (Select2.Sleeping)
+				Select2 = Robot.getHeart();
+		}
+
+		public void fallAsleep(ISpot s, SleepingPack pack)
+		{
+			Robot.fallAsleep(s, pack);
+
+			if (Select1.Sleeping)
+				Select1 = Robot.getHeart();
+			if (Select2.Sleeping)
+				Select2 = Robot.getHeart();
 		}
 
 		public void doAction(ActionTypes action)
 		{
-			_actions[(int)action].init();
-			_actions[(int)action].run(ref _robot, ref _mainSelected, ref _selected2);
+			if (_currentAction.type() == ActionTypes.NONE)
+			{
+				_currentAction = ActionFactory.create(action);
+				_currentAction.init();
+			}
 		}
 
 		private void HandleInput()
 		{
-			if (_actionType == ActionTypes.NONE)
+			if (_currentAction.type() == ActionTypes.NONE)
 			{
 				if (_menu.hasFocus())
 					return;
-				else if (runShortcut())
-					_actions[(int)_actionType].init();
+				_currentAction = ActionFactory.createFromShortcut();
+				_currentAction.init();
 			}
-			else if (_actions[(int)_actionType].run(ref _robot, ref _mainSelected, ref _selected2) == false)
+			if (_currentAction.run() == false)
 			{
-				_actionType = ActionTypes.NONE;
+				if (_currentAction.canBeReverted())
+				{
+					_actionsLog.Insert(0, _currentAction);
+					_redoActionsLog.Clear();
+				}
+				_currentAction = ActionFactory.Dummy;
 			}
 			_camera.input();
 		}
 
+		public void undo()
+		{
+			if (_actionsLog.Count == 0)
+				return;
+			IAction a = _actionsLog.ElementAt(0);
+			a.revert();
+			_actionsLog.Remove(a);
+			_redoActionsLog.Insert(0, a);
+		}
+
+		public void redo()
+		{
+			if (_redoActionsLog.Count == 0)
+				return;
+			IAction a = _redoActionsLog.ElementAt(0);
+			a.run();
+			_redoActionsLog.Remove(a);
+			_actionsLog.Insert(0, a);
+		}
+
+		public void clearActionLog()
+		{
+			_actionsLog.Clear();
+		}
+
 		private void drawRobot()
 		{
-		if (_actionType == ActionTypes.RESIZE_PIECE && _mainSelected == _robot.getHeart())
-				_mainSelected.ColorValue = Color.GreenYellow;
-			else if (_selected2 == _mainSelected)
-				_selected2.ColorValue = Color.Violet;
+			if (_currentAction.type() == ActionTypes.RESIZE_HEART && Select1 == Robot.getHeart())
+				Select1.ColorValue = Color.GreenYellow;
+			else if (Select2 == Select1)
+				Select2.ColorValue = Color.Violet;
 			else
 			{
-				_selected2.ColorValue = Color.Blue;
-				_mainSelected.ColorValue = Color.Red;
+				Select2.ColorValue = Color.Blue;
+				Select1.ColorValue = Color.Red;
 			}
-			if (_mainSelected.isConnected(_selected2))
-				_mainSelected.getConnection(_selected2).ColorValue = new Color(255, (_time * 10) % 255, (_time * 10) % 255);
+			if (Select1.isConnected(Select2))
+				Select1.getConnection(Select2).ColorValue = new Color(255, (_time * 10) % 255, (_time * 10) % 255);
 
-			_robot.drawDebug(_draw_game);
+			Robot.drawDebug(_draw_game);
 
-			if (_mainSelected.isConnected(_selected2))
-				_mainSelected.getConnection(_selected2).ColorValue = Color.Black;
-			_selected2.ColorValue = Color.Black;
-			_mainSelected.ColorValue = Color.Black;
+			if (Select1.isConnected(Select2))
+				Select1.getConnection(Select2).ColorValue = Color.Black;
+			Select2.ColorValue = Color.Black;
+			Select1.ColorValue = Color.Black;
+		}
+
+		public Robot Robot
+		{
+			get;
+			set;
 		}
 
 		public override void Draw(GameTime gameTime)

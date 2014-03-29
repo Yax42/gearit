@@ -7,24 +7,23 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.robot.action
 {
-	class ActionShowAll : IAction
+	class ActionUndo : IAction
 	{
 		public void init()
 		{
-			RobotEditor.Instance.Robot.showAll();
+			RobotEditor.Instance.undo();
 		}
 
 		public bool shortcut()
 		{
-			return (Input.justPressed(Keys.Space));
+			return (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.Z));
 		}
 
 		public bool run() { return false; }
-
 		public void revert() { }
 
 		public bool canBeReverted() { return false; }
 
-		public ActionTypes type() { return ActionTypes.SHOW_ALL; }
+		public ActionTypes type() { return ActionTypes.UNDO; }
 	}
 }

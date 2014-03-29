@@ -14,7 +14,7 @@ namespace gearit.src.GUI
 
         public MessageBoxSave(Desktop dk, String name, Action<String> cbSave)
         {
-            _msg = MessageBox.Show(new Point(300, 160), "Load Robot", "Name", MessageBoxButtons.OK, dk);
+            _msg = MessageBox.Show(new Point(300, 160), "Save Robot", "Name", MessageBoxButtons.OK, dk);
 
             _tb = new TextBox();
             _tb.Size = new Squid.Point(158, 34);

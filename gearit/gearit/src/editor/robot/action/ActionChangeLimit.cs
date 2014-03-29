@@ -17,6 +17,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
+			return false;
 			return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.S)));
 		}
 
@@ -51,5 +52,13 @@ namespace gearit.src.editor.robot.action
 				_step++;
 			return (true);
 		}
+
+		public bool run() { return false; }
+
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public ActionTypes type() { return ActionTypes.CHANGE_LIMIT; }
 	}
 }

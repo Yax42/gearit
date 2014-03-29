@@ -44,7 +44,6 @@ namespace gearit.src.utility
 
 		private void exec()
 		{
-			Console.WriteLine("test");
 			try
 			{
 				DoFile(@"data/script/" + _name + ".lua");

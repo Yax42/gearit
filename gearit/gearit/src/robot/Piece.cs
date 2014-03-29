@@ -14,6 +14,7 @@ using gearit.src.utility;
 using gearit.src.editor;
 using gearit.src.robot;
 using gearit.src;
+using System.Diagnostics;
 
 namespace gearit
 {
@@ -26,6 +27,7 @@ namespace gearit
 		internal bool _didAct;
 		internal Robot _robot;
 		internal float _size; //useless for the heart, but more simple for implementation
+		public bool Sleeping { get; set; }
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
@@ -38,6 +40,7 @@ namespace gearit
 			_robot = robot;
 			Shown = true;
 			_tex = null;
+			Sleeping = false;
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -51,6 +54,7 @@ namespace gearit
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
+			Sleeping = false;
 		}
 
 		//
@@ -76,6 +80,7 @@ namespace gearit
 			info.AddValue("Density", _shape.Density, typeof(float));
 			info.AddValue("Weight", this.Weight, typeof(float));
 		}
+
 		//--------- END SERIALISATION
 
 		virtual public void resetShape() { }
@@ -96,6 +101,47 @@ namespace gearit
 		{
 			_shape = shape;
 			_fix = CreateFixture(_shape, null);
+		}
+
+		public void removeSpot(ISpot spot)
+		{
+			if (JointList == null)
+				Debug.Assert(false, "Shouldn't get there");
+			for (JointEdge i = JointList; i != null; i = i.Next)
+				if (i.Joint == spot.Joint)
+				{
+					if (i.Prev != null)
+						i.Prev.Next = i.Next;
+					else
+						JointList = i.Next;
+					if (i.Next != null)
+						i.Next.Prev = i.Prev;
+					break;
+				}
+		}
+
+		public void addSpot(ISpot spot)
+		{
+			JointEdge other = new JointEdge();
+			other.Joint = spot.Joint;
+			if (other.Joint.BodyA == this)
+				other.Other = other.Joint.BodyB;
+			else
+				other.Other = other.Joint.BodyA;
+			if (JointList != null)
+			{
+				other.Next = JointList.Next;
+				if (other.Next != null)
+					other.Next.Prev = other;
+				other.Prev = JointList;
+				JointList.Next = other;
+			}
+			else
+			{
+				other.Next = null;
+				other.Prev = null;
+				JointList = other;
+			}
 		}
 
 		public void resetAct()
@@ -143,6 +189,7 @@ namespace gearit
 		}
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
+
 		public void rotate(float angle)
 		{
 			rotateDelta(angle - Rotation);
