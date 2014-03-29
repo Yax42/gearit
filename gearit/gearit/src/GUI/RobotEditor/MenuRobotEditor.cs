@@ -516,6 +516,11 @@ namespace gearit.src.editor.robot
 
             #endregion
 
+            TextArea ta = new TextArea();
+            ta.Parent = this;
+            ta.Position = new Point(100, 100);
+            ta.Size = new Point(200, 200);
+
             #endregion
         }
 
