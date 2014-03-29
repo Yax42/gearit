@@ -121,6 +121,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\robot\action\ActionCreatePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionDummy.cs" />
     <Compile Include="src\editor\robot\action\ActionFactory.cs" />
     <Compile Include="src\editor\robot\action\ActionRedo.cs" />
@@ -146,10 +147,9 @@
     <Compile Include="src\editor\robot\action\ActionMoveAnchor.cs" />
     <Compile Include="src\editor\robot\action\ActionMovePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionMoveRobot.cs" />
-    <Compile Include="src\editor\robot\action\ActionPrisLink.cs" />
     <Compile Include="src\editor\robot\action\ActionDeleteSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionResizeHeart.cs" />
-    <Compile Include="src\editor\robot\action\ActionRevLink.cs" />
+    <Compile Include="src\editor\robot\action\ActionLink.cs" />
     <Compile Include="src\editor\robot\action\ActionSaveRobot.cs" />
     <Compile Include="src\editor\robot\action\ActionSelect2.cs" />
     <Compile Include="src\editor\robot\action\ActionShowAll.cs" />
@@ -261,8 +261,6 @@
     <Compile Include="src\farseer\Factories\JointFactory.cs" />
     <Compile Include="src\farseer\Factories\LinkFactory.cs" />
     <Compile Include="src\farseer\Settings.cs" />
-    <Compile Include="src\editor\robot\action\ActionPrisSpot.cs" />
-    <Compile Include="src\editor\robot\action\ActionRevSpot.cs" />
     <Compile Include="src\editor\robot\action\ActionMainSelect.cs" />
     <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\game\GearitGame.cs" />

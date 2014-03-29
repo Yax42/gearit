@@ -28,6 +28,7 @@ namespace gearit.src.editor.robot.action
 			if (IsOk)
 			{
 				From = P1.getConnection(P2).getWorldAnchor(P1);
+				To = From;
 			}
 
 		}

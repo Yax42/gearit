@@ -20,6 +20,7 @@ namespace gearit.src.editor.robot.action
 			HasBeenRevert = false;
 			P1 = RobotEditor.Instance.Select1;
 			From = P1.Position;
+			To = From;
 		}
 
 		public bool shortcut()

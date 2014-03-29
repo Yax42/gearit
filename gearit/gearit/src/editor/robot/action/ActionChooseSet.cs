@@ -4,22 +4,54 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.editor.robot;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionChooseSet : IAction
 	{
-		static public bool value = true;
-		public void init() { value = !value;}
+		static public bool IsPrismatic
+		{
+			set
+			{
+				MenuRobotEditor.Instance.IsPrismatic = value;
+			}
+			get
+			{
+				return MenuRobotEditor.Instance.IsPrismatic;
+			}
+		}
+
+		static public bool IsWheel
+		{
+			set
+			{
+				MenuRobotEditor.Instance.IsWheel = value;
+			}
+			get
+			{
+				return MenuRobotEditor.Instance.IsWheel;
+			}
+		}
+
+		public void init()
+		{
+			if (Input.ctrlAltShift(false, false, true))
+				IsPrismatic = !IsPrismatic;
+			else
+				IsWheel = !IsWheel;
+		}
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.A)));
+			return ((Input.ctrlAltShift(false, false, false)
+					|| Input.ctrlAltShift(false, false, true))
+					&& (Input.justPressed(Keys.A)));
 		}
 
 		public bool run()
 		{
-			return (false);
+			return false;
 		}
 
 		public void revert() { }

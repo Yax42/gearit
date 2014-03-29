@@ -21,14 +21,7 @@ namespace gearit.src.editor.robot
 			None
 		}
 
-		enum FJointure
-		{
-			Prismatic,
-			Revolute
-		}
-
 		// Editor
-		RobotEditor _robot_editor;
 		Piece _piece;
 		ISpot _spot;
 
@@ -46,7 +39,6 @@ namespace gearit.src.editor.robot
 		// Tools
 		private ListBox lb_jointure;
 		private FPiece flag_piece;
-		private FJointure flag_jointure;
 		private Button rb_revolute = new Button();
 		private Button rb_prismatic = new Button();
 
@@ -54,6 +46,8 @@ namespace gearit.src.editor.robot
 		private ScreenManager _ScreenManager;
 		private ListBox menu_listbox = new ListBox();
 		private Control background = new Control();
+		private Button rb_rod = new Button();
+		private Button rb_wheel = new Button();
 
 		private Frame spot_container = new Frame();
 		private TextBox spot_name = new TextBox();
@@ -70,19 +64,47 @@ namespace gearit.src.editor.robot
 		private TextBox piece_y = new TextBox();
 
 
-		public MenuRobotEditor(ScreenManager ScreenManager, RobotEditor robot_editor)
+		public static MenuRobotEditor Instance { set; get; }
+
+		public bool IsPrismatic
 		{
-		   
+			get
+			{
+				return rb_prismatic.Checked;
+			}
+			set
+			{
+				rb_prismatic.Checked = value;
+				rb_revolute.Checked = !value;
+			}
+		}
+
+		public bool IsWheel
+		{
+			get
+			{
+				return rb_wheel.Checked;
+			}
+			set
+			{
+				rb_wheel.Checked = value;
+				rb_rod.Checked = !value;
+			}
+		}
+
+		public MenuRobotEditor(ScreenManager ScreenManager)
+		{
+			Instance = this;
+
 			#region main
 
 			#region init
 
 			_ScreenManager = ScreenManager;
-			_robot_editor = robot_editor;
 
-            int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+            int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
-            // _robot_editor.VisibleMenu = true;
+            // RobotEditor.Instance.VisibleMenu = true;
 			ShowCursor = true;
             Position = new Squid.Point(padding, 0);
 
@@ -101,14 +123,16 @@ namespace gearit.src.editor.robot
 
 			// Drop callback
 			AllowDrop = true;
-			DragDrop += dropPiece;
+			DragDrop += delegate(Control sender, DragDropEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.CREATE_PIECE);
+			};
 
 			#region tools
 
 			//// Tools section
 			// Auto select menu tools
 			flag_piece = FPiece.None;
-			flag_jointure = FJointure.Prismatic;
 			rb_prismatic.Checked = true;
 
 			// Title
@@ -125,8 +149,8 @@ namespace gearit.src.editor.robot
 
 			//// Circle and Pipe
 			// Circle
-			Button btn = new Button();
-			btn.Text = "Circle";
+			Button btn = rb_wheel;
+			btn.Text = "Circle (A)";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
@@ -134,10 +158,11 @@ namespace gearit.src.editor.robot
 			btn.Tag = FPiece.Circle;
 			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "Drag to the specified location";
+			btn.Tooltip = "Drag to the specified location (W)";
+			btn.Checked = true;
 
-			btn = new Button();
-			btn.Text = "Pipe";
+			btn = rb_rod;
+			btn.Text = "Pipe (A)";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
@@ -145,9 +170,22 @@ namespace gearit.src.editor.robot
 			btn.Tag = FPiece.Pipe;
 			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "Drag to the specified location";
+			btn.Tooltip = "Drag to the specified location (W)";
 
 			y += btn.Size.y + 2; 
+
+			//Callback
+			rb_wheel.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				if (!rb_wheel.Checked)
+					swap_pieces();
+			};
+
+			rb_rod.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				if (!rb_rod.Checked)
+					swap_pieces();
+			};
 
 			#endregion
 
@@ -164,14 +202,14 @@ namespace gearit.src.editor.robot
             //y += lb.Size.y + PADDING;
 
 			// Piece jointure type
-			rb_revolute.Text = "Revolute";
+			rb_revolute.Text = "Revolute (Shift+A)";
 			rb_revolute.Style = "itemMenuButton";
 			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			rb_revolute.Position = new Squid.Point(0, y);
 			rb_revolute.Parent = this;
 			rb_revolute.Tooltip = "Circular motor";
 
-			rb_prismatic.Text = "Prismatic";
+			rb_prismatic.Text = "Prismatic (Shift+A)";
 			rb_prismatic.Style = "itemMenuButton";
 			rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2, y);
@@ -384,7 +422,7 @@ namespace gearit.src.editor.robot
 
 			// Link
 			btn = new Button();
-			btn.Text = "Link";
+			btn.Text = "Link (Shift+W)";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
@@ -392,10 +430,7 @@ namespace gearit.src.editor.robot
 			btn.Tooltip = "Link two pieces together with specified jointure";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				if (flag_jointure == FJointure.Prismatic)
-					_robot_editor.doAction(ActionTypes.PRIS_LINK);
-				else
-					_robot_editor.doAction(ActionTypes.REV_LINK);
+				RobotEditor.Instance.doAction(ActionTypes.LINK);
 			};
 
 			// Remove
@@ -408,7 +443,7 @@ namespace gearit.src.editor.robot
 			btn.Tooltip = "Remove selected piece";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				_robot_editor.doAction(ActionTypes.DELETE_PIECE);
+				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
 			};
 
 			y -= btn.Size.y + 2;
@@ -423,7 +458,7 @@ namespace gearit.src.editor.robot
             btn.Tooltip = "Load a robot with his script";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
-                // TODO
+				RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
             };
 
             btn = new Button();
@@ -435,7 +470,7 @@ namespace gearit.src.editor.robot
             btn.Tooltip = "Save the robot and his script";
             btn.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
-                // TODO
+				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
             };
 
             y -= btn.Size.y + PADDING;
@@ -470,25 +505,9 @@ namespace gearit.src.editor.robot
 			DoDragDrop(img);
 		}
 
-		void dropPiece(Control sender, DragDropEventArgs e)
-		{
-			// Change set
-			 if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
-				 _robot_editor.doAction(ActionTypes.CHOOSE_SET);
-
-			 if (flag_jointure == FJointure.Prismatic)
-				_robot_editor.doAction(ActionTypes.PRIS_SPOT);
-			else
-				_robot_editor.doAction(ActionTypes.REV_SPOT);
-
-			// Restore set
-			if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
-				_robot_editor.doAction(ActionTypes.CHOOSE_SET);
-		}
-
 		public bool hasFocus()
 		{
-            int padding = _robot_editor.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+            int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
             return (background.Position.x + padding <= Input.position().X &&
                 background.Position.x + background.Size.x + padding >= Input.position().X &&
@@ -500,8 +519,12 @@ namespace gearit.src.editor.robot
 		{
 			rb_revolute.Checked = !rb_revolute.Checked;
 			rb_prismatic.Checked = !rb_prismatic.Checked;
+		}
 
-			flag_jointure = (flag_jointure == FJointure.Prismatic ? FJointure.Revolute : FJointure.Prismatic);
+		public void swap_pieces()
+		{
+			rb_wheel.Checked = !rb_wheel.Checked;
+			rb_rod.Checked = !rb_rod.Checked;
 		}
 
 		public void Update(Piece piece, ISpot spot)

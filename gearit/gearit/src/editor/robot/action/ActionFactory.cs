@@ -13,15 +13,12 @@ namespace gearit.src.editor.robot.action
 		SELECT2,
 		DELETE_PIECE,
 		MOVE_PIECE,
-		PRIS_SPOT,
-		REV_SPOT,
 		SHOW_ALL,
 		HIDE,
 		LAUNCH,
 		MOVE_ANCHOR,
 		DELETE_SPOT,
-		PRIS_LINK,
-		REV_LINK,
+		LINK,
 		RESIZE_HEART,
 		RESIZE_WHEEL,
 		RESIZE_ROD,
@@ -33,6 +30,7 @@ namespace gearit.src.editor.robot.action
 		SWAP_LIMIT,
 		UNDO,
 		REDO,
+		CREATE_PIECE,
 		COUNT
 	}
 
@@ -81,15 +79,12 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.SELECT2) return new ActionSelect2();
 			if (action == ActionTypes.DELETE_PIECE) return new ActionDeletePiece();
 			if (action == ActionTypes.MOVE_PIECE) return new ActionMovePiece();
-			if (action == ActionTypes.PRIS_SPOT) return new ActionPrisSpot();
-			if (action == ActionTypes.REV_SPOT) return new ActionRevSpot();
 			if (action == ActionTypes.SHOW_ALL) return new ActionShowAll();
 			if (action == ActionTypes.HIDE) return new ActionHide();
 			if (action == ActionTypes.LAUNCH) return new ActionLaunch();
 			if (action == ActionTypes.MOVE_ANCHOR) return new ActionMoveAnchor();
 			if (action == ActionTypes.DELETE_SPOT) return new ActionDeleteSpot();
-			if (action == ActionTypes.PRIS_LINK) return new ActionPrisLink();
-			if (action == ActionTypes.REV_LINK) return new ActionRevLink();
+			if (action == ActionTypes.LINK) return new ActionLink();
 			if (action == ActionTypes.RESIZE_HEART) return new ActionResizeHeart();
 			if (action == ActionTypes.RESIZE_WHEEL) return new ActionResizeWheel();
 			if (action == ActionTypes.RESIZE_ROD) return new ActionResizeRod();
@@ -101,6 +96,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.SWAP_LIMIT) return new ActionSwapLimit();
 			if (action == ActionTypes.UNDO) return new ActionUndo();
 			if (action == ActionTypes.REDO) return new ActionRedo();
+			if (action == ActionTypes.CREATE_PIECE) return new ActionCreatePiece();
 			return _dummy;
 		}
 	}

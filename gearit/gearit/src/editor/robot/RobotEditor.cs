@@ -19,7 +19,6 @@ namespace gearit.src.editor.robot
 	{
 		private World _world;
 		private EditorCamera _camera;
-		private static RobotEditor instance = null;
 
 		// Graphic
 		private MenuRobotEditor _menu;
@@ -41,7 +40,7 @@ namespace gearit.src.editor.robot
 		public RobotEditor()
 		{
 			ActionFactory.init();
-			instance = this;
+			Instance = this;
 			DrawPriority = 1;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
@@ -49,13 +48,7 @@ namespace gearit.src.editor.robot
 			_world = null;
 		}
 
-		public static RobotEditor Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+		public static RobotEditor Instance { set; get; }
 
 		#region IDemoScreen Members
 
@@ -76,7 +69,7 @@ namespace gearit.src.editor.robot
 			base.LoadContent();
 
 			// Menu
-			_menu = new MenuRobotEditor(ScreenManager, this);
+			_menu = new MenuRobotEditor(ScreenManager);
 
 			// Action
 			_actionsLog = new List<IAction>();
@@ -151,7 +144,8 @@ namespace gearit.src.editor.robot
 
 		public void doAction(ActionTypes action)
 		{
-			if (_currentAction.type() == ActionTypes.NONE)
+			if (_currentAction.type() == ActionTypes.NONE
+				|| _currentAction.type() == ActionTypes.CREATE_PIECE)
 			{
 				_currentAction = ActionFactory.create(action);
 				_currentAction.init();
