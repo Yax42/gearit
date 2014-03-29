@@ -41,7 +41,7 @@ namespace gearit
 		public static int _robotIdCounter = 1;
 		private LuaScript _script;
 		private int _id;
-		private World _world;
+		public World _world;
 
 		public Robot(World world)
 		{
@@ -332,6 +332,7 @@ namespace gearit
 		public int revCount() { return (_revoluteCounter++); }
 		public int prisCount() { return (_prismaticCounter++); }
 
+        // Filename for robot & lua
 		public string Name { get; set; }
 	}
 }

@@ -24,6 +24,5 @@ while true do
 	elseif Input:pressed(K_X) then
 		tige.motor = -1
 	end
-	
 
 end

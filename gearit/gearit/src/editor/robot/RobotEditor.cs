@@ -11,6 +11,7 @@ using gearit.src.robot;
 using gearit.src.editor.robot.action;
 using FarseerPhysics.Dynamics;
 using gearit.src.utility.Menu;
+using System.Runtime.Serialization;
 using System.Diagnostics;
 
 namespace gearit.src.editor.robot
@@ -39,6 +40,7 @@ namespace gearit.src.editor.robot
 
 		public RobotEditor()
 		{
+            Serializer.init();
 			ActionFactory.init();
 			Instance = this;
 			DrawPriority = 1;
@@ -101,10 +103,24 @@ namespace gearit.src.editor.robot
 			Robot = new Robot(_world);
 			Select1 = Robot.getHeart();
 			Select2 = Robot.getHeart();
-
-			// Menu
-			_menus = new MenuPiece(ScreenManager);
 		}
+
+        public void loadRobot(String name)
+        {
+            Robot = (Robot)Serializer.DeserializeItem("robot/" + name);
+            selectHeart();
+        }
+
+        public void saveRobot(string name)
+        {
+            Serializer.SerializeItem("robot/" + name, Robot);
+        }
+
+        public void selectHeart()
+        {
+            Select1 = Robot.getHeart();
+            Select2 = Robot.getHeart();
+        }
 
 		public override void Update(GameTime gameTime)
 		{
@@ -114,7 +130,7 @@ namespace gearit.src.editor.robot
 			HandleInput();
 
 			_menu.Update(Select1, Select1.getConnection(Select2));
-			_menu.Update();
+			_menu.Update(); // really useful ?! on a deja un update juste au dessu !
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);

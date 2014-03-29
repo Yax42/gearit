@@ -53,8 +53,6 @@ namespace gearit.src.game
 
 		public override void LoadContent()
 		{
-
-
 			base.LoadContent();
 			_time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);

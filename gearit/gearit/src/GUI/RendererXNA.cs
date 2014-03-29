@@ -194,6 +194,7 @@ namespace SquidXNA
 		{
 			if (x < 0) x = 0;
 			if (y < 0) y = 0;
+            // Scissor (dont draw if not in rect)
 			Game.GraphicsDevice.ScissorRectangle = new Rectangle(x, y, w, h);
 		}
 
@@ -206,7 +207,7 @@ namespace SquidXNA
 		{
 			Batch.End();
 
-			// Fix double cursor - LOLOL
+			// Fix scissor - Cant draw anything else except desktop without it
 			Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.ScreenManager.Width, Game.ScreenManager.Height);
 		}
 
