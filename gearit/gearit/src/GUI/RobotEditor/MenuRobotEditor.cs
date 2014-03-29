@@ -134,6 +134,11 @@ namespace gearit.src.editor.robot
 			AllowDrop = true;
 			DragDrop += delegate(Control sender, DragDropEventArgs e)
 			{
+				// Change set
+				if (e.DraggedControl.Tag.Equals(FPiece.Pipe))
+					IsWheel = false;
+				else
+					IsWheel = true;
 				RobotEditor.Instance.doAction(ActionTypes.CREATE_PIECE);
 			};
 
@@ -211,19 +216,19 @@ namespace gearit.src.editor.robot
             //y += lb.Size.y + PADDING;
 
 			// Piece jointure type
-			rb_revolute.Text = "Revolute (Shift+A)";
+			rb_revolute.Text = "Revolute";
 			rb_revolute.Style = "itemMenuButton";
 			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			rb_revolute.Position = new Squid.Point(0, y);
 			rb_revolute.Parent = this;
-			rb_revolute.Tooltip = "Circular motor";
+			rb_revolute.Tooltip = "Circular motor (Shift+A)";
 
-			rb_prismatic.Text = "Prismatic (Shift+A)";
+			rb_prismatic.Text = "Prismatic";
 			rb_prismatic.Style = "itemMenuButton";
 			rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			rb_prismatic.Parent = this;
-			rb_prismatic.Tooltip = "Piston motor";
+			rb_prismatic.Tooltip = "Piston motor (Shift+A)";
 
 			// Callback button
 			rb_revolute.MouseClick += delegate(Control snd, MouseEventArgs e)
