@@ -22,7 +22,6 @@ namespace gearit.src.editor.robot
 		private EditorCamera _camera;
 
 		// Graphic
-		private MenuRobotEditor _menu;
 		private RectangleOverlay _background;
 		private MenuPiece _menus;
 
@@ -72,7 +71,7 @@ namespace gearit.src.editor.robot
 			base.LoadContent();
 
 			// Menu
-			_menu = new MenuRobotEditor(ScreenManager);
+			new MenuRobotEditor(ScreenManager);
 
 			// Action
 			_actionsLog = new List<IAction>();
@@ -120,7 +119,7 @@ namespace gearit.src.editor.robot
 			HandleInput();
 
 			MenuRobotEditor.Instance.Update(Select1, Select1.getConnection(Select2));
-			_menu.Update();
+			MenuRobotEditor.Instance.Update();
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);
@@ -161,7 +160,7 @@ namespace gearit.src.editor.robot
 		{
 			if (_currentAction.type() == ActionTypes.NONE)
 			{
-				if (_menu.hasFocus())
+				if (MenuRobotEditor.Instance.hasFocus())
 					return;
 				_currentAction = ActionFactory.createFromShortcut();
 				_currentAction.init();
@@ -293,7 +292,7 @@ namespace gearit.src.editor.robot
 			drawRobot();
 			_draw_game.End();
 
-			_menu.Draw();
+			MenuRobotEditor.Instance.Draw();
 		}
 	}
 }

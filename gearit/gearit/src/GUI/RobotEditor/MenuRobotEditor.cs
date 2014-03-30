@@ -46,6 +46,7 @@ namespace gearit.src.editor.robot
 		private FPiece flag_piece;
 		private Button rb_revolute = new Button();
 		private Button rb_prismatic = new Button();
+		private Label label_name;
 
 		// Piece & Spot
 		private ScreenManager _ScreenManager;
@@ -143,9 +144,9 @@ namespace gearit.src.editor.robot
 			// Auto select menu tools
 			flag_piece = FPiece.None;
 			rb_prismatic.Checked = true;
+			Label lb;
 
 			// Title
-			Label lb;
 			/*
 			Label lb = new Label();
 			lb.Text = "Pieces";
@@ -156,6 +157,15 @@ namespace gearit.src.editor.robot
 
 			y += lb.Size.y + PADDING;
 			*/
+			label_name = new Label();
+			lb = label_name;
+			lb.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
 
 			#region piecedrop
 			Button btn = new Button();
@@ -618,6 +628,7 @@ namespace gearit.src.editor.robot
 			setFocus(false);
 			RobotEditor.Instance.NamePath = name;
 			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
 		}
 
 		public void loadRobot()
@@ -631,6 +642,7 @@ namespace gearit.src.editor.robot
 			setFocus(false);
 			RobotEditor.Instance.NamePath = name;
 			RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
+			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
 		}
 
 		public void deleteEvent(TreeNodeEvent evt)
