@@ -141,11 +141,11 @@ namespace gearit.src.editor.map
 
 		public override void Update(GameTime gameTime)
 		{
-			Input.update();
+			//Input.update();
 			_camera.update();
+			HandleInput();
 			_menu_tools.Update();
 			_menu_properties.Update();
-			HandleInput();
 			_world.Step(0f);
 			base.Update(gameTime);
 		}
