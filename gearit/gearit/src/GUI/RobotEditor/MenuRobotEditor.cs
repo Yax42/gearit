@@ -34,12 +34,12 @@ namespace gearit.src.editor.robot
 		static public int SPOT_HEIGHT = 400;
 		static public int ITEM_HEIGHT = 30;
 		static public int PADDING = 2;
-        static public int PADDING_NODE = 24;
-        static public int HEIGHT_NODE = 50;
+		static public int PADDING_NODE = 24;
+		static public int HEIGHT_NODE = 50;
 
 		//// Gui
 		private bool _has_focus = false;
-        private int padding_x;
+		private int padding_x;
 
 		// Tools
 		private ListBox lb_jointure;
@@ -68,10 +68,10 @@ namespace gearit.src.editor.robot
 		private TextBox piece_x = new TextBox();
 		private TextBox piece_y = new TextBox();
 
-        // Script editor
-        private Panel panel_script = new Panel();
-        private List<TreeNodeEvent> _nodes = new List<TreeNodeEvent>();
-        private Button btn_add_event = new Button();
+		// Script editor
+		private Panel panel_script = new Panel();
+		private List<TreeNodeEvent> _nodes = new List<TreeNodeEvent>();
+		private Button btn_add_event = new Button();
 
 		public static MenuRobotEditor Instance { set; get; }
 
@@ -111,14 +111,14 @@ namespace gearit.src.editor.robot
 
 			_ScreenManager = ScreenManager;
 
-            padding_x = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			padding_x = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
-            // RobotEditor.Instance.VisibleMenu = true;
+			// RobotEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
-            Position = new Squid.Point(padding_x, 0);
+			Position = new Squid.Point(padding_x, 0);
 
 			// Full width to get the cursor propagation
-            Size = new Squid.Point(ScreenManager.Width - padding_x, ScreenManager.Height);
+			Size = new Squid.Point(ScreenManager.Width - padding_x, ScreenManager.Height);
 
 			int y = 0;
 
@@ -213,14 +213,14 @@ namespace gearit.src.editor.robot
 			#region jointuretype
 
 			// Title
-            //lb = new Label();
-            //lb.Text = "Jointure";
-            //lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-            //lb.Position = new Squid.Point(0, y);
-            //lb.Style = "itemMenuTitle";
-            //lb.Parent = this;
+			//lb = new Label();
+			//lb.Text = "Jointure";
+			//lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			//lb.Position = new Squid.Point(0, y);
+			//lb.Style = "itemMenuTitle";
+			//lb.Parent = this;
 
-            //y += lb.Size.y + PADDING;
+			//y += lb.Size.y + PADDING;
 
 			// Piece jointure type
 			rb_revolute.Text = "Revolute";
@@ -463,7 +463,7 @@ namespace gearit.src.editor.robot
 			btn.Text = "Delete (R)";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-            btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
+			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
 			btn.Tooltip = "Remove selected piece";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
@@ -483,51 +483,60 @@ namespace gearit.src.editor.robot
 			btn.Parent = this;
 
 			y -= btn.Size.y + PADDING;
+			//-----------------------------------------------
+			// Load
+			btn = new Button();
+			btn.Text = "Load";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Load a robot with his script";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				loadRobot();
+			};
 
-            // Load
-            btn = new Button();
-            btn.Text = "Load";
-            btn.Style = "itemMenuButton";
-            btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-            btn.Position = new Squid.Point(0, y);
-            btn.Parent = this;
-            btn.Tooltip = "Load a robot with his script";
-            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-            {
-				//RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
-                setFocus(true);
-                new MessageBoxLoad(this, loadRobot);
-            };
+			btn = new Button();
+			btn.Text = "Save";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+S)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				saveRobot();
+			};
 
-            btn = new Button();
-            btn.Text = "Save";
-            btn.Style = "itemMenuButton";
-            btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-            btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-            btn.Parent = this;
-            btn.Tooltip = "Save the robot and his script";
-            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-            {
+			btn = new Button();
+			btn.Text = "Save as";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
 				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-                setFocus(true);
-                new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, saveRobot);
-            };
+				setFocus(true);
+				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+			};
 
 			y -= btn.Size.y + PADDING;
 
-            btn = new Button();
-            btn.Text = "Script Editor";
-            btn.Style = "itemMenuButton";
-            btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-            btn.Position = new Squid.Point(0, y);
-            btn.Parent = this;
-            btn.Tooltip = "Toggle the script editor";
-            btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-            {
-                panel_script.Visible = !panel_script.Visible;
-            };
+			btn = new Button();
+			btn.Text = "Script Editor";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Toggle the script editor";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				panel_script.Visible = !panel_script.Visible;
+			};
 
-            y -= btn.Size.y + PADDING;
+			y -= btn.Size.y + PADDING;
 
 			// Title
 			/*
@@ -541,107 +550,127 @@ namespace gearit.src.editor.robot
 
 			#endregion
 
-            #region script_editor
+			#region script_editor
 
-            // Panel script editor
-            panel_script.Style = "menu";
-            panel_script.Parent = this;
+			// Panel script editor
+			panel_script.Style = "menu";
+			panel_script.Parent = this;
 
-            panel_script.VScroll.Margin = new Margin(0, 8, 8, 8);
-            panel_script.VScroll.Size = new Squid.Point(14, 10);
-            panel_script.VScroll.Slider.Style = "vscrollTrack";
-            panel_script.VScroll.Slider.Button.Style = "vscrollButton";
-            panel_script.VScroll.ButtonUp.Style = "vscrollUp";
-            panel_script.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
-            panel_script.VScroll.ButtonDown.Style = "vscrollUp";
-            panel_script.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
-            panel_script.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
+			panel_script.VScroll.Margin = new Margin(0, 8, 8, 8);
+			panel_script.VScroll.Size = new Squid.Point(14, 10);
+			panel_script.VScroll.Slider.Style = "vscrollTrack";
+			panel_script.VScroll.Slider.Button.Style = "vscrollButton";
+			panel_script.VScroll.ButtonUp.Style = "vscrollUp";
+			panel_script.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
+			panel_script.VScroll.ButtonDown.Style = "vscrollUp";
+			panel_script.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
+			panel_script.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
 
-            panel_script.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
-            panel_script.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
+			panel_script.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
+			panel_script.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
 
-            // Add event
-            btn_add_event.Parent = panel_script;
-            btn_add_event.Size = new Point(panel_script.Size.x, ITEM_HEIGHT);
-            btn_add_event.Position = new Point(0, 0);
-            btn_add_event.Text = "Add a new event";
-            btn_add_event.Style = "addEventButton";
-            btn_add_event.MouseClick += delegate(Control snd, MouseEventArgs e)
+			// Add event
+			btn_add_event.Parent = panel_script;
+			btn_add_event.Size = new Point(panel_script.Size.x, ITEM_HEIGHT);
+			btn_add_event.Position = new Point(0, 0);
+			btn_add_event.Text = "Add a new event";
+			btn_add_event.Style = "addEventButton";
+			btn_add_event.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-                // Add new event
-                _nodes.Add(new TreeNodeEvent(panel_script.Size.x, this));
+				// Add new event
+				_nodes.Add(new TreeNodeEvent(panel_script.Size.x, this));
 
 				// Refresh position
-                refreshScriptEditor();
+				refreshScriptEditor();
 			};
 
-            refreshScriptEditor();
+			refreshScriptEditor();
 
-            // Popup script editor - TO REMOVE
-            btn_add_event.Click(42);
+			// Popup script editor - TO REMOVE
+			btn_add_event.Click(42);
 
-            #endregion
+			#endregion
 
 			/*
-            TextArea ta = new TextArea();
-            ta.Parent = this;
-            ta.Position = new Point(100, 100);
-            ta.Size = new Point(200, 200);
+			TextArea ta = new TextArea();
+			ta.Parent = this;
+			ta.Position = new Point(100, 100);
+			ta.Size = new Point(200, 200);
 			*/
 
-            #endregion
-        }
+			#endregion
+		}
 
-        public void saveRobot(string name)
-        {
-            setFocus(false);
-            RobotEditor.Instance.saveRobot(name);
-        }
+		public void saveRobot()
+		{
+			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+			if (RobotEditor.Instance.NamePath == "")
+			{
+				setFocus(true);
+				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+			}
+			else
+				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+		}
 
-        public void loadRobot(string name)
-        {
-            setFocus(false);
-            RobotEditor.Instance.loadRobot(name);
-        }
+		public void safeSaveRobot(string name)
+		{
+			setFocus(false);
+			RobotEditor.Instance.NamePath = name;
+			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+		}
 
-        public void deleteEvent(TreeNodeEvent evt)
-        {
-            _nodes.Remove(evt);
-            refreshScriptEditor();
-        }
+		public void loadRobot()
+		{
+			setFocus(true);
+			new MessageBoxLoad(this, safeLoadRobot);
+		}
 
-        public void refreshScriptEditor()
-        {
-            int y = ITEM_HEIGHT;
+		public void safeLoadRobot(string name)
+		{
+			setFocus(false);
+			RobotEditor.Instance.NamePath = name;
+			RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
+		}
 
-            // Remove all
-            panel_script.Content.Controls.Clear();
-            // Readd button add event
-            panel_script.Content.Controls.Add(btn_add_event);
+		public void deleteEvent(TreeNodeEvent evt)
+		{
+			_nodes.Remove(evt);
+			refreshScriptEditor();
+		}
 
-            foreach (TreeNodeEvent evt in _nodes)
-            {
-                panel_script.Content.Controls.Add(evt);
-                evt.Position = new Point(0, y);
-                y += evt.Size.y;
+		public void refreshScriptEditor()
+		{
+			int y = ITEM_HEIGHT;
 
-                // Loop on all nodes of event
-                if (evt.isOpen())
-                    foreach (TreeNodeAction act in evt._nodes)
-                    {
-                        panel_script.Content.Controls.Add(act);
-                        act.Position = new Point(PADDING_NODE, y);
-                        y += act.Size.y;
-                    }
-            }
+			// Remove all
+			panel_script.Content.Controls.Clear();
+			// Readd button add event
+			panel_script.Content.Controls.Add(btn_add_event);
 
-            // Resize script editor container to show them all if we can
-            if (y > _ScreenManager.Height / 2)
-                y = _ScreenManager.Height / 2;
+			foreach (TreeNodeEvent evt in _nodes)
+			{
+				panel_script.Content.Controls.Add(evt);
+				evt.Position = new Point(0, y);
+				y += evt.Size.y;
 
-            panel_script.Size = new Point(panel_script.Size.x, y);
-            panel_script.Position = new Point(panel_script.Position.x, _ScreenManager.Height - y);
-        }
+				// Loop on all nodes of event
+				if (evt.isOpen())
+					foreach (TreeNodeAction act in evt._nodes)
+					{
+						panel_script.Content.Controls.Add(act);
+						act.Position = new Point(PADDING_NODE, y);
+						y += act.Size.y;
+					}
+			}
+
+			// Resize script editor container to show them all if we can
+			if (y > _ScreenManager.Height / 2)
+				y = _ScreenManager.Height / 2;
+
+			panel_script.Size = new Point(panel_script.Size.x, y);
+			panel_script.Position = new Point(panel_script.Position.x, _ScreenManager.Height - y);
+		}
 
 		void dragPiece(Control sender, MouseEventArgs e)
 		{
@@ -657,30 +686,30 @@ namespace gearit.src.editor.robot
 			DoDragDrop(img);
 		}
 
-        public void selectHeart()
-        {
-            RobotEditor.Instance.selectHeart();
-        }
+		public void selectHeart()
+		{
+			RobotEditor.Instance.selectHeart();
+		}
 
 		public bool hasFocus()
 		{
-            if (_has_focus)
-                return (true);
+			if (_has_focus)
+				return (true);
 
-            int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
-            bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
-                background.Position.x + background.Size.x + padding >= Input.position().X &&
+			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
+				background.Position.x + background.Size.x + padding >= Input.position().X &&
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;
 
-            bool script_has_focus = panel_script.Visible && 
-                panel_script.Position.x + padding <= Input.position().X &&
-                panel_script.Position.x + panel_script.Size.x + padding >= Input.position().X &&
-                panel_script.Position.y <= Input.position().Y &&
-                panel_script.Position.y + panel_script.Size.y >= Input.position().Y;
+			bool script_has_focus = panel_script.Visible && 
+				panel_script.Position.x + padding <= Input.position().X &&
+				panel_script.Position.x + panel_script.Size.x + padding >= Input.position().X &&
+				panel_script.Position.y <= Input.position().Y &&
+				panel_script.Position.y + panel_script.Size.y >= Input.position().Y;
 
-            return (script_has_focus || menu_has_focus);
+			return (script_has_focus || menu_has_focus);
 		}
 
 		public void swap_jointure()
@@ -697,9 +726,6 @@ namespace gearit.src.editor.robot
 
 		public void Update(Piece piece, ISpot spot)
 		{
-            if (piece == Piece && spot == Spot)
-                return;
-
 			Piece = piece;
 			Spot = spot;
 
@@ -735,10 +761,10 @@ namespace gearit.src.editor.robot
 			}
 		}
 
-        public void setFocus(bool focus)
-        {
-            _has_focus = focus;
-        }
+		public void setFocus(bool focus)
+		{
+			_has_focus = focus;
+		}
 
 		private void updateRod(Piece piece)
 		{

@@ -25,14 +25,13 @@ namespace gearit.src.editor.robot.action
 			Debug.Assert(RobotEditor.Instance.Select1.GetType() == typeof(Rod));
 			Rod = (Rod) RobotEditor.Instance.Select1;
 			Rod.GenerateEnds();
-			EndId = Input.pressed(Keys.LeftShift);
+			EndId = Rod.CloseEnd(Input.SimMousePos);
 			From = Rod.getEnd(EndId);
 		}
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, false)
-					|| Input.ctrlAltShift(false, false, true))
+			return Input.ctrlAltShift(false, false, false)
 					&& Input.justPressed(Keys.S)
 					&& RobotEditor.Instance.Select1.GetType() == typeof(Rod);
 		}

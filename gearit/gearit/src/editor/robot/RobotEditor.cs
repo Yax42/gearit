@@ -40,7 +40,7 @@ namespace gearit.src.editor.robot
 
 		public RobotEditor()
 		{
-            Serializer.init();
+			Serializer.init();
 			ActionFactory.init();
 			Instance = this;
 			DrawPriority = 1;
@@ -48,6 +48,7 @@ namespace gearit.src.editor.robot
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			_world = null;
+			NamePath = "";
 		}
 
 		public static RobotEditor Instance { set; get; }
@@ -105,22 +106,11 @@ namespace gearit.src.editor.robot
 			Select2 = Robot.getHeart();
 		}
 
-        public void loadRobot(String name)
-        {
-            Robot = (Robot)Serializer.DeserializeItem("robot/" + name);
-            selectHeart();
-        }
-
-        public void saveRobot(string name)
-        {
-            Serializer.SerializeItem("robot/" + name, Robot);
-        }
-
-        public void selectHeart()
-        {
-            Select1 = Robot.getHeart();
-            Select2 = Robot.getHeart();
-        }
+		public void selectHeart()
+		{
+			Select1 = Robot.getHeart();
+			Select2 = Robot.getHeart();
+		}
 
 		public override void Update(GameTime gameTime)
 		{
@@ -129,8 +119,8 @@ namespace gearit.src.editor.robot
 			_camera.update();
 			HandleInput();
 
-			_menu.Update(Select1, Select1.getConnection(Select2));
-			_menu.Update(); // really useful ?! on a deja un update juste au dessu !
+			MenuRobotEditor.Instance.Update(Select1, Select1.getConnection(Select2));
+			_menu.Update();
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);
@@ -208,10 +198,6 @@ namespace gearit.src.editor.robot
 			_actionsLog.Insert(0, a);
 		}
 
-		public void clearActionLog()
-		{
-			_actionsLog.Clear();
-		}
 
 		private void drawRobot()
 		{
@@ -235,11 +221,69 @@ namespace gearit.src.editor.robot
 			Select1.ColorValue = Color.Black;
 		}
 
+		//----------------------------NAME-------------------------------------
+
+		private bool _hasBeenModified;
+		public bool HasBeenModified
+		{
+			get
+			{
+				return _hasBeenModified;
+			}
+			set
+			{
+				if (_hasBeenModified != value)
+					;//Update;
+				_hasBeenModified = value;
+			}
+		}
+
+		private string _prevName = "";
+		private string _namePath = "";
+		public string NamePath
+		{
+			get
+			{
+				return _namePath;
+			}
+			set
+			{
+				_prevName = _namePath;
+				_namePath = value;
+			}
+		}
+
+		public void resetNamePath()
+		{
+			_namePath = _prevName;
+			_prevName = "";
+		}
+
+
+		//-----------------------ROBOT-------------------------------------
+
+		private Robot _robot;
 		public Robot Robot
 		{
-			get;
-			set;
+			get
+			{
+				return _robot;
+			}
+			set
+			{
+				if (_robot != null)
+					_robot.remove();
+				_actionsLog.Clear();
+				_redoActionsLog.Clear();
+				_robot = value;
+			}
 		}
+
+		public void deleteRobot()
+		{
+		}
+
+		//-----------------------------------------------------------------
 
 		public override void Draw(GameTime gameTime)
 		{

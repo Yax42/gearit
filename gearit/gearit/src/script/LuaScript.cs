@@ -50,7 +50,7 @@ namespace gearit.src.utility
 			}
 			catch (Exception ex)
 			{
-				OutputManager.GI_LogError("Lua exception: " + ex.Message);
+				OutputManager.LogError("Lua exception: " + ex.Message);
 			}
 		}
 

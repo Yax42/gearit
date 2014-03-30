@@ -15,6 +15,7 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map
 {
+
 	enum Mode
 	{
 		NONE = 0,
@@ -34,6 +35,7 @@ namespace gearit.src.editor.map
 		LOAD,
 		SAVE
 	}
+
 	class MapEditor : GameScreen, IDemoScreen
 	{
 		private World _world;
@@ -45,6 +47,8 @@ namespace gearit.src.editor.map
 		private Mode _mode;
 		private const int PropertiesMenuSize = 40;
 		private MapChunk _selected;
+
+		public static MapEditor Instance { set; get; }
 
 		#region IDemoScreen Members
 
@@ -67,6 +71,7 @@ namespace gearit.src.editor.map
 			_selected = null;
 			_world = null;
 			HasCursor = true;
+			Instance = this;
 		}
 
 		public override void LoadContent()
@@ -301,8 +306,8 @@ namespace gearit.src.editor.map
 						((PolygonChunk)_selected).selectVertice(Input.SimMousePos);
 				}
 
-		if (Input.pressed(MouseKeys.LEFT) && _selected != null)
-				  _selected.resize(Input.SimMousePos); /*(Input.SimMousePos - ;_selected.Position) + Input.SimMousePos*/
+				if (Input.pressed(MouseKeys.LEFT) && _selected != null)
+					_selected.resize(Input.SimMousePos); /*(Input.SimMousePos - ;_selected.Position) + Input.SimMousePos*/
 			}
 			_camera.input();
 		}

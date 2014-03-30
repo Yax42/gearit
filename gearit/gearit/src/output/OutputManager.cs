@@ -7,15 +7,15 @@ namespace gearit.src.output
 {
 	class OutputManager
 	{
-		static public void GI_LogError(String msg)
+		static public void LogError(String msg)
 		{
 			Console.WriteLine("ERROR: #{0}", msg);
 		}
-		public void GI_LogWarning(String msg)
+		static public void LogWarning(String msg)
 		{
 			Console.WriteLine("WARNING: #{0}", msg);
 		}
-		public void GI_LogInfo(String msg)
+		static public void LogInfo(String msg)
 		{
 			Console.WriteLine("Info: #{0}", msg);
 		}

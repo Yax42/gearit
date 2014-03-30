@@ -36,11 +36,11 @@ namespace gearit.src.GUI
 
             // list of files in robot folder
             DirectoryInfo d = new DirectoryInfo(@"data/robot/");//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*"); //Getting Text files
+            FileInfo[] Files = d.GetFiles("*.gir"); //Getting Text files
             foreach (FileInfo file in Files)
             {
                 ListBoxItem item = new ListBoxItem();
-                item.Text = file.Name;
+                item.Text = file.Name.Substring(0, file.Name.Length - 4);
                 item.Size = new Squid.Point(100, 35);
                 item.Margin = new Margin(0, 0, 0, 4);
                 item.Style = "item";

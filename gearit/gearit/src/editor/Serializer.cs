@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using gearit.src.output;
 
 namespace gearit.src.editor
 {
@@ -39,7 +40,7 @@ namespace gearit.src.editor
 			}
 			catch (IOException e)
 			{
-				Console.WriteLine("Error while opening/creating the file {0}.", filename);
+				OutputManager.LogError("Fail to open/creating the file " + filename);
 			}
 		}
 
@@ -59,8 +60,8 @@ namespace gearit.src.editor
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("Error while opening the file {0}.", filename);
-				return (null);
+				OutputManager.LogError("Fail to open the file " + filename);
+				return null;
 			}
 		}
 	}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
 {
@@ -13,12 +14,15 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)));
+			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)))
+				MenuRobotEditor.Instance.saveRobot();
+			return false;
 		}
 
 		public bool run()
 		{
-			Serializer.SerializeItem("r2d2.gir", RobotEditor.Instance.Robot);
+			Debug.Assert(RobotEditor.Instance.NamePath != "");
+			Serializer.SerializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir", RobotEditor.Instance.Robot);
 			return (false);
 		}
 

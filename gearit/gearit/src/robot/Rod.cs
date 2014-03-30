@@ -154,7 +154,11 @@ namespace gearit.src.robot
 		{
 			return (MathLib.Angle(_endB - _endA));
 		}
-		
+
+		public bool CloseEnd(Vector2 pos)
+		{
+			return (pos - _endA).LengthSquared() < (pos - _endB).LengthSquared();
+		}
 		public void GenerateEnds()
 		{
 			Vector2 semiEnd = MathLib.PolarCoor(_size, Rotation);

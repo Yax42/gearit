@@ -121,6 +121,11 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\map\action\ActionDummy.cs" />
+    <Compile Include="src\editor\map\action\ActionFactory.cs" />
+    <Compile Include="src\editor\map\action\ActionRedo.cs" />
+    <Compile Include="src\editor\map\action\ActionUndo.cs" />
+    <Compile Include="src\editor\map\action\IAction.cs" />
     <Compile Include="src\editor\robot\action\ActionCreatePiece.cs" />
     <Compile Include="src\GUI\RobotEditor\MessageBoxSave.cs" />
     <Compile Include="src\GUI\RobotEditor\MessageBoxLoad.cs" />
