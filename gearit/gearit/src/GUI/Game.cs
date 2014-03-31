@@ -72,6 +72,13 @@ namespace SquidXNA
 			inputStyle.Tiling = TextureMode.Grid;
 			inputStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1);
 
+			ControlStyle messageBoxStyle = new ControlStyle();
+			//messageBoxStyle.Focused.Texture = "input_focused.dds";
+			messageBoxStyle.TextPadding = new Margin(4);
+			messageBoxStyle.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.97f);
+			messageBoxStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
+			messageBoxStyle.TextAlign = Alignment.TopLeft;
+
 
 			ControlStyle windowStyle = new ControlStyle();
 			windowStyle.Tiling = TextureMode.Grid;
@@ -210,6 +217,7 @@ namespace SquidXNA
 
 			skin.Styles.Add("item", itemStyle);
 			skin.Styles.Add("textbox", inputStyle);
+			skin.Styles.Add("messagebox", messageBoxStyle);
 			skin.Styles.Add("button", buttonStyle);
 			skin.Styles.Add("window", windowStyle);
 			skin.Styles.Add("frame", frameStyle);

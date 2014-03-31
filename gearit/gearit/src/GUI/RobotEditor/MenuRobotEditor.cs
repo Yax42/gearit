@@ -68,6 +68,7 @@ namespace gearit.src.editor.robot
 		private TextBox piece_size = new TextBox();
 		private TextBox piece_x = new TextBox();
 		private TextBox piece_y = new TextBox();
+		private TextBox helper = new TextBox();
 
 		// Script editor
 		private Panel panel_script = new Panel();
@@ -259,9 +260,97 @@ namespace gearit.src.editor.robot
 				if (!rb_prismatic.Checked)
 					swap_jointure();
 			};
-
 			y += ITEM_HEIGHT + PADDING;
 
+			lb = new Label();
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+			y += ITEM_HEIGHT / 2 + PADDING;
+
+			// Link
+			btn = new Button();
+			btn.Text = "Link (Shift+W)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Link two pieces together with specified jointure";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.LINK);
+			};
+
+			// Remove
+			btn = new Button();
+			btn.Text = "Delete (R)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "Remove selected piece";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
+			};
+
+			y += btn.Size.y + PADDING;
+
+			//-----------------------------------------------
+			// Load
+			btn = new Button();
+			btn.Text = "Load";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+D)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				loadRobot();
+			};
+
+			btn = new Button();
+			btn.Text = "Save";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+S)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				saveRobot();
+			};
+
+			btn = new Button();
+			btn.Text = "Save as";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+				setFocus(true);
+				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+			};
+
+			y += btn.Size.y + PADDING;
+
+			btn = new Button();
+			btn.Text = "Script Editor";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Toggle the script editor";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				panel_script.Visible = !panel_script.Visible;
+			};
+
+			y += btn.Size.y + PADDING;
 			#endregion
 
 			#endregion
@@ -345,7 +434,7 @@ namespace gearit.src.editor.robot
 
 			y += ITEM_HEIGHT + PADDING;
 
-			/* C'est quoi ça ? en tout cas ça marche pas
+			/* C'est quoi ça ? en tout cas ça semble ne pas marcher
 			// Piece rotation
 			piece_rotation_container.Size = new Squid.Point(Size.x, ITEM_HEIGHT);
 			piece_rotation_container.Position = new Squid.Point(0, y);
@@ -451,102 +540,34 @@ namespace gearit.src.editor.robot
 
 			#endregion
 
+			helper.Text =
+			"Help shortcut (F1)\n" +
+			"------------------\n" +
+			"Select main piece..............(left click)\n" +
+			"Select secondary piece.........(shift+left click)\n" +
+			"Move...........................(right click)\n" +
+			"Move anchor....................(shift+right click)\n" +
+			"Move camera....................(scroll click)\n" +
+			"Zoom/Unzoom....................(scrolling)\n" +
+			"Show/Hide selected piece.......(E)\n" +
+			"Show every pieces..............(space)\n" +
+			"Save...........................(ctrl+S)\n" +
+			"Load...........................(ctrl+D)\n" +
+			"Resize.........................(S)\n" +
+			"Switch piece type..............(A)\n" +
+			"Switch spot type.............. (shift+A)\n" +
+			"Create piece...................(W)\n" +
+			"Link main&secondary selection..(shfit+W)\n";
+
+
+			helper.Size = new Squid.Point(300, 300);
+			helper.Position = new Squid.Point(1000, 0);
+			helper.Style = "messagebox";
+			helper.Parent = this;
+			helper.Enabled = false;
+
 			#region action
 
-			y = ScreenManager.Height - ITEM_HEIGHT;
-
-			// Link
-			btn = new Button();
-			btn.Text = "Link (Shift+W)";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "Link two pieces together with specified jointure";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				RobotEditor.Instance.doAction(ActionTypes.LINK);
-			};
-
-			// Remove
-			btn = new Button();
-			btn.Text = "Delete (R)";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-			btn.Parent = this;
-			btn.Tooltip = "Remove selected piece";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
-			};
-
-			y -= btn.Size.y + PADDING;
-
-			// Fake Resize (c'est juste pour indiquer le raccourcis à le user
-			//Je vais ajouter tous les boutons des actions avec certain fakes et d'autres non.
-			btn = new Button();
-			btn.Text = "Resize (S)";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-
-			y -= btn.Size.y + PADDING;
-			//-----------------------------------------------
-			// Load
-			btn = new Button();
-			btn.Text = "Load";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "Load a robot with his script";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				loadRobot();
-			};
-
-			btn = new Button();
-			btn.Text = "Save";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
-			btn.Parent = this;
-			btn.Tooltip = "(ctrl+S)";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				saveRobot();
-			};
-
-			btn = new Button();
-			btn.Text = "Save as";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
-			btn.Parent = this;
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-				setFocus(true);
-				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
-			};
-
-			y -= btn.Size.y + PADDING;
-
-			btn = new Button();
-			btn.Text = "Script Editor";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "Toggle the script editor";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				panel_script.Visible = !panel_script.Visible;
-			};
-
-			y -= btn.Size.y + PADDING;
 
 			// Title
 			/*
