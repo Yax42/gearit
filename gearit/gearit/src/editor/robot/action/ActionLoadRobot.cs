@@ -29,7 +29,7 @@ namespace gearit.src.editor.robot.action
 				RobotEditor.Instance.resetNamePath();
 				return false;
 			}
-			RobotEditor.Instance.Robot = robot;
+			RobotEditor.Instance.resetRobot(robot);
 			RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getHeart();
 			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getHeart();
 			return false;

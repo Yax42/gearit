@@ -261,21 +261,14 @@ namespace gearit.src.editor.robot
 
 		//-----------------------ROBOT-------------------------------------
 
-		private Robot _robot;
-		public Robot Robot
+		public Robot Robot { get; set; }
+		public void resetRobot(Robot bot)
 		{
-			get
-			{
-				return _robot;
-			}
-			set
-			{
-				if (_robot != null)
-					_robot.remove();
-				_actionsLog.Clear();
-				_redoActionsLog.Clear();
-				_robot = value;
-			}
+			if (Robot != null)
+				Robot.remove();
+			_actionsLog.Clear();
+			_redoActionsLog.Clear();
+			Robot = bot;
 		}
 
 		public void deleteRobot()
