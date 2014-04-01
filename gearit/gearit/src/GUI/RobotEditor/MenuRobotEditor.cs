@@ -566,6 +566,7 @@ namespace gearit.src.editor.robot
 			"Show/Hide selected piece.......(E)\n" +
 			"Show every pieces..............(space)\n" +
 			"Save...........................(ctrl+S)\n" +
+			"Save as........................(ctrl+shift+S)\n" +
 			"Load...........................(ctrl+D)\n" +
 			"Resize.........................(S)\n" +
 			"Switch piece type..............(A)\n" +
@@ -574,7 +575,7 @@ namespace gearit.src.editor.robot
 			"Link main&secondary selection..(shfit+W)\n";
 
 
-			helper.Size = new Squid.Point(300, 340);
+			helper.Size = new Squid.Point(300, 360);
 			helper.Position = new Squid.Point(980, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
