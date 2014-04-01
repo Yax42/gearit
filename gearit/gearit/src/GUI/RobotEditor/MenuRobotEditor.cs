@@ -54,6 +54,7 @@ namespace gearit.src.editor.robot
 		private Control background = new Control();
 		private Button rb_rod = new Button();
 		private Button rb_wheel = new Button();
+		private Button Help_btn;
 
 		private Frame spot_container = new Frame();
 		private TextBox spot_name = new TextBox();
@@ -350,7 +351,8 @@ namespace gearit.src.editor.robot
 
 			y += btn.Size.y + PADDING;
 
-			btn = new Button();
+			Help_btn = new Button();
+			btn = Help_btn;
 			btn.Text = "Help";
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
@@ -552,35 +554,39 @@ namespace gearit.src.editor.robot
 			#endregion
 
 			helper.Text =
-			"HELP SHORTCUTS (F1)\n" +
-			"-----------------------------------------\n" +
-			"Select main piece..............(left click)\n" +
-			"Select secondary piece.........(shift+left click)\n" +
-			"Move piece.....................(right click)\n" +
-			"Delete piece...................(R)\n" +
-			"Undo...........................(ctrl+Z)\n" +
-			"Redo...........................(ctrl+Y)\n" +
-			"Move anchor....................(shift+right click)\n" +
-			"Move camera....................(scroll click)\n" +
-			"Zoom/Unzoom....................(scrolling)\n" +
-			"Show/Hide selected piece.......(E)\n" +
-			"Show every pieces..............(space)\n" +
-			"Save...........................(ctrl+S)\n" +
-			"Save as........................(ctrl+shift+S)\n" +
-			"Load...........................(ctrl+D)\n" +
-			"Resize.........................(S)\n" +
-			"Switch piece type..............(A)\n" +
-			"Switch spot type.............. (shift+A)\n" +
-			"Create piece...................(W)\n" +
-			"Link main&secondary selection..(shfit+W)\n";
+			"Help (F1)\n" +
+			"----------------------------------------------------------------------------------------\n" +
+			"Select piece A.......................................(left click)\n" +
+			"Select piece B.......................................(shift+left click)\n" +
+			"Select spot S.........................................[automatically\n" +
+			" selected by selecting both of the pieces it's linked to]\n" +
+			"Move piece A........................................(right click)\n" +
+			"Delete piece A.......................................(R)\n" +
+			"Delete spot S.........................................(shift+R)\n" +
+			"Move A to S anchor...............................(shift+right click)\n" +
+			"Resize A................................................(S)\n" +
+			"Switch piece type pT.............................(A)\n" +
+			"Switch spot type sT...............................(shift+A)\n" +
+			"Create a pT and link it to A with a sT....(W)\n" +
+			"Link A and B with a sT..........................(shfit+W)\n" +
+			"Move camera........................................(scroll click)\n" +
+			"Zoom/Unzoom.......................................(scrolling)\n" +
+			"Undo......................................................(ctrl+Z)\n" +
+			"Redo......................................................(ctrl+Y)\n" +
+			"Show/Hide A..........................................(E)\n" +
+			"Show every pieces.................................(space)\n" +
+			"Save.......................................................(ctrl+S)\n" +
+			"Save as...................................................(ctrl+shift+S)\n" +
+			"Load.......................................................(ctrl+D)\n" +
+			"";
 
 
-			helper.Size = new Squid.Point(300, 360);
-			helper.Position = new Squid.Point(980, 0);
+			helper.Size = new Squid.Point(400, 400);
+			helper.Position = new Squid.Point(880, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
 			helper.Enabled = false;
-			helper.Visible = false;
+			helper.Visible = true;
 
 			#region action
 
@@ -818,6 +824,7 @@ namespace gearit.src.editor.robot
 		public void swapHelp()
 		{
 			helper.Visible = !helper.Visible;
+			Help_btn.Checked = helper.Visible;
 		}
 
 		public void setFocus(bool focus)
