@@ -331,9 +331,7 @@ namespace gearit.src.editor.robot
 			btn.Parent = this;
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-				setFocus(true);
-				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+				saveasRobot();
 			};
 
 			y += btn.Size.y + PADDING;
@@ -348,6 +346,19 @@ namespace gearit.src.editor.robot
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				panel_script.Visible = !panel_script.Visible;
+			};
+
+			y += btn.Size.y + PADDING;
+
+			btn = new Button();
+			btn.Text = "Help";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				swapHelp();
 			};
 
 			y += btn.Size.y + PADDING;
@@ -541,11 +552,14 @@ namespace gearit.src.editor.robot
 			#endregion
 
 			helper.Text =
-			"Help shortcut (F1)\n" +
-			"------------------\n" +
+			"HELP SHORTCUTS (F1)\n" +
+			"-----------------------------------------\n" +
 			"Select main piece..............(left click)\n" +
 			"Select secondary piece.........(shift+left click)\n" +
-			"Move...........................(right click)\n" +
+			"Move piece.....................(right click)\n" +
+			"Delete piece...................(R)\n" +
+			"Undo...........................(ctrl+Z)\n" +
+			"Redo...........................(ctrl+Y)\n" +
 			"Move anchor....................(shift+right click)\n" +
 			"Move camera....................(scroll click)\n" +
 			"Zoom/Unzoom....................(scrolling)\n" +
@@ -560,11 +574,12 @@ namespace gearit.src.editor.robot
 			"Link main&secondary selection..(shfit+W)\n";
 
 
-			helper.Size = new Squid.Point(300, 300);
-			helper.Position = new Squid.Point(1000, 0);
+			helper.Size = new Squid.Point(300, 340);
+			helper.Position = new Squid.Point(980, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
 			helper.Enabled = false;
+			helper.Visible = false;
 
 			#region action
 
@@ -642,6 +657,11 @@ namespace gearit.src.editor.robot
 			}
 			else
 				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+		}
+		public void saveasRobot()
+		{
+			setFocus(true);
+			new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
 		}
 
 		public void safeSaveRobot(string name)
@@ -792,6 +812,11 @@ namespace gearit.src.editor.robot
 				else
 					spot_distance_container.Visible = false;
 			}
+		}
+
+		public void swapHelp()
+		{
+			helper.Visible = !helper.Visible;
 		}
 
 		public void setFocus(bool focus)

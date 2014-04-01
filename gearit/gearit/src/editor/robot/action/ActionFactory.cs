@@ -31,6 +31,7 @@ namespace gearit.src.editor.robot.action
 		UNDO,
 		REDO,
 		CREATE_PIECE,
+		SHOW_HELP,
 		COUNT
 	}
 
@@ -97,6 +98,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.UNDO) return new ActionUndo();
 			if (action == ActionTypes.REDO) return new ActionRedo();
 			if (action == ActionTypes.CREATE_PIECE) return new ActionCreatePiece();
+			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			return _dummy;
 		}
 	}

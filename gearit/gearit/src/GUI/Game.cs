@@ -75,7 +75,7 @@ namespace SquidXNA
 			ControlStyle messageBoxStyle = new ControlStyle();
 			//messageBoxStyle.Focused.Texture = "input_focused.dds";
 			messageBoxStyle.TextPadding = new Margin(4);
-			messageBoxStyle.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.97f);
+			messageBoxStyle.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
 			messageBoxStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
 			messageBoxStyle.TextAlign = Alignment.TopLeft;
 
