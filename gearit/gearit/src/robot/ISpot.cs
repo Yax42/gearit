@@ -32,7 +32,7 @@ namespace gearit
 
 		Color ColorValue { get; set; }
 
-		void draw(DrawGame game);
+		void drawDebug(DrawGame game);
 
 		Vector2 getLocalAnchor(Piece piece);
 

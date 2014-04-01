@@ -130,11 +130,15 @@ namespace gearit.src.robot
 			return (_size);
 		}
 
-		public void draw(DrawGame game)
+		public void drawDebug(DrawGame game)
 		{
-			if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
-				return;
-			game.drawLine(BodyA.Position + LocalAnchorA, BodyB.Position + LocalAnchorB, ColorValue);
+			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
+			game.drawLine(
+				BodyA.Position + LocalAnchorA,
+				BodyB.Position + LocalAnchorB,
+				new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
+
+						
 		}
 
 		public float Force

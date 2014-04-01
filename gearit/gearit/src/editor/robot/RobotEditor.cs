@@ -210,7 +210,9 @@ namespace gearit.src.editor.robot
 				Select1.ColorValue = Color.Red;
 			}
 			if (Select1.isConnected(Select2))
-				Select1.getConnection(Select2).ColorValue = new Color(255, (_time * 10) % 255, (_time * 10) % 255);
+				Select1.getConnection(Select2).ColorValue =
+					new Color(MathLib.LoopIn(_time * 10, 255), 255, MathLib.LoopIn(_time * 10, 255));
+
 
 			Robot.drawDebug(_draw_game);
 

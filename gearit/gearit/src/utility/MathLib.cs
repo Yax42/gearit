@@ -74,5 +74,17 @@ namespace gearit.src.utility
 					cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
 			};
 		}
+
+		/// <summary>
+		/// v must be positive
+		/// </summary>
+		static public int LoopIn(int v, int max, int min = 0)
+		{
+			int scale = max - min;
+			v = v % (scale * 2);
+			if (v > scale)
+				return 2 * scale - v + min;
+			return v + min;
+		}
 	}
 }

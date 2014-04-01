@@ -140,8 +140,6 @@ namespace gearit.src.editor.robot
 				RobotEditor.Instance.doAction(ActionTypes.CREATE_PIECE);
 			};
 
-			#region tools
-
 			//// Tools section
 			// Auto select menu tools
 			flag_piece = FPiece.None;
@@ -170,6 +168,7 @@ namespace gearit.src.editor.robot
 			y += lb.Size.y + PADDING;
 
 			#region piecedrop
+
 			Button btn = new Button();
 			btn.Text = "Piece";
 			btn.Style = "itemMenuButton";
@@ -262,109 +261,6 @@ namespace gearit.src.editor.robot
 					swap_jointure();
 			};
 			y += ITEM_HEIGHT + PADDING;
-
-			lb = new Label();
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
-			lb.Parent = this;
-			y += ITEM_HEIGHT / 2 + PADDING;
-
-			// Link
-			btn = new Button();
-			btn.Text = "Link (Shift+W)";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "Link two pieces together with specified jointure";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				RobotEditor.Instance.doAction(ActionTypes.LINK);
-			};
-
-			// Remove
-			btn = new Button();
-			btn.Text = "Delete (R)";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-			btn.Parent = this;
-			btn.Tooltip = "Remove selected piece";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
-			};
-
-			y += btn.Size.y + PADDING;
-
-			//-----------------------------------------------
-			// Load
-			btn = new Button();
-			btn.Text = "Load";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "(ctrl+D)";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				loadRobot();
-			};
-
-			btn = new Button();
-			btn.Text = "Save";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
-			btn.Parent = this;
-			btn.Tooltip = "(ctrl+S)";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				saveRobot();
-			};
-
-			btn = new Button();
-			btn.Text = "Save as";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
-			btn.Parent = this;
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				saveasRobot();
-			};
-
-			y += btn.Size.y + PADDING;
-
-			btn = new Button();
-			btn.Text = "Script Editor";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.Tooltip = "Toggle the script editor";
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				panel_script.Visible = !panel_script.Visible;
-			};
-
-			y += btn.Size.y + PADDING;
-
-			Help_btn = new Button();
-			btn = Help_btn;
-			btn.Text = "Help";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				swapHelp();
-			};
-
-			y += btn.Size.y + PADDING;
-			#endregion
 
 			#endregion
 
@@ -470,8 +366,9 @@ namespace gearit.src.editor.robot
 
 			y += lb.Size.y + PADDING * 2;
 			*/
+			#endregion
 
-			// Spot section
+			#region Spot
 			spot_container = new Frame();
 			spot_container.Parent = this;
 			spot_container.Position = new Squid.Point(0, y);
@@ -553,6 +450,7 @@ namespace gearit.src.editor.robot
 
 			#endregion
 
+			#region Helper
 			helper.Text =
 			"Help (F1)\n" +
 			"----------------------------------------------------------------------------------------\n" +
@@ -581,15 +479,123 @@ namespace gearit.src.editor.robot
 			"";
 
 
-			helper.Size = new Squid.Point(400, 400);
-			helper.Position = new Squid.Point(880, 0);
+			helper.Size = new Squid.Point(370, 410);
+			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
 			helper.Enabled = false;
-			helper.Visible = true;
+			helper.Visible = false;
+			#endregion
 
 			#region action
 
+
+			/*
+			// Link
+			btn = new Button();
+			btn.Text = "Link (Shift+W)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Link two pieces together with specified jointure";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.LINK);
+			};
+
+			// Remove
+			btn = new Button();
+			btn.Text = "Delete (R)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "Remove selected piece";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.DELETE_PIECE);
+			};
+
+			y += btn.Size.y + PADDING;
+			*/
+
+			//-----------------------------------------------
+			y = ScreenManager.Height - ITEM_HEIGHT;
+
+			Help_btn = new Button();
+			btn = Help_btn;
+			btn.Text = "Help (F1)";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				swapHelp();
+			};
+
+			y -= btn.Size.y + PADDING;
+
+			// Load
+			btn = new Button();
+			btn.Text = "Load";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+D)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				loadRobot();
+			};
+
+			btn = new Button();
+			btn.Text = "Save";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+S)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				saveRobot();
+			};
+
+			btn = new Button();
+			btn.Text = "Save as";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
+			btn.Parent = this;
+			btn.Tooltip = "(ctrl+shift+S)";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				saveasRobot();
+			};
+
+			y -= btn.Size.y + PADDING;
+
+			btn = new Button();
+			btn.Text = "Edit script";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.Tooltip = "Toggle the script editor";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				panel_script.Visible = !panel_script.Visible;
+			};
+
+			y -= btn.Size.y / 2+ PADDING;
+
+			lb = new Label();
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+			y += ITEM_HEIGHT / 2 + PADDING;
 
 			// Title
 			/*
@@ -618,6 +624,8 @@ namespace gearit.src.editor.robot
 			panel_script.VScroll.ButtonDown.Style = "vscrollUp";
 			panel_script.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
 			panel_script.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
+
+			panel_script.Visible = false;
 
 			panel_script.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
 			panel_script.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);

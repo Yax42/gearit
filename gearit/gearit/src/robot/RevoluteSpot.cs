@@ -174,10 +174,9 @@ namespace gearit.src.robot
 			}
 		}
 
-		public void draw(DrawGame game)
+		public void drawDebug(DrawGame game)
 		{
-			if (((Piece)BodyA).Shown == false || ((Piece)BodyB).Shown == false)
-				return;
+			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
 			Vector2 pos = WorldAnchorA;
 			Vector2 corner = WorldAnchorA - _topLeft;
 			//Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
@@ -209,7 +208,8 @@ namespace gearit.src.robot
 					limitReached = true;
 				}
 				else
-					game.drawLine(pos, pos + target, new Color(255, 255 - count * 2, 255 - count * 2));
+					game.drawLine(pos, pos + target,
+						new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
 			}
 		}
 
