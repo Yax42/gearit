@@ -12,9 +12,6 @@ namespace gearit.src.editor.map.action
 		public bool shortcut() { return false; }
 
 		public bool run() { return false; }
-		public void revert() { }
-
-		public bool canBeReverted() { return false; }
 
 		public ActionTypes type() { return ActionTypes.NONE; }
 	}

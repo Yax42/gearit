@@ -83,7 +83,10 @@ namespace gearit.src.map
 
 			for (int i = 0; i < _chunks.Count; i++)
 			{
-				col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Red;
+				if (MapEditor.Instance.Select == _chunks[i])
+					col = Color.Red;
+				else
+					col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Purple;
 				game.draw(_chunks[i], col);
 			}
 		}

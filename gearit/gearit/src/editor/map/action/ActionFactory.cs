@@ -9,8 +9,14 @@ namespace gearit.src.editor.map.action
 	enum ActionTypes
 	{
 		NONE = 0,
-		REDO,
-		UNDO,
+		SELECT,
+		MOVE,
+		DELETE,
+		CREATE,
+		DYNAMIC,
+		STATIC,
+		BALL,
+		RESIZE,
 		COUNT
 	}
 
@@ -55,6 +61,11 @@ namespace gearit.src.editor.map.action
 		{
 			Debug.Assert(_isInit);
 			if (action == ActionTypes.NONE) return _dummy;
+			if (action == ActionTypes.SELECT) return new ActionSelect();
+			if (action == ActionTypes.MOVE) return new ActionMove();
+			if (action == ActionTypes.DELETE) return new ActionDelete();
+			if (action == ActionTypes.CREATE) return new ActionCreate();
+			if (action == ActionTypes.RESIZE) return new ActionResize();
 			return _dummy;
 		}
 	}

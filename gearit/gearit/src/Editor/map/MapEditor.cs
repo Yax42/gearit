@@ -12,10 +12,10 @@ using FarseerPhysics.Dynamics;
 using gearit.src.editor.robot;
 using FarseerPhysics.Factories;
 using gearit.src.map;
+using gearit.src.editor.map.action;
 
 namespace gearit.src.editor.map
 {
-
 	enum Mode
 	{
 		NONE = 0,
@@ -27,7 +27,7 @@ namespace gearit.src.editor.map
 		STATIC,
 		BALL,
 		RESIZE,
-		COUNT // utilise cette valeur quand tu veux savoir combien t'as de mode
+		COUNT
 	}
 	enum Act
 	{
@@ -42,13 +42,35 @@ namespace gearit.src.editor.map
 		private Map _map;
 		private EditorCamera _camera;
 		private DrawGame _draw_game;
-		private MenuOverlay _menu_tools;
-		private MenuOverlay _menu_properties;
+//		private MenuOverlay _menu_tools;
+//		private MenuOverlay _menu_properties;
 		private Mode _mode;
 		private const int PropertiesMenuSize = 40;
-		private MapChunk _selected;
+		private IAction _currentAction;
+		private MapChunk _dummyChunk;
+		private MapChunk _select;
 
-		public static MapEditor Instance { set; get; }
+		public static MapEditor Instance
+		{ set;
+		get; }
+
+		public MapChunk Select
+		{
+			get
+			{
+				return _select;
+			}
+			set
+			{
+				if (value == null)
+					_select = _dummyChunk;
+				else
+					_select = value;
+			}
+		}
+
+		public Map Map { get { return _map; } }
+		public World World { get { return _world; } }
 
 		#region IDemoScreen Members
 
@@ -66,23 +88,26 @@ namespace gearit.src.editor.map
 
 		public MapEditor()
 		{
+			ActionFactory.init();
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
-			_selected = null;
+			Select = null;
 			_world = null;
 			HasCursor = true;
 			Instance = this;
 		}
 
+
 		public override void LoadContent()
 		{
 			base.LoadContent();
-
 
 			if (_world == null)
 				_world = new World(Vector2.Zero);
 			else
 				_world.Clear();
+			_dummyChunk = new PolygonChunk(_world, false, Vector2.Zero);
+			_currentAction = ActionFactory.Dummy;
 			SerializerHelper.World = _world;
 			_map = new Map(_world);
 			_mode = Mode.PLACE;
@@ -91,12 +116,13 @@ namespace gearit.src.editor.map
 			_camera.Position = new Vector2(0, 0);
 			_world.Gravity = new Vector2(0f, 0f);
 			HasVirtualStick = true;
-			_selected = null;
+			Select = null;
 
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 
 			#region MENU
+			/*
 			MenuItem item;
 			Vector2 pos = new Vector2(0, 50);
 			Vector2 size = new Vector2(PropertiesMenuSize, ScreenManager.GraphicsDevice.Viewport.Height - 28);
@@ -140,6 +166,7 @@ namespace gearit.src.editor.map
 			item.addFocus((int)Act.SAVE, new Color(110, 110, 110), new Color(120, 120, 120));
 
 			_menu_tools.Adjusting = true;
+			*/
 			#endregion
  
 		}
@@ -149,8 +176,8 @@ namespace gearit.src.editor.map
 			//Input.update();
 			_camera.update();
 			HandleInput();
-			_menu_tools.Update();
-			_menu_properties.Update();
+			//_menu_tools.Update();
+			//_menu_properties.Update();
 			_world.Step(0f);
 			base.Update(gameTime);
 		}
@@ -202,14 +229,31 @@ namespace gearit.src.editor.map
 
 		private void select()
 		{
-			if (_selected != null)
-				_selected = null;
+			if (Select != null)
+				Select = null;
 			else
 			{
-				_selected = _map.getChunk(Input.SimMousePos);
+				Select = _map.getChunk(Input.SimMousePos);
 			}
 		}
 
+		private void HandleInput()
+		{
+			if (_currentAction.type() == ActionTypes.NONE)
+			{
+				if (MenuRobotEditor.Instance.hasFocus())
+					return;
+				_currentAction = ActionFactory.createFromShortcut();
+				_currentAction.init();
+			}
+			if (_currentAction.run() == false)
+			{
+				_currentAction = ActionFactory.Dummy;
+			}
+			_camera.input();
+		}
+
+#if false
 		private void HandleInput()
 		{
 			changeModeDebug();
@@ -269,9 +313,9 @@ namespace gearit.src.editor.map
 				}
 			}
 
-			if (_mode == Mode.MOVE && _selected != null)
+			if (_mode == Mode.MOVE && Select != null)
 			{
-				_selected.Position = Input.SimMousePos; /*(Input.SimMousePos - _selected.Position) + Input.SimMousePos*/
+				Select.Position = Input.SimMousePos; /*(Input.SimMousePos - Select.Position) + Input.SimMousePos*/
 			}
 
 			if (_mode == Mode.ROTATE && !_menu_properties.isMouseOn() && !_menu_tools.isMouseOn())
@@ -298,27 +342,30 @@ namespace gearit.src.editor.map
 			{
 				if (Input.justPressed(MouseKeys.LEFT))
 				{
-					MapChunk backup = _selected;
-					_selected = _map.getChunk(Input.SimMousePos);
-					if (_selected == null)
-						_selected = backup;
-					if (_selected != null && _selected.GetType() == typeof(PolygonChunk))
-						((PolygonChunk)_selected).selectVertice(Input.SimMousePos);
+					MapChunk backup = Select;
+					Select = _map.getChunk(Input.SimMousePos);
+					if (Select == null)
+						Select = backup;
+					if (Select != null && Select.GetType() == typeof(PolygonChunk))
+						((PolygonChunk)Select).selectVertice(Input.SimMousePos);
 				}
 
-				if (Input.pressed(MouseKeys.LEFT) && _selected != null)
-					_selected.resize(Input.SimMousePos); /*(Input.SimMousePos - ;_selected.Position) + Input.SimMousePos*/
+				if (Input.pressed(MouseKeys.LEFT) && Select != null)
+					Select.resize(Input.SimMousePos); /*(Input.SimMousePos - ;Select.Position) + Input.SimMousePos*/
 			}
 			_camera.input();
 		}
+#endif
 
 		public override void Draw(GameTime gameTime)
 		{
-			ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
+			//ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
 			_draw_game.Begin(_camera);
+
 			_map.drawDebug(_draw_game);
-			_menu_tools.draw(_draw_game);
-			_menu_properties.draw(_draw_game);
+
+			//_menu_tools.draw(_draw_game);
+			//_menu_properties.draw(_draw_game);
 			_draw_game.End();
 			base.Draw(gameTime);
 		}
