@@ -11,14 +11,14 @@ namespace gearit.src.editor.map.action
 	{
 		public void init()
 		{
-			((PolygonChunk)MapEditor.Instance.Select).selectVertice(Input.SimMousePos);
+			if (MapEditor.Instance.Select.GetType() == typeof(PolygonChunk))
+				((PolygonChunk)MapEditor.Instance.Select).selectVertice(Input.SimMousePos);
 		}
 
 		public bool shortcut()
 		{
 			return Input.ctrlAltShift(false, false, true) &&
-				Input.justPressed(MouseKeys.RIGHT) &&
-				MapEditor.Instance.Select.GetType() == typeof(PolygonChunk);
+				Input.justPressed(MouseKeys.RIGHT);
 		}
 
 		public bool run()

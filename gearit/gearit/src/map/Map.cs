@@ -84,7 +84,7 @@ namespace gearit.src.map
 			for (int i = 0; i < _chunks.Count; i++)
 			{
 				if (MapEditor.Instance.Select == _chunks[i])
-					col = Color.Red;
+					col = (_chunks[i].BodyType == BodyType.Static) ? Color.Red : Color.Blue;
 				else
 					col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Purple;
 				game.draw(_chunks[i], col);

@@ -13,10 +13,14 @@ namespace gearit.src.editor.map.action
 		MOVE,
 		DELETE,
 		CREATE,
-		DYNAMIC,
-		STATIC,
-		BALL,
+		CHANGE_TYPE,
 		RESIZE,
+
+		UNDO,
+		REDO,
+		SAVE,
+		LOAD,
+		SAVE_AS,
 		COUNT
 	}
 
@@ -66,6 +70,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.DELETE) return new ActionDelete();
 			if (action == ActionTypes.CREATE) return new ActionCreate();
 			if (action == ActionTypes.RESIZE) return new ActionResize();
+			if (action == ActionTypes.CHANGE_TYPE) return new ActionChangeType();
 			return _dummy;
 		}
 	}

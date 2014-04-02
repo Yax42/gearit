@@ -16,25 +16,6 @@ using gearit.src.editor.map.action;
 
 namespace gearit.src.editor.map
 {
-	enum Mode
-	{
-		NONE = 0,
-		MOVE,
-		ROTATE,
-		DELETE,
-		PLACE,
-		DYNAMIC,
-		STATIC,
-		BALL,
-		RESIZE,
-		COUNT
-	}
-	enum Act
-	{
-		NEW = 0,
-		LOAD,
-		SAVE
-	}
 
 	class MapEditor : GameScreen, IDemoScreen
 	{
@@ -44,15 +25,13 @@ namespace gearit.src.editor.map
 		private DrawGame _draw_game;
 //		private MenuOverlay _menu_tools;
 //		private MenuOverlay _menu_properties;
-		private Mode _mode;
 		private const int PropertiesMenuSize = 40;
 		private IAction _currentAction;
 		private MapChunk _dummyChunk;
 		private MapChunk _select;
 
-		public static MapEditor Instance
-		{ set;
-		get; }
+
+		public static MapEditor Instance { set; get; }
 
 		public MapChunk Select
 		{
@@ -110,7 +89,6 @@ namespace gearit.src.editor.map
 			_currentAction = ActionFactory.Dummy;
 			SerializerHelper.World = _world;
 			_map = new Map(_world);
-			_mode = Mode.PLACE;
 			ScreenManager.Game.ResetElapsedTime();
 			_camera = new EditorCamera(ScreenManager.GraphicsDevice);
 			_camera.Position = new Vector2(0, 0);
@@ -184,38 +162,6 @@ namespace gearit.src.editor.map
 
 		private void changeModeDebug()
 		{
-			if (Input.pressed(Keys.S))
-			{
-				_mode = Mode.STATIC;
-			}
-			if (Input.pressed(Keys.T))
-			{
-				_mode = Mode.DYNAMIC;
-			}
-			if (Input.pressed(Keys.E))
-			{
-				_mode = Mode.PLACE;
-			}
-			if (Input.pressed(Keys.D))
-			{
-				_mode = Mode.DELETE;
-			}
-			if (Input.pressed(Keys.R))
-			{
-				_mode = Mode.ROTATE;
-			}
-			if (Input.pressed(Keys.A))
-			{
-				_mode = Mode.MOVE;
-			}
-			if (Input.pressed(Keys.Z))
-			{
-				_mode = Mode.BALL;
-			}
-			if (Input.pressed(Keys.X))
-			{
-				_mode = Mode.RESIZE;
-			}
 			if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
 			{
 				Serializer.SerializeItem("moon.gim", _map);

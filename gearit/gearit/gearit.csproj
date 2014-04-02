@@ -121,6 +121,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\map\action\ActionChangeType.cs" />
     <Compile Include="src\editor\map\action\ActionCreate.cs" />
     <Compile Include="src\editor\map\action\ActionDelete.cs" />
     <Compile Include="src\editor\map\action\ActionDummy.cs" />

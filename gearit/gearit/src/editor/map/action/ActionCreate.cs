@@ -12,7 +12,12 @@ namespace gearit.src.editor.map.action
 	{
 		public void init()
 		{
-			MapChunk chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
+			MapChunk chunk;
+
+			if (Input.ctrlAltShift(false, false, true))
+				chunk = new CircleChunk(MapEditor.Instance.World, true, Input.SimMousePos);
+			else
+				chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
 			MapEditor.Instance.Map.addChunk(chunk);
 			MapEditor.Instance.Select = chunk;
 		}
@@ -20,7 +25,8 @@ namespace gearit.src.editor.map.action
 		public bool shortcut()
 		{
 			return Input.justPressed(Keys.W)
-				&& Input.ctrlAltShift(false, false, false);
+				&& (Input.ctrlAltShift(false, false, false)
+				|| Input.ctrlAltShift(false, false, true));
 		}
 
 		public bool run() { return false; }
