@@ -12,7 +12,7 @@ namespace gearit.src.GUI
         MessageBox _msg;
         DropDownList combo = new DropDownList();
 
-        public MessageBoxLoad(Desktop dk, Action<String> cbLoad)
+        public MessageBoxLoad(string folder, string extension, Desktop dk, Action<String> cbLoad)
         {
             _msg = MessageBox.Show(new Point(300, 160), "Load Robot", "Name", MessageBoxButtons.OK, dk);
 
@@ -35,8 +35,8 @@ namespace gearit.src.GUI
             combo.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
 
             // list of files in robot folder
-            DirectoryInfo d = new DirectoryInfo(@"data/robot/");//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.gir"); //Getting Text files
+            DirectoryInfo d = new DirectoryInfo(folder);//Assuming Test is your Folder/
+            FileInfo[] Files = d.GetFiles("*" + extension); //Getting Text files
             foreach (FileInfo file in Files)
             {
                 ListBoxItem item = new ListBoxItem();

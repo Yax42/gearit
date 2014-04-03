@@ -16,13 +16,6 @@ namespace gearit.src.editor.robot
 {
 	class MenuRobotEditor : Desktop
 	{
-		enum FPiece
-		{
-			Circle = 1,
-			Pipe = 2,
-			None
-		}
-
 		// Editor
 		public Piece Piece {get; set;}
 		public ISpot Spot {get; set;}
@@ -43,7 +36,6 @@ namespace gearit.src.editor.robot
 
 		// Tools
 		private ListBox lb_jointure;
-		private FPiece flag_piece;
 		private Button rb_revolute = new Button();
 		private Button rb_prismatic = new Button();
 		private Label label_name;
@@ -142,7 +134,6 @@ namespace gearit.src.editor.robot
 
 			//// Tools section
 			// Auto select menu tools
-			flag_piece = FPiece.None;
 			rb_prismatic.Checked = true;
 			Label lb;
 
@@ -189,7 +180,6 @@ namespace gearit.src.editor.robot
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
-			btn.Tag = FPiece.Circle;
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "(A)";
 			btn.Checked = true;
@@ -200,7 +190,6 @@ namespace gearit.src.editor.robot
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
-			btn.Tag = FPiece.Pipe;
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "(A)";
 
@@ -682,6 +671,8 @@ namespace gearit.src.editor.robot
 		public void safeSaveRobot(string name)
 		{
 			setFocus(false);
+			if (name == "")
+				return;
 			RobotEditor.Instance.NamePath = name;
 			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
@@ -690,7 +681,7 @@ namespace gearit.src.editor.robot
 		public void loadRobot()
 		{
 			setFocus(true);
-			new MessageBoxLoad(this, safeLoadRobot);
+			new MessageBoxLoad(@"data/robot/", ".gir", this, safeLoadRobot);
 		}
 
 		public void safeLoadRobot(string name)

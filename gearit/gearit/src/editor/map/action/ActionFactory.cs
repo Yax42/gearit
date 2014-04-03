@@ -12,7 +12,8 @@ namespace gearit.src.editor.map.action
 		SELECT,
 		MOVE,
 		DELETE,
-		CREATE,
+		CREATE_WALL,
+		CREATE_BALL,
 		CHANGE_TYPE,
 		RESIZE_POLYGON,
 		RESIZE_CIRCLE,
@@ -68,7 +69,8 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.SELECT) return new ActionSelect();
 			if (action == ActionTypes.MOVE) return new ActionMove();
 			if (action == ActionTypes.DELETE) return new ActionDelete();
-			if (action == ActionTypes.CREATE) return new ActionCreate();
+			if (action == ActionTypes.CREATE_BALL) return new ActionCreateBall();
+			if (action == ActionTypes.CREATE_WALL) return new ActionCreateWall();
 			if (action == ActionTypes.RESIZE_CIRCLE) return new ActionResizeCircle();
 			if (action == ActionTypes.RESIZE_POLYGON) return new ActionResizePolygon();
 			if (action == ActionTypes.CHANGE_TYPE) return new ActionChangeType();

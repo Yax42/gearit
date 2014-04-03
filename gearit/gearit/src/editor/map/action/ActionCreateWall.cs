@@ -8,25 +8,20 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionCreate : IAction
+	class ActionCreateWall : IAction
 	{
 		private MapChunk _chunk;
 
 		public void init()
 		{
-
-			if (Input.ctrlAltShift(false, false, true))
-				_chunk = new CircleChunk(MapEditor.Instance.World, true, Input.SimMousePos);
-			else
-				_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
+			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
 			MapEditor.Instance.Select = _chunk;
 		}
 
 		public bool shortcut()
 		{
 			return Input.justPressed(Keys.W)
-				&& (Input.ctrlAltShift(false, false, false)
-				|| Input.ctrlAltShift(false, false, true));
+				&& Input.ctrlAltShift(false, false, false);
 		}
 
 		public bool run()
@@ -44,6 +39,6 @@ namespace gearit.src.editor.map.action
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CREATE; }
+		public ActionTypes type() { return ActionTypes.CREATE_WALL; }
 	}
 }
