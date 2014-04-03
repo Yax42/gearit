@@ -24,7 +24,10 @@ namespace gearit.src.editor.robot.action
 		public bool run()
 		{
 			Debug.Assert(RobotEditor.Instance.NamePath != "");
-			Serializer.SerializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir", RobotEditor.Instance.Robot);
+			RobotEditor.Instance.Robot.Name = RobotEditor.Instance.NamePath;
+			if (!Serializer.SerializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir", RobotEditor.Instance.Robot))
+				RobotEditor.Instance.resetNamePath();
+
 			return (false);
 		}
 

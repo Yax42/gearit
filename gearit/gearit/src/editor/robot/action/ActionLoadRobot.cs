@@ -25,13 +25,9 @@ namespace gearit.src.editor.robot.action
 			Debug.Assert(RobotEditor.Instance.NamePath != "");
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir");
 			if (robot == null)
-			{
 				RobotEditor.Instance.resetNamePath();
-				return false;
-			}
-			RobotEditor.Instance.resetRobot(robot);
-			RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getHeart();
-			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getHeart();
+			else
+				RobotEditor.Instance.resetRobot(robot);
 			return false;
 		}
 

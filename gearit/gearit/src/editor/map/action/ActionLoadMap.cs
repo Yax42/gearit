@@ -6,6 +6,8 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using gearit.src.output;
+using gearit.src.editor.map;
+using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
@@ -16,24 +18,18 @@ namespace gearit.src.editor.map.action
 		public bool shortcut()
 		{
 			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
-				;// MenuMapEditor.Instance.saveRobot();
+				MenuMapEditor.Instance.saveMap();
 			return false;
 		}
 
 		public bool run()
 		{
-			/*
-			Debug.Assert(RobotEditor.Instance.NamePath != "");
-			Robot robot = (Robot)Serializer.DeserializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir");
+			Debug.Assert(MapEditor.Instance.NamePath != "");
+			Map robot = (Map)Serializer.DeserializeItem("map/" + MapEditor.Instance.NamePath + ".gim");
 			if (robot == null)
-			{
-				RobotEditor.Instance.resetNamePath();
-				return false;
-			}
-			RobotEditor.Instance.resetRobot(robot);
-			RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.getHeart();
-			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getHeart();
-			*/
+				MapEditor.Instance.resetNamePath();
+			else
+				MapEditor.Instance.resetMap(robot);
 			return false;
 		}
 

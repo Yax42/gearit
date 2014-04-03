@@ -133,6 +133,7 @@
     <Compile Include="src\editor\map\action\ActionResizePolygon.cs" />
     <Compile Include="src\editor\map\action\ActionSaveMap.cs" />
     <Compile Include="src\editor\map\action\ActionSelect.cs" />
+    <Compile Include="src\editor\map\action\ActionShowHelp.cs" />
     <Compile Include="src\editor\map\action\ActionUndo.cs" />
     <Compile Include="src\editor\map\action\ActionCreateWall.cs" />
     <Compile Include="src\editor\map\action\IAction.cs" />

@@ -30,7 +30,7 @@ namespace gearit.src.editor
 		/// </summary>
 		/// <param name="filename">The file to store the object.</param>
 		/// <param name="obj">The object to serialize.</param>
-		public static void SerializeItem(string filename, ISerializable obj)
+		public static bool SerializeItem(string filename, ISerializable obj)
 		{
 			try
 			{
@@ -41,7 +41,9 @@ namespace gearit.src.editor
 			catch (IOException e)
 			{
 				OutputManager.LogError("Fail to open/creating the file " + filename);
+				return false;
 			}
+			return true;
 		}
 
 		/// <summary>

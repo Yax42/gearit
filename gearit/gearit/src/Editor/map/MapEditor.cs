@@ -13,7 +13,7 @@ using gearit.src.editor.robot;
 using FarseerPhysics.Factories;
 using gearit.src.map;
 using gearit.src.editor.map.action;
-using gearit.src.map.robot;
+using gearit.src.editor.map;
 
 namespace gearit.src.editor.map
 {
@@ -82,8 +82,8 @@ namespace gearit.src.editor.map
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			NamePath = "";
 			new MenuMapEditor(ScreenManager);
+			NamePath = "";
 
 			if (_world == null)
 				_world = new World(Vector2.Zero);
@@ -115,19 +115,6 @@ namespace gearit.src.editor.map
 			MenuMapEditor.Instance.Update();
 			_world.Step(0f);
 			base.Update(gameTime);
-		}
-
-		private void changeModeDebug()
-		{
-			if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.S))
-			{
-				Serializer.SerializeItem("moon.gim", _map);
-			}
-			if (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.D))
-			{
-				_world.Clear();
-				_map = (Map)Serializer.DeserializeItem("moon.gim");
-			}
 		}
 
 		public void doAction(ActionTypes action)
@@ -200,15 +187,25 @@ namespace gearit.src.editor.map
 			{
 				_prevName = _namePath;
 				_namePath = value;
+				MenuMapEditor.Instance.updateButtonMapName();
 			}
 		}
 
 		public void resetNamePath()
 		{
-			_namePath = _prevName;
+			NamePath = _prevName;
 			_prevName = "";
 		}
 
+		public void resetMap(Map map)
+		{
+			if (map != null)
+				map.remove();
+			_actionsLog.Clear();
+			_redoActionsLog.Clear();
+			_map = map;
+			Select = null;
+		}
 		//-----------------------------------------------------------------------
 
 		public override void Draw(GameTime gameTime)

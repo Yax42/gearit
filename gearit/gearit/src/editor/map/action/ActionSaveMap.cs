@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using System.Diagnostics;
+using gearit.src.editor.map;
 
 namespace gearit.src.editor.map.action
 {
@@ -14,22 +15,20 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			/*
 			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)))
-				MenuRobotEditor.Instance.saveRobot();
+				MenuMapEditor.Instance.saveMap();
 			if (Input.ctrlAltShift(true, false, true) && (Input.justPressed(Keys.S)))
-				MenuRobotEditor.Instance.saveasRobot();
-			*/
+				MenuMapEditor.Instance.saveasMap();
 			return false;
 		}
 
 		public bool run()
 		{
-			/*
-			Debug.Assert(RobotEditor.Instance.NamePath != "");
-			Serializer.SerializeItem("robot/" + RobotEditor.Instance.NamePath + ".gim", RobotEditor.Instance.Robot);
-			*/
-			return (false);
+			Debug.Assert(MapEditor.Instance.NamePath != "");
+			MapEditor.Instance.Map.Name = MapEditor.Instance.NamePath;
+			if (!Serializer.SerializeItem("map/" + MapEditor.Instance.NamePath + ".gim", MapEditor.Instance.Map))
+				MapEditor.Instance.resetNamePath();
+			return false;
 		}
 
 		public void revert() { }

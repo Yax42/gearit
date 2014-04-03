@@ -25,7 +25,6 @@ namespace gearit.src.map
 		public Map(World world)
 		{
 			_world = world;
-			_name = "test";
 			_chunks = new List<MapChunk>();
 		}
 
@@ -70,6 +69,12 @@ namespace gearit.src.map
 		public void addChunk(MapChunk chunk)
 		{
 			_chunks.Add(chunk);
+		}
+
+		public void remove()
+		{
+			foreach (MapChunk i in _chunks)
+				_world.RemoveBody(i);
 		}
 
 		public void drawDebug(DrawGame game)

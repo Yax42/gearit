@@ -253,6 +253,7 @@ namespace gearit.src.editor.robot
 			{
 				_prevName = _namePath;
 				_namePath = value;
+				MenuRobotEditor.Instance.updateButtonMapName();
 			}
 		}
 
@@ -273,6 +274,8 @@ namespace gearit.src.editor.robot
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			Robot = bot;
+			Select1 = Robot.getHeart();
+			Select2 = Robot.getHeart();
 		}
 
 		public void deleteRobot()

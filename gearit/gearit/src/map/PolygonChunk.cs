@@ -18,7 +18,7 @@ namespace gearit.src.map
 		public PolygonChunk(World world, bool isDynamic, Vector2 pos)
 			: base(world, isDynamic, pos)
 		{
-			Vertices rectangleVertices = PolygonTools.CreateRectangle(8f / 2, 0.5f / 2);
+			Vertices rectangleVertices = PolygonTools.CreateRectangle(1f, 1f);
 			PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
 			this.CreateFixture(rectangleShape);
 			Friction = 100;

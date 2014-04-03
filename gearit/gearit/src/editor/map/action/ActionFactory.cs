@@ -19,9 +19,9 @@ namespace gearit.src.editor.map.action
 		RESIZE_CIRCLE,
 		UNDO,
 		REDO,
-
 		SAVE,
 		LOAD,
+		SHOW_HELP,
 		COUNT
 	}
 
@@ -76,6 +76,9 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.CHANGE_TYPE) return new ActionChangeType();
 			if (action == ActionTypes.UNDO) return new ActionUndo();
 			if (action == ActionTypes.REDO) return new ActionRedo();
+			if (action == ActionTypes.SAVE) return new ActionSaveMap();
+			if (action == ActionTypes.LOAD) return new ActionLoadMap();
+			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			return _dummy;
 		}
 	}

@@ -651,6 +651,7 @@ namespace gearit.src.editor.robot
 			#endregion
 		}
 
+		//----------------SAVE&LOAD-------------------------------------------
 		public void saveRobot()
 		{
 			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
@@ -675,7 +676,6 @@ namespace gearit.src.editor.robot
 				return;
 			RobotEditor.Instance.NamePath = name;
 			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
 		}
 
 		public void loadRobot()
@@ -689,8 +689,13 @@ namespace gearit.src.editor.robot
 			setFocus(false);
 			RobotEditor.Instance.NamePath = name;
 			RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
+		}
+
+		public void updateButtonMapName()
+		{
 			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
 		}
+		//-----------------------------------------------------------
 
 		public void deleteEvent(TreeNodeEvent evt)
 		{

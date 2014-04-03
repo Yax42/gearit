@@ -5,14 +5,13 @@ using System.Text;
 using Squid;
 using gearit.xna;
 using GUI;
-using gearit.src.robot;
 using gearit.src.utility;
 using System.Globalization;
 using gearit.src.editor.map.action;
 using gearit.src.GUI;
 using gearit.src.editor.map;
 
-namespace gearit.src.map.robot
+namespace gearit.src.editor.map
 {
 	class MenuMapEditor : Desktop
 	{
@@ -108,7 +107,7 @@ namespace gearit.src.map.robot
 			*/
 			label_name = new Label();
 			lb = label_name;
-			lb.Text = "~ " + MapEditor.Instance.NamePath + " ~";
+			//lb.Text = "~ " + MapEditor.Instance.NamePath + " ~";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
@@ -142,7 +141,6 @@ namespace gearit.src.map.robot
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "(A)";
 			btn.Tag = BType.Ball;
 			btn.MouseDrag += dragPiece;
 
@@ -153,26 +151,10 @@ namespace gearit.src.map.robot
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "(A)";
 			btn.Tag = BType.Wall;
 			btn.MouseDrag += dragPiece;
 
 			y += btn.Size.y + 2; 
-
-			//Callback
-			/*
-			rb_ball.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				if (!rb_ball.Checked)
-					swap_type();
-			};
-
-			rb_wall.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				if (!rb_wall.Checked)
-					swap_type();
-			};
-			*/
 
 			#endregion
 
@@ -184,32 +166,24 @@ namespace gearit.src.map.robot
 			helper.Text =
 			"Help (F1)\n" +
 			"----------------------------------------------------------------------------------------\n" +
-			"Select piece A.......................................(left click)\n" +
-			"Select piece B.......................................(shift+left click)\n" +
-			"Select spot S.........................................[automatically\n" +
-			" selected by selecting both of the pieces it's linked to]\n" +
-			"Move piece A........................................(right click)\n" +
-			"Delete piece A.......................................(R)\n" +
-			"Delete spot S.........................................(shift+R)\n" +
-			"Move A to S anchor...............................(shift+right click)\n" +
-			"Resize A................................................(S)\n" +
-			"Switch piece type pT.............................(A)\n" +
-			"Switch spot type sT...............................(shift+A)\n" +
-			"Create a pT and link it to A with a sT....(W)\n" +
-			"Link A and B with a sT..........................(shfit+W)\n" +
+			"Select object.......................................(left click)\n" +
+			"Move object........................................(right click)\n" +
+			"Delete object.......................................(R)\n" +
+			"Resize object.......................................(shift+right click)\n" +
+			"Create wall..........................................(W)\n" +
+			"Create ball...........................................(shift+W)\n" +
+			"Switch object type................................(A)\n" +
 			"Move camera........................................(scroll click)\n" +
 			"Zoom/Unzoom.......................................(scrolling)\n" +
 			"Undo......................................................(ctrl+Z)\n" +
 			"Redo......................................................(ctrl+Y)\n" +
-			"Show/Hide A..........................................(E)\n" +
-			"Show every pieces.................................(space)\n" +
 			"Save.......................................................(ctrl+S)\n" +
 			"Save as...................................................(ctrl+shift+S)\n" +
 			"Load.......................................................(ctrl+D)\n" +
 			"";
 
 
-			helper.Size = new Squid.Point(370, 410);
+			helper.Size = new Squid.Point(370, 280);
 			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
@@ -288,13 +262,15 @@ namespace gearit.src.map.robot
 			#endregion
 		}
 
+		//---------------------SAVE&LOAD-----------------------------
+
 		public void saveMap()
 		{
 			//MapEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 			if (MapEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
-				new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap);
+				new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap);
 			}
 			else
 				MapEditor.Instance.doAction(ActionTypes.SAVE);
@@ -302,7 +278,7 @@ namespace gearit.src.map.robot
 		public void saveasMap()
 		{
 			setFocus(true);
-			new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap);
+			new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap);
 		}
 
 		public void safeSaveMap(string name)
@@ -312,13 +288,12 @@ namespace gearit.src.map.robot
 				return;
 			MapEditor.Instance.NamePath = name;
 			MapEditor.Instance.doAction(ActionTypes.SAVE);
-			label_name.Text = "~ " + MapEditor.Instance.NamePath + " ~";
 		}
 
 		public void loadMap()
 		{
 			setFocus(true);
-			new MessageBoxLoad(@"data/robot/", ".gir", this, safeLoadMap);
+			new MessageBoxLoad(@"data/map/", ".gim", this, safeLoadMap);
 		}
 
 		public void safeLoadMap(string name)
@@ -326,8 +301,14 @@ namespace gearit.src.map.robot
 			setFocus(false);
 			MapEditor.Instance.NamePath = name;
 			MapEditor.Instance.doAction(ActionTypes.LOAD);
+		}
+
+		public void updateButtonMapName()
+		{
 			label_name.Text = "~ " + MapEditor.Instance.NamePath + " ~";
 		}
+
+		//--------------------------------------------------------------------
 
 		void dragPiece(Control sender, MouseEventArgs e)
 		{
