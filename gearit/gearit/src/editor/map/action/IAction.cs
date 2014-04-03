@@ -11,6 +11,9 @@ namespace gearit.src.editor.map.action
 		void init();
 		bool shortcut();
 		bool run();
+		void revert();
+		bool canBeReverted();
+		bool actOnSelect();
 		ActionTypes type();
 	}
 }

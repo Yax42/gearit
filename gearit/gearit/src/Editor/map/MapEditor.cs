@@ -26,10 +26,13 @@ namespace gearit.src.editor.map
 //		private MenuOverlay _menu_tools;
 //		private MenuOverlay _menu_properties;
 		private const int PropertiesMenuSize = 40;
-		private IAction _currentAction;
 		private MapChunk _dummyChunk;
 		private MapChunk _select;
 
+		//Action
+		private List<IAction> _actionsLog;
+		private List<IAction> _redoActionsLog;
+		private IAction _currentAction;
 
 		public static MapEditor Instance { set; get; }
 
@@ -80,13 +83,18 @@ namespace gearit.src.editor.map
 		public override void LoadContent()
 		{
 			base.LoadContent();
+			NamePath = "";
 
 			if (_world == null)
 				_world = new World(Vector2.Zero);
 			else
 				_world.Clear();
 			_dummyChunk = new PolygonChunk(_world, false, Vector2.Zero);
+
+			_actionsLog = new List<IAction>();
+			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.Dummy;
+
 			SerializerHelper.World = _world;
 			_map = new Map(_world);
 			ScreenManager.Game.ResetElapsedTime();
@@ -173,13 +181,14 @@ namespace gearit.src.editor.map
 			}
 		}
 
-		private void select()
+		public void doAction(ActionTypes action)
 		{
-			if (Select != null)
-				Select = null;
-			else
+			if (_currentAction.type() == ActionTypes.NONE)
 			{
-				Select = _map.getChunk(Input.SimMousePos);
+				_currentAction = ActionFactory.create(action);
+				if (_currentAction.actOnSelect() && _select == _dummyChunk)
+					_currentAction = ActionFactory.Dummy;
+				_currentAction.init();
 			}
 		}
 
@@ -190,13 +199,42 @@ namespace gearit.src.editor.map
 				if (MenuRobotEditor.Instance.hasFocus())
 					return;
 				_currentAction = ActionFactory.createFromShortcut();
+				if (_currentAction.actOnSelect() && _select == _dummyChunk)
+					_currentAction = ActionFactory.Dummy;
 				_currentAction.init();
 			}
 			if (_currentAction.run() == false)
 			{
+				if (_currentAction.canBeReverted())
+				{
+					_actionsLog.Insert(0, _currentAction);
+					if (_actionsLog.Count > 200)
+						_actionsLog.RemoveAt(_actionsLog.Count - 1);
+					_redoActionsLog.Clear();
+				}
 				_currentAction = ActionFactory.Dummy;
 			}
 			_camera.input();
+		}
+
+		public void undo()
+		{
+			if (_actionsLog.Count == 0)
+				return;
+			IAction a = _actionsLog.ElementAt(0);
+			a.revert();
+			_actionsLog.Remove(a);
+			_redoActionsLog.Insert(0, a);
+		}
+
+		public void redo()
+		{
+			if (_redoActionsLog.Count == 0)
+				return;
+			IAction a = _redoActionsLog.ElementAt(0);
+			a.run();
+			_redoActionsLog.Remove(a);
+			_actionsLog.Insert(0, a);
 		}
 
 #if false
@@ -302,6 +340,31 @@ namespace gearit.src.editor.map
 			_camera.input();
 		}
 #endif
+
+		//---------------------------NAME----------------------------------------
+
+		private string _prevName = "";
+		private string _namePath = "";
+		public string NamePath
+		{
+			get
+			{
+				return _namePath;
+			}
+			set
+			{
+				_prevName = _namePath;
+				_namePath = value;
+			}
+		}
+
+		public void resetNamePath()
+		{
+			_namePath = _prevName;
+			_prevName = "";
+		}
+
+		//-----------------------------------------------------------------------
 
 		public override void Draw(GameTime gameTime)
 		{

@@ -15,8 +15,6 @@ namespace gearit.src.map
 	[Serializable()]
 	class PolygonChunk : MapChunk, ISerializable
 	{
-		private int _selected = 0;
-
 		public PolygonChunk(World world, bool isDynamic, Vector2 pos)
 			: base(world, isDynamic, pos)
 		{
@@ -42,30 +40,36 @@ namespace gearit.src.map
 		}
 		//--------- END SERIALISATION
 
-		public void selectVertice(Vector2 p)
+		public int findVertice(Vector2 p)
 		{
 			float dist = 99999;
-			_selected = 0;
 			p -= Position;
 			Vertices vertices = ((PolygonShape)FixtureList[0].Shape).Vertices;
 
+			int res = 0;
 			for (int i = 0; i < vertices.Count; i++)
 				if ((vertices[i] - p).Length() < dist)
 				{
 					dist = (vertices[i] - p).Length();
-					_selected = i;
+					res = i;
 				}
+			return res;
 		}
 
-		override public void resize(Vector2 p)
+		public Vector2 getVertice(int verticeId)
+		{
+			return ((PolygonShape)FixtureList[0].Shape).Vertices[verticeId] + Position;
+		}
+
+		public void moveVertice(Vector2 p, int verticeId)
 		{
 			Vertices vertices = ((PolygonShape)FixtureList[0].Shape).Vertices;
 			float density = FixtureList[0].Shape.Density;
-			Vector2 backupPos = vertices[_selected];
+			Vector2 backupPos = vertices[verticeId];
 
-			vertices[_selected] = p - Position;
+			vertices[verticeId] = p - Position;
 			if (vertices.IsConvex() == false)
-				vertices[_selected] = backupPos;
+				vertices[verticeId] = backupPos;
 			else
 			{
 				Shape shape = new PolygonShape(vertices, density);

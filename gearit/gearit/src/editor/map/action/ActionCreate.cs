@@ -10,16 +10,16 @@ namespace gearit.src.editor.map.action
 {
 	class ActionCreate : IAction
 	{
+		private MapChunk _chunk;
+
 		public void init()
 		{
-			MapChunk chunk;
 
 			if (Input.ctrlAltShift(false, false, true))
-				chunk = new CircleChunk(MapEditor.Instance.World, true, Input.SimMousePos);
+				_chunk = new CircleChunk(MapEditor.Instance.World, true, Input.SimMousePos);
 			else
-				chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
-			MapEditor.Instance.Map.addChunk(chunk);
-			MapEditor.Instance.Select = chunk;
+				_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
+			MapEditor.Instance.Select = _chunk;
 		}
 
 		public bool shortcut()
@@ -29,7 +29,20 @@ namespace gearit.src.editor.map.action
 				|| Input.ctrlAltShift(false, false, true));
 		}
 
-		public bool run() { return false; }
+		public bool run()
+		{
+			MapEditor.Instance.Map.addChunk(_chunk);
+			return false;
+		}
+
+		public void revert()
+		{
+			MapEditor.Instance.Map.deleteChunk(_chunk);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public bool actOnSelect() { return false; }
 
 		public ActionTypes type() { return ActionTypes.CREATE; }
 	}

@@ -36,7 +36,7 @@ namespace gearit.src.map
 		{
 			_world = SerializerHelper.World;
 			_name = (string)info.GetValue("Name", typeof(string));
-		_chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
+			_chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -59,11 +59,6 @@ namespace gearit.src.map
 		public void deleteChunk(MapChunk tmp)
 		{
 			_chunks.Remove(tmp);
-		}
-
-		public List<MapChunk> getChunks()
-		{
-			return (_chunks);
 		}
 
 		public string Name

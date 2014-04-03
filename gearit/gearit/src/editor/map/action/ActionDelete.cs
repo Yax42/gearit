@@ -9,9 +9,10 @@ namespace gearit.src.editor.map.action
 {
 	class ActionDelete : IAction
 	{
+		private MapChunk _chunk;
 		public void init()
 		{
-			MapEditor.Instance.Map.getChunks().Remove(MapEditor.Instance.Select);
+			_chunk = MapEditor.Instance.Select;
 			MapEditor.Instance.Select = null;
 		}
 
@@ -21,7 +22,20 @@ namespace gearit.src.editor.map.action
 				&& Input.ctrlAltShift(false, false, false);
 		}
 
-		public bool run() { return false; }
+		public bool run()
+		{
+			MapEditor.Instance.Map.deleteChunk(_chunk);
+			return false;
+		}
+
+		public void revert()
+		{
+			MapEditor.Instance.Map.addChunk(_chunk);
+		}
+
+		public bool canBeReverted() { return true; }
+
+		public bool actOnSelect() { return true; }
 
 		public ActionTypes type() { return ActionTypes.DELETE; }
 	}

@@ -14,13 +14,13 @@ namespace gearit.src.editor.map.action
 		DELETE,
 		CREATE,
 		CHANGE_TYPE,
-		RESIZE,
-
+		RESIZE_POLYGON,
+		RESIZE_CIRCLE,
 		UNDO,
 		REDO,
+
 		SAVE,
 		LOAD,
-		SAVE_AS,
 		COUNT
 	}
 
@@ -69,8 +69,11 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.MOVE) return new ActionMove();
 			if (action == ActionTypes.DELETE) return new ActionDelete();
 			if (action == ActionTypes.CREATE) return new ActionCreate();
-			if (action == ActionTypes.RESIZE) return new ActionResize();
+			if (action == ActionTypes.RESIZE_CIRCLE) return new ActionResizeCircle();
+			if (action == ActionTypes.RESIZE_POLYGON) return new ActionResizePolygon();
 			if (action == ActionTypes.CHANGE_TYPE) return new ActionChangeType();
+			if (action == ActionTypes.UNDO) return new ActionUndo();
+			if (action == ActionTypes.REDO) return new ActionRedo();
 			return _dummy;
 		}
 	}

@@ -127,8 +127,11 @@
     <Compile Include="src\editor\map\action\ActionDummy.cs" />
     <Compile Include="src\editor\map\action\ActionFactory.cs" />
     <Compile Include="src\editor\map\action\ActionMove.cs" />
-    <Compile Include="src\editor\map\action\ActionResize.cs" />
+    <Compile Include="src\editor\map\action\ActionRedo.cs" />
+    <Compile Include="src\editor\map\action\ActionResizeCircle.cs" />
+    <Compile Include="src\editor\map\action\ActionResizePolygon.cs" />
     <Compile Include="src\editor\map\action\ActionSelect.cs" />
+    <Compile Include="src\editor\map\action\ActionUndo.cs" />
     <Compile Include="src\editor\map\action\IAction.cs" />
     <Compile Include="src\editor\robot\action\ActionCreatePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionShowHelp.cs" />

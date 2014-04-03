@@ -47,7 +47,6 @@ namespace gearit.src.editor.robot
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			_world = null;
-			NamePath = "";
 		}
 
 		public static RobotEditor Instance { set; get; }
@@ -92,6 +91,7 @@ namespace gearit.src.editor.robot
 			_camera.Position = new Vector2(-500f, -100f);
 			//_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
+			NamePath = "";
 			_world.Gravity = new Vector2(0f, 0f);
 			HasCursor = true;
 			HasVirtualStick = true;
@@ -170,6 +170,8 @@ namespace gearit.src.editor.robot
 				if (_currentAction.canBeReverted())
 				{
 					_actionsLog.Insert(0, _currentAction);
+					if (_actionsLog.Count > 200)
+						_actionsLog.RemoveAt(_actionsLog.Count - 1);
 					_redoActionsLog.Clear();
 				}
 				_currentAction = ActionFactory.Dummy;

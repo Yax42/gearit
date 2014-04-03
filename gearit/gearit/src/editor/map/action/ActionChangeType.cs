@@ -29,6 +29,12 @@ namespace gearit.src.editor.map.action
 			return false;
 		}
 
+		public void revert() { }
+
+		public bool canBeReverted() { return false; }
+
+		public bool actOnSelect() { return false; }
+
 		public ActionTypes type() { return ActionTypes.CHANGE_TYPE; }
 	}
 }

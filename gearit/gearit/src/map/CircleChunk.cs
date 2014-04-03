@@ -37,12 +37,19 @@ namespace gearit.src.map
 		}
 		//--------- END SERIALISATION
 
-		override public void resize(Vector2 p)
+		public float Size
 		{
-			float density = FixtureList[0].Shape.Density;
-			float size = (Position - p).Length();
-			DestroyFixture(FixtureList[0]);
-			FixtureFactory.AttachCircle(size, density, this);
+			get
+			{
+				return FixtureList[0].Shape._radius;
+			}
+			set
+			{
+				float density = FixtureList[0].Shape.Density;
+				float size = value;
+				DestroyFixture(FixtureList[0]);
+				FixtureFactory.AttachCircle(size, density, this);
+			}
 		}
 	}
 }

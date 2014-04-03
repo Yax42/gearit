@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.src.utility;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionSelect : IAction
+	class ActionRedo : IAction
 	{
 		public void init()
 		{
-			MapChunk chunk = MapEditor.Instance.Map.getChunk(Input.SimMousePos);
-			if (chunk != null)
-				MapEditor.Instance.Select = chunk;
-			else
-				MapEditor.Instance.Select = null;
+			MapEditor.Instance.redo();
 		}
 
 		public bool shortcut()
 		{
-			return Input.ctrlAltShift(false, false, false)
-				&& Input.justPressed(MouseKeys.LEFT);
+			return (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.Y));
 		}
 
 		public bool run() { return false; }
@@ -31,6 +27,6 @@ namespace gearit.src.editor.map.action
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.SELECT; }
+		public ActionTypes type() { return ActionTypes.REDO; }
 	}
 }

@@ -37,6 +37,5 @@ namespace gearit.src.editor.map
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
-		abstract public void resize(Vector2 p);
 	}
 }
