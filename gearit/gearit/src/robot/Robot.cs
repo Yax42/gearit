@@ -278,6 +278,7 @@ namespace gearit
 			if (_script != null)
 				_script.stop();
 			_script = null;
+			return;
 			foreach (ISpot i in _spots)
 				_world.RemoveJoint(i.Joint);
 			foreach (Piece i in _pieces)

@@ -55,10 +55,12 @@ namespace GUI2
 			_sound.ActiveLoop();
 			//_sound.playSound();
 
+			/*
 			_Gearit = new MyGame();
 			_bruteRobot = new BruteRobot();
 			_spiderBot = new SpiderBot();
 			_gladiator = new GladiatoRobot();
+			*/
 			_robot_editor = new RobotEditor();
 			_map_editor = new MapEditor();
 			_game = new GearitGame();

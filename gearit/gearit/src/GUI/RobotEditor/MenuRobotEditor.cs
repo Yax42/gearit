@@ -658,30 +658,35 @@ namespace gearit.src.editor.robot
 			if (RobotEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
-				new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot");
 			}
 			else
 				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 		}
-		public void saveasRobot()
+
+		private MessageBoxSave _messageBoxSave = null;
+		public void saveasRobot(bool mustExit = false)
 		{
 			setFocus(true);
-			new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot);
+			_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot", mustExit);
 		}
 
-		public void safeSaveRobot(string name)
+		public void safeSaveRobot(string name, bool mustExit = false)
 		{
 			setFocus(false);
 			if (name == "")
 				return;
 			RobotEditor.Instance.NamePath = name;
+			if (mustExit)
+				ActionSaveRobot.MustExit = true;
 			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 		}
 
+		private MessageBoxLoad _messageBoxLoad = null;
 		public void loadRobot()
 		{
 			setFocus(true);
-			new MessageBoxLoad(@"data/robot/", ".gir", this, safeLoadRobot);
+			_messageBoxLoad = new MessageBoxLoad(@"data/robot/", ".gir", this, safeLoadRobot, setFocus);
 		}
 
 		public void safeLoadRobot(string name)
@@ -759,8 +764,10 @@ namespace gearit.src.editor.robot
 		{
 			if (_has_focus)
 				return (true);
+			else return false;
 
 			int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+
 
 			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
 				background.Position.x + background.Size.x + padding >= Input.position().X &&
@@ -790,6 +797,20 @@ namespace gearit.src.editor.robot
 
 		public void Update(Piece piece, ISpot spot)
 		{
+			if (Input.Exit)
+			{
+				if (_messageBoxLoad != null)
+				{
+					_messageBoxLoad.cancel();
+					_messageBoxLoad = null;
+				}
+				if (_messageBoxSave != null)
+				{
+					_messageBoxSave.cancel();
+					_messageBoxSave = null;
+				}
+			}
+
 			Piece = piece;
 			Spot = spot;
 

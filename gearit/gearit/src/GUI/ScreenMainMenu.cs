@@ -11,6 +11,7 @@ namespace GUI
 {
 	class ScreenMainMenu : GameScreen
 	{
+		public static bool GoBack = false;
 		private Squid.Desktop _background;
 		private MainMenu _menu;
 
@@ -35,8 +36,11 @@ namespace GUI
 		{
 			base.Update(gameTime);
 
-			if (Input.justPressed(Keys.Escape))
+			if (GoBack)
+			{
+				GoBack = false;
 				_menu.goBack();
+			}
 
 			_menu.Update();
 		}

@@ -14,7 +14,7 @@ namespace SquidXNA
 
 		public Game()
 		{
-            IsMouseVisible = true;
+			IsMouseVisible = true;
 
 			Content.RootDirectory = "Content";
 
@@ -197,23 +197,23 @@ namespace SquidXNA
 			itemMenuButtonStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 			itemMenuButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
-            ControlStyle eventPanelStyle = new ControlStyle();
-            eventPanelStyle.TextAlign = Alignment.MiddleCenter;
-            eventPanelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-            eventPanelStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-            eventPanelStyle.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-            eventPanelStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
-            eventPanelStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+			ControlStyle eventPanelStyle = new ControlStyle();
+			eventPanelStyle.TextAlign = Alignment.MiddleCenter;
+			eventPanelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			eventPanelStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			eventPanelStyle.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			eventPanelStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+			eventPanelStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
-            ControlStyle treeNodeTextStyle = new ControlStyle();
-            treeNodeTextStyle.TextAlign = Alignment.MiddleCenter;
-            treeNodeTextStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.0f);
+			ControlStyle treeNodeTextStyle = new ControlStyle();
+			treeNodeTextStyle.TextAlign = Alignment.MiddleCenter;
+			treeNodeTextStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.0f);
 
-            ControlStyle addEventButtonStyle = new ControlStyle();
-            addEventButtonStyle.TextAlign = Alignment.MiddleCenter;
-            addEventButtonStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-            addEventButtonStyle.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
-            addEventButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
+			ControlStyle addEventButtonStyle = new ControlStyle();
+			addEventButtonStyle.TextAlign = Alignment.MiddleCenter;
+			addEventButtonStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			addEventButtonStyle.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
+			addEventButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 
 			skin.Styles.Add("item", itemStyle);
 			skin.Styles.Add("textbox", inputStyle);
@@ -239,9 +239,9 @@ namespace SquidXNA
 			skin.Styles.Add("itemMenu", itemMenuStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
 			skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
-            skin.Styles.Add("eventPanel", eventPanelStyle);
-            skin.Styles.Add("treeNodeText", treeNodeTextStyle);
-            skin.Styles.Add("addEventButton", addEventButtonStyle);
+			skin.Styles.Add("eventPanel", eventPanelStyle);
+			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
+			skin.Styles.Add("addEventButton", addEventButtonStyle);
 
 			GuiHost.SetSkin(skin);
 

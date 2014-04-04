@@ -16,7 +16,7 @@ namespace gearit.src.editor.robot.action
 		public bool shortcut()
 		{
 			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
-				MenuRobotEditor.Instance.saveRobot();
+				MenuRobotEditor.Instance.loadRobot();
 			return false;
 		}
 

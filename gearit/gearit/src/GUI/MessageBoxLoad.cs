@@ -10,12 +10,13 @@ namespace gearit.src.GUI
 {
 	public class MessageBoxLoad
 	{
+		Action _cbCancel;
 		MessageBox _msg;
 		DropDownList combo = new DropDownList();
 
-		public MessageBoxLoad(string folder, string extension, Desktop dk, Action<String> cbLoad)
+		public MessageBoxLoad(string folder, string extension, Desktop dk, Action<String> cbLoad, Action<bool> setFocus)
 		{
-			_msg = MessageBox.Show(new Point(300, 160), "Load Robot", "Name", MessageBoxButtons.OK, dk);
+			_msg = MessageBox.Show(new Point(300, 160), "Load Robot", "Name", MessageBoxButtons.OKCancel, dk);
 
 			// Event type choice
 			combo.Size = new Squid.Point(158, 34);
@@ -39,10 +40,15 @@ namespace gearit.src.GUI
 			DirectoryInfo d = new DirectoryInfo(folder);
 			if (!d.Exists)
 			{
-				OutputManager.LogError("Folder " + folder + " doesn't exist.");
+				OutputManager.LogWarning("Folder " + folder + " doesn't exist.");
 				return;
 			}
 			FileInfo[] Files = d.GetFiles("*" + extension); //Getting Text files
+			if (Files.Count() == 0)
+			{
+				OutputManager.LogWarning("Folder " + folder + " is empty.");
+				return;
+			}
 			foreach (FileInfo file in Files)
 			{
 				ListBoxItem item = new ListBoxItem();
@@ -56,11 +62,25 @@ namespace gearit.src.GUI
 
 			_msg.Controls.Add(combo);
 
-			_msg.GetControl(MessageBoxButtons.OK.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
+			_msg.GetControl(DialogResult.OK.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
 			{
 				_msg.Close();
 				cbLoad(combo.SelectedItem.Text);
 			};
+			_cbCancel = delegate()
+			{
+				_msg.Close();
+				setFocus(false);
+			};
+			_msg.GetControl(DialogResult.Cancel.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
+			{
+				cancel();
+			};
+		}
+
+		public void cancel()
+		{
+			_cbCancel();
 		}
 	}
 }

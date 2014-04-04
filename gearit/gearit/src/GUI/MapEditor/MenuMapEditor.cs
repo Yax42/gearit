@@ -262,38 +262,60 @@ namespace gearit.src.editor.map
 			#endregion
 		}
 
+		public void Update()
+		{
+			base.Update();
+			if (Input.Exit)
+			{
+				if (_messageBoxLoad != null)
+				{
+					_messageBoxLoad.cancel();
+					_messageBoxLoad = null;
+				}
+				if (_messageBoxSave != null)
+				{
+					_messageBoxSave.cancel();
+					_messageBoxSave = null;
+				}
+			}
+		}
+
 		//---------------------SAVE&LOAD-----------------------------
 
 		public void saveMap()
 		{
-			//MapEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 			if (MapEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
-				new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap);
+				_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap, setFocus, "map");
 			}
 			else
 				MapEditor.Instance.doAction(ActionTypes.SAVE);
 		}
-		public void saveasMap()
+
+		private MessageBoxSave _messageBoxSave = null;
+		public void saveasMap(bool mustExit = false)
 		{
 			setFocus(true);
-			new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap);
+			_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap, setFocus, "map", mustExit);
 		}
 
-		public void safeSaveMap(string name)
+		public void safeSaveMap(string name, bool mustExit = false)
 		{
 			setFocus(false);
 			if (name == "")
 				return;
+			if (mustExit)
+				ActionSaveMap.MustExit = true;
 			MapEditor.Instance.NamePath = name;
 			MapEditor.Instance.doAction(ActionTypes.SAVE);
 		}
 
+		private MessageBoxLoad _messageBoxLoad = null;
 		public void loadMap()
 		{
 			setFocus(true);
-			new MessageBoxLoad(@"data/map/", ".gim", this, safeLoadMap);
+			_messageBoxLoad = new MessageBoxLoad(@"data/map/", ".gim", this, safeLoadMap, setFocus);
 		}
 
 		public void safeLoadMap(string name)

@@ -117,8 +117,8 @@ namespace gearit.src.editor.robot
 			Robot.resetAct();
 			_camera.update();
 			HandleInput();
-
 			MenuRobotEditor.Instance.Update(Select1, Select1.getConnection(Select2));
+
 			MenuRobotEditor.Instance.Update();
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)

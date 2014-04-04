@@ -43,6 +43,9 @@ namespace gearit.src.editor
 				OutputManager.LogError("Fail to open/creating the file " + filename);
 				return false;
 			}
+
+			OutputManager.LogInfo("Successfuly saved " + filename);
+			
 			return true;
 		}
 
@@ -65,6 +68,7 @@ namespace gearit.src.editor
 				OutputManager.LogError("Fail to open the file " + filename);
 				return null;
 			}
+			OutputManager.LogInfo("Successfuly loaded " + filename);
 		}
 	}
 }

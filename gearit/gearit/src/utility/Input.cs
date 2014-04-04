@@ -28,6 +28,8 @@ namespace gearit.src.utility
 		static private KeyboardState _keyboard;
 		static private KeyboardState _old_keyboard;
 
+		static private bool _usedExit = false;
+
 		static public void init()
 		{
 			_keyboard = Keyboard.GetState();
@@ -92,10 +94,25 @@ namespace gearit.src.utility
 
 		static public void update()
 		{
+			_usedExit = false;
 			_old_mouse = _mouse;
 			_old_keyboard = _keyboard;
 			_mouse = Mouse.GetState();
 			_keyboard = Keyboard.GetState();
+		}
+
+		static public bool Exit
+		{
+			get
+			{
+				if (justPressed(Keys.Escape) && !_usedExit)
+				{
+					_usedExit = true;
+					return true;
+				}
+				else
+					return false;
+			}
 		}
 
 		static public Vector2 SimMousePos

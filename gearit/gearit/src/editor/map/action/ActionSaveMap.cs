@@ -6,11 +6,14 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.utility;
 using System.Diagnostics;
 using gearit.src.editor.map;
+using GUI;
 
 namespace gearit.src.editor.map.action
 {
 	class ActionSaveMap : IAction
 	{
+		static public bool MustExit = false;
+
 		public void init() { }
 
 		public bool shortcut()
@@ -28,6 +31,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Name = MapEditor.Instance.NamePath;
 			if (!Serializer.SerializeItem("map/" + MapEditor.Instance.NamePath + ".gim", MapEditor.Instance.Map))
 				MapEditor.Instance.resetNamePath();
+			else if (MustExit)
+			{
+				MustExit = false;
+				ScreenMainMenu.GoBack = true;
+			}
 			return false;
 		}
 

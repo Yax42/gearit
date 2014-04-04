@@ -115,9 +115,9 @@ namespace gearit.src.game
 
 		private void HandleInput()
 		{
-			if (Input.pressed(Keys.Escape))
+			if (Input.Exit)
 			{
-		clearRobot();
+				clearRobot();
 				ScreenManager.RemoveScreen(this);
 			}
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))

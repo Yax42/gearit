@@ -194,7 +194,7 @@ namespace SquidXNA
 		{
 			if (x < 0) x = 0;
 			if (y < 0) y = 0;
-            // Scissor (dont draw if not in rect)
+			// Scissor (dont draw if not in rect)
 			Game.GraphicsDevice.ScissorRectangle = new Rectangle(x, y, w, h);
 		}
 

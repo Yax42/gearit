@@ -22,6 +22,7 @@ namespace gearit.src.editor.map.action
 		SAVE,
 		LOAD,
 		SHOW_HELP,
+		EXIT,
 		COUNT
 	}
 
@@ -79,6 +80,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.SAVE) return new ActionSaveMap();
 			if (action == ActionTypes.LOAD) return new ActionLoadMap();
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
+			if (action == ActionTypes.EXIT) return new ActionExit();
 			return _dummy;
 		}
 	}
