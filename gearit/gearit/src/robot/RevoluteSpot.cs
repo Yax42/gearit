@@ -92,6 +92,8 @@ namespace gearit.src.robot
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			ColorValue = Color.Black;
+			_joint = (Joint)this;
+			_common = new CommonSpot(this);
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

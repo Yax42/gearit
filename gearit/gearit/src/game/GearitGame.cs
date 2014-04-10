@@ -9,6 +9,8 @@ using gearit.src.map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.editor;
+using System.Diagnostics;
+using FarseerPhysics.Dynamics.Joints;
 
 namespace gearit.src.game
 {
@@ -62,15 +64,38 @@ namespace gearit.src.game
 			//clearRobot();
 			SerializerHelper.World = _world;
 			Console.Write("One ");
-		addRobot((Robot)Serializer.DeserializeItem("r2d2.gir"));
-		_robots[0].getPiece(Vector2.Zero).Weight = 30;
-			_map = (Map)Serializer.DeserializeItem("moon.gim");
+
+			addDummyPrismatic();
+
+			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
+			Debug.Assert(_robots != null);
+			_robots[0].getPiece(Vector2.Zero).Weight = 30;
+			_map = (Map)Serializer.DeserializeItem("map/moon.gim");
+			Debug.Assert(_map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
 		}
+
+		private void addDummyPrismatic()
+		{
+			Body b1 = new Body();
+			//b1.Position = new Vector2(10000, 10000);
+			b1.IsStatic = false;
+
+			Body b2 = new Body();
+			//b2.Position = new Vector2(10000, 10000);
+			b2.IsStatic = false;
+
+			Vector2 anchor = new Vector2(0, 0);
+			Joint j = new PrismaticJoint(b1, b2, anchor, anchor, anchor);
+			_world.AddBody(b1);
+			_world.AddBody(b2);
+			_world.AddJoint(j);
+		}
+
 
 		public World getWorld()
 		{

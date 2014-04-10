@@ -49,7 +49,7 @@ namespace gearit.src.editor.robot
 		private Button Help_btn;
 
 		private Frame spot_container = new Frame();
-		private TextBox spot_name = new TextBox();
+		private TextBox spot_name;
 		private TextBox spot_force = new TextBox();
 		private Frame spot_distance_container = new Frame();
 		private TextBox spot_distance = new TextBox();
@@ -382,6 +382,7 @@ namespace gearit.src.editor.robot
 			lb.Style = "itemMenu";
 			lb.Parent = spot_container;
 
+			spot_name = newEditableTextBox();
 			spot_name.Text = "spotNumber";
 			spot_name.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			spot_name.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
@@ -402,6 +403,7 @@ namespace gearit.src.editor.robot
 			lb.Style = "itemMenu";
 			lb.Parent = spot_container;
 
+			spot_force = newEditableTextBox();
 			spot_force.Text = "8";
 			spot_force.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			spot_force.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
@@ -651,6 +653,20 @@ namespace gearit.src.editor.robot
 			#endregion
 		}
 
+		private TextBox newEditableTextBox()
+		{
+			TextBox box = new TextBox();
+			box.GotFocus += delegate(Control snd)
+			{
+				setFocus(true);
+			};
+			box.LostFocus += delegate(Control snd)
+			{
+				setFocus(false);
+			};
+			return box;
+		}
+
 		//----------------SAVE&LOAD-------------------------------------------
 		public void saveRobot()
 		{
@@ -764,7 +780,7 @@ namespace gearit.src.editor.robot
 		{
 			if (_has_focus)
 				return (true);
-			else return false;
+			//else return false;
 
 			int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 

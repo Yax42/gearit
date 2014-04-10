@@ -77,6 +77,8 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			LimitEnabled = false;
 			ColorValue = Color.Black;
+			_joint = (Joint)this;
+			_common = new CommonSpot(this);
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

@@ -1,28 +1,26 @@
 require 'header'
 
+jump_time = 0
 
 while true do
-	if Input:pressed(K_Left) then
-		roue1.motor = 1
-		roue2.motor = 1
-	elseif Input:pressed(K_Right) then
-		roue1.motor = -1
-		roue2.motor = -1
+	if Input:pressed(K_D) then
+	  wheel1.motor = -1
+	  wheel2.motor = -1
+	elseif Input:pressed(K_A) then
+	  wheel1.motor = 1
+	  wheel2.motor = 1
 	else
-		roue1.motor = 0
-		roue1.motor = 0
+	  wheel1.motor = 0
+	  wheel2.motor = 0
 	end
-	
-	if Input:pressed(K_S) then
-		boulet.motor = 1
-	elseif Input:pressed(K_Q) then
-		boulet.motor = -1
-	end
-	
 	if Input:pressed(K_W) then
-		tige.motor = 1
-	elseif Input:pressed(K_X) then
-		tige.motor = -1
+	  arm1.motor = -1
+	  arm2.motor = -1
+	elseif Input:pressed(K_S) then
+	  arm1.motor = 1
+	  arm2.motor = 1
+	else
+	  arm1.motor = 0
+	  arm2.motor = 0
 	end
-
 end
