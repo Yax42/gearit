@@ -37,19 +37,21 @@ namespace gearit.src.utility
 			{
 				_nbLeggs = nbLeggs;
 				_id = ++_nb;
-				_spot = new Body(world);
-				CircleShape circleShape1 = new CircleShape(0.1f, 4f);
-				(_spot.CreateFixture(circleShape1)).CollisionGroup = 42;
+				_spot = BodyFactory.CreateCircle(world, 2f, 1f, Vector2.Zero);
+				//_spot = new Body(world);
+				//CircleShape circleShape1 = new CircleShape(2f, 4f);
+				//(_spot.CreateFixture(circleShape1)).CollisionGroup = 42;
 				_spot.BodyType = BodyType.Dynamic;
 				_spot.FixtureList[0].Shape.Density = 2f;
 				_spot.ResetMassData();
+				_spot.CollisionGroup = 42;
 
-		if (_id <= nbLeggs / 2)
-				  _pris = new PrismaticJoint(heart, _spot, Vector2.Zero, Vector2.Zero,
-			new Vector2(((_id % (nbLeggs / 2)) / (float) (nbLeggs / 2)), (1f - (_id % (nbLeggs / 2)) / (float) (nbLeggs / 2))));
-		else
-				  _pris = new PrismaticJoint(heart, _spot, Vector2.Zero, Vector2.Zero,
-			new Vector2(-((_id % (nbLeggs / 2)) / (float) (nbLeggs / 2)), -(1f - (_id % (nbLeggs / 2)) / (float) (nbLeggs / 2))));
+				if (_id <= nbLeggs / 2)
+					_pris = new PrismaticJoint(heart, _spot, Vector2.Zero, Vector2.Zero,
+					new Vector2(((_id % (nbLeggs / 2)) / (float)(nbLeggs / 2)), (1f - (_id % (nbLeggs / 2)) / (float)(nbLeggs / 2))));
+				else
+					_pris = new PrismaticJoint(heart, _spot, Vector2.Zero, Vector2.Zero,
+					new Vector2(-((_id % (nbLeggs / 2)) / (float)(nbLeggs / 2)), -(1f - (_id % (nbLeggs / 2)) / (float)(nbLeggs / 2))));
 
 		//new Vector2(((_rand.Next() % 2000) / 1000.0f - 1000),((_rand.Next() % 2000) / 1000.0f - 1000)));
 
@@ -72,22 +74,37 @@ namespace gearit.src.utility
 				_rev = new RevoluteJoint(_wheel, _spot, Vector2.Zero, Vector2.Zero);
 				_rev.Enabled = true;
 				_rev.MotorEnabled = true;
-				_rev.MaxMotorTorque = 100f;
+				_rev.MaxMotorTorque = 10f;
 				_rev.MotorSpeed = 0f;
 				world.AddJoint(_rev);
+				
 			}
 			public void setRotation(float v)
 			{
    //			 if (_id % (_nbLeggs / 2) > _nbLeggs / 4)
 	//				v = -v;
-				_rev.MotorSpeed = v;
+				//_rev.MotorSpeed = v;
 			}
 
 			public void setTranslation(float v)
 			{
 	  //		  if (_id % (_nbLeggs / 2) > _nbLeggs / 4)
 	   //			 v = -v;
-				_pris.MotorForce = v;
+				if (v == 0)
+				{
+					_pris.MotorForce = 0;//v;
+					_pris.MotorSpeed = 0;//v;
+				}
+				else if (v > 0)
+				{
+					_pris.MotorForce = _pris.MaxMotorForce;
+					_pris.MotorSpeed = _pris.MaxMotorForce;
+				}
+				else if (v < 0)
+				{
+					_pris.MotorForce = -_pris.MaxMotorForce;
+					_pris.MotorSpeed = -_pris.MaxMotorForce;
+				}
 			}
 
 			public Body getBody()
@@ -214,13 +231,13 @@ namespace gearit.src.utility
 			_heart = new Body(World);
 			_heart.BodyType = BodyType.Dynamic;
 			_heart.CreateFixture(new PolygonShape(vertices, 20f));
-			_heart.FixtureList[0].Shape.Density = 200f;
+			_heart.FixtureList[0].Shape.Density = 20f;
 			_heart.ResetMassData();
 			_heart.FixtureList[0].CollisionGroup = 42;
 			_heart.SetTransform(new Vector2(14, 0), 3.1415926f);
 
 			/***********aaa************************************************************************************************/
-			_nbLeggs = 50;
+			_nbLeggs = 2;
 			/***********************************************************************************************************/
 			_leggs = new Legg[_nbLeggs];
 			for (int i = 0; i < _nbLeggs; i++)

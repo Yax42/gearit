@@ -28,9 +28,9 @@ namespace gearit.src.utility
 		// Draw on window
 		private SpriteBatch			 _batch;
 		// Texture & Sprite
-		private Texture2D			   _ground_tex;
-		private Texture2D			   _box_text;
-		private Texture2D			   _ball_tex;
+		private Texture2D				_ground_tex;
+		private Texture2D				_box_text;
+		private Texture2D				_ball_tex;
 		// Camera
 		private Matrix				  _view;
 		private Vector2				 _camera_position;
@@ -53,9 +53,9 @@ namespace gearit.src.utility
 		private Body					_heart;
 		private Body					_wheel_left;
 		private Body					_wheel_right;
-		private Texture2D			   _wheel_right_tex;
-		private Texture2D			   _wheel_left_tex;
-		private Texture2D			   _heart_tex;
+		private Texture2D				_wheel_right_tex;
+		private Texture2D				_wheel_left_tex;
+		private Texture2D				_heart_tex;
 	private Body[]			_joints = new Body[4];
 		private Body			_rod1Start;
 		private Body			_rod1End;
@@ -107,7 +107,7 @@ namespace gearit.src.utility
 			// Setting the root path for content (sprite/font..)
 			//ScreenManager.Game.Content.RootDirectory = "Content";
 
- 		_debug = new DebugViewXNA(World);
+		_debug = new DebugViewXNA(World);
 			_debug.AppendFlags(DebugViewFlags.DebugPanel);
 			_debug.DefaultShapeColor = Color.White;
 			_debug.SleepingShapeColor = Color.LightGray;
@@ -136,7 +136,7 @@ namespace gearit.src.utility
 			
 			wall_position -= new Vector2(7f, 2f);
 			_ground_up_left = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
-		   
+			
 			wall_position += new Vector2(14f, 1f);
 			_ground_up_right = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
 
@@ -263,7 +263,7 @@ namespace gearit.src.utility
 			_wheel_right.BodyType = BodyType.Dynamic;
 			_wheel_right_tex = _asset.TextureFromShape(_wheel_right.FixtureList[0].Shape, MaterialType.Blank, Color.Gray, 1f);
 			_wheel_right.CollisionGroup = 42;
-		   // _wheel_right.Position = new Vector2(13, 4);
+			// _wheel_right.Position = new Vector2(13, 4);
 			_wheel_right.Position = new Vector2(_heart.Position.X -1, _heart.Position.Y + 2);
 
 			_wheel_left = BodyFactory.CreateCircle(World, 0.5f, 1f, Vector2.Zero);

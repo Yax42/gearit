@@ -142,6 +142,10 @@
     <Compile Include="src\editor\robot\action\ActionExit.cs" />
     <Compile Include="src\editor\robot\action\ActionShowHelp.cs" />
     <Compile Include="src\GUI\MapEditor\MenuMapEditor.cs" />
+    <Compile Include="src\GUI\sample\SampleGameScreen.cs" />
+    <Compile Include="src\GUI\sample\SampleMenu.cs" />
+    <Compile Include="src\MasterServer\MasterClient.cs" />
+    <Compile Include="src\MasterServer\MenuMasterClient.cs" />
     <Compile Include="src\GUI\MessageBoxSave.cs" />
     <Compile Include="src\GUI\MessageBoxLoad.cs" />
     <Compile Include="src\GUI\MessageBox.cs" />

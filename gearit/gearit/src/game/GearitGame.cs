@@ -81,19 +81,23 @@ namespace gearit.src.game
 
 		private void addDummyPrismatic()
 		{
-			Body b1 = new Body();
-			//b1.Position = new Vector2(10000, 10000);
+			Body b1 = new Body(_world);
+			b1.Position = new Vector2(10000, 10000);
 			b1.IsStatic = false;
 
-			Body b2 = new Body();
-			//b2.Position = new Vector2(10000, 10000);
+			Body b2 = new Body(_world);
+			b2.Position = new Vector2(10000, 10000);
+			b2.IsStatic = false;
+
+			Body b3 = new Body(_world);
+			b2.Position = new Vector2(10000, 10000);
 			b2.IsStatic = false;
 
 			Vector2 anchor = new Vector2(0, 0);
-			Joint j = new PrismaticJoint(b1, b2, anchor, anchor, anchor);
-			_world.AddBody(b1);
-			_world.AddBody(b2);
-			_world.AddJoint(j);
+			Joint rev = new RevoluteJoint(b1, b2, anchor, anchor);
+			Joint pris = new PrismaticJoint(b2, b3, anchor, anchor, anchor);
+			_world.AddJoint(rev);
+			_world.AddJoint(pris);
 		}
 
 

@@ -8,6 +8,7 @@ using gearit.src.editor.robot;
 using gearit.src.game;
 using gearit.src.editor.map;
 using SquidXNA;
+using gearit.src;
 
 namespace GUI
 {
@@ -23,17 +24,16 @@ namespace GUI
 		private GameScreen current_screen = null;
 
 		// List of item menu
-		/*
 		private MyGame _Gearit;
 		private BruteRobot _bruteRobot;
 		private GladiatoRobot _gladiator;
 		private SpiderBot _spiderBot;
 		private SoundManager _sound;
-		*/
 		private RobotEditor _robot_editor;
 		private MapEditor _map_editor;
 		private MainOptions _Options;
 		private GearitGame _game;
+		private MasterClient _masterClient;
 
 		public MainMenu(ScreenManager ScreenManager)
 		{
@@ -60,28 +60,31 @@ namespace GUI
 			menu_listbox.Parent = this;
 			menu_listbox.Style = "mainMenu";
 
-			/*
 			_Gearit = new MyGame();
 			_bruteRobot = new BruteRobot();
 			_spiderBot = new SpiderBot();
 			_gladiator = new GladiatoRobot();
-			*/
 			_robot_editor = new RobotEditor();
 			_map_editor = new MapEditor();
 			_game = new GearitGame();
 			_Options = new MainOptions("Options", _ScreenManager);
+			_masterClient = new MasterClient();
 
 			// Add ItemMenu
-			/*
+			addMenuItem(_game, _game.GetTitle());
+			addMenuItem(_robot_editor, _robot_editor.GetTitle());
+			addMenuItem(_map_editor, _map_editor.GetTitle());
+			addMenuItem(_Options, _Options.GetTitle());
+			addMenuItem(_masterClient, _masterClient.GetTitle());
+
+			//SEPARATOR
+			addMenuItem(_Options, "");
+			//
+
 			addMenuItem(_Gearit, _Gearit.GetTitle());
 			addMenuItem(_bruteRobot, _bruteRobot.GetTitle());
 			addMenuItem(_spiderBot, _spiderBot.GetTitle());
 			addMenuItem(_gladiator, _gladiator.GetTitle());
-			*/
-			addMenuItem(_robot_editor, _robot_editor.GetTitle());
-			addMenuItem(_map_editor, _map_editor.GetTitle());
-			addMenuItem(_game, _game.GetTitle());
-			addMenuItem(_Options, _Options.GetTitle());
 
 			// ToRemove - Popup robot editor
 			//menu_listbox.Items[4].Click(0);
