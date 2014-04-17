@@ -186,11 +186,11 @@ namespace gearit.src.utility
 
 			//DUMMY
 
+/*
 			Body dummyPiece;
 			dummyPiece = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
 			dummyPiece.CollisionGroup = 42;
 			dummyPiece.BodyType = BodyType.Dynamic;
-/*
 			_jointRod1 = new PrismaticJoint(_heart, _rod1End, Vector2.Zero, new Vector2(0, 0), new Vector2(-1, 1));
 			_jointRod1.LimitEnabled = true;
 			_jointRod1.Enabled = true;

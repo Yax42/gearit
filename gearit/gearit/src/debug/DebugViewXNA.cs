@@ -535,24 +535,21 @@ namespace FarseerPhysics.DebugViews
 						DrawSegment(v1, v2, color);
 					}
 					break;
-
-#if false //seems out to date
-				case ShapeType.Loop:
+				case ShapeType.Chain:
 					{
-						LoopShape loop = (LoopShape)fixture.Shape;
+						ChainShape loop = (ChainShape)fixture.Shape;
 						int count = loop.Vertices.Count;
 
-						Vector2 v1 = MathUtils.Multiply(ref xf, loop.Vertices[count - 1]);
+						Vector2 v1 = MathUtils.MulT(ref xf, loop.Vertices[count - 1]);
 						DrawCircle(v1, 0.05f, color);
 						for (int i = 0; i < count; ++i)
 						{
-							Vector2 v2 = MathUtils.Multiply(ref xf, loop.Vertices[i]);
+							Vector2 v2 = MathUtils.MulT(ref xf, loop.Vertices[i]);
 							DrawSegment(v1, v2, color);
 							v1 = v2;
 						}
 					}
 					break;
-#endif
 			}
 		}
 		public override void DrawPolygon(Vector2[] vertices, int count, float red, float green, float blue, bool closed = true)
