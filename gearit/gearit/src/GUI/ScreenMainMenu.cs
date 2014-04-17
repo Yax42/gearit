@@ -6,6 +6,7 @@ using gearit.xna;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.GUI;
 
 namespace GUI
 {
@@ -14,6 +15,7 @@ namespace GUI
 		public static bool GoBack = false;
 		private Squid.Desktop _background;
 		private MainMenu _menu;
+
 
 		public ScreenMainMenu()
 		{
@@ -25,6 +27,7 @@ namespace GUI
 			base.LoadContent();
 
 			_menu = new GUI.MainMenu(ScreenManager);
+			ChatBox.init(ScreenManager);
 
 			// Mouse Cursor bug fix
 			//_background = new Squid.Desktop();
@@ -43,6 +46,7 @@ namespace GUI
 			}
 
 			_menu.Update();
+			ChatBox.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -50,6 +54,7 @@ namespace GUI
 			base.Draw(gameTime);
 
 			_menu.Draw();
+			ChatBox.getDesktop().Draw();
 		}
 	}
 }

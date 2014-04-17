@@ -158,7 +158,7 @@ namespace SquidXNA
 
 			ControlStyle labelStyle = new ControlStyle();
 			labelStyle.TextPadding = new Margin(8, 0, 8, 0);
-			labelStyle.TextAlign = Alignment.MiddleCenter;
+			labelStyle.TextAlign = Alignment.MiddleLeft;
 			labelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			labelStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.1f);
 			labelStyle.Default.BackColor = 0;

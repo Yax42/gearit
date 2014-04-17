@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using gearit.src.GUI;
 
 namespace gearit.src.output
 {
@@ -10,14 +11,22 @@ namespace gearit.src.output
 		static public void LogError(String msg)
 		{
 			Console.WriteLine("ERROR: #{0}", msg);
+			ChatBox.addEntry(msg, ChatBox.Entry.Error);
 		}
 		static public void LogWarning(String msg)
 		{
 			Console.WriteLine("WARNING: #{0}", msg);
+			ChatBox.addEntry(msg, ChatBox.Entry.Warning);
 		}
 		static public void LogInfo(String msg)
 		{
 			Console.WriteLine("Info: #{0}", msg);
+			ChatBox.addEntry(msg, ChatBox.Entry.Info);
+		}
+		static public void LogMessage(String msg)
+		{
+			Console.WriteLine("Message: #{0}", msg);
+			ChatBox.addEntry(msg, ChatBox.Entry.Message);
 		}
 
 		//// STATIC method

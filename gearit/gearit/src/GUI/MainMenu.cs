@@ -9,6 +9,7 @@ using gearit.src.game;
 using gearit.src.editor.map;
 using SquidXNA;
 using gearit.src;
+using gearit.src.GUI;
 
 namespace GUI
 {
@@ -87,7 +88,7 @@ namespace GUI
 			addMenuItem(_gladiator, _gladiator.GetTitle());
 
 			// ToRemove - Popup robot editor
-			//menu_listbox.Items[4].Click(0);
+			//menu_listbox.Items[1].Click(0);
 
 			#endregion
 		}
