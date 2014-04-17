@@ -221,7 +221,7 @@ namespace FarseerPhysics.DebugViews
 
 							for (int i = 0; i < polygon.Vertices.Count; i++)
 							{
-								Vector2 tmp = MathUtils.MulT(ref xf, polygon.Vertices[i]);
+								Vector2 tmp = MathUtils.Mul(ref xf, polygon.Vertices[i]);
 								DrawPoint(tmp, 0.1f, Color.Red);
 							}
 						}
@@ -503,7 +503,7 @@ namespace FarseerPhysics.DebugViews
 					{
 						CircleShape circle = (CircleShape)fixture.Shape;
 
-						Vector2 center = MathUtils.MulT(ref xf, circle.Position);
+						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 						Vector2 axis = xf.q.GetXAxis();//.R.Col1;
 
@@ -519,7 +519,7 @@ namespace FarseerPhysics.DebugViews
 
 						for (int i = 0; i < vertexCount; ++i)
 						{
-							_tempVertices[i] = MathUtils.MulT(ref xf, poly.Vertices[i]);
+							_tempVertices[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
 						}
 
 						DrawSolidPolygon(_tempVertices, vertexCount, color);
@@ -530,8 +530,8 @@ namespace FarseerPhysics.DebugViews
 				case ShapeType.Edge:
 					{
 						EdgeShape edge = (EdgeShape)fixture.Shape;
-						Vector2 v1 = MathUtils.MulT(ref xf, edge.Vertex1);
-						Vector2 v2 = MathUtils.MulT(ref xf, edge.Vertex2);
+						Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
+						Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
 						DrawSegment(v1, v2, color);
 					}
 					break;
@@ -540,11 +540,11 @@ namespace FarseerPhysics.DebugViews
 						ChainShape loop = (ChainShape)fixture.Shape;
 						int count = loop.Vertices.Count;
 
-						Vector2 v1 = MathUtils.MulT(ref xf, loop.Vertices[count - 1]);
+						Vector2 v1 = MathUtils.Mul(ref xf, loop.Vertices[count - 1]);
 						DrawCircle(v1, 0.05f, color);
 						for (int i = 0; i < count; ++i)
 						{
-							Vector2 v2 = MathUtils.MulT(ref xf, loop.Vertices[i]);
+							Vector2 v2 = MathUtils.Mul(ref xf, loop.Vertices[i]);
 							DrawSegment(v1, v2, color);
 							v1 = v2;
 						}

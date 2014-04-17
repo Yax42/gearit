@@ -60,7 +60,7 @@ namespace gearit.src.robot
 			Vector2 v1 = ((PolygonShape)_shape).Vertices[0];
 			Vector2 v2 = ((PolygonShape)_shape).Vertices[2];
 
-			return ((MathUtils.MulT(ref xf, v1) - pos).Length() > (MathUtils.MulT(ref xf, v1) - pos).Length());
+			return ((MathUtils.Mul(ref xf, v1) - pos).Length() > (MathUtils.Mul(ref xf, v1) - pos).Length());
 
 		}
 

@@ -107,7 +107,7 @@ namespace gearit.src
 					{
 						CircleShape circle = (CircleShape)fixture.Shape;
 
-						Vector2 center = MathUtils.MulT(ref xf, circle.Position);
+						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
 						drawCircle(center, radius, color);
@@ -121,7 +121,7 @@ namespace gearit.src
 
 						for (int i = 0; i < vertexCount; ++i)
 						{
-							_tempVertices[i] = MathUtils.MulT(ref xf, poly.Vertices[i]);
+							_tempVertices[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
 						}
 
 						drawPolygon(_tempVertices, vertexCount, color);
@@ -131,8 +131,8 @@ namespace gearit.src
 				case ShapeType.Edge:
 					{
 						EdgeShape edge = (EdgeShape)fixture.Shape;
-						Vector2 v1 = MathUtils.MulT(ref xf, edge.Vertex1);
-						Vector2 v2 = MathUtils.MulT(ref xf, edge.Vertex2);
+						Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
+						Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
 						drawLine(v1, v2, color);
 					}
 					break;
