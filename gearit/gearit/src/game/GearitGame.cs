@@ -65,7 +65,7 @@ namespace gearit.src.game
 			Console.Write("One ");
 
 
-			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
+			//addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
 			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
 			Debug.Assert(_robots != null);
 			_robots[0].getPiece(Vector2.Zero).Weight = 30;
