@@ -41,6 +41,7 @@ namespace gearit
 			Shown = true;
 			_tex = null;
 			Sleeping = false;
+			CollisionCategories = Category.Cat1;
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -55,6 +56,7 @@ namespace gearit
 			_robot = robot;
 			Shown = true;
 			Sleeping = false;
+			CollisionCategories = Category.Cat1;
 		}
 
 		//
@@ -69,6 +71,7 @@ namespace gearit
 			int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
 			SerializerHelper.Add(oldHashMap, this);
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
+			CollisionCategories = Category.Cat1;
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
