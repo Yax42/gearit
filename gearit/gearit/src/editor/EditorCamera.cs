@@ -201,9 +201,9 @@ namespace gearit.src.editor
 			return new Vector2(t.X, t.Y);
 		}
 
-		public void input()
+		public void input(bool canMove = true)
 		{
-			if (Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
+			if (canMove && Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
 				move(Input.mouseOffset());
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				zoomIn();

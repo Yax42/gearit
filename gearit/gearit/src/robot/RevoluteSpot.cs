@@ -241,8 +241,8 @@ namespace gearit.src.robot
 
 		public float Force
 		{
-			get { return MotorTorque; }
-			set { MotorTorque = value; }
+			get { return MotorImpulse; }
+			set { MotorImpulse = value; }
 		}
 
 		public float MaxForce

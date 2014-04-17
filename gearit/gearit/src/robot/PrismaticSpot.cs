@@ -103,8 +103,8 @@ namespace gearit.src.robot
 
 		public void updateAxis()
 		{
-			LocalXAxis1 = WorldAnchorA - WorldAnchorB;
-			LocalXAxis1 /= LocalXAxis1.Length();
+			Axis = WorldAnchorA - WorldAnchorB;
+			Axis /= Axis.Length();
 			_size = (WorldAnchorA - WorldAnchorB).Length();
 		}
 
@@ -145,8 +145,8 @@ namespace gearit.src.robot
 
 		public float Force
 		{
-			get { return MotorForce; }
-			set { MotorForce = value; }
+			get { return MotorImpulse; }
+			set { MotorImpulse = value; }
 		}
 
 		public float MaxForce

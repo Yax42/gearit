@@ -17,7 +17,6 @@ namespace gearit.src.game
 	class GearitGame : GameScreen, IDemoScreen
 	{
 		private World _world;
-		//private Camera2D _camera;
 		private Camera2D _camera;
 
 		private Map _map;
@@ -65,8 +64,8 @@ namespace gearit.src.game
 			SerializerHelper.World = _world;
 			Console.Write("One ");
 
-			addDummyPrismatic();
 
+			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
 			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
 			Debug.Assert(_robots != null);
 			_robots[0].getPiece(Vector2.Zero).Weight = 30;
@@ -82,11 +81,11 @@ namespace gearit.src.game
 		private void addDummyPrismatic()
 		{
 			Body b1 = new Body(_world);
-			b1.Position = new Vector2(10000, 10000);
+			b1.Position = new Vector2(10, 10);
 			b1.IsStatic = false;
 
 			Body b2 = new Body(_world);
-			b2.Position = new Vector2(10000, 10000);
+			b2.Position = new Vector2(10, 10);
 			b2.IsStatic = false;
 
 			Body b3 = new Body(_world);
@@ -130,13 +129,11 @@ namespace gearit.src.game
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
-			Input.update();
 			HandleInput();
+			//Input.update();
 
 			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
-			//_camera.update();
-			//_camera.input();
 			_camera.Update(gameTime);
 			base.Update(gameTime);
 		}
@@ -149,10 +146,7 @@ namespace gearit.src.game
 				clearRobot();
 				ScreenManager.RemoveScreen(this);
 			}
-			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-				_camera.zoomIn();
-			if (Input.justPressed(MouseKeys.WHEEL_UP))
-				_camera.zoomOut();
+			_camera.input();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -166,6 +160,7 @@ namespace gearit.src.game
 			_drawGame.End();
 
 			base.Draw(gameTime);
+
 		}
 	}
 }

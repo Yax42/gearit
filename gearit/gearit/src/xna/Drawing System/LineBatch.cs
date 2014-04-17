@@ -94,8 +94,7 @@ namespace gearit.xna
 			{
 				throw new InvalidOperationException("Begin must be called before DrawLineShape can be called.");
 			}
-			if (shape.ShapeType != ShapeType.Edge &&
-				shape.ShapeType != ShapeType.Loop)
+			if (shape.ShapeType != ShapeType.Edge)// && shape.ShapeType != ShapeType.Loop)
 			{
 				throw new NotSupportedException("The specified shapeType is not supported by LineBatch.");
 			}
@@ -111,6 +110,7 @@ namespace gearit.xna
 				_lineVertices[_lineVertsCount].Color = _lineVertices[_lineVertsCount + 1].Color = color;
 				_lineVertsCount += 2;
 			}
+#if false
 			else if (shape.ShapeType == ShapeType.Loop)
 			{
 				LoopShape loop = (LoopShape)shape;
@@ -126,6 +126,7 @@ namespace gearit.xna
 					_lineVertsCount += 2;
 				}
 			}
+#endif
 		}
 
 		public void DrawLine(Vector2 v1, Vector2 v2)
