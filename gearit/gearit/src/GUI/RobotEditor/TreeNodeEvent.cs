@@ -156,6 +156,11 @@ namespace gearit.src.GUI
             _robot_editor.refreshScriptEditor();
         }
 
+		public bool isValide()
+		{
+			return (!key_binded.Equals("")) ;
+		}
+
         protected override void OnUpdate()
         {
             base.OnUpdate();

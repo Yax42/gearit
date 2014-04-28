@@ -12,9 +12,9 @@ namespace gearit.src.GUI
         static int PADDING = 16;
         static public int height = 50;
         DropDownList combo = new DropDownList();
-        bool _selecting = false;
         ISpot _old_spot;
         Button btn_select = new Button();
+		bool _valide = false;
 
         public TreeNodeAction(int width, Action<TreeNodeAction> cbEventRemove)
         {
@@ -42,11 +42,8 @@ namespace gearit.src.GUI
 				if (spot == null)
 					return ;
 
+				_valide = true;
 				btn_select.Text = spot.Name;
-                //btn_select.Text = "Select a piece";
-                //_selecting = true;
-				//MenuRobotEditor.Instance.selectHeart();
-                //_old_spot = MenuRobotEditor.Instance.Spot;
             };
             Content.Controls.Add(btn_select);
 
@@ -126,6 +123,11 @@ namespace gearit.src.GUI
             Content.Controls.Add(btn);
         }
 
+		public bool isValide()
+		{
+			return (_valide);
+		}
+
 		public string toLua()
 		{
 			return (btn_select.Text + ".motor = " + combo.SelectedItem.Tag);
@@ -135,20 +137,6 @@ namespace gearit.src.GUI
         public void setPosition(Point pos)
         {
             Position = pos;
-        }
-
-        protected override void OnUpdate()
-        {
-            base.OnUpdate();
-
-            if (_selecting)
-            {
-				if (_old_spot != MenuRobotEditor.Instance.Spot && MenuRobotEditor.Instance.Spot != null)
-                {
-                    btn_select.Text = MenuRobotEditor.Instance.Spot.Name;
-					_selecting = false;
-                }
-            }
         }
     }
 }

@@ -687,9 +687,34 @@ namespace gearit.src.GUI
 			return (lua);
 		}
 
+		public bool isScriptValide()
+		{
+			foreach (var event_node in _nodes)
+			{
+				foreach (var action_node in event_node._nodes)
+					if (!action_node.isValide())
+					{
+						MessageBox.Show(new Point(300, 150), "Script Error", "An action is link to the wrong spot.", MessageBoxButtons.OK, this);
+						return (false);
+					}
+
+				if (!event_node.isValide())
+				{
+					MessageBox.Show(new Point(300, 150), "Script Error", "An event exist without binding.", MessageBoxButtons.OK, this);
+					return (false);
+				}
+			}
+
+			return (true);
+		}
+
 		//----------------SAVE&LOAD-------------------------------------------
 		public void saveRobot()
 		{
+			// Check if Lua is correct
+			if (!isScriptValide())
+				return ;
+
 			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 			if (RobotEditor.Instance.NamePath == "")
 			{
