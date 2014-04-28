@@ -6,7 +6,7 @@ using Squid;
 using gearit.src.editor.robot;
 using gearit.src.utility;
 
-namespace gearit.src.GUI.RobotEditor
+namespace gearit.src.GUI
 {
     class TreeNodeEvent : Panel
     {

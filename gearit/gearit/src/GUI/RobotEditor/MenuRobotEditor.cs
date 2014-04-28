@@ -9,12 +9,12 @@ using gearit.src.robot;
 using gearit.src.utility;
 using System.Globalization;
 using gearit.src.editor.robot.action;
-using gearit.src.GUI.RobotEditor;
 using gearit.src.GUI;
 using System.Text.RegularExpressions;
 using gearit.src.output;
+using gearit.src.editor.robot;
 
-namespace gearit.src.editor.robot
+namespace gearit.src.GUI
 {
 	class MenuRobotEditor : Desktop
 	{

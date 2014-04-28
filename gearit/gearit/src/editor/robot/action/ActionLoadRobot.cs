@@ -6,6 +6,7 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using gearit.src.output;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot.action
 {

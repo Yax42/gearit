@@ -5,6 +5,7 @@ using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using GUI;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot.action
 {

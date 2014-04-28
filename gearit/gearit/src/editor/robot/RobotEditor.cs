@@ -13,6 +13,7 @@ using FarseerPhysics.Dynamics;
 using gearit.src.utility.Menu;
 using System.Runtime.Serialization;
 using System.Diagnostics;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot
 {

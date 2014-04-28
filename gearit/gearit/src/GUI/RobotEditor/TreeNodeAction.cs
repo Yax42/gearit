@@ -5,7 +5,7 @@ using System.Text;
 using Squid;
 using gearit.src.editor.robot;
 
-namespace gearit.src.GUI.RobotEditor
+namespace gearit.src.GUI
 {
     class TreeNodeAction : Panel
     {
@@ -33,15 +33,20 @@ namespace gearit.src.GUI.RobotEditor
             x += lb.Size.x + PADDING;
 
             // Button add
-            btn_select.Text = "Add a piece";
+            btn_select.Text = "Set Spot";
             btn_select.Size = new Point(160, 28);
             btn_select.Position = new Point(x, Size.y / 2 - 14);
             btn_select.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                btn_select.Text = "Select a piece";
-                _selecting = true;
-				MenuRobotEditor.Instance.selectHeart();
-                _old_spot = MenuRobotEditor.Instance.Spot;
+				ISpot spot = RobotEditor.Instance.Select1.getConnection(RobotEditor.Instance.Select2);
+				if (spot == null)
+					return ;
+
+				btn_select.Text = spot.Name;
+                //btn_select.Text = "Select a piece";
+                //_selecting = true;
+				//MenuRobotEditor.Instance.selectHeart();
+                //_old_spot = MenuRobotEditor.Instance.Spot;
             };
             Content.Controls.Add(btn_select);
 
@@ -138,7 +143,7 @@ namespace gearit.src.GUI.RobotEditor
 
             if (_selecting)
             {
-                if (_old_spot != MenuRobotEditor.Instance.Spot)
+				if (_old_spot != MenuRobotEditor.Instance.Spot && MenuRobotEditor.Instance.Spot != null)
                 {
                     btn_select.Text = MenuRobotEditor.Instance.Spot.Name;
 					_selecting = false;

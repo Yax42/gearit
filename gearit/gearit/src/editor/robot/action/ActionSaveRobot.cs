@@ -8,6 +8,7 @@ using System.Diagnostics;
 using GUI;
 using gearit.src.output;
 using System.Text.RegularExpressions;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot.action
 {
