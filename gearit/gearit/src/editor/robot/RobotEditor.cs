@@ -23,7 +23,6 @@ namespace gearit.src.editor.robot
 
 		// Graphic
 		private RectangleOverlay _background;
-		private MenuPiece _menus;
 
 		// Robot
 		private DrawGame _draw_game;

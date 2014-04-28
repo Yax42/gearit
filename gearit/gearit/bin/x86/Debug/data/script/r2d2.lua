@@ -3,6 +3,7 @@ require 'header'
 jump_time = 0
 
 while true do
+	// #!#! Lua generated - Do not modify
 	if Input:pressed(K_D) then
 	  wheel1.motor = -1
 	  wheel2.motor = -1
@@ -23,4 +24,5 @@ while true do
 	  arm1.motor = 0
 	  arm2.motor = 0
 	end
+	// #!#! End Lua generated
 end

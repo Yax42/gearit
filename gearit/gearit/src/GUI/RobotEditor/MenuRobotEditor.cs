@@ -11,6 +11,8 @@ using System.Globalization;
 using gearit.src.editor.robot.action;
 using gearit.src.GUI.RobotEditor;
 using gearit.src.GUI;
+using System.Text.RegularExpressions;
+using gearit.src.output;
 
 namespace gearit.src.editor.robot
 {
@@ -665,6 +667,24 @@ namespace gearit.src.editor.robot
 				setFocus(false);
 			};
 			return box;
+		}
+
+		// Generate Lua depending on the user added to our table
+		public string getLua()
+		{
+			string lua = "";
+
+			foreach (var event_node in _nodes)
+			{
+				lua += event_node.toLua() + Environment.NewLine;
+
+				foreach (var action_node in event_node._nodes)
+					lua += action_node.toLua() + Environment.NewLine;
+
+				lua += "end" + Environment.NewLine;
+			}
+
+			return (lua);
 		}
 
 		//----------------SAVE&LOAD-------------------------------------------

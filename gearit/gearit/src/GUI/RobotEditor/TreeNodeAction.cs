@@ -40,8 +40,8 @@ namespace gearit.src.GUI.RobotEditor
             {
                 btn_select.Text = "Select a piece";
                 _selecting = true;
+				MenuRobotEditor.Instance.selectHeart();
                 _old_spot = MenuRobotEditor.Instance.Spot;
-                MenuRobotEditor.Instance.selectHeart();
             };
             Content.Controls.Add(btn_select);
 
@@ -87,6 +87,7 @@ namespace gearit.src.GUI.RobotEditor
             item.Size = new Squid.Point(100, 35);
             item.Margin = new Margin(0, 0, 0, 4);
             item.Style = "item";
+			item.Tag = "1";
             combo.Items.Add(item);
 
             item = new ListBoxItem();
@@ -94,6 +95,7 @@ namespace gearit.src.GUI.RobotEditor
             item.Size = new Squid.Point(100, 35);
             item.Margin = new Margin(0, 0, 0, 4);
             item.Style = "item";
+			item.Tag = "-1";
             combo.Items.Add(item);
 
             item = new ListBoxItem();
@@ -101,6 +103,7 @@ namespace gearit.src.GUI.RobotEditor
             item.Size = new Squid.Point(100, 35);
             item.Margin = new Margin(0, 0, 0, 4);
             item.Style = "item";
+			item.Tag = "0";
             combo.Items.Add(item);
 
             item.Selected = true;
@@ -118,6 +121,11 @@ namespace gearit.src.GUI.RobotEditor
             Content.Controls.Add(btn);
         }
 
+		public string toLua()
+		{
+			return (btn_select.Text + ".motor = " + combo.SelectedItem.Tag);
+		}
+
         // Let the menu manage the position
         public void setPosition(Point pos)
         {
@@ -133,6 +141,7 @@ namespace gearit.src.GUI.RobotEditor
                 if (_old_spot != MenuRobotEditor.Instance.Spot)
                 {
                     btn_select.Text = MenuRobotEditor.Instance.Spot.Name;
+					_selecting = false;
                 }
             }
         }

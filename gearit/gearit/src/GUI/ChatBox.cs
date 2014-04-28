@@ -18,6 +18,8 @@ namespace gearit.src.GUI
 		static ListBox listbox = new ListBox();
 		static private Boolean _has_input = false;
 		static private TextBox _input = new TextBox();
+		static public Action<String, Entry> InterceptNewItem = null;
+
 
 		public enum Entry
 		{
@@ -56,6 +58,7 @@ namespace gearit.src.GUI
 			listbox.Multiselect = false;
 			listbox.MaxSelected = 0;
 			listbox.Parent = _chat_box;
+			listbox.Scrollbar.MouseScrollSpeed = 0.15f;
 			
 			OutputManager.LogMessage("Init ChatBox");
 			OutputManager.LogWarning("Warning test");
@@ -116,16 +119,22 @@ namespace gearit.src.GUI
 			return (_chat_box);
 		}
 
-		static public void addEntry(string text, Entry entry = Entry.Message)
+		static public void addEntry(string text, Entry entry = Entry.Message, Boolean intercept = false)
 		{
+			if (intercept && InterceptNewItem != null)
+			{
+				InterceptNewItem(text, entry);
+				return;
+			}
+
 			ListBoxItem item = new ListBoxItem();
 
 			if (entry != Entry.Message)
 			{
 				if (entry == Entry.Error)
-					text = "[color=ffF4A460]" + text + "[/color]";
-				else if (entry == Entry.Warning)
 					text = "[color=ffFF4040]" + text + "[/color]";
+				else if (entry == Entry.Warning)
+					text = "[color=ffF4A460]" + text + "[/color]";
 				else if (entry == Entry.Info)
 					text = "[color=ff70DB93]" + text + "[/color]";
 				item.BBCodeEnabled = true;

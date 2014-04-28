@@ -19,8 +19,10 @@ namespace gearit.src.GUI.RobotEditor
         Button btn_add_key = new Button();
 
         // Let menu manage nodes
-        public List<Panel> _nodes = new List<Panel>();
+        public List<TreeNodeAction> _nodes = new List<TreeNodeAction>();
         private bool _open = false;
+
+		string key_binded = "";
 
         public TreeNodeEvent(int width, MenuRobotEditor robot_editor)
         {
@@ -139,6 +141,11 @@ namespace gearit.src.GUI.RobotEditor
             };
         }
 
+		public string toLua()
+		{
+			return ("if Input:pressed(K_" + key_binded + ") then");
+		}
+
         public void toggleVisibility()
         {
             if (_open)
@@ -159,7 +166,8 @@ namespace gearit.src.GUI.RobotEditor
             List<Microsoft.Xna.Framework.Input.Keys> inputs = Input.getJustReleased();
             if (inputs.Count != 0)
             {
-                btn_add_key.Text = "Key [" + inputs.ElementAt(0).ToString() + "]";
+				key_binded = inputs.ElementAt(0).ToString();
+                btn_add_key.Text = "Key [" + key_binded + "]";
 
                 _msgbox.Close();
                 _robot_editor.setFocus(false);
@@ -189,7 +197,7 @@ namespace gearit.src.GUI.RobotEditor
             lb_status.Text = "-";
         }
 
-        public void removeNode(Panel node)
+        public void removeNode(TreeNodeAction node)
         {
             _nodes.Remove(node);
             _robot_editor.refreshScriptEditor();

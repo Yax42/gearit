@@ -88,7 +88,7 @@ namespace GUI
 			addMenuItem(_gladiator, _gladiator.GetTitle());
 
 			// ToRemove - Popup robot editor
-			//menu_listbox.Items[1].Click(0);
+			menu_listbox.Items[1].Click(0);
 
 			#endregion
 		}
