@@ -13,6 +13,7 @@ using gearit.src.GUI;
 using System.Text.RegularExpressions;
 using gearit.src.output;
 using gearit.src.editor.robot;
+using System.IO;
 
 namespace gearit.src.GUI
 {
@@ -708,9 +709,57 @@ namespace gearit.src.GUI
 			return (true);
 		}
 
+		public void setLua(string lua)
+		{
+			// Clear
+			_nodes.Clear();
+			refreshScriptEditor();
+
+			Match match;
+
+			// Check each line and create table
+			// Show MessageBox if fail
+			using (StringReader reader = new StringReader(lua))
+			{
+				string line;
+				while ((line = reader.ReadLine()) != null)
+				{
+					match = System.Text.RegularExpressions.Regex.Match(line, "if Input:pressed\\(K_(.)");
+					// New bloc
+					if (match.Success)
+					{
+						TreeNodeEvent node_event = new TreeNodeEvent(panel_script.Size.x, this);
+						_nodes.Add(node_event);
+						node_event.setKey(match.Groups[1].ToString());
+
+						// Get all actions
+						while ((line = reader.ReadLine()) != null && !line.StartsWith("end"))
+						{
+							match = System.Text.RegularExpressions.Regex.Match(line, "(.*?)\\..*?= (.*)");
+							// Found action
+							if (match.Success)
+							{
+								Console.WriteLine("[" + match.Groups[2].ToString() + "]");
+								TreeNodeAction node_action = node_event.addAction();
+								node_action.setSpot(match.Groups[1].ToString());
+								node_action.setState(match.Groups[2].ToString());
+							}
+						}
+
+						node_event.Close();
+					}
+				}
+
+				refreshScriptEditor();
+				panel_script.Visible = true;
+			}
+		}
+
 		//----------------SAVE&LOAD-------------------------------------------
 		public void saveRobot()
 		{
+			_nodes.Clear();
+
 			// Check if Lua is correct
 			if (!isScriptValide())
 				return ;

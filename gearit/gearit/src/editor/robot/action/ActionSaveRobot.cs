@@ -49,7 +49,7 @@ namespace gearit.src.editor.robot.action
 			try
 			{
 				System.IO.StreamReader myFile =
-				   new System.IO.StreamReader("data/script/" + RobotEditor.Instance.Robot.Name + ".lua");
+				   new System.IO.StreamReader(filename);
 				string lua = myFile.ReadToEnd();
 				myFile.Close();
 

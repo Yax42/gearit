@@ -127,11 +127,7 @@ namespace gearit.src.GUI
             btn.Position = new Point(Size.x - 220, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                // Force open
-                Open();
-
-                _nodes.Add(new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode));
-                _robot_editor.refreshScriptEditor();
+				addAction();
             };
             Content.Controls.Add(btn);
 
@@ -140,6 +136,23 @@ namespace gearit.src.GUI
                 toggleVisibility();
             };
         }
+
+		public void setKey(string key)
+		{
+			key_binded = key;
+			btn_add_key.Text = "Key [" + key_binded + "]";
+		}
+
+		public TreeNodeAction addAction()
+		{
+			// Force open
+			Open();
+
+			TreeNodeAction action = new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode);
+			_nodes.Add(action);
+			_robot_editor.refreshScriptEditor();
+			return (action);
+		}
 
 		public string toLua()
 		{
@@ -158,6 +171,7 @@ namespace gearit.src.GUI
 
 		public bool isValide()
 		{
+			
 			return (!key_binded.Equals("")) ;
 		}
 
@@ -171,8 +185,7 @@ namespace gearit.src.GUI
             List<Microsoft.Xna.Framework.Input.Keys> inputs = Input.getJustReleased();
             if (inputs.Count != 0)
             {
-				key_binded = inputs.ElementAt(0).ToString();
-                btn_add_key.Text = "Key [" + key_binded + "]";
+				setKey(inputs.ElementAt(0).ToString());
 
                 _msgbox.Close();
                 _robot_editor.setFocus(false);

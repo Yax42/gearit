@@ -133,6 +133,22 @@ namespace gearit.src.GUI
 			return (btn_select.Text + ".motor = " + combo.SelectedItem.Tag);
 		}
 
+		public void setSpot(string spot)
+		{
+			btn_select.Text = spot;
+		}
+
+		public void setState(string state)
+		{
+			List<ListBoxItem> items = combo.Items;
+
+			foreach (var item in items)
+			{
+				if (item.Tag.Equals(state))
+					combo.SelectedItem = item;
+			}
+		}
+
         // Let the menu manage the position
         public void setPosition(Point pos)
         {
