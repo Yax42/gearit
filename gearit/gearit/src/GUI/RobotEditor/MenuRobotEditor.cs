@@ -756,22 +756,25 @@ namespace gearit.src.GUI
 		}
 
 		//----------------SAVE&LOAD-------------------------------------------
-		public void saveRobot()
+		public bool saveRobot()
 		{
 			_nodes.Clear();
 
 			// Check if Lua is correct
 			if (!isScriptValide())
-				return ;
+				return false;
 
 			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+
 			if (RobotEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
 				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot");
 			}
 			else
-				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+				return true;
+				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+			return false;
 		}
 
 		private MessageBoxSave _messageBoxSave = null;
