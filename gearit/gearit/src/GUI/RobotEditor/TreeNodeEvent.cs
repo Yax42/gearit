@@ -156,6 +156,9 @@ namespace gearit.src.GUI
 
 		public string toLua()
 		{
+            if (!isValide())
+                return ("");
+
 			return ("if Input:pressed(K_" + key_binded + ") then");
 		}
 

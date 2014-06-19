@@ -677,7 +677,11 @@ namespace gearit.src.GUI
 
 			foreach (var event_node in _nodes)
 			{
-				lua += event_node.toLua() + Environment.NewLine;
+                string evt_lua = event_node.toLua();
+                if (evt_lua == "")
+                    continue;
+
+				lua += evt_lua + Environment.NewLine;
 
 				foreach (var action_node in event_node._nodes)
 					lua += action_node.toLua() + Environment.NewLine;
@@ -758,22 +762,13 @@ namespace gearit.src.GUI
 		//----------------SAVE&LOAD-------------------------------------------
 		public bool saveRobot()
 		{
-			_nodes.Clear();
-
-			// Check if Lua is correct
-			if (!isScriptValide())
-				return false;
-
-			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-
 			if (RobotEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
 				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot");
 			}
 			else
-				return true;
-				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
+				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 			return false;
 		}
 

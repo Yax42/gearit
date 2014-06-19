@@ -130,7 +130,14 @@ namespace gearit.src.GUI
 
 		public string toLua()
 		{
-			return (btn_select.Text + ".motor = " + combo.SelectedItem.Tag);
+            string lua = "";
+
+            if (!isValide() || !RobotEditor.Instance.Robot.hasSpot(btn_select.Text))
+                lua = "// Undefined spot";
+            else
+                lua = btn_select.Text + ".motor = " + combo.SelectedItem.Tag;
+
+			return (lua);
 		}
 
 		public void setSpot(string spot)

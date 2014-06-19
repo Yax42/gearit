@@ -243,6 +243,18 @@ namespace gearit
 			}
 		}
 
+        // For lua
+        public Boolean hasSpot(string name)
+        {
+            foreach (var spot in _spots)
+            {
+                if (name == spot.Name)
+                    return (true);
+            }
+
+            return (false);
+        }
+
 		// For editor
 		public void fallAsleep(ISpot s, SleepingPack pack)
 		{
