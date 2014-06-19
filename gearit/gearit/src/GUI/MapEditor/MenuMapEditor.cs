@@ -315,6 +315,18 @@ namespace gearit.src.editor.map
 		public void loadMap()
 		{
 			setFocus(true);
+			
+			/*
+			System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
+			fileDialog.DefaultExt = ".gim";
+			fileDialog.InitialDirectory = "data/map/";
+			System.Windows.Forms.DialogResult res = fileDialog.ShowDialog();
+			if (res == System.Windows.Forms.DialogResult.OK)
+			{
+				safeLoadMap(fileDialog.FileName);
+			}
+			*/
+
 			_messageBoxLoad = new MessageBoxLoad(@"data/map/", ".gim", this, safeLoadMap, setFocus);
 		}
 

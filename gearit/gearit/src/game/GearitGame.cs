@@ -67,10 +67,10 @@ namespace gearit.src.game
 
 			addDummyPrismatic();
 
-			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
+			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			Debug.Assert(_robots != null);
 			_robots[0].getPiece(Vector2.Zero).Weight = 30;
-			_map = (Map)Serializer.DeserializeItem("map/moon.gim");
+			_map = (Map)Serializer.DeserializeItem("map/default.gim");
 			Debug.Assert(_map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
