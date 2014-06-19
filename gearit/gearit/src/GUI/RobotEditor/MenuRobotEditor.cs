@@ -277,12 +277,25 @@ namespace gearit.src.GUI
 			lb.Style = "itemMenu";
 			lb.Parent = this;
 
+			piece_weight = newEditableTextBox();
 			piece_weight.Text = "45";
 			piece_weight.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			piece_weight.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
 			piece_weight.Style = "textbox";
 			piece_weight.Parent = this;
-			piece_weight.Enabled = false;
+			//piece_weight.Enabled = false;
+
+			piece_weight.Mode = TextBoxMode.Numeric;
+			piece_weight.TextChanged += delegate(Control snd)
+			{
+				if (((TextBox)snd).Text == "")
+					Piece.Weight = 0;
+				else
+					Piece.Weight = float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+			};
+
+
+//			spot_force.Parent = spot_container;
 
 			y += ITEM_HEIGHT;
 
