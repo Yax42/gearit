@@ -50,6 +50,7 @@ namespace gearit.src.GUI
 		private Button rb_rod = new Button();
 		private Button rb_wheel = new Button();
 		private Button Help_btn;
+		private Button Exit_btn;
 
 		private Frame spot_container = new Frame();
 		private TextBox spot_name;
@@ -537,12 +538,25 @@ namespace gearit.src.GUI
 			btn = Help_btn;
 			btn.Text = "Help (F1)";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
+			btn.Size = new Squid.Point(3 * MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 4 + 1, y);
 			btn.Parent = this;
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				swapHelp();
+			};
+
+			Exit_btn = new Button();
+			btn = Exit_btn;
+			btn.Text = "Exit";
+			btn.Tooltip = "Escape";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.EXIT);
 			};
 
 			y -= btn.Size.y + PADDING;
