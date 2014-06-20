@@ -42,6 +42,8 @@ namespace gearit.src.GUI
 		private Button rb_revolute = new Button();
 		private Button rb_prismatic = new Button();
 		private Label label_name;
+		private Label label_weight;
+		private Label label_force;
 
 		// Piece & Spot
 		private ScreenManager _ScreenManager;
@@ -155,6 +157,24 @@ namespace gearit.src.GUI
 			label_name = new Label();
 			lb = label_name;
 			lb.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
+
+			label_weight = new Label();
+			lb = label_weight;
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
+
+			label_force = new Label();
+			lb = label_force;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
@@ -956,9 +976,12 @@ namespace gearit.src.GUI
 			{
 				piece_weight.Text = piece.Weight.ToString();
 			}
-				piece_size.Text = piece.getSize().ToString();
-				piece_x.Text = piece.Position.X.ToString();
-				piece_y.Text = piece.Position.Y.ToString();
+
+			label_weight.Text = "Weight " + RobotEditor.Instance.Robot.Weight.ToString();
+			label_force.Text = "Force " + RobotEditor.Instance.Robot.Force.ToString();
+			piece_size.Text = piece.getSize().ToString();
+			piece_x.Text = piece.Position.X.ToString();
+			piece_y.Text = piece.Position.Y.ToString();
 
 			updateRod(piece);
 			updateSpot(spot);

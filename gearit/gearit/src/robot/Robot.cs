@@ -156,12 +156,26 @@ namespace gearit
 			return (getHeart());
 		}
 
-		public float getWeight()
+		public float Weight
 		{
-			float res = 0;
-			for (int i = 0; i < _pieces.Count; i++)
-				res += _pieces[i].Weight;
-			return (res);
+			get
+			{
+				float res = 0;
+				foreach (Piece p in _pieces)
+					res += p.Weight;
+				return (res);
+			}
+		}
+
+		public float Force
+		{
+			get
+			{
+				float res = 0;
+				foreach (ISpot s in _spots)
+					res += s.Force;
+				return (res);
+			}
 		}
 
 		public float getMotorStrength()
