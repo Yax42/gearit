@@ -9,6 +9,7 @@ using gearit.src.utility;
 using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using FarseerPhysics;
 
 namespace gearit
 {
@@ -24,6 +25,7 @@ namespace gearit
 			_vertices = PolygonTools.CreateRectangle(1, 1);
 			_shape = new PolygonShape(_vertices, 50f);
 			_fix = CreateFixture(_shape);
+			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
 		}
@@ -120,14 +122,17 @@ namespace gearit
 			}
 		}
 
-		public void addCorner(Vector2 p)
+		public bool addCorner(Vector2 p)
 		{
 			p -= Position;
-			if (_vertices.Contains(p))
-				return;
+			if (_vertices.Contains(p) || _vertices.Count == Settings.MaxPolygonVertices)
+				return false;
 			_vertices.Add(p);
 			if (_vertices.IsConvex() == false)
-					_vertices.Remove(p);
+			{
+				_vertices.Remove(p);
+				return false;
+			}
 			else
 			{
 				updateShape();
@@ -135,7 +140,9 @@ namespace gearit
 				{
 					_vertices.Remove(p);
 					updateShape();
+					return false;
 				}
+				return true;
 			}
 		}
 

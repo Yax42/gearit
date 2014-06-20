@@ -21,6 +21,8 @@ namespace gearit
 	[Serializable()]
 	abstract class Piece : Body, ISerializable
 	{
+		internal const float MaxMass = 1000;
+
 		internal Shape _shape;
 		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
@@ -41,6 +43,7 @@ namespace gearit
 			Shown = true;
 			_tex = null;
 			Sleeping = false;
+			ResetMassData();
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -149,14 +152,22 @@ namespace gearit
 			_didAct = false;
 		}
 
+		private float _weight = 1;
 		public virtual float Weight
 		{
 			set
 			{
-				_fix.Shape.Density = value * _fix.Shape.Density / _fix.Shape.MassData.Mass;
-				ResetMassData();
+				if (value > 0 && value < MaxMass)
+				{
+					_fix.Shape.MassData.Mass = value;// *_fix.Shape.Density / _fix.Shape.MassData.Mass;
+					ResetMassData();
+					_weight = value;
+				}
 			}
-			get { return _fix.Shape.MassData.Mass; } // a check
+			get
+			{
+				return _weight;
+			}
 		}
 
 		public bool isOn(Vector2 p)

@@ -286,12 +286,14 @@ namespace gearit.src.GUI
 			//piece_weight.Enabled = false;
 
 			piece_weight.Mode = TextBoxMode.Numeric;
+			//piece_weight.TextCommit += delegate(object snd, EventArgs e)
 			piece_weight.TextChanged += delegate(Control snd)
 			{
-				if (((TextBox)snd).Text == "")
+				float res;
+				if (!float.TryParse(((TextBox)snd).Text, out res))
 					Piece.Weight = 0;
 				else
-					Piece.Weight = float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+					Piece.Weight = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
 			};
 
 
@@ -428,10 +430,11 @@ namespace gearit.src.GUI
 			spot_force.Mode = TextBoxMode.Numeric;
 			spot_force.TextChanged += delegate(Control snd)
 			{
-				if (((TextBox)snd).Text == "")
+				float res;
+				if (!float.TryParse(((TextBox)snd).Text, out res))
 					Spot.Force = 0;
 				else
-					Spot.Force = float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+					Spot.Force = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
 			};
 
 			y += ITEM_HEIGHT;
@@ -935,10 +938,13 @@ namespace gearit.src.GUI
 			Piece = piece;
 			Spot = spot;
 
-			piece_weight.Text = piece.Weight.ToString();
-			piece_size.Text = piece.getSize().ToString();
-			piece_x.Text = piece.Position.X.ToString();
-			piece_y.Text = piece.Position.Y.ToString();
+			if (!_has_focus)
+			{
+				piece_weight.Text = piece.Weight.ToString();
+			}
+				piece_size.Text = piece.getSize().ToString();
+				piece_x.Text = piece.Position.X.ToString();
+				piece_y.Text = piece.Position.Y.ToString();
 
 			updateRod(piece);
 			updateSpot(spot);
@@ -953,8 +959,11 @@ namespace gearit.src.GUI
 
 			if (visible)
 			{
-				spot_name.Text = spot.Name;
-				spot_force.Text = spot.Force.ToString();
+				if (!_has_focus)
+				{
+					spot_name.Text = spot.Name;
+					spot_force.Text = spot.Force.ToString();
+				}
 
 				// Check if Prismatic
 				if (spot.GetType() == typeof(PrismaticSpot))

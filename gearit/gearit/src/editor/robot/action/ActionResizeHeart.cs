@@ -71,8 +71,8 @@ namespace gearit.src.editor.robot.action
 			}
 			else if (Input.justPressed(MouseKeys.RIGHT))
 			{
-				_didSomething = true;
-				Heart.addCorner(Input.SimMousePos);
+				if (Heart.addCorner(Input.SimMousePos))
+					_didSomething = true;
 			}
 			if (Input.justPressed(Keys.S) == true && !_isFirstFrame)
 			{
