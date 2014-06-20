@@ -816,10 +816,13 @@ namespace gearit.src.GUI
 			{
 				setFocus(true);
 				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot");
+				return false;
 			}
 			else
+			{
 				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-			return false;
+				return true;
+			}
 		}
 
 		private MessageBoxSave _messageBoxSave = null;
