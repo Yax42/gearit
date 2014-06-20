@@ -354,8 +354,8 @@ namespace gearit
 			foreach (ISpot i in _spots)
 				if (i.GetType() == typeof(PrismaticSpot))
 					((PrismaticSpot)i).updateLimit();
-		if (_script == null)
-			  _script = new LuaScript(getApi(), "r2d2");
+			if (_script == null)
+				_script = new LuaScript(getApi(), Name);
 		}
 
 		public int revCount() { return (_revoluteCounter++); }

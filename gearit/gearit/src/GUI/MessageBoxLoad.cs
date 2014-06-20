@@ -40,13 +40,13 @@ namespace gearit.src.GUI
 			DirectoryInfo d = new DirectoryInfo(folder);
 			if (!d.Exists)
 			{
-				OutputManager.LogWarning("Folder " + folder + " doesn't exist.");
+				OutputManager.LogWarning("Folder doesn't exist", folder);
 				return;
 			}
 			FileInfo[] Files = d.GetFiles("*" + extension); //Getting Text files
 			if (Files.Count() == 0)
 			{
-				OutputManager.LogWarning("Folder " + folder + " is empty.");
+				OutputManager.LogWarning("Folder is empty", folder);
 				return;
 			}
 			foreach (FileInfo file in Files)

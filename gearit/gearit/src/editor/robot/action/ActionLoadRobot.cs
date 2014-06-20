@@ -57,7 +57,7 @@ namespace gearit.src.editor.robot.action
 			catch (System.IO.IOException e)
 			{
 			}
-			OutputManager.LogInfo("Lua - Generate script editor based on Lua");
+			OutputManager.LogInfo("Lua - Generate script editor based on Lua", filename);
 			MenuRobotEditor.Instance.setLua(lua);
 
 			return false;

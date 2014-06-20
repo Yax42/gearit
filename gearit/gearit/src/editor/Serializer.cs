@@ -37,16 +37,14 @@ namespace gearit.src.editor
 				FileStream s = new FileStream(_path + filename, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
+				OutputManager.LogInfo("Saving - success", filename);
+				return true;
 			}
 			catch (IOException e)
 			{
-				OutputManager.LogError("Fail to open/creating the file " + filename);
+				OutputManager.LogError("Saving - fail", filename);
 				return false;
 			}
-
-			OutputManager.LogInfo("Successfuly saved " + filename);
-			
-			return true;
 		}
 
 		/// <summary>
@@ -61,14 +59,14 @@ namespace gearit.src.editor
 				FileStream s = new FileStream(_path + filename, FileMode.Open);
 				ISerializable obj = (ISerializable)_formatter.Deserialize(s);
 				s.Close();
+				OutputManager.LogInfo("Loading - success", filename);
 				return (obj);
 			}
 			catch (Exception e)
 			{
-				OutputManager.LogError("Fail to open the file " + filename);
+				OutputManager.LogError("Loading - fail", filename);
 				return null;
 			}
-			OutputManager.LogInfo("Successfuly loaded " + filename);
 		}
 	}
 }

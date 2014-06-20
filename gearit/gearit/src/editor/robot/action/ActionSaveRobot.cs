@@ -49,12 +49,12 @@ namespace gearit.src.editor.robot.action
 			try
 			{
 				System.IO.StreamReader myFile =
-				   new System.IO.StreamReader(filename);
+					new System.IO.StreamReader(filename);
 				string lua = myFile.ReadToEnd();
 				myFile.Close();
 
 				// Lua found - Replace Generated Lua with new one
-				OutputManager.LogInfo("Lua - Replace generated script");
+				OutputManager.LogInfo("Lua - Replace generated script", filename);
 				Match match = System.Text.RegularExpressions.Regex.Match(lua, "#!#!.*?\n(.*?)// #!#!", RegexOptions.Singleline);
 
 				string fullReplace = lua;
@@ -71,7 +71,7 @@ namespace gearit.src.editor.robot.action
 			// No Lua - First time save
 			catch (System.IO.IOException e)
 			{
-				OutputManager.LogInfo("Lua - Not found : generate new file");
+				OutputManager.LogInfo("Lua - Not found : generate new file", filename);
 				string emptylua = "require 'header'" + Environment.NewLine + "jump_time = 0" + Environment.NewLine + "" + Environment.NewLine +
 					"while true do" + Environment.NewLine + "// #!#! Lua generated - Do not modify" + Environment.NewLine + "// Generated" + Environment.NewLine
 					+ MenuRobotEditor.Instance.getLua() + "// #!#! End Lua generated" + Environment.NewLine + "end";

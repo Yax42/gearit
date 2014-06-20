@@ -23,6 +23,18 @@ namespace gearit.src.output
 			Console.WriteLine("Info: #{0}", msg);
 			ChatBox.addEntry(msg, ChatBox.Entry.Info);
 		}
+		static public void LogError(String msg, String path)
+		{
+			LogError(msg + ": " + path);
+		}
+		static public void LogWarning(String msg, String path)
+		{
+			LogWarning(msg + ": " + path);
+		}
+		static public void LogInfo(String msg, String path)
+		{
+			LogInfo(msg + ": " + path );
+		}
 		static public void LogMessage(String msg)
 		{
 			Console.WriteLine("Message: #{0}", msg);

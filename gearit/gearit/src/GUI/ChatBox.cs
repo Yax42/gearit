@@ -61,9 +61,6 @@ namespace gearit.src.GUI
 			listbox.Scrollbar.MouseScrollSpeed = 0.15f;
 			
 			OutputManager.LogMessage("Init ChatBox");
-			OutputManager.LogWarning("Warning test");
-			OutputManager.LogError("Error test");
-			OutputManager.LogInfo("Info test");
 
 			_input.Size = new Point(Width, SIZE_ITEM);
 			_input.Position = new Point(0, Height - SIZE_ITEM);
