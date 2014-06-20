@@ -13,7 +13,6 @@ namespace gearit.src.GUI
         static int PADDING = 16;
         DropDownList combo = new DropDownList();
 
-        MenuRobotEditor _robot_editor;
         Label lb_status = new Label();
         MessageBox _msgbox = null;
         Button btn_add_key = new Button();
@@ -24,10 +23,8 @@ namespace gearit.src.GUI
 
 		string key_binded = "";
 
-        public TreeNodeEvent(int width, MenuRobotEditor robot_editor)
+        public TreeNodeEvent(int width)
         {
-            _robot_editor = robot_editor;
-
             int height = MenuRobotEditor.HEIGHT_NODE;
 
             Size = new Point(width, height);
@@ -103,8 +100,8 @@ namespace gearit.src.GUI
             btn_add_key.Position = new Point(x, Size.y / 2 - 14);
             btn_add_key.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                _robot_editor.setFocus(true);
-                _msgbox = MessageBox.Show(new Point(300, 100), "Add Event", "Press any key", MessageBoxButtons.None, _robot_editor);
+                MenuRobotEditor.Instance.setFocus(true);
+                _msgbox = MessageBox.Show(new Point(300, 100), "Add Event", "Press any key", MessageBoxButtons.None, MenuRobotEditor.Instance);
             };
             Content.Controls.Add(btn_add_key);
 
@@ -116,7 +113,7 @@ namespace gearit.src.GUI
             btn.Position = new Point(Size.x - 90, Size.y / 2 - 14);
             btn.MouseClick += delegate(Control sender, MouseEventArgs args)
             {
-                _robot_editor.deleteEvent(this);
+                MenuRobotEditor.Instance.deleteEvent(this);
             };
             Content.Controls.Add(btn);
 
@@ -150,7 +147,7 @@ namespace gearit.src.GUI
 
 			TreeNodeAction action = new TreeNodeAction(Size.x - MenuRobotEditor.HEIGHT_NODE, removeNode);
 			_nodes.Add(action);
-			_robot_editor.refreshScriptEditor();
+			MenuRobotEditor.Instance.refreshScriptEditor();
 			return (action);
 		}
 
@@ -169,7 +166,7 @@ namespace gearit.src.GUI
             else
                 Open();
 
-            _robot_editor.refreshScriptEditor();
+            MenuRobotEditor.Instance.refreshScriptEditor();
         }
 
 		public bool isValide()
@@ -191,7 +188,7 @@ namespace gearit.src.GUI
 				setKey(inputs.ElementAt(0).ToString());
 
                 _msgbox.Close();
-                _robot_editor.setFocus(false);
+                MenuRobotEditor.Instance.setFocus(false);
                 _msgbox = null;
             }
         }
@@ -221,7 +218,7 @@ namespace gearit.src.GUI
         public void removeNode(TreeNodeAction node)
         {
             _nodes.Remove(node);
-            _robot_editor.refreshScriptEditor();
+            MenuRobotEditor.Instance.refreshScriptEditor();
         }
 
     }

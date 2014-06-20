@@ -9,6 +9,7 @@ using System.Threading;
 using gearit.src.robot;
 using gearit.src.editor.api;
 using gearit.src.output;
+using gearit.src.editor.robot;
 namespace gearit.src.utility
 {
 
@@ -46,7 +47,7 @@ namespace gearit.src.utility
 		{
 			try
 			{
-				DoFile(@"data/script/" + _name + ".lua");
+				DoFile(LuaManager.LuaFile(_name));
 			}
 			catch (Exception ex)
 			{

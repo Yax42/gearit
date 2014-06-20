@@ -43,7 +43,7 @@ namespace gearit.src.editor.robot.action
 
 			#region Lua
 
-			var filename = "data/script/" + RobotEditor.Instance.Robot.Name + ".lua";
+			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
 
 			// Read the file as one string.
 			try
@@ -55,7 +55,7 @@ namespace gearit.src.editor.robot.action
 
 				// Lua found - Replace Generated Lua with new one
 				OutputManager.LogInfo("Lua - Replace generated script", filename);
-				Match match = System.Text.RegularExpressions.Regex.Match(lua, "#!#!.*?\n(.*?)// #!#!", RegexOptions.Singleline);
+				Match match = System.Text.RegularExpressions.Regex.Match(lua, LuaManager.Regex, RegexOptions.Singleline);
 
 				string fullReplace = lua;
 				// Found something
@@ -63,7 +63,7 @@ namespace gearit.src.editor.robot.action
 				{
 					var firstPart = lua.Substring(0, match.Groups[1].Index);
 					var secondPart = lua.Substring(match.Groups[1].Index + match.Groups[1].Length);
-					fullReplace = firstPart + "// Generated" + Environment.NewLine + MenuRobotEditor.Instance.getLua() + secondPart;
+					fullReplace = LuaManager.GenerateAllScript(firstPart, secondPart);
 				}
 				// Set new file
 				System.IO.File.WriteAllText(filename, fullReplace);
@@ -72,9 +72,15 @@ namespace gearit.src.editor.robot.action
 			catch (System.IO.IOException e)
 			{
 				OutputManager.LogInfo("Lua - Not found : generate new file", filename);
-				string emptylua = "require 'header'" + Environment.NewLine + "jump_time = 0" + Environment.NewLine + "" + Environment.NewLine +
-					"while true do" + Environment.NewLine + "// #!#! Lua generated - Do not modify" + Environment.NewLine + "// Generated" + Environment.NewLine
-					+ MenuRobotEditor.Instance.getLua() + "// #!#! End Lua generated" + Environment.NewLine + "end";
+				string emptylua = LuaManager.GenerateAllScript(
+					"require 'header'" + Environment.NewLine
+					+ Environment.NewLine
+					+ "while true do" + Environment.NewLine
+					+ Environment.NewLine
+					+ LuaManager.Header,
+
+					LuaManager.Footer
+					+ "end");
 
 				System.IO.File.WriteAllText(filename, emptylua);
 			}

@@ -141,6 +141,7 @@
     <Compile Include="src\editor\robot\action\ActionCreatePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionExit.cs" />
     <Compile Include="src\editor\robot\action\ActionShowHelp.cs" />
+    <Compile Include="src\editor\robot\LuaManager.cs" />
     <Compile Include="src\GUI\ChatBox.cs" />
     <Compile Include="src\GUI\SampleWindow.cs" />
     <Compile Include="src\GUI\MapEditor\MenuMapEditor.cs" />

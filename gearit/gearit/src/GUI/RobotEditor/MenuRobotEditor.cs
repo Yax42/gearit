@@ -70,8 +70,31 @@ namespace gearit.src.GUI
 		private TextBox helper = new TextBox();
 
 		// Script editor
-		private Panel panel_script = new Panel();
+		private Panel _panelScript = new Panel();
+		public Panel PanelScript
+		{
+			get
+			{
+				return _panelScript;
+			}
+			set
+			{
+				_panelScript = value;
+			}
+		}
+
 		private List<TreeNodeEvent> _nodes = new List<TreeNodeEvent>();
+		public List<TreeNodeEvent> EventNodes
+		{
+			get
+			{
+				return _nodes;
+			}
+			set
+			{
+				_nodes = value;
+			}
+		}
 		private Button btn_add_event = new Button();
 
 		public static MenuRobotEditor Instance { set; get; }
@@ -629,7 +652,7 @@ namespace gearit.src.GUI
 			btn.Tooltip = "Toggle the script editor";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				panel_script.Visible = !panel_script.Visible;
+				_panelScript.Visible = !_panelScript.Visible;
 			};
 
 			y -= btn.Size.y / 2+ PADDING;
@@ -656,34 +679,34 @@ namespace gearit.src.GUI
 			#region script_editor
 
 			// Panel script editor
-			panel_script.Style = "menu";
-			panel_script.Parent = this;
+			_panelScript.Style = "menu";
+			_panelScript.Parent = this;
 
-			panel_script.VScroll.Margin = new Margin(0, 8, 8, 8);
-			panel_script.VScroll.Size = new Squid.Point(14, 10);
-			panel_script.VScroll.Slider.Style = "vscrollTrack";
-			panel_script.VScroll.Slider.Button.Style = "vscrollButton";
-			panel_script.VScroll.ButtonUp.Style = "vscrollUp";
-			panel_script.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
-			panel_script.VScroll.ButtonDown.Style = "vscrollUp";
-			panel_script.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
-			panel_script.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
+			_panelScript.VScroll.Margin = new Margin(0, 8, 8, 8);
+			_panelScript.VScroll.Size = new Squid.Point(14, 10);
+			_panelScript.VScroll.Slider.Style = "vscrollTrack";
+			_panelScript.VScroll.Slider.Button.Style = "vscrollButton";
+			_panelScript.VScroll.ButtonUp.Style = "vscrollUp";
+			_panelScript.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
+			_panelScript.VScroll.ButtonDown.Style = "vscrollUp";
+			_panelScript.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
+			_panelScript.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
 
-			panel_script.Visible = false;
+			_panelScript.Visible = false;
 
-			panel_script.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
-			panel_script.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
+			_panelScript.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
+			_panelScript.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
 
 			// Add event
-			btn_add_event.Parent = panel_script;
-			btn_add_event.Size = new Point(panel_script.Size.x, ITEM_HEIGHT);
+			btn_add_event.Parent = _panelScript;
+			btn_add_event.Size = new Point(_panelScript.Size.x, ITEM_HEIGHT);
 			btn_add_event.Position = new Point(0, 0);
 			btn_add_event.Text = "Add a new event";
 			btn_add_event.Style = "addEventButton";
 			btn_add_event.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				// Add new event
-				_nodes.Add(new TreeNodeEvent(panel_script.Size.x, this));
+				_nodes.Add(new TreeNodeEvent(_panelScript.Size.x));
 
 				// Refresh position
 				refreshScriptEditor();
@@ -720,27 +743,6 @@ namespace gearit.src.GUI
 			return box;
 		}
 
-		// Generate Lua depending on the user added to our table
-		public string getLua()
-		{
-			string lua = "";
-
-			foreach (var event_node in _nodes)
-			{
-                string evt_lua = event_node.toLua();
-                if (evt_lua == "")
-                    continue;
-
-				lua += evt_lua + Environment.NewLine;
-
-				foreach (var action_node in event_node._nodes)
-					lua += action_node.toLua() + Environment.NewLine;
-
-				lua += "end" + Environment.NewLine;
-			}
-
-			return (lua);
-		}
 
 		public bool isScriptValide()
 		{
@@ -761,52 +763,6 @@ namespace gearit.src.GUI
 			}
 
 			return (true);
-		}
-
-		public void setLua(string lua)
-		{
-			// Clear
-			_nodes.Clear();
-			refreshScriptEditor();
-
-			Match match;
-
-			// Check each line and create table
-			// Show MessageBox if fail
-			using (StringReader reader = new StringReader(lua))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					match = System.Text.RegularExpressions.Regex.Match(line, "if Input:pressed\\(K_(.)");
-					// New bloc
-					if (match.Success)
-					{
-						TreeNodeEvent node_event = new TreeNodeEvent(panel_script.Size.x, this);
-						_nodes.Add(node_event);
-						node_event.setKey(match.Groups[1].ToString());
-
-						// Get all actions
-						while ((line = reader.ReadLine()) != null && !line.StartsWith("end"))
-						{
-							match = System.Text.RegularExpressions.Regex.Match(line, "(.*?)\\..*?= (.*)");
-							// Found action
-							if (match.Success)
-							{
-								Console.WriteLine("[" + match.Groups[2].ToString() + "]");
-								TreeNodeAction node_action = node_event.addAction();
-								node_action.setSpot(match.Groups[1].ToString());
-								node_action.setState(match.Groups[2].ToString());
-							}
-						}
-
-						node_event.Close();
-					}
-				}
-
-				refreshScriptEditor();
-				panel_script.Visible = true;
-			}
 		}
 
 		//----------------SAVE&LOAD-------------------------------------------
@@ -874,13 +830,13 @@ namespace gearit.src.GUI
 			int y = ITEM_HEIGHT;
 
 			// Remove all
-			panel_script.Content.Controls.Clear();
+			_panelScript.Content.Controls.Clear();
 			// Readd button add event
-			panel_script.Content.Controls.Add(btn_add_event);
+			_panelScript.Content.Controls.Add(btn_add_event);
 
 			foreach (TreeNodeEvent evt in _nodes)
 			{
-				panel_script.Content.Controls.Add(evt);
+				_panelScript.Content.Controls.Add(evt);
 				evt.Position = new Point(0, y);
 				y += evt.Size.y;
 
@@ -888,7 +844,7 @@ namespace gearit.src.GUI
 				if (evt.isOpen())
 					foreach (TreeNodeAction act in evt._nodes)
 					{
-						panel_script.Content.Controls.Add(act);
+						_panelScript.Content.Controls.Add(act);
 						act.Position = new Point(PADDING_NODE, y);
 						y += act.Size.y;
 					}
@@ -898,8 +854,8 @@ namespace gearit.src.GUI
 			if (y > _ScreenManager.Height / 2)
 				y = _ScreenManager.Height / 2;
 
-			panel_script.Size = new Point(panel_script.Size.x, y);
-			panel_script.Position = new Point(panel_script.Position.x, _ScreenManager.Height - y);
+			_panelScript.Size = new Point(_panelScript.Size.x, y);
+			_panelScript.Position = new Point(_panelScript.Position.x, _ScreenManager.Height - y);
 		}
 
 		void dragPiece(Control sender, MouseEventArgs e)
@@ -935,11 +891,11 @@ namespace gearit.src.GUI
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;
 
-			bool script_has_focus = panel_script.Visible && 
-				panel_script.Position.x + padding <= Input.position().X &&
-				panel_script.Position.x + panel_script.Size.x + padding >= Input.position().X &&
-				panel_script.Position.y <= Input.position().Y &&
-				panel_script.Position.y + panel_script.Size.y >= Input.position().Y;
+			bool script_has_focus = _panelScript.Visible && 
+				_panelScript.Position.x + padding <= Input.position().X &&
+				_panelScript.Position.x + _panelScript.Size.x + padding >= Input.position().X &&
+				_panelScript.Position.y <= Input.position().Y &&
+				_panelScript.Position.y + _panelScript.Size.y >= Input.position().Y;
 
 			return (script_has_focus || menu_has_focus);
 		}
