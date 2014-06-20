@@ -111,6 +111,8 @@ namespace gearit.src
 						float radius = circle.Radius;
 
 						drawCircle(center, radius, color);
+						float angle = fixture.Body.Rotation;
+						drawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), color);
 					}
 					break;
 
