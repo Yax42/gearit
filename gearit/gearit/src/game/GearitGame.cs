@@ -130,15 +130,12 @@ namespace gearit.src.game
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
-			Input.update();
 			HandleInput();
 
 			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
 			//_camera.update();
-			//_camera.input();
 			_camera.Update(gameTime);
-			base.Update(gameTime);
 		}
 
 
