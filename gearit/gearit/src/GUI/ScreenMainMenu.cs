@@ -54,7 +54,8 @@ namespace GUI
 			base.Draw(gameTime);
 
 			_menu.Draw();
-			ChatBox.getDesktop().Draw();
+			if (ChatBox.getDesktop() != null)
+				ChatBox.getDesktop().Draw();
 		}
 	}
 }
