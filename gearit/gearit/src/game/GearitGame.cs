@@ -69,7 +69,6 @@ namespace gearit.src.game
 
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			Debug.Assert(_robots != null);
-			_robots[0].getPiece(Vector2.Zero).Weight = 30;
 			_map = (Map)Serializer.DeserializeItem("map/default.gim");
 			Debug.Assert(_map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading

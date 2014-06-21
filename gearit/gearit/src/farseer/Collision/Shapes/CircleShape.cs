@@ -161,7 +161,7 @@ namespace FarseerPhysics.Collision.Shapes
 		{
 			float area = Settings.Pi * Radius * Radius;
 			MassData.Area = area;
-			MassData.Mass = Density * area;
+			//MassData.Mass = Density * area; #GEARIT
 			MassData.Centroid = Position;
 
 			// inertia about the local origin
