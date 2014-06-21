@@ -476,9 +476,9 @@ namespace gearit.src.GUI
 			{
 				float res;
 				if (!float.TryParse(((TextBox)snd).Text, out res))
-					Spot.Force = 0;
+					Spot.MaxForce = 0;
 				else
-					Spot.Force = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+					Spot.MaxForce = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
 			};
 
 			y += ITEM_HEIGHT;
@@ -937,7 +937,7 @@ namespace gearit.src.GUI
 			}
 
 			label_weight.Text = "Weight " + RobotEditor.Instance.Robot.Weight.ToString();
-			label_force.Text = "Force " + RobotEditor.Instance.Robot.Force.ToString();
+			label_force.Text = "Force " + RobotEditor.Instance.Robot.MaxForce.ToString();
 			piece_size.Text = piece.getSize().ToString();
 			piece_x.Text = piece.Position.X.ToString();
 			piece_y.Text = piece.Position.Y.ToString();
@@ -958,7 +958,7 @@ namespace gearit.src.GUI
 				if (!_has_focus)
 				{
 					spot_name.Text = spot.Name;
-					spot_force.Text = spot.Force.ToString();
+					spot_force.Text = spot.MaxForce.ToString();
 				}
 
 				// Check if Prismatic

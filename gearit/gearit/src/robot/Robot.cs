@@ -167,13 +167,13 @@ namespace gearit
 			}
 		}
 
-		public float Force
+		public float MaxForce
 		{
 			get
 			{
 				float res = 0;
 				foreach (ISpot s in _spots)
-					res += s.Force;
+					res += s.MaxForce;
 				return (res);
 			}
 		}

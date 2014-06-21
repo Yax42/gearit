@@ -254,7 +254,7 @@ namespace FarseerPhysics.Collision.Shapes
 			MassData.Area = area;
 
 			// Total mass
-			//MassData.Mass = _density * area; #GEARIT
+			MassData.Mass = _density * area;
 
 			// Center of mass
 			center *= 1.0f / area;

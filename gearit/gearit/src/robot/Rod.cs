@@ -41,7 +41,7 @@ namespace gearit.src.robot
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
 			Rotation = (float)info.GetValue("Rotation", typeof(float));
-			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -57,8 +57,8 @@ namespace gearit.src.robot
 		{
 			Transform xf;
 			GetTransform(out xf);
-			Vector2 v1 = ((PolygonShape)_shape).Vertices[0];
-			Vector2 v2 = ((PolygonShape)_shape).Vertices[2];
+			Vector2 v1 = ((PolygonShape) Shape).Vertices[0];
+			Vector2 v2 = ((PolygonShape) Shape).Vertices[2];
 
 			return ((MathUtils.Multiply(ref xf, v1) - pos).Length() > (MathUtils.Multiply(ref xf, v1) - pos).Length());
 
@@ -68,9 +68,9 @@ namespace gearit.src.robot
 		{
 			if (_size < 0.01)
 				_size = 0.01f;
-			_shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+			Shape shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), Shape.Density);
 			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(shape);
 		}
 
 		virtual public void updateCharacteristics()

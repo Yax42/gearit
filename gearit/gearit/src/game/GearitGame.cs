@@ -65,7 +65,7 @@ namespace gearit.src.game
 			SerializerHelper.World = _world;
 			Console.Write("One ");
 
-			addDummyPrismatic();
+			//addDummyPrismatic();
 
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			Debug.Assert(_robots != null);

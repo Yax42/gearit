@@ -35,7 +35,7 @@ namespace gearit
 			base(info)
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
-			setShape(new CircleShape(_size, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+			setShape(new CircleShape(_size, 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -54,9 +54,9 @@ namespace gearit
 
 		override public void resetShape()
 		{
-			((CircleShape)_shape).Radius = _size;
+			Shape shape = new CircleShape(_size, Shape.Density);
 			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(shape);
 		}
 
 		public float Size

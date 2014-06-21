@@ -66,18 +66,18 @@ namespace gearit.src.robot
 		//
 		public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
 			base(
-	SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
-		SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
-		(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
-		(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
+			SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+			SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+			(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
+			(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
 		{
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
-			MaxMotorTorque = (float)info.GetValue("Force", typeof(float));
-		LimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));
-		UpperLimit = (float)info.GetValue("UpperLimit", typeof(float));
-		LowerLimit = (float)info.GetValue("LowerLimit", typeof(float));
+			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));
+			LimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));
+			UpperLimit = (float)info.GetValue("UpperLimit", typeof(float));
+			LowerLimit = (float)info.GetValue("LowerLimit", typeof(float));
 		/*
 		if (UpperLimit < LowerLimit)
 		{
@@ -99,7 +99,7 @@ namespace gearit.src.robot
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("Name", Name, typeof(string));
-			info.AddValue("Force", MaxMotorTorque, typeof(float));
+			info.AddValue("MaxForce", MaxMotorTorque, typeof(float));
 			info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));

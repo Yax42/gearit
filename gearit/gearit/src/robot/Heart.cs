@@ -23,8 +23,7 @@ namespace gearit
 		{
 			Position = new Vector2(3, 3);
 			_vertices = PolygonTools.CreateRectangle(1, 1);
-			_shape = new PolygonShape(_vertices, 50f);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture( new PolygonShape(_vertices, 1f));
 			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
@@ -38,7 +37,7 @@ namespace gearit
 		{
 			List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
 			_vertices = new Vertices(v);
-			setShape(new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+			setShape(new PolygonShape(_vertices, 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -66,7 +65,7 @@ namespace gearit
 		public void setShape(Vertices v)
 		{
 			_vertices = v;
-			updateShape();
+			resetShape();
 		}
 
 		public Vertices getShapeClone()
@@ -89,11 +88,11 @@ namespace gearit
 			return (res);
 		}
 
-		private void updateShape()
+		override public void resetShape()
 		{
-			_shape = new PolygonShape(_vertices, _shape.Density);
+			Shape shape = new PolygonShape(_vertices, Shape.Density);
 			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(shape);
 		}
 
 		public Vector2 getCorner(int id)
@@ -113,11 +112,11 @@ namespace gearit
 				_vertices[id] = backupPos;
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices[id] = backupPos;
-					updateShape();
+					resetShape();
 				}
 			}
 		}
@@ -135,11 +134,11 @@ namespace gearit
 			}
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices.Remove(p);
-					updateShape();
+					resetShape();
 					return false;
 				}
 				return true;
@@ -156,11 +155,11 @@ namespace gearit
 				_vertices[id] = backupPos;
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices.Insert(id, backupPos);
-					updateShape();
+					resetShape();
 				}
 			}
 		}
@@ -181,7 +180,7 @@ namespace gearit
 
 		override public float getSize()
 		{
-			return (_shape.MassData.Area);
+			return (Shape.MassData.Area);
 		}
 	}
 }

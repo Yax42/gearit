@@ -23,7 +23,13 @@ namespace gearit
 	{
 		internal const float MaxMass = 1000;
 
-		internal Shape _shape;
+		internal Shape Shape
+		{
+			get
+			{
+				return _fix.Shape;
+			}
+		}
 		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
 		internal bool _didAct;
@@ -43,7 +49,6 @@ namespace gearit
 			Shown = true;
 			_tex = null;
 			Sleeping = false;
-			ResetMassData();
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -80,7 +85,6 @@ namespace gearit
 		{
 			info.AddValue("HashCode", this.GetHashCode(), typeof(int));
 			info.AddValue("Position", this.Position, typeof(Vector2));
-			info.AddValue("Density", _shape.Density, typeof(float));
 			info.AddValue("Weight", this.Weight, typeof(float));
 		}
 
@@ -90,20 +94,20 @@ namespace gearit
 
 		public void setTexture(DrawGame dg, MaterialType mater)
 		{
-			_tex = dg.textureFromShape(_shape, mater);
+			_tex = dg.textureFromShape(Shape, mater);
 		}
 
 		internal void setShape(Shape shape, int id)
 		{
-			_shape = shape;
-			_fix = CreateFixture(_shape, null);
+			if (_fix != null)
+				DestroyFixture(_fix);
+			_fix = CreateFixture(shape, null);
 			_fix.CollisionGroup = (short)id;
 		}
 
 		internal void initShapeAndFixture(Shape shape)
 		{
-			_shape = shape;
-			_fix = CreateFixture(_shape, null);
+			_fix = CreateFixture(shape, null);
 		}
 
 		public void removeSpot(ISpot spot)
@@ -159,7 +163,13 @@ namespace gearit
 			{
 				if (value > 0 && value < MaxMass)
 				{
-					_fix.Shape.MassData.Mass = value;// *_fix.Shape.Density / _fix.Shape.MassData.Mass;
+					Shape.ComputeProperties();
+					if (Shape.MassData.Area <= 0)
+					{
+						Debug.Assert(true);
+						return;
+					}
+					Shape.Density = value / Shape.MassData.Area;
 					ResetMassData();
 					_weight = value;
 				}
@@ -174,7 +184,7 @@ namespace gearit
 		{
 			Transform t;
 			GetTransform(out t);
-			return (_shape.TestPoint(ref t, ref p));
+			return (Shape.TestPoint(ref t, ref p));
 		}
 
 		//  return the closest spot
