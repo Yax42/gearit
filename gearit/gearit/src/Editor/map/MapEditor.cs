@@ -199,8 +199,8 @@ namespace gearit.src.editor.map
 
 		public void resetMap(Map map)
 		{
-			if (map != null)
-				map.remove();
+			if (_map != null)
+				_map.remove();
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			_map = map;
