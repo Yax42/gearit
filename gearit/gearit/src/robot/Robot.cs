@@ -257,17 +257,17 @@ namespace gearit
 			}
 		}
 
-        // For lua
-        public Boolean hasSpot(string name)
-        {
-            foreach (var spot in _spots)
-            {
-                if (name == spot.Name)
-                    return (true);
-            }
+		// For lua
+		public Boolean hasSpot(string name)
+		{
+			foreach (var spot in _spots)
+			{
+				if (name == spot.Name)
+					return (true);
+			}
 
-            return (false);
-        }
+			return (false);
+		}
 
 		// For editor
 		public void fallAsleep(ISpot s, SleepingPack pack)
@@ -361,7 +361,7 @@ namespace gearit
 		public int revCount() { return (_revoluteCounter++); }
 		public int prisCount() { return (_prismaticCounter++); }
 
-        // Filename for robot & lua
+		// Filename for robot & lua
 		public string Name { get; set; }
 	}
 }
