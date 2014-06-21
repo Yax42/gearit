@@ -74,7 +74,7 @@ namespace gearit.src.editor.robot.action
 				if (Heart.addCorner(Input.SimMousePos))
 					_didSomething = true;
 			}
-			if (Input.justPressed(Keys.S) == true && !_isFirstFrame)
+			if ((Input.justPressed(Keys.S) == true && !_isFirstFrame) || Input.justPressed(Keys.Escape))
 			{
 				To = Heart.getShapeClone();
 				return false;

@@ -199,6 +199,13 @@ namespace gearit.src.editor.robot
 			_actionsLog.Insert(0, a);
 		}
 
+		public ActionTypes CurrentAction
+		{
+			get
+			{
+				return _currentAction.type();
+			}
+		}
 
 		private void drawRobot()
 		{
