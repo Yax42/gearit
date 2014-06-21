@@ -143,7 +143,8 @@ namespace gearit.src.game
 			if (Input.Exit)
 			{
 				clearRobot();
-				ScreenManager.RemoveScreen(this);
+				//ScreenManager.RemoveScreen(this);
+				ScreenMainMenu.GoBack = true;
 			}
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				_camera.zoomIn();
