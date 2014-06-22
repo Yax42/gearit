@@ -75,7 +75,6 @@ namespace gearit
 
 			_id = _robotIdCounter++;
 			Console.WriteLine("Robot created.");
-			SerializerHelper.CurrentRobot = null;
 			_script = null;
 		}
 

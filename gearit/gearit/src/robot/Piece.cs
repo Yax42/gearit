@@ -71,11 +71,13 @@ namespace gearit
 		internal Piece(SerializationInfo info) :
 			base(SerializerHelper.World)
 		{
+			_robot = SerializerHelper.CurrentRobot;
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.Black;
 			Shown = true;
 			int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
 			SerializerHelper.Add(oldHashMap, this);
+			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
 		}
 
@@ -86,6 +88,7 @@ namespace gearit
 			info.AddValue("HashCode", this.GetHashCode(), typeof(int));
 			info.AddValue("Position", this.Position, typeof(Vector2));
 			info.AddValue("Weight", this.Weight, typeof(float));
+			info.AddValue("Rotation", Rotation, typeof(float));
 		}
 
 		//--------- END SERIALISATION

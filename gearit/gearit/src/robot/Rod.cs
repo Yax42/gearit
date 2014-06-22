@@ -40,7 +40,6 @@ namespace gearit.src.robot
 			base(info)
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
-			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
@@ -49,7 +48,6 @@ namespace gearit.src.robot
 		{
 			serializePiece(info);
 			info.AddValue("Size", _size, typeof(float));
-			info.AddValue("Rotation", Rotation, typeof(float));
 		}
 		//--------- END SERIALISATION
 
