@@ -5,6 +5,7 @@ using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.robot;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.robot.action
 {
@@ -24,10 +25,16 @@ namespace gearit.src.editor.robot.action
 			else
 				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
 			IsPrismatic = ActionChooseSet.IsPrismatic;
+
 			if (IsPrismatic)
 				new PrismaticSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1);
 			else
-				new RevoluteSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1);
+			{
+				Vector2 anchor = Vector2.Zero;
+				if (RobotEditor.Instance.Select1.isOn(Input.SimMousePos))
+					anchor = Input.SimMousePos - RobotEditor.Instance.Select1.Position;
+				new RevoluteSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1, anchor, Vector2.Zero);
+			}
 			RobotEditor.Instance.Select1 = P1;
 		}
 
