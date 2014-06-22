@@ -784,8 +784,13 @@ namespace gearit.src.GUI
 		private MessageBoxSave _messageBoxSave = null;
 		public void saveasRobot(bool mustExit = false)
 		{
-			setFocus(true);
-			_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot", mustExit);
+			if (mustExit && RobotEditor.Instance.IsEmpty())
+				ScreenMainMenu.GoBack = true;
+			else
+			{
+				setFocus(true);
+				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot", mustExit);
+			}
 		}
 
 		public void safeSaveRobot(string name, bool mustExit = false)

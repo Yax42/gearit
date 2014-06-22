@@ -301,5 +301,10 @@ namespace gearit.src.editor.robot
 
 			MenuRobotEditor.Instance.Draw();
 		}
+
+		public bool IsEmpty()
+		{
+			return _actionsLog.Count == 0 && _redoActionsLog.Count == 0 && Robot.Name == null;
+		}
 	}
 }
