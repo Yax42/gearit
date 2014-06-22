@@ -15,7 +15,18 @@ namespace gearit.src.editor
 	static class SerializerHelper
 	{
 		public static World World = null;
-		public static Robot CurrentRobot = null;
+		public static Robot _CurrentRobot = null;
+		public static Robot CurrentRobot
+		{
+			get
+			{
+				return _CurrentRobot;
+			}
+			set
+			{
+				_CurrentRobot = value;
+			}
+		}
 		public static Dictionary<int, Piece> Ptrmap = null;
 
 		public static void Add(int code, Piece p)

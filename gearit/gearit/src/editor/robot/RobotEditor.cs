@@ -209,7 +209,9 @@ namespace gearit.src.editor.robot
 
 		private void drawRobot()
 		{
-			if (_currentAction.type() == ActionTypes.RESIZE_HEART && Select1 == Robot.getHeart())
+			if (_currentAction.type() == ActionTypes.RESIZE_HEART
+				|| _currentAction.type() == ActionTypes.RESIZE_ROD
+				|| _currentAction.type() == ActionTypes.RESIZE_WHEEL)
 				Select1.ColorValue = Color.GreenYellow;
 			else if (Select2 == Select1)
 				Select2.ColorValue = Color.Violet;
