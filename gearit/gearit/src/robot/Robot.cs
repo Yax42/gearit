@@ -33,7 +33,21 @@ namespace gearit
 	{
 
 		private List<Piece> _pieces;
+		public List<Piece> Pieces
+		{
+			get
+			{
+				return _pieces;
+			}
+		}
 		private List<ISpot> _spots;
+		public List<ISpot> Spots
+		{
+			get
+			{
+				return _spots;
+			}
+		}
 		private int _prismaticCounter = 0;
 		private int _revoluteCounter = 0;
 
