@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using gearit.xna;
 using Microsoft.Xna.Framework;
+using gearit.src.server;
+using gearit.src.output;
 
 namespace gearit.src
 {
@@ -14,6 +16,10 @@ namespace gearit.src
 
 		//Action
 		public static MasterClient Instance { set; get; }
+
+        //server + client
+        public InGameServer server;
+        public InGameClient client;
 
 		#region IDemoScreen Members
 
@@ -37,6 +43,12 @@ namespace gearit.src
 			Instance = this;
 		}
 
+        ~MasterClient()
+        {
+            client.Stop();
+            server.Stop();
+        }
+
 
 		public override void LoadContent()
 		{
@@ -47,11 +59,20 @@ namespace gearit.src
 			HasVirtualStick = true;
 
 			//_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
+            server = new InGameServer(12242);
+            server.Start();
+            OutputManager.LogMessage("Server launch");
+            System.Threading.Thread.Sleep(1000);
+            client = new InGameClient(12242, "127.0.0.1");
+            client.Start();
+            OutputManager.LogMessage("Client connected");
+            System.Threading.Thread.Sleep(1000);
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			MenuMasterClient.Instance.Update();
+            //client.Send("hello world");
 			base.Update(gameTime);
 		}
 
