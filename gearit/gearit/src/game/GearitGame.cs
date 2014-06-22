@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.editor;
 using System.Diagnostics;
 using FarseerPhysics.Dynamics.Joints;
+using gearit.src.output;
+using GUI;
 
 namespace gearit.src.game
 {
@@ -135,6 +137,32 @@ namespace gearit.src.game
 
 			//_camera.update();
 			_camera.Update(gameTime);
+
+			PrintRobot(gameTime);
+		}
+
+		private float SecCount = 0;
+		public void PrintRobot(GameTime gameTime)
+		{
+			SecCount += (float)gameTime.ElapsedGameTime.TotalSeconds;
+			if (SecCount < 2)
+				return;
+
+			foreach (Piece p in _robots[0].Pieces)
+				p.ResetMassData();
+			SecCount = 0;
+			foreach (Robot r in _robots)
+			{
+				string res = "W:";
+				foreach (Piece p in r.Pieces)
+					res += " " + p.Mass + "/" + p.Weight;
+				OutputManager.LogInfo(res);
+
+				res = "F:";
+				foreach (ISpot s in r.Spots)
+					res += " " + s.Force;
+				OutputManager.LogInfo(res);
+			}
 		}
 
 
