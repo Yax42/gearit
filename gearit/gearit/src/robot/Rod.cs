@@ -103,13 +103,13 @@ namespace gearit.src.robot
 
 		private void updateEnds(double angle_change = 0f)
 		{
-			move(endsPosition());
-			_robot.resetAct();
-
 			rotate(endsAngle());
 			_robot.resetAct();
 
 			resize(endsSize());
+			_robot.resetAct();
+
+			move(endsPosition());
 			_robot.resetAct();
 		}
 

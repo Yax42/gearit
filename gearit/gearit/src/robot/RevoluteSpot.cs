@@ -156,31 +156,29 @@ namespace gearit.src.robot
 		public void move(Piece piece, Vector2 pos)
 		{
 			if (piece == BodyA)
-				((Piece)BodyB).move(pos + LocalAnchorA - LocalAnchorB);
+				((Piece)BodyB).move(WorldAnchorA - BodyB.GetWorldVector(LocalAnchorB));
 			else
-				((Piece)BodyA).move(pos + LocalAnchorB - LocalAnchorA);
+				((Piece)BodyA).move(WorldAnchorB - BodyA.GetWorldVector(LocalAnchorA));
 		}
 
 		public void rotate(Piece piece, float angle)
 		{
-			
 			if (piece == BodyA)
-			{
 				((Piece)BodyB).rotateDelta(angle);
-				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
-			}
 			else
-			{
 				((Piece)BodyA).rotateDelta(angle);
-				LocalAnchorA = MathLib.RotatePoint(LocalAnchorA, Vector2.Zero, MathLib.RadiansToDegrees(angle));
-			}
 		}
-
+	
 		public void drawDebug(DrawGame game)
 		{
+			_drawDebug(game, WorldAnchorA);
+			_drawDebug(game, WorldAnchorB);
+		}
+
+		private void _drawDebug(DrawGame game, Vector2 pos)
+		{
 			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
-			Vector2 pos = WorldAnchorA;
-			Vector2 corner = WorldAnchorA - _topLeft;
+			Vector2 corner = pos - _topLeft;
 			//Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
 
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);

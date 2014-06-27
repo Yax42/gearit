@@ -510,6 +510,7 @@ namespace gearit.src.GUI
 			"----------------------------------------------------------------------------------------\n" +
 			"Select piece A.......................................(left click)\n" +
 			"Select piece B.......................................(shift+left click)\n" +
+			"Swap Selection.....................................(C)\n" +
 			"Select spot S.........................................[automatically\n" +
 			" selected by selecting both of the pieces it's linked to]\n" +
 			"Move piece A........................................(right click)\n" +

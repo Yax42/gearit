@@ -32,7 +32,7 @@ namespace gearit
 		}
 		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
-		internal bool _didAct;
+		internal bool DidAct { get; set; }
 		internal Robot _robot;
 		internal float _size; //useless for the heart, but more simple for implementation
 		public bool Sleeping { get; set; }
@@ -156,7 +156,7 @@ namespace gearit
 
 		public void resetAct()
 		{
-			_didAct = false;
+			DidAct = false;
 		}
 
 		private float _weight = 1;
@@ -221,9 +221,9 @@ namespace gearit
 
 		public void rotateDelta(float angle)
 		{
-			if (_didAct)
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			Rotation += angle;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
@@ -242,9 +242,9 @@ namespace gearit
 
 		virtual public void move(Vector2 pos)
 		{
-			if (_didAct)
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
@@ -270,9 +270,9 @@ namespace gearit
 
 		virtual public void scale(float scale)
 		{
-			if (_didAct)
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			_size *= scale;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
