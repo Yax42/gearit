@@ -214,23 +214,37 @@ namespace gearit
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
 
-		public void rotate(float angle)
+		public void rotate(float angle, Piece comparator)
 		{
-			rotateDelta(angle - Rotation);
+			rotateDelta(angle - Rotation, comparator);
 		}
 
 		public void rotateDelta(float angle)
+		{
+			rotateDelta(angle, this);
+		}
+		
+		public void rotateDelta(float angle, Piece comparator)
 		{
 			if (DidAct)
 				return;
 			DidAct = true;
 			Rotation += angle;
-			for (JointEdge i = JointList; i != null; i = i.Next)
+			if (comparator == this)
 			{
-				if (i.Joint.GetType() == typeof(RevoluteSpot))
-					((RevoluteSpot)i.Joint).rotate(this, angle);
-				if (i.Joint.GetType() == typeof(PrismaticSpot))
-					((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
+				for (JointEdge i = JointList; i != null; i = i.Next)
+				{
+					if (i.Joint.GetType() == typeof(RevoluteSpot))
+						((RevoluteSpot)i.Joint).rotate(this, angle);
+					if (i.Joint.GetType() == typeof(PrismaticSpot))
+						((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
+				}
+			}
+			else if (isConnected(comparator))
+			{
+				ISpot spot = getConnection(comparator);
+				if (spot.GetType() == typeof(RevoluteSpot))
+					((RevoluteSpot)spot).rotate(this, angle);
 			}
 			//updateCharacteristics();
 		}
@@ -249,7 +263,7 @@ namespace gearit
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
 				if (i.Joint.GetType() == typeof(RevoluteSpot))
-					((RevoluteSpot)i.Joint).move(this, pos);
+					((RevoluteSpot)i.Joint).SynchroniseAnchors(this);
 				else
 					((PrismaticSpot)i.Joint).updateAxis();
 			}

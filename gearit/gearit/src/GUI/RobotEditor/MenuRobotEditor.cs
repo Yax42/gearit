@@ -518,6 +518,7 @@ namespace gearit.src.GUI
 			"Delete spot S.........................................(shift+R)\n" +
 			"Move A to S anchor...............................(shift+right click)\n" +
 			"Resize A................................................(S)\n" +
+			"Resize A and rotate B (Rods only).........(shift+S)\n" +
 			"Switch piece type pT.............................(A)\n" +
 			"Switch spot type sT...............................(shift+A)\n" +
 			"Create a pT and link it to A with a sT....(W)\n" +
@@ -534,7 +535,7 @@ namespace gearit.src.GUI
 			"";
 
 
-			helper.Size = new Squid.Point(370, 410);
+			helper.Size = new Squid.Point(370, 430);
 			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;

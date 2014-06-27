@@ -101,9 +101,9 @@ namespace gearit.src.robot
 		
 		//--------ENDS-------------
 
-		private void updateEnds(double angle_change = 0f)
+		private void updateEnds(Piece comparator = null)
 		{
-			rotate(endsAngle());
+			rotate(endsAngle(), comparator);
 			_robot.resetAct();
 
 			resize(endsSize());
@@ -113,21 +113,14 @@ namespace gearit.src.robot
 			_robot.resetAct();
 		}
 
-		public void setEnds(Vector2 A, Vector2 B)
-		{
-			_endA = A;
-			_endB = B;
-			updateEnds();
-		}
-
-		public void setEnd(Vector2 end, bool isA)
+		public void setEnd(Vector2 end, bool isA, Piece comparator = null)
 		{
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
 				_endA = end;
 			else
 				_endB = end;
-			updateEnds(MathLib.RadiansToDegrees(endsAngle()) - previous_angle_degree);
+			updateEnds(comparator);
 		}
 
 		public Vector2 getEnd(bool isA)

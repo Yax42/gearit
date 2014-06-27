@@ -18,6 +18,7 @@ namespace gearit.src.editor.robot.action
 
 		public void init()
 		{
+			Piece select1 = RobotEditor.Instance.Select1;
 			Pack = new SleepingPack();
 			HasBeenRevert = false;
 			if (ActionChooseSet.IsWheel)
@@ -26,15 +27,13 @@ namespace gearit.src.editor.robot.action
 				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
 			IsPrismatic = ActionChooseSet.IsPrismatic;
 
+			Vector2 anchor = Vector2.Zero;
+			if (select1.isOn(Input.SimMousePos))
+				anchor = select1.GetLocalPoint(Input.SimMousePos);
 			if (IsPrismatic)
-				new PrismaticSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1);
+				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor, Vector2.Zero);
 			else
-			{
-				Vector2 anchor = Vector2.Zero;
-				if (RobotEditor.Instance.Select1.isOn(Input.SimMousePos))
-					anchor = Input.SimMousePos - RobotEditor.Instance.Select1.Position;
-				new RevoluteSpot(RobotEditor.Instance.Robot, RobotEditor.Instance.Select1, P1, anchor, Vector2.Zero);
-			}
+				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor, Vector2.Zero);
 			RobotEditor.Instance.Select1 = P1;
 		}
 

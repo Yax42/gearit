@@ -46,7 +46,7 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			ColorValue = Color.Black;
 			robot.addSpot(this);
-			move(p1, p1.Position);
+			SynchroniseAnchors(p1);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
 		}
@@ -140,7 +140,7 @@ namespace gearit.src.robot
 				LocalAnchorA = anchor - p.Position;
 			if (BodyB == p)
 				LocalAnchorB = anchor - p.Position;
-			move(p, p.Position);
+			SynchroniseAnchors(p);
 		}
 
 		/*
@@ -153,7 +153,7 @@ namespace gearit.src.robot
 			}
 		*/
 
-		public void move(Piece piece, Vector2 pos)
+		public void SynchroniseAnchors(Piece piece)
 		{
 			if (piece == BodyA)
 				((Piece)BodyB).move(WorldAnchorA - BodyB.GetWorldVector(LocalAnchorB));
