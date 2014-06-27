@@ -41,6 +41,8 @@ namespace gearit.src
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			Instance = this;
+            server = new InGameServer(12242);
+            client = new InGameClient(12242, "127.0.0.1");
 		}
 
         ~MasterClient()
@@ -59,14 +61,15 @@ namespace gearit.src
 			HasVirtualStick = true;
 
 			//_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-            server = new InGameServer(12242);
+            // Start Server
             server.Start();
             OutputManager.LogMessage("Server launch");
             System.Threading.Thread.Sleep(1000);
-            client = new InGameClient(12242, "127.0.0.1");
-            client.Start();
+            
+            //Start Client
+            /*client.Start();
             OutputManager.LogMessage("Client connected");
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1000);*/
 		}
 
 		public override void Update(GameTime gameTime)

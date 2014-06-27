@@ -29,7 +29,6 @@ namespace gearit.src.server
             s_client.RegisterReceivedCallback(new SendOrPostCallback(Receive));
         }
 
-        [STAThread]
         public void Start()
         {
             s_client.Start();
@@ -39,8 +38,11 @@ namespace gearit.src.server
 
         public void Stop()
         {
-            s_client.Disconnect("Requested by user");
-            s_client.Shutdown("Bye");
+            if (_connected)
+            {
+                s_client.Disconnect("Requested by user");
+                s_client.Shutdown("Bye");
+            }
         }
 
         public static void clientMainLoop(object peer)
@@ -74,8 +76,8 @@ namespace gearit.src.server
                             _connected = false;
                         }
 
-                        /*if (status == NetConnectionStatus.Disconnected)
-                            "Connect";*/
+                        if (status == NetConnectionStatus.Disconnected)
+                            _connected = false;
 
                         string reason = im.ReadString();
 

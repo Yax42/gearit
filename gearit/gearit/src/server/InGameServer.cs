@@ -16,6 +16,7 @@ namespace gearit.src.server
         private NetServer s_server;
         public string _buffer;
         private Thread serverThread;
+        private bool _server_launched;
 
         public InGameServer(int port)
         {
@@ -25,21 +26,25 @@ namespace gearit.src.server
             config.Port = _port;
 
             s_server = new NetServer(config);
+            _server_launched = false;
         }
 
-        [STAThread]
         public void Start()
         {
             s_server.Start();
             serverThread = new Thread(ServerMainLoop);
             serverThread.Start();
             OutputManager.LogMessage(serverThread.IsAlive.ToString());
+            _server_launched = true;
         }
 
         public void Stop()
         {
-            serverThread.Abort();
-            s_server.Shutdown("Requested by user");
+            if (_server_launched)
+            {
+                serverThread.Abort();
+                s_server.Shutdown("Requested by user");
+            }
         }
 
         public void ServerMainLoop()
