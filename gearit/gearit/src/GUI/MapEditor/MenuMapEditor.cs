@@ -282,15 +282,19 @@ namespace gearit.src.editor.map
 
 		//---------------------SAVE&LOAD-----------------------------
 
-		public void saveMap()
+		public bool saveMap()
 		{
 			if (MapEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
-				_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap, setFocus, "map");
+				_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap, setFocus, "map");
+				return false;
 			}
 			else
+			{
 				MapEditor.Instance.doAction(ActionTypes.SAVE);
+				return true;
+			}
 		}
 
 		private MessageBoxSave _messageBoxSave = null;
