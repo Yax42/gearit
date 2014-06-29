@@ -29,6 +29,7 @@ namespace gearit.src
 		private Matrix _staticProj;
 		private Matrix _staticView;
 		private DebugViewXNA _debug;
+		private PrimitiveBatch _primitiveBatch;
 
 		public DrawGame(GraphicsDevice device)
 		{
@@ -39,6 +40,9 @@ namespace gearit.src
 			_batch = new SpriteBatch(device);
 			_asset = new AssetCreator(device);
 			_device = device;
+
+			_primitiveBatch = new PrimitiveBatch(_device, 1000);
+
 
 			// set up a new basic effect, and enable vertex colors.
 			_basicEffect = new BasicEffect(device);
@@ -75,6 +79,14 @@ namespace gearit.src
 			_basicEffect.Projection = camera.projection();
 			_basicEffect.View = camera.view();
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
+			Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
+											 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
+											 1f);
+			Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
+												_device.Viewport.Height / 2f);
+			Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
+			ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
+			_primitiveBatch.Begin(ref _staticProj, ref _staticView);
 		}
 
 		public void Begin()
@@ -84,6 +96,14 @@ namespace gearit.src
 			_basicEffect.Projection = _staticProj;
 			_basicEffect.View = _staticView;
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
+			Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
+											 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
+											 1f);
+			Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
+												_device.Viewport.Height / 2f);
+			Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
+			ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
+			_primitiveBatch.Begin(ref _staticProj, ref _staticView);
 		}
 
 		public void drawLine(Vector2 p1, Vector2 p2, Color col)
@@ -100,6 +120,7 @@ namespace gearit.src
 		{
 			flushLines();
 			_batch.End();
+			_primitiveBatch.End();
 		}
 
 		private void flushLines()
@@ -126,17 +147,6 @@ namespace gearit.src
 			//_batch.Draw(texture, posBody, null, Color.Blue, b.Rotation, posCenter, 1f, SpriteEffects.None, 0f);
 			_batch.Draw(texture, new Rectangle(200, 200, 200, 200), Color.White);
 			 ***/
-			if (_debug != null)
-			{
-				Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
-												 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
-												 1f);
-				Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
-													_device.Viewport.Height / 2f);
-				Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
-				ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
-				_debug.RenderDebugData(ref projection, ref view);
-			}
 		}
 
 		private void draw(Fixture fixture, Transform xf, Color color)
@@ -167,6 +177,8 @@ namespace gearit.src
 						}
 
 						drawPolygon(_tempVertices, vertexCount, color);
+                        //if (_debug != null)
+						//	_debug.DrawPolygon(_tempVertices, vertexCount, Color.Green);
 					}
 					break;
 
