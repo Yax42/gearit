@@ -349,5 +349,7 @@ namespace gearit
 				adjacentPieces.Add((Piece)i.Other);
 			return adjacentPieces;
 		}
+
+		public abstract Vector2 ShapeLocalOrigin();
 	}
 }

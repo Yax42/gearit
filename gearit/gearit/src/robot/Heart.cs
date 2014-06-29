@@ -23,7 +23,7 @@ namespace gearit
 		{
 			Position = new Vector2(3, 3);
 			_vertices = PolygonTools.CreateRectangle(1, 1);
-			_fix = CreateFixture( new PolygonShape(_vertices, 1f));
+			_fix = CreateFixture(new PolygonShape(_vertices, 1f));
 			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
@@ -178,9 +178,19 @@ namespace gearit
 		}
 	*/
 
-		override public float getSize()
+		public override float getSize()
 		{
 			return (Shape.MassData.Area);
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			Vector2 res = Vector2.Zero;
+			foreach (var v in _vertices)
+			{
+				res += v;
+			}
+			return res / _vertices.Count;
 		}
 	}
 }

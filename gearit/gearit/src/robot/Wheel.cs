@@ -74,5 +74,10 @@ namespace gearit
 				}
 			}
 		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			return Vector2.Zero;
+		}
 	}
 }
