@@ -152,6 +152,7 @@ namespace gearit.src.game
 				foreach (Piece p in r.Pieces)
 					p.ResetMassData();
 			SecCount = 0;
+#if false
 			foreach (Robot r in _robots)
 			{
 				string res = "W:";
@@ -164,6 +165,7 @@ namespace gearit.src.game
 					res += " " + s.Force;
 				OutputManager.LogInfo(res);
 			}
+#endif
 		}
 
 
