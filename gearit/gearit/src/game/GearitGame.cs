@@ -148,8 +148,9 @@ namespace gearit.src.game
 			if (SecCount < 2)
 				return;
 
-			foreach (Piece p in _robots[0].Pieces)
-				p.ResetMassData();
+			foreach (Robot r in _robots)
+				foreach (Piece p in r.Pieces)
+					p.ResetMassData();
 			SecCount = 0;
 			foreach (Robot r in _robots)
 			{
@@ -172,7 +173,7 @@ namespace gearit.src.game
 			{
 				clearRobot();
 				//ScreenManager.RemoveScreen(this);
-				//ScreenMainMenu.GoBack = true;
+				ScreenMainMenu.GoBack = true;
 			}
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				_camera.zoomIn();
