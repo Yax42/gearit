@@ -13,6 +13,8 @@ using System.Diagnostics;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src.output;
 using GUI;
+using FarseerPhysics.DebugViews;
+using FarseerPhysics;
 
 namespace gearit.src.game
 {
@@ -28,6 +30,8 @@ namespace gearit.src.game
 
 		// Graphic
 		private RectangleOverlay _background;
+
+		private DebugViewXNA _debug;
 
 		// Action
 	private int _time = 0;
@@ -58,11 +62,21 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
+			_debug = new DebugViewXNA(_world);
+			_debug.AppendFlags(DebugViewFlags.DebugPanel);
+			_debug.DefaultShapeColor = Color.White;
+			_debug.SleepingShapeColor = Color.LightGray;
+			_debug.LoadContent(ScreenManager.Game.GraphicsDevice, ScreenManager.Game.Content);
+
 			_time = 0;
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
 			_world.Gravity = new Vector2(0f, 9.8f);
+
+
+
 			//clearRobot();
 			SerializerHelper.World = _world;
 			Console.Write("One ");

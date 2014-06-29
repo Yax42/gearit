@@ -5,10 +5,12 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using Microsoft.Xna.Framework;
+using gearit.xna;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using gearit.src.editor;
+using FarseerPhysics.DebugViews;
 
 namespace gearit.src
 {
@@ -26,9 +28,28 @@ namespace gearit.src
 		private SpriteBatch _batch;
 		private Matrix _staticProj;
 		private Matrix _staticView;
+		private DebugViewXNA _debug;
 
 		public DrawGame(GraphicsDevice device)
 		{
+			_staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
+			Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);
+			_staticView = Matrix.CreateTranslation( -translateCenter) * Matrix.CreateTranslation(translateCenter);
+
+			_batch = new SpriteBatch(device);
+			_asset = new AssetCreator(device);
+			_device = device;
+
+			// set up a new basic effect, and enable vertex colors.
+			_basicEffect = new BasicEffect(device);
+			_basicEffect.VertexColorEnabled = true;
+		}
+
+
+
+		public DrawGame(GraphicsDevice device, DebugViewXNA debug)
+		{
+			_debug = debug;
 			_staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
 			Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);
 			_staticView = Matrix.CreateTranslation( -translateCenter) * Matrix.CreateTranslation(translateCenter);
@@ -97,6 +118,25 @@ namespace gearit.src
 			b.GetTransform(out xf);
 			foreach (Fixture f in b.FixtureList)
 				draw(f, xf, col);
+			/*** Bon gros bullshit
+			Texture2D texture = new Texture2D(_device, 1, 1);
+			texture.SetData<Color>(new Color[] { Color.Orange});
+			Vector2 posBody = ConvertUnits.ToDisplayUnits(b.Position);
+			Vector2 posCenter = new Vector2(10.0f, 10.0f);
+			//_batch.Draw(texture, posBody, null, Color.Blue, b.Rotation, posCenter, 1f, SpriteEffects.None, 0f);
+			_batch.Draw(texture, new Rectangle(200, 200, 200, 200), Color.White);
+			 ***/
+			if (_debug != null)
+			{
+				Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
+												 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
+												 1f);
+				Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
+													_device.Viewport.Height / 2f);
+				Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
+				ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
+				_debug.RenderDebugData(ref projection, ref view);
+			}
 		}
 
 		private void draw(Fixture fixture, Transform xf, Color color)

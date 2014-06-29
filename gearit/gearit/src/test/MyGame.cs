@@ -446,7 +446,7 @@ namespace gearit.src.utility
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
 
 			//Draw circle
-			ScreenManager.SpriteBatch.Draw(_circleSprite, circlePos, null, Color.White, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
+			ScreenManager.SpriteBatch.Draw(_circleSprite, circlePos, null, Color.Black, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
 
 			ScreenManager.SpriteBatch.Draw(_circleTex, circlePos2, null, Color.White, circleRotation2, circleOrigin2, 1f, SpriteEffects.None, 0f);
 
