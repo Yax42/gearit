@@ -216,7 +216,7 @@ namespace gearit
 				dg.draw(_pieces[i], _pieces[i].ColorValue);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
-				if (_spots[i].GetType() == typeof(PrismaticSpot))
+				//if (_spots[i].GetType() == typeof(PrismaticSpot))
 					_spots[i].drawDebug(dg);
 		}
 
