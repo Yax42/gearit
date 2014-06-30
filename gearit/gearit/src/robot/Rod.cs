@@ -118,13 +118,13 @@ namespace gearit.src.robot
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
 			{
-				if (_endB == end)
+				if ((_endB - end).LengthSquared() < 0.01f)
 					return;
 				_endA = end;
 			}
 			else
 			{
-				if (_endA == end)
+				if ((_endA - end).LengthSquared() < 0.01f)
 					return;
 				_endB = end;
 			}
