@@ -34,8 +34,8 @@ namespace gearit.src.editor.robot.action
 			IsPrismatic = ActionChooseSet.IsPrismatic;
 
 			Vector2 anchor1;
-			if (select1.isOn(Input.SimMousePos))
-				anchor1 = new Vector2(select1.GetLocalPoint(Input.SimMousePos).X, 0);
+			if (select1.Contain(Input.SimMousePos))
+				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
 			else
 				anchor1 = select1.ShapeLocalOrigin();
 

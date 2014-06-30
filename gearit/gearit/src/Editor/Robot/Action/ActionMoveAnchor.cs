@@ -43,7 +43,7 @@ namespace gearit.src.editor.robot.action
 				return false;
 			Debug.Assert(P1.isConnected(P2));
 
-			if (!HasBeenRevert && P1.isOn(Input.SimMousePos))
+			if (!HasBeenRevert && P1.Contain(Input.SimMousePos))
 			{
 				To = Input.SimMousePos;
 			}

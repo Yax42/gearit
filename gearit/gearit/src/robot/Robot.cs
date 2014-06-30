@@ -164,7 +164,7 @@ namespace gearit
 		public Piece getPiece(Vector2 p)
 		{
 			for (int i = _pieces.Count - 1; i > 0; i--)
-				if (_pieces[i].Shown && _pieces[i].isOn(p))
+				if (_pieces[i].Shown && _pieces[i].Contain(p))
 					return (_pieces[i]);
 			return (getHeart());
 		}

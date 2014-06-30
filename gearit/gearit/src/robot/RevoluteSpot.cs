@@ -49,6 +49,9 @@ namespace gearit.src.robot
 			SynchroniseAnchors(p1);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
+			if (p1.GetType() == typeof(Rod))
+				LocalAnchorA.Y = 0;
+
 		}
 
 		public void wakeUp(Robot robot)

@@ -183,8 +183,16 @@ namespace gearit
 			}
 		}
 
-		public bool isOn(Vector2 p)
+		public bool Contain(Vector2 p)
 		{
+			Transform t;
+			GetTransform(out t);
+			return (Shape.TestPoint(ref t, ref p));
+		}
+
+		public bool LocalContain(Vector2 p)
+		{
+			p = GetWorldPoint(p);
 			Transform t;
 			GetTransform(out t);
 			return (Shape.TestPoint(ref t, ref p));
@@ -310,7 +318,7 @@ namespace gearit
 					anchorPos = i.Joint.WorldAnchorA;
 				else
 					anchorPos = i.Joint.WorldAnchorB;
-				if (isOn(anchorPos) == false)
+				if (Contain(anchorPos) == false)
 					return (false);
 			}
 			return (true);
