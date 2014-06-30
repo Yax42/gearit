@@ -12,7 +12,7 @@ using gearit.src.utility;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class Rod : Piece, ISerializable
+	public class Rod : Piece, ISerializable
 	{
 
 		private const float _width = 0.02f;

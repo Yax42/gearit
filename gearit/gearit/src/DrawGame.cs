@@ -12,7 +12,7 @@ using gearit.src.editor;
 
 namespace gearit.src
 {
-	class DrawGame
+	public class DrawGame
 	{
 		// a basic effect, which contains the shaders that we will use to draw our
 		// primitives. (it's about gpu)

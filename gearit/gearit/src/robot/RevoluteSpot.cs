@@ -16,7 +16,7 @@ using FarseerPhysics.Common;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
+	public class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
 	{
 		private static float _spotSize = 0.05f;
 		private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);

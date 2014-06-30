@@ -30,7 +30,6 @@ namespace gearit.src.editor.robot.action
 				From = P1.getConnection(P2).getWorldAnchor(P1);
 				To = From;
 			}
-
 		}
 
 		public bool shortcut()

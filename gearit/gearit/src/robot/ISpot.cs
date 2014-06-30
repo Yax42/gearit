@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace gearit
 {
-	interface ISpot : ISerializable
+	public interface ISpot : ISerializable
 	{
 		Joint Joint { get; }
 

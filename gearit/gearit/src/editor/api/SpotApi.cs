@@ -5,7 +5,7 @@ using System.Text;
 
 namespace gearit.src.editor.api
 {
-	abstract class SpotApi
+	public abstract class SpotApi
 	{
 		internal ISpot _spot;
 

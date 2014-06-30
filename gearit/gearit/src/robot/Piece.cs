@@ -19,7 +19,7 @@ using System.Diagnostics;
 namespace gearit
 {
 	[Serializable()]
-	abstract class Piece : Body, ISerializable
+	public abstract class Piece : Body, ISerializable
 	{
 		internal const float MaxMass = 1000;
 

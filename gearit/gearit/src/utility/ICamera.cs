@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.utility
 {
-	interface ICamera
+	public interface ICamera
 	{
 		Matrix view();
 		Matrix projection();

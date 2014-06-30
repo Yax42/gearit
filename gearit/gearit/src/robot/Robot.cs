@@ -18,7 +18,7 @@ using gearit.src.editor.api;
 
 namespace gearit
 {
-	class SleepingPack
+	public class SleepingPack
 	{
 		public SleepingPack()
 		{
@@ -29,7 +29,7 @@ namespace gearit
 		public List<Piece> PList;
 	}
 	[Serializable()]
-	class Robot : ISerializable
+	public class Robot : ISerializable
 	{
 
 		private List<Piece> _pieces;

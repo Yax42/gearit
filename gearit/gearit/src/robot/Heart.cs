@@ -14,7 +14,7 @@ using FarseerPhysics;
 namespace gearit
 {
 	[Serializable()]
-	class Heart : Piece, ISerializable
+	public class Heart : Piece, ISerializable
 	{
 		private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
 
