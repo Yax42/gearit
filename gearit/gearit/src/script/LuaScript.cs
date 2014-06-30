@@ -10,6 +10,7 @@ using gearit.src.robot;
 using gearit.src.editor.api;
 using gearit.src.output;
 using gearit.src.editor.robot;
+using System.Diagnostics;
 namespace gearit.src.utility
 {
 
@@ -27,6 +28,7 @@ namespace gearit.src.utility
 		private List<SpotApi> _api;
 		private InputApi _inputApi;
 		private Thread _thread;
+		private bool _done;
 
 		public void saySomething(string something)
 		{
@@ -35,6 +37,7 @@ namespace gearit.src.utility
 
 		public LuaScript(List<SpotApi> api, string name)
 		{
+			_done = true;
 			_name = name;
 			_api = api;
 			_inputApi = new InputApi();
@@ -48,6 +51,8 @@ namespace gearit.src.utility
 
 		private void run()
 		{
+			Debug.Assert(_done, "Thread already running and trying to run it again.");
+			_done = false;
 			_thread.Start();
 			LuaThreads.Add(_thread);
 		}
@@ -60,13 +65,15 @@ namespace gearit.src.utility
 			}
 			catch (Exception ex)
 			{
-				OutputManager.LogError("Lua exception: " + ex.Message);
+				if (!_done)
+					OutputManager.LogError("Lua exception: " + ex.Message);
 			}
 		}
 
 		public void stop()
 		{
 			LuaThreads.Remove(_thread);
+			_done = true;
 			_thread.Abort();
 			base.Close();
 		}
