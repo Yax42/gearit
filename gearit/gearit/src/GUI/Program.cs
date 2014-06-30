@@ -1,4 +1,5 @@
 using System;
+using gearit.src.utility;
 
 namespace SquidXNA
 {
@@ -14,6 +15,7 @@ namespace SquidXNA
 			{
 				game.Run();
 			}
+			LuaScript.Clear();
 		}
 	}
 #endif

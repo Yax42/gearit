@@ -15,6 +15,14 @@ namespace gearit.src.utility
 
 	class LuaScript : Lua
 	{
+		private static List<Thread> LuaThreads = new List<Thread>();
+		public static void Clear()
+		{
+			foreach (Thread t in LuaThreads)
+				t.Abort();
+			LuaThreads.Clear();
+		}
+
 		private String _name;
 		private List<SpotApi> _api;
 		private InputApi _inputApi;
@@ -41,6 +49,7 @@ namespace gearit.src.utility
 		private void run()
 		{
 			_thread.Start();
+			LuaThreads.Add(_thread);
 		}
 
 		private void exec()
@@ -57,6 +66,7 @@ namespace gearit.src.utility
 
 		public void stop()
 		{
+			LuaThreads.Remove(_thread);
 			_thread.Abort();
 			base.Close();
 		}
