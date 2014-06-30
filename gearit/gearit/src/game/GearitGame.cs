@@ -62,12 +62,9 @@ namespace gearit.src.game
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
-			_world.Gravity = new Vector2(0f, 9.8f);
+			_world.Gravity = new Vector2(0f, 19.8f);
 			//clearRobot();
 			SerializerHelper.World = _world;
-			Console.Write("One ");
-
-			//addDummyPrismatic();
 
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			Debug.Assert(_robots != null);
@@ -78,27 +75,6 @@ namespace gearit.src.game
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
-		}
-
-		private void addDummyPrismatic()
-		{
-			Body b1 = new Body(_world);
-			b1.Position = new Vector2(10000, 10000);
-			b1.IsStatic = false;
-
-			Body b2 = new Body(_world);
-			b2.Position = new Vector2(10000, 10000);
-			b2.IsStatic = false;
-
-			Body b3 = new Body(_world);
-			b2.Position = new Vector2(10000, 10000);
-			b2.IsStatic = false;
-
-			Vector2 anchor = new Vector2(0, 0);
-			Joint rev = new RevoluteJoint(b1, b2, anchor, anchor);
-			Joint pris = new PrismaticJoint(b2, b3, anchor, anchor, anchor);
-			_world.AddJoint(rev);
-			_world.AddJoint(pris);
 		}
 
 

@@ -61,9 +61,7 @@ namespace gearit.src.robot
 			_common.fallAsleep(robot, p);
 		}
 
-		//
-		// SERIALISATION
-		//
+		#region Serialization
 		public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
 			base(
 			SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
@@ -75,9 +73,6 @@ namespace gearit.src.robot
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
 			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));
-			LimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));
-			UpperLimit = (float)info.GetValue("UpperLimit", typeof(float));
-			LowerLimit = (float)info.GetValue("LowerLimit", typeof(float));
 		/*
 		if (UpperLimit < LowerLimit)
 		{
@@ -91,6 +86,7 @@ namespace gearit.src.robot
 		*/
 			MotorSpeed = 0f;
 			MotorEnabled = true;
+			LimitEnabled = false;
 			ColorValue = Color.Black;
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
@@ -104,11 +100,8 @@ namespace gearit.src.robot
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
 			info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
-			info.AddValue("LimitEnabled", LimitEnabled, typeof(bool));
-			info.AddValue("UpperLimit", UpperLimit, typeof(float));
-			info.AddValue("LowerLimit", LowerLimit, typeof(float));
 		}
-		//--------- END SERIALISATION
+		#endregion
 
 		public static void initTex(AssetCreator asset)
 		{
@@ -128,6 +121,61 @@ namespace gearit.src.robot
 				LocalAnchorB = anchor;
 			}
 		}
+		#region MotorControl
+
+		private float _MaxAngle;
+		public float MaxAngle
+		{
+			get
+			{
+				return _MaxAngle;
+			}
+			set
+			{
+				_MaxAngle = value;
+				if (!Frozen)
+					UpperLimit = _MaxAngle;
+			}
+		}
+
+		private float _MinAngle;
+		public float MinAngle
+		{
+			get
+			{
+				return _MinAngle;
+			}
+			set
+			{
+				_MinAngle = value;
+				if (!Frozen)
+					LowerLimit = _MinAngle;
+			}
+		}
+
+		private bool _Frozen;
+		public bool Frozen
+		{
+			get
+			{
+				return _Frozen;
+			}
+			set
+			{
+				_Frozen = value;
+				if (_Frozen)
+				{
+					LowerLimit = JointAngle;
+					UpperLimit = JointAngle;
+				}
+				else
+				{
+					LowerLimit = MaxAngle;
+					UpperLimit = MinAngle;
+				}
+			}
+		}
+		#endregion
 
 		public void swap(Piece p1, Piece p2)
 		{
