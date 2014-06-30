@@ -105,7 +105,7 @@ namespace gearit
 			if (_fix != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
-			_fix.CollisionGroup = (short)id;
+			_fix.CollisionGroup = (short)(-id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
 		}
 
 		internal void initShapeAndFixture(Shape shape)
