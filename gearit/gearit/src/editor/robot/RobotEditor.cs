@@ -233,8 +233,8 @@ namespace gearit.src.editor.robot
 
 			if (Select1.isConnected(Select2))
 				Select1.getConnection(Select2).ColorValue = Color.Black;
-			Select2.ColorValue = Color.Black;
-			Select1.ColorValue = Color.Black;
+			Select2.ColorValue = Color.DarkSeaGreen;
+			Select1.ColorValue = Color.DarkSeaGreen;
 		}
 
 		public void drawRobotTexture()
@@ -306,13 +306,13 @@ namespace gearit.src.editor.robot
 		{
 			base.Draw(gameTime);
 
-			_draw_game.Begin(_camera);
-			drawRobot();
-			_draw_game.End();
+			//_draw_game.Begin(_camera);
+			//_draw_game.End();
 
-			_draw_game.BeginTexture(_camera);
+			_draw_game.BeginPrimitive(_camera);
 			drawRobotTexture();
-			_draw_game.EndTexture();
+			drawRobot();
+			_draw_game.EndPrimitive();
 			
 			MenuRobotEditor.Instance.Draw();
 		}

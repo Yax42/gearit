@@ -94,7 +94,7 @@ namespace gearit.src.map
 				if (MapEditor.Instance.SelectChunk == chunk)
 					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
 				else
-					col = (chunk.BodyType == BodyType.Static) ? Color.Black : Color.Purple;
+					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
 				dg.draw(chunk, col);
 			}
 		}
@@ -108,14 +108,14 @@ namespace gearit.src.map
 				if (MapEditor.Instance.SelectChunk == chunk)
 					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
 				else
-					col = (chunk.BodyType == BodyType.Static) ? Color.Black : Color.Purple;
+					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
 				dg.draw(chunk, col);
 			}
 
 			if (printEvents)
 			{
-				foreach (Artefact spawn in Artefacts)
-					spawn.DrawDebug(dg);
+				foreach (Artefact artefact in Artefacts)
+					artefact.DrawDebug(dg);
 				foreach (Trigger trigger in Triggers)
 					trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);
 			}

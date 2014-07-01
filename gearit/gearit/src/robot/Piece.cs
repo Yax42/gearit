@@ -43,7 +43,7 @@ namespace gearit.src.robot
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
@@ -58,7 +58,7 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			setShape(shape, robot.getId());
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
@@ -73,7 +73,7 @@ namespace gearit.src.robot
 		{
 			_robot = SerializerHelper.CurrentRobot;
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			Shown = true;
 			int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
 			SerializerHelper.Add(oldHashMap, this);
