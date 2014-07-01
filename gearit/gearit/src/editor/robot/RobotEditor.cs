@@ -14,6 +14,7 @@ using gearit.src.utility.Menu;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 using gearit.src.GUI;
+using FarseerPhysics.DebugViews;
 
 namespace gearit.src.editor.robot
 {
@@ -233,6 +234,11 @@ namespace gearit.src.editor.robot
 			Select1.ColorValue = Color.Black;
 		}
 
+		public void drawRobotTexture()
+		{
+			Robot.drawDebugTexture(_draw_game);
+		}
+
 		//----------------------------NAME-------------------------------------
 
 		private bool _hasBeenModified;
@@ -301,6 +307,10 @@ namespace gearit.src.editor.robot
 			drawRobot();
 			_draw_game.End();
 
+			_draw_game.BeginTexture(_camera);
+			drawRobotTexture();
+			_draw_game.EndTexture();
+			
 			MenuRobotEditor.Instance.Draw();
 		}
 

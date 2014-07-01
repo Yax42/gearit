@@ -60,6 +60,7 @@ namespace gearit.src
 
 			_batch = new SpriteBatch(device);
 			_asset = new AssetCreator(device);
+			_primitiveBatch = new PrimitiveBatch(device, 1000);
 			_device = device;
 
 			// set up a new basic effect, and enable vertex colors.
@@ -79,14 +80,6 @@ namespace gearit.src
 			_basicEffect.Projection = camera.projection();
 			_basicEffect.View = camera.view();
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
-			Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
-											 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
-											 1f);
-			Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
-												_device.Viewport.Height / 2f);
-			Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
-			ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
-			_primitiveBatch.Begin(ref _staticProj, ref _staticView);
 		}
 
 		public void Begin()
@@ -96,6 +89,11 @@ namespace gearit.src
 			_basicEffect.Projection = _staticProj;
 			_basicEffect.View = _staticView;
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
+		}
+
+		public void BeginTexture(ICamera camera)
+		{
+            // C'est à cause de ça que c'est pas aligné. Faut trouver un moyen d'envoyer camera.projection() et camera.view() a _primitiveBatch(ref x, ref x)
 			Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
 											 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
 											 1f);
@@ -103,7 +101,57 @@ namespace gearit.src
 												_device.Viewport.Height / 2f);
 			Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
 			ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
-			_primitiveBatch.Begin(ref _staticProj, ref _staticView);
+
+			_primitiveBatch.Begin(ref projection, ref view);
+		}
+
+		public void End()
+		{
+			flushLines();
+			_batch.End();
+		}
+
+		public void EndTexture()
+		{
+			_primitiveBatch.End();
+		}
+
+		public void drawTexture(Body b, Color c)
+		{
+			Transform xf;
+			b.GetTransform(out xf);
+			foreach (Fixture f in b.FixtureList)
+				drawTexture(f, xf, c);
+		}
+
+		private void drawTexture(Fixture fixture, Transform xf, Color color)
+		{
+			switch (fixture.ShapeType)
+			{
+				case ShapeType.Circle:
+					{
+                        // Faut aller chercher dans DebugViewXNA le code source de la fonction DrawSolidCircle, et le foutre ici pour avoir les cercles aussi.
+						return;
+					}
+					break;
+
+				case ShapeType.Polygon:
+					{
+						PolygonShape poly = (PolygonShape)fixture.Shape;
+						int vertexCount = poly.Vertices.Count;
+
+						for (int i = 0; i < vertexCount; ++i)
+							_tempVertices[i] = MathUtils.Multiply(ref xf, poly.Vertices[i]);
+
+						for (int i = 1; i < vertexCount - 1; i++)
+						{
+							_primitiveBatch.AddVertex(_tempVertices[0], Color.Orange, PrimitiveType.TriangleList);
+							_primitiveBatch.AddVertex(_tempVertices[i], Color.Orange, PrimitiveType.TriangleList);
+							_primitiveBatch.AddVertex(_tempVertices[i + 1], Color.Orange, PrimitiveType.TriangleList);
+						}
+					}
+					break;
+			}
 		}
 
 		public void drawLine(Vector2 p1, Vector2 p2, Color col)
@@ -114,13 +162,6 @@ namespace gearit.src
 			}
 			_lineVertices[_count++] = new VertexPositionColor(new Vector3(p1, 0), col);
 			_lineVertices[_count++] = new VertexPositionColor(new Vector3(p2, 0f), col);
-		}
-
-		public void End()
-		{
-			flushLines();
-			_batch.End();
-			_primitiveBatch.End();
 		}
 
 		private void flushLines()
@@ -177,8 +218,6 @@ namespace gearit.src
 						}
 
 						drawPolygon(_tempVertices, vertexCount, color);
-                        //if (_debug != null)
-						//	_debug.DrawPolygon(_tempVertices, vertexCount, Color.Green);
 					}
 					break;
 

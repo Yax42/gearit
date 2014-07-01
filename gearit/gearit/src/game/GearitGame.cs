@@ -63,12 +63,6 @@ namespace gearit.src.game
 		{
 			base.LoadContent();
 
-			_debug = new DebugViewXNA(_world);
-			_debug.AppendFlags(DebugViewFlags.DebugPanel);
-			_debug.DefaultShapeColor = Color.White;
-			_debug.SleepingShapeColor = Color.LightGray;
-			_debug.LoadContent(ScreenManager.Game.GraphicsDevice, ScreenManager.Game.Content);
-
 			_time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);

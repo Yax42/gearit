@@ -259,13 +259,6 @@ namespace gearit.src.utility
 
 			_motorJoint2.MotorEnabled = true;
 			World.AddJoint(_motorJoint2);
-
-			/*// create and configure the debug view
-			_debugView = new DebugViewXNA(_world);
-			_debugView.AppendFlags(DebugViewFlags.DebugPanel);
-			_debugView.DefaultShapeColor = Color.White;
-			_debugView.SleepingShapeColor = Color.LightGray;
-			_debugView.LoadContent(GraphicsDevice, Content);*/
 		}
 
 		/// <summary>
