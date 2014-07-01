@@ -64,12 +64,12 @@ namespace gearit.src
             // Start Server
             server.Start();
             OutputManager.LogMessage("Server launch");
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(250);
             
             //Start Client
             client.Start();
             OutputManager.LogMessage("Client connected");
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(250);
 		}
 
 		public override void Update(GameTime gameTime)

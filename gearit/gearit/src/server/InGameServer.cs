@@ -66,7 +66,6 @@ namespace gearit.src.server
                         case NetIncomingMessageType.ConnectionApproval:
                             NetIncomingMessage hail = msg.SenderConnection.RemoteHailMessage;
                             Console.WriteLine(hail.ReadString());
-                            Console.WriteLine(hail.ReadString());
                             OutputManager.LogMessage("(Server)msg:" + hail.ReadString());
                             msg.SenderConnection.Approve();
                             break;
@@ -84,7 +83,6 @@ namespace gearit.src.server
 
                             if (status == NetConnectionStatus.Connected)
                                 OutputManager.LogMessage("Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
-
                             foreach (NetConnection conn in s_server.Connections)
                             {
                                 string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";

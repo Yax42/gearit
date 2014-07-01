@@ -104,9 +104,12 @@ namespace gearit.src.server
 
         public void Send(string text)
 		{
-			NetOutgoingMessage om = s_client.CreateMessage();
-            om.Write(text);
-			s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+            if (_connected)
+            {
+                NetOutgoingMessage om = s_client.CreateMessage();
+                om.Write(text);
+                s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+            }
         }
     }
 }
