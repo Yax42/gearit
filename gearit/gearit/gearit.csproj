@@ -127,6 +127,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\editor\api\RobotStateApi.cs" />
     <Compile Include="src\editor\map\action\ActionChangeType.cs" />
     <Compile Include="src\editor\map\action\ActionCreateBall.cs" />
     <Compile Include="src\editor\map\action\ActionCreateSpawner.cs" />

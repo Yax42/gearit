@@ -15,6 +15,8 @@ using gearit.src.editor;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using gearit.src.editor.api;
+using gearit.src.map;
+using System.Diagnostics;
 
 namespace gearit.src.robot
 {
@@ -31,7 +33,6 @@ namespace gearit.src.robot
 	[Serializable()]
 	public class Robot : ISerializable
 	{
-
 		private List<Piece> _pieces;
 		public List<Piece> Pieces
 		{
@@ -56,6 +57,16 @@ namespace gearit.src.robot
 		private LuaScript _script;
 		private int _id;
 		public World _world;
+		public int[] TriggersData;
+		private int _LastTrigger;
+		public int LastTrigger
+		{
+			get
+			{
+				return _LastTrigger;
+			}
+		}
+
 
 		public Robot(World world)
 		{
@@ -66,6 +77,7 @@ namespace gearit.src.robot
 			new Heart(this);
 			Console.WriteLine("Robot created.");
 			_script = null;
+			InitTriggerData();
 		}
 
 		//
@@ -90,6 +102,7 @@ namespace gearit.src.robot
 			_id = _robotIdCounter++;
 			Console.WriteLine("Robot created.");
 			_script = null;
+			InitTriggerData();
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -101,6 +114,28 @@ namespace gearit.src.robot
 			info.AddValue("Spots", _spots, typeof(List<ISpot>));
 		}
 		//--------- END SERIALISATION
+
+		private void InitTriggerData()
+		{
+			_LastTrigger = -1;
+			TriggersData = new int[Trigger.IdMax];
+			for (int i = 0; i < Trigger.IdMax; i++)
+				TriggersData[i] = 0;
+		}
+
+		public void Update(Map map)
+		{
+			foreach (Trigger trigger in map.Triggers)
+			{
+				if (Heart.Trigger(trigger))
+				{
+					Debug.Assert(trigger.Id >= 0 && trigger.Id <= Trigger.IdMax);
+					_LastTrigger = trigger.Id;
+					if (trigger.Id >= 0 && trigger.Id <= Trigger.IdMax)
+						TriggersData[trigger.Id]++;
+				}
+			}
+		}
 
 		public void resetAct()
 		{
@@ -123,9 +158,12 @@ namespace gearit.src.robot
 			return (_world);
 		}
 
-		public Heart getHeart()
+		public Heart Heart
 		{
-			return ((Heart)_pieces.First());
+			get
+			{
+				return ((Heart)_pieces.First());
+			}
 		}
 
 		public bool IsPieceConnectedToHeart(Piece piece)
@@ -136,7 +174,7 @@ namespace gearit.src.robot
 		bool IsPieceConnectedToHeartAux(Piece piece, List<Piece> alreadyExploredPieces)
 		{
 			alreadyExploredPieces.Add(piece);
-			if (getHeart() == piece || piece.isConnected(getHeart()))
+			if (Heart == piece || piece.isConnected(Heart))
 				return true;
 			for (JointEdge i = piece.JointList; i != null; i = i.Next)
 			{
@@ -166,7 +204,7 @@ namespace gearit.src.robot
 			for (int i = _pieces.Count - 1; i > 0; i--)
 				if (_pieces[i].Shown && _pieces[i].Contain(p))
 					return (_pieces[i]);
-			return (getHeart());
+			return (Heart);
 		}
 
 		public float Weight
@@ -231,7 +269,7 @@ namespace gearit.src.robot
 		// For runtime
 		public void remove(Piece p)
 		{
-			if (p == getHeart())
+			if (p == Heart)
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
@@ -249,7 +287,7 @@ namespace gearit.src.robot
 		// For editor
 		public void fallAsleep(Piece p, SleepingPack pack, bool DidCheck = false)
 		{
-			if (p == getHeart())
+			if (p == Heart)
 				return;
 			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
@@ -337,19 +375,19 @@ namespace gearit.src.robot
 		public void move(Vector2 pos)
 		{
 			for (int i = 1; i < _pieces.Count; i++)
-				_pieces[i].Position = (pos + _pieces[i].Position - getHeart().Position);
-			getHeart().Position = pos;
+				_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
+			Heart.Position = pos;
 		}
 
 		public Vector2 Position
 		{
 			get
 			{
-				return getHeart().Position;
+				return Heart.Position;
 			}
 		}
 
-		public List<SpotApi> getApi()
+		public List<SpotApi> GetSpotApi()
 		{
 			List<SpotApi> res = new List<SpotApi>();
 			for (int i = 0; i < _spots.Count; i++)
@@ -368,7 +406,7 @@ namespace gearit.src.robot
 				if (i.GetType() == typeof(PrismaticSpot))
 					((PrismaticSpot)i).updateLimit();
 			if (_script == null)
-				_script = new LuaScript(getApi(), Name);
+				_script = new LuaScript(GetSpotApi(), new RobotStateApi(this), Name);
 		}
 
 		public int revCount() { return (_revoluteCounter++); }

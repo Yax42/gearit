@@ -8,8 +8,9 @@ using System.Runtime.Serialization;
 namespace gearit.src.map
 {
 	[Serializable()]
-	class Trigger : ISerializable
+	public class Trigger : ISerializable
 	{
+		public const int IdMax = 32;
 		private Vector2[] _Vertices;
 		public string Name;
 		private int _id;
@@ -20,6 +21,8 @@ namespace gearit.src.map
 			{
 				if (value < 0)
 					_id = 0;
+				else if (value > IdMax)
+					_id = IdMax;
 				else
 					_id = value;
 			}
@@ -45,8 +48,8 @@ namespace gearit.src.map
 		public Trigger(SerializationInfo info, StreamingContext ctxt)
 		{
 			_Vertices = new Vector2[4];
-			_To = (Vector2)info.GetValue("From", typeof(Vector2));
-			_From = (Vector2)info.GetValue("To", typeof(Vector2));
+			_To = (Vector2)info.GetValue("To", typeof(Vector2));
+			_From = (Vector2)info.GetValue("From", typeof(Vector2));
 			Id = (int)info.GetValue("Id", typeof(int));
 			UpdateVertices();
 		}

@@ -10,6 +10,7 @@ using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using FarseerPhysics;
+using gearit.src.map;
 
 namespace gearit.src.robot
 {
@@ -17,6 +18,7 @@ namespace gearit.src.robot
 	public class Heart : Piece, ISerializable
 	{
 		private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
+
 
 		public Heart(Robot robot) :
 			base(robot)
@@ -119,6 +121,11 @@ namespace gearit.src.robot
 					resetShape();
 				}
 			}
+		}
+
+		public bool Trigger(Trigger trigger)
+		{
+			return trigger.Contain(GetWorldPoint(ShapeLocalOrigin()));
 		}
 
 		public bool addCorner(Vector2 p)

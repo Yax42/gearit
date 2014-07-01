@@ -9,12 +9,12 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionCreateSpawner : IAction
+	class ActionCreateArtefact : IAction
 	{
-		private Spawner _Spawner;
+		private Artefact _Artefact;
 		public void init()
 		{
-			_Spawner = new Spawner(Input.SimMousePos);
+			_Artefact = new Artefact(Input.SimMousePos);
 		}
 
 		public bool shortcut()
@@ -27,13 +27,13 @@ namespace gearit.src.editor.map.action
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.Spawners.Add(_Spawner);
+			MapEditor.Instance.Map.Artefacts.Add(_Artefact);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.Spawners.Remove(_Spawner);
+			MapEditor.Instance.Map.Artefacts.Remove(_Artefact);
 		}
 
 		public bool canBeReverted() { return true; }

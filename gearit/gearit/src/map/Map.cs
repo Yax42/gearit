@@ -14,11 +14,11 @@ using gearit.src.editor.map;
 namespace gearit.src.map
 {
 	[Serializable()]
-	class Map : ISerializable
+	public class Map : ISerializable
 	{
 		private string _name;
 		public List<MapChunk> Chunks;
-		public List<Spawner> Spawners;
+		public List<Artefact> Artefacts;
 		public List<Trigger> Triggers;
 
 		[NonSerialized]
@@ -28,7 +28,7 @@ namespace gearit.src.map
 		{
 			_world = world;
 			Chunks = new List<MapChunk>();
-			Spawners = new List<Spawner>();
+			Artefacts = new List<Artefact>();
 			Triggers = new List<Trigger>();
 		}
 
@@ -40,14 +40,14 @@ namespace gearit.src.map
 			_world = SerializerHelper.World;
 			_name = (string)info.GetValue("Name", typeof(string));
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
-			Spawners = (List<Spawner>)info.GetValue("Spawners", typeof(List<Spawner>));
+			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
 			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("Chunks", Chunks, typeof(List<MapChunk>));
-			info.AddValue("Spawners", Spawners, typeof(List<Spawner>));
+			info.AddValue("Artefacts", Artefacts, typeof(List<Artefact>));
 			info.AddValue("Triggers", Triggers, typeof(List<Trigger>));
 			info.AddValue("Name", _name, typeof(string));
 		}
@@ -114,7 +114,7 @@ namespace gearit.src.map
 
 			if (printEvents)
 			{
-				foreach (Spawner spawn in Spawners)
+				foreach (Artefact spawn in Artefacts)
 					spawn.DrawDebug(dg);
 				foreach (Trigger trigger in Triggers)
 					trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);

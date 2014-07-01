@@ -29,22 +29,25 @@ namespace gearit.src.utility
 		private InputApi _inputApi;
 		private Thread _thread;
 		private bool _done;
+		private RobotStateApi _robotApi;
 
 		public void saySomething(string something)
 		{
 			Console.WriteLine(something);
 		}
 
-		public LuaScript(List<SpotApi> api, string name)
+		public LuaScript(List<SpotApi> api, RobotStateApi robotApi, string name)
 		{
 			_done = true;
 			_name = name;
 			_api = api;
+			_robotApi = robotApi;
 			_inputApi = new InputApi();
 			_thread = new Thread(new ThreadStart(exec));
 			for (int i = 0; i < api.Count; i++)
 				this[api[i].Name()] = api[i];
 			this["Input"] = _inputApi;
+			this["Robot"] = _robotApi;
 			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
 			run();
 		}

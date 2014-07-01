@@ -88,7 +88,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			if (action == ActionTypes.EXIT) return new ActionExit();
 			if (action == ActionTypes.SWAP_EVENT_MODE) return new ActionSwapEventMode();
-			if (action == ActionTypes.CREATE_SPWANER) return new ActionCreateSpawner();
+			if (action == ActionTypes.CREATE_SPWANER) return new ActionCreateArtefact();
 			if (action == ActionTypes.CREATE_TRIGGER) return new ActionCreateTrigger();
 			if (action == ActionTypes.DELETE_TRIGGER) return new ActionDeleteTrigger();
 			if (action == ActionTypes.SET_TRIGGER_ID) return new ActionSetTriggerId();

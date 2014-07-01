@@ -71,8 +71,8 @@ namespace gearit.src.game
 			addRobot(robot);
 			Debug.Assert(_robots != null);
 			_map = (Map)Serializer.DeserializeItem("map/default.gim");
-			if (_map.Spawners.Count > 0)
-				robot.move(_map.Spawners[0].Position);
+			if (_map.Artefacts.Count > 0)
+				robot.move(_map.Artefacts[0].Position);
 			Debug.Assert(_map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
@@ -103,9 +103,9 @@ namespace gearit.src.game
 		{
 			_robots.Add(robot);
 			if (_robots.Count == 1)
-				_camera.TrackingBody = robot.getHeart();
+				_camera.TrackingBody = robot.Heart;
 			robot.turnOn();
-		robot.move(new Vector2(0, -20));
+			robot.move(new Vector2(0, -20));
 		}
 
 		public override void Update(GameTime gameTime)
@@ -115,12 +115,13 @@ namespace gearit.src.game
 
 			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
+			foreach (Robot r in _robots)
+				r.Update(_map);
 			//_camera.update();
 			_camera.Update(gameTime);
-
-			PrintRobot(gameTime);
 		}
 
+#if false
 		private float SecCount = 0;
 		public void PrintRobot(GameTime gameTime)
 		{
@@ -132,7 +133,6 @@ namespace gearit.src.game
 				foreach (Piece p in r.Pieces)
 					p.ResetMassData();
 			SecCount = 0;
-#if false
 			foreach (Robot r in _robots)
 			{
 				string res = "W:";
@@ -145,8 +145,8 @@ namespace gearit.src.game
 					res += " " + s.Force;
 				OutputManager.LogInfo(res);
 			}
-#endif
 		}
+#endif
 
 
 		private void HandleInput()

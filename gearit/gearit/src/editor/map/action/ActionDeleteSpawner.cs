@@ -9,16 +9,16 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionDeleteSpawner : IAction
+	class ActionDeleteArtefact : IAction
 	{
-		private Spawner _spawner;
+		private Artefact _artefact;
 
 		public void init()
 		{
-			Spawner res = null;
+			Artefact res = null;
 			float lowest = 10;
 			Vector2 pos = Input.SimMousePos;
-			foreach (Spawner spawn in MapEditor.Instance.Map.Spawners)
+			foreach (Artefact spawn in MapEditor.Instance.Map.Artefacts)
 			{
 				float distance = (spawn.Position - pos).LengthSquared();
 				if (distance < lowest)
@@ -28,9 +28,9 @@ namespace gearit.src.editor.map.action
 				}
 			}
 			if (lowest > 0.15f)
-				_spawner = null;
+				_artefact = null;
 			else
-				_spawner = res;
+				_artefact = res;
 		}
 
 		public bool shortcut()
@@ -43,17 +43,17 @@ namespace gearit.src.editor.map.action
 
 		public bool run()
 		{
-			if (_spawner != null)
-				MapEditor.Instance.Map.Spawners.Remove(_spawner);
+			if (_artefact != null)
+				MapEditor.Instance.Map.Artefacts.Remove(_artefact);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.Spawners.Add(_spawner);
+			MapEditor.Instance.Map.Artefacts.Add(_artefact);
 		}
 
-		public bool canBeReverted() { return _spawner != null; }
+		public bool canBeReverted() { return _artefact != null; }
 
 		public bool actOnSelect() { return false; }
 

@@ -8,18 +8,18 @@ using System.Runtime.Serialization;
 namespace gearit.src.map
 {
 	[Serializable()]
-	class Spawner : ISerializable
+	public class Artefact : ISerializable
 	{
 		private const float Size = 0.5f;
 		private Vector2[] _Vertices;
-		public Spawner(Vector2 pos)
+		public Artefact(Vector2 pos)
 		{
 			_Vertices = new Vector2[8];
 			Position = pos;
 		}
 
 		#region Serialization
-		public Spawner(SerializationInfo info, StreamingContext ctxt)
+		public Artefact(SerializationInfo info, StreamingContext ctxt)
 		{
 			_Vertices = new Vector2[8];
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
