@@ -259,13 +259,6 @@ namespace gearit.src.utility
 
 			_motorJoint2.MotorEnabled = true;
 			World.AddJoint(_motorJoint2);
-
-			/*// create and configure the debug view
-			_debugView = new DebugViewXNA(_world);
-			_debugView.AppendFlags(DebugViewFlags.DebugPanel);
-			_debugView.DefaultShapeColor = Color.White;
-			_debugView.SleepingShapeColor = Color.LightGray;
-			_debugView.LoadContent(GraphicsDevice, Content);*/
 		}
 
 		/// <summary>
@@ -446,7 +439,7 @@ namespace gearit.src.utility
 			ScreenManager.SpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
 
 			//Draw circle
-			ScreenManager.SpriteBatch.Draw(_circleSprite, circlePos, null, Color.White, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
+			ScreenManager.SpriteBatch.Draw(_circleSprite, circlePos, null, Color.Black, circleRotation, circleOrigin, 1f, SpriteEffects.None, 0f);
 
 			ScreenManager.SpriteBatch.Draw(_circleTex, circlePos2, null, Color.White, circleRotation2, circleOrigin2, 1f, SpriteEffects.None, 0f);
 

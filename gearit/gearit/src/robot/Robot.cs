@@ -324,6 +324,14 @@ namespace gearit.src.robot
 				_spots[i].drawDebug(dg);
 		}
 
+		public void drawDebugTexture(DrawGame dg)
+		{
+			for (int i = 0; i < _pieces.Count; i++)
+				if (_pieces[i].Shown)
+					dg.drawTexture(_pieces[i], _pieces[i].ColorValue);
+			// add else as in drawDebug()?
+		}
+
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)

@@ -14,6 +14,7 @@ using FarseerPhysics.Factories;
 using gearit.src.map;
 using gearit.src.editor.map.action;
 using gearit.src.editor.map;
+using FarseerPhysics.DebugViews;
 
 namespace gearit.src.editor.map
 {
@@ -128,6 +129,7 @@ namespace gearit.src.editor.map
 			HasVirtualStick = true;
 			SelectChunk = null;
 
+			// TMP
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 		}

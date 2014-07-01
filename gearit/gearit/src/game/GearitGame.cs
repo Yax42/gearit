@@ -13,6 +13,8 @@ using System.Diagnostics;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src.output;
 using GUI;
+using FarseerPhysics.DebugViews;
+using FarseerPhysics;
 using gearit.src.robot;
 
 namespace gearit.src.game
@@ -53,6 +55,8 @@ namespace gearit.src.game
 
 		// Graphic
 		private RectangleOverlay _background;
+
+		private DebugViewXNA _debug;
 
 		// Action
 		private int _FrameCount = 0;
@@ -99,11 +103,13 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
 			_FrameCount = 0;
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
 			_world.Gravity = new Vector2(0f, 19.8f);
+
 			//clearRobot();
 			SerializerHelper.World = _world;
 
