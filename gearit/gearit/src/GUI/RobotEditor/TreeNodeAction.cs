@@ -136,7 +136,7 @@ namespace gearit.src.GUI
 			if (!RobotEditor.Instance.Robot.hasSpot(btn_select.Text))
 				lua = "-- Undefined spot " + btn_select.Text;
 			else
-				lua = btn_select.Text + ".motor = " + combo.SelectedItem.Tag;
+				lua = "\t" + btn_select.Text + ".Motor = " + combo.SelectedItem.Tag;
 
 			return (lua);
 		}

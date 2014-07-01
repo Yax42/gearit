@@ -43,7 +43,7 @@ namespace gearit.src.utility
 			_inputApi = new InputApi();
 			_thread = new Thread(new ThreadStart(exec));
 			for (int i = 0; i < api.Count; i++)
-				this[api[i].name()] = api[i];
+				this[api[i].Name()] = api[i];
 			this["Input"] = _inputApi;
 			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
 			run();

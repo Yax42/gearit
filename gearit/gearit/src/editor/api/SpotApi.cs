@@ -15,12 +15,12 @@ namespace gearit.src.editor.api
 			_spot = spot;
 		}
 
-		public string name()
+		public string Name()
 		{
 			return (_spot.Name);
 		}
 
-		public float motor
+		public float Motor
 		{
 			get { return _spot.Force; }
 			set

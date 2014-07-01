@@ -165,6 +165,8 @@ namespace gearit.src.robot
 			}
 			set
 			{
+				if (_Frozen == value)
+					return;
 				_Frozen = value;
 				if (_Frozen)
 				{
