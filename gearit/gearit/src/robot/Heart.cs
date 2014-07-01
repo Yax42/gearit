@@ -10,20 +10,22 @@ using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using FarseerPhysics;
+using gearit.src.map;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
-	class Heart : Piece, ISerializable
+	public class Heart : Piece, ISerializable
 	{
 		private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
+
 
 		public Heart(Robot robot) :
 			base(robot)
 		{
 			Position = new Vector2(3, 3);
 			_vertices = PolygonTools.CreateRectangle(1, 1);
-			_fix = CreateFixture( new PolygonShape(_vertices, 1f));
+			_fix = CreateFixture(new PolygonShape(_vertices, 1f));
 			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
@@ -121,6 +123,11 @@ namespace gearit
 			}
 		}
 
+		public bool Trigger(Trigger trigger)
+		{
+			return trigger.Contain(GetWorldPoint(ShapeLocalOrigin()));
+		}
+
 		public bool addCorner(Vector2 p)
 		{
 			p -= Position;
@@ -178,9 +185,19 @@ namespace gearit
 		}
 	*/
 
-		override public float getSize()
+		public override float getSize()
 		{
 			return (Shape.MassData.Area);
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			Vector2 res = Vector2.Zero;
+			foreach (var v in _vertices)
+			{
+				res += v;
+			}
+			return res / _vertices.Count;
 		}
 	}
 }

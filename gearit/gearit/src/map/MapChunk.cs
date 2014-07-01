@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 namespace gearit.src.editor.map
 {
 	[Serializable()]
-	abstract class MapChunk : Body, ISerializable
+	public abstract class MapChunk : Body, ISerializable
 	{
 		public MapChunk(World world, bool isDynamic, Vector2 pos)
 			: base(world)
@@ -29,7 +29,7 @@ namespace gearit.src.editor.map
 			Friction = 100;
 		}
 
-		public bool isOn(Vector2 p)
+		public bool Contain(Vector2 p)
 		{
 			Transform t;
 			GetTransform(out t);

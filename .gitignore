@@ -4,3 +4,5 @@ bin/
 *.suo
 *.user
 *.swp
+*.sdf
+farseer 3.5BACKUP/

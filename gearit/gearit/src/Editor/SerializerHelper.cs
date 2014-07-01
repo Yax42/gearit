@@ -6,6 +6,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
+using gearit.src.robot;
 
 namespace gearit.src.editor
 {

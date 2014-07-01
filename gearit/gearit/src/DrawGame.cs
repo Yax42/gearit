@@ -14,7 +14,7 @@ using FarseerPhysics.DebugViews;
 
 namespace gearit.src
 {
-	class DrawGame
+	public class DrawGame
 	{
 		// a basic effect, which contains the shaders that we will use to draw our
 		// primitives. (it's about gpu)
@@ -217,7 +217,7 @@ namespace gearit.src
 							_tempVertices[i] = MathUtils.Multiply(ref xf, poly.Vertices[i]);
 						}
 
-						drawPolygon(_tempVertices, vertexCount, color);
+						drawPolygon(_tempVertices, 0, vertexCount, color);
 					}
 					break;
 
@@ -232,14 +232,14 @@ namespace gearit.src
 			}
 		}
 
-		private void drawPolygon(Vector2[] vertices, int count, Color color)
+		public void drawPolygon(Vector2[] vertices, int from, int count, Color color)
 		{
-			for (int i = 0; i < count - 1; i++)
+			for (int i = from; i < count + from - 1; i++)
 				drawLine(vertices[i], vertices[i + 1], color);
-			drawLine(vertices[count - 1], vertices[0], color);
+			drawLine(vertices[from + count - 1], vertices[from], color);
 		}
 
-		private void drawCircle(Vector2 center, float radius, Color color)
+		public void drawCircle(Vector2 center, float radius, Color color)
 		{
 			const double increment = Math.PI * 2.0 / _circleSegments;
 			double theta = 0.0;

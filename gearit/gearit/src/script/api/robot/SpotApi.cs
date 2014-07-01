@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using gearit.src.robot;
 
-namespace gearit.src.editor.api
+namespace gearit.src.script
 {
-	abstract class SpotApi
+	public abstract class SpotApi
 	{
 		internal ISpot _spot;
 
@@ -14,12 +15,12 @@ namespace gearit.src.editor.api
 			_spot = spot;
 		}
 
-		public string name()
+		public string Name()
 		{
 			return (_spot.Name);
 		}
 
-		public float motor 
+		public float Motor
 		{
 			get { return _spot.Force; }
 			set

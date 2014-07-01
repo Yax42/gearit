@@ -17,7 +17,7 @@ using FarseerPhysics.Common;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
+	public class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
 	{
 		// private DistanceJoint _distJoint;
 		private float _size;

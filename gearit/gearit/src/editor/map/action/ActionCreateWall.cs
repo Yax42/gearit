@@ -15,24 +15,26 @@ namespace gearit.src.editor.map.action
 		public void init()
 		{
 			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
-			MapEditor.Instance.Select = _chunk;
+			MapEditor.Instance.SelectChunk = _chunk;
 		}
 
 		public bool shortcut()
 		{
+			if (ActionSwapEventMode.EventMode)
+				return false;
 			return Input.justPressed(Keys.W)
 				&& Input.ctrlAltShift(false, false, false);
 		}
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.addChunk(_chunk);
+			MapEditor.Instance.Map.Chunks.Add(_chunk);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.deleteChunk(_chunk);
+			MapEditor.Instance.Map.Chunks.Remove(_chunk);
 		}
 
 		public bool canBeReverted() { return true; }

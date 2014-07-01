@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using gearit.src.output;
+using gearit.src.robot;
 
 namespace gearit.src.editor
 {

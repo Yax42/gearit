@@ -9,10 +9,10 @@ using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
-	class Wheel : Piece, ISerializable
+	public class Wheel : Piece, ISerializable
 	{
 		private const int _circleSegments = 32;
 
@@ -73,6 +73,11 @@ namespace gearit
 					resetShape();
 				}
 			}
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			return Vector2.Zero;
 		}
 	}
 }

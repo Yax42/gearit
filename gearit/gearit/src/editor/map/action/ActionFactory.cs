@@ -11,7 +11,7 @@ namespace gearit.src.editor.map.action
 		NONE = 0,
 		SELECT,
 		MOVE,
-		DELETE,
+		DELETE_CHUNK,
 		CREATE_WALL,
 		CREATE_BALL,
 		CHANGE_TYPE,
@@ -23,7 +23,13 @@ namespace gearit.src.editor.map.action
 		LOAD,
 		SHOW_HELP,
 		EXIT,
-		COUNT
+		SWAP_EVENT_MODE,
+		CREATE_ARTEFACT,
+		CREATE_TRIGGER,
+		DELETE_TRIGGER,
+		DELETE_ARTEFACT,
+		SET_TRIGGER_ID,
+		COUNT,
 	}
 
 	class ActionFactory
@@ -69,7 +75,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.NONE) return _dummy;
 			if (action == ActionTypes.SELECT) return new ActionSelect();
 			if (action == ActionTypes.MOVE) return new ActionMove();
-			if (action == ActionTypes.DELETE) return new ActionDelete();
+			if (action == ActionTypes.DELETE_CHUNK) return new ActionDeleteChunk();
 			if (action == ActionTypes.CREATE_BALL) return new ActionCreateBall();
 			if (action == ActionTypes.CREATE_WALL) return new ActionCreateWall();
 			if (action == ActionTypes.RESIZE_CIRCLE) return new ActionResizeCircle();
@@ -81,6 +87,12 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.LOAD) return new ActionLoadMap();
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			if (action == ActionTypes.EXIT) return new ActionExit();
+			if (action == ActionTypes.SWAP_EVENT_MODE) return new ActionSwapEventMode();
+			if (action == ActionTypes.CREATE_ARTEFACT) return new ActionCreateArtefact();
+			if (action == ActionTypes.CREATE_TRIGGER) return new ActionCreateTrigger();
+			if (action == ActionTypes.DELETE_TRIGGER) return new ActionDeleteTrigger();
+			if (action == ActionTypes.DELETE_ARTEFACT) return new ActionDeleteArtefact();
+			if (action == ActionTypes.SET_TRIGGER_ID) return new ActionSetTriggerId();
 			return _dummy;
 		}
 	}

@@ -16,10 +16,10 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
-	abstract class Piece : Body, ISerializable
+	public abstract class Piece : Body, ISerializable
 	{
 		internal const float MaxMass = 1000;
 
@@ -105,7 +105,7 @@ namespace gearit
 			if (_fix != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
-			_fix.CollisionGroup = (short)id;
+			_fix.CollisionGroup = (short)(-id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
 		}
 
 		internal void initShapeAndFixture(Shape shape)
@@ -183,8 +183,16 @@ namespace gearit
 			}
 		}
 
-		public bool isOn(Vector2 p)
+		public bool Contain(Vector2 p)
 		{
+			Transform t;
+			GetTransform(out t);
+			return (Shape.TestPoint(ref t, ref p));
+		}
+
+		public bool LocalContain(Vector2 p)
+		{
+			p = GetWorldPoint(p);
 			Transform t;
 			GetTransform(out t);
 			return (Shape.TestPoint(ref t, ref p));
@@ -310,7 +318,7 @@ namespace gearit
 					anchorPos = i.Joint.WorldAnchorA;
 				else
 					anchorPos = i.Joint.WorldAnchorB;
-				if (isOn(anchorPos) == false)
+				if (Contain(anchorPos) == false)
 					return (false);
 			}
 			return (true);
@@ -349,5 +357,7 @@ namespace gearit
 				adjacentPieces.Add((Piece)i.Other);
 			return adjacentPieces;
 		}
+
+		public abstract Vector2 ShapeLocalOrigin();
 	}
 }

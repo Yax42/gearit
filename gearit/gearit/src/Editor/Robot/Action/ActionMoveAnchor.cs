@@ -6,6 +6,7 @@ using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
@@ -30,7 +31,6 @@ namespace gearit.src.editor.robot.action
 				From = P1.getConnection(P2).getWorldAnchor(P1);
 				To = From;
 			}
-
 		}
 
 		public bool shortcut()
@@ -44,7 +44,7 @@ namespace gearit.src.editor.robot.action
 				return false;
 			Debug.Assert(P1.isConnected(P2));
 
-			if (!HasBeenRevert && P1.isOn(Input.SimMousePos))
+			if (!HasBeenRevert && P1.Contain(Input.SimMousePos))
 			{
 				To = Input.SimMousePos;
 			}

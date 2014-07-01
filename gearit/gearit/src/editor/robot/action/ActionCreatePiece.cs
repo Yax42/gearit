@@ -15,25 +15,36 @@ namespace gearit.src.editor.robot.action
 		private bool HasBeenRevert;
 		private SleepingPack Pack;
 		private bool IsPrismatic;
+		private int FrameCount;
 
 		public void init()
 		{
+			FrameCount = 0;
 			Piece select1 = RobotEditor.Instance.Select1;
 			Pack = new SleepingPack();
 			HasBeenRevert = false;
+			Vector2 anchor2 = Vector2.Zero;
 			if (ActionChooseSet.IsWheel)
 				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.SimMousePos);
 			else
+			{
 				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
+				anchor2 = new Vector2(-2, 0);
+			}
 			IsPrismatic = ActionChooseSet.IsPrismatic;
 
-			Vector2 anchor = Vector2.Zero;
-			if (select1.isOn(Input.SimMousePos))
-				anchor = select1.GetLocalPoint(Input.SimMousePos);
-			if (IsPrismatic)
-				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor, Vector2.Zero);
+			Vector2 anchor1;
+			if (select1.Contain(Input.SimMousePos))
+				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
 			else
-				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor, Vector2.Zero);
+				anchor1 = select1.ShapeLocalOrigin();
+
+			if (IsPrismatic)
+				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+			else
+			{
+				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+			}
 			RobotEditor.Instance.Select1 = P1;
 		}
 
@@ -52,6 +63,16 @@ namespace gearit.src.editor.robot.action
 			{
 				P1.move(Input.SimMousePos);
 				return (Input.pressed(Keys.W));// && !Input.justPressed(MouseKeys.LEFT));
+			}
+			else if (!ActionChooseSet.IsWheel)
+			{
+				FrameCount++;
+				if (FrameCount < 2)
+					return true;
+				else if (FrameCount == 2)
+					((Rod)P1).GenerateEnds();
+				((Rod)P1).setEnd(Input.SimMousePos, false);
+				return Input.pressed(Keys.W);
 			}
 			return false;
 		}

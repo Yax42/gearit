@@ -12,7 +12,7 @@ using gearit.src.utility;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class Rod : Piece, ISerializable
+	public class Rod : Piece, ISerializable
 	{
 
 		private const float _width = 0.02f;
@@ -117,9 +117,17 @@ namespace gearit.src.robot
 		{
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
+			{
+				if ((_endB - end).LengthSquared() < 0.01f)
+					return;
 				_endA = end;
+			}
 			else
+			{
+				if ((_endA - end).LengthSquared() < 0.01f)
+					return;
 				_endB = end;
+			}
 			updateEnds(comparator);
 		}
 
@@ -155,6 +163,11 @@ namespace gearit.src.robot
 			Vector2 semiEnd = MathLib.PolarCoor(_size, Rotation);
 			_endA = Position - semiEnd;
 			_endB = Position + semiEnd;
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			return new Vector2(_size, 0);
 		}
 	}
 }

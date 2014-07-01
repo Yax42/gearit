@@ -73,6 +73,9 @@ namespace gearit.src.editor.robot
 			// Menu
 			new MenuRobotEditor(ScreenManager);
 
+			ActionChooseSet.IsWheel = false;
+			ActionChooseSet.IsPrismatic = false;
+
 			// Action
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
@@ -102,14 +105,14 @@ namespace gearit.src.editor.robot
 			// Robot
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Robot = new Robot(_world);
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public void selectHeart()
 		{
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -133,9 +136,9 @@ namespace gearit.src.editor.robot
 			Robot.fallAsleep(p, pack);
 
 			if (Select1.Sleeping)
-				Select1 = Robot.getHeart();
+				Select1 = Robot.Heart;
 			if (Select2.Sleeping)
-				Select2 = Robot.getHeart();
+				Select2 = Robot.Heart;
 		}
 
 		public void fallAsleep(ISpot s, SleepingPack pack)
@@ -143,9 +146,9 @@ namespace gearit.src.editor.robot
 			Robot.fallAsleep(s, pack);
 
 			if (Select1.Sleeping)
-				Select1 = Robot.getHeart();
+				Select1 = Robot.Heart;
 			if (Select2.Sleeping)
-				Select2 = Robot.getHeart();
+				Select2 = Robot.Heart;
 		}
 
 		public void doAction(ActionTypes action)
@@ -289,8 +292,8 @@ namespace gearit.src.editor.robot
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			Robot = bot;
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public void deleteRobot()
