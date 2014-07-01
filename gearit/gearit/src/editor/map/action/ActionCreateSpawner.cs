@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +9,31 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionCreateWall : IAction
+	class ActionCreateSpawner : IAction
 	{
-		private MapChunk _chunk;
-
+		private Spawner _Spawner;
 		public void init()
 		{
-			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
-			MapEditor.Instance.SelectChunk = _chunk;
+			_Spawner = new Spawner(Input.SimMousePos);
 		}
 
 		public bool shortcut()
 		{
-			if (ActionSwapEventMode.EventMode)
+			if (!ActionSwapEventMode.EventMode)
 				return false;
-			return Input.justPressed(Keys.W)
+			return Input.justPressed(Keys.E)
 				&& Input.ctrlAltShift(false, false, false);
 		}
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.Chunks.Add(_chunk);
+			MapEditor.Instance.Map.Spawners.Add(_Spawner);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.Chunks.Remove(_chunk);
+			MapEditor.Instance.Map.Spawners.Remove(_Spawner);
 		}
 
 		public bool canBeReverted() { return true; }

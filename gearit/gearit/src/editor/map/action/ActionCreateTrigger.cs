@@ -8,39 +8,39 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionCreateBall : IAction
+	class ActionCreateTrigger : IAction
 	{
-		private MapChunk _chunk;
+		private Trigger _trigger;
 
 		public void init()
 		{
-			_chunk = new CircleChunk(MapEditor.Instance.World, true, Input.SimMousePos);
-			MapEditor.Instance.SelectChunk = _chunk;
+			_trigger = new Trigger(Input.SimMousePos);
+			MapEditor.Instance.SelectTrigger = _trigger;
 		}
 
 		public bool shortcut()
 		{
-			if (ActionSwapEventMode.EventMode)
+			if (!ActionSwapEventMode.EventMode)
 				return false;
 			return Input.justPressed(Keys.W)
-				&& Input.ctrlAltShift(false, false, true);
+				&& Input.ctrlAltShift(false, false, false);
 		}
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.Chunks.Add(_chunk);
+			MapEditor.Instance.Map.Triggers.Add(_trigger);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.Chunks.Remove(_chunk);
+			MapEditor.Instance.Map.Triggers.Remove(_trigger);
 		}
 
 		public bool canBeReverted() { return true; }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CREATE_BALL; }
+		public ActionTypes type() { return ActionTypes.CREATE_TRIGGER; }
 	}
 }

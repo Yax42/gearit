@@ -8,18 +8,16 @@ using Microsoft.Xna.Framework;
 
 namespace GeneticAlgorithm.src.Genome
 {
-	class Genome
+	class LowLevelGenome
 	{
-		public const float kMaxSize = 3;
+		internal const float kMaxSize = 3;
 		private Byte[] m_Data;
-		internal Robot m_Robot;
 		private int m_Current;
 
-		public Genome(Robot robot)
+		internal LowLevelGenome(Byte[] data)
 		{
 			m_Current = 0;
-			m_Data = new Byte[32];
-			m_Robot = robot;
+			m_Data = data;
 		}
 
 		private int NextByteIndex
@@ -42,7 +40,7 @@ namespace GeneticAlgorithm.src.Genome
 			}
 		}
 
-		public Byte NextByte
+		internal Byte NextByte
 		{
 			get
 			{
@@ -50,28 +48,13 @@ namespace GeneticAlgorithm.src.Genome
 			}
 		}
 
-		public bool NextBool(float trueChance)
+		internal bool NextBool(float trueChance)
 		{
 			return (NextByteIndex <= trueChance * 256);
 		}
 
-		public Piece NextPiece
-		{
-			get
-			{
-				return m_Robot.Pieces[m_Data[NextByteIndex] % m_Robot.Pieces.Count];
-			}
-		}
 
-		public RevoluteSpot NextSpot
-		{
-			get
-			{
-				return (RevoluteSpot)m_Robot.Spots[m_Data[NextByteIndex] % m_Robot.Spots.Count];
-			}
-		}
-
-		public float NextFloat
+		internal float NextFloat
 		{
 			get
 			{
@@ -79,7 +62,7 @@ namespace GeneticAlgorithm.src.Genome
 			}
 		}
 
-		public float NextAbsRange1
+		internal float NextAbsRange1
 		{
 			get
 			{
@@ -87,7 +70,7 @@ namespace GeneticAlgorithm.src.Genome
 			}
 		}
 
-		public float NextRange1
+		internal float NextRange1
 		{
 			get
 			{
@@ -96,7 +79,7 @@ namespace GeneticAlgorithm.src.Genome
 			}
 		}
 
-		public Vector2 NextVector2
+		internal Vector2 NextVector2
 		{
 			get
 			{

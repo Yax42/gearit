@@ -26,7 +26,9 @@ namespace gearit.src.editor.map
 		private DrawGame _draw_game;
 		private const int PropertiesMenuSize = 40;
 		private MapChunk _dummyChunk;
-		private MapChunk _select;
+		private Trigger _dummyTrigger;
+		private MapChunk _selectedChunk;
+		private Trigger _selectedTrigger;
 
 		//Action
 		private List<IAction> _actionsLog;
@@ -35,19 +37,41 @@ namespace gearit.src.editor.map
 
 		public static MapEditor Instance { set; get; }
 
-		public MapChunk Select
+		public MapChunk SelectChunk
 		{
 			get
 			{
-				return _select;
+				return _selectedChunk;
 			}
 			set
 			{
 				if (value == null)
-					_select = _dummyChunk;
+					_selectedChunk = _dummyChunk;
 				else
-					_select = value;
+					_selectedChunk = value;
 			}
+		}
+
+		public Trigger SelectTrigger
+		{
+			get
+			{
+				return _selectedTrigger;
+			}
+			set
+			{
+				if (value == null)
+					_selectedTrigger = _dummyTrigger;
+				else
+					_selectedTrigger = value;
+			}
+		}
+		public bool IsSelectDummy()
+		{
+			if (ActionSwapEventMode.EventMode)
+				return _selectedTrigger == _dummyTrigger;
+			else
+				return _selectedChunk == _dummyChunk;
 		}
 
 		public Map Map { get { return _map; } }
@@ -72,7 +96,7 @@ namespace gearit.src.editor.map
 			ActionFactory.init();
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
-			Select = null;
+			SelectChunk = null;
 			_world = null;
 			HasCursor = true;
 			Instance = this;
@@ -90,7 +114,7 @@ namespace gearit.src.editor.map
 			else
 				_world.Clear();
 			_dummyChunk = new PolygonChunk(_world, false, Vector2.Zero);
-
+			_dummyTrigger = new Trigger(Vector2.Zero);
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.Dummy;
@@ -102,7 +126,7 @@ namespace gearit.src.editor.map
 			_camera.Position = new Vector2(0, 0);
 			_world.Gravity = new Vector2(0f, 0f);
 			HasVirtualStick = true;
-			Select = null;
+			SelectChunk = null;
 
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
@@ -122,7 +146,7 @@ namespace gearit.src.editor.map
 			if (_currentAction.type() == ActionTypes.NONE)
 			{
 				_currentAction = ActionFactory.create(action);
-				if (_currentAction.actOnSelect() && _select == _dummyChunk)
+				if (IsSelectDummy() && _currentAction.actOnSelect())
 					_currentAction = ActionFactory.Dummy;
 				_currentAction.init();
 			}
@@ -135,7 +159,7 @@ namespace gearit.src.editor.map
 				if (MenuMapEditor.Instance.hasFocus())
 					return;
 				_currentAction = ActionFactory.createFromShortcut();
-				if (_currentAction.actOnSelect() && _select == _dummyChunk)
+				if (_currentAction.actOnSelect() && IsSelectDummy())
 					_currentAction = ActionFactory.Dummy;
 				_currentAction.init();
 			}
@@ -204,16 +228,18 @@ namespace gearit.src.editor.map
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			_map = map;
-			Select = null;
+			SelectChunk = null;
+			SelectTrigger = null;
 		}
 		//-----------------------------------------------------------------------
 
 		public override void Draw(GameTime gameTime)
 		{
-			//ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
+			if (ActionSwapEventMode.EventMode)
+				ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
 			_draw_game.Begin(_camera);
 
-			_map.drawDebug(_draw_game);
+			_map.DrawDebug(_draw_game, ActionSwapEventMode.EventMode);
 
 			_draw_game.End();
 			base.Draw(gameTime);

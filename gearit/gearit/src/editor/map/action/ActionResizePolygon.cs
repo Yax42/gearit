@@ -12,6 +12,8 @@ namespace gearit.src.editor.map.action
 	class ActionResizePolygon : IAction
 	{
 		private bool _didRevert;
+		private bool _isChunk;
+		private Trigger _trigger;
 		private PolygonChunk _chunk;
 		private int _verticeId;
 		private Vector2 _from;
@@ -19,11 +21,21 @@ namespace gearit.src.editor.map.action
 		
 		public void init()
 		{
-			Debug.Assert(MapEditor.Instance.Select.GetType() == typeof(PolygonChunk));
-			_chunk = (PolygonChunk)MapEditor.Instance.Select;
-			_verticeId = _chunk.findVertice(Input.SimMousePos);
+			_isChunk = !ActionSwapEventMode.EventMode;
+			if (_isChunk)
+			{
+				Debug.Assert(MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk));
+				_chunk = (PolygonChunk)MapEditor.Instance.SelectChunk;
+				_verticeId = _chunk.findVertice(Input.SimMousePos);
+				_from = _chunk.getVertice(_verticeId);
+			}
+			else
+			{
+				_trigger = MapEditor.Instance.SelectTrigger;
+				_verticeId = _trigger.GetCloseCornerId(Input.SimMousePos);
+				_from = _trigger.Corner(_verticeId);
+			}
 			_didRevert = false;
-			_from = _chunk.getVertice(_verticeId);
 			_to = _from;
 		}
 
@@ -31,14 +43,17 @@ namespace gearit.src.editor.map.action
 		{
 			return Input.ctrlAltShift(false, false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
-				MapEditor.Instance.Select.GetType() == typeof(PolygonChunk);
+				MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk);
 		}
 
 		public bool run()
 		{
 			if (!_didRevert)
 				_to = Input.SimMousePos;
-			_chunk.moveVertice(_to, _verticeId);
+			if (_isChunk)
+				_chunk.moveVertice(_to, _verticeId);
+			else
+				_trigger.MoveCorner(_to, _verticeId);
 
 			if (_didRevert)
 				return false;
@@ -48,7 +63,10 @@ namespace gearit.src.editor.map.action
 		public void revert()
 		{
 			_didRevert = true;
-			_chunk.moveVertice(_from, _verticeId);
+			if (_isChunk)
+				_chunk.moveVertice(_from, _verticeId);
+			else
+				_trigger.MoveCorner(_from, _verticeId);
 		}
 
 		public bool canBeReverted() { return true; }

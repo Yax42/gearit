@@ -67,9 +67,12 @@ namespace gearit.src.game
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			addRobot(robot);
 			Debug.Assert(_robots != null);
 			_map = (Map)Serializer.DeserializeItem("map/default.gim");
+			if (_map.Spawners.Count > 0)
+				robot.move(_map.Spawners[0].Position);
 			Debug.Assert(_map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
@@ -167,7 +170,7 @@ namespace gearit.src.game
 
 			foreach (Robot r in _robots)
 				r.draw(_drawGame);
-			_map.drawDebug(_drawGame);
+			_map.DrawDebug(_drawGame);
 			_drawGame.End();
 
 			base.Draw(gameTime);

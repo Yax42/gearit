@@ -8,6 +8,11 @@ namespace GeneticAlgorithm
 {
 	class Individual
 	{
+		public void GeneratePhenotype()
+		{
+			//new Robot();
+		}
+		
 		static public void a()
 		{
 		}

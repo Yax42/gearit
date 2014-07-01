@@ -17,8 +17,8 @@ namespace gearit.src.editor.map.action
 		
 		public void init()
 		{
-			Debug.Assert(MapEditor.Instance.Select.GetType() == typeof(CircleChunk));
-			_chunk = (CircleChunk)MapEditor.Instance.Select;
+			Debug.Assert(MapEditor.Instance.SelectChunk.GetType() == typeof(CircleChunk));
+			_chunk = (CircleChunk)MapEditor.Instance.SelectChunk;
 			_didRevert = false;
 			_from = _chunk.Size;
 			_to = _from;
@@ -26,9 +26,11 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
+			if (ActionSwapEventMode.EventMode)
+				return false;
 			return Input.ctrlAltShift(false, false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
-				MapEditor.Instance.Select.GetType() == typeof(CircleChunk);
+				MapEditor.Instance.SelectChunk.GetType() == typeof(CircleChunk);
 		}
 
 		public bool run()
