@@ -108,7 +108,8 @@ namespace gearit.src.server
             {
                 NetOutgoingMessage om = s_client.CreateMessage();
                 om.Write(text);
-                s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+                s_client.SendMessage(om, s_client.Connections.First(), NetDeliveryMethod.ReliableOrdered);
+                //s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
             }
         }
     }

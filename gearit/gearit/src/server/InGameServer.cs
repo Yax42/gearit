@@ -87,6 +87,9 @@ namespace gearit.src.server
                             {
                                 string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
                                 OutputManager.LogMessage(str);
+                                NetOutgoingMessage om = s_server.CreateMessage();
+                                om.Write("You are connected!");
+                                s_server.SendMessage(om, conn, NetDeliveryMethod.ReliableOrdered, 0);
                             }
                             break;
                         case NetIncomingMessageType.Data:
