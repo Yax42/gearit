@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.src.robot;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.script
 {
-	class RobotStateApi
+	public class RobotStateApi
 	{
 		private Robot _robot;
 		public RobotStateApi(Robot robot)
@@ -22,15 +23,12 @@ namespace gearit.src.script
 			}
 		}
 
-		public float Position_X()
+		public int[] TriggerData
 		{
-			return _robot.Position.X;
+			get
+			{
+				return _robot.TriggersData;
+			}
 		}
-
-		public float Position_Y()
-		{
-			return _robot.Position.Y;
-		}
-
 	}
 }

@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using gearit.src.map;
 using System.Diagnostics;
 using gearit.src.script;
+using gearit.src.game;
 
 namespace gearit.src.robot
 {
@@ -54,11 +55,22 @@ namespace gearit.src.robot
 
 		[NonSerialized]
 		public static int _robotIdCounter = 1;
-		private LuaScript _script;
+		private RobotLuaScript _script;
 		private int _id;
 		public World _world;
 		public int[] TriggersData;
 		private int _LastTrigger;
+		public Score Score = new Score();
+
+		private RobotStateApi _Api;
+		public RobotStateApi Api
+		{
+			get
+			{
+				return _Api;
+			}
+		}
+	
 		public int LastTrigger
 		{
 			get
@@ -78,11 +90,10 @@ namespace gearit.src.robot
 			Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
+			_Api = new RobotStateApi(this);
 		}
 
-		//
-		// SERIALISATION
-		//
+		#region Serialization
 		public Robot(SerializationInfo info, StreamingContext ctxt)
 		{
 			SerializerHelper.CurrentRobot = this;
@@ -103,6 +114,7 @@ namespace gearit.src.robot
 			Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
+			_Api = new RobotStateApi(this);
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -113,7 +125,7 @@ namespace gearit.src.robot
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
 			info.AddValue("Spots", _spots, typeof(List<ISpot>));
 		}
-		//--------- END SERIALISATION
+		#endregion
 
 		private void InitTriggerData()
 		{
@@ -137,27 +149,6 @@ namespace gearit.src.robot
 			}
 		}
 
-		public void resetAct()
-		{
-			foreach (Piece p in _pieces)
-				p.resetAct();
-		}
-
-		public void addSpot(ISpot spot)
-		{
-			_spots.Add(spot);
-		}
-
-		public void addPiece(Piece piece)
-		{
-			_pieces.Add(piece);
-		}
-
-		public World getWorld()
-		{
-			return (_world);
-		}
-
 		public Heart Heart
 		{
 			get
@@ -165,6 +156,12 @@ namespace gearit.src.robot
 				return ((Heart)_pieces.First());
 			}
 		}
+
+		public World getWorld()
+		{
+			return (_world);
+		}
+
 
 		public bool IsPieceConnectedToHeart(Piece piece)
 		{
@@ -187,7 +184,6 @@ namespace gearit.src.robot
 			return false;
 		}
 
-
 		public void setColor(Color col)
 		{
 			foreach (Piece p in _pieces)
@@ -197,6 +193,24 @@ namespace gearit.src.robot
 		public int getId()
 		{
 			return (_id);
+		}
+
+		#region Editor
+
+		public void resetAct()
+		{
+			foreach (Piece p in _pieces)
+				p.resetAct();
+		}
+
+		public void addSpot(ISpot spot)
+		{
+			_spots.Add(spot);
+		}
+
+		public void addPiece(Piece piece)
+		{
+			_pieces.Add(piece);
 		}
 
 		public Piece getPiece(Vector2 p)
@@ -237,54 +251,12 @@ namespace gearit.src.robot
 			return (res);
 		}
 
-		public void drawDebug(DrawGame dg)
-		{
-			for (int i = 0; i < _pieces.Count; i++)
-				if (_pieces[i].Shown)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
-				else 
-					dg.draw(_pieces[i], new Color(new Vector4(_pieces[i].ColorValue.ToVector3(), 0.16f)));
-			for (int i = 0; i < _spots.Count; i++)
-				_spots[i].drawDebug(dg);
-		}
-
-		public void draw(DrawGame dg)
-		{
-			for (int i = 0; i < _pieces.Count; i++)
-				dg.draw(_pieces[i], _pieces[i].ColorValue);
-				//_pieces[i].draw(dg);
-			for (int i = 0; i < _spots.Count; i++)
-				//if (_spots[i].GetType() == typeof(PrismaticSpot))
-					_spots[i].drawDebug(dg);
-		}
-
 		public void showAll()
 		{
 			for (int i = 0; i < _pieces.Count; i++)
 				_pieces[i].Shown = true;
 		}
 
-		//-----------------REMOVE--------------------
-
-		// For runtime
-		public void remove(Piece p)
-		{
-			if (p == Heart)
-				return;
-			for (JointEdge i = p.JointList; i != null; i = i.Next)
-				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
-			_pieces.Remove(p);
-			_world.RemoveBody(p);
-		}
-
-		// For runtime
-		public void remove(ISpot s)
-		{
-			_spots.Remove(s);
-			_world.RemoveJoint(s.Joint);
-		}
-
-		// For editor
 		public void fallAsleep(Piece p, SleepingPack pack, bool DidCheck = false)
 		{
 			if (p == Heart)
@@ -306,18 +278,6 @@ namespace gearit.src.robot
 				if (DidCheck || IsPieceConnectedToHeart(adjacentPiece) == false)
 					fallAsleep(adjacentPiece, pack, true);
 			}
-		}
-
-		// For lua
-		public Boolean hasSpot(string name)
-		{
-			foreach (var spot in _spots)
-			{
-				if (name == spot.Name)
-					return (true);
-			}
-
-			return (false);
 		}
 
 		// For editor
@@ -350,12 +310,68 @@ namespace gearit.src.robot
 			_spots.Remove(s);
 		}
 
+		#endregion
+
+		#region Draw
+		public void drawDebug(DrawGame dg)
+		{
+			for (int i = 0; i < _pieces.Count; i++)
+				if (_pieces[i].Shown)
+					dg.draw(_pieces[i], _pieces[i].ColorValue);
+				else 
+					dg.draw(_pieces[i], new Color(new Vector4(_pieces[i].ColorValue.ToVector3(), 0.16f)));
+			for (int i = 0; i < _spots.Count; i++)
+				_spots[i].drawDebug(dg);
+		}
+
+		public void draw(DrawGame dg)
+		{
+			for (int i = 0; i < _pieces.Count; i++)
+				dg.draw(_pieces[i], _pieces[i].ColorValue);
+				//_pieces[i].draw(dg);
+			for (int i = 0; i < _spots.Count; i++)
+				//if (_spots[i].GetType() == typeof(PrismaticSpot))
+					_spots[i].drawDebug(dg);
+		}
+		#endregion
+
+		//-----------------REMOVE--------------------
+
+		// For runtime
+		public void remove(Piece p)
+		{
+			if (p == Heart)
+				return;
+			for (JointEdge i = p.JointList; i != null; i = i.Next)
+				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
+			_pieces.Remove(p);
+			_world.RemoveBody(p);
+		}
+
+		// For runtime
+		public void remove(ISpot s)
+		{
+			_spots.Remove(s);
+			_world.RemoveJoint(s.Joint);
+		}
+
+		// For lua
+		public Boolean hasSpot(string name)
+		{
+			foreach (var spot in _spots)
+			{
+				if (name == spot.Name)
+					return (true);
+			}
+			return (false);
+		}
+
 		public void remove()
 		{
 			if (_script != null)
 				_script.stop();
 			_script = null;
-			return;
+			//return;
 			foreach (ISpot i in _spots)
 				_world.RemoveJoint(i.Joint);
 			foreach (Piece i in _pieces)
@@ -385,6 +401,10 @@ namespace gearit.src.robot
 			{
 				return Heart.Position;
 			}
+			set
+			{
+				move(value);
+			}
 		}
 
 		public List<SpotApi> GetSpotApi()
@@ -402,11 +422,13 @@ namespace gearit.src.robot
 
 		public void turnOn()
 		{
+			/*
 			foreach (ISpot i in _spots)
 				if (i.GetType() == typeof(PrismaticSpot))
 					((PrismaticSpot)i).updateLimit();
+			*/
 			if (_script == null)
-				_script = new LuaScript(GetSpotApi(), new RobotStateApi(this), Name);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, Name);
 		}
 
 		public int revCount() { return (_revoluteCounter++); }

@@ -23,15 +23,55 @@ namespace gearit.src.game
 		//private Camera2D _camera;
 		private Camera2D _camera;
 
-		private Map _map;
-		private List<Robot> _robots;
+		public Map _Map;
+		public Map Map
+		{
+			get
+			{
+				return _Map;
+			}
+			private set
+			{
+				_Map = value;
+			}
+		}
+
+		public List<Robot> _Robots;
+		public List<Robot> Robots
+		{
+			get
+			{
+				return _Robots;
+			}
+			private set
+			{
+				_Robots = value;
+			}
+		}
+
 		private DrawGame _drawGame;
 
 		// Graphic
 		private RectangleOverlay _background;
 
 		// Action
-	private int _time = 0;
+		private int _FrameCount = 0;
+		public int FrameCount
+		{
+			get
+			{
+				return _FrameCount;
+			}
+		}
+
+		private float _Time = 0;
+		public float Time
+		{
+			get
+			{
+				return _FrameCount;
+			}
+		}
 
 		#region IDemoScreen Members
 
@@ -40,7 +80,7 @@ namespace gearit.src.game
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			_robots = new List<Robot>();
+			Robots = new List<Robot>();
 			_world = new World(new Vector2(0, 9.8f));
 		}
 
@@ -59,7 +99,7 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			_time = 0;
+			_FrameCount = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
@@ -69,11 +109,11 @@ namespace gearit.src.game
 
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addRobot(robot);
-			Debug.Assert(_robots != null);
-			_map = (Map)Serializer.DeserializeItem("map/default.gim");
-			if (_map.Artefacts.Count > 0)
-				robot.move(_map.Artefacts[0].Position);
-			Debug.Assert(_map != null);
+			Debug.Assert(Robots != null);
+			Map = (Map)Serializer.DeserializeItem("map/default.gim");
+			if (Map.Artefacts.Count > 0)
+				robot.move(Map.Artefacts[0].Position);
+			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
@@ -89,20 +129,20 @@ namespace gearit.src.game
 
 		public void setMap(Map map)
 		{
-			_map = map;
+			Map = map;
 		}
 
 		public void clearRobot()
 		{
-			foreach (Robot r in _robots)
+			foreach (Robot r in Robots)
 				r.remove();
-			_robots.Clear();
+			Robots.Clear();
 		}
 
 		public void addRobot(Robot robot)
 		{
-			_robots.Add(robot);
-			if (_robots.Count == 1)
+			Robots.Add(robot);
+			if (Robots.Count == 1)
 				_camera.TrackingBody = robot.Heart;
 			robot.turnOn();
 			robot.move(new Vector2(0, -20));
@@ -110,51 +150,28 @@ namespace gearit.src.game
 
 		public override void Update(GameTime gameTime)
 		{
-			_time++;
+			_FrameCount++;
+			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
 			HandleInput();
 
 			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
-			foreach (Robot r in _robots)
-				r.Update(_map);
-			//_camera.update();
+			foreach (Robot r in Robots)
+				r.Update(Map);
 			_camera.Update(gameTime);
 		}
 
-#if false
-		private float SecCount = 0;
-		public void PrintRobot(GameTime gameTime)
+		public void Finish()
 		{
-			SecCount += (float)gameTime.ElapsedGameTime.TotalSeconds;
-			if (SecCount < 2)
-				return;
-
-			foreach (Robot r in _robots)
-				foreach (Piece p in r.Pieces)
-					p.ResetMassData();
-			SecCount = 0;
-			foreach (Robot r in _robots)
-			{
-				string res = "W:";
-				foreach (Piece p in r.Pieces)
-					res += " " + p.Mass + "/" + p.Weight;
-				OutputManager.LogInfo(res);
-
-				res = "F:";
-				foreach (ISpot s in r.Spots)
-					res += " " + s.Force;
-				OutputManager.LogInfo(res);
-			}
+			clearRobot();
+			ScreenMainMenu.GoBack = true;
 		}
-#endif
-
 
 		private void HandleInput()
 		{
 			if (Input.Exit)
 			{
 				clearRobot();
-				//ScreenManager.RemoveScreen(this);
 				ScreenMainMenu.GoBack = true;
 			}
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
@@ -168,9 +185,9 @@ namespace gearit.src.game
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
 			_drawGame.Begin(_camera);
 
-			foreach (Robot r in _robots)
+			foreach (Robot r in Robots)
 				r.draw(_drawGame);
-			_map.DrawDebug(_drawGame);
+			Map.DrawDebug(_drawGame, true);
 			_drawGame.End();
 
 			base.Draw(gameTime);

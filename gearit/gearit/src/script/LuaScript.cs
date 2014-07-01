@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LuaInterface;
-using gearit.xna;
 using System.Threading;
-
-using gearit.src.robot;
-using gearit.src.output;
-using gearit.src.editor.robot;
 using System.Diagnostics;
+using gearit.src.editor.robot;
+using gearit.src.output;
 
 namespace gearit.src.script
 {
-
 	class LuaScript : Lua
 	{
 		private static List<Thread> LuaThreads = new List<Thread>();
@@ -24,35 +20,18 @@ namespace gearit.src.script
 			LuaThreads.Clear();
 		}
 
-		private String _name;
-		private List<SpotApi> _api;
-		private InputApi _inputApi;
 		private Thread _thread;
 		private bool _done;
-		private RobotStateApi _robotApi;
+		private string _filePath;
 
-		public void saySomething(string something)
+		public LuaScript(string filePath)
 		{
-			Console.WriteLine(something);
-		}
-
-		public LuaScript(List<SpotApi> api, RobotStateApi robotApi, string name)
-		{
+			_filePath = filePath;
 			_done = true;
-			_name = name;
-			_api = api;
-			_robotApi = robotApi;
-			_inputApi = new InputApi();
 			_thread = new Thread(new ThreadStart(exec));
-			for (int i = 0; i < api.Count; i++)
-				this[api[i].Name()] = api[i];
-			this["Input"] = _inputApi;
-			this["Robot"] = _robotApi;
-			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
-			run();
 		}
 
-		private void run()
+		internal void run()
 		{
 			Debug.Assert(_done, "Thread already running and trying to run it again.");
 			_done = false;
@@ -64,7 +43,7 @@ namespace gearit.src.script
 		{
 			try
 			{
-				DoFile(LuaManager.LuaFile(_name));
+				DoFile(LuaManager.LuaFile(_filePath));
 			}
 			catch (Exception ex)
 			{

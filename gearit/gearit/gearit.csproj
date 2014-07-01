@@ -127,7 +127,11 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
-    <Compile Include="src\script\api\game\GameMasterApi.cs" />
+    <Compile Include="src\game\Score.cs" />
+    <Compile Include="src\script\api\game\GameApi.cs" />
+    <Compile Include="src\script\api\game\GameArtefactApi.cs" />
+    <Compile Include="src\script\api\game\GameRobotApi.cs" />
+    <Compile Include="src\script\api\game\GameObjectApi.cs" />
     <Compile Include="src\script\api\robot\RobotStateApi.cs" />
     <Compile Include="src\editor\map\action\ActionChangeType.cs" />
     <Compile Include="src\editor\map\action\ActionCreateBall.cs" />
@@ -323,6 +327,8 @@
     <Compile Include="src\output\OutputMessageManager\IOutputMessageManager.cs" />
     <Compile Include="src\output\OutputMessageManager\OutputMessageManagerConsole.cs" />
     <Compile Include="src\robot\Rod.cs" />
+    <Compile Include="src\script\GameLuaScript.cs" />
+    <Compile Include="src\script\LuaScript.cs" />
     <Compile Include="src\server\InGameClient.cs" />
     <Compile Include="src\server\Ftpclient.cs" />
     <Compile Include="src\server\FtpState.cs" />
@@ -345,7 +351,7 @@
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
-    <Compile Include="src\script\LuaScript.cs" />
+    <Compile Include="src\script\RobotLuaScript.cs" />
     <Compile Include="src\test\Pyramid.cs" />
     <Compile Include="src\editor\robot\RobotEditor.cs" />
     <Compile Include="src\test\SpiderBot.cs" />

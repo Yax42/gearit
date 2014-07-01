@@ -54,22 +54,23 @@ namespace gearit.src.map
 			set
 			{
 				_Position = value;
-				_Vertices[0] = new Vector2(Position.X, Position.Y + Size);
-				_Vertices[1] = new Vector2(Position.X + Size, Position.Y);
-				_Vertices[2] = new Vector2(Position.X, Position.Y - Size);
-				_Vertices[3] = new Vector2(Position.X - Size, Position.Y);
-				
-				_Vertices[4] = new Vector2(Position.X, Position.Y + Size * 0.8f);
-				_Vertices[5] = new Vector2(Position.X + Size * 0.8f, Position.Y);
-				_Vertices[6] = new Vector2(Position.X, Position.Y - Size * 0.8f);
-				_Vertices[7] = new Vector2(Position.X - Size * 0.8f, Position.Y);
 			}
 		}
 		
 		public void DrawDebug(DrawGame dg)
 		{
+			_Vertices[0] = new Vector2(Position.X, Position.Y + Size);
+			_Vertices[1] = new Vector2(Position.X + Size, Position.Y);
+			_Vertices[2] = new Vector2(Position.X, Position.Y - Size);
+			_Vertices[3] = new Vector2(Position.X - Size, Position.Y);
+			
+			_Vertices[4] = new Vector2(Position.X, Position.Y + Size * 0.8f);
+			_Vertices[5] = new Vector2(Position.X + Size * 0.8f, Position.Y);
+			_Vertices[6] = new Vector2(Position.X, Position.Y - Size * 0.8f);
+			_Vertices[7] = new Vector2(Position.X - Size * 0.8f, Position.Y);
+
 			dg.drawPolygon(_Vertices, 0,  4, Color.LightGoldenrodYellow);
-			dg.drawPolygon(_Vertices, 4, 4, Color.LightGoldenrodYellow);
+			dg.drawPolygon(_Vertices, 4, 4, Color.Brown);
 		}
 	}
 }

@@ -72,8 +72,9 @@ namespace gearit.src.map
 			set
 			{
 				Vector2 delta = value - Position;
-				To += delta;
-				From += delta;
+				_To += delta;
+				_From += delta;
+				UpdateVertices();
 			}
 		}
 
