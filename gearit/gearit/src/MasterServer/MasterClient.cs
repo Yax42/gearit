@@ -67,15 +67,15 @@ namespace gearit.src
             System.Threading.Thread.Sleep(1000);
             
             //Start Client
-            /*client.Start();
+            client.Start();
             OutputManager.LogMessage("Client connected");
-            System.Threading.Thread.Sleep(1000);*/
+            System.Threading.Thread.Sleep(1000);
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			MenuMasterClient.Instance.Update();
-            //client.Send("hello world");
+            client.Send("hello world");
 			base.Update(gameTime);
 		}
 

@@ -31,11 +31,18 @@ namespace gearit.src.server
 
         public void Start()
         {
-            s_server.Start();
-            serverThread = new Thread(ServerMainLoop);
-            serverThread.Start();
-            OutputManager.LogMessage(serverThread.IsAlive.ToString());
-            _server_launched = true;
+            try
+            {
+                s_server.Start();
+                serverThread = new Thread(ServerMainLoop);
+                serverThread.Start();
+                OutputManager.LogMessage(serverThread.IsAlive.ToString());
+                _server_launched = true;
+            }
+            catch
+            {
+                OutputManager.LogMessage("(Server)msg:Fail to Launch server");
+            }
         }
 
         public void Stop()
@@ -60,7 +67,7 @@ namespace gearit.src.server
                             NetIncomingMessage hail = msg.SenderConnection.RemoteHailMessage;
                             Console.WriteLine(hail.ReadString());
                             Console.WriteLine(hail.ReadString());
-                            OutputManager.LogMessage("(Lidgren)msg:" + hail.ReadString());
+                            OutputManager.LogMessage("(Server)msg:" + hail.ReadString());
                             msg.SenderConnection.Approve();
                             break;
                         case NetIncomingMessageType.VerboseDebugMessage:
@@ -86,7 +93,7 @@ namespace gearit.src.server
                             break;
                         case NetIncomingMessageType.Data:
                             string rcv = msg.ReadString();
-                            OutputManager.LogMessage("(Lidgren)msg:" + rcv);
+                            OutputManager.LogMessage("(Server)msg:" + rcv);
 
                             List<NetConnection> all = s_server.Connections;
                             all.Remove(msg.SenderConnection);
@@ -99,7 +106,7 @@ namespace gearit.src.server
                             }
                             break;
                         default:
-                            OutputManager.LogError("(Lidgren)Unhandled type: " + msg.MessageType);
+                            OutputManager.LogError("(Server)Unhandled type: " + msg.MessageType);
                             break;
                     }
                     s_server.Recycle(msg);
