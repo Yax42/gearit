@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Squid;
 using gearit.src.editor.robot;
+using gearit.src.robot;
 
 namespace gearit.src.GUI
 {

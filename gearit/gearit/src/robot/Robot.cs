@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using gearit.src.editor.api;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	public class SleepingPack
 	{

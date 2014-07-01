@@ -12,7 +12,7 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	public interface ISpot : ISerializable
 	{

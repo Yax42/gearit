@@ -13,6 +13,7 @@ using System.Diagnostics;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src.output;
 using GUI;
+using gearit.src.robot;
 
 namespace gearit.src.game
 {

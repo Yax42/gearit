@@ -9,7 +9,7 @@ using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
 	public class Wheel : Piece, ISerializable

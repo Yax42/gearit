@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using FarseerPhysics;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
 	public class Heart : Piece, ISerializable

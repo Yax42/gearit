@@ -16,7 +16,7 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
 	public abstract class Piece : Body, ISerializable

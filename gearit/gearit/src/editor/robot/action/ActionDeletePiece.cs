@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
