@@ -39,7 +39,7 @@ namespace gearit.src.server
             }
             catch
             {
-                OutputManager.LogMessage("(Client)msg:Fail to connect to server");
+                OutputManager.LogError("(Client)msg:Fail to connect to server");
             }
         }
 
@@ -104,7 +104,8 @@ namespace gearit.src.server
 
         public void Send(string text)
 		{
-			NetOutgoingMessage om = s_client.CreateMessage(text);
+			NetOutgoingMessage om = s_client.CreateMessage();
+            om.Write(text);
 			s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
         }
     }

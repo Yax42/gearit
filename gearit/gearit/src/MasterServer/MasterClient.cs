@@ -75,8 +75,8 @@ namespace gearit.src
 		public override void Update(GameTime gameTime)
 		{
 			MenuMasterClient.Instance.Update();
-            client.Send("hello world");
 			base.Update(gameTime);
+            client.Send("hello world");
 		}
 
 
@@ -89,5 +89,12 @@ namespace gearit.src
 			base.Draw(gameTime);
 			MenuMasterClient.Instance.Draw();
 		}
+
+        public override void UnloadContent()
+        {
+            client.Stop();
+            server.Stop();
+            base.UnloadContent();
+        }
 	}
 }

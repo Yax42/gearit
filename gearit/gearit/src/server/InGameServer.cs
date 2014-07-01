@@ -41,7 +41,7 @@ namespace gearit.src.server
             }
             catch
             {
-                OutputManager.LogMessage("(Server)msg:Fail to Launch server");
+                OutputManager.LogError("(Server)msg:Fail to Launch server");
             }
         }
 
