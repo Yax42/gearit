@@ -31,9 +31,16 @@ namespace gearit.src.server
 
         public void Start()
         {
-            s_client.Start();
-            NetOutgoingMessage hail = s_client.CreateMessage("(Lidgren)Connected to the server");
-            s_client.Connect(_host, _port, hail);
+            try
+            {
+                s_client.Start();
+                NetOutgoingMessage hail = s_client.CreateMessage("(Client)Connected to the server");
+                s_client.Connect(_host, _port, hail);
+            }
+            catch
+            {
+                OutputManager.LogError("(Client)msg:Fail to connect to server");
+            }
         }
 
         public void Stop()
@@ -72,7 +79,7 @@ namespace gearit.src.server
                             _connected = true;
                         else
                         {
-                            OutputManager.LogError("(Lidgren)Disconnected");
+                            OutputManager.LogError("(Client)Disconnected");
                             _connected = false;
                         }
 
@@ -84,11 +91,11 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
-                        OutputManager.LogMessage("(Lidgren)msg:" + msg);
+                        OutputManager.LogMessage("(Client)msg:" + msg);
                         break;
                     default:
                         //Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
-                        OutputManager.LogError("(Lidgren)Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                        OutputManager.LogError("(Client)Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         break;
                 }
                 s_client.Recycle(im);
@@ -97,7 +104,8 @@ namespace gearit.src.server
 
         public void Send(string text)
 		{
-			NetOutgoingMessage om = s_client.CreateMessage(text);
+			NetOutgoingMessage om = s_client.CreateMessage();
+            om.Write(text);
 			s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
         }
     }
