@@ -20,7 +20,7 @@ namespace gearit.src.editor.api
 			return (_spot.Name);
 		}
 
-		public float motor 
+		public float motor
 		{
 			get { return _spot.Force; }
 			set

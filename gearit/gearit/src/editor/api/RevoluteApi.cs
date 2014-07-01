@@ -17,7 +17,7 @@ namespace gearit.src.editor.api
 			_revolute = (RevoluteSpot)spot;
 		}
 
-		public float angle()
+		public float Angle()
 		{
 			return (_revolute.JointAngle);
 		}

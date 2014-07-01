@@ -170,12 +170,30 @@ namespace gearit.src.robot
 				{
 					LowerLimit = JointAngle;
 					UpperLimit = JointAngle;
+					base.LimitEnabled = true;
 				}
 				else
 				{
 					LowerLimit = MaxAngle;
 					UpperLimit = MinAngle;
+					base.LimitEnabled = _LimitEnabled;
 				}
+			}
+		}
+
+		private bool _LimitEnabled;
+		public bool LimitEnabled
+		{
+			get
+			{
+				return _LimitEnabled;
+			}
+
+			set
+			{
+				_LimitEnabled = value;
+				if (!Frozen)
+					base.LimitEnabled = _LimitEnabled;
 			}
 		}
 		#endregion
