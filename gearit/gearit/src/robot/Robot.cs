@@ -14,9 +14,9 @@ using gearit.src;
 using gearit.src.editor;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using gearit.src.editor.api;
 using gearit.src.map;
 using System.Diagnostics;
+using gearit.src.script;
 
 namespace gearit.src.robot
 {

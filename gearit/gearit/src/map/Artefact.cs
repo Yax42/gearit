@@ -10,10 +10,21 @@ namespace gearit.src.map
 	[Serializable()]
 	public class Artefact : ISerializable
 	{
-		private const float Size = 0.5f;
+		private const float Size = 0.4f;
 		private Vector2[] _Vertices;
-		public Artefact(Vector2 pos)
+
+		private int _Id;
+		public int Id
 		{
+			get
+			{
+				return _Id;
+			}
+		}
+
+		public Artefact(Vector2 pos, int id)
+		{
+			_Id = id;
 			_Vertices = new Vector2[8];
 			Position = pos;
 		}
@@ -23,11 +34,13 @@ namespace gearit.src.map
 		{
 			_Vertices = new Vector2[8];
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
+			_Id = (int)info.GetValue("ID", typeof(int));
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("Position", Position, typeof(Vector2));
+			info.AddValue("ID", _Id, typeof(int));
 		}
 		#endregion
 

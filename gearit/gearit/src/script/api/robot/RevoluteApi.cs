@@ -6,7 +6,7 @@ using gearit.src.robot;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
 
-namespace gearit.src.editor.api
+namespace gearit.src.script
 {
 	class RevoluteApi : SpotApi
 	{

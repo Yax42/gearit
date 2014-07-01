@@ -12,9 +12,24 @@ namespace gearit.src.editor.map.action
 	class ActionCreateArtefact : IAction
 	{
 		private Artefact _Artefact;
+		private int _id;
 		public void init()
 		{
-			_Artefact = new Artefact(Input.SimMousePos);
+			_id = 0;
+			bool ok  = false;
+			while (!ok)
+			{
+				ok = true;
+				foreach (Artefact a in MapEditor.Instance.Map.Artefacts)
+				{
+					if (_id == a.Id)
+					{
+						_id++;
+						ok = false;
+					}
+				}
+			}
+			_Artefact = new Artefact(Input.SimMousePos, _id);
 		}
 
 		public bool shortcut()
@@ -40,6 +55,6 @@ namespace gearit.src.editor.map.action
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CREATE_WALL; }
+		public ActionTypes type() { return ActionTypes.CREATE_ARTEFACT; }
 	}
 }

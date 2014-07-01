@@ -7,11 +7,11 @@ using gearit.xna;
 using System.Threading;
 
 using gearit.src.robot;
-using gearit.src.editor.api;
 using gearit.src.output;
 using gearit.src.editor.robot;
 using System.Diagnostics;
-namespace gearit.src.utility
+
+namespace gearit.src.script
 {
 
 	class LuaScript : Lua

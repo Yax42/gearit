@@ -5,7 +5,7 @@ using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
 
-namespace gearit.src.editor.api
+namespace gearit.src.script
 {
 	class InputApi
 	{

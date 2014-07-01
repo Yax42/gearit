@@ -57,6 +57,6 @@ namespace gearit.src.editor.map.action
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.DELETE_SPAWNER; }
+		public ActionTypes type() { return ActionTypes.DELETE_ARTEFACT; }
 	}
 }
