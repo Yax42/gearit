@@ -29,6 +29,7 @@ namespace gearit.src.script
 			_filePath = filePath;
 			_done = true;
 			_thread = new Thread(new ThreadStart(exec));
+			_thread.Priority = ThreadPriority.Lowest;
 		}
 
 		internal void run()
