@@ -16,40 +16,21 @@ using GUI;
 using FarseerPhysics.DebugViews;
 using FarseerPhysics;
 using gearit.src.robot;
+using gearit.src.script;
 
 namespace gearit.src.game
 {
 	class GearitGame : GameScreen, IDemoScreen
 	{
 		private World _world;
-		//private Camera2D _camera;
 		private Camera2D _camera;
+		private GameLuaScript _gameMaster;
 
 		public Map _Map;
-		public Map Map
-		{
-			get
-			{
-				return _Map;
-			}
-			private set
-			{
-				_Map = value;
-			}
-		}
+		public Map Map { get { return _Map; } }
 
 		public List<Robot> _Robots;
-		public List<Robot> Robots
-		{
-			get
-			{
-				return _Robots;
-			}
-			private set
-			{
-				_Robots = value;
-			}
-		}
+		public List<Robot> Robots { get { return _Robots; } }
 
 		private DrawGame _drawGame;
 
@@ -60,22 +41,10 @@ namespace gearit.src.game
 
 		// Action
 		private int _FrameCount = 0;
-		public int FrameCount
-		{
-			get
-			{
-				return _FrameCount;
-			}
-		}
+		public int FrameCount { get { return _FrameCount; } }
 
 		private float _Time = 0;
-		public float Time
-		{
-			get
-			{
-				return _FrameCount;
-			}
-		}
+		public float Time { get { return _FrameCount; } }
 
 		#region IDemoScreen Members
 
@@ -84,13 +53,13 @@ namespace gearit.src.game
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			Robots = new List<Robot>();
+			_Robots = new List<Robot>();
 			_world = new World(new Vector2(0, 9.8f));
 		}
 
 		public string GetTitle()
 		{
-			return "Game";
+			return "GearIt";
 		}
 
 		public string GetDetails()
@@ -116,12 +85,14 @@ namespace gearit.src.game
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addRobot(robot);
 			Debug.Assert(Robots != null);
-			Map = (Map)Serializer.DeserializeItem("map/default.gim");
-			if (Map.Artefacts.Count > 0)
-				robot.move(Map.Artefacts[0].Position);
+			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
+			//if (Map.Artefacts.Count > 0)
+			//	robot.move(Map.Artefacts[0].Position);
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
+
+			_gameMaster = new GameLuaScript(this, "game/default");
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -135,7 +106,7 @@ namespace gearit.src.game
 
 		public void setMap(Map map)
 		{
-			Map = map;
+			_Map = map;
 		}
 
 		public void clearRobot()
@@ -171,12 +142,14 @@ namespace gearit.src.game
 		{
 			clearRobot();
 			ScreenMainMenu.GoBack = true;
+			_gameMaster.stop();
 		}
 
 		private void HandleInput()
 		{
 			if (Input.Exit)
 			{
+				_gameMaster.stop();
 				clearRobot();
 				ScreenMainMenu.GoBack = true;
 			}

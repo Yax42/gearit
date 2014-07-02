@@ -11,11 +11,14 @@ namespace gearit.src.script
 {
 	class GameLuaScript : LuaScript
 	{
-		GameLuaScript(GearitGame game, string path)
+		public GameLuaScript(GearitGame game, string path)
 			: base(path)
 		{
+			int i = 0;
 			foreach (Robot r in game.Robots)
-				this["Robot_" + r.getId()] = new GameRobotApi(r);
+			{
+				this["Robot_" + i++] = new GameRobotApi(r);
+			}
 			foreach (Artefact a in game.Map.Artefacts)
 				this["Art_" + a.Id] = new GameArtefactApi(a);
 			this["Game"] = new GameApi(game);

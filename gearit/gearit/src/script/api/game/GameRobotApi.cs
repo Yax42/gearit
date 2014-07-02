@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.script.api.game
 {
-	class GameRobotApi :GameObjectApi
+	class GameRobotApi : GameObjectApi
 	{
 		private Robot _Robot;
 		private Dictionary<string, Score.VictoryState> _stateDictionnary;
@@ -26,17 +26,17 @@ namespace gearit.src.script.api.game
 		}
 
 		#region Score
-		public void ScoreRobot(int robotIndex, int score)
+		public void ScoreRobot(int score)
 		{
 			_Robot.Score.IntScore = score;
 		}
 
-		public void ScoreRobot(int robotIndex, float score)
+		public void ScoreRobot(float score)
 		{
 			_Robot.Score.FloatScore = score;
 		}
 
-		public void ScoreRobot(int robotIndex, string strState)
+		public void ScoreRobot(string strState)
 		{
 			var state = _stateDictionnary[strState];
 			if (state != null)
@@ -52,11 +52,25 @@ namespace gearit.src.script.api.game
 			}
 		}
 
-		public int[] TriggerData
+		public void TriggerData(int idx, int value)
+		{
+			_Robot.TriggersData[idx] = value;
+		}
+
+		public int TriggerData(int idx)
+		{
+			return _Robot.TriggersData[idx];
+		}
+
+		public int[] TriggerDataA
 		{
 			get
 			{
 				return _Robot.TriggersData;
+			}
+			set
+			{
+				_Robot.TriggersData = value;
 			}
 		}
 

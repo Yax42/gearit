@@ -40,7 +40,7 @@ namespace gearit.src.script
 			}
 		}
 
-		public void FinishGame()
+		public void Finish()
 		{
 			_game.Finish();
 		}
