@@ -127,6 +127,8 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\GUI\MenuQuit.cs" />
+    <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />

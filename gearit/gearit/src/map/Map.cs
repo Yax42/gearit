@@ -105,7 +105,7 @@ namespace gearit.src.map
 
 			foreach(MapChunk chunk in Chunks)
 			{
-				if (MapEditor.Instance.SelectChunk == chunk)
+                if (MapEditor.Instance.SelectChunk == chunk)
 					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
 				else
 					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
@@ -117,7 +117,7 @@ namespace gearit.src.map
 				foreach (Artefact artefact in Artefacts)
 					artefact.DrawDebug(dg);
 				foreach (Trigger trigger in Triggers)
-					trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);
+                    trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);
 			}
 		}
 	}
