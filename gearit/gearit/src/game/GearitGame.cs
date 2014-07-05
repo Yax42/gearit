@@ -11,6 +11,12 @@ using Microsoft.Xna.Framework.Input;
 using gearit.src.editor;
 using System.Diagnostics;
 using FarseerPhysics.Dynamics.Joints;
+using gearit.src.output;
+using GUI;
+using FarseerPhysics.DebugViews;
+using FarseerPhysics;
+using gearit.src.robot;
+using gearit.src.script;
 
 namespace gearit.src.game
 {
@@ -18,16 +24,28 @@ namespace gearit.src.game
 	{
 		private World _world;
 		private Camera2D _camera;
+		private GameLuaScript _gameMaster;
+		private bool _exiting;
 
-		private Map _map;
-		private List<Robot> _robots;
+		public Map _Map;
+		public Map Map { get { return _Map; } }
+
+		public List<Robot> _Robots;
+		public List<Robot> Robots { get { return _Robots; } }
+
 		private DrawGame _drawGame;
 
 		// Graphic
 		private RectangleOverlay _background;
 
+		private DebugViewXNA _debug;
+
 		// Action
-	private int _time = 0;
+		private int _FrameCount = 0;
+		public int FrameCount { get { return _FrameCount; } }
+
+		private float _Time = 0;
+		public float Time { get { return _FrameCount; } }
 
 		#region IDemoScreen Members
 
@@ -36,13 +54,13 @@ namespace gearit.src.game
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			_robots = new List<Robot>();
+			_Robots = new List<Robot>();
 			_world = new World(new Vector2(0, 9.8f));
 		}
 
 		public string GetTitle()
 		{
-			return "Game";
+			return "GearIt";
 		}
 
 		public string GetDetails()
@@ -55,50 +73,30 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			_time = 0;
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			_exiting = false;
+
+			_FrameCount = 0;
+			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
 			_world.Gravity = new Vector2(0f, 9.8f);
+
 			//clearRobot();
 			SerializerHelper.World = _world;
-			Console.Write("One ");
 
-
-			//addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
-			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
-			Debug.Assert(_robots != null);
-			_robots[0].getPiece(Vector2.Zero).Weight = 30;
-			_map = (Map)Serializer.DeserializeItem("map/moon.gim");
-			Debug.Assert(_map != null);
+			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			addRobot(robot);
+			Debug.Assert(Robots != null);
+			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
+			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
+
+			_gameMaster = new GameLuaScript(this, "game/default");
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
 		}
-
-		private void addDummyPrismatic()
-		{
-			Body b1 = new Body(_world);
-			b1.Position = new Vector2(10, 10);
-			b1.IsStatic = false;
-
-			Body b2 = new Body(_world);
-			b2.Position = new Vector2(10, 10);
-			b2.IsStatic = false;
-
-			Body b3 = new Body(_world);
-			b2.Position = new Vector2(10000, 10000);
-			b2.IsStatic = false;
-
-			Vector2 anchor = new Vector2(0, 0);
-			Joint rev = new RevoluteJoint(b1, b2, anchor, anchor);
-			Joint pris = new PrismaticJoint(b2, b3, anchor, anchor, anchor);
-			_world.AddJoint(rev);
-			_world.AddJoint(pris);
-		}
-
 
 		public World getWorld()
 		{
@@ -107,46 +105,62 @@ namespace gearit.src.game
 
 		public void setMap(Map map)
 		{
-			_map = map;
+			_Map = map;
 		}
 
 		public void clearRobot()
 		{
-			foreach (Robot r in _robots)
+			foreach (Robot r in Robots)
 				r.remove();
-			_robots.Clear();
+			Robots.Clear();
 		}
 
 		public void addRobot(Robot robot)
 		{
-			_robots.Add(robot);
-			if (_robots.Count == 1)
-				_camera.TrackingBody = robot.getHeart();
+			Robots.Add(robot);
+			if (Robots.Count == 1)
+				_camera.TrackingBody = robot.Heart;
 			robot.turnOn();
-		robot.move(new Vector2(0, -20));
+			robot.move(new Vector2(0, -20));
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			_time++;
+			_FrameCount++;
+			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
 			HandleInput();
 			//Input.update();
 
-			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
+			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f)));
 
+			foreach (Robot r in Robots)
+				r.Update(Map);
+			_gameMaster.run();
 			_camera.Update(gameTime);
-			base.Update(gameTime);
+			if (_exiting)
+				Exit();
 		}
 
+		public void Finish()
+		{
+				_exiting = true;
+		}
+
+		public void Exit()
+		{
+			clearRobot();
+			ScreenMainMenu.GoBack = true;
+			_gameMaster.stop();
+		}
 
 		private void HandleInput()
 		{
 			if (Input.Exit)
-			{
-				clearRobot();
-				ScreenManager.RemoveScreen(this);
-			}
-			_camera.input();
+				_exiting = true;
+			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
+				_camera.zoomIn();
+			if (Input.justPressed(MouseKeys.WHEEL_UP))
+				_camera.zoomOut();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -154,9 +168,9 @@ namespace gearit.src.game
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
 			_drawGame.Begin(_camera);
 
-			foreach (Robot r in _robots)
+			foreach (Robot r in Robots)
 				r.draw(_drawGame);
-			_map.drawDebug(_drawGame);
+			Map.DrawDebug(_drawGame, true);
 			_drawGame.End();
 
 			base.Draw(gameTime);

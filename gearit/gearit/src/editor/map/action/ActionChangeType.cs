@@ -12,14 +12,16 @@ namespace gearit.src.editor.map.action
 	{
 		public void init()
 		{
-			if (MapEditor.Instance.Select.BodyType == BodyType.Static)
-				MapEditor.Instance.Select.BodyType = BodyType.Dynamic;
+			if (MapEditor.Instance.SelectChunk.BodyType == BodyType.Static)
+				MapEditor.Instance.SelectChunk.BodyType = BodyType.Dynamic;
 			else
-				MapEditor.Instance.Select.BodyType = BodyType.Static;
+				MapEditor.Instance.SelectChunk.BodyType = BodyType.Static;
 		}
 
 		public bool shortcut()
 		{
+			if (ActionSwapEventMode.EventMode)
+				return false;
 			return Input.ctrlAltShift(false, false, false) &&
 				Input.justPressed(Keys.A);
 		}

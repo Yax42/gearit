@@ -7,6 +7,8 @@ using gearit.src.utility;
 using System.Diagnostics;
 using GUI;
 using gearit.src.output;
+using System.Text.RegularExpressions;
+using gearit.src.GUI;
 
 namespace gearit.src.editor.robot.action
 {
@@ -19,7 +21,7 @@ namespace gearit.src.editor.robot.action
 		public bool shortcut()
 		{
 			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.S)))
-				MenuRobotEditor.Instance.saveRobot();
+				return MenuRobotEditor.Instance.saveRobot();
 			if (Input.ctrlAltShift(true, false, true) && (Input.justPressed(Keys.S)))
 				MenuRobotEditor.Instance.saveasRobot();
 			return false;
@@ -37,6 +39,49 @@ namespace gearit.src.editor.robot.action
 				MustExit = false;
 				ScreenMainMenu.GoBack = true;
 			}
+
+
+			#region Lua
+
+			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
+
+			// Read the file as one string.
+			try
+			{
+				System.IO.StreamReader myFile =
+					new System.IO.StreamReader(filename);
+				string lua = myFile.ReadToEnd();
+				myFile.Close();
+
+				// Lua found - Replace Generated Lua with new one
+				OutputManager.LogInfo("Lua - Replace generated script", filename);
+				Match match = System.Text.RegularExpressions.Regex.Match(lua, LuaManager.Regex, RegexOptions.Singleline);
+
+				string fullReplace = lua;
+				// Found something
+				if (match.Success)
+				{
+					var firstPart = lua.Substring(0, match.Groups[1].Index);
+					var secondPart = lua.Substring(match.Groups[1].Index + match.Groups[1].Length);
+					fullReplace = LuaManager.GenerateAllScript(firstPart, secondPart);
+				}
+				// Set new file
+				System.IO.File.WriteAllText(filename, fullReplace);
+			}
+			// No Lua - First time save
+			catch (System.IO.IOException e)
+			{
+				OutputManager.LogInfo("Lua - Not found : generate new file", filename);
+				string emptylua = LuaManager.GenerateAllScript(
+					Environment.NewLine
+					+ LuaManager.Header,
+					LuaManager.Footer);
+
+				System.IO.File.WriteAllText(filename, emptylua);
+			}
+
+			#endregion
+
 
 			return (false);
 		}

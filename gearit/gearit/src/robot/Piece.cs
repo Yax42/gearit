@@ -16,15 +16,23 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
-	abstract class Piece : Body, ISerializable
+	public abstract class Piece : Body, ISerializable
 	{
-		internal Shape _shape;
+		internal const float MaxMass = 1000;
+
+		internal Shape Shape
+		{
+			get
+			{
+				return _fix.Shape;
+			}
+		}
 		internal Fixture _fix; //punaise |---
 		internal Texture2D _tex;
-		internal bool _didAct;
+		internal bool DidAct { get; set; }
 		internal Robot _robot;
 		internal float _size; //useless for the heart, but more simple for implementation
 		public bool Sleeping { get; set; }
@@ -35,7 +43,7 @@ namespace gearit
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
@@ -51,7 +59,7 @@ namespace gearit
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			setShape(shape, robot.getId());
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
@@ -65,11 +73,13 @@ namespace gearit
 		internal Piece(SerializationInfo info) :
 			base(SerializerHelper.World)
 		{
+			_robot = SerializerHelper.CurrentRobot;
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.Black;
+			ColorValue = Color.ForestGreen;
 			Shown = true;
 			int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
 			SerializerHelper.Add(oldHashMap, this);
+			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
 			CollisionCategories = Category.Cat1;
 		}
@@ -80,8 +90,8 @@ namespace gearit
 		{
 			info.AddValue("HashCode", this.GetHashCode(), typeof(int));
 			info.AddValue("Position", this.Position, typeof(Vector2));
-			info.AddValue("Density", _shape.Density, typeof(float));
 			info.AddValue("Weight", this.Weight, typeof(float));
+			info.AddValue("Rotation", Rotation, typeof(float));
 		}
 
 		//--------- END SERIALISATION
@@ -90,20 +100,20 @@ namespace gearit
 
 		public void setTexture(DrawGame dg, MaterialType mater)
 		{
-			_tex = dg.textureFromShape(_shape, mater);
+			_tex = dg.textureFromShape(Shape, mater);
 		}
 
 		internal void setShape(Shape shape, int id)
 		{
-			_shape = shape;
-			_fix = CreateFixture(_shape, null);
-			_fix.CollisionGroup = (short)id;
+			if (_fix != null)
+				DestroyFixture(_fix);
+			_fix = CreateFixture(shape, null);
+			_fix.CollisionGroup = (short)(-id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
 		}
 
 		internal void initShapeAndFixture(Shape shape)
 		{
-			_shape = shape;
-			_fix = CreateFixture(_shape, null);
+			_fix = CreateFixture(shape, null);
 		}
 
 		public void removeSpot(ISpot spot)
@@ -149,24 +159,46 @@ namespace gearit
 
 		public void resetAct()
 		{
-			_didAct = false;
+			DidAct = false;
 		}
 
+		private float _weight = 1;
 		public virtual float Weight
 		{
 			set
 			{
-				_fix.Shape.Density = value * _fix.Shape.Density / _fix.Shape.MassData.Mass;
-				ResetMassData();
+				if (value > 0 && value < MaxMass)
+				{
+					//Shape.ComputeProperties();
+					if (Shape.MassData.Area <= 0)
+					{
+						Debug.Assert(true);
+						return;
+					}
+					Shape.Density = value / Shape.MassData.Area;
+					ResetMassData();
+					_weight = value;
+				}
 			}
-			get { return _fix.Shape.MassData.Mass; } // a check
+			get
+			{
+				return _weight;
+			}
 		}
 
-		public bool isOn(Vector2 p)
+		public bool Contain(Vector2 p)
 		{
 			Transform t;
 			GetTransform(out t);
-			return (_shape.TestPoint(ref t, ref p));
+			return (Shape.TestPoint(ref t, ref p));
+		}
+
+		public bool LocalContain(Vector2 p)
+		{
+			p = GetWorldPoint(p);
+			Transform t;
+			GetTransform(out t);
+			return (Shape.TestPoint(ref t, ref p));
 		}
 
 		//  return the closest spot
@@ -193,23 +225,37 @@ namespace gearit
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
 
-		public void rotate(float angle)
+		public void rotate(float angle, Piece comparator)
 		{
-			rotateDelta(angle - Rotation);
+			rotateDelta(angle - Rotation, comparator);
 		}
 
 		public void rotateDelta(float angle)
 		{
-			if (_didAct)
+			rotateDelta(angle, this);
+		}
+		
+		public void rotateDelta(float angle, Piece comparator)
+		{
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			Rotation += angle;
-			for (JointEdge i = JointList; i != null; i = i.Next)
+			if (comparator == this)
 			{
-				if (i.Joint.GetType() == typeof(RevoluteSpot))
-					((RevoluteSpot)i.Joint).rotate(this, angle);
-				if (i.Joint.GetType() == typeof(PrismaticSpot))
-					((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
+				for (JointEdge i = JointList; i != null; i = i.Next)
+				{
+					if (i.Joint.GetType() == typeof(RevoluteSpot))
+						((RevoluteSpot)i.Joint).rotate(this, angle);
+					if (i.Joint.GetType() == typeof(PrismaticSpot))
+						((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
+				}
+			}
+			else if (isConnected(comparator))
+			{
+				ISpot spot = getConnection(comparator);
+				if (spot.GetType() == typeof(RevoluteSpot))
+					((RevoluteSpot)spot).rotate(this, angle);
 			}
 			//updateCharacteristics();
 		}
@@ -221,14 +267,14 @@ namespace gearit
 
 		virtual public void move(Vector2 pos)
 		{
-			if (_didAct)
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
 				if (i.Joint.GetType() == typeof(RevoluteSpot))
-					((RevoluteSpot)i.Joint).move(this, pos);
+					((RevoluteSpot)i.Joint).SynchroniseAnchors(this);
 				else
 					((PrismaticSpot)i.Joint).updateAxis();
 			}
@@ -249,9 +295,9 @@ namespace gearit
 
 		virtual public void scale(float scale)
 		{
-			if (_didAct)
+			if (DidAct)
 				return;
-			_didAct = true;
+			DidAct = true;
 			_size *= scale;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
@@ -275,7 +321,7 @@ namespace gearit
 					anchorPos = i.Joint.WorldAnchorA;
 				else
 					anchorPos = i.Joint.WorldAnchorB;
-				if (isOn(anchorPos) == false)
+				if (Contain(anchorPos) == false)
 					return (false);
 			}
 			return (true);
@@ -314,5 +360,7 @@ namespace gearit
 				adjacentPieces.Add((Piece)i.Other);
 			return adjacentPieces;
 		}
+
+		public abstract Vector2 ShapeLocalOrigin();
 	}
 }

@@ -12,7 +12,7 @@ using gearit.src.utility;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class Rod : Piece, ISerializable
+	public class Rod : Piece, ISerializable
 	{
 
 		private const float _width = 0.02f;
@@ -40,8 +40,7 @@ namespace gearit.src.robot
 			base(info)
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
-			Rotation = (float)info.GetValue("Rotation", typeof(float));
-			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -49,7 +48,6 @@ namespace gearit.src.robot
 		{
 			serializePiece(info);
 			info.AddValue("Size", _size, typeof(float));
-			info.AddValue("Rotation", Rotation, typeof(float));
 		}
 		//--------- END SERIALISATION
 
@@ -57,8 +55,8 @@ namespace gearit.src.robot
 		{
 			Transform xf;
 			GetTransform(out xf);
-			Vector2 v1 = ((PolygonShape)_shape).Vertices[0];
-			Vector2 v2 = ((PolygonShape)_shape).Vertices[2];
+			Vector2 v1 = ((PolygonShape) Shape).Vertices[0];
+			Vector2 v2 = ((PolygonShape) Shape).Vertices[2];
 
 			return ((MathUtils.Mul(ref xf, v1) - pos).Length() > (MathUtils.Mul(ref xf, v1) - pos).Length());
 
@@ -68,9 +66,9 @@ namespace gearit.src.robot
 		{
 			if (_size < 0.01)
 				_size = 0.01f;
-			_shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), _shape.Density);
+			Shape shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), Shape.Density);
 			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(shape);
 		}
 
 		virtual public void updateCharacteristics()
@@ -103,33 +101,34 @@ namespace gearit.src.robot
 		
 		//--------ENDS-------------
 
-		private void updateEnds(double angle_change = 0f)
+		private void updateEnds(Piece comparator = null)
 		{
-			move(endsPosition());
-			_robot.resetAct();
-
-			rotate(endsAngle());
+			rotate(endsAngle(), comparator);
 			_robot.resetAct();
 
 			resize(endsSize());
 			_robot.resetAct();
+
+			move(endsPosition());
+			_robot.resetAct();
 		}
 
-		public void setEnds(Vector2 A, Vector2 B)
-		{
-			_endA = A;
-			_endB = B;
-			updateEnds();
-		}
-
-		public void setEnd(Vector2 end, bool isA)
+		public void setEnd(Vector2 end, bool isA, Piece comparator = null)
 		{
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (isA)
+			{
+				if ((_endB - end).LengthSquared() < 0.01f)
+					return;
 				_endA = end;
+			}
 			else
+			{
+				if ((_endA - end).LengthSquared() < 0.01f)
+					return;
 				_endB = end;
-			updateEnds(MathLib.RadiansToDegrees(endsAngle()) - previous_angle_degree);
+			}
+			updateEnds(comparator);
 		}
 
 		public Vector2 getEnd(bool isA)
@@ -164,6 +163,11 @@ namespace gearit.src.robot
 			Vector2 semiEnd = MathLib.PolarCoor(_size, Rotation);
 			_endA = Position - semiEnd;
 			_endB = Position + semiEnd;
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			return new Vector2(_size, 0);
 		}
 	}
 }

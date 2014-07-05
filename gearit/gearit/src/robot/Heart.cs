@@ -9,21 +9,24 @@ using gearit.src.utility;
 using gearit.src;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using FarseerPhysics;
+using gearit.src.map;
 
-namespace gearit
+namespace gearit.src.robot
 {
 	[Serializable()]
-	class Heart : Piece, ISerializable
+	public class Heart : Piece, ISerializable
 	{
 		private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
+
 
 		public Heart(Robot robot) :
 			base(robot)
 		{
 			Position = new Vector2(3, 3);
 			_vertices = PolygonTools.CreateRectangle(1, 1);
-			_shape = new PolygonShape(_vertices, 50f);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(new PolygonShape(_vertices, 1f));
+			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
 		}
@@ -36,7 +39,7 @@ namespace gearit
 		{
 			List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
 			_vertices = new Vertices(v);
-			setShape(new PolygonShape(_vertices, (float)info.GetValue("Density", typeof(float))), Robot._robotIdCounter);
+			setShape(new PolygonShape(_vertices, 1), Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -52,7 +55,7 @@ namespace gearit
 
 		public void draw(SpriteBatch batch)
 		{
-			batch.Draw(_tex, ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
+			batch.Draw(_tex, utility.ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
 					new Vector2(_tex.Width / 2f, _tex.Height / 3f), 1f, SpriteEffects.None, 0f);
 		}
 
@@ -64,7 +67,7 @@ namespace gearit
 		public void setShape(Vertices v)
 		{
 			_vertices = v;
-			updateShape();
+			resetShape();
 		}
 
 		public Vertices getShapeClone()
@@ -87,11 +90,11 @@ namespace gearit
 			return (res);
 		}
 
-		private void updateShape()
+		override public void resetShape()
 		{
-			_shape = new PolygonShape(_vertices, _shape.Density);
+			Shape shape = new PolygonShape(_vertices, Shape.Density);
 			DestroyFixture(_fix);
-			_fix = CreateFixture(_shape);
+			_fix = CreateFixture(shape);
 		}
 
 		public Vector2 getCorner(int id)
@@ -111,31 +114,41 @@ namespace gearit
 				_vertices[id] = backupPos;
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices[id] = backupPos;
-					updateShape();
+					resetShape();
 				}
 			}
 		}
 
-		public void addCorner(Vector2 p)
+		public bool Trigger(Trigger trigger)
+		{
+			return trigger.Contain(GetWorldPoint(ShapeLocalOrigin()));
+		}
+
+		public bool addCorner(Vector2 p)
 		{
 			p -= Position;
-			if (_vertices.Contains(p))
-				return;
+			if (_vertices.Contains(p) || _vertices.Count == Settings.MaxPolygonVertices)
+				return false;
 			_vertices.Add(p);
 			if (_vertices.IsConvex() == false)
-					_vertices.Remove(p);
+			{
+				_vertices.Remove(p);
+				return false;
+			}
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices.Remove(p);
-					updateShape();
+					resetShape();
+					return false;
 				}
+				return true;
 			}
 		}
 
@@ -149,11 +162,11 @@ namespace gearit
 				_vertices[id] = backupPos;
 			else
 			{
-				updateShape();
+				resetShape();
 				if (checkShape() == false)
 				{
 					_vertices.Insert(id, backupPos);
-					updateShape();
+					resetShape();
 				}
 			}
 		}
@@ -172,9 +185,19 @@ namespace gearit
 		}
 	*/
 
-		override public float getSize()
+		public override float getSize()
 		{
-			return (_shape.MassData.Area);
+			return (Shape.MassData.Area);
+		}
+
+		public override Vector2 ShapeLocalOrigin()
+		{
+			Vector2 res = Vector2.Zero;
+			foreach (var v in _vertices)
+			{
+				res += v;
+			}
+			return res / _vertices.Count;
 		}
 	}
 }

@@ -3,60 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LuaInterface;
-using gearit.xna;
 using System.Threading;
-
-using gearit.src.robot;
-using gearit.src.editor.api;
+using System.Diagnostics;
+using gearit.src.editor.robot;
 using gearit.src.output;
-namespace gearit.src.utility
-{
 
+namespace gearit.src.script
+{
 	class LuaScript : Lua
 	{
-		private String _name;
-		private List<SpotApi> _api;
-		private InputApi _inputApi;
-		private Thread _thread;
+		private string _filePath;
+		private LuaFunction _loadedFile;
+		private bool _ok;
 
-		public void saySomething(string something)
+		public LuaScript(string filePath)
 		{
-			Console.WriteLine(something);
-		}
-
-		public LuaScript(List<SpotApi> api, string name)
-		{
-			_name = name;
-			_api = api;
-			_inputApi = new InputApi();
-			_thread = new Thread(new ThreadStart(exec));
-			for (int i = 0; i < api.Count; i++)
-				this[api[i].name()] = api[i];
-			this["Input"] = _inputApi;
-			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
-			run();
-		}
-
-		private void run()
-		{
-			_thread.Start();
-		}
-
-		private void exec()
-		{
+			_filePath = LuaManager.LuaFile(filePath);
+			_ok = true;
 			try
 			{
-				DoFile(@"data/script/" + _name + ".lua");
+				_loadedFile = LoadFile(_filePath);
+				OutputManager.LogInfo("Lua - script correctly loaded: " +_filePath);
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
+			}
+		}
+
+		internal void run()
+		{
+			if (!_ok)
+				return;
+			try
+			{
+				_loadedFile.Call();
+			}
+			catch (Exception ex)
+			{
+					OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
 			}
 		}
 
 		public void stop()
 		{
-			_thread.Abort();
+			_ok = false;
 			base.Close();
 		}
 	}

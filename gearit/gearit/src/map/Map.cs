@@ -14,10 +14,12 @@ using gearit.src.editor.map;
 namespace gearit.src.map
 {
 	[Serializable()]
-	class Map : ISerializable
+	public class Map : ISerializable
 	{
 		private string _name;
-		private List<MapChunk> _chunks;
+		public List<MapChunk> Chunks;
+		public List<Artefact> Artefacts;
+		public List<Trigger> Triggers;
 
 		[NonSerialized]
 		private World _world;
@@ -25,7 +27,9 @@ namespace gearit.src.map
 		public Map(World world)
 		{
 			_world = world;
-			_chunks = new List<MapChunk>();
+			Chunks = new List<MapChunk>();
+			Artefacts = new List<Artefact>();
+			Triggers = new List<Trigger>();
 		}
 
 		//
@@ -35,29 +39,38 @@ namespace gearit.src.map
 		{
 			_world = SerializerHelper.World;
 			_name = (string)info.GetValue("Name", typeof(string));
-			_chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
+			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
+			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
+			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-			info.AddValue("Chunks", _chunks, typeof(List<MapChunk>));
+			info.AddValue("Chunks", Chunks, typeof(List<MapChunk>));
+			info.AddValue("Artefacts", Artefacts, typeof(List<Artefact>));
+			info.AddValue("Triggers", Triggers, typeof(List<Trigger>));
 			info.AddValue("Name", _name, typeof(string));
 		}
 		//--------- END SERIALISATION
 
-		public MapChunk getChunk(Vector2 p)
+		public Trigger GetTrigger(Vector2 p)
 		{
-			foreach (MapChunk i in _chunks)
+			foreach (Trigger i in Triggers)
 			{
-				if (i.isOn(p))
+				if (i.Contain(p))
 					return (i);
 			}
 			return (null);
 		}
 
-		public void deleteChunk(MapChunk tmp)
+		public MapChunk GetChunk(Vector2 p)
 		{
-			_chunks.Remove(tmp);
+			foreach (MapChunk i in Chunks)
+			{
+				if (i.Contain(p))
+					return (i);
+			}
+			return (null);
 		}
 
 		public string Name
@@ -66,28 +79,45 @@ namespace gearit.src.map
 			set { _name = value; }
 		}
 
-		public void addChunk(MapChunk chunk)
-		{
-			_chunks.Add(chunk);
-		}
-
 		public void remove()
 		{
-			foreach (MapChunk i in _chunks)
+			foreach (MapChunk i in Chunks)
 				_world.RemoveBody(i);
 		}
 
-		public void drawDebug(DrawGame game)
+		public void Draw(DrawGame dg)
 		{
 			Color col;
 
-			for (int i = 0; i < _chunks.Count; i++)
+			foreach(MapChunk chunk in Chunks)
 			{
-				if (MapEditor.Instance.Select == _chunks[i])
-					col = (_chunks[i].BodyType == BodyType.Static) ? Color.Red : Color.Blue;
+				if (MapEditor.Instance.SelectChunk == chunk)
+					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
 				else
-					col = (_chunks[i].BodyType == BodyType.Static) ? Color.Black : Color.Purple;
-				game.draw(_chunks[i], col);
+					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
+				dg.draw(chunk, col);
+			}
+		}
+
+		public void DrawDebug(DrawGame dg, bool printEvents = false)
+		{
+			Color col;
+
+			foreach(MapChunk chunk in Chunks)
+			{
+                if (MapEditor.Instance.SelectChunk == chunk)
+					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
+				else
+					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
+				dg.draw(chunk, col);
+			}
+
+			if (printEvents)
+			{
+				foreach (Artefact artefact in Artefacts)
+					artefact.DrawDebug(dg);
+				foreach (Trigger trigger in Triggers)
+                    trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);
 			}
 		}
 	}

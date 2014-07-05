@@ -12,9 +12,9 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
-	interface ISpot : ISerializable
+	public interface ISpot : ISerializable
 	{
 		Joint Joint { get; }
 

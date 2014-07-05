@@ -282,15 +282,19 @@ namespace gearit.src.editor.map
 
 		//---------------------SAVE&LOAD-----------------------------
 
-		public void saveMap()
+		public bool saveMap()
 		{
 			if (MapEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
-				_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.Map.Name, safeSaveMap, setFocus, "map");
+				_messageBoxSave = new MessageBoxSave(this, MapEditor.Instance.NamePath, safeSaveMap, setFocus, "map");
+				return false;
 			}
 			else
+			{
 				MapEditor.Instance.doAction(ActionTypes.SAVE);
+				return true;
+			}
 		}
 
 		private MessageBoxSave _messageBoxSave = null;
@@ -315,6 +319,18 @@ namespace gearit.src.editor.map
 		public void loadMap()
 		{
 			setFocus(true);
+			
+			/*
+			System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
+			fileDialog.DefaultExt = ".gim";
+			fileDialog.InitialDirectory = "data/map/";
+			System.Windows.Forms.DialogResult res = fileDialog.ShowDialog();
+			if (res == System.Windows.Forms.DialogResult.OK)
+			{
+				safeLoadMap(fileDialog.FileName);
+			}
+			*/
+
 			_messageBoxLoad = new MessageBoxLoad(@"data/map/", ".gim", this, safeLoadMap, setFocus);
 		}
 
