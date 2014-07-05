@@ -1,22 +1,20 @@
-if Input:pressed(K_S) then
-	spot0.MaxAngle = 0
-end
+
+
 
 if Input:pressed(K_D) then
 	spot0.Motor = 1
-	spot0.Frozen = false
 		spot1.Motor = 1
-	spot1.Frozen = false
+
 
 elseif Input:pressed(K_A) then
 	spot0.Motor = -1
-	spot0.Frozen = false
-		spot1.Motor = -1
-	spot1.Frozen = false
-else
-	spot1.Frozen = true
 
+		spot1.Motor = -1
+
+else
+	spot0.Motor = 0
+
+		spot1.Motor = 0
 	
-	spot0.Frozen = true
 end
 

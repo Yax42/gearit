@@ -22,6 +22,7 @@ namespace gearit.src.script
 			return (_revolute.JointAngle);
 		}
 
+#if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle
 		{
 			get { return _revolute.MaxAngle; }
@@ -45,5 +46,6 @@ namespace gearit.src.script
 			get { return _revolute.SpotLimitEnabled; }
 			set { _revolute.SpotLimitEnabled = value; }
 		}
+#endif
 	}
 }

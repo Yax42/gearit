@@ -75,18 +75,12 @@ namespace gearit.src.robot
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
-			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));
-		/*
-		if (UpperLimit < LowerLimit)
-		{
-			float tmp = UpperLimit;
-			UpperLimit = LowerLimit;
-			LowerLimit = tmp;
 
-		}
-		Console.WriteLine((int) MathHelper.ToDegrees(LowerLimit) + " " + (int) MathHelper.ToDegrees(UpperLimit));
-		//Console.WriteLine((LowerLimit) + " " + (UpperLimit));
-		*/
+			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));	
+			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));	
+			MinAngle = (float)info.GetValue("MinAngle", typeof(float));	
+			SpotLimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));	
+
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			LimitEnabled = false;
@@ -103,6 +97,10 @@ namespace gearit.src.robot
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
 			info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
+
+			info.AddValue("MaxAngle", MaxAngle, typeof(float));
+			info.AddValue("MinAngle", MinAngle, typeof(float));
+			info.AddValue("LimitEnabled", SpotLimitEnabled, typeof(bool));
 		}
 		#endregion
 
@@ -117,6 +115,8 @@ namespace gearit.src.robot
 			}
 			set
 			{
+				if (value < 0)
+					return;
 				_MaxAngle = value;
 				if (!Frozen)
 					UpperLimit = _MaxAngle;
@@ -132,6 +132,8 @@ namespace gearit.src.robot
 			}
 			set
 			{
+				if (value > 0)
+					return;
 				_MinAngle = value;
 				if (!Frozen)
 					LowerLimit = _MinAngle;
