@@ -187,8 +187,8 @@ namespace gearit.src.robot
 
 		public float Force
 		{
-			get { return MotorSpeed * 100000; }
-			set { MotorSpeed = value * 100000; }
+			get { return MotorSpeed / 15; }
+			set { MotorSpeed = value * 15; }
 		}
 
 		public float MaxForce

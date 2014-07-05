@@ -29,7 +29,7 @@ namespace gearit.src.script
 					value = 1;
 				else if (value < -1)
 					value = -1;
-				_spot.Force = value * _spot.MaxForce;
+				_spot.Force = value;
 			}
 		}
 	}
