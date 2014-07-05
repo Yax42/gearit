@@ -23,7 +23,7 @@ namespace gearit.src.script
 			}
 		}
 
-		public int[] TriggerData
+		public bool[] TriggerData
 		{
 			get
 			{

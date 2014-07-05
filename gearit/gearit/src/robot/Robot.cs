@@ -58,7 +58,7 @@ namespace gearit.src.robot
 		private RobotLuaScript _script;
 		private int _id;
 		public World _world;
-		public int[] TriggersData;
+		public bool[] TriggersData;
 		private int _LastTrigger;
 		public Score Score = new Score();
 
@@ -130,9 +130,9 @@ namespace gearit.src.robot
 		private void InitTriggerData()
 		{
 			_LastTrigger = -1;
-			TriggersData = new int[Trigger.IdMax];
+			TriggersData = new bool[Trigger.IdMax];
 			for (int i = 0; i < Trigger.IdMax; i++)
-				TriggersData[i] = 0;
+				TriggersData[i] = false;
 		}
 
 		public void Update(Map map)
@@ -144,9 +144,10 @@ namespace gearit.src.robot
 					Debug.Assert(trigger.Id >= 0 && trigger.Id <= Trigger.IdMax);
 					_LastTrigger = trigger.Id;
 					if (trigger.Id >= 0 && trigger.Id <= Trigger.IdMax)
-						TriggersData[trigger.Id]++;
+						TriggersData[trigger.Id] = true;
 				}
 			}
+			_script.run();
 		}
 
 		public Heart Heart

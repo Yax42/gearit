@@ -184,7 +184,7 @@ namespace gearit.src.robot
 		}
 
 		private bool _LimitEnabled;
-		public bool LimitEnabled
+		public bool SpotLimitEnabled
 		{
 			get
 			{
@@ -310,8 +310,8 @@ namespace gearit.src.robot
 
 		public float Force
 		{
-			get { return MotorTorque; }
-			set { MotorTorque = value; }
+			get { return MotorSpeed * 100000; }
+			set { MotorSpeed = value * 100000; }
 		}
 
 		public float MaxForce

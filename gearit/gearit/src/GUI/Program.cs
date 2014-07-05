@@ -16,7 +16,6 @@ namespace SquidXNA
 			{
 				game.Run();
 			}
-			LuaScript.Clear();
 		}
 	}
 #endif

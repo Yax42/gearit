@@ -73,14 +73,9 @@ namespace gearit.src.editor.robot.action
 			{
 				OutputManager.LogInfo("Lua - Not found : generate new file", filename);
 				string emptylua = LuaManager.GenerateAllScript(
-					"require 'header'" + Environment.NewLine
-					+ Environment.NewLine
-					+ "while true do" + Environment.NewLine
-					+ Environment.NewLine
+					Environment.NewLine
 					+ LuaManager.Header,
-
-					LuaManager.Footer
-					+ "end");
+					LuaManager.Footer);
 
 				System.IO.File.WriteAllText(filename, emptylua);
 			}

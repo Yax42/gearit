@@ -25,6 +25,7 @@ namespace gearit.src.game
 		private World _world;
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
+		private bool _exiting;
 
 		public Map _Map;
 		public Map Map { get { return _Map; } }
@@ -72,6 +73,7 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			base.LoadContent();
+			_exiting = false;
 
 			_FrameCount = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
@@ -86,8 +88,6 @@ namespace gearit.src.game
 			addRobot(robot);
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
-			//if (Map.Artefacts.Count > 0)
-			//	robot.move(Map.Artefacts[0].Position);
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
@@ -97,7 +97,6 @@ namespace gearit.src.game
 			// I have no idea what this is.
 			//HasVirtualStick = true;
 		}
-
 
 		public World getWorld()
 		{
@@ -135,10 +134,18 @@ namespace gearit.src.game
 
 			foreach (Robot r in Robots)
 				r.Update(Map);
+			_gameMaster.run();
 			_camera.Update(gameTime);
+			if (_exiting)
+				Exit();
 		}
 
 		public void Finish()
+		{
+				_exiting = true;
+		}
+
+		public void Exit()
 		{
 			clearRobot();
 			ScreenMainMenu.GoBack = true;
@@ -148,11 +155,7 @@ namespace gearit.src.game
 		private void HandleInput()
 		{
 			if (Input.Exit)
-			{
-				_gameMaster.stop();
-				clearRobot();
-				ScreenMainMenu.GoBack = true;
-			}
+				_exiting = true;
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				_camera.zoomIn();
 			if (Input.justPressed(MouseKeys.WHEEL_UP))

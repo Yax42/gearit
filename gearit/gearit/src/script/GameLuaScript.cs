@@ -22,7 +22,6 @@ namespace gearit.src.script
 			foreach (Artefact a in game.Map.Artefacts)
 				this["Art_" + a.Id] = new GameArtefactApi(a);
 			this["Game"] = new GameApi(game);
-			run();
 		}
 	}
 }

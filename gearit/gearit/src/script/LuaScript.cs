@@ -12,52 +12,44 @@ namespace gearit.src.script
 {
 	class LuaScript : Lua
 	{
-		private static List<Thread> LuaThreads = new List<Thread>();
-		public static void Clear()
-		{
-			foreach (Thread t in LuaThreads)
-				t.Abort();
-			LuaThreads.Clear();
-		}
-
-		private Thread _thread;
-		private bool _done;
 		private string _filePath;
+		private LuaFunction _loadedFile;
+		private bool _ok;
 
 		public LuaScript(string filePath)
 		{
-			_filePath = filePath;
-			_done = true;
-			_thread = new Thread(new ThreadStart(exec));
-			_thread.Priority = ThreadPriority.Lowest;
+			_filePath = LuaManager.LuaFile(filePath);
+			_ok = true;
+			try
+			{
+				_loadedFile = LoadFile(_filePath);
+				OutputManager.LogInfo("Lua - script correctly loaded: " +_filePath);
+			}
+			catch (Exception ex)
+			{
+				OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
+			}
 		}
 
 		internal void run()
 		{
-			Debug.Assert(_done, "Thread already running and trying to run it again.");
-			_done = false;
-			_thread.Start();
-			LuaThreads.Add(_thread);
-		}
-
-		private void exec()
-		{
+			if (!_ok)
+				return;
 			try
 			{
-				DoFile(LuaManager.LuaFile(_filePath));
+				_loadedFile.Call();
 			}
 			catch (Exception ex)
 			{
-				if (!_done)
 					OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
 			}
 		}
 
 		public void stop()
 		{
-			LuaThreads.Remove(_thread);
-			_done = true;
-			_thread.Abort();
+			_ok = false;
 			base.Close();
 		}
 	}

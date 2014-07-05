@@ -42,8 +42,8 @@ namespace gearit.src.script
 
 		public bool LimitEnabled
 		{
-			get { return _revolute.LimitEnabled; }
-			set { _revolute.LimitEnabled = value; }
+			get { return _revolute.SpotLimitEnabled; }
+			set { _revolute.SpotLimitEnabled = value; }
 		}
 	}
 }

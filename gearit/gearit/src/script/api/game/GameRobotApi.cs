@@ -52,17 +52,14 @@ namespace gearit.src.script.api.game
 			}
 		}
 
-		public void TriggerData(int idx, int value)
+		public bool TriggerData(int idx)
 		{
-			_Robot.TriggersData[idx] = value;
+			bool res = _Robot.TriggersData[idx];
+			_Robot.TriggersData[idx] = false;
+			return res;
 		}
 
-		public int TriggerData(int idx)
-		{
-			return _Robot.TriggersData[idx];
-		}
-
-		public int[] TriggerDataA
+		public bool[] TriggerDataA
 		{
 			get
 			{

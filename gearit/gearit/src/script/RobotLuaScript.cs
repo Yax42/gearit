@@ -23,7 +23,14 @@ namespace gearit.src.script
 				this[api[i].Name()] = api[i];
 			this["Input"] = new InputApi();
 			this["Robot"] = robotApi;
-			run();
+			try
+			{
+				DoString("require 'header'\n");
+			}
+			catch (Exception ex)
+			{
+				OutputManager.LogError("Lua exception: " + ex.Message);
+			}
 		}
 	}
 }
