@@ -106,24 +106,6 @@ namespace gearit.src.robot
 		}
 		#endregion
 
-		public static void initTex(AssetCreator asset)
-		{
-			_tex = asset.CreateCircle(2, Color.Red);
-		}
-
-		public void swap(Piece p1, Piece p2, Vector2 anchor)
-		{
-			if (BodyA == p1)
-			{
-				BodyA = p2;
-				LocalAnchorA = anchor;
-			}
-			if (BodyB == p1)
-			{
-				BodyB = p2;
-				LocalAnchorB = anchor;
-			}
-		}
 		#region MotorControl
 
 		private float _MaxAngle;
@@ -173,12 +155,14 @@ namespace gearit.src.robot
 					LowerLimit = JointAngle;
 					UpperLimit = JointAngle;
 					base.LimitEnabled = true;
+					MotorEnabled = false;
 				}
 				else
 				{
 					LowerLimit = MaxAngle;
 					UpperLimit = MinAngle;
 					base.LimitEnabled = _LimitEnabled;
+					MotorEnabled = true;
 				}
 			}
 		}
@@ -198,7 +182,39 @@ namespace gearit.src.robot
 					base.LimitEnabled = _LimitEnabled;
 			}
 		}
+
+		public float Force
+		{
+			get { return MotorSpeed * 100000; }
+			set { MotorSpeed = value * 100000; }
+		}
+
+		public float MaxForce
+		{
+			get { return MaxMotorTorque; }
+			set { MaxMotorTorque = value; }
+		}
 		#endregion
+
+		#region Editor
+		public static void initTex(AssetCreator asset)
+		{
+			_tex = asset.CreateCircle(2, Color.Red);
+		}
+
+		public void swap(Piece p1, Piece p2, Vector2 anchor)
+		{
+			if (BodyA == p1)
+			{
+				BodyA = p2;
+				LocalAnchorA = anchor;
+			}
+			if (BodyB == p1)
+			{
+				BodyB = p2;
+				LocalAnchorB = anchor;
+			}
+		}
 
 		public void swap(Piece p1, Piece p2)
 		{
@@ -239,7 +255,33 @@ namespace gearit.src.robot
 			else
 				((Piece)BodyA).rotateDelta(angle);
 		}
-	
+
+		public Vector2 getLocalAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return LocalAnchorA;
+			else
+				return LocalAnchorB;
+		}
+
+		public Vector2 getWorldAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return WorldAnchorA;
+			else
+				return WorldAnchorB;
+		}
+
+		public void moveLocal(Piece p, Vector2 pos)
+		{
+			if (BodyA == p)
+				LocalAnchorA = pos;
+			else if (BodyB == p)
+				LocalAnchorB = pos;
+		}
+		#endregion
+
+		#region Draw
 		public void drawDebug(DrawGame game)
 		{
 			_drawDebug(game, WorldAnchorA);
@@ -283,42 +325,7 @@ namespace gearit.src.robot
 						new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
 			}
 		}
-
-		public Vector2 getLocalAnchor(Piece piece)
-		{
-			if (BodyA == piece)
-				return LocalAnchorA;
-			else
-				return LocalAnchorB;
-		}
-
-		public Vector2 getWorldAnchor(Piece piece)
-		{
-			if (BodyA == piece)
-				return WorldAnchorA;
-			else
-				return WorldAnchorB;
-		}
-
-		public void moveLocal(Piece p, Vector2 pos)
-		{
-			if (BodyA == p)
-				LocalAnchorA = pos;
-			else if (BodyB == p)
-				LocalAnchorB = pos;
-		}
-
-		public float Force
-		{
-			get { return MotorSpeed * 100000; }
-			set { MotorSpeed = value * 100000; }
-		}
-
-		public float MaxForce
-		{
-			get { return MaxMotorTorque; }
-			set { MaxMotorTorque = value; }
-		}
+		#endregion
 
 		public string Name { get; set; }
 		public Color ColorValue { get; set; }
