@@ -79,7 +79,7 @@ namespace gearit.src.game
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
-			_world.Gravity = new Vector2(0f, 19.8f);
+			_world.Gravity = new Vector2(0f, 9.8f);
 
 			//clearRobot();
 			SerializerHelper.World = _world;
@@ -130,7 +130,7 @@ namespace gearit.src.game
 			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
 			HandleInput();
 
-			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
+			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f)));
 
 			foreach (Robot r in Robots)
 				r.Update(Map);
