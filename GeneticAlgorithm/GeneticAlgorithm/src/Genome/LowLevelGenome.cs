@@ -11,13 +11,13 @@ namespace GeneticAlgorithm.src.Genome
 	class LowLevelGenome
 	{
 		internal const float kMaxSize = 3;
-		private Byte[] m_Data;
-		private int m_Current;
+		internal RawDna m_RawDna;
+		internal int m_Current;
 
-		internal LowLevelGenome(Byte[] data)
+		internal LowLevelGenome(RawDna rawDna, int beginning)
 		{
-			m_Current = 0;
-			m_Data = data;
+			m_RawDna = rawDna;
+			m_Current = beginning;
 		}
 
 		private int NextByteIndex
@@ -44,7 +44,7 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return m_Data[NextByteIndex];
+				return m_RawDna.Data[NextByteIndex];
 			}
 		}
 
@@ -58,7 +58,15 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return System.BitConverter.ToSingle(m_Data, NextFloatIndex);
+				return System.BitConverter.ToSingle(m_RawDna.Data, NextFloatIndex);
+			}
+		}
+
+		internal int NextInt
+		{
+			get
+			{
+				return Math.Abs(System.BitConverter.ToInt32(m_RawDna.Data, NextFloatIndex));
 			}
 		}
 
