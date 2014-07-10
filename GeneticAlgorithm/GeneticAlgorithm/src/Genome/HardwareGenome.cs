@@ -36,7 +36,7 @@ namespace GeneticAlgorithm.src.Genome
 			//Heart carré et de poids fixe dans un premier temps.
 		}
 
-		private void CreatePiece() // so far, costs 45 DNA molecules
+		private void CreatePiece() // so far, costs 45 DNA atoms
 		{
 			int PieceLinkedTo = NextByte % RawDna.MaxPieces;
 			if (PieceLinkedTo >= m_RawDna.Robot.Pieces.Count)

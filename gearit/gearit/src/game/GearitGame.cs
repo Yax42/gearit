@@ -20,7 +20,7 @@ using gearit.src.script;
 
 namespace gearit.src.game
 {
-	class GearitGame : GameScreen, IDemoScreen
+	class GearitGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		private World _world;
 		private Camera2D _camera;

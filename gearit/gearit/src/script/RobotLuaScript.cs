@@ -26,6 +26,7 @@ namespace gearit.src.script
 			try
 			{
 				DoString("require 'header'\n");
+				DoString("FirstCall = true\n");
 			}
 			catch (Exception ex)
 			{

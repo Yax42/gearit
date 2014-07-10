@@ -24,7 +24,7 @@ namespace GeneticAlgorithm.src.Genome
 			cur.run();
 		}
 
-		private void run() // so far, costs 21 DNA molecules
+		private void run() // so far, costs 21 DNA atoms
 		{
 			int sequencesNumber = NextByte + 1;
 			if (sequencesNumber > RawDna.MaxSequences)

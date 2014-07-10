@@ -23,8 +23,9 @@ namespace GeneticAlgorithm.src.Genome
 						// qui soit pas utilisé et que des séquences d'adn
 						// puissent se transmettre silencieusement.
 		public const int TotalDnaWeight = 1 + TotalHardwareChromosomeWeight + TotalSoftwareChromosomeWeight;
+		public const int FirstHardwareIndex = 1;
+		public const int FirstSoftwareIndex = 1 + TotalHardwareChromosomeWeight;
 
-		static private Random Random = new Random();
 
 		public Byte[] Data;
 		public Robot Robot;
@@ -33,7 +34,7 @@ namespace GeneticAlgorithm.src.Genome
 		public RawDna()
 		{
 			Data = new Byte[TotalDnaWeight];
-			Random.NextBytes(Data);
+			MutationManager.Random.NextBytes(Data);
 		}
 
 		public RawDna(Byte[] data)
@@ -44,7 +45,31 @@ namespace GeneticAlgorithm.src.Genome
 		public RawDna(RawDna other)
 		{
 			Data = new Byte[TotalDnaWeight];
-			other.Data.CopyTo(Data, Data.Length);
+			Data[0] = MutationManager.PiecesNumber(other.Data[0], other.Data[0], 1.0f);
+		}
+
+		public RawDna(RawDna father, RawDna mother)
+		{
+			Data = new Byte[TotalDnaWeight];
+			double fatherForce = MutationManager.Random.NextDouble();
+
+			Data[0] = MutationManager.PiecesNumber(father.Data[0], mother.Data[0], fatherForce);
+			MutationManager.Cross(
+					father.Data,
+					mother.Data,
+					Data,
+					FirstHardwareIndex,
+					HardwareChromosomeNumber,
+					HardwareChromosomeWeight,
+					fatherForce);
+			MutationManager.Cross(
+					father.Data,
+					mother.Data,
+					Data,
+					FirstSoftwareIndex,
+					SoftwareChromosomeNumber,
+					SoftwareChromosomeWeight,
+					fatherForce);
 		}
 
 		public void GeneratePhenotype(World world)
@@ -58,15 +83,13 @@ namespace GeneticAlgorithm.src.Genome
 
 		public void GenerateSoftwarePheonotype(int id, int cycleId, ISpot spot)
 		{
-			int actualId = 1
-					+ TotalHardwareChromosomeWeight
-					+ id * SoftwareChromosomeWeight;
+			int actualId = FirstSoftwareIndex + id * SoftwareChromosomeWeight;
 			SoftwareGenome.Affect(this, actualId, cycleId, spot);
 		}
 
 		public void GenerateHardwarePheonotype(int id)
 		{
-			HardwareGenome.Affect(this, 1 + id * HardwareChromosomeWeight);
+			HardwareGenome.Affect(this, FirstHardwareIndex + id * HardwareChromosomeWeight);
 		}
 	}
 }

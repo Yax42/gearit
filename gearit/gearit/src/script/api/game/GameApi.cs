@@ -9,9 +9,9 @@ namespace gearit.src.script
 {
 	class GameApi
 	{
-		private GearitGame _game;
+		private IGearitGame _game;
 
-		public GameApi(GearitGame game)
+		public GameApi(IGearitGame game)
 		{
 			_game = game;
 		}

@@ -107,9 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Genome\HardwareChromosome.cs" />
+    <Compile Include="src\Genome\HardwareGenome.cs" />
     <Compile Include="src\Genome\LowLevelGenome.cs" />
-    <Compile Include="src\Genome\SoftwareChromosome.cs" />
+    <Compile Include="src\Genome\MutationManager.cs" />
+    <Compile Include="src\Genome\RawDna.cs" />
+    <Compile Include="src\Genome\SoftwareGenome.cs" />
     <Compile Include="src\Individual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

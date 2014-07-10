@@ -10,7 +10,7 @@ using gearit.src.output;
 
 namespace gearit.src.script
 {
-	class LuaScript : Lua
+	public class LuaScript : Lua
 	{
 		private string _filePath;
 		private LuaFunction _loadedFile;
