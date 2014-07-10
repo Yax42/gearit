@@ -45,7 +45,7 @@ namespace gearit.src.game
 		public int FrameCount { get { return _FrameCount; } }
 
 		private float _Time = 0;
-		public float Time { get { return _FrameCount; } }
+		public float Time { get { return _Time; } }
 
 		#region IDemoScreen Members
 
@@ -76,6 +76,7 @@ namespace gearit.src.game
 			_exiting = false;
 
 			_FrameCount = 0;
+			_Time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();

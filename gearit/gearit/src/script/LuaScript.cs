@@ -42,7 +42,7 @@ namespace gearit.src.script
 			}
 			catch (Exception ex)
 			{
-					OutputManager.LogError("Lua exception: " + ex.Message);
+				OutputManager.LogError("Lua exception: " + ex.Message);
 				_ok = false;
 			}
 		}

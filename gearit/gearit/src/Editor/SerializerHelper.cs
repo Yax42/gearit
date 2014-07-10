@@ -13,7 +13,7 @@ namespace gearit.src.editor
 	/// <summary>
 	/// Helper class for the serialization of Gear It objects.
 	/// </summary>
-	static class SerializerHelper
+	public static class SerializerHelper
 	{
 		public static World World = null;
 		public static Robot _CurrentRobot = null;

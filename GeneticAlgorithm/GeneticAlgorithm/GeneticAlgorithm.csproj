@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\GeneticGame.cs" />
     <Compile Include="src\Genome\HardwareGenome.cs" />
     <Compile Include="src\Genome\LowLevelGenome.cs" />
     <Compile Include="src\Genome\MutationManager.cs" />
