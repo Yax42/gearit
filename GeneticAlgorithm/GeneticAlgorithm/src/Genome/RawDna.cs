@@ -72,13 +72,14 @@ namespace GeneticAlgorithm.src.Genome
 					fatherForce);
 		}
 
-		public void GeneratePhenotype(World world)
+		public Robot GeneratePhenotype()
 		{
-			Robot = new Robot(world);
+			Robot = new Robot(LifeManager.World);
 			Script = "";
 			int numberOfPieces = Data[0];
 			for (int i = 0; i < numberOfPieces; i++)
 				GenerateHardwarePheonotype(i);
+			return Robot;
 		}
 
 		public void GenerateSoftwarePheonotype(int id, int cycleId, ISpot spot)

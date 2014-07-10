@@ -288,7 +288,7 @@ namespace gearit.src.editor.robot
 		public void resetRobot(Robot bot)
 		{
 			if (Robot != null)
-				Robot.remove();
+				Robot.ExtractFromWorld();
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			Robot = bot;

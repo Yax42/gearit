@@ -18,6 +18,7 @@ using gearit.src.map;
 using System.Diagnostics;
 using gearit.src.script;
 using gearit.src.game;
+using gearit.src.editor.robot;
 
 namespace gearit.src.robot
 {
@@ -358,7 +359,7 @@ namespace gearit.src.robot
 		}
 
 		// For runtime
-		public void remove(ISpot s)
+		public void Destroy(ISpot s)
 		{
 			_spots.Remove(s);
 			_world.RemoveJoint(s.Joint);
@@ -375,7 +376,7 @@ namespace gearit.src.robot
 			return (false);
 		}
 
-		public void remove()
+		public void ExtractFromWorld()
 		{
 			if (_script != null)
 				_script.stop();
@@ -428,7 +429,7 @@ namespace gearit.src.robot
 			return (res);
 		}
 
-		public void turnOn()
+		public void InitScript()
 		{
 			/*
 			foreach (ISpot i in _spots)
@@ -436,7 +437,22 @@ namespace gearit.src.robot
 					((PrismaticSpot)i).updateLimit();
 			*/
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, Name);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile(Name));
+		}
+
+		public void InitScript(string path)
+		{
+			if (_script == null)
+				_script = new RobotLuaScript(GetSpotApi(), _Api, path);
+		}
+
+		public void StopScript()
+		{
+			if (_script != null)
+			{
+				_script.stop();
+				_script = null;
+			}
 		}
 
 		public int revCount() { return (_revoluteCounter++); }

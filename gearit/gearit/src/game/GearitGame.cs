@@ -17,6 +17,8 @@ using FarseerPhysics.DebugViews;
 using FarseerPhysics;
 using gearit.src.robot;
 using gearit.src.script;
+using System.Threading;
+using gearit.src.editor.robot;
 
 namespace gearit.src.game
 {
@@ -27,10 +29,10 @@ namespace gearit.src.game
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
 
-		public Map _Map;
+		private Map _Map;
 		public Map Map { get { return _Map; } }
 
-		public List<Robot> _Robots;
+		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 
 		private DrawGame _drawGame;
@@ -93,7 +95,7 @@ namespace gearit.src.game
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, "game/default");
+			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -112,7 +114,7 @@ namespace gearit.src.game
 		public void clearRobot()
 		{
 			foreach (Robot r in Robots)
-				r.remove();
+				r.ExtractFromWorld();
 			Robots.Clear();
 		}
 
@@ -121,7 +123,7 @@ namespace gearit.src.game
 			Robots.Add(robot);
 			if (Robots.Count == 1)
 				_camera.TrackingBody = robot.Heart;
-			robot.turnOn();
+			robot.InitScript();
 			robot.move(new Vector2(0, -20));
 		}
 

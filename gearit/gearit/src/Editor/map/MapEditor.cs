@@ -226,7 +226,7 @@ namespace gearit.src.editor.map
 		public void resetMap(Map map)
 		{
 			if (_map != null)
-				_map.remove();
+				_map.ExtractFromWorld();
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			_map = map;

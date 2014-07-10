@@ -10,7 +10,7 @@ using gearit.src.robot;
 
 namespace gearit.src.editor
 {
-	static class Serializer
+	public static class Serializer
 	{
 		/// <summary>
 		/// Serializer used for the serialization. (Duh!)

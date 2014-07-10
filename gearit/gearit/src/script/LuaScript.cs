@@ -18,7 +18,7 @@ namespace gearit.src.script
 
 		public LuaScript(string filePath)
 		{
-			_filePath = LuaManager.LuaFile(filePath);
+			_filePath = filePath;
 			_ok = true;
 			try
 			{
@@ -32,7 +32,7 @@ namespace gearit.src.script
 			}
 		}
 
-		internal void run()
+		public void run()
 		{
 			if (!_ok)
 				return;

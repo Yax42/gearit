@@ -79,7 +79,7 @@ namespace gearit.src.map
 			set { _name = value; }
 		}
 
-		public void remove()
+		public void ExtractFromWorld()
 		{
 			foreach (MapChunk i in Chunks)
 				_world.RemoveBody(i);

@@ -10,20 +10,22 @@ using gearit.src.robot;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using System.Diagnostics;
+using GeneticAlgorithm.src.Genome;
 
 namespace GeneticAlgorithm.src
 {
 	class GeneticGame: IGearitGame
 	{
 		private World _world;
-		private GameLuaScript _gameMaster;
+		private GameLuaScript _GameMaster;
 		private bool _exiting;
 
-		public Map _Map;
+		private Map _Map;
 		public Map Map { get { return _Map; } }
 
-		public List<Robot> _Robots;
+		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
+		private Robot Robot;
 
 		// Action
 		private int _FrameCount = 0;
@@ -35,49 +37,47 @@ namespace GeneticAlgorithm.src
 		public GeneticGame()
 		{
 			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
-			SerializerHelper.World = _world;
-
 			_Map = null;
 		}
 
 		public void SetMap(string mapPath)
 		{
 			if (_Map != null)
-				_Map.remove();
+				_Map.ExtractFromWorld();
 			_Map = (Map)Serializer.DeserializeItem(mapPath);
 			Debug.Assert(Map != null);
 		}
 
-		public void SetGameMaster(string scriptPath)
+		public void SetRobot(RawDna rawDna)
 		{
-			_gameMaster = new GameLuaScript(this, scriptPath);
+			if (_Robots.Count != 0)
+			{
+				_Robots[0].ExtractFromWorld();
+				_Robots.Clear();
+			}
+			Robot = rawDna.GeneratePhenotype();
+			_Robots.Add(Robot);
 		}
 
-		public Score Run(string robotPath)
+		public Score Run(string scriptPath)
 		{
 			_exiting = false;
 			_FrameCount = 0;
 			_Time = 0;
-			Robot robot = (Robot)Serializer.DeserializeItem(robotPath);
-			Debug.Assert(robot != null);
-			_Robots.Add(robot);
-			robot.turnOn();
-
+			_GameMaster = new GameLuaScript(this, scriptPath);
+			Robot.InitScript();
 			while (!_exiting)
 			{
 				_FrameCount++;
 				_Time += 1f / 30f;
 				_world.Step(1f / 30f);
 
-				robot.Update(Map);
-				_gameMaster.run();
+				Robot.Update(Map);
+				_GameMaster.run();
 			}
-			_gameMaster.stop();
-			Score score = robot.Score;
-			robot.remove();
-			Robots.Clear();
-			return score;
+			Robot.StopScript();
+			_GameMaster.stop();
+			return Robot.Score;
 		}
 
 		public void Finish()
