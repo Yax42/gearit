@@ -16,8 +16,8 @@ namespace gearit.src.script
 	class RobotLuaScript : LuaScript
 	{
 
-		public RobotLuaScript(List<SpotApi> api, RobotStateApi robotApi, string name)
-			: base(name)
+		public RobotLuaScript(List<SpotApi> api, RobotStateApi robotApi, string text, bool isFile = true)
+			: base(text, isFile)
 		{
 			for (int i = 0; i < api.Count; i++)
 				this[api[i].Name()] = api[i];
@@ -25,12 +25,13 @@ namespace gearit.src.script
 			this["Robot"] = robotApi;
 			try
 			{
-				DoString("require 'header'\n");
-				DoString("FirstCall = true\n");
+				if (isFile)
+					DoString("require 'header'\n");
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua exception: " + ex.Message);
+				throw (ex);
 			}
 		}
 	}

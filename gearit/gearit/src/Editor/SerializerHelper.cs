@@ -17,6 +17,7 @@ namespace gearit.src.editor
 	{
 		public static World World = null;
 		public static Robot _CurrentRobot = null;
+		public static string CurrentPath;
 		public static Robot CurrentRobot
 		{
 			get

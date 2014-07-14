@@ -7,28 +7,40 @@ using System.Threading;
 using System.Diagnostics;
 using gearit.src.editor.robot;
 using gearit.src.output;
+using System.IO;
 
 namespace gearit.src.script
 {
 	public class LuaScript : Lua
 	{
-		private string _filePath;
-		private LuaFunction _loadedFile;
+		private LuaFunction _loadedScript;
+		private LuaFunction _frameCountScript;
 		private bool _ok;
 
-		public LuaScript(string filePath)
+		public LuaScript(string text, bool isFile = true)
 		{
-			_filePath = filePath;
 			_ok = true;
 			try
 			{
-				_loadedFile = LoadFile(_filePath);
-				OutputManager.LogInfo("Lua - script correctly loaded: " +_filePath);
+				if (isFile)
+				{
+					_loadedScript = LoadFile(text);
+					//OutputManager.LogInfo("Lua - script correctly loaded: " + text);
+				}
+				else
+				{
+					_loadedScript = LoadString(text, String.Empty);
+				}
+				DoString("FrameCount = 0\n");
+
+				_frameCountScript = LoadString("FrameCount = FrameCount + 1", String.Empty);
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua exception: " + ex.Message);
 				_ok = false;
+				File.WriteAllText("test.lua", text);
+				throw (ex);
 			}
 		}
 
@@ -38,12 +50,14 @@ namespace gearit.src.script
 				return;
 			try
 			{
-				_loadedFile.Call();
+				_loadedScript.Call();
+				_frameCountScript.Call();
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua exception: " + ex.Message);
 				_ok = false;
+				throw (ex);
 			}
 		}
 

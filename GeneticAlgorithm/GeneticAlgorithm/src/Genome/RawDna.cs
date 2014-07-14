@@ -14,7 +14,7 @@ namespace GeneticAlgorithm.src.Genome
 		public const int MaxSequenceSize = 255;
 		public const int CycleNumber = 1;
 		public const int SoftwareChromosomeWeight = MaxSequences * 5 + 1;
-		public const int HardwareChromosomeWeight = 45 + CycleNumber * 4;
+		public const int HardwareChromosomeWeight = 48 + CycleNumber * 4;
 		public const int TotalHardwareChromosomeWeight = HardwareChromosomeNumber * HardwareChromosomeWeight;
 		public const int HardwareChromosomeNumber = MaxPieces;
 		public const int SoftwareChromosomeNumber = MaxPieces * CycleNumber * 2;
@@ -30,11 +30,13 @@ namespace GeneticAlgorithm.src.Genome
 		public Byte[] Data;
 		public Robot Robot;
 		public string Script;
+		public int Rank;
 
 		public RawDna()
 		{
 			Data = new Byte[TotalDnaWeight];
 			MutationManager.Random.NextBytes(Data);
+			Data[0] = 2;
 		}
 
 		public RawDna(Byte[] data)

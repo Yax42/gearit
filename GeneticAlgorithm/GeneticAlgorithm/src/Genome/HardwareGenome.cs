@@ -57,7 +57,7 @@ namespace GeneticAlgorithm.src.Genome
 			Vector2 anchor1 = NextVector2;
 			Vector2 anchor2 = NextVector2;
 			float weight = NextAbsRange1 * 15 + 1;
-			float maxForce = NextAbsRange1;
+			float maxForce = NextAbsRange1 * weight * 100;
 			float angle = NextFloat;
 
 
@@ -96,7 +96,7 @@ namespace GeneticAlgorithm.src.Genome
 			spot.SpotLimitEnabled = limitEnabled;
 
 			for (int i = 0; i < RawDna.CycleNumber; i++)
-				m_RawDna.GenerateSoftwarePheonotype(NextInt % RawDna.SoftwareChromosomeNumber, i, spot);
+				m_RawDna.GenerateSoftwarePheonotype(NextAbsInt % RawDna.SoftwareChromosomeNumber, i, spot);
 		}
 	}
 }

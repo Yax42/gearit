@@ -35,7 +35,9 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Create);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
 				OutputManager.LogInfo("Saving - success", filename);
@@ -57,7 +59,10 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Open);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Open);
+				SerializerHelper.CurrentPath = filename;
 				ISerializable obj = (ISerializable)_formatter.Deserialize(s);
 				s.Close();
 				OutputManager.LogInfo("Loading - success", filename);

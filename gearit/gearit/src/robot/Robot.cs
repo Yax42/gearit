@@ -19,6 +19,7 @@ using System.Diagnostics;
 using gearit.src.script;
 using gearit.src.game;
 using gearit.src.editor.robot;
+using System.IO;
 
 namespace gearit.src.robot
 {
@@ -62,6 +63,7 @@ namespace gearit.src.robot
 		public bool[] TriggersData;
 		private int _LastTrigger;
 		public Score Score = new Score();
+		public int State = 0;
 
 		private RobotStateApi _Api;
 		public RobotStateApi Api
@@ -88,7 +90,7 @@ namespace gearit.src.robot
 			_pieces = new List<Piece>();
 			_spots = new List<ISpot>();
 			new Heart(this);
-			Console.WriteLine("Robot created.");
+			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
 			_Api = new RobotStateApi(this);
@@ -100,7 +102,7 @@ namespace gearit.src.robot
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
-			Name = (string)info.GetValue("Name", typeof(string));
+			Name = Path.GetFileNameWithoutExtension(SerializerHelper.CurrentPath);// (string)info.GetValue("Name", typeof(string));
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
 			_prismaticCounter = (int)info.GetValue("SpotCount", typeof(int));
 			this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
@@ -112,7 +114,7 @@ namespace gearit.src.robot
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
 			_id = _robotIdCounter++;
-			Console.WriteLine("Robot created.");
+			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
 			_Api = new RobotStateApi(this);
@@ -120,7 +122,8 @@ namespace gearit.src.robot
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-			info.AddValue("Name", Name, typeof(string));
+			Heart.move(new Vector2());
+			//info.AddValue("Name", Name, typeof(string));
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));
 			info.AddValue("SpotCount", _prismaticCounter, typeof(int));
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
@@ -440,10 +443,10 @@ namespace gearit.src.robot
 				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile(Name));
 		}
 
-		public void InitScript(string path)
+		public void InitScript(string script)
 		{
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, path);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, script, false);
 		}
 
 		public void StopScript()

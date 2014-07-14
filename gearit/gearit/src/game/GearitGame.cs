@@ -129,7 +129,6 @@ namespace gearit.src.game
 
 		public override void Update(GameTime gameTime)
 		{
-			_FrameCount++;
 			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
 			HandleInput();
 
@@ -141,6 +140,7 @@ namespace gearit.src.game
 			_camera.Update(gameTime);
 			if (_exiting)
 				Exit();
+			_FrameCount++;
 		}
 
 		public void Finish()

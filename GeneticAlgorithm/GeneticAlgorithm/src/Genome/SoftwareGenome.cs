@@ -26,34 +26,32 @@ namespace GeneticAlgorithm.src.Genome
 
 		private void run() // so far, costs 21 DNA atoms
 		{
-			int sequencesNumber = NextByte + 1;
-			if (sequencesNumber > RawDna.MaxSequences)
-				sequencesNumber = RawDna.MaxSequences;
+			int sequencesNumber = (NextByte % (RawDna.MaxSequences - 1)) + 1;
 
 			float[] motor = new float[RawDna.MaxSequences];
-			Byte[] sequenceSize = new Byte[RawDna.MaxSequences];
+			int[] sequenceSize = new int[RawDna.MaxSequences];
 			int totalSize = 0;
 
 			for (int i = 0; i < sequencesNumber; i++)
 			{
 				motor[i] = NextRange1;
 				motor[i] = motor[i] * motor[i] * motor[i]; //conserve le sign + réduit les chances d'avoir un motor très fort.
-				sequenceSize[i] = NextByte;
+				sequenceSize[i] = NextByte % 60;
 				totalSize += sequenceSize[i];
 			}
 
-			m_RawDna.Script += "if Robot.LastTrigger = " + m_CycleId + " then\n";
+			m_RawDna.Script += "if Robot.State == " + m_CycleId + " then" + Environment.NewLine;
 			for (int i = 0; i < sequencesNumber; i++)
 			{
 				if (i != 0)
 					m_RawDna.Script += "\telseif ";
 				else
 					m_RawDna.Script += "\tif ";
-				m_RawDna.Script += "FrameCount % " + totalSize + " < " + sequenceSize[i] + " then\n";
-				m_RawDna.Script += "\t\t" + m_Spot.Name + ".Motor = " + motor[i] + "\n";
+				m_RawDna.Script += "FrameCount % " + totalSize + " < " + sequenceSize[i] + " then" + Environment.NewLine;
+				m_RawDna.Script += "\t\t" + m_Spot.Name + ".Motor = " + motor[i] + Environment.NewLine;
 			}
-			m_RawDna.Script += "\tend\n";
-			m_RawDna.Script += "end\n";
+			m_RawDna.Script += "\tend" + Environment.NewLine;
+			m_RawDna.Script += "end" + Environment.NewLine;
 		}
 	}
 }

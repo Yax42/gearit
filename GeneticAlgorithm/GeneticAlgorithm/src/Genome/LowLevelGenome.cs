@@ -58,7 +58,7 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return System.BitConverter.ToSingle(m_RawDna.Data, NextFloatIndex);
+				return (NextInt % 1000000) / 1000.0f;
 			}
 		}
 
@@ -66,7 +66,15 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return Math.Abs(System.BitConverter.ToInt32(m_RawDna.Data, NextFloatIndex));
+				return System.BitConverter.ToInt32(m_RawDna.Data, NextFloatIndex);
+			}
+		}
+
+		internal int NextAbsInt
+		{
+			get
+			{
+				return Math.Abs(NextInt);
 			}
 		}
 
