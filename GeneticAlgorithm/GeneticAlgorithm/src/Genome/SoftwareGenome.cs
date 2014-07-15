@@ -35,7 +35,7 @@ namespace GeneticAlgorithm.src.Genome
 			for (int i = 0; i < sequencesNumber; i++)
 			{
 				motor[i] = NextRange1;
-				motor[i] = motor[i] * motor[i] * motor[i]; //conserve le sign + réduit les chances d'avoir un motor très fort.
+				motor[i] = motor[i];// *motor[i] * motor[i]; //conserve le sign + réduit les chances d'avoir un motor très fort.
 				sequenceSize[i] = NextByte % 60;
 				totalSize += sequenceSize[i];
 			}
@@ -48,7 +48,7 @@ namespace GeneticAlgorithm.src.Genome
 				else
 					m_RawDna.Script += "\tif ";
 				m_RawDna.Script += "FrameCount % " + totalSize + " < " + sequenceSize[i] + " then" + Environment.NewLine;
-				m_RawDna.Script += "\t\t" + m_Spot.Name + ".Motor = " + motor[i] + Environment.NewLine;
+				m_RawDna.Script += "\t\t" + m_Spot.Name + ".Motor = " + string.Format("{0:R}", motor[i]).Replace(',', '.') + Environment.NewLine;
 			}
 			m_RawDna.Script += "\tend" + Environment.NewLine;
 			m_RawDna.Script += "end" + Environment.NewLine;

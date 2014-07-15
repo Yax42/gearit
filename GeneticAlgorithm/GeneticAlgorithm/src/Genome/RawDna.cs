@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.robot;
 using FarseerPhysics.Dynamics;
+using gearit.src.game;
 
 namespace GeneticAlgorithm.src.Genome
 {
@@ -12,21 +13,23 @@ namespace GeneticAlgorithm.src.Genome
 		public const int MaxPieces = 32;
 		public const int MaxSequences = 4;
 		public const int MaxSequenceSize = 255;
-		public const int CycleNumber = 1;
 		public const int SoftwareChromosomeWeight = MaxSequences * 5 + 1;
-		public const int HardwareChromosomeWeight = 48 + CycleNumber * 4;
-		public const int TotalHardwareChromosomeWeight = HardwareChromosomeNumber * HardwareChromosomeWeight;
+		public static int HardwareChromosomeWeight { get { return 48 + CycleNumber * 4; } }
+		public static int TotalHardwareChromosomeWeight { get { return HardwareChromosomeNumber * HardwareChromosomeWeight; } }
 		public const int HardwareChromosomeNumber = MaxPieces;
-		public const int SoftwareChromosomeNumber = MaxPieces * CycleNumber * 2;
-		public const int TotalSoftwareChromosomeWeight = SoftwareChromosomeNumber * SoftwareChromosomeWeight;
+		public static int SoftwareChromosomeNumber { get { return MaxPieces * CycleNumber * 2; } }
+		public static int TotalSoftwareChromosomeWeight { get { return SoftwareChromosomeNumber * SoftwareChromosomeWeight; } }
 						// le *2 c'est pour qu'il y est une partie du génome
 						// qui soit pas utilisé et que des séquences d'adn
 						// puissent se transmettre silencieusement.
-		public const int TotalDnaWeight = 1 + TotalHardwareChromosomeWeight + TotalSoftwareChromosomeWeight;
+		public static int TotalDnaWeight { get { return 1 + TotalHardwareChromosomeWeight + TotalSoftwareChromosomeWeight; } }
 		public const int FirstHardwareIndex = 1;
-		public const int FirstSoftwareIndex = 1 + TotalHardwareChromosomeWeight;
+		public static int FirstSoftwareIndex { get { return 1 + TotalHardwareChromosomeWeight; } }
 
 
+		static public int CycleNumber;
+
+		public Score[] Scores = new Score[CycleNumber];
 		public Byte[] Data;
 		public Robot Robot;
 		public string Script;
@@ -53,7 +56,7 @@ namespace GeneticAlgorithm.src.Genome
 		public RawDna(RawDna father, RawDna mother)
 		{
 			Data = new Byte[TotalDnaWeight];
-			double fatherForce = MutationManager.Random.NextDouble();
+			double fatherForce = 0.5f;// MutationManager.Random.NextDouble();
 
 			Data[0] = MutationManager.PiecesNumber(father.Data[0], mother.Data[0], fatherForce);
 			MutationManager.Cross(
@@ -81,7 +84,9 @@ namespace GeneticAlgorithm.src.Genome
 			int numberOfPieces = Data[0];
 			for (int i = 0; i < numberOfPieces; i++)
 				GenerateHardwarePheonotype(i);
-			return Robot;
+			var res = Robot;
+			Robot = null;
+			return res;
 		}
 
 		public void GenerateSoftwarePheonotype(int id, int cycleId, ISpot spot)

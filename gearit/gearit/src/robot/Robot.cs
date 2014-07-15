@@ -385,9 +385,15 @@ namespace gearit.src.robot
 				_script.stop();
 			_script = null;
 			foreach (ISpot i in _spots)
+			{
 				_world.RemoveJoint(i.Joint);
+			}
+			_spots.Clear();
 			foreach (Piece i in _pieces)
-				_world.RemoveBody(i);
+			{
+				i.Destroy();
+			}
+			Pieces.Clear();
 		}
 
 		//-------------------------------------

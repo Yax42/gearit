@@ -358,6 +358,13 @@ namespace gearit.src.robot
 			return adjacentPieces;
 		}
 
+		public void Destroy()
+		{
+			World.RemoveBody(this);
+			_robot = null;
+			//_fix.Destroy();
+		}
+
 		public abstract Vector2 ShapeLocalOrigin();
 	}
 }

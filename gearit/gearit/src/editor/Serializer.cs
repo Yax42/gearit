@@ -40,7 +40,7 @@ namespace gearit.src.editor
 				FileStream s = new FileStream(filename, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
-				OutputManager.LogInfo("Saving - success", filename);
+				//OutputManager.LogInfo("Saving - success", filename);
 				return true;
 			}
 			catch (IOException e)

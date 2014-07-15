@@ -50,7 +50,7 @@ namespace GeneticAlgorithm.src.Genome
 
 		internal bool NextBool(float trueChance)
 		{
-			return (NextByteIndex <= trueChance * 256);
+			return (NextByte <= trueChance * 256);
 		}
 
 
@@ -90,8 +90,7 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				float res = NextFloat;
-				return res - (float)Math.Floor(res);
+				return (NextInt % 1000) / 1000.0f;
 			}
 		}
 

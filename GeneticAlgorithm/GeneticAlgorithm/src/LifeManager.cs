@@ -10,11 +10,13 @@ using System.Xml;
 using gearit.src.game;
 using System.Diagnostics;
 using System.IO;
+using gearit.src;
+using gearit.xna;
 
 namespace GeneticAlgorithm.src
 {
 	#region Comparer
-	class ScoreComparer : IComparer<Score[]>
+	class ScoreComparer : IComparer<RawDna>
 	{
 		private int _Idx;
 		public ScoreComparer(int idx)
@@ -22,17 +24,17 @@ namespace GeneticAlgorithm.src
 			_Idx = idx;
 		}
 
-		public int Compare(Score[] x, Score[] y)
+		public int Compare(RawDna x, RawDna y)
 		{
-			Score X = x[_Idx];
-			Score Y = y[_Idx];
+			Score X = x.Scores[_Idx];
+			Score Y = y.Scores[_Idx];
 			if (X.IntScore != Y.IntScore)
 			{
 				return Y.IntScore - X.IntScore;
 			}
 			else
 			{
-				return (int) (Y.FloatScore - X.FloatScore);
+				return (int) (X.FloatScore - Y.FloatScore);
 			}
 		}
 	}
@@ -40,7 +42,7 @@ namespace GeneticAlgorithm.src
 	{
 		public int Compare(RawDna x, RawDna y)
 		{
-			return y.Rank - x.Rank;
+			return x.Rank - y.Rank;
 		}
 	}
 	#endregion
@@ -57,6 +59,11 @@ namespace GeneticAlgorithm.src
 		private int Generation;
 
 		private RawDna[] Population;
+
+		//Graphics
+		private ScreenManager _screenManager;
+
+
 
 		public LifeManager()
 		{
@@ -78,20 +85,21 @@ namespace GeneticAlgorithm.src
 			// pourcentage de la population tuee
 			#endregion
 
+			RawDna.CycleNumber = NumberOfTests;
 			Generation = 0;
 			Game = new GeneticGame();
 			Game.SetMap(DirectoryPath + "map.gim");
 			Population = new RawDna[PopulationSize];
 			for (int i = 0; i < PopulationSize; i++)
 				Population[i] = new RawDna();
-			GeneticGame.Init();
 		}
 
 		public void SaveBest()
 		{
 			string path = DirectoryPath + "/trash/" + Generation;
 
-			Debug.Assert(Serializer.SerializeItem(path + ".gir", Population[0].Robot));
+			bool ok = Serializer.SerializeItem(path + ".gir", Population[0].GeneratePhenotype());
+			Debug.Assert(ok);
 			File.WriteAllBytes(path + ".dna.", Population[0].Data);
 			File.WriteAllText(path + ".lua", Population[0].Script);
 		}
@@ -102,20 +110,17 @@ namespace GeneticAlgorithm.src
 				Iteration();
 		}
 
-
 		private void Iteration()
 		{
-			Console.WriteLine("Generation: " + Generation);
+			//Console.WriteLine("Generation: " + Generation);
 			#region RunningGames
-			Score[][] scores = new Score[PopulationSize][];
 			for (int i = 0; i < PopulationSize; i++)
 			{
-				scores[i] = new Score[NumberOfTests];
 				Population[i].Rank = PopulationSize;
 				Game.SetRobot(Population[i]);
 				for (int j = 0; j < NumberOfTests; j++)
 				{
-					scores[i][j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[i].Script);
+					Population[i].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[i].Script);
 				}
 			}
 			#endregion
@@ -123,14 +128,15 @@ namespace GeneticAlgorithm.src
 			#region RankingPopulation
 			for (int j = 0; j < NumberOfTests; j++)
 			{
-				ScoreComparer scoreComparer = new ScoreComparer(j);
-				Array.Sort(scores, Population, scoreComparer);
-				Console.WriteLine("Test " + j + " Score: " + scores[j][0].IntScore + ", " + scores[j][0].FloatScore);
+				Array.Sort(Population, new ScoreComparer(j));
 				for (int i = 0; i < PopulationSize; i++)
 				{
-					if (Population[i].Rank > i)
+					if (i < Population[i].Rank)
 						Population[i].Rank = i;
+					Console.Write(Population[i].Scores[0].FloatScore + "  ");
 				}
+				Console.Write("\n");
+				//Console.WriteLine("Test " + j + " Score: " + Population[0].Scores[j].IntScore + ", " + Population[0].Scores[j].FloatScore);
 			}
 			Array.Sort(Population, new IndividualComparer());
 			#endregion

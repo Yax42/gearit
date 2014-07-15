@@ -12,8 +12,8 @@ namespace GeneticAlgorithm.src.Genome
 		static private int RandomBufferIdx = 100;
 
 		const double PourcentageMutation = 2f / 100.0f;
-		const double PourcentageSegmentSwap = 0.1f / 100.0f;
-		const double PourcentageSegmentReplace = 0.05f / 100.0f;
+		const double PourcentageSegmentSwap = 2f / 100.0f;
+		const double PourcentageSegmentReplace = 1f / 100.0f;
 
 		static public Byte RandomByte()
 		{

@@ -16,7 +16,6 @@ namespace GeneticAlgorithm.src
 {
 	class GeneticGame: IGearitGame
 	{
-		static private World _world;
 		private GameLuaScript _GameMaster;
 		private bool _exiting;
 
@@ -33,11 +32,6 @@ namespace GeneticAlgorithm.src
 
 		private float _Time = 0;
 		public float Time { get { return _Time; } }
-
-		static public void Init() 
-		{
-			_world = new World(new Vector2(0, 9.8f));
-		}
 
 		public GeneticGame()
 		{
@@ -74,7 +68,7 @@ namespace GeneticAlgorithm.src
 			while (!_exiting)
 			{
 				_Time += 1f / 30f;
-				_world.Step(1f / 30f);
+				LifeManager.World.Step(1f / 30f);
 
 				Robot.Update(Map);
 				_GameMaster.run();
