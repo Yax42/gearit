@@ -12,7 +12,7 @@ namespace GeneticAlgorithm.src.Genome
 		static private int RandomBufferIdx = 100;
 
 		const double PourcentageMutation = 2f / 100.0f;
-		const double PourcentageSegmentSwap = 2f / 100.0f;
+		const double PourcentageSegmentSwap = 3f / 100.0f;
 		const double PourcentageSegmentReplace = 1f / 100.0f;
 
 		static public Byte RandomByte()
@@ -93,16 +93,16 @@ namespace GeneticAlgorithm.src.Genome
 					double fatherForce)
 		{
 			Byte res;
-			if (Random.NextDouble() < fatherForce)
+			if (Random.Next(0, 100) < fatherForce * 100)
 				res = father;
 			else
 			{
 				double rand = Random.NextDouble();
 				res = (Byte) (rand * father + (1 - rand) * mother);
 			}
-			if (Random.NextDouble() < PourcentageMutation)
+			if (Random.Next(0, 10000) * 0.01f < PourcentageMutation)
 			{
-				int rand = Random.Next(-1, 2);
+				int rand = Random.Next(-2, 2);
 				Byte min = Math.Min(father, mother);
 				Byte max = Math.Max(father, mother);
 				if (rand < 0)

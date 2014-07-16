@@ -129,10 +129,12 @@ namespace gearit.src.game
 
 		public override void Update(GameTime gameTime)
 		{
-			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
+			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
+			float delta = 1 / 30f; // Static delta time for now, yea bitch!
+			_Time += delta;
 			HandleInput();
 
-			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f)));
+			_world.Step(delta);
 
 			foreach (Robot r in Robots)
 				r.Update(Map);

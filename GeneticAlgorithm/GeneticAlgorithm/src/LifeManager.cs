@@ -112,7 +112,7 @@ namespace GeneticAlgorithm.src
 
 		private void Iteration()
 		{
-			//Console.WriteLine("Generation: " + Generation);
+			Console.WriteLine("Generation: " + Generation);
 			#region RunningGames
 			for (int i = 0; i < PopulationSize; i++)
 			{
@@ -122,7 +122,13 @@ namespace GeneticAlgorithm.src
 				{
 					Population[i].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[i].Script);
 				}
+				if (i % 10 == 0)
+					Console.Write(i + " ");
 			}
+			Console.Write("\n");
+			#endregion
+
+			#region RankingPopulation
 			#endregion
 
 			#region RankingPopulation
