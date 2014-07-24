@@ -7,6 +7,16 @@ using Lidgren.Network;
 
 namespace gearit.src.server
 {
+    struct Request
+    {
+        public int id;
+        public List<string> data;
+
+        public string serialize()
+        {
+            return String.Concat(id, String.Join(String.Empty, data));
+        }
+    }
 
     class RequestBuilder
     {
