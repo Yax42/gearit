@@ -31,8 +31,8 @@ namespace gearit.src.server
         public const int MAP_DL = 28;
         public const int MAP_DL_OK = 29;
         public const int MAP_DL_KO = 30;
-        // public const int START_GAME = 20;
-        // public const int END_GAME = 20;
+        public const int START_GAME = 31;
+        public const int END_GAME = 32;
         public const int OK = 4;
         public const int KO = 5;
 
