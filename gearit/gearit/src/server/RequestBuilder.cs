@@ -14,7 +14,14 @@ namespace gearit.src.server
 
         public string Serialize()
         {
-            return String.Concat(id, String.Join(String.Empty, data));
+            if (data == null)
+            {
+                return id.ToString();
+            }
+            else
+            {
+                return String.Concat(id, String.Join(String.Empty, data));
+            }
         }
     }
 
