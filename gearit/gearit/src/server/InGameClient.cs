@@ -91,10 +91,18 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
+                        int request_id = -1;
+
+                        if (!Int32.TryParse(msg.Substring(0, 2), out request_id))
+                        {
+                            // throw Exception ?
+                            OutputManager.LogError("(Client) Invalid request: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                            break;
+                        }
+
                         OutputManager.LogMessage("(Client)msg:" + msg);
                         break;
                     default:
-                        // Read and set data here.
                         //Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         OutputManager.LogError("(Client)Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         break;
