@@ -51,5 +51,13 @@ namespace gearit.src.server
 
             return (req);
         }
+
+        public static void Send(NetClient sender, Request req)
+        {
+            NetOutgoingMessage outmsg = sender.CreateMessage();
+
+            outmsg.Write(req.Serialize());
+            sender.SendMessage(outmsg, NetDeliveryMethod.ReliableOrdered);
+        }
     }
 }
