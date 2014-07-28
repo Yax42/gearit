@@ -12,7 +12,7 @@ namespace gearit.src.server
         public int id;
         public List<string> data;
 
-        public string serialize()
+        public string Serialize()
         {
             return String.Concat(id, String.Join(String.Empty, data));
         }
