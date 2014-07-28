@@ -100,6 +100,15 @@ namespace gearit.src.server
                             break;
                         }
 
+                        switch(request_id)
+                        {
+                          // Case on every request ids and execute related actions.
+                          case RequestBuilder.REQ_OK:
+                          default:
+                            OutputManager.LogMessage("(Client) Received request id " + request_id);
+                            break;
+                        }
+
                         OutputManager.LogMessage("(Client)msg:" + msg);
                         break;
                     default:
