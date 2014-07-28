@@ -12,7 +12,7 @@ namespace gearit.src.server
         public int id;
         public List<string> data;
 
-        public string Serialize()
+        public string ToString()
         {
             if (data == null)
             {
@@ -56,7 +56,7 @@ namespace gearit.src.server
         {
             NetOutgoingMessage outmsg = sender.CreateMessage();
 
-            outmsg.Write(req.Serialize());
+            outmsg.Write(req.ToString());
             sender.SendMessage(outmsg, NetDeliveryMethod.ReliableOrdered);
         }
     }

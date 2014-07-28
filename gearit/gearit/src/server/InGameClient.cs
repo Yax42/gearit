@@ -94,6 +94,7 @@ namespace gearit.src.server
                         OutputManager.LogMessage("(Client)msg:" + msg);
                         break;
                     default:
+                        // Read and set data here.
                         //Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         OutputManager.LogError("(Client)Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         break;
