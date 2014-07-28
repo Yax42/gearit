@@ -43,5 +43,13 @@ namespace gearit.src.server
         public const int REQ_OK = 4;
         public const int REQ_KO = 5;
 
+        public static Request Build(int id, List<string> data)
+        {
+            Request req = new Request();
+            req.id = id;
+            req.data = data;
+
+            return (req);
+        }
     }
 }
