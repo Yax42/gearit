@@ -226,28 +226,33 @@ namespace gearit.src.robot
 		public void moveAnchor(Piece p, Vector2 anchor)
 		{
 			if (BodyA == p)
-				LocalAnchorA = anchor - p.Position;
+				LocalAnchorA = BodyA.GetLocalPoint(anchor);
 			if (BodyB == p)
-				LocalAnchorB = anchor - p.Position;
+				LocalAnchorB = BodyB.GetLocalPoint(anchor);
 			SynchroniseAnchors(p);
 		}
 
-		/*
-			public void move(Vector2 pos)
-			{
-				//BodyA.Position = pos - LocalAnchorA;
-				//BodyB.Position = pos - LocalAnchorB;
-				((Piece)BodyA).move(pos - LocalAnchorA);
-				((Piece)BodyB).move(pos - LocalAnchorB);
-			}
-		*/
+		public Vector2 ActualWorldAnchorA
+		{
+			get { return BodyA.GetWorldVector(LocalAnchorA); }
+		}
+
+		public Vector2 ActualWorldAnchorB
+		{
+			get { return BodyB.GetWorldVector(LocalAnchorB); }
+		}
+
+		public Vector2 DeltaAnchor
+		{
+			get { return ActualWorldAnchorA - ActualWorldAnchorB; }
+		}
 
 		public void SynchroniseAnchors(Piece piece)
 		{
 			if (piece == BodyA)
-				((Piece)BodyB).move(WorldAnchorA - BodyB.GetWorldVector(LocalAnchorB));
+				((Piece)BodyB).move(WorldAnchorA - ActualWorldAnchorB);
 			else
-				((Piece)BodyA).move(WorldAnchorB - BodyA.GetWorldVector(LocalAnchorA));
+				((Piece)BodyA).move(WorldAnchorB - ActualWorldAnchorA);
 		}
 
 		public void rotate(Piece piece, float angle)
