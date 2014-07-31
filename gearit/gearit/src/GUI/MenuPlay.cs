@@ -78,14 +78,18 @@ namespace gearit.src.gui
                 //
 
                 // Add dummy servers - TO REMOVE
+                Array.Clear(req, 0, req.Length);
                 req[0] = 10;
+                string name = "Test Server #1";
+                for (i = 0; i < name.Length; ++i)
+                    req[i + 1] = Convert.ToByte(name[i]);
                 Int32[] ports = new Int32[1];
                 ports[0] = 9555;
-                req[1] = 1;
-                req[2] = 0;
-                Buffer.BlockCopy(ports, 0, req, 3, 4);
-                req[7] = 6;
-                client.GetStream().Write(req, 0, 8);
+                req[33] = 1;
+                req[34] = 0;
+                Buffer.BlockCopy(ports, 0, req, 35, 4);
+                req[39] = 6;
+                client.GetStream().Write(req, 0, 40);
 
                 // Get the servers
                 req[0] = 1;
@@ -94,35 +98,42 @@ namespace gearit.src.gui
                 byte max_player;
                 string ip;
                 models.Clear();
-                //while (client.GetStream().CanRead)
+                char[] name_s = new char[33];
+                while (client.Connected)
                 {
-
                     if (!refreshing)
                         return;
                     int receivedDataLength = client.GetStream().Read(data, 0, 1024);
-                    ip = data[3] + "." + data[4] + "." + data[5] + "." + data[6];
-                    Buffer.BlockCopy(data, 7, ports, 0, 4);
-                    Buffer.BlockCopy(data, 1, versions, 0, 2);
-                    max_player = data[12];
+                    Console.WriteLine(">> " + receivedDataLength);
+                    if (receivedDataLength < 12)
+                       break;
+                    for (i = 0; i < 32; ++i)
+                       name_s[i] = (char) data[i + 1];
+                    ip = data[35] + "." + data[36] + "." + data[37] + "." + data[38];
+                    Buffer.BlockCopy(data, 39, ports, 0, 4);
+                    Buffer.BlockCopy(data, 34, versions, 0, 2);
+                    max_player = data[44];
 
                     // Adding entry
                     MyData entry = new MyData();
-                    entry.Name = ip + ":" + ports[0];
+                    entry.Name = name + " - " + ip + ":" + ports[0];
                     entry.Players = "?/" + max_player;
                     entry.Ping = 0;
                     models.Add(entry);
                     olv.SetObjects(models);
+
+                    // Shutdown
+                    client.GetStream().Dispose();
                 }
 
-                // Shutdown
-                client.GetStream().Dispose();
-                refreshing = false;
-                btn_refresh.Text = "Refresh";
             }
             catch (SocketException e)
             {
                 ChatBox.addEntry("Could not connect to master server", ChatBox.Entry.Error);
             }
+
+            refreshing = false;
+            btn_refresh.Text = "Refresh";
         }
 
 		public override void LoadContent()
