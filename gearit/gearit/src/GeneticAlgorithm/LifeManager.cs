@@ -162,13 +162,17 @@ namespace gearit.src.GeneticAlgorithm
 				{
 					Population[CurrentTested].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[CurrentTested].Script);
 				}
-				if (IsVisual)
+				if (false && IsVisual)
 				{
 					OutputManager.LogMessage("Generation[" + Generation + "]."
 											+ "Robot[" + CurrentTested + "] = "
 											+ Population[CurrentTested].Scores[0].FloatScore + "|"
 											+ Population[CurrentTested].Scores[0].IntScore);
 				}
+				if (CurrentTested == 0)
+					OutputManager.LogMessage(0 + "");
+				else if (CurrentTested % 10 == 0)
+					OutputManager.LogMerge(" " + CurrentTested);
 				CurrentTested++;
 				if (CurrentTested < PopulationSize)
 					return;

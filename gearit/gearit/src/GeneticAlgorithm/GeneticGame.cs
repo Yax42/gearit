@@ -105,7 +105,7 @@ namespace gearit.src.GeneticAlgorithm
 			{
 				Robot.StopScript();
 				_GameMaster.stop();
-				OutputManager.LogMessage("Score: " + Robot.Score.FloatScore + "|" + Robot.Score.IntScore);
+				OutputManager.LogMerge(" ?= " + Robot.Score.FloatScore + "|" + Robot.Score.IntScore);
 				return false;
 			}
 		}

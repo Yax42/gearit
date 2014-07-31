@@ -145,5 +145,11 @@ namespace gearit.src.GUI
 
 			listbox.Scrollbar.SetValue(1);
 		}
+
+		static public void mergeEntry(string text)
+		{
+			listbox.Items.Last().Text += text;
+			listbox.Scrollbar.SetValue(1);
+		}
 	}
 }
