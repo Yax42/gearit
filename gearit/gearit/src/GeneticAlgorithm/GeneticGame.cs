@@ -10,9 +10,10 @@ using gearit.src.robot;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using System.Diagnostics;
-using GeneticAlgorithm.src.Genome;
+using gearit.xna;
+using gearit.src.output;
 
-namespace GeneticAlgorithm.src
+namespace gearit.src.GeneticAlgorithm
 {
 	class GeneticGame: IGearitGame
 	{
@@ -24,7 +25,7 @@ namespace GeneticAlgorithm.src
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-		private Robot Robot;
+		public Robot Robot;
 
 		// Action
 		private int _FrameCount = 0;
@@ -47,14 +48,14 @@ namespace GeneticAlgorithm.src
 			Debug.Assert(Map != null);
 		}
 
-		public void SetRobot(RawDna rawDna)
+		public void SetRobot(Robot robot)
 		{
 			if (_Robots.Count != 0)
 			{
 				_Robots[0].ExtractFromWorld();
 				_Robots.Clear();
 			}
-			Robot = rawDna.GeneratePhenotype();
+			Robot = robot;
 			_Robots.Add(Robot);
 		}
 
@@ -78,6 +79,37 @@ namespace GeneticAlgorithm.src
 			_GameMaster.stop();
 			return Robot.Score;
 		}
+
+		public void ManualInit(string scriptPath, string robotScript)
+		{
+			_exiting = false;
+			_FrameCount = 0;
+			_Time = 0;
+			_GameMaster = new GameLuaScript(this, scriptPath);
+			Robot.InitScript(robotScript);
+		}
+
+		public bool ManualUpdate()
+		{
+			if (!_exiting)
+			{
+				_Time += 1f / 30f;
+				LifeManager.World.Step(1f / 30f);
+
+				Robot.Update(Map);
+				_GameMaster.run();
+				_FrameCount++;
+				return true;
+			}
+			else
+			{
+				Robot.StopScript();
+				_GameMaster.stop();
+				OutputManager.LogMerge(" ?= " + Robot.Score.FloatScore + "|" + Robot.Score.IntScore);
+				return false;
+			}
+		}
+
 
 		public void Finish()
 		{

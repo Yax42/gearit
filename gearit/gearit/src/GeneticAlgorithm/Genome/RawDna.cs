@@ -6,7 +6,7 @@ using gearit.src.robot;
 using FarseerPhysics.Dynamics;
 using gearit.src.game;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class RawDna
 	{

@@ -5,8 +5,9 @@ using System.Text;
 using gearit;
 using gearit.src.robot;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class LowLevelGenome
 	{
@@ -46,6 +47,14 @@ namespace GeneticAlgorithm.src.Genome
 			{
 				return m_RawDna.Data[NextByteIndex];
 			}
+		}
+
+		internal Byte NextByteMax(int max)
+		{
+			Debug.Assert(max > 0 && max <= 255);
+			int idx = NextByteIndex;
+			m_RawDna.Data[idx] = (Byte) (((int) m_RawDna.Data[idx]) % max);
+			return m_RawDna.Data[idx];
 		}
 
 		internal bool NextBool(float trueChance)

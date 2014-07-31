@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.robot;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class SoftwareGenome : LowLevelGenome
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using gearit.src.robot;
 using Microsoft.Xna.Framework;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class HardwareGenome : LowLevelGenome
 	{
@@ -22,13 +22,7 @@ namespace GeneticAlgorithm.src.Genome
 
 		private void run()
 		{
-			int piecesNumber = NextByte;
-			if (piecesNumber > RawDna.MaxPieces)
-				piecesNumber = RawDna.MaxPieces;
-
-			CreateHeart();
-			for (int i = 0; i < piecesNumber; i++)
-				CreatePiece();
+			CreatePiece();
 		}
 
 		private void CreateHeart()
@@ -38,9 +32,7 @@ namespace GeneticAlgorithm.src.Genome
 
 		private void CreatePiece() // so far, costs 45 DNA atoms
 		{
-			int PieceLinkedTo = NextByte % RawDna.MaxPieces;
-			if (PieceLinkedTo >= m_RawDna.Robot.Pieces.Count)
-				return;
+			int PieceLinkedTo = NextByteMax(m_RawDna.Robot.Pieces.Count);
 			Piece p1 = m_RawDna.Robot.Pieces[PieceLinkedTo];
 			Piece p2;
 			bool isWheel = NextBool(0.4f);
@@ -57,7 +49,7 @@ namespace GeneticAlgorithm.src.Genome
 			Vector2 anchor1 = NextVector2;
 			Vector2 anchor2 = NextVector2;
 			float weight = NextAbsRange1 * 15 + 1;
-			float maxForce = NextAbsRange1 * 300; // probablement a trouver empiriquement la bonne valeur a mettre
+			float maxForce = NextAbsRange1 * 50; // probablement a trouver empiriquement la bonne valeur a mettre
 			float angle = NextFloat;
 
 

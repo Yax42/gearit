@@ -64,6 +64,8 @@ namespace gearit.src.robot
 		private int _LastTrigger;
 		public Score Score = new Score();
 		public int State = 0;
+		private bool _extracted = false;
+		public bool Extracted { get { return _extracted; }}
 
 		private RobotStateApi _Api;
 		public RobotStateApi Api
@@ -381,6 +383,10 @@ namespace gearit.src.robot
 
 		public void ExtractFromWorld()
 		{
+			Debug.Assert(!Extracted);
+			if (Extracted)
+				return;
+			_extracted = true;
 			if (_script != null)
 				_script.stop();
 			_script = null;
@@ -388,12 +394,10 @@ namespace gearit.src.robot
 			{
 				_world.RemoveJoint(i.Joint);
 			}
-			_spots.Clear();
 			foreach (Piece i in _pieces)
 			{
 				i.Destroy();
 			}
-			Pieces.Clear();
 		}
 
 		//-------------------------------------
@@ -408,9 +412,10 @@ namespace gearit.src.robot
 
 		public void move(Vector2 pos)
 		{
-			for (int i = 1; i < _pieces.Count; i++)
-				_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
-			Heart.Position = pos;
+			//for (int i = 1; i < _pieces.Count; i++)
+			//	_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
+			resetAct();
+			Heart.move(pos);
 		}
 
 		public Vector2 Position
