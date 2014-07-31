@@ -49,7 +49,7 @@ namespace gearit.src.GeneticAlgorithm.Genome
 			Vector2 anchor1 = NextVector2;
 			Vector2 anchor2 = NextVector2;
 			float weight = NextAbsRange1 * 15 + 1;
-			float maxForce = NextAbsRange1 * 300; // probablement a trouver empiriquement la bonne valeur a mettre
+			float maxForce = NextAbsRange1 * 50; // probablement a trouver empiriquement la bonne valeur a mettre
 			float angle = NextFloat;
 
 

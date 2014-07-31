@@ -10,6 +10,8 @@ using gearit.src.robot;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using System.Diagnostics;
+using gearit.xna;
+using gearit.src.output;
 
 namespace gearit.src.GeneticAlgorithm
 {
@@ -23,7 +25,7 @@ namespace gearit.src.GeneticAlgorithm
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-		private Robot Robot;
+		public Robot Robot;
 
 		// Action
 		private int _FrameCount = 0;
@@ -77,6 +79,37 @@ namespace gearit.src.GeneticAlgorithm
 			_GameMaster.stop();
 			return Robot.Score;
 		}
+
+		public void ManualInit(string scriptPath, string robotScript)
+		{
+			_exiting = false;
+			_FrameCount = 0;
+			_Time = 0;
+			_GameMaster = new GameLuaScript(this, scriptPath);
+			Robot.InitScript(robotScript);
+		}
+
+		public bool ManualUpdate()
+		{
+			if (!_exiting)
+			{
+				_Time += 1f / 30f;
+				LifeManager.World.Step(1f / 30f);
+
+				Robot.Update(Map);
+				_GameMaster.run();
+				_FrameCount++;
+				return true;
+			}
+			else
+			{
+				Robot.StopScript();
+				_GameMaster.stop();
+				OutputManager.LogMessage("Score: " + Robot.Score.FloatScore + "|" + Robot.Score.IntScore);
+				return false;
+			}
+		}
+
 
 		public void Finish()
 		{
