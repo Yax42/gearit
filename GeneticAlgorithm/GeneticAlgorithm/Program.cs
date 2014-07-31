@@ -1,5 +1,4 @@
 using System;
-using GeneticAlgorithm.src;
 using gearit.src.editor;
 
 namespace GeneticAlgorithm
@@ -12,8 +11,8 @@ namespace GeneticAlgorithm
 		static void Main(string[] args)
 		{
 			Serializer.init();
-			var game = new LifeManager();
-			game.Run();
+			//var game = new LifeManager();
+			//game.Run();
 		}
 	}
 }
