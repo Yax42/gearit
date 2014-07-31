@@ -74,7 +74,7 @@ namespace gearit.src.GUI
 			_chat_box.Update();
 
 			if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.Enter))
-				toggleInputMode();
+				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
 		}
 
 		private static void toggleInputMode()

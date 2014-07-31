@@ -388,12 +388,10 @@ namespace gearit.src.robot
 			{
 				_world.RemoveJoint(i.Joint);
 			}
-			_spots.Clear();
 			foreach (Piece i in _pieces)
 			{
 				i.Destroy();
 			}
-			Pieces.Clear();
 		}
 
 		//-------------------------------------

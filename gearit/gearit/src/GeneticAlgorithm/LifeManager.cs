@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GeneticAlgorithm.src.Genome;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
@@ -12,8 +10,11 @@ using System.Diagnostics;
 using System.IO;
 using gearit.src;
 using gearit.xna;
+using gearit.src.robot;
+using gearit.src.GeneticAlgorithm.Genome;
+using gearit.src.output;
 
-namespace GeneticAlgorithm.src
+namespace gearit.src.GeneticAlgorithm
 {
 	#region Comparer
 	class ScoreComparer : IComparer<RawDna>
@@ -47,43 +48,60 @@ namespace GeneticAlgorithm.src
 	}
 	#endregion
 
-	class LifeManager
+	public class LifeManager : GameScreen
 	{
 		static public World World;
 
+		private bool IsVisual = true;
 		private int PopulationSize;
 		private int NumberOfTests;
 		private string DirectoryPath;
 		private bool Reset;
 		private GeneticGame Game;
 		private int Generation;
+		private Robot CurrentBest = null;
+		private Robot TestedRobot = null;
+		int CurrentTested = 0;
 
 		private RawDna[] Population;
 
 		//Graphics
-		private ScreenManager _screenManager;
 
-
+		public Camera2D Camera;
+		public DrawGame DrawGame;
 
 		public LifeManager()
 		{
+			TransitionOnTime = TimeSpan.FromSeconds(0.75);
+			TransitionOffTime = TimeSpan.FromSeconds(0.75);
+			HasCursor = true;
+		}
+
+		public override void LoadContent()
+		{
+			base.LoadContent();
 			World = new World(new Vector2(0, 9.8f));
 			SerializerHelper.World = World;
 
 			#region config.xml
 			var configXml = new XmlDocument();
-			configXml.Load("data/config.xml");
+			configXml.Load("data/genetic/config.xml");
 			XmlNodeList node = configXml.SelectNodes("//Config");
 			Debug.Assert(node.Count == 1);
 			{
 				PopulationSize = int.Parse(node[0].Attributes["PopulationSize"].Value);
 				Reset = bool.Parse(node[0].Attributes["Reset"].Value);
 				NumberOfTests = int.Parse(node[0].Attributes["NumberOfTests"].Value);
-				DirectoryPath = "data/" + node[0].Attributes["DirectoryPath"].Value + "/";
+				DirectoryPath = "data/genetic/" + node[0].Attributes["DirectoryPath"].Value + "/";
 			}
 			// must add pourcentage of mutations!
 			// pourcentage de la population tuee
 			#endregion
+
+
+			ScreenManager.Game.ResetElapsedTime();
+			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			Camera = new Camera2D(ScreenManager.GraphicsDevice);
 
 			RawDna.CycleNumber = NumberOfTests;
 			Generation = 0;
@@ -92,42 +110,60 @@ namespace GeneticAlgorithm.src
 			Population = new RawDna[PopulationSize];
 			for (int i = 0; i < PopulationSize; i++)
 				Population[i] = new RawDna();
+
+			tmpRobot = new Robot(World);
+			Camera.TrackingBody = tmpRobot.Heart;
+			tmpRobot.move(Vector2.Zero);
 		}
+
+		public string GetTitle()
+		{
+			return "GeneticAlgorithm";
+		}
+
+		public string GetDetails()
+		{
+			return ("");
+		}
+
+		Robot tmpRobot;
 
 		public void SaveBest()
 		{
 			string path = DirectoryPath + "/trash/" + Generation;
 
-			bool ok = Serializer.SerializeItem(path + ".gir", Population[0].GeneratePhenotype());
+			CurrentBest = Population[0].GeneratePhenotype();
+			bool ok = Serializer.SerializeItem(path + ".gir", CurrentBest);
 			Debug.Assert(ok);
 			File.WriteAllBytes(path + ".dna.", Population[0].Data);
 			File.WriteAllText(path + ".lua", Population[0].Script);
 		}
 
-		public void Run()
+		public override void Update(GameTime gameTime)
 		{
-			while (true)
-				Iteration();
-		}
-
-		private void Iteration()
-		{
-			Console.WriteLine("Generation: " + Generation);
+			Camera.Update(gameTime);
 			#region RunningGames
-			for (int i = 0; i < PopulationSize; i++)
+			Population[CurrentTested].Rank = PopulationSize;
+			TestedRobot = Population[CurrentTested].GeneratePhenotype();
+			Game.SetRobot(TestedRobot);
+			for (int j = 0; j < NumberOfTests; j++)
 			{
-				Population[i].Rank = PopulationSize;
-				Game.SetRobot(Population[i]);
-				for (int j = 0; j < NumberOfTests; j++)
-				{
-					Population[i].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[i].Script);
-				}
-				if (i % 10 == 0)
-					Console.Write(i + " ");
+				Population[CurrentTested].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[CurrentTested].Script);
 			}
-			Console.Write("\n");
+			if (IsVisual)
+			{
+				OutputManager.LogMessage("Generation[" + Generation + "]."
+										+ "Robot[" + CurrentTested + "] = "
+										+ Population[CurrentTested].Scores[0].FloatScore);
+			}
+			CurrentTested++;
+			if (CurrentTested < PopulationSize)
+				return;
+			else
+				CurrentTested = 0;
 			#endregion
 
+			OutputManager.LogMessage("Generation: " + Generation);
 			#region RankingPopulation
 			#endregion
 
@@ -159,6 +195,27 @@ namespace GeneticAlgorithm.src
 			#endregion
 			SaveBest();
 			Generation++;
+			base.Update(gameTime);
+		}
+
+		public override void Draw(GameTime gameTime)
+		{
+			if (!IsVisual)
+				return;
+			ScreenManager.GraphicsDevice.Clear(Color.AntiqueWhite);
+
+			DrawGame.Begin(Camera);
+			if (TestedRobot != null)
+			{
+				TestedRobot.move(Vector2.Zero);
+				//TestedRobot.Heart.Rotation = (Vector2.Zero);
+				Camera.TrackingBody = TestedRobot.Heart;
+				TestedRobot.drawDebug(DrawGame);
+			}
+			DrawGame.End();
+			// TODO: Add your drawing code here
+
+			base.Draw(gameTime);
 		}
 	}
 }

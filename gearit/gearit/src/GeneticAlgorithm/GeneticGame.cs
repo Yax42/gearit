@@ -10,9 +10,8 @@ using gearit.src.robot;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using System.Diagnostics;
-using GeneticAlgorithm.src.Genome;
 
-namespace GeneticAlgorithm.src
+namespace gearit.src.GeneticAlgorithm
 {
 	class GeneticGame: IGearitGame
 	{
@@ -47,14 +46,14 @@ namespace GeneticAlgorithm.src
 			Debug.Assert(Map != null);
 		}
 
-		public void SetRobot(RawDna rawDna)
+		public void SetRobot(Robot robot)
 		{
 			if (_Robots.Count != 0)
 			{
 				_Robots[0].ExtractFromWorld();
 				_Robots.Clear();
 			}
-			Robot = rawDna.GeneratePhenotype();
+			Robot = robot;
 			_Robots.Add(Robot);
 		}
 

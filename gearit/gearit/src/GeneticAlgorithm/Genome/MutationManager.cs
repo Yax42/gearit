@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class MutationManager
 	{
@@ -102,7 +102,7 @@ namespace GeneticAlgorithm.src.Genome
 			}
 			if (Random.Next(0, 10000) * 0.01f < PourcentageMutation)
 			{
-				int rand = Random.Next(-2, 2);
+				int rand = Random.Next(-2, 3);
 				Byte min = Math.Min(father, mother);
 				Byte max = Math.Max(father, mother);
 				if (rand < 0)

@@ -128,6 +128,15 @@
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
     <Compile Include="src\game\IGearitGame.cs" />
+    <Compile Include="src\GeneticAlgorithm\GameDrawing.cs" />
+    <Compile Include="src\GeneticAlgorithm\GeneticGame.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\HardwareGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\LowLevelGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\MutationManager.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\RawDna.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\SoftwareGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Individual.cs" />
+    <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />

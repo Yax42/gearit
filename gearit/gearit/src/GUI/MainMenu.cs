@@ -11,6 +11,7 @@ using SquidXNA;
 using gearit.src;
 using gearit.src.GUI;
 using gearit.src.gui;
+using gearit.src.GeneticAlgorithm;
 
 namespace GUI
 {
@@ -35,6 +36,7 @@ namespace GUI
 		private MapEditor _map_editor;
 		private MainOptions _Options;
 		private GearitGame _game;
+		private LifeManager _geneticAlorithm;
 		private MasterClient _masterClient;
         private MenuPlay _play;
         private MenuQuit _quit;
@@ -70,6 +72,7 @@ namespace GUI
 			_gladiator = new GladiatoRobot();
 			_robot_editor = new RobotEditor();
 			_map_editor = new MapEditor();
+			_geneticAlorithm = new LifeManager();
 			_game = new GearitGame();
 			_Options = new MainOptions("Options", _ScreenManager);
 			_masterClient = new MasterClient();
@@ -84,6 +87,8 @@ namespace GUI
             addMenuItem(_quit, _quit.GetTitle());
 
 			//SEPARATOR
+			addMenuItem(_Options, "");
+            addMenuItem(_geneticAlorithm, _geneticAlorithm.GetTitle());
 			addMenuItem(_Options, "");
 			//
 
