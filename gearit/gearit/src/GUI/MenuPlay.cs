@@ -17,21 +17,112 @@ using gearit.src.editor.map;
 using FarseerPhysics.DebugViews;
 using Squid;
 using GUI;
+using System.Net.Sockets;
+using gearit.src.GUI;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace gearit.src.gui
 {
 
-	class MenuPlay : GameScreen, IDemoScreen
+    class MenuPlay : GameScreen, IDemoScreen
 	{
+        Task taskMasterServer = null;
         Desktop _desktop;
+        bool refreshing = false;
+        Button btn_refresh = new Button();
 
         const int TAB_WIDTH = 156;
-
+        ListView olv = new ListView();
+        List<MyData> models = new List<MyData>();
         public class MyData
         {
             public string Name;
             public string Players;
             public int Ping;
+        }
+
+        public void th_getServers()
+        {
+            try
+            {
+                TcpClient client = new TcpClient();
+                client.Connect("127.0.0.1", 7979);
+
+                // Authentification
+                const int packet_size = 65;
+                byte[] req = new byte[packet_size];
+
+                req[0] = 4;
+                string login = "test";
+                string password = "test";
+                int i;
+                for (i = 0; i < login.Length; ++i)
+                    req[i + 1] = Convert.ToByte(login[i]);
+                req[i + 1] = 0;
+                for (i = 0; i < password.Length; ++i)
+                    req[i + 33] = Convert.ToByte(password[i]);
+                req[i + 33] = 0;
+
+                client.GetStream().Write(req, 0, packet_size);
+
+                // Get response
+                byte[] data = new byte[1024];
+                client.GetStream().Read(data, 0, 1);
+                if (data[0] != 5)
+                {
+                    ChatBox.addEntry("Wrong identification to master server", ChatBox.Entry.Info);
+                    return;
+                }
+                //
+
+                // Add dummy servers - TO REMOVE
+                req[0] = 10;
+                Int32[] ports = new Int32[1];
+                ports[0] = 9555;
+                req[1] = 1;
+                req[2] = 0;
+                Buffer.BlockCopy(ports, 0, req, 3, 4);
+                req[7] = 6;
+                client.GetStream().Write(req, 0, 8);
+
+                // Get the servers
+                req[0] = 1;
+                client.GetStream().Write(req, 0, 1);
+                Int16[] versions = new Int16[1];
+                byte max_player;
+                string ip;
+                models.Clear();
+                //while (client.GetStream().CanRead)
+                {
+
+                    if (!refreshing)
+                        return;
+                    int receivedDataLength = client.GetStream().Read(data, 0, 1024);
+                    ip = data[3] + "." + data[4] + "." + data[5] + "." + data[6];
+                    Buffer.BlockCopy(data, 7, ports, 0, 4);
+                    Buffer.BlockCopy(data, 1, versions, 0, 2);
+                    max_player = data[12];
+
+                    // Adding entry
+                    MyData entry = new MyData();
+                    entry.Name = ip + ":" + ports[0];
+                    entry.Players = "?/" + max_player;
+                    entry.Ping = 0;
+                    models.Add(entry);
+                    olv.SetObjects(models);
+                }
+
+                // Shutdown
+                client.GetStream().Dispose();
+                refreshing = false;
+                btn_refresh.Text = "Refresh";
+            }
+            catch (SocketException e)
+            {
+                ChatBox.addEntry("Could not connect to master server", ChatBox.Entry.Error);
+            }
         }
 
 		public override void LoadContent()
@@ -56,18 +147,6 @@ namespace gearit.src.gui
             tabInternet.Button.Size = new Squid.Point(TAB_WIDTH, 120);
             tabcontrol.TabPages.Add(tabInternet);
 
-            Random rnd = new Random();
-            List<MyData> models = new List<MyData>();
-            for (int i = 0; i < 8; i++)
-            {
-                MyData data = new MyData();
-                data.Name = "Test server #" + i;
-                data.Players = rnd.Next() % 10 + "/" + rnd.Next() % 20;
-                data.Ping = rnd.Next() % 1000;
-                models.Add(data);
-            }
-
-            ListView olv = new ListView();
             olv.Dock = DockStyle.Fill;
             olv.Columns.Add(new ListView.Column { Text = "Name", Aspect = "Name", Width = 120, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "Players", Aspect = "Players", Width = 120, MinWidth = 48 });
@@ -101,10 +180,6 @@ namespace gearit.src.gui
                 return header;
             };
 
-            olv.SetObjects(models);
-
-
-
             TabPage tabPage = new TabPage();
             tabPage.Button.Size = new Squid.Point(TAB_WIDTH, 120);
             tabPage.Button.Text = "Local";
@@ -112,9 +187,33 @@ namespace gearit.src.gui
 
             tabcontrol.SelectedTab = tabInternet;
 
+            btn_refresh.Parent = _desktop;
+            btn_refresh.Size = new Squid.Point(100, 26);
+            btn_refresh.Position = new Squid.Point(TAB_WIDTH * 2 + 24, 4);
+            btn_refresh.Text = "Refresh";
+            btn_refresh.Style = "addEventButton";
+            btn_refresh.MouseClick += new MouseEvent(btn_MouseClick);
 
             VisibleMenu = true;
 		}
+
+        void btn_MouseClick(Control sender, MouseEventArgs args)
+        {
+            if (refreshing)
+            {
+                refreshing = false;
+                taskMasterServer.Wait();
+                btn_refresh.Text = "Refresh";
+                return;
+            }
+            refreshing = !refreshing;
+            btn_refresh.Text = refreshing ? "Cancel" : "Refresh";
+            taskMasterServer = new Task(() =>
+            {
+                th_getServers();
+            });
+            taskMasterServer.Start();
+        }
 
 		public override void Update(GameTime gameTime)
 		{

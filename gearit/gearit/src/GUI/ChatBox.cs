@@ -29,7 +29,7 @@ namespace gearit.src.GUI
 			Error
 		};
 
-		static public int Width = 750;
+		static public int Width = 550;
 		static public int Height = 160;
 		static public int SIZE_ITEM = 22;
 
