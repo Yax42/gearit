@@ -88,7 +88,7 @@ namespace gearit.src.editor.robot
 						// Get all actions
 						while ((line = reader.ReadLine()) != null && !line.StartsWith("end"))
 						{
-							match = System.Text.RegularExpressions.Regex.Match(line, "(.*?)\\..*?= (.*)");
+							match = System.Text.RegularExpressions.Regex.Match(line, "\t(.*?)\\..*?= (.*)");
 							// Found action
 							if (match.Success)
 							{
