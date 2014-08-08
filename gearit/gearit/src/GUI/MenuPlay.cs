@@ -28,6 +28,9 @@ namespace gearit.src.gui
 
     class MenuPlay : GameScreen, IDemoScreen
 	{
+        // Be safe boys !
+        private static Mutex mut = new Mutex();
+
         TextBox tb_login;
         TextBox tb_password;
         Panel list_server;
@@ -148,6 +151,7 @@ namespace gearit.src.gui
                     Buffer.BlockCopy(data, 34, versions, 0, 2);
                     max_player = data[44];
 
+                    mut.WaitOne();
                     // Adding entry
                     MyData entry = new MyData();
                     entry.Name = name + " - " + ip + ":" + ports[0];
@@ -155,9 +159,7 @@ namespace gearit.src.gui
                     entry.Ping = 0;
                     models.Add(entry);
                     olv.SetObjects(models);
-
-                    // Shutdown
-                    //client.GetStream().Dispose();
+                    mut.ReleaseMutex();
                 }
 
             }
@@ -349,8 +351,10 @@ namespace gearit.src.gui
 
 		public override void Update(GameTime gameTime)
 		{
+            mut.WaitOne();
 			base.Update(gameTime);
             _desktop.Update();
+            mut.ReleaseMutex();
 		}
 
 		private void HandleInput()

@@ -248,7 +248,7 @@ namespace gearit.xna
 			screen.IsExiting = false;
 
 			// If we have a graphics device, tell the screen to load content.
-			if (_isInitialized)
+			if (_isInitialized && !screen.is_initialized)
 				screen.LoadContent();
 
 			_screens.Add(screen);
