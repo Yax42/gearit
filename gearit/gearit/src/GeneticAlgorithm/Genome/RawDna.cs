@@ -81,7 +81,7 @@ namespace gearit.src.GeneticAlgorithm.Genome
 		{
 			Robot = new Robot(LifeManager.World);
 			Script = "";
-			int numberOfPieces = Data[0];
+			int numberOfPieces = Data[0] % RawDna.MaxPieces;
 			for (int i = 0; i < numberOfPieces; i++)
 				GenerateHardwarePheonotype(i);
 			var res = Robot;

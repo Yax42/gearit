@@ -118,7 +118,6 @@ namespace gearit.src.editor.robot
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
-			Robot.resetAct();
 			_camera.update();
 			HandleInput();
 			MenuRobotEditor.Instance.Update(Select1, Select1.getConnection(Select2));

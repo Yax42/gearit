@@ -204,7 +204,7 @@ namespace gearit.src.robot
 
 		#region Editor
 
-		public void resetAct()
+		public void ResetAct()
 		{
 			foreach (Piece p in _pieces)
 				p.resetAct();
@@ -414,8 +414,7 @@ namespace gearit.src.robot
 		{
 			//for (int i = 1; i < _pieces.Count; i++)
 			//	_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
-			resetAct();
-			Heart.move(pos);
+			Heart.move(pos, this);
 		}
 
 		public Vector2 Position

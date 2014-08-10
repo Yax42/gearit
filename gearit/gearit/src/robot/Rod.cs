@@ -103,14 +103,11 @@ namespace gearit.src.robot
 
 		private void updateEnds(Piece comparator = null)
 		{
-			rotate(endsAngle(), comparator);
-			_robot.resetAct();
+			rotate(endsAngle(), comparator, _robot);
 
-			resize(endsSize());
-			_robot.resetAct();
+			resize(endsSize(), _robot);
 
-			move(endsPosition());
-			_robot.resetAct();
+			move(endsPosition(), _robot);
 		}
 
 		public void setEnd(Vector2 end, bool isA, Piece comparator = null)

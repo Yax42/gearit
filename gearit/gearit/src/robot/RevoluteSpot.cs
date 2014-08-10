@@ -46,7 +46,7 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			ColorValue = Color.Black;
 			robot.addSpot(this);
-			SynchroniseAnchors(p1);
+			SynchroniseAnchors(p1, robot);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
 			if (p1.GetType() == typeof(Rod))
@@ -223,8 +223,10 @@ namespace gearit.src.robot
 			swap(p1, p2, Vector2.Zero);
 		}
 
-		public void moveAnchor(Piece p, Vector2 anchor)
+		public void moveAnchor(Piece p, Vector2 anchor, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (BodyA == p)
 				LocalAnchorA = BodyA.GetLocalPoint(anchor);
 			if (BodyB == p)
@@ -247,16 +249,20 @@ namespace gearit.src.robot
 			get { return ActualWorldAnchorA - ActualWorldAnchorB; }
 		}
 
-		public void SynchroniseAnchors(Piece piece)
+		public void SynchroniseAnchors(Piece piece, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (piece == BodyA)
 				((Piece)BodyB).move(WorldAnchorA - ActualWorldAnchorB);
 			else
 				((Piece)BodyA).move(WorldAnchorB - ActualWorldAnchorA);
 		}
 
-		public void rotate(Piece piece, float angle)
+		public void rotate(Piece piece, float angle, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (piece == BodyA)
 				((Piece)BodyB).rotateDelta(angle);
 			else

@@ -82,7 +82,7 @@ namespace gearit.src.GeneticAlgorithm.Genome
 			maxForce *= (p1.Weight < p2.Weight ? p1.Weight : p2.Weight) * 0.7f;
 			RevoluteSpot spot = new RevoluteSpot(m_RawDna.Robot, p1, p2, anchor1, anchor2);
 			spot.MaxForce = maxForce;
-			spot.rotate(p1, angle);
+			spot.rotate(p1, angle, m_RawDna.Robot);
 			spot.MaxAngle = maxAngle;
 			spot.MinAngle = minAngle;
 			spot.SpotLimitEnabled = limitEnabled;

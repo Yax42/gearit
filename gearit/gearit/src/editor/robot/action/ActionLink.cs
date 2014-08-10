@@ -12,6 +12,7 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionLink : IAction
 	{
+#if false
 		private bool IsOk;
 		private Piece P1;
 		private Piece P2;
@@ -39,10 +40,6 @@ namespace gearit.src.editor.robot.action
 			}
 		}
 
-		public bool shortcut()
-		{
-			return (Input.ctrlAltShift(false, false, true) && Input.justPressed(Keys.W));
-		}
 
 		public bool run()
 		{
@@ -75,6 +72,86 @@ namespace gearit.src.editor.robot.action
 				if (!IsPrismatic)
 					P2.move(From);
 			}
+		}
+#endif
+		private Piece P1;
+		private bool HasBeenRevert;
+		private SleepingPack Pack;
+		private bool IsPrismatic;
+		private int FrameCount;
+		private bool IsOk;
+
+		public void init()
+		{
+			FrameCount = 0;
+			Piece select1 = RobotEditor.Instance.Select1;
+			Piece select2 = RobotEditor.Instance.Select2;
+			Pack = new SleepingPack();
+			HasBeenRevert = false;
+			Vector2 anchor2 = Vector2.Zero;
+
+			if (select2.isConnected(select1) || select1 == select2)
+			{
+				IsOk = false;
+				return;
+			}
+			else
+			{
+				IsOk = true;
+			}
+
+			if (ActionChooseSet.IsWheel)
+				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f);//, Input.SimMousePos);
+			else
+			{
+				P1 = new Rod(RobotEditor.Instance.Robot, 2);//, Input.SimMousePos);
+				anchor2 = new Vector2(-2, 0);
+			}
+			IsPrismatic = ActionChooseSet.IsPrismatic;
+
+			Vector2 anchor1;
+			if (select1.Contain(Input.SimMousePos))
+				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
+			else
+				anchor1 = select1.ShapeLocalOrigin();
+
+			if (IsPrismatic)
+			{
+				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+				new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+			}
+			else
+			{
+				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+				new RevoluteSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+			}
+			RobotEditor.Instance.Select1 = P1;
+		}
+
+		public bool run()
+		{
+			if (!IsOk)
+				return false;
+			if (HasBeenRevert)
+			{
+				RobotEditor.Instance.Robot.wakeUp(Pack);
+			}
+			else if (!ActionChooseSet.IsWheel)
+			{
+				((Rod)P1).GenerateEnds();
+			}
+			return false;
+		}
+
+		public void revert()
+		{
+			HasBeenRevert = true;
+			RobotEditor.Instance.fallAsleep(P1, Pack);
+		}
+
+		public bool shortcut()
+		{
+			return (Input.ctrlAltShift(false, false, true) && Input.justPressed(Keys.W));
 		}
 
 		public bool canBeReverted() { return IsOk; }

@@ -222,8 +222,10 @@ namespace gearit.src.robot
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
 
-		public void rotate(float angle, Piece comparator)
+		public void rotate(float angle, Piece comparator, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			rotateDelta(angle - Rotation, comparator);
 		}
 
@@ -262,8 +264,10 @@ namespace gearit.src.robot
 			move(pos + Position);
 		}
 
-		virtual public void move(Vector2 pos)
+		virtual public void move(Vector2 pos, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (DidAct)
 				return;
 			DidAct = true;
@@ -278,8 +282,10 @@ namespace gearit.src.robot
 			updateCharacteristics();
 		}
 
-		virtual public void resize(float size)
+		virtual public void resize(float size, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (_size == 0)
 				_size = size;
 			else
