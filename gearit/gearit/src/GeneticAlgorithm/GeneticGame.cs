@@ -87,6 +87,7 @@ namespace gearit.src.GeneticAlgorithm
 			_Time = 0;
 			_GameMaster = new GameLuaScript(this, scriptPath);
 			Robot.InitScript(robotScript);
+			LifeManager.World.Step(0);
 		}
 
 		public bool ManualUpdate()

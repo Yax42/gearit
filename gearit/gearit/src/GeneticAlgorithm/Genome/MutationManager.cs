@@ -12,8 +12,8 @@ namespace gearit.src.GeneticAlgorithm.Genome
 		static private int RandomBufferIdx = 100;
 
 		const double PourcentageMutation = 2f / 100.0f;
-		const double PourcentageSegmentSwap = 3f / 100.0f;
-		const double PourcentageSegmentReplace = 1f / 100.0f;
+		const double PourcentageSegmentSwap = 0.4f / 100.0f;
+		const double PourcentageSegmentReplace = 0.2f / 100.0f;
 
 		static public Byte RandomByte()
 		{
@@ -93,25 +93,14 @@ namespace gearit.src.GeneticAlgorithm.Genome
 					double fatherForce)
 		{
 			Byte res;
-			if (Random.Next(0, 100) < fatherForce * 100)
+			if (Random.NextDouble() < fatherForce)
 				res = father;
 			else
-			{
-				double rand = Random.NextDouble();
-				res = (Byte) (rand * father + (1 - rand) * mother);
-			}
-			if (Random.Next(0, 10000) * 0.01f < PourcentageMutation)
-			{
-				int rand = Random.Next(-2, 3);
-				Byte min = Math.Min(father, mother);
-				Byte max = Math.Max(father, mother);
-				if (rand < 0)
-					res = (Byte) (min + rand);
-				else
-					res = (Byte) (max + rand);
-			}
-			if (res < 2)
-				return 2;
+				res = mother;
+			if (Random.NextDouble() < PourcentageMutation)
+				res = (Byte) (((int) res) + Random.Next(-1, 1));
+			if (res < 1)
+				return 1;
 			return res;
 		}
 	}

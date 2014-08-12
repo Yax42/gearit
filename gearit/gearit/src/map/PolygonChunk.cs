@@ -21,7 +21,7 @@ namespace gearit.src.map
 			Vertices rectangleVertices = PolygonTools.CreateRectangle(1f, 1f);
 			PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
 			this.CreateFixture(rectangleShape);
-			Friction = 100;
+			Friction = 50;
 		}
 
 		//
@@ -31,7 +31,7 @@ namespace gearit.src.map
 			: base(SerializerHelper.World)
 		{
 			SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
-			Friction = 100;
+			Friction = 30;
 		}
 
 		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)

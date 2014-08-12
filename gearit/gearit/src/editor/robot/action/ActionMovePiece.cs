@@ -36,14 +36,14 @@ namespace gearit.src.editor.robot.action
 				To = Input.SimMousePos;
 			}
 
-			P1.move(To);
+			P1.move(To, RobotEditor.Instance.Robot);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
 		}
 
 		public void revert()
 		{
 			HasBeenRevert = true;
-			P1.move(From);
+			P1.move(From, RobotEditor.Instance.Robot);
 		}
 
 		public bool canBeReverted() { return true; }

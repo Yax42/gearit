@@ -31,16 +31,22 @@ namespace gearit.src.GeneticAlgorithm
 		{
 			Score X = x.Scores[_Idx];
 			Score Y = y.Scores[_Idx];
+			return Compare(X, Y);
+		}
+
+		static public int Compare(Score X, Score Y)
+		{
 			if (X.IntScore != Y.IntScore)
 			{
 				return Y.IntScore - X.IntScore;
 			}
 			else
 			{
-				return (int) (X.FloatScore - Y.FloatScore);
+				return (int)(X.FloatScore - Y.FloatScore);
 			}
 		}
 	}
+
 	class IndividualComparer : IComparer<RawDna>
 	{
 		public int Compare(RawDna x, RawDna y)
@@ -129,7 +135,6 @@ namespace gearit.src.GeneticAlgorithm
 
 		public void SaveBest(string path)
 		{
-			CurrentBest = Population[0].GeneratePhenotype();
 			bool ok = Serializer.SerializeItem(path + ".gir", CurrentBest);
 			Debug.Assert(ok);
 			File.WriteAllBytes(path + ".dna.", Population[0].Data);
@@ -146,6 +151,7 @@ namespace gearit.src.GeneticAlgorithm
 				Camera.zoomOut();
 		}
 
+		int KCount = 0;
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -160,27 +166,33 @@ namespace gearit.src.GeneticAlgorithm
 				Game.SetRobot(TestedRobot);
 				for (int j = 0; j < NumberOfTests; j++)
 				{
-					Population[CurrentTested].Scores[j] = Game.Run(DirectoryPath + "test_" + j + ".lua", Population[CurrentTested].Script);
+					if (KCount == 0)
+						Population[CurrentTested].Scores[j] = new Score();
+					Score cur =  Game.Run(DirectoryPath + "test_" + j + ".lua", Population[CurrentTested].Script);
+					Population[CurrentTested].Scores[j].Add(cur);
+
 				}
-				if (false && IsVisual)
-				{
-					OutputManager.LogMessage("Generation[" + Generation + "]."
-											+ "Robot[" + CurrentTested + "] = "
-											+ Population[CurrentTested].Scores[0].FloatScore + "|"
-											+ Population[CurrentTested].Scores[0].IntScore);
-				}
+#if false
+				OutputManager.LogMessage("Generation[" + Generation + "]."
+										+ "Robot[" + CurrentTested + "] = "
+										+ Population[CurrentTested].Scores[0].FloatScore + "|"
+										+ Population[CurrentTested].Scores[0].IntScore);
+#endif
+				KCount++;
+				if (KCount < 3)
+					return;
 				if (CurrentTested == 0)
 					OutputManager.LogMessage(0 + "");
 				else if (CurrentTested % 10 == 0)
 					OutputManager.LogMerge(" " + CurrentTested);
+				Population[CurrentTested].Scores[0].Average();
 				CurrentTested++;
+				KCount = 0;
+
 				if (CurrentTested < PopulationSize)
 					return;
 				else
 					CurrentTested = 0;
-				#endregion
-
-				#region RankingPopulation
 				#endregion
 
 				#region RankingPopulation
@@ -189,6 +201,7 @@ namespace gearit.src.GeneticAlgorithm
 					Array.Sort(Population, new ScoreComparer(j));
 					for (int i = 0; i < PopulationSize; i++)
 					{
+						Population[i].LifeTimeLeft--;
 						if (i < Population[i].Rank)
 							Population[i].Rank = i;
 						Console.Write(Population[i].Scores[0].FloatScore + "  ");
@@ -200,16 +213,26 @@ namespace gearit.src.GeneticAlgorithm
 				#endregion
 
 				#region DeathBirth
-				for (int i = PopulationSize / 2; i < PopulationSize; i++)
+				for (int i = 0; i < PopulationSize; i++)
 				{
-					int fatherId = MutationManager.Random.Next(0, PopulationSize / 4);
+					if (Population[i].LifeTimeLeft > 0 && i < PopulationSize / 2)
+						continue;
+					int fatherId = MutationManager.Random.Next(0, PopulationSize / 2);
 					int motherId = fatherId;
 					while (motherId == fatherId)
 						motherId = MutationManager.Random.Next(0, PopulationSize / 2);
+					if (fatherId > motherId)
+					{
+						int tmp = fatherId;
+						fatherId = motherId;
+						motherId = tmp;
+					}
 					Population[i] = new RawDna(Population[fatherId], Population[motherId]);
 				}
+
 				#endregion
 				string path = DirectoryPath + "/trash/" + Generation;
+				CurrentBest = Population[0].GeneratePhenotype();
 				SaveBest(path);
 				OutputManager.LogMessage("Best[" + Generation + "] = "
 											+ Population[0].Scores[0].FloatScore + "|"
@@ -229,24 +252,41 @@ namespace gearit.src.GeneticAlgorithm
 			{
 				if (!Game.ManualUpdate())
 				{
+#if false
+					Drawing = true;
+					CurrentBest = Population[0].GeneratePhenotype();
+					Game.SetRobot(CurrentBest);
+					Game.ManualInit(DirectoryPath + "test_" + 0 + ".lua", Population[0].Script);
+					Camera.TrackingBody = CurrentBest.Heart;
+					IsGameRunning = true;
+#else
 					IsGameRunning = false;
+#endif
 				}
+				else
+					Drawing = false;
 			}
 		}
+		bool Drawing = true;
 
 		public override void Draw(GameTime gameTime)
 		{
 			if (IsGameRunning)
 			{
-				ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
+				//if (Drawing)
+				{
+					ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
 
-				DrawGame.Begin(Camera);
-				Game.Robot.drawDebug(DrawGame);
-				Game.Map.DrawDebug(DrawGame, true);
-
-				//foreach (Body b in World.BodyList)
-				//	DrawGame.draw(b, Color.Pink);
-				DrawGame.End();
+					DrawGame.Begin(Camera);
+#if true
+					Game.Robot.drawDebug(DrawGame);
+					Game.Map.DrawDebug(DrawGame, true);
+#else
+					foreach (Body b in World.BodyList)
+						DrawGame.draw(b, Color.Pink);
+#endif
+					DrawGame.End();
+				}
 			}
 			else if (IsVisual)
 			{

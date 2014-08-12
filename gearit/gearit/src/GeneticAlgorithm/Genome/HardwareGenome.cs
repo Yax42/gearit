@@ -35,9 +35,9 @@ namespace gearit.src.GeneticAlgorithm.Genome
 			int PieceLinkedTo = NextByteMax(m_RawDna.Robot.Pieces.Count);
 			Piece p1 = m_RawDna.Robot.Pieces[PieceLinkedTo];
 			Piece p2;
-			bool isWheel = NextBool(0.4f);
-			bool isAnchor1Center = NextBool(0.8f);
-			bool isAnchor2Center = NextBool(0.8f);
+			bool isWheel = NextBool(0.3f);
+			bool isAnchor1Center = NextBool(0.3f);
+			bool isAnchor2Center = NextBool(0.3f);
 
 			float maxAngle = (float) (NextFloat % Math.PI);
 			maxAngle = maxAngle * maxAngle;

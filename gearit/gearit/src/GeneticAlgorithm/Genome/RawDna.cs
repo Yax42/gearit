@@ -34,12 +34,13 @@ namespace gearit.src.GeneticAlgorithm.Genome
 		public Robot Robot;
 		public string Script;
 		public int Rank;
+		public int LifeTimeLeft = 5;
 
 		public RawDna()
 		{
 			Data = new Byte[TotalDnaWeight];
 			MutationManager.Random.NextBytes(Data);
-			Data[0] = 2;
+			Data[0] = 1;
 		}
 
 		public RawDna(Byte[] data)
