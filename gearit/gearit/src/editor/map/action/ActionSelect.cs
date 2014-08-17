@@ -10,11 +10,14 @@ namespace gearit.src.editor.map.action
 	{
 		public void init()
 		{
-			MapChunk chunk = MapEditor.Instance.Map.getChunk(Input.SimMousePos);
-			if (chunk != null)
-				MapEditor.Instance.Select = chunk;
+			if (ActionSwapEventMode.EventMode)
+			{
+				MapEditor.Instance.SelectTrigger = MapEditor.Instance.Map.GetTrigger(Input.SimMousePos);
+			}
 			else
-				MapEditor.Instance.Select = null;
+			{
+				MapEditor.Instance.SelectChunk = MapEditor.Instance.Map.GetChunk(Input.SimMousePos);
+			}
 		}
 
 		public bool shortcut()

@@ -6,16 +6,29 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
+using gearit.src.robot;
 
 namespace gearit.src.editor
 {
 	/// <summary>
 	/// Helper class for the serialization of Gear It objects.
 	/// </summary>
-	static class SerializerHelper
+	public static class SerializerHelper
 	{
 		public static World World = null;
-		public static Robot CurrentRobot = null;
+		public static Robot _CurrentRobot = null;
+		public static string CurrentPath;
+		public static Robot CurrentRobot
+		{
+			get
+			{
+				return _CurrentRobot;
+			}
+			set
+			{
+				_CurrentRobot = value;
+			}
+		}
 		public static Dictionary<int, Piece> Ptrmap = null;
 
 		public static void Add(int code, Piece p)

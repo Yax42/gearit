@@ -42,6 +42,8 @@ namespace gearit.src.GUI
 		private Button rb_revolute = new Button();
 		private Button rb_prismatic = new Button();
 		private Label label_name;
+		private Label label_weight;
+		private Label label_force;
 
 		// Piece & Spot
 		private ScreenManager _ScreenManager;
@@ -50,6 +52,7 @@ namespace gearit.src.GUI
 		private Button rb_rod = new Button();
 		private Button rb_wheel = new Button();
 		private Button Help_btn;
+		private Button Exit_btn;
 
 		private Frame spot_container = new Frame();
 		private TextBox spot_name;
@@ -67,8 +70,31 @@ namespace gearit.src.GUI
 		private TextBox helper = new TextBox();
 
 		// Script editor
-		private Panel panel_script = new Panel();
+		private Panel _panelScript = new Panel();
+		public Panel PanelScript
+		{
+			get
+			{
+				return _panelScript;
+			}
+			set
+			{
+				_panelScript = value;
+			}
+		}
+
 		private List<TreeNodeEvent> _nodes = new List<TreeNodeEvent>();
+		public List<TreeNodeEvent> EventNodes
+		{
+			get
+			{
+				return _nodes;
+			}
+			set
+			{
+				_nodes = value;
+			}
+		}
 		private Button btn_add_event = new Button();
 
 		public static MenuRobotEditor Instance { set; get; }
@@ -154,6 +180,24 @@ namespace gearit.src.GUI
 			label_name = new Label();
 			lb = label_name;
 			lb.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
+
+			label_weight = new Label();
+			lb = label_weight;
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
+
+			label_force = new Label();
+			lb = label_force;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
@@ -277,12 +321,27 @@ namespace gearit.src.GUI
 			lb.Style = "itemMenu";
 			lb.Parent = this;
 
+			piece_weight = newEditableTextBox();
 			piece_weight.Text = "45";
 			piece_weight.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			piece_weight.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
 			piece_weight.Style = "textbox";
 			piece_weight.Parent = this;
-			piece_weight.Enabled = false;
+			//piece_weight.Enabled = false;
+
+			piece_weight.Mode = TextBoxMode.Numeric;
+			//piece_weight.TextCommit += delegate(object snd, EventArgs e)
+			piece_weight.TextChanged += delegate(Control snd)
+			{
+				float res;
+				if (!float.TryParse(((TextBox)snd).Text, out res))
+					Piece.Weight = 0;
+				else
+					Piece.Weight = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+			};
+
+
+//			spot_force.Parent = spot_container;
 
 			y += ITEM_HEIGHT;
 
@@ -415,10 +474,11 @@ namespace gearit.src.GUI
 			spot_force.Mode = TextBoxMode.Numeric;
 			spot_force.TextChanged += delegate(Control snd)
 			{
-				if (((TextBox)snd).Text == "")
-					Spot.Force = 0;
+				float res;
+				if (!float.TryParse(((TextBox)snd).Text, out res))
+					Spot.MaxForce = 0;
 				else
-					Spot.Force = float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
+					Spot.MaxForce = res;// float.Parse(((TextBox)snd).Text, CultureInfo.InvariantCulture.NumberFormat);
 			};
 
 			y += ITEM_HEIGHT;
@@ -450,6 +510,7 @@ namespace gearit.src.GUI
 			"----------------------------------------------------------------------------------------\n" +
 			"Select piece A.......................................(left click)\n" +
 			"Select piece B.......................................(shift+left click)\n" +
+			"Swap Selection.....................................(C)\n" +
 			"Select spot S.........................................[automatically\n" +
 			" selected by selecting both of the pieces it's linked to]\n" +
 			"Move piece A........................................(right click)\n" +
@@ -457,6 +518,7 @@ namespace gearit.src.GUI
 			"Delete spot S.........................................(shift+R)\n" +
 			"Move A to S anchor...............................(shift+right click)\n" +
 			"Resize A................................................(S)\n" +
+			"Resize A and rotate B (Rods only).........(shift+S)\n" +
 			"Switch piece type pT.............................(A)\n" +
 			"Switch spot type sT...............................(shift+A)\n" +
 			"Create a pT and link it to A with a sT....(W)\n" +
@@ -473,7 +535,7 @@ namespace gearit.src.GUI
 			"";
 
 
-			helper.Size = new Squid.Point(370, 410);
+			helper.Size = new Squid.Point(370, 430);
 			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
 			helper.Style = "messagebox";
 			helper.Parent = this;
@@ -521,12 +583,25 @@ namespace gearit.src.GUI
 			btn = Help_btn;
 			btn.Text = "Help (F1)";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
+			btn.Size = new Squid.Point(3 * MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 4 + 1, y);
 			btn.Parent = this;
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				swapHelp();
+			};
+
+			Exit_btn = new Button();
+			btn = Exit_btn;
+			btn.Text = "Exit";
+			btn.Tooltip = "Escape";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				RobotEditor.Instance.doAction(ActionTypes.EXIT);
 			};
 
 			y -= btn.Size.y + PADDING;
@@ -579,7 +654,7 @@ namespace gearit.src.GUI
 			btn.Tooltip = "Toggle the script editor";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				panel_script.Visible = !panel_script.Visible;
+				_panelScript.Visible = !_panelScript.Visible;
 			};
 
 			y -= btn.Size.y / 2+ PADDING;
@@ -606,34 +681,34 @@ namespace gearit.src.GUI
 			#region script_editor
 
 			// Panel script editor
-			panel_script.Style = "menu";
-			panel_script.Parent = this;
+			_panelScript.Style = "menu";
+			_panelScript.Parent = this;
 
-			panel_script.VScroll.Margin = new Margin(0, 8, 8, 8);
-			panel_script.VScroll.Size = new Squid.Point(14, 10);
-			panel_script.VScroll.Slider.Style = "vscrollTrack";
-			panel_script.VScroll.Slider.Button.Style = "vscrollButton";
-			panel_script.VScroll.ButtonUp.Style = "vscrollUp";
-			panel_script.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
-			panel_script.VScroll.ButtonDown.Style = "vscrollUp";
-			panel_script.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
-			panel_script.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
+			_panelScript.VScroll.Margin = new Margin(0, 8, 8, 8);
+			_panelScript.VScroll.Size = new Squid.Point(14, 10);
+			_panelScript.VScroll.Slider.Style = "vscrollTrack";
+			_panelScript.VScroll.Slider.Button.Style = "vscrollButton";
+			_panelScript.VScroll.ButtonUp.Style = "vscrollUp";
+			_panelScript.VScroll.ButtonUp.Size = new Squid.Point(10, 20);
+			_panelScript.VScroll.ButtonDown.Style = "vscrollUp";
+			_panelScript.VScroll.ButtonDown.Size = new Squid.Point(10, 20);
+			_panelScript.VScroll.Slider.Margin = new Margin(0, 2, 0, 2);
 
-			panel_script.Visible = false;
+			_panelScript.Visible = false;
 
-			panel_script.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
-			panel_script.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
+			_panelScript.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
+			_panelScript.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
 
 			// Add event
-			btn_add_event.Parent = panel_script;
-			btn_add_event.Size = new Point(panel_script.Size.x, ITEM_HEIGHT);
+			btn_add_event.Parent = _panelScript;
+			btn_add_event.Size = new Point(_panelScript.Size.x, ITEM_HEIGHT);
 			btn_add_event.Position = new Point(0, 0);
 			btn_add_event.Text = "Add a new event";
 			btn_add_event.Style = "addEventButton";
 			btn_add_event.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				// Add new event
-				_nodes.Add(new TreeNodeEvent(panel_script.Size.x, this));
+				_nodes.Add(new TreeNodeEvent(_panelScript.Size.x));
 
 				// Refresh position
 				refreshScriptEditor();
@@ -670,23 +745,6 @@ namespace gearit.src.GUI
 			return box;
 		}
 
-		// Generate Lua depending on the user added to our table
-		public string getLua()
-		{
-			string lua = "";
-
-			foreach (var event_node in _nodes)
-			{
-				lua += event_node.toLua() + Environment.NewLine;
-
-				foreach (var action_node in event_node._nodes)
-					lua += action_node.toLua() + Environment.NewLine;
-
-				lua += "end" + Environment.NewLine;
-			}
-
-			return (lua);
-		}
 
 		public bool isScriptValide()
 		{
@@ -709,79 +767,32 @@ namespace gearit.src.GUI
 			return (true);
 		}
 
-		public void setLua(string lua)
-		{
-			// Clear
-			_nodes.Clear();
-			refreshScriptEditor();
-
-			Match match;
-
-			// Check each line and create table
-			// Show MessageBox if fail
-			using (StringReader reader = new StringReader(lua))
-			{
-				string line;
-				while ((line = reader.ReadLine()) != null)
-				{
-					match = System.Text.RegularExpressions.Regex.Match(line, "if Input:pressed\\(K_(.)");
-					// New bloc
-					if (match.Success)
-					{
-						TreeNodeEvent node_event = new TreeNodeEvent(panel_script.Size.x, this);
-						_nodes.Add(node_event);
-						node_event.setKey(match.Groups[1].ToString());
-
-						// Get all actions
-						while ((line = reader.ReadLine()) != null && !line.StartsWith("end"))
-						{
-							match = System.Text.RegularExpressions.Regex.Match(line, "(.*?)\\..*?= (.*)");
-							// Found action
-							if (match.Success)
-							{
-								Console.WriteLine("[" + match.Groups[2].ToString() + "]");
-								TreeNodeAction node_action = node_event.addAction();
-								node_action.setSpot(match.Groups[1].ToString());
-								node_action.setState(match.Groups[2].ToString());
-							}
-						}
-
-						node_event.Close();
-					}
-				}
-
-				refreshScriptEditor();
-				panel_script.Visible = true;
-			}
-		}
-
 		//----------------SAVE&LOAD-------------------------------------------
 		public bool saveRobot()
 		{
-			_nodes.Clear();
-
-			// Check if Lua is correct
-			if (!isScriptValide())
-				return false;
-
-			//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-
 			if (RobotEditor.Instance.NamePath == "")
 			{
 				setFocus(true);
 				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot");
+				return false;
 			}
 			else
+			{
+				RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
 				return true;
-				//RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
-			return false;
+			}
 		}
 
 		private MessageBoxSave _messageBoxSave = null;
 		public void saveasRobot(bool mustExit = false)
 		{
-			setFocus(true);
-			_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot", mustExit);
+			if (mustExit && RobotEditor.Instance.IsEmpty())
+				ScreenMainMenu.GoBack = true;
+			else
+			{
+				setFocus(true);
+				_messageBoxSave = new MessageBoxSave(this, RobotEditor.Instance.Robot.Name, safeSaveRobot, setFocus, "robot", mustExit);
+			}
 		}
 
 		public void safeSaveRobot(string name, bool mustExit = false)
@@ -826,13 +837,13 @@ namespace gearit.src.GUI
 			int y = ITEM_HEIGHT;
 
 			// Remove all
-			panel_script.Content.Controls.Clear();
+			_panelScript.Content.Controls.Clear();
 			// Readd button add event
-			panel_script.Content.Controls.Add(btn_add_event);
+			_panelScript.Content.Controls.Add(btn_add_event);
 
 			foreach (TreeNodeEvent evt in _nodes)
 			{
-				panel_script.Content.Controls.Add(evt);
+				_panelScript.Content.Controls.Add(evt);
 				evt.Position = new Point(0, y);
 				y += evt.Size.y;
 
@@ -840,7 +851,7 @@ namespace gearit.src.GUI
 				if (evt.isOpen())
 					foreach (TreeNodeAction act in evt._nodes)
 					{
-						panel_script.Content.Controls.Add(act);
+						_panelScript.Content.Controls.Add(act);
 						act.Position = new Point(PADDING_NODE, y);
 						y += act.Size.y;
 					}
@@ -850,8 +861,8 @@ namespace gearit.src.GUI
 			if (y > _ScreenManager.Height / 2)
 				y = _ScreenManager.Height / 2;
 
-			panel_script.Size = new Point(panel_script.Size.x, y);
-			panel_script.Position = new Point(panel_script.Position.x, _ScreenManager.Height - y);
+			_panelScript.Size = new Point(_panelScript.Size.x, y);
+			_panelScript.Position = new Point(_panelScript.Position.x, _ScreenManager.Height - y);
 		}
 
 		void dragPiece(Control sender, MouseEventArgs e)
@@ -887,11 +898,11 @@ namespace gearit.src.GUI
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;
 
-			bool script_has_focus = panel_script.Visible && 
-				panel_script.Position.x + padding <= Input.position().X &&
-				panel_script.Position.x + panel_script.Size.x + padding >= Input.position().X &&
-				panel_script.Position.y <= Input.position().Y &&
-				panel_script.Position.y + panel_script.Size.y >= Input.position().Y;
+			bool script_has_focus = _panelScript.Visible && 
+				_panelScript.Position.x + padding <= Input.position().X &&
+				_panelScript.Position.x + _panelScript.Size.x + padding >= Input.position().X &&
+				_panelScript.Position.y <= Input.position().Y &&
+				_panelScript.Position.y + _panelScript.Size.y >= Input.position().Y;
 
 			return (script_has_focus || menu_has_focus);
 		}
@@ -927,7 +938,13 @@ namespace gearit.src.GUI
 			Piece = piece;
 			Spot = spot;
 
-			piece_weight.Text = piece.Weight.ToString();
+			if (!_has_focus)
+			{
+				piece_weight.Text = piece.Weight.ToString();
+			}
+
+			label_weight.Text = "Weight " + RobotEditor.Instance.Robot.Weight.ToString();
+			label_force.Text = "Force " + RobotEditor.Instance.Robot.MaxForce.ToString();
 			piece_size.Text = piece.getSize().ToString();
 			piece_x.Text = piece.Position.X.ToString();
 			piece_y.Text = piece.Position.Y.ToString();
@@ -945,8 +962,11 @@ namespace gearit.src.GUI
 
 			if (visible)
 			{
-				spot_name.Text = spot.Name;
-				spot_force.Text = spot.Force.ToString();
+				if (!_has_focus)
+				{
+					spot_name.Text = spot.Name;
+					spot_force.Text = spot.MaxForce.ToString();
+				}
 
 				// Check if Prismatic
 				if (spot.GetType() == typeof(PrismaticSpot))

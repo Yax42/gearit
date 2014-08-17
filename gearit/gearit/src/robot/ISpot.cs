@@ -12,9 +12,9 @@ using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
 
-namespace gearit
+namespace gearit.src.robot
 {
-	interface ISpot : ISerializable
+	public interface ISpot : ISerializable
 	{
 		Joint Joint { get; }
 
@@ -22,7 +22,7 @@ namespace gearit
 
 		void swap(Piece p1, Piece p2);
 
-		void moveAnchor(Piece p, Vector2 anchor);
+		void moveAnchor(Piece p, Vector2 anchor, Robot robot = null);
 
 		float MaxForce { get; set; }
 

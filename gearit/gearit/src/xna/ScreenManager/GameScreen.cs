@@ -36,8 +36,9 @@ namespace gearit.xna
 	public abstract class GameScreen
 	{
 		private bool _otherScreenHasFocus;
-        public bool VisibleMenu = false;
-        
+		public bool VisibleMenu = false;
+        public bool is_initialized = false;
+		
 		public GameScreen()
 		{
 			DrawPriority = 0;
@@ -131,6 +132,7 @@ namespace gearit.xna
 		/// </summary>
 		public virtual void LoadContent()
 		{
+            is_initialized = true;
 		}
 
 		/// <summary>

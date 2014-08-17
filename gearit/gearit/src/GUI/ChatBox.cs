@@ -29,7 +29,7 @@ namespace gearit.src.GUI
 			Error
 		};
 
-		static public int Width = 350;
+		static public int Width = 550;
 		static public int Height = 160;
 		static public int SIZE_ITEM = 22;
 
@@ -61,9 +61,6 @@ namespace gearit.src.GUI
 			listbox.Scrollbar.MouseScrollSpeed = 0.15f;
 			
 			OutputManager.LogMessage("Init ChatBox");
-			OutputManager.LogWarning("Warning test");
-			OutputManager.LogError("Error test");
-			OutputManager.LogInfo("Info test");
 
 			_input.Size = new Point(Width, SIZE_ITEM);
 			_input.Position = new Point(0, Height - SIZE_ITEM);
@@ -77,7 +74,7 @@ namespace gearit.src.GUI
 			_chat_box.Update();
 
 			if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.Enter))
-				toggleInputMode();
+				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
 		}
 
 		private static void toggleInputMode()
@@ -146,6 +143,12 @@ namespace gearit.src.GUI
 			item.Style = "label";
 			listbox.Items.Add(item);
 
+			listbox.Scrollbar.SetValue(1);
+		}
+
+		static public void mergeEntry(string text)
+		{
+			listbox.Items.Last().Text += text;
 			listbox.Scrollbar.SetValue(1);
 		}
 	}

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using gearit.src.robot;
 
-namespace gearit.src.editor.api
+namespace gearit.src.script
 {
-	abstract class SpotApi
+	public abstract class SpotApi
 	{
 		internal ISpot _spot;
 
@@ -14,12 +15,12 @@ namespace gearit.src.editor.api
 			_spot = spot;
 		}
 
-		public string name()
+		public string Name()
 		{
 			return (_spot.Name);
 		}
 
-		public float motor 
+		public float Motor
 		{
 			get { return _spot.Force; }
 			set
@@ -28,7 +29,7 @@ namespace gearit.src.editor.api
 					value = 1;
 				else if (value < -1)
 					value = -1;
-				_spot.Force = value * _spot.MaxForce;
+				_spot.Force = value;
 			}
 		}
 	}

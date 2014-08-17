@@ -6,10 +6,11 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using gearit.src.output;
+using gearit.src.robot;
 
 namespace gearit.src.editor
 {
-	static class Serializer
+	public static class Serializer
 	{
 		/// <summary>
 		/// Serializer used for the serialization. (Duh!)
@@ -34,19 +35,19 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Create);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
+				//OutputManager.LogInfo("Saving - success", filename);
+				return true;
 			}
 			catch (IOException e)
 			{
-				OutputManager.LogError("Fail to open/creating the file " + filename);
+				OutputManager.LogError("Saving - fail", filename);
 				return false;
 			}
-
-			OutputManager.LogInfo("Successfuly saved " + filename);
-			
-			return true;
 		}
 
 		/// <summary>
@@ -58,17 +59,20 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Open);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Open);
+				SerializerHelper.CurrentPath = filename;
 				ISerializable obj = (ISerializable)_formatter.Deserialize(s);
 				s.Close();
+				OutputManager.LogInfo("Loading - success", filename);
 				return (obj);
 			}
 			catch (Exception e)
 			{
-				OutputManager.LogError("Fail to open the file " + filename);
+				OutputManager.LogError("Loading - fail", filename);
 				return null;
 			}
-			OutputManager.LogInfo("Successfuly loaded " + filename);
 		}
 	}
 }

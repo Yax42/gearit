@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.robot;
 
-namespace gearit.src.editor.api
+namespace gearit.src.script
 {
 	class PrismaticApi : SpotApi
 	{

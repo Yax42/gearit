@@ -11,6 +11,7 @@ namespace gearit.src.editor.robot.action
 		NONE = 0,
 		MAIN_SELECT,
 		SELECT2,
+		SWAP_SELECT,
 		DELETE_PIECE,
 		MOVE_PIECE,
 		SHOW_ALL,
@@ -79,6 +80,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.NONE) return _dummy;
 			if (action == ActionTypes.MAIN_SELECT) return new ActionMainSelect();
 			if (action == ActionTypes.SELECT2) return new ActionSelect2();
+			if (action == ActionTypes.SWAP_SELECT) return new ActionSwapSelects();
 			if (action == ActionTypes.DELETE_PIECE) return new ActionDeletePiece();
 			if (action == ActionTypes.MOVE_PIECE) return new ActionMovePiece();
 			if (action == ActionTypes.SHOW_ALL) return new ActionShowAll();

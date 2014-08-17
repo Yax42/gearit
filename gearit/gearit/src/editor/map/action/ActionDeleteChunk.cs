@@ -7,36 +7,38 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionDelete : IAction
+	class ActionDeleteChunk : IAction
 	{
 		private MapChunk _chunk;
 		public void init()
 		{
-			_chunk = MapEditor.Instance.Select;
-			MapEditor.Instance.Select = null;
+			_chunk = MapEditor.Instance.SelectChunk;
+			MapEditor.Instance.SelectChunk = null;
 		}
 
 		public bool shortcut()
 		{
+			if (ActionSwapEventMode.EventMode)
+				return false;
 			return Input.justPressed(Keys.R)
 				&& Input.ctrlAltShift(false, false, false);
 		}
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.deleteChunk(_chunk);
+			MapEditor.Instance.Map.Chunks.Remove(_chunk);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.addChunk(_chunk);
+			MapEditor.Instance.Map.Chunks.Add(_chunk);
 		}
 
 		public bool canBeReverted() { return true; }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.DELETE; }
+		public ActionTypes type() { return ActionTypes.DELETE_CHUNK; }
 	}
 }

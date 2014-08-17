@@ -17,7 +17,7 @@ using FarseerPhysics.Common;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
+	public class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
 	{
 		// private DistanceJoint _distJoint;
 		private float _size;
@@ -38,7 +38,7 @@ namespace gearit.src.robot
 			updateAxis();
 			robot.getWorld().AddJoint(this);
 			Enabled = true;
-			MaxMotorForce = 10;
+			MaxForce = 10;
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			LimitEnabled = false;
@@ -72,7 +72,7 @@ namespace gearit.src.robot
 			updateAxis();
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
-			MaxMotorForce = (float)info.GetValue("Force", typeof(float));
+			MaxForce = (float)info.GetValue("MaxForce", typeof(float));
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			LimitEnabled = false;
@@ -87,7 +87,7 @@ namespace gearit.src.robot
 			info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("Name", Name, typeof(string));
-			info.AddValue("Force", MaxMotorForce, typeof(float));
+			info.AddValue("MaxForce", MaxForce, typeof(float));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
 			info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
 		}
@@ -177,8 +177,10 @@ namespace gearit.src.robot
 				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
 		}
 //MOVE--------------------------
-		public void moveAnchor(Piece p, Vector2 pos)
+		public void moveAnchor(Piece p, Vector2 pos, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (BodyA == p)
 				LocalAnchorA = pos - p.Position;
 			else if (BodyB == p)

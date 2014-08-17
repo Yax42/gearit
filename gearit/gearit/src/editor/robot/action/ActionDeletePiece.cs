@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
@@ -27,7 +28,7 @@ namespace gearit.src.editor.robot.action
 		{
 			Console.WriteLine("ActionDeletePiece");
 			Console.WriteLine("Was connected to heart: " + RobotEditor.Instance.Robot.IsPieceConnectedToHeart(P1));
-			if (P1 != RobotEditor.Instance.Robot.getHeart())
+			if (P1 != RobotEditor.Instance.Robot.Heart)
 			{
 				RobotEditor.Instance.fallAsleep(P1, Pack); //Select sont checkes dans le fallAsleep
 			}

@@ -8,6 +8,7 @@ using System.Diagnostics;
 using gearit.src.output;
 using gearit.src.GUI;
 using System.Text.RegularExpressions;
+using gearit.src.robot;
 
 namespace gearit.src.editor.robot.action
 {
@@ -32,19 +33,18 @@ namespace gearit.src.editor.robot.action
 				RobotEditor.Instance.resetRobot(robot);
 
 			// Lua
-			var filename = "data/script/" + RobotEditor.Instance.Robot.Name + ".lua";
+			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
 			string lua = "";
 
 			// Read the file as one string.
 			try
 			{
-				System.IO.StreamReader myFile =
-				   new System.IO.StreamReader(filename);
+				System.IO.StreamReader myFile = new System.IO.StreamReader(filename);
 				lua = myFile.ReadToEnd();
 				myFile.Close();
 
 				// Lua found - Replace Generated Lua with new one
-				Match match = System.Text.RegularExpressions.Regex.Match(lua, "#!#!.*?\n(.*?)// #!#!", RegexOptions.Singleline);
+				Match match = System.Text.RegularExpressions.Regex.Match(lua, LuaManager.Regex, RegexOptions.Singleline);
 
 				string fullReplace = lua;
 				// Found something
@@ -57,8 +57,8 @@ namespace gearit.src.editor.robot.action
 			catch (System.IO.IOException e)
 			{
 			}
-			OutputManager.LogInfo("Lua - Generate script editor based on Lua");
-			MenuRobotEditor.Instance.setLua(lua);
+			OutputManager.LogInfo("Lua - Generate script editor based on Lua", filename);
+			LuaManager.SetLua(lua);
 
 			return false;
 		}

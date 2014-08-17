@@ -49,6 +49,10 @@ namespace gearit.src.utility
 		private Pyramid				 _pyramid;
 		private Body					_ball;
 
+        private List<Body> _bridgeBodies;
+        protected Body HiddenBody;
+        private Texture2D _bridgeBox;
+
 		// Robot
 		private Body					_heart;
 		private Body					_wheel_left;
@@ -137,12 +141,27 @@ namespace gearit.src.utility
 			wall_position -= new Vector2(7f, 2f);
 			_ground_up_left = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
 			
-			wall_position += new Vector2(14f, 1f);
+			wall_position += new Vector2(18f, 0f);
 			_ground_up_right = BodyFactory.CreateRectangle(World, 8f, 0.5f, 1f, wall_position);
 
 			#endregion
 
-			// Ball
+            #region bridge
+            HiddenBody = BodyFactory.CreateBody(World, Vector2.Zero);
+            Path bridgePath = new Path();
+            bridgePath.Add(new Vector2(2.3f, 5.2f));
+            bridgePath.Add(new Vector2(12.5f, 5.2f));
+            bridgePath.Closed = false;
+            Vertices box = PolygonTools.CreateRectangle(0.125f, 0.3f);
+            PolygonShape shape = new PolygonShape(box, 20);
+            _bridgeBodies = PathManager.EvenlyDistributeShapesAlongPath(World, bridgePath, shape, BodyType.Dynamic, 17);
+            _bridgeBox = _asset.TextureFromShape(shape, MaterialType.Blank, Color.SandyBrown, 1f);
+            JointFactory.CreateRevoluteJoint(World, HiddenBody, _bridgeBodies[0], new Vector2(0f, -0.3f));
+            JointFactory.CreateRevoluteJoint(World, HiddenBody, _bridgeBodies[_bridgeBodies.Count - 1], new Vector2(0, 0.3f));
+            PathManager.AttachBodiesWithRevoluteJoint(World, _bridgeBodies, new Vector2(0f, -0.3f), new Vector2(0f, 0.3f), false, true); 
+            #endregion
+
+            // Ball
 			_ball = BodyFactory.CreateCircle(World, 0.5f, 1f, _screen_center);
 			_ball.BodyType = BodyType.Dynamic;
 			_ball_tex = _asset.TextureFromShape(_ball.FixtureList[0].Shape, MaterialType.Blank, Color.LightGray, 1f);

@@ -16,7 +16,7 @@ using FarseerPhysics.Common;
 namespace gearit.src.robot
 {
 	[Serializable()]
-	class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
+	public class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
 	{
 		private static float _spotSize = 0.05f;
 		private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
@@ -46,9 +46,12 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			ColorValue = Color.Black;
 			robot.addSpot(this);
-			move(p1, p1.Position);
+			SynchroniseAnchors(p1, robot);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
+			if (p1.GetType() == typeof(Rod))
+				LocalAnchorA.Y = 0;
+
 		}
 
 		public void wakeUp(Robot robot)
@@ -61,36 +64,26 @@ namespace gearit.src.robot
 			_common.fallAsleep(robot, p);
 		}
 
-		//
-		// SERIALISATION
-		//
+		#region Serialization
 		public RevoluteSpot(SerializationInfo info, StreamingContext ctxt) :
 			base(
-	SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
-		SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
-		(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
-		(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
+			SerializerHelper.Ptrmap[(int)info.GetValue("PAHashCode", typeof(int))],
+			SerializerHelper.Ptrmap[(int)info.GetValue("PBHashCode", typeof(int))],
+			(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
+			(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
 		{
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
-			MaxMotorTorque = (float)info.GetValue("Force", typeof(float));
-		LimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));
-		UpperLimit = (float)info.GetValue("UpperLimit", typeof(float));
-		LowerLimit = (float)info.GetValue("LowerLimit", typeof(float));
-		/*
-		if (UpperLimit < LowerLimit)
-		{
-			float tmp = UpperLimit;
-			UpperLimit = LowerLimit;
-			LowerLimit = tmp;
 
-		}
-		Console.WriteLine((int) MathHelper.ToDegrees(LowerLimit) + " " + (int) MathHelper.ToDegrees(UpperLimit));
-		//Console.WriteLine((LowerLimit) + " " + (UpperLimit));
-		*/
+			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));	
+			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));	
+			MinAngle = (float)info.GetValue("MinAngle", typeof(float));	
+			SpotLimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));	
+
 			MotorSpeed = 0f;
 			MotorEnabled = true;
+			LimitEnabled = false;
 			ColorValue = Color.Black;
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
@@ -99,17 +92,113 @@ namespace gearit.src.robot
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("Name", Name, typeof(string));
-			info.AddValue("Force", MaxMotorTorque, typeof(float));
+			info.AddValue("MaxForce", MaxMotorTorque, typeof(float));
 			info.AddValue("PAHashCode", BodyA.GetHashCode(), typeof(int));
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
 			info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
-			info.AddValue("LimitEnabled", LimitEnabled, typeof(bool));
-			info.AddValue("UpperLimit", UpperLimit, typeof(float));
-			info.AddValue("LowerLimit", LowerLimit, typeof(float));
-		}
-		//--------- END SERIALISATION
 
+			info.AddValue("MaxAngle", MaxAngle, typeof(float));
+			info.AddValue("MinAngle", MinAngle, typeof(float));
+			info.AddValue("LimitEnabled", SpotLimitEnabled, typeof(bool));
+		}
+		#endregion
+
+		#region MotorControl
+
+		private float _MaxAngle;
+		public float MaxAngle
+		{
+			get
+			{
+				return _MaxAngle;
+			}
+			set
+			{
+				if (value < 0)
+					return;
+				_MaxAngle = value;
+				if (!Frozen)
+					UpperLimit = _MaxAngle;
+			}
+		}
+
+		private float _MinAngle;
+		public float MinAngle
+		{
+			get
+			{
+				return _MinAngle;
+			}
+			set
+			{
+				if (value > 0)
+					return;
+				_MinAngle = value;
+				if (!Frozen)
+					LowerLimit = _MinAngle;
+			}
+		}
+
+		private bool _Frozen;
+		public bool Frozen
+		{
+			get
+			{
+				return _Frozen;
+			}
+			set
+			{
+				if (_Frozen == value)
+					return;
+				_Frozen = value;
+				if (_Frozen)
+				{
+					LowerLimit = JointAngle;
+					UpperLimit = JointAngle;
+					base.LimitEnabled = true;
+					MotorEnabled = false;
+				}
+				else
+				{
+					LowerLimit = MaxAngle;
+					UpperLimit = MinAngle;
+					base.LimitEnabled = _LimitEnabled;
+					MotorEnabled = true;
+				}
+			}
+		}
+
+		private bool _LimitEnabled;
+		public bool SpotLimitEnabled
+		{
+			get
+			{
+				return _LimitEnabled;
+			}
+
+			set
+			{
+				_LimitEnabled = value;
+				if (!Frozen)
+					base.LimitEnabled = _LimitEnabled;
+			}
+		}
+
+		public float Force
+		{
+			get { return MotorSpeed / 15; }
+			set { MotorSpeed = value * 15; }
+		}
+
+		public float MaxForce
+		{
+			get { return MaxMotorTorque; }
+			set { MaxMotorTorque = value; }
+		}
+		#endregion
+
+		#region Editor
 		public static void initTex(AssetCreator asset)
 		{
 			_tex = asset.CreateCircle(2, Color.Red);
@@ -134,53 +223,88 @@ namespace gearit.src.robot
 			swap(p1, p2, Vector2.Zero);
 		}
 
-		public void moveAnchor(Piece p, Vector2 anchor)
+		public void moveAnchor(Piece p, Vector2 anchor, Robot robot = null)
+		{
+			if (robot != null)
+				robot.ResetAct();
+			if (BodyA == p)
+				LocalAnchorA = BodyA.GetLocalPoint(anchor);
+			if (BodyB == p)
+				LocalAnchorB = BodyB.GetLocalPoint(anchor);
+			SynchroniseAnchors(p);
+		}
+
+		public Vector2 ActualWorldAnchorA
+		{
+			get { return BodyA.GetWorldVector(LocalAnchorA); }
+		}
+
+		public Vector2 ActualWorldAnchorB
+		{
+			get { return BodyB.GetWorldVector(LocalAnchorB); }
+		}
+
+		public Vector2 DeltaAnchor
+		{
+			get { return ActualWorldAnchorA - ActualWorldAnchorB; }
+		}
+
+		public void SynchroniseAnchors(Piece piece, Robot robot = null)
+		{
+			if (robot != null)
+				robot.ResetAct();
+			if (piece == BodyA)
+				((Piece)BodyB).move(WorldAnchorA - ActualWorldAnchorB);
+			else
+				((Piece)BodyA).move(WorldAnchorB - ActualWorldAnchorA);
+		}
+
+		public void rotate(Piece piece, float angle, Robot robot = null)
+		{
+			if (robot != null)
+				robot.ResetAct();
+			if (piece == BodyA)
+				((Piece)BodyB).rotateDelta(angle);
+			else
+				((Piece)BodyA).rotateDelta(angle);
+		}
+
+		public Vector2 getLocalAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return LocalAnchorA;
+			else
+				return LocalAnchorB;
+		}
+
+		public Vector2 getWorldAnchor(Piece piece)
+		{
+			if (BodyA == piece)
+				return WorldAnchorA;
+			else
+				return WorldAnchorB;
+		}
+
+		public void moveLocal(Piece p, Vector2 pos)
 		{
 			if (BodyA == p)
-				LocalAnchorA = anchor - p.Position;
-			if (BodyB == p)
-				LocalAnchorB = anchor - p.Position;
-			move(p, p.Position);
+				LocalAnchorA = pos;
+			else if (BodyB == p)
+				LocalAnchorB = pos;
 		}
+		#endregion
 
-		/*
-			public void move(Vector2 pos)
-			{
-				//BodyA.Position = pos - LocalAnchorA;
-				//BodyB.Position = pos - LocalAnchorB;
-				((Piece)BodyA).move(pos - LocalAnchorA);
-				((Piece)BodyB).move(pos - LocalAnchorB);
-			}
-		*/
-
-		public void move(Piece piece, Vector2 pos)
-		{
-			if (piece == BodyA)
-				((Piece)BodyB).move(pos + LocalAnchorA - LocalAnchorB);
-			else
-				((Piece)BodyA).move(pos + LocalAnchorB - LocalAnchorA);
-		}
-
-		public void rotate(Piece piece, float angle)
-		{
-			
-			if (piece == BodyA)
-			{
-				((Piece)BodyB).rotateDelta(angle);
-				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
-			}
-			else
-			{
-				((Piece)BodyA).rotateDelta(angle);
-				LocalAnchorA = MathLib.RotatePoint(LocalAnchorA, Vector2.Zero, MathLib.RadiansToDegrees(angle));
-			}
-		}
-
+		#region Draw
 		public void drawDebug(DrawGame game)
 		{
+			_drawDebug(game, WorldAnchorA);
+			_drawDebug(game, WorldAnchorB);
+		}
+
+		private void _drawDebug(DrawGame game, Vector2 pos)
+		{
 			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
-			Vector2 pos = WorldAnchorA;
-			Vector2 corner = WorldAnchorA - _topLeft;
+			Vector2 corner = pos - _topLeft;
 			//Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
 
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
@@ -214,42 +338,7 @@ namespace gearit.src.robot
 						new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
 			}
 		}
-
-		public Vector2 getLocalAnchor(Piece piece)
-		{
-			if (BodyA == piece)
-				return LocalAnchorA;
-			else
-				return LocalAnchorB;
-		}
-
-		public Vector2 getWorldAnchor(Piece piece)
-		{
-			if (BodyA == piece)
-				return WorldAnchorA;
-			else
-				return WorldAnchorB;
-		}
-
-		public void moveLocal(Piece p, Vector2 pos)
-		{
-			if (BodyA == p)
-				LocalAnchorA = pos;
-			else if (BodyB == p)
-				LocalAnchorB = pos;
-		}
-
-		public float Force
-		{
-			get { return MotorTorque; }
-			set { MotorTorque = value; }
-		}
-
-		public float MaxForce
-		{
-			get { return MaxMotorTorque; }
-			set { MaxMotorTorque = value; }
-		}
+		#endregion
 
 		public string Name { get; set; }
 		public Color ColorValue { get; set; }

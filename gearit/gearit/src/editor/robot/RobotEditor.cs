@@ -14,6 +14,7 @@ using gearit.src.utility.Menu;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 using gearit.src.GUI;
+using FarseerPhysics.DebugViews;
 
 namespace gearit.src.editor.robot
 {
@@ -72,6 +73,9 @@ namespace gearit.src.editor.robot
 			// Menu
 			new MenuRobotEditor(ScreenManager);
 
+			ActionChooseSet.IsWheel = false;
+			ActionChooseSet.IsPrismatic = false;
+
 			// Action
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
@@ -101,20 +105,19 @@ namespace gearit.src.editor.robot
 			// Robot
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Robot = new Robot(_world);
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public void selectHeart()
 		{
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			_time++;
-			Robot.resetAct();
 			_camera.update();
 			HandleInput();
 			MenuRobotEditor.Instance.Update(Select1, Select1.getConnection(Select2));
@@ -132,9 +135,9 @@ namespace gearit.src.editor.robot
 			Robot.fallAsleep(p, pack);
 
 			if (Select1.Sleeping)
-				Select1 = Robot.getHeart();
+				Select1 = Robot.Heart;
 			if (Select2.Sleeping)
-				Select2 = Robot.getHeart();
+				Select2 = Robot.Heart;
 		}
 
 		public void fallAsleep(ISpot s, SleepingPack pack)
@@ -142,9 +145,9 @@ namespace gearit.src.editor.robot
 			Robot.fallAsleep(s, pack);
 
 			if (Select1.Sleeping)
-				Select1 = Robot.getHeart();
+				Select1 = Robot.Heart;
 			if (Select2.Sleeping)
-				Select2 = Robot.getHeart();
+				Select2 = Robot.Heart;
 		}
 
 		public void doAction(ActionTypes action)
@@ -199,10 +202,19 @@ namespace gearit.src.editor.robot
 			_actionsLog.Insert(0, a);
 		}
 
+		public ActionTypes CurrentAction
+		{
+			get
+			{
+				return _currentAction.type();
+			}
+		}
 
 		private void drawRobot()
 		{
-			if (_currentAction.type() == ActionTypes.RESIZE_HEART && Select1 == Robot.getHeart())
+			if (_currentAction.type() == ActionTypes.RESIZE_HEART
+				|| _currentAction.type() == ActionTypes.RESIZE_ROD
+				|| _currentAction.type() == ActionTypes.RESIZE_WHEEL)
 				Select1.ColorValue = Color.GreenYellow;
 			else if (Select2 == Select1)
 				Select2.ColorValue = Color.Violet;
@@ -220,8 +232,13 @@ namespace gearit.src.editor.robot
 
 			if (Select1.isConnected(Select2))
 				Select1.getConnection(Select2).ColorValue = Color.Black;
-			Select2.ColorValue = Color.Black;
-			Select1.ColorValue = Color.Black;
+			Select2.ColorValue = Color.DarkSeaGreen;
+			Select1.ColorValue = Color.DarkSeaGreen;
+		}
+
+		public void drawRobotTexture()
+		{
+			Robot.drawDebugTexture(_draw_game);
 		}
 
 		//----------------------------NAME-------------------------------------
@@ -270,12 +287,12 @@ namespace gearit.src.editor.robot
 		public void resetRobot(Robot bot)
 		{
 			if (Robot != null)
-				Robot.remove();
+				Robot.ExtractFromWorld();
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			Robot = bot;
-			Select1 = Robot.getHeart();
-			Select2 = Robot.getHeart();
+			Select1 = Robot.Heart;
+			Select2 = Robot.Heart;
 		}
 
 		public void deleteRobot()
@@ -288,11 +305,20 @@ namespace gearit.src.editor.robot
 		{
 			base.Draw(gameTime);
 
-			_draw_game.Begin(_camera);
-			drawRobot();
-			_draw_game.End();
+			//_draw_game.Begin(_camera);
+			//_draw_game.End();
 
+			_draw_game.BeginPrimitive(_camera);
+			drawRobotTexture();
+			drawRobot();
+			_draw_game.EndPrimitive();
+			
 			MenuRobotEditor.Instance.Draw();
+		}
+
+		public bool IsEmpty()
+		{
+			return _actionsLog.Count == 0 && _redoActionsLog.Count == 0 && Robot.Name == null;
 		}
 	}
 }

@@ -25,11 +25,11 @@ namespace gearit.src.editor.map.action
 		public bool run()
 		{
 			Debug.Assert(MapEditor.Instance.NamePath != "");
-			Map robot = (Map)Serializer.DeserializeItem("map/" + MapEditor.Instance.NamePath + ".gim");
-			if (robot == null)
+			Map map = (Map)Serializer.DeserializeItem("map/" + MapEditor.Instance.NamePath + ".gim");
+			if (map == null)
 				MapEditor.Instance.resetNamePath();
 			else
-				MapEditor.Instance.resetMap(robot);
+				MapEditor.Instance.resetMap(map);
 			return false;
 		}
 

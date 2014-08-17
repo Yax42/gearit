@@ -3,60 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LuaInterface;
-using gearit.xna;
 using System.Threading;
-
-using gearit.src.robot;
-using gearit.src.editor.api;
+using System.Diagnostics;
+using gearit.src.editor.robot;
 using gearit.src.output;
-namespace gearit.src.utility
+using System.IO;
+
+namespace gearit.src.script
 {
-
-	class LuaScript : Lua
+	public class LuaScript : Lua
 	{
-		private String _name;
-		private List<SpotApi> _api;
-		private InputApi _inputApi;
-		private Thread _thread;
+		private LuaFunction _loadedScript;
+		private LuaFunction _frameCountScript;
+		private bool _ok;
 
-		public void saySomething(string something)
+		public LuaScript(string text, bool isFile = true)
 		{
-			Console.WriteLine(something);
-		}
-
-		public LuaScript(List<SpotApi> api, string name)
-		{
-			_name = name;
-			_api = api;
-			_inputApi = new InputApi();
-			_thread = new Thread(new ThreadStart(exec));
-			for (int i = 0; i < api.Count; i++)
-				this[api[i].name()] = api[i];
-			this["Input"] = _inputApi;
-			//RegisterFunction("getKeysAction", _input, _input.GetType().GetMethod("getKeysAction"));
-			run();
-		}
-
-		private void run()
-		{
-			_thread.Start();
-		}
-
-		private void exec()
-		{
+			_ok = true;
 			try
 			{
-				DoFile(@"data/script/" + _name + ".lua");
+				if (isFile)
+				{
+					_loadedScript = LoadFile(text);
+					//OutputManager.LogInfo("Lua - script correctly loaded: " + text);
+				}
+				else
+				{
+					_loadedScript = LoadString(text, String.Empty);
+				}
+				DoString("FrameCount = 0\n");
+
+				_frameCountScript = LoadString("FrameCount = FrameCount + 1", String.Empty);
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
+				File.WriteAllText("test.lua", text);
+				throw (ex);
+			}
+		}
+
+		public void run()
+		{
+			if (!_ok)
+				return;
+			try
+			{
+				_loadedScript.Call();
+				_frameCountScript.Call();
+			}
+			catch (Exception ex)
+			{
+				OutputManager.LogError("Lua exception: " + ex.Message);
+				_ok = false;
+				throw (ex);
 			}
 		}
 
 		public void stop()
 		{
-			_thread.Abort();
+			_ok = false;
 			base.Close();
 		}
 	}

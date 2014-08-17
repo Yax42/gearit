@@ -18,6 +18,7 @@
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,7 +31,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -61,6 +61,12 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\lib\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network.Xna">
+      <HintPath>..\..\lib\Lidgren.Network.Xna.dll</HintPath>
+    </Reference>
     <Reference Include="LuaInterface, Version=2.0.0.16708, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\LuaInterface.dll</HintPath>
@@ -121,9 +127,31 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
+    <Compile Include="src\game\IGearitGame.cs" />
+    <Compile Include="src\GeneticAlgorithm\GameDrawing.cs" />
+    <Compile Include="src\GeneticAlgorithm\GeneticGame.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\HardwareGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\LowLevelGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\MutationManager.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\RawDna.cs" />
+    <Compile Include="src\GeneticAlgorithm\Genome\SoftwareGenome.cs" />
+    <Compile Include="src\GeneticAlgorithm\Individual.cs" />
+    <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
+    <Compile Include="src\GUI\MenuQuit.cs" />
+    <Compile Include="src\GUI\MenuPlay.cs" />
+    <Compile Include="src\game\Score.cs" />
+    <Compile Include="src\script\api\game\GameApi.cs" />
+    <Compile Include="src\script\api\game\GameArtefactApi.cs" />
+    <Compile Include="src\script\api\game\GameRobotApi.cs" />
+    <Compile Include="src\script\api\game\GameObjectApi.cs" />
+    <Compile Include="src\script\api\robot\RobotStateApi.cs" />
     <Compile Include="src\editor\map\action\ActionChangeType.cs" />
     <Compile Include="src\editor\map\action\ActionCreateBall.cs" />
-    <Compile Include="src\editor\map\action\ActionDelete.cs" />
+    <Compile Include="src\editor\map\action\ActionCreateArtefact.cs" />
+    <Compile Include="src\editor\map\action\ActionCreateTrigger.cs" />
+    <Compile Include="src\editor\map\action\ActionDeleteChunk.cs" />
+    <Compile Include="src\editor\map\action\ActionDeleteArtefact.cs" />
+    <Compile Include="src\editor\map\action\ActionDeleteTrigger.cs" />
     <Compile Include="src\editor\map\action\ActionDummy.cs" />
     <Compile Include="src\editor\map\action\ActionExit.cs" />
     <Compile Include="src\editor\map\action\ActionFactory.cs" />
@@ -134,18 +162,24 @@
     <Compile Include="src\editor\map\action\ActionResizePolygon.cs" />
     <Compile Include="src\editor\map\action\ActionSaveMap.cs" />
     <Compile Include="src\editor\map\action\ActionSelect.cs" />
+    <Compile Include="src\editor\map\action\ActionSetTriggerId.cs" />
     <Compile Include="src\editor\map\action\ActionShowHelp.cs" />
     <Compile Include="src\editor\map\action\ActionUndo.cs" />
     <Compile Include="src\editor\map\action\ActionCreateWall.cs" />
+    <Compile Include="src\editor\map\action\ActionSwapEventMode.cs" />
     <Compile Include="src\editor\map\action\IAction.cs" />
     <Compile Include="src\editor\robot\action\ActionCreatePiece.cs" />
     <Compile Include="src\editor\robot\action\ActionExit.cs" />
+    <Compile Include="src\editor\robot\action\ActionSwapSelects.cs" />
     <Compile Include="src\editor\robot\action\ActionShowHelp.cs" />
+    <Compile Include="src\editor\robot\LuaManager.cs" />
     <Compile Include="src\GUI\ChatBox.cs" />
     <Compile Include="src\GUI\SampleWindow.cs" />
     <Compile Include="src\GUI\MapEditor\MenuMapEditor.cs" />
     <Compile Include="src\GUI\sample\SampleGameScreen.cs" />
     <Compile Include="src\GUI\sample\SampleMenu.cs" />
+    <Compile Include="src\map\Artefact.cs" />
+    <Compile Include="src\map\Trigger.cs" />
     <Compile Include="src\MasterServer\MasterClient.cs" />
     <Compile Include="src\MasterServer\MenuMasterClient.cs" />
     <Compile Include="src\GUI\MessageBoxSave.cs" />
@@ -296,17 +330,21 @@
     <Compile Include="src\editor\robot\action\IAction.cs" />
     <Compile Include="src\game\GearitGame.cs" />
     <Compile Include="src\map\Map.cs" />
-    <Compile Include="src\editor\api\SpotApi.cs" />
-    <Compile Include="src\editor\api\InputApi.cs" />
-    <Compile Include="src\editor\api\PrismaticApi.cs" />
-    <Compile Include="src\editor\api\RevoluteApi.cs" />
+    <Compile Include="src\script\api\robot\SpotApi.cs" />
+    <Compile Include="src\script\api\robot\InputApi.cs" />
+    <Compile Include="src\script\api\robot\PrismaticApi.cs" />
+    <Compile Include="src\script\api\robot\RevoluteApi.cs" />
     <Compile Include="src\map\PolygonChunk.cs" />
     <Compile Include="src\output\OutputManager.cs" />
     <Compile Include="src\output\OutputMessageManager\IOutputMessageManager.cs" />
     <Compile Include="src\output\OutputMessageManager\OutputMessageManagerConsole.cs" />
     <Compile Include="src\robot\Rod.cs" />
+    <Compile Include="src\script\GameLuaScript.cs" />
+    <Compile Include="src\script\LuaScript.cs" />
+    <Compile Include="src\server\InGameClient.cs" />
     <Compile Include="src\server\Ftpclient.cs" />
     <Compile Include="src\server\FtpState.cs" />
+    <Compile Include="src\server\InGameServer.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\ICamera.cs" />
@@ -325,7 +363,7 @@
     <Compile Include="src\robot\Wheel.cs" />
     <Compile Include="src\test\Border.cs" />
     <Compile Include="src\test\BruteRobot.cs" />
-    <Compile Include="src\script\LuaScript.cs" />
+    <Compile Include="src\script\RobotLuaScript.cs" />
     <Compile Include="src\test\Pyramid.cs" />
     <Compile Include="src\editor\robot\RobotEditor.cs" />
     <Compile Include="src\test\SpiderBot.cs" />
@@ -372,7 +410,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 et x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
