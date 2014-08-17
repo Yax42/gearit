@@ -21,7 +21,7 @@ namespace SquidXNA
 			this.IsFixedTimeStep = false;
 
 			ScreenManager = new gearit.xna.ScreenManager(this);
-			ScreenManager.SetResolutionScreen(1280, 780);
+			ScreenManager.SetResolutionScreen(1280, 700);
 			Components.Add(ScreenManager);
 
 			this.Window.Title = "Gear It!";

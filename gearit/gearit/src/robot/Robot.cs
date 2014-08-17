@@ -337,5 +337,35 @@ namespace gearit
 
         // Filename for robot & lua
 		public string Name { get; set; }
+
+		public bool IsValid()
+		{
+			return VerifyAllPieceConnected() && AllPiecesValid();
+		}
+		bool AllPiecesValid()
+		{
+			return _pieces.All((Piece p) =>
+				{
+					return p.IsValid();
+				});
+		}
+
+		bool VerifyAllPieceConnected()
+		{
+			return VerifyAllPieceConnectedAux(new List<Piece>(_pieces));
+		}
+		bool VerifyAllPieceConnectedAux(List<Piece> pieces_to_verify)
+		{
+			if (pieces_to_verify.Count == 0)
+				return true;
+			Piece piece_to_verify = pieces_to_verify[0];
+			List<Piece> already_explored_pieces = new List<Piece>();
+			if (IsPieceConnectedToHeartAux(piece_to_verify, already_explored_pieces ) == false)
+				return false;
+			foreach (var alreadyExploredPiece in already_explored_pieces)
+				pieces_to_verify.Remove(alreadyExploredPiece);
+
+			return VerifyAllPieceConnectedAux(pieces_to_verify);
+		}
 	}
 }

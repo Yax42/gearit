@@ -176,5 +176,10 @@ namespace gearit
 		{
 			return (_shape.MassData.Area);
 		}
+
+		public override bool IsValid()
+		{
+			return _vertices.Count >= 3 && Weight > 0 && getSize() > 0;
+		}
 	}
 }

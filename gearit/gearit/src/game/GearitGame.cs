@@ -67,7 +67,10 @@ namespace gearit.src.game
 
 			addDummyPrismatic();
 
-			addRobot((Robot)Serializer.DeserializeItem("robot/r2d2.gir"));
+			Robot robot = (Robot)Serializer.DeserializeItem("robot/r2d2.gir");
+			if (robot.IsValid() == false)
+				output.OutputManager.LogError("The robot is not valid !!");
+			addRobot(robot);
 			Debug.Assert(_robots != null);
 			_robots[0].getPiece(Vector2.Zero).Weight = 30;
 			_map = (Map)Serializer.DeserializeItem("map/moon.gim");

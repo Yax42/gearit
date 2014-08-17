@@ -26,7 +26,7 @@ namespace gearit
 		internal Texture2D _tex;
 		internal bool _didAct;
 		internal Robot _robot;
-		internal float _size; //useless for the heart, but more simple for implementation
+		internal float _size; //useless for the heart, but simpler for implementation
 		public bool Sleeping { get; set; }
 
 		internal Piece(Robot robot) :
@@ -310,6 +310,10 @@ namespace gearit
 			for (JointEdge i = JointList; i != null; i = i.Next)
 				adjacentPieces.Add((Piece)i.Other);
 			return adjacentPieces;
+		}
+		public virtual bool IsValid()
+		{
+			return true;
 		}
 	}
 }

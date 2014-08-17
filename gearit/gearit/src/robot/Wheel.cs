@@ -74,5 +74,9 @@ namespace gearit
 				}
 			}
 		}
+		public override bool IsValid()
+		{
+			return Weight > 0 && getSize() > 0;
+		}
 	}
 }
