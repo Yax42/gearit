@@ -161,7 +161,10 @@ namespace gearit.src.robot
 			_endA = Position - semiEnd;
 			_endB = Position + semiEnd;
 		}
-
+		public override bool IsValid()
+		{
+			return Weight > 0 && getSize() > 0;
+		}
 		public override Vector2 ShapeLocalOrigin()
 		{
 			return new Vector2(_size, 0);

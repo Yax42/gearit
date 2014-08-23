@@ -199,5 +199,10 @@ namespace gearit.src.robot
 			}
 			return res / _vertices.Count;
 		}
+
+		public override bool IsValid()
+		{
+			return _vertices.Count >= 3 && Weight > 0 && getSize() > 0;
+		}
 	}
 }

@@ -74,6 +74,10 @@ namespace gearit.src.robot
 				}
 			}
 		}
+		public override bool IsValid()
+		{
+			return Weight > 0 && getSize() > 0;
+		}
 
 		public override Vector2 ShapeLocalOrigin()
 		{
