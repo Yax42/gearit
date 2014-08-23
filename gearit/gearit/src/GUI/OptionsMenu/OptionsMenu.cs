@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using gearit.xna;
+using Squid;
+using GUI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace gearit.src.GUI.OptionsMenu
+{
+	class OptionsMenu : GameScreen, IDemoScreen
+	{
+		ScreenManager _screen;
+		Desktop _desktop;
+		Panel _dialog_co;
+		TextBox _resolution;
+		DropDownList _fullscreen;
+		DropDownList _volume;
+		Button _save_btn;
+
+		const int DIALOG_WIDTH = 400;
+		const int TAB_WIDTH = 156;
+
+		public OptionsMenu(ScreenManager screen)
+		{
+			_screen = screen;
+		}
+
+		public override void LoadContent()
+		{
+			base.LoadContent();
+
+			VisibleMenu = true;
+
+			_desktop = new Desktop();
+			_desktop.Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
+			_desktop.Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
+
+			_dialog_co = new Panel();
+			_dialog_co.Position = new Squid.Point(ScreenManager.Width / 2 - DIALOG_WIDTH, ScreenManager.Height / 4);
+			_dialog_co.Size = new Squid.Point((ScreenManager.Width - MainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 64);
+			_dialog_co.Parent = _desktop;
+			_dialog_co.Style = "menu";
+
+			Label TitleLabel = new Label();
+			TitleLabel.Size = new Squid.Point(100, 45);
+			TitleLabel.Dock = DockStyle.Top;
+			TitleLabel.Text = "OPTIONS";
+			TitleLabel.Style = "itemMenuTitle";
+			TitleLabel.TextAlign = Alignment.MiddleLeft;
+			TitleLabel.Margin = new Margin(0, 0, 0, -1);
+			_dialog_co.Content.Controls.Add(TitleLabel);
+
+			// Resolution Option
+			addLabel(0, 70, (int)((float)_dialog_co.Size.x / 2.5), 34, "Resolution");
+
+			_resolution = new TextBox();
+			_resolution.Text = "800*600";
+			_resolution.Size = new Squid.Point(158, 34);
+			_resolution.Position = new Squid.Point(_dialog_co.Size.x / 2 - 16, 70);
+			_dialog_co.Content.Controls.Add(_resolution);
+			_resolution.Focus();
+
+			// Fullscreen Option
+
+
+			addLabel(0, 120, (int)((float)_dialog_co.Size.x / 2.5), 34, "Fullscreen");
+			_fullscreen = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 120);
+
+			ListBoxItem item;
+			item = addListBoxItem(_fullscreen, "Yes");
+			if (_screen.IsFullScreen)
+				_fullscreen.SelectedItem = item;
+			item = addListBoxItem(_fullscreen, "No");
+			if (!_screen.IsFullScreen)
+				_fullscreen.SelectedItem = item;
+
+			// Volume
+			addLabel(0, 170, (int)((float)_dialog_co.Size.x / 2.5), 34, "Volume");
+			_volume = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 170);
+			for (int i = 1; i <= 10; i++)
+				item = addListBoxItem(_volume, i.ToString());
+			_volume.SelectedItem = item;
+
+			_save_btn = new Button();
+			_save_btn.Size = new Squid.Point(124, 34);
+			_save_btn.Position = new Squid.Point(_dialog_co.Size.x - 124 - 8,_dialog_co.Size.y - 34 - 8);
+			_save_btn.Text = "Save";
+			_dialog_co.Content.Controls.Add(_save_btn);
+
+			_fullscreen.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+			};
+
+			_save_btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				bool fullScr = false;
+				if (_fullscreen.SelectedItem.Text == "Yes")
+					fullScr = true;
+				if (fullScr == false && _screen.IsFullScreen)
+					_screen.deactivFullScreen();
+				else if (fullScr == true && !_screen.IsFullScreen)
+					_screen.activeFullScreen();
+			};
+
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			base.Update(gameTime);
+			_desktop.Update();
+		}
+
+		public override void Draw(GameTime gameTime)
+		{
+			base.Draw(gameTime);
+			_desktop.Draw();
+		}
+
+		private void addLabel(int posX, int posY, int sizeX, int sizeY, string label)
+		{
+			Label lb = new Label();
+			lb.Position = new Squid.Point(posX, posY);
+			lb.Size = new Squid.Point(sizeX, sizeY);
+			lb.TextAlign = Alignment.MiddleRight;
+			lb.Text = label;
+			_dialog_co.Content.Controls.Add(lb);
+		}
+
+		private ListBoxItem addListBoxItem(DropDownList list, string name)
+		{
+			ListBoxItem item = new ListBoxItem();
+			item.Text = name;
+			item.Size = new Squid.Point(100, 35);
+			item.Margin = new Margin(0, 0, 0, 4);
+			item.Style = "item";
+			list.Items.Add(item);
+			return (item);
+		}
+
+		private DropDownList initDropBox(int sizeX, int sizeY, int posX, int posY)
+		{
+			DropDownList dropBox = new DropDownList();
+			dropBox.Size = new Squid.Point(sizeX, sizeY);
+			dropBox.Position = new Squid.Point(posX, posY);
+			dropBox.Label.Style = "comboLabel";
+			dropBox.Button.Style = "comboButton";
+			dropBox.Listbox.Margin = new Margin(0, 0, 0, 0);
+			dropBox.Listbox.Style = "frame";
+
+			dropBox.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
+			dropBox.Listbox.Scrollbar.Margin = new Margin(0, 4, 4, 4);
+			dropBox.Listbox.Scrollbar.Size = new Squid.Point(14, 10);
+			dropBox.Listbox.Scrollbar.ButtonUp.Style = "vscrollUp";
+			dropBox.Listbox.Scrollbar.ButtonUp.Size = new Squid.Point(10, 20);
+			dropBox.Listbox.Scrollbar.ButtonDown.Style = "vscrollUp";
+			dropBox.Listbox.Scrollbar.ButtonDown.Size = new Squid.Point(10, 20);
+			dropBox.Listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
+			dropBox.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
+			dropBox.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
+
+			_dialog_co.Content.Controls.Add(dropBox);
+			dropBox.Focus();
+			return (dropBox);
+		}
+
+		public string GetTitle()
+		{
+			return "Options";
+		}
+
+		public string GetDetails()
+		{
+			return "Configure various options";
+		}
+	}
+}

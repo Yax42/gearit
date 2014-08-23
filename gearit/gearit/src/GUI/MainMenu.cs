@@ -12,6 +12,7 @@ using gearit.src;
 using gearit.src.GUI;
 using gearit.src.gui;
 using gearit.src.GeneticAlgorithm;
+using gearit.src.GUI.OptionsMenu;
 
 namespace GUI
 {
@@ -34,12 +35,12 @@ namespace GUI
 		private SoundManager _sound;
 		private RobotEditor _robot_editor;
 		private MapEditor _map_editor;
-		private MainOptions _Options;
+		private OptionsMenu _Options;
 		private GearitGame _game;
 		private LifeManager _geneticAlorithm;
 		private MasterClient _masterClient;
-        private MenuPlay _play;
-        private MenuQuit _quit;
+		private MenuPlay _play;
+		private MenuQuit _quit;
 
 		public MainMenu(ScreenManager ScreenManager)
 		{
@@ -74,27 +75,27 @@ namespace GUI
 			_map_editor = new MapEditor();
 			_geneticAlorithm = new LifeManager();
 			_game = new GearitGame();
-			_Options = new MainOptions("Options", _ScreenManager);
+			_Options = new OptionsMenu(_ScreenManager);
 			_masterClient = new MasterClient();
-            _play = new MenuPlay();
-            _quit = new MenuQuit();
+			_play = new MenuPlay();
+			_quit = new MenuQuit();
 
 			// Add ItemMenu
-            addMenuItem(_play, _play.GetTitle());
+			addMenuItem(_play, _play.GetTitle());
 			addMenuItem(_robot_editor, _robot_editor.GetTitle());
 			addMenuItem(_map_editor, _map_editor.GetTitle());
 			addMenuItem(_Options, _Options.GetTitle());
-            addMenuItem(_quit, _quit.GetTitle());
+			addMenuItem(_quit, _quit.GetTitle());
 
 			//SEPARATOR
 			addMenuItem(_Options, "");
-            addMenuItem(_geneticAlorithm, _geneticAlorithm.GetTitle());
+			addMenuItem(_geneticAlorithm, _geneticAlorithm.GetTitle());
 			addMenuItem(_Options, "");
 			//
 
-            addMenuItem(_game, "Default Game");
-            addMenuItem(_bruteRobot, "Brute Game");
-            addMenuItem(_masterClient, _masterClient.GetTitle());
+			addMenuItem(_game, "Default Game");
+			addMenuItem(_bruteRobot, "Brute Game");
+			addMenuItem(_masterClient, _masterClient.GetTitle());
 
 			// ToRemove - Popup robot editor
 			menu_listbox.Items[0].Click(0);
