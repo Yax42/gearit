@@ -202,6 +202,27 @@ namespace gearit.src.robot
 			return (_id);
 		}
 
+		public int FindFirstFreeSpotNameId()
+		{
+			int res = -1;
+			bool ok = false;
+			while (!ok)
+			{
+				ok = true;
+				res++;
+				string name = "spot" + res;
+				foreach (ISpot s in Spots)
+				{
+					if (s.Name == name)
+					{
+						ok = false;
+						break;
+					}
+				}
+			}
+			return res;
+		}
+
 		#region Editor
 
 		public void ResetAct()

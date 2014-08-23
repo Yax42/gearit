@@ -38,7 +38,7 @@ namespace gearit.src.robot
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 			base(p1, p2, anchor1, anchor2)
 		{
-			Name = "spot" + robot.revCount();
+			Name = "spot" + robot.FindFirstFreeSpotNameId();
 			robot.getWorld().AddJoint(this);
 			Enabled = true;
 			MaxMotorTorque = 10;
