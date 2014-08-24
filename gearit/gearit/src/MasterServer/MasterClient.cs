@@ -41,8 +41,8 @@ namespace gearit.src
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			Instance = this;
-            server = new InGameServer(12242);
-            client = new InGameClient(12242, "127.0.0.1");
+            server = new InGameServer(25552);
+            client = new InGameClient(25552, "127.0.0.1");
 		}
 
         ~MasterClient()
@@ -62,21 +62,20 @@ namespace gearit.src
 
 			//_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             // Start Server
-            server.Start();
             OutputManager.LogMessage("Server launch");
-            System.Threading.Thread.Sleep(250);
+            server.Start();
+            System.Threading.Thread.Sleep(50);
             
             //Start Client
+            OutputManager.LogMessage("Client launch");
             client.Start();
-            OutputManager.LogMessage("Client connected");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(50);
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			MenuMasterClient.Instance.Update();
 			base.Update(gameTime);
-            client.Send("hello world");
 		}
 
 
