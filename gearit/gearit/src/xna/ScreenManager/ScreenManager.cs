@@ -16,7 +16,7 @@ namespace gearit.xna
 	{
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
-		private GraphicsDeviceManager _graphics;
+		public GraphicsDeviceManager _graphics {get; set;}
 
 		private bool _isInitialized;
 		private LineBatch _lineBatch;

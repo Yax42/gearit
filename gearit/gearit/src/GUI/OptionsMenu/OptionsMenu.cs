@@ -15,7 +15,7 @@ namespace gearit.src.GUI.OptionsMenu
 		ScreenManager _screen;
 		Desktop _desktop;
 		Panel _dialog_co;
-		TextBox _resolution;
+		DropDownList _resolution;
 		DropDownList _fullscreen;
 		DropDownList _volume;
 		Button _save_btn;
@@ -53,15 +53,28 @@ namespace gearit.src.GUI.OptionsMenu
 			TitleLabel.Margin = new Margin(0, 0, 0, -1);
 			_dialog_co.Content.Controls.Add(TitleLabel);
 
+			ListBoxItem item;
 			// Resolution Option
 			addLabel(0, 70, (int)((float)_dialog_co.Size.x / 2.5), 34, "Resolution");
+			_resolution = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 70);
+			int resolCpt = 0;
+			foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
+			{
+				item = addListBoxItem(_resolution, mode.Width.ToString() + " x " + mode.Height.ToString(), resolCpt.ToString());
+				if (_screen.GraphicsDevice.Viewport.Width == mode.Width && _screen.GraphicsDevice.Viewport.Height == mode.Height)
+					_resolution.SelectedItem = item;
+				resolCpt++;
+			}
 
+
+			/*
 			_resolution = new TextBox();
 			_resolution.Text = "800*600";
 			_resolution.Size = new Squid.Point(158, 34);
 			_resolution.Position = new Squid.Point(_dialog_co.Size.x / 2 - 16, 70);
 			_dialog_co.Content.Controls.Add(_resolution);
 			_resolution.Focus();
+			 */
 
 			// Fullscreen Option
 
@@ -69,7 +82,6 @@ namespace gearit.src.GUI.OptionsMenu
 			addLabel(0, 120, (int)((float)_dialog_co.Size.x / 2.5), 34, "Fullscreen");
 			_fullscreen = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 120);
 
-			ListBoxItem item;
 			item = addListBoxItem(_fullscreen, "Yes");
 			if (_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
@@ -96,6 +108,7 @@ namespace gearit.src.GUI.OptionsMenu
 
 			_save_btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
+				// Apply fullscreen option
 				bool fullScr = false;
 				if (_fullscreen.SelectedItem.Text == "Yes")
 					fullScr = true;
@@ -103,8 +116,15 @@ namespace gearit.src.GUI.OptionsMenu
 					_screen.deactivFullScreen();
 				else if (fullScr == true && !_screen.IsFullScreen)
 					_screen.activeFullScreen();
+				// Apply resolution option
+				if (_resolution.SelectedItem.Text != _screen.GraphicsDevice.Viewport.Width.ToString() + " x " + _screen.GraphicsDevice.Viewport.Height.ToString())
+				{
+					string res = _resolution.SelectedItem.Text;
+					_screen._graphics.PreferredBackBufferWidth = Convert.ToInt32((res.Substring(0, res.IndexOf(" "))));
+					_screen._graphics.PreferredBackBufferHeight = Convert.ToInt32((res.Substring(res.LastIndexOf(" ") + 1)));
+					_screen._graphics.ApplyChanges();
+				}
 			};
-
 		}
 
 		public override void Update(GameTime gameTime)
@@ -129,13 +149,14 @@ namespace gearit.src.GUI.OptionsMenu
 			_dialog_co.Content.Controls.Add(lb);
 		}
 
-		private ListBoxItem addListBoxItem(DropDownList list, string name)
+		private ListBoxItem addListBoxItem(DropDownList list, string name, string tag = "")
 		{
 			ListBoxItem item = new ListBoxItem();
 			item.Text = name;
 			item.Size = new Squid.Point(100, 35);
 			item.Margin = new Margin(0, 0, 0, 4);
 			item.Style = "item";
+			item.Tag = tag;
 			list.Items.Add(item);
 			return (item);
 		}
