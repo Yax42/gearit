@@ -91,6 +91,24 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
+                        int request_id = -1;
+
+                        if (!Int32.TryParse(msg.Substring(0, 2), out request_id))
+                        {
+                            // throw Exception ?
+                            OutputManager.LogError("(Client) Invalid request: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                            break;
+                        }
+
+                        switch(request_id)
+                        {
+                          // Case on every request ids and execute related actions.
+                          case RequestBuilder.REQ_OK:
+                          default:
+                            OutputManager.LogMessage("(Client) Received request id " + request_id);
+                            break;
+                        }
+
                         OutputManager.LogMessage("(Client)msg:" + msg);
                         break;
                     default:
@@ -109,6 +127,9 @@ namespace gearit.src.server
                 NetOutgoingMessage om = s_client.CreateMessage();
                 om.Write(text);
                 s_client.SendMessage(om, s_client.Connections.First(), NetDeliveryMethod.ReliableOrdered);
+                Request req_ok = RequestBuilder.Build(RequestBuilder.REQ_OK, null);
+                RequestBuilder.Send(s_client, req_ok);
+
                 //s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
             }
         }
