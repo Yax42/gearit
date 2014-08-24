@@ -77,6 +77,14 @@ namespace gearit.src.GUI
 				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
 		}
 
+        static public void Hide()
+        {
+            if (_chat_box.Visible == false)
+                _chat_box.Visible = true;
+            else
+                _chat_box.Visible = false;
+        }
+
 		private static void toggleInputMode()
 		{
 			if (_has_input)
