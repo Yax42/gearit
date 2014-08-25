@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
+using System.Threading;
 
 namespace gearit.xna
 {
@@ -14,6 +15,9 @@ namespace gearit.xna
 	/// </summary>
 	public class ScreenManager : DrawableGameComponent
 	{
+        // Be safe boys !
+        private Mutex mutex;
+
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
 		private GraphicsDeviceManager _graphics;
@@ -39,6 +43,9 @@ namespace gearit.xna
 		public ScreenManager(Game game)
 			: base(game)
 		{
+            // When drawing in other threads
+            mutex = new Mutex();
+
 			// we must set EnabledGestures before we can query for them, but
 			// we don't assume the game wants to read them.
 			_contentManager = game.Content;
@@ -137,6 +144,16 @@ namespace gearit.xna
 			get { return _assetCreator; }
 		}
 
+        public void beginDrawing()
+        {
+            mutex.WaitOne();
+        }
+
+        public void stopDrawing()
+        {
+            mutex.ReleaseMutex();
+        }
+
 		/// <summary>
 		/// Initializes the screen manager component.
 		/// </summary>
@@ -182,6 +199,8 @@ namespace gearit.xna
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
+            beginDrawing();
+
 			// Update input
 			Input.update();
 
@@ -201,6 +220,8 @@ namespace gearit.xna
 				_screensTemp.RemoveAt(_screensTemp.Count - 1);
 				screen.Update(gameTime);
 			}
+
+            stopDrawing();
 		}
 
 		/// <summary>
@@ -208,6 +229,8 @@ namespace gearit.xna
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
+            beginDrawing();
+
 			// Remove if problem with Squid
 			GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
 
@@ -217,8 +240,9 @@ namespace gearit.xna
 					continue;
 
 				screen.Draw(gameTime);
-				
-			} 
+			}
+
+            stopDrawing();
 		}
 
 		/// <summary>

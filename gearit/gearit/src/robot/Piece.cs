@@ -44,11 +44,7 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.ForestGreen;
-			robot.addPiece(this);
-			_robot = robot;
-			Shown = true;
-			_tex = null;
-			Sleeping = false;
+			Init(robot);
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -58,11 +54,26 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			setShape(shape, robot.getId());
+			Init(robot);
+		}
+
+		private void Init(Robot robot)
+		{
 			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
 			Sleeping = false;
+
+			AngularVelocityInternal = 0f;
+			Force = Vector2.Zero;
+			InvI = 0f;
+			InvMass = 0f;
+			LinearVelocityInternal = Vector2.Zero;
+			SleepTime = 0f;
+			Torque = 0f;
+			Rotation = 0f;
+			Mass = 0;
 		}
 
 		//
