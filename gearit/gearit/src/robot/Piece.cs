@@ -376,5 +376,19 @@ namespace gearit.src.robot
 		}
 
 		public abstract Vector2 ShapeLocalOrigin();
+
+        public bool AllSpotsAreContainedInSurface()
+        {
+            Transform transform;
+            GetTransform(out transform);
+            for (JointEdge i = JointList; i != null; i = i.Next)
+            {
+                Vector2 world_anchor = (i.Joint.BodyA == i.Other ? i.Joint.WorldAnchorB : i.Joint.WorldAnchorA);
+
+                if (Shape.TestPoint(ref transform, ref world_anchor) == false)
+                    return false;
+            }
+            return true;
+        }
 	}
 }

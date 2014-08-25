@@ -17,6 +17,8 @@ namespace gearit.src.robot
 	[Serializable()]
 	public class Heart : Piece, ISerializable
 	{
+        private float MIN_SIZE_AREA = 3f;
+        private float MAX_SIZE_AREA = 20f;
 		private Vertices _vertices; //Le PolygonShape sera composé de ces vertices (elles sont les cotés du polygone).
 
 
@@ -61,7 +63,7 @@ namespace gearit.src.robot
 
 		private bool checkShape()
 		{
-			return (areSpotsOk() && _vertices.GetArea() > 3f);
+            return (areSpotsOk() && _vertices.GetArea() > MIN_SIZE_AREA && _vertices.GetArea() < MAX_SIZE_AREA);
 		}
 
 		public void setShape(Vertices v)
@@ -202,7 +204,7 @@ namespace gearit.src.robot
 
 		public override bool IsValid()
 		{
-			return _vertices.Count >= 3 && Weight > 0 && getSize() > 0;
+            return _vertices.Count >= 3 && Weight > 0 && checkShape();
 		}
 	}
 }

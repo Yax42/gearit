@@ -476,7 +476,7 @@ namespace gearit.src.robot
 
 		public bool IsValid()
 		{
-			return VerifyAllPieceConnected() && AllPiecesValid();
+            return VerifyAllPieceConnected() && AllPiecesValid() && AllDifferentSpots() && AllSpotsConnected() && AllPiecesHaveSpotsThatAreContainedInSurface();
 		}
 		bool AllPiecesValid()
 		{
@@ -485,6 +485,13 @@ namespace gearit.src.robot
 					return p.IsValid();
 				});
 		}
+        bool AllPiecesHaveSpotsThatAreContainedInSurface()
+        {
+            return _pieces.All((Piece p) =>
+            {
+                return p.AllSpotsAreContainedInSurface();
+            });
+        }
 
 		bool VerifyAllPieceConnected()
 		{
@@ -503,5 +510,30 @@ namespace gearit.src.robot
 
 			return VerifyAllPieceConnectedAux(pieces_to_verify);
 		}
+        bool AllSpotsConnected()
+        {
+            return Spots.All((ISpot sp) =>
+                {
+                    Joint joint = (Joint)sp;
+                    return joint.BodyA != null && joint.BodyB != null;
+                });
+        }
+        bool AllDifferentSpots()
+        {
+            return Spots.All((ISpot sp) =>
+            {
+                Joint joint = (Joint)sp;
+                return Spots.All((ISpot sp_other) =>
+                {
+                    if (sp == sp_other)
+                        return true;
+                    Joint joint_other = (Joint)sp_other;
+                    if (joint.BodyA == joint_other.BodyA && joint.BodyB == joint_other.BodyB ||
+                        joint.BodyA == joint_other.BodyB && joint.BodyB == joint_other.BodyA)
+                        return false;
+                    return true;
+                });
+            });
+        }
 	}
 }
