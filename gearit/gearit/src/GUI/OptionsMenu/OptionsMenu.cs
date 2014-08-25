@@ -53,35 +53,24 @@ namespace gearit.src.GUI.OptionsMenu
 			TitleLabel.Margin = new Margin(0, 0, 0, -1);
 			_dialog_co.Content.Controls.Add(TitleLabel);
 
-			ListBoxItem item;
+			ListBoxItem item = null;
+
 			// Resolution Option
 			addLabel(0, 70, (int)((float)_dialog_co.Size.x / 2.5), 34, "Resolution");
 			_resolution = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 70);
 			int resolCpt = 0;
 			foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
 			{
-				item = addListBoxItem(_resolution, mode.Width.ToString() + " x " + mode.Height.ToString(), resolCpt.ToString());
+				if (resolCpt > 4) // Temporary. Hide low resolution so it does not crash.
+					item = addListBoxItem(_resolution, mode.Width.ToString() + " x " + mode.Height.ToString(), resolCpt.ToString());
 				if (_screen.GraphicsDevice.Viewport.Width == mode.Width && _screen.GraphicsDevice.Viewport.Height == mode.Height)
 					_resolution.SelectedItem = item;
 				resolCpt++;
 			}
 
-
-			/*
-			_resolution = new TextBox();
-			_resolution.Text = "800*600";
-			_resolution.Size = new Squid.Point(158, 34);
-			_resolution.Position = new Squid.Point(_dialog_co.Size.x / 2 - 16, 70);
-			_dialog_co.Content.Controls.Add(_resolution);
-			_resolution.Focus();
-			 */
-
-			// Fullscreen Option
-
-
+			// Fullscreen option
 			addLabel(0, 120, (int)((float)_dialog_co.Size.x / 2.5), 34, "Fullscreen");
 			_fullscreen = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 120);
-
 			item = addListBoxItem(_fullscreen, "Yes");
 			if (_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
@@ -89,33 +78,28 @@ namespace gearit.src.GUI.OptionsMenu
 			if (!_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
 
-			// Volume
+			// Volume control
 			addLabel(0, 170, (int)((float)_dialog_co.Size.x / 2.5), 34, "Volume");
 			_volume = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 170);
 			for (int i = 1; i <= 10; i++)
 				item = addListBoxItem(_volume, i.ToString());
 			_volume.SelectedItem = item;
 
+			// Save button
 			_save_btn = new Button();
 			_save_btn.Size = new Squid.Point(124, 34);
 			_save_btn.Position = new Squid.Point(_dialog_co.Size.x - 124 - 8,_dialog_co.Size.y - 34 - 8);
 			_save_btn.Text = "Save";
 			_dialog_co.Content.Controls.Add(_save_btn);
 
-			_fullscreen.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-			};
-
 			_save_btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				// Apply fullscreen option
-				bool fullScr = false;
-				if (_fullscreen.SelectedItem.Text == "Yes")
-					fullScr = true;
-				if (fullScr == false && _screen.IsFullScreen)
-					_screen.deactivFullScreen();
-				else if (fullScr == true && !_screen.IsFullScreen)
+				if (_fullscreen.SelectedItem.Text == "Yes" && !_screen.IsFullScreen)
 					_screen.activeFullScreen();
+				else if (_fullscreen.SelectedItem.Text == "No" && _screen.IsFullScreen)
+					_screen.deactivFullScreen();
+
 				// Apply resolution option
 				if (_resolution.SelectedItem.Text != _screen.GraphicsDevice.Viewport.Width.ToString() + " x " + _screen.GraphicsDevice.Viewport.Height.ToString())
 				{
@@ -124,6 +108,7 @@ namespace gearit.src.GUI.OptionsMenu
 					_screen._graphics.PreferredBackBufferHeight = Convert.ToInt32((res.Substring(res.LastIndexOf(" ") + 1)));
 					_screen._graphics.ApplyChanges();
 				}
+				// Apply volume level
 			};
 		}
 
