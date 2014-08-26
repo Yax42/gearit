@@ -94,8 +94,7 @@ namespace gearit.src.server
                             }
                             break;
                         case NetIncomingMessageType.Data:
-                            string rcv = msg.ReadString();
-                            OutputManager.LogMessage("SERVER - msg: " + rcv);
+                            manageRequest(msg);
                             break;
                         default:
                             OutputManager.LogError("SERVER - Unhandled type: " + msg.MessageType);
@@ -112,6 +111,11 @@ namespace gearit.src.server
                 NetOutgoingMessage om = s_server.CreateMessage();
                 om.Write(text);
                 s_server.SendMessage(om, s_server.Connections, NetDeliveryMethod.ReliableOrdered, 0);
+        }
+
+        public static void manageRequest(NetIncomingMessage msg)
+        {
+            OutputManager.LogMessage("Server received new request");
         }
     }
 }
