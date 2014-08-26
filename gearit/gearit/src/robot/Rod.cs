@@ -14,7 +14,8 @@ namespace gearit.src.robot
 	[Serializable()]
 	public class Rod : Piece, ISerializable
 	{
-
+        float SIZE_MIN = 0.1f;
+        float SIZE_MAX = 20;
 		private const float _width = 0.02f;
 
 		private Vector2 _endA;
@@ -161,12 +162,23 @@ namespace gearit.src.robot
 			_endA = Position - semiEnd;
 			_endB = Position + semiEnd;
 		}
+        public bool LocalAnchorsValid()
+        {
+            for (JointEdge jn = JointList; jn != null; jn = jn.Next)
+			{
+                ISpot spot = ((ISpot)jn.Joint);
+				if (spot.getLocalAnchor(this).Y != 0)
+                    return false;
+			}
+            return true;
+        }
 		public override bool IsValid()
 		{
-			return Weight > 0 && getSize() > 0;
+            return Weight > 0 && getSize() > SIZE_MIN && getSize() < SIZE_MAX && LocalAnchorsValid();
 		}
 		public override Vector2 ShapeLocalOrigin()
 		{
+            
 			return new Vector2(_size, 0);
 		}
 	}
