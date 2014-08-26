@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Squid;
 using GUI;
+using gearit.src.server;
 
 namespace SquidXNA
 {
@@ -270,6 +271,10 @@ namespace SquidXNA
 			base.Initialize();
 
 			ScreenManager.AddScreen(new ScreenMainMenu());
+
+
+            // To remove
+            NetworkServer.Start(25552);
 		}
 
 		protected override void Update(GameTime gameTime)

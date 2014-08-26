@@ -121,7 +121,7 @@ namespace gearit.src.gui
                 for (i = 0; i < name.Length; ++i)
                     req[i + 1] = Convert.ToByte(name[i]);
                 Int32[] ports = new Int32[1];
-                ports[0] = 9555;
+                ports[0] = 25552;
                 req[33] = 1;
                 req[34] = 0;
                 Buffer.BlockCopy(ports, 0, req, 35, 4);
@@ -325,7 +325,6 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-                    //OutputManager.LogMessage("Trying to connect to: " + ((MyData) args.Model).host);
                     NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port);
                 };
 

@@ -22,7 +22,7 @@ namespace gearit.src.Network
         private static State state = State.Disconnected;
         private static Mutex mutex = new Mutex();
         private static Thread clientThread;
-        public static List<NetIncomingMessage> requests;
+        public static List<NetIncomingMessage> requests = new List<NetIncomingMessage>();
 
         public static State getState()
         {
