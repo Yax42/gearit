@@ -22,6 +22,8 @@ using gearit.src.GUI;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using gearit.src.output;
+using gearit.src.Network;
 
 namespace gearit.src.gui
 {
@@ -49,6 +51,9 @@ namespace gearit.src.gui
             public string Name;
             public string Players;
             public int Ping;
+            public int id;
+            public string host;
+            public int port;
         }
 
         public void th_authenticate()
@@ -133,6 +138,7 @@ namespace gearit.src.gui
                 string ip;
                 models.Clear();
                 char[] name_s = new char[33];
+                int id_host = 0;
                 while (client.Connected)
                 {
                     if (!refreshing)
@@ -154,6 +160,9 @@ namespace gearit.src.gui
                     MyData entry = new MyData();
                     entry.Name = name + " - " + ip + ":" + ports[0];
                     entry.Players = "?/" + max_player;
+                    entry.host = ip;
+                    entry.port = ports[0];
+                    entry.id = id_host++;
                     entry.Ping = 0;
                     models.Add(entry);
                     olv.SetObjects(models);
@@ -300,6 +309,27 @@ namespace gearit.src.gui
                 };
 
                 return header;
+            };
+
+            olv.CreateCell = delegate(object sender, ListView.FormatCellEventArgs args)
+            {
+                string text = olv.GetAspectValue(args.Model, args.Column);
+
+                Button cell =  new Button
+                {
+                    Size = new Squid.Point(26, 26),
+                    Style = "label",
+                    Dock = DockStyle.Top,
+                    Text = text
+                };
+
+                cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
+                {
+                    //OutputManager.LogMessage("Trying to connect to: " + ((MyData) args.Model).host);
+                    NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port);
+                };
+
+                return cell;
             };
 
             TabPage tabPage = new TabPage();

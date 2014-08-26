@@ -141,6 +141,7 @@
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />
+    <Compile Include="src\Network\NetworkClient.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />
     <Compile Include="src\script\api\game\GameRobotApi.cs" />
@@ -181,8 +182,8 @@
     <Compile Include="src\GUI\sample\SampleMenu.cs" />
     <Compile Include="src\map\Artefact.cs" />
     <Compile Include="src\map\Trigger.cs" />
-    <Compile Include="src\MasterServer\MasterClient.cs" />
-    <Compile Include="src\MasterServer\MenuMasterClient.cs" />
+    <Compile Include="src\Network\MasterClient.cs" />
+    <Compile Include="src\Network\MenuMasterClient.cs" />
     <Compile Include="src\GUI\MessageBoxSave.cs" />
     <Compile Include="src\GUI\MessageBoxLoad.cs" />
     <Compile Include="src\GUI\MessageBox.cs" />
@@ -342,10 +343,10 @@
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\script\GameLuaScript.cs" />
     <Compile Include="src\script\LuaScript.cs" />
-    <Compile Include="src\server\InGameClient.cs" />
+    <Compile Include="src\Network\InGameClient.cs" />
     <Compile Include="src\server\Ftpclient.cs" />
     <Compile Include="src\server\FtpState.cs" />
-    <Compile Include="src\server\InGameServer.cs" />
+    <Compile Include="src\Network\InGameServer.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\ICamera.cs" />
