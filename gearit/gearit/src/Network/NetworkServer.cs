@@ -87,25 +87,15 @@ namespace gearit.src.server
                                 {
                                     string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
                                     OutputManager.LogMessage(str);
-                                    NetOutgoingMessage om = s_server.CreateMessage();
-                                    om.Write("You are connected!");
-                                    s_server.SendMessage(om, conn, NetDeliveryMethod.ReliableOrdered, 0);
+                                    //NetOutgoingMessage om = s_server.CreateMessage();
+                                    //om.Write("You are connected!");
+                                    //s_server.SendMessage(om, conn, NetDeliveryMethod.ReliableOrdered, 0);
                                 }
                             }
                             break;
                         case NetIncomingMessageType.Data:
                             string rcv = msg.ReadString();
                             OutputManager.LogMessage("SERVER - msg: " + rcv);
-
-                            List<NetConnection> all = s_server.Connections;
-                            all.Remove(msg.SenderConnection);
-
-                            if (all.Count > 0)
-                            {
-                                NetOutgoingMessage om = s_server.CreateMessage();
-                                om.Write(rcv);
-                                s_server.SendMessage(om, all, NetDeliveryMethod.ReliableOrdered, 0);
-                            }
                             break;
                         default:
                             OutputManager.LogError("SERVER - Unhandled type: " + msg.MessageType);

@@ -288,5 +288,13 @@ namespace SquidXNA
 
 			base.Draw(gameTime);
 		}
+
+        protected override void OnExiting(Object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+
+            // Stop the threads
+            NetworkServer.Stop();
+        }
 	}
 }
