@@ -104,7 +104,30 @@ namespace gearit.src.server
                         switch(requestID)
                         {
                           // Case on every request ids and execute related actions.
+                          case RequestBuilder.REQ_MAP_SELECT:
+                            Request res;
+                            // Test if map is already downloaded or not in the
+                            // FTP.
+                            bool downloaded = false;
+                            if (!downloaded)
+                            {
+                              int mapId = -1;
+                              if (!Int32.TryParse(msg.Substring(2), out mapId))
+                              {
+                                var data = new List<string>();
+
+                                data.Add(mapId.toString());
+                                res = RequestBuilder.Build(RequestBuilder.REQ_MAP_DL, data);
+                              } else {
+                                res = RequestBuilder.Build(RequestBuilder.REQ_MAP_KO, null);
+                              }
+                            } else {
+                              res = RequestBuilder.Build(RequestBuilder.REQ_MAP_OK, null);
+                            }
+                            RequestBuilder.Send(s_client, res);
+                            break;
                           case RequestBuilder.REQ_OK:
+                          case RequestBuilder.REQ_KO:
                           default:
                             OutputManager.LogMessage("(Client) Received request id " + requestID);
                             break;
