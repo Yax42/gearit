@@ -91,21 +91,22 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
-                        int request_id = -1;
+                        int requestID = -1;
 
-                        if (!Int32.TryParse(msg.Substring(0, 2), out request_id))
+                        if (!Int32.TryParse(msg.Substring(0, 2), out requestID))
                         {
                             // throw Exception ?
                             OutputManager.LogError("(Client) Invalid request: " + im.MessageType + " " + im.LengthBytes + " bytes");
                             break;
                         }
 
-                        switch(request_id)
+                        // Switch on the cases relevant to the client.
+                        switch(requestID)
                         {
                           // Case on every request ids and execute related actions.
                           case RequestBuilder.REQ_OK:
                           default:
-                            OutputManager.LogMessage("(Client) Received request id " + request_id);
+                            OutputManager.LogMessage("(Client) Received request id " + requestID);
                             break;
                         }
 
