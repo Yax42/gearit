@@ -10,34 +10,35 @@ namespace gearit.src.Network
 {
     static class NetworkClient
     {
-        public static int _port;
-        public static string _host;
+        public static int Port;
+        public static string Host;
         private static NetClient s_client;
-        public enum State
+
+        public enum EState
         {
             Connecting,
             Connected,
             Disconnected
         }
-        private static State state = State.Disconnected;
+        public static EState State = EState.Disconnected;
         private static Mutex mutex = new Mutex();
         private static Thread clientThread;
-        public static List<NetIncomingMessage> requests = new List<NetIncomingMessage>();
+        public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
 
-        public static State getState()
+        public static EState getState()
         {
-            return (state);
+            return (State);
         }
 
         private static void tryToConnect()
         {
-            OutputManager.LogMessage("Trying to connect to: " + _host + ":" + _port);
+            OutputManager.LogMessage("Trying to connect to: " + Host + ":" + Port);
 
             try
             {
                 s_client.Start();
                 NetOutgoingMessage hail = s_client.CreateMessage("Hello I want connection kthxbye");
-                s_client.Connect(_host, _port, hail);
+                s_client.Connect(Host, Port, hail);
             }
             catch
             {
@@ -47,14 +48,15 @@ namespace gearit.src.Network
 
         public static void Connect(string host, int port)
         {
-            if (state == State.Connecting)
+            if (State == EState.Connecting)
                 return ;
+			PacketsList.Clear();
 
             Disconnect();
 
-            _port = port;
-            _host = host;
-            state = State.Connecting;
+            Port = port;
+            Host = host;
+            State = EState.Connecting;
 
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             s_client = new NetClient(config);
@@ -66,7 +68,7 @@ namespace gearit.src.Network
 
         public static void Disconnect()
         {
-            if (state == State.Connected)
+            if (State == EState.Connected)
             {
                 s_client.Disconnect("Requested by user");
                 s_client.Shutdown("Bye");
@@ -89,9 +91,9 @@ namespace gearit.src.Network
                 case NetIncomingMessageType.StatusChanged:
                     NetConnectionStatus status = (NetConnectionStatus)im.ReadByte();
                     if (status == NetConnectionStatus.Connected)
-                        state = State.Connected;
+                        State = EState.Connected;
                     else
-                        state = State.Disconnected;
+                        State = EState.Disconnected;
                     OutputManager.LogError("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
                     break;
                 case NetIncomingMessageType.Data:
@@ -106,7 +108,7 @@ namespace gearit.src.Network
 
         public static void Send(string text)
 		{
-            if (state == State.Connected)
+            if (State == EState.Connected)
             {
                 NetOutgoingMessage om = s_client.CreateMessage();
                 om.Write(text);
@@ -114,10 +116,42 @@ namespace gearit.src.Network
             }
         }
 
+        public static void Send(byte[] data)
+		{
+            if (State == EState.Connected)
+            {
+                NetOutgoingMessage om = s_client.CreateMessage();
+                om.Write(data);
+                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.ReliableOrdered, 0);
+            }
+        }
+
+
+		static private Mutex PacketMutex = new Mutex();
+		static private List<NetIncomingMessage> PacketsList = new List<NetIncomingMessage>();
+		static public NetIncomingMessage Packet
+		{
+			get
+			{
+				PacketMutex.WaitOne();
+				var res = PacketsList.First();
+				PacketsList.RemoveAt(0);
+				PacketMutex.ReleaseMutex();
+				return res;
+			}
+			set
+			{
+				PacketMutex.WaitOne();
+				PacketsList.Add(value);
+				PacketMutex.ReleaseMutex();
+			}
+		}
+
         public static void manageRequest(NetIncomingMessage msg)
         {
             OutputManager.LogMessage("Client received new request");
-            requests.Add(msg);
+            Requests.Add(msg);
+
         }
     }
 }

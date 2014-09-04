@@ -113,8 +113,20 @@ namespace gearit.src.server
                 s_server.SendMessage(om, s_server.Connections, NetDeliveryMethod.ReliableOrdered, 0);
         }
 
+        public static void Send(byte[] data, int id)
+        {
+                NetOutgoingMessage om = s_server.CreateMessage();
+                om.Write(data);
+                s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableOrdered, 0);
+        }
+
         public static void manageRequest(NetIncomingMessage msg)
         {
+			int id = 0;
+			if (s_server.Connections[0] == msg.SenderConnection)
+				id = 1;
+			Send(msg.Data, id);
+
             OutputManager.LogMessage("Server received new request");
         }
     }

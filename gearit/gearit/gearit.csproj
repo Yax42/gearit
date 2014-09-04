@@ -143,6 +143,7 @@
     <Compile Include="src\game\Score.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />
     <Compile Include="src\Network\NetworkClient.cs" />
+    <Compile Include="src\Network\sample\NetworkGame.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />
     <Compile Include="src\script\api\game\GameRobotApi.cs" />
