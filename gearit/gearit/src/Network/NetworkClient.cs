@@ -78,7 +78,6 @@ namespace gearit.src.Network
         public static void Receive(object peer)
         {
             NetIncomingMessage im = ((NetClient)peer).ReadMessage();
-            OutputManager.LogMessage("Client received : " + im.MessageType);
             switch (im.MessageType)
             {
                 case NetIncomingMessageType.DebugMessage:
@@ -157,7 +156,6 @@ namespace gearit.src.Network
 
         public static void manageRequest(NetIncomingMessage msg)
         {
-            OutputManager.LogMessage("Client received new request");
             Requests.Add(msg);
 
         }

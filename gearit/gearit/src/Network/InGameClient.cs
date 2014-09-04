@@ -61,7 +61,6 @@ namespace gearit.src.server
             NetIncomingMessage im;
             while ((im = s_client.ReadMessage()) != null)
             {
-                OutputManager.LogMessage("Client received : " + im.MessageType);
                 // handle incoming message
                 switch (im.MessageType)
                 {
