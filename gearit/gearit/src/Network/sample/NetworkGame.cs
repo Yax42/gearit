@@ -109,8 +109,6 @@ namespace gearit.src.Network.sample
 			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
 			NetworkClient.Connect("127.0.0.1", 25552);
-			while (NetworkClient.State != NetworkClient.EState.Connected)
-				Thread.Sleep(100);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -151,6 +149,8 @@ namespace gearit.src.Network.sample
 
 		public override void Update(GameTime gameTime)
 		{
+			if (NetworkClient.State != NetworkClient.EState.Connected)
+				return ;
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;

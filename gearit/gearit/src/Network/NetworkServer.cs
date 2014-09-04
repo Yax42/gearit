@@ -115,9 +115,11 @@ namespace gearit.src.server
 
         public static void Send(byte[] data, int id)
         {
-                NetOutgoingMessage om = s_server.CreateMessage();
-                om.Write(data);
-                s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableOrdered, 0);
+			if (id >= s_server.Connections.Count)
+				return;
+            NetOutgoingMessage om = s_server.CreateMessage();
+            om.Write(data);
+            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableOrdered, 0);
         }
 
         public static void manageRequest(NetIncomingMessage msg)

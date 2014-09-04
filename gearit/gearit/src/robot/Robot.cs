@@ -153,7 +153,8 @@ namespace gearit.src.robot
 						TriggersData[trigger.Id] = true;
 				}
 			}
-			_script.run();
+			if (_script != null)
+				_script.run();
 		}
 
 		public Heart Heart
@@ -562,7 +563,7 @@ namespace gearit.src.robot
 		{
 			get
 			{
-				byte[] res = new byte[Spots.Count];
+				byte[] res = new byte[Spots.Count * 4];
 				for (int i = 0; i < Spots.Count; i++)
 				{
 					var tmp = BitConverter.GetBytes(Spots[i].Force);
