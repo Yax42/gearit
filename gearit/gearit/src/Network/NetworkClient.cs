@@ -98,7 +98,8 @@ namespace gearit.src.Network
                     break;
                 case NetIncomingMessageType.Data:
                     manageRequest(im);
-                    break;
+					return;
+					break;
                 default:
                     OutputManager.LogError("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                     break;
@@ -115,6 +116,13 @@ namespace gearit.src.Network
                 s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.ReliableOrdered, 0);
             }
         }
+
+		public static void CleanRequests()
+		{
+			foreach (NetIncomingMessage request in Requests)
+				s_client.Recycle(request);
+			Requests.Clear();
+		}
 
         public static void Send(byte[] data)
 		{

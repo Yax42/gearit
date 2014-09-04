@@ -14,6 +14,7 @@ using gearit.src.script;
 using gearit.src.editor.robot;
 using gearit.src.game;
 using System.Threading;
+using Lidgren.Network;
 
 namespace gearit.src.Network.sample
 {
@@ -96,10 +97,10 @@ namespace gearit.src.Network.sample
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			addMainRobot(robot);
 			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addOpponentRobot(robot2);
+			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			addMainRobot(robot);
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
 			Debug.Assert(Map != null);
@@ -160,11 +161,10 @@ namespace gearit.src.Network.sample
 
 
 			NetworkClient.Send(MainRobot.PacketMotor);
-			while (NetworkClient.Requests.Count > 0)
-			{
-				EnnemyRobot.PacketMotor = NetworkClient.Requests[0].Data;
-				NetworkClient.Requests.RemoveAt(0);
-			}
+			foreach (NetIncomingMessage request in NetworkClient.Requests)
+				EnnemyRobot.PacketMotor = request.Data;
+			NetworkClient.CleanRequests();
+
 			foreach (Robot r in Robots)
 				r.Update(Map);
 
