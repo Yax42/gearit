@@ -137,7 +137,6 @@
     <Compile Include="src\GeneticAlgorithm\Genome\SoftwareGenome.cs" />
     <Compile Include="src\GeneticAlgorithm\Individual.cs" />
     <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
-    <Compile Include="src\GUI\ConsoleHider.cs" />
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />

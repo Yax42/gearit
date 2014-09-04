@@ -5,6 +5,7 @@ using System.Text;
 using Lidgren.Network;
 using gearit.src.output;
 using System.Threading;
+using gearit.xna;
 
 namespace gearit.src.Network
 {
@@ -32,8 +33,6 @@ namespace gearit.src.Network
 
         private static void tryToConnect()
         {
-            OutputManager.LogMessage("Trying to connect to: " + Host + ":" + Port);
-
             try
             {
                 s_client.Start();
@@ -42,7 +41,8 @@ namespace gearit.src.Network
             }
             catch
             {
-                OutputManager.LogError("CLIENT - Fail to connect to server");
+				//Lock tchat
+                //OutputManager.LogError("CLIENT - Fail to connect to server");
             }
         }
 

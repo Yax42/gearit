@@ -158,14 +158,16 @@ namespace gearit.src.Network.sample
 
 			_world.Step(delta);
 
-			foreach (Robot r in Robots)
-				r.Update(Map);
+
 			NetworkClient.Send(MainRobot.PacketMotor);
 			while (NetworkClient.Requests.Count > 0)
 			{
 				EnnemyRobot.PacketMotor = NetworkClient.Requests[0].Data;
 				NetworkClient.Requests.RemoveAt(0);
 			}
+			foreach (Robot r in Robots)
+				r.Update(Map);
+
 			_gameMaster.run();
 			_camera.Update(gameTime);
 			if (_exiting)
