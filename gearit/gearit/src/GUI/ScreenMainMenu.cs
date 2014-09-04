@@ -28,7 +28,6 @@ namespace GUI
 
 			_menu = new GUI.MainMenu(ScreenManager);
 			ChatBox.init(ScreenManager);
-            ConsoleHider.init(ScreenManager);
 
 			// Mouse Cursor bug fix
 			//_background = new Squid.Desktop();
@@ -48,7 +47,6 @@ namespace GUI
 
 			_menu.Update();
 			ChatBox.Update();
-            ConsoleHider.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -58,8 +56,6 @@ namespace GUI
 			_menu.Draw();
 			if (ChatBox.getDesktop() != null)
 				ChatBox.getDesktop().Draw();
-            if (ConsoleHider.getDesktop() != null)
-                ConsoleHider.getDesktop().Draw();
 		}
 	}
 }
