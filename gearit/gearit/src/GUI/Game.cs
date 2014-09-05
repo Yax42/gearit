@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Squid;
 using GUI;
+using gearit.src.server;
 
 namespace SquidXNA
 {
@@ -21,7 +22,7 @@ namespace SquidXNA
 			this.IsFixedTimeStep = false;
 
 			ScreenManager = new gearit.xna.ScreenManager(this);
-			ScreenManager.SetResolutionScreen(1280, 780);
+			ScreenManager.SetResolutionScreen(1280, 700);
 			Components.Add(ScreenManager);
 
 			this.Window.Title = "Gear It!";
@@ -270,6 +271,10 @@ namespace SquidXNA
 			base.Initialize();
 
 			ScreenManager.AddScreen(new ScreenMainMenu());
+
+
+            // To remove
+            NetworkServer.Start(25552);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -283,5 +288,13 @@ namespace SquidXNA
 
 			base.Draw(gameTime);
 		}
+
+        protected override void OnExiting(Object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+
+            // Stop the threads
+            NetworkServer.Stop();
+        }
 	}
 }

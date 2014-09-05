@@ -177,8 +177,10 @@ namespace gearit.src.robot
 				LocalAnchorB = MathLib.RotatePoint(LocalAnchorB, Vector2.Zero, MathLib.RadiansToDegrees(angle));
 		}
 //MOVE--------------------------
-		public void moveAnchor(Piece p, Vector2 pos)
+		public void moveAnchor(Piece p, Vector2 pos, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (BodyA == p)
 				LocalAnchorA = pos - p.Position;
 			else if (BodyB == p)

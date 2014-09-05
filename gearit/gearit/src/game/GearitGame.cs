@@ -17,20 +17,22 @@ using FarseerPhysics.DebugViews;
 using FarseerPhysics;
 using gearit.src.robot;
 using gearit.src.script;
+using System.Threading;
+using gearit.src.editor.robot;
 
 namespace gearit.src.game
 {
-	class GearitGame : GameScreen, IDemoScreen
+	class GearitGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		private World _world;
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
 
-		public Map _Map;
+		private Map _Map;
 		public Map Map { get { return _Map; } }
 
-		public List<Robot> _Robots;
+		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 
 		private DrawGame _drawGame;
@@ -45,7 +47,7 @@ namespace gearit.src.game
 		public int FrameCount { get { return _FrameCount; } }
 
 		private float _Time = 0;
-		public float Time { get { return _FrameCount; } }
+		public float Time { get { return _Time; } }
 
 		#region IDemoScreen Members
 
@@ -76,7 +78,8 @@ namespace gearit.src.game
 			_exiting = false;
 
 			_FrameCount = 0;
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice, _debug);
+			_Time = 0;
+			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			_world.Clear();
 			_world.Gravity = new Vector2(0f, 9.8f);
@@ -92,7 +95,7 @@ namespace gearit.src.game
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, "game/default");
+			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -111,7 +114,7 @@ namespace gearit.src.game
 		public void clearRobot()
 		{
 			foreach (Robot r in Robots)
-				r.remove();
+				r.ExtractFromWorld();
 			Robots.Clear();
 		}
 
@@ -120,18 +123,19 @@ namespace gearit.src.game
 			Robots.Add(robot);
 			if (Robots.Count == 1)
 				_camera.TrackingBody = robot.Heart;
-			robot.turnOn();
+			robot.InitScript();
 			robot.move(new Vector2(0, -20));
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			_FrameCount++;
-			_Time = (float) gameTime.TotalGameTime.TotalSeconds;
+			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
+			float delta = 1 / 30f; // Static delta time for now, yea bitch!
+			_Time += delta;
 			HandleInput();
 			//Input.update();
 
-			_world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f)));
+			_world.Step(delta);
 
 			foreach (Robot r in Robots)
 				r.Update(Map);
@@ -139,6 +143,7 @@ namespace gearit.src.game
 			_camera.Update(gameTime);
 			if (_exiting)
 				Exit();
+			_FrameCount++;
 		}
 
 		public void Finish()

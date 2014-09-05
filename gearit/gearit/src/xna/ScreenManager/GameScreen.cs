@@ -37,6 +37,7 @@ namespace gearit.xna
 	{
 		private bool _otherScreenHasFocus;
 		public bool VisibleMenu = false;
+        public bool is_initialized = false;
 		
 		public GameScreen()
 		{
@@ -131,6 +132,7 @@ namespace gearit.xna
 		/// </summary>
 		public virtual void LoadContent()
 		{
+            is_initialized = true;
 		}
 
 		/// <summary>

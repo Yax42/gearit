@@ -18,6 +18,8 @@ using gearit.src.map;
 using System.Diagnostics;
 using gearit.src.script;
 using gearit.src.game;
+using gearit.src.editor.robot;
+using System.IO;
 
 namespace gearit.src.robot
 {
@@ -61,6 +63,9 @@ namespace gearit.src.robot
 		public bool[] TriggersData;
 		private int _LastTrigger;
 		public Score Score = new Score();
+		public int State = 0;
+		private bool _extracted = false;
+		public bool Extracted { get { return _extracted; }}
 
 		private RobotStateApi _Api;
 		public RobotStateApi Api
@@ -87,7 +92,7 @@ namespace gearit.src.robot
 			_pieces = new List<Piece>();
 			_spots = new List<ISpot>();
 			new Heart(this);
-			Console.WriteLine("Robot created.");
+			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
 			_Api = new RobotStateApi(this);
@@ -99,7 +104,7 @@ namespace gearit.src.robot
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
-			Name = (string)info.GetValue("Name", typeof(string));
+			Name = Path.GetFileNameWithoutExtension(SerializerHelper.CurrentPath);// (string)info.GetValue("Name", typeof(string));
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
 			_prismaticCounter = (int)info.GetValue("SpotCount", typeof(int));
 			this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
@@ -111,7 +116,7 @@ namespace gearit.src.robot
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
 			_id = _robotIdCounter++;
-			Console.WriteLine("Robot created.");
+			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
 			_Api = new RobotStateApi(this);
@@ -119,7 +124,8 @@ namespace gearit.src.robot
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-			info.AddValue("Name", Name, typeof(string));
+			Heart.move(new Vector2());
+			//info.AddValue("Name", Name, typeof(string));
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));
 			info.AddValue("SpotCount", _prismaticCounter, typeof(int));
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
@@ -147,7 +153,8 @@ namespace gearit.src.robot
 						TriggersData[trigger.Id] = true;
 				}
 			}
-			_script.run();
+			if (_script != null)
+				_script.run();
 		}
 
 		public Heart Heart
@@ -196,9 +203,30 @@ namespace gearit.src.robot
 			return (_id);
 		}
 
+		public int FindFirstFreeSpotNameId()
+		{
+			int res = -1;
+			bool ok = false;
+			while (!ok)
+			{
+				ok = true;
+				res++;
+				string name = "spot" + res;
+				foreach (ISpot s in Spots)
+				{
+					if (s.Name == name)
+					{
+						ok = false;
+						break;
+					}
+				}
+			}
+			return res;
+		}
+
 		#region Editor
 
-		public void resetAct()
+		public void ResetAct()
 		{
 			foreach (Piece p in _pieces)
 				p.resetAct();
@@ -369,7 +397,7 @@ namespace gearit.src.robot
 		}
 
 		// For runtime
-		public void remove(ISpot s)
+		public void Destroy(ISpot s)
 		{
 			_spots.Remove(s);
 			_world.RemoveJoint(s.Joint);
@@ -386,16 +414,23 @@ namespace gearit.src.robot
 			return (false);
 		}
 
-		public void remove()
+		public void ExtractFromWorld()
 		{
+			Debug.Assert(!Extracted);
+			if (Extracted)
+				return;
+			_extracted = true;
 			if (_script != null)
 				_script.stop();
 			_script = null;
-			//return;
 			foreach (ISpot i in _spots)
+			{
 				_world.RemoveJoint(i.Joint);
+			}
 			foreach (Piece i in _pieces)
-				_world.RemoveBody(i);
+			{
+				i.Destroy();
+			}
 		}
 
 		//-------------------------------------
@@ -410,9 +445,9 @@ namespace gearit.src.robot
 
 		public void move(Vector2 pos)
 		{
-			for (int i = 1; i < _pieces.Count; i++)
-				_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
-			Heart.Position = pos;
+			//for (int i = 1; i < _pieces.Count; i++)
+			//	_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
+			Heart.move(pos, this);
 		}
 
 		public Vector2 Position
@@ -440,7 +475,7 @@ namespace gearit.src.robot
 			return (res);
 		}
 
-		public void turnOn()
+		public void InitScript()
 		{
 			/*
 			foreach (ISpot i in _spots)
@@ -448,7 +483,22 @@ namespace gearit.src.robot
 					((PrismaticSpot)i).updateLimit();
 			*/
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, Name);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile(Name));
+		}
+
+		public void InitScript(string script)
+		{
+			if (_script == null)
+				_script = new RobotLuaScript(GetSpotApi(), _Api, script, false);
+		}
+
+		public void StopScript()
+		{
+			if (_script != null)
+			{
+				_script.stop();
+				_script = null;
+			}
 		}
 
 		public int revCount() { return (_revoluteCounter++); }
@@ -456,5 +506,98 @@ namespace gearit.src.robot
 
 		// Filename for robot & lua
 		public string Name { get; set; }
+
+		public bool IsValid()
+		{
+            return VerifyAllPieceConnected() && AllPiecesValid() && AllDifferentSpots() && AllSpotsConnected() && AllPiecesHaveSpotsThatAreContainedInSurface();
+		}
+		bool AllPiecesValid()
+		{
+			return _pieces.All((Piece p) =>
+				{
+					return p.IsValid();
+				});
+		}
+        bool AllPiecesHaveSpotsThatAreContainedInSurface()
+        {
+            return _pieces.All((Piece p) =>
+            {
+                return p.AllSpotsAreContainedInSurface();
+            });
+        }
+
+		bool VerifyAllPieceConnected()
+		{
+			return VerifyAllPieceConnectedAux(new List<Piece>(_pieces));
+		}
+		bool VerifyAllPieceConnectedAux(List<Piece> pieces_to_verify)
+		{
+			if (pieces_to_verify.Count == 0)
+				return true;
+			Piece piece_to_verify = pieces_to_verify[0];
+			List<Piece> already_explored_pieces = new List<Piece>();
+			if (IsPieceConnectedToHeartAux(piece_to_verify, already_explored_pieces ) == false)
+				return false;
+			foreach (var alreadyExploredPiece in already_explored_pieces)
+				pieces_to_verify.Remove(alreadyExploredPiece);
+
+			return VerifyAllPieceConnectedAux(pieces_to_verify);
+		}
+        bool AllSpotsConnected()
+        {
+            return Spots.All((ISpot sp) =>
+                {
+                    Joint joint = (Joint)sp;
+                    return joint.BodyA != null && joint.BodyB != null;
+                });
+        }
+        bool AllDifferentSpots()
+        {
+            return Spots.All((ISpot sp) =>
+            {
+                Joint joint = (Joint)sp;
+                return Spots.All((ISpot sp_other) =>
+                {
+                    if (sp == sp_other)
+                        return true;
+                    Joint joint_other = (Joint)sp_other;
+                    if (joint.BodyA == joint_other.BodyA && joint.BodyB == joint_other.BodyB ||
+                        joint.BodyA == joint_other.BodyB && joint.BodyB == joint_other.BodyA)
+                        return false;
+                    return true;
+                });
+            });
+		}
+
+		#region Network
+		public byte[]	PacketMotor
+		{
+			get
+			{
+				byte[] res = new byte[Spots.Count * 4];
+				for (int i = 0; i < Spots.Count; i++)
+				{
+					var tmp = BitConverter.GetBytes(Spots[i].Force);
+					for (int j = 0; j < 4; j++)
+						res[i * 4 + j] = tmp[j];
+				}
+				return res;
+			}
+			set
+			{
+				byte[] motors = value;
+				for (int i = 0; i < Spots.Count; i++)
+				{
+					Spots[i].Force = System.BitConverter.ToSingle(motors, i * 4);
+				}
+			}
+
+		}
+
+
+		#endregion
+
+
+
 	}
 }

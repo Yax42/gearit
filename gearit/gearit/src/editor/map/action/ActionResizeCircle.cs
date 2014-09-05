@@ -36,7 +36,11 @@ namespace gearit.src.editor.map.action
 		public bool run()
 		{
 			if (!_didRevert)
+			{
 				_to = (_chunk.Position - Input.SimMousePos).Length();
+				if (_to == 0)
+					_to = 0.1f;
+			}
 			_chunk.Size = _to;
 			if (_didRevert)
 				return false;

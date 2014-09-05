@@ -38,7 +38,7 @@ namespace gearit.src.robot
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 			base(p1, p2, anchor1, anchor2)
 		{
-			Name = "spot" + robot.revCount();
+			Name = "spot" + robot.FindFirstFreeSpotNameId();
 			robot.getWorld().AddJoint(this);
 			Enabled = true;
 			MaxMotorTorque = 10;
@@ -46,7 +46,7 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			ColorValue = Color.Black;
 			robot.addSpot(this);
-			SynchroniseAnchors(p1);
+			SynchroniseAnchors(p1, robot);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
 			if (p1.GetType() == typeof(Rod))
@@ -75,18 +75,12 @@ namespace gearit.src.robot
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
-			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));
-		/*
-		if (UpperLimit < LowerLimit)
-		{
-			float tmp = UpperLimit;
-			UpperLimit = LowerLimit;
-			LowerLimit = tmp;
 
-		}
-		Console.WriteLine((int) MathHelper.ToDegrees(LowerLimit) + " " + (int) MathHelper.ToDegrees(UpperLimit));
-		//Console.WriteLine((LowerLimit) + " " + (UpperLimit));
-		*/
+			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));	
+			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));	
+			MinAngle = (float)info.GetValue("MinAngle", typeof(float));	
+			SpotLimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));	
+
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			LimitEnabled = false;
@@ -103,6 +97,10 @@ namespace gearit.src.robot
 			info.AddValue("PBHashCode", BodyB.GetHashCode(), typeof(int));
 			info.AddValue("AnchorA", LocalAnchorA, typeof(Vector2));
 			info.AddValue("AnchorB", LocalAnchorB, typeof(Vector2));
+
+			info.AddValue("MaxAngle", MaxAngle, typeof(float));
+			info.AddValue("MinAngle", MinAngle, typeof(float));
+			info.AddValue("LimitEnabled", SpotLimitEnabled, typeof(bool));
 		}
 		#endregion
 
@@ -117,6 +115,8 @@ namespace gearit.src.robot
 			}
 			set
 			{
+				if (value < 0)
+					return;
 				_MaxAngle = value;
 				if (!Frozen)
 					UpperLimit = _MaxAngle;
@@ -132,6 +132,8 @@ namespace gearit.src.robot
 			}
 			set
 			{
+				if (value > 0)
+					return;
 				_MinAngle = value;
 				if (!Frozen)
 					LowerLimit = _MinAngle;
@@ -185,8 +187,8 @@ namespace gearit.src.robot
 
 		public float Force
 		{
-			get { return MotorSpeed * 100000; }
-			set { MotorSpeed = value * 100000; }
+			get { return MotorSpeed / 15; }
+			set { MotorSpeed = value * 15; }
 		}
 
 		public float MaxForce
@@ -221,35 +223,46 @@ namespace gearit.src.robot
 			swap(p1, p2, Vector2.Zero);
 		}
 
-		public void moveAnchor(Piece p, Vector2 anchor)
+		public void moveAnchor(Piece p, Vector2 anchor, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (BodyA == p)
-				LocalAnchorA = anchor - p.Position;
+				LocalAnchorA = BodyA.GetLocalPoint(anchor);
 			if (BodyB == p)
-				LocalAnchorB = anchor - p.Position;
+				LocalAnchorB = BodyB.GetLocalPoint(anchor);
 			SynchroniseAnchors(p);
 		}
 
-		/*
-			public void move(Vector2 pos)
-			{
-				//BodyA.Position = pos - LocalAnchorA;
-				//BodyB.Position = pos - LocalAnchorB;
-				((Piece)BodyA).move(pos - LocalAnchorA);
-				((Piece)BodyB).move(pos - LocalAnchorB);
-			}
-		*/
-
-		public void SynchroniseAnchors(Piece piece)
+		public Vector2 ActualWorldAnchorA
 		{
-			if (piece == BodyA)
-				((Piece)BodyB).move(WorldAnchorA - BodyB.GetWorldVector(LocalAnchorB));
-			else
-				((Piece)BodyA).move(WorldAnchorB - BodyA.GetWorldVector(LocalAnchorA));
+			get { return BodyA.GetWorldVector(LocalAnchorA); }
 		}
 
-		public void rotate(Piece piece, float angle)
+		public Vector2 ActualWorldAnchorB
 		{
+			get { return BodyB.GetWorldVector(LocalAnchorB); }
+		}
+
+		public Vector2 DeltaAnchor
+		{
+			get { return ActualWorldAnchorA - ActualWorldAnchorB; }
+		}
+
+		public void SynchroniseAnchors(Piece piece, Robot robot = null)
+		{
+			if (robot != null)
+				robot.ResetAct();
+			if (piece == BodyA)
+				((Piece)BodyB).move(WorldAnchorA - ActualWorldAnchorB);
+			else
+				((Piece)BodyA).move(WorldAnchorB - ActualWorldAnchorA);
+		}
+
+		public void rotate(Piece piece, float angle, Robot robot = null)
+		{
+			if (robot != null)
+				robot.ResetAct();
 			if (piece == BodyA)
 				((Piece)BodyB).rotateDelta(angle);
 			else

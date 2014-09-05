@@ -34,7 +34,7 @@ namespace gearit.src.robot
 		internal Texture2D _tex;
 		internal bool DidAct { get; set; }
 		internal Robot _robot;
-		internal float _size; //useless for the heart, but more simple for implementation
+		internal float _size; //useless for the heart, but simpler for implementation
 		public bool Sleeping { get; set; }
 
 		internal Piece(Robot robot) :
@@ -44,12 +44,7 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.ForestGreen;
-			robot.addPiece(this);
-			_robot = robot;
-			Shown = true;
-			_tex = null;
-			Sleeping = false;
-			CollisionCategories = Category.Cat1;
+			Init(robot);
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -59,12 +54,26 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			setShape(shape, robot.getId());
+			Init(robot);
+		}
+
+		private void Init(Robot robot)
+		{
 			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
 			_robot = robot;
 			Shown = true;
 			Sleeping = false;
-			CollisionCategories = Category.Cat1;
+
+			AngularVelocityInternal = 0f;
+			Force = Vector2.Zero;
+			InvI = 0f;
+			InvMass = 0f;
+			LinearVelocityInternal = Vector2.Zero;
+			SleepTime = 0f;
+			Torque = 0f;
+			Rotation = 0f;
+			Mass = 0;
 		}
 
 		//
@@ -81,7 +90,6 @@ namespace gearit.src.robot
 			SerializerHelper.Add(oldHashMap, this);
 			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
-			CollisionCategories = Category.Cat1;
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
@@ -169,7 +177,7 @@ namespace gearit.src.robot
 			{
 				if (value > 0 && value < MaxMass)
 				{
-					//Shape.ComputeProperties();
+					Shape.ComputeProperties();
 					if (Shape.MassData.Area <= 0)
 					{
 						Debug.Assert(true);
@@ -225,8 +233,10 @@ namespace gearit.src.robot
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
 
-		public void rotate(float angle, Piece comparator)
+		public void rotate(float angle, Piece comparator, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			rotateDelta(angle - Rotation, comparator);
 		}
 
@@ -265,8 +275,10 @@ namespace gearit.src.robot
 			move(pos + Position);
 		}
 
-		virtual public void move(Vector2 pos)
+		virtual public void move(Vector2 pos, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (DidAct)
 				return;
 			DidAct = true;
@@ -281,8 +293,10 @@ namespace gearit.src.robot
 			updateCharacteristics();
 		}
 
-		virtual public void resize(float size)
+		virtual public void resize(float size, Robot robot = null)
 		{
+			if (robot != null)
+				robot.ResetAct();
 			if (_size == 0)
 				_size = size;
 			else
@@ -360,7 +374,32 @@ namespace gearit.src.robot
 				adjacentPieces.Add((Piece)i.Other);
 			return adjacentPieces;
 		}
+		public virtual bool IsValid()
+		{
+			return true;
+		}
+
+		public void Destroy()
+		{
+			World.RemoveBody(this);
+			_robot = null;
+			//_fix.Destroy();
+		}
 
 		public abstract Vector2 ShapeLocalOrigin();
+
+        public bool AllSpotsAreContainedInSurface()
+        {
+            Transform transform;
+            GetTransform(out transform);
+            for (JointEdge i = JointList; i != null; i = i.Next)
+            {
+                Vector2 world_anchor = (i.Joint.BodyA == i.Other ? i.Joint.WorldAnchorB : i.Joint.WorldAnchorA);
+
+                if (Shape.TestPoint(ref transform, ref world_anchor) == false)
+                    return false;
+            }
+            return true;
+        }
 	}
 }

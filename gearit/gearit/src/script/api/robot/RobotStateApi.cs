@@ -15,6 +15,16 @@ namespace gearit.src.script
 			_robot = robot;
 		}
 
+		public int State
+		{
+			get
+			{
+				return _robot.State;
+			}
+		}
+
+		/*
+		// Not sure if I want to give the player access to those
 		public int LastTrigger
 		{
 			get
@@ -30,5 +40,6 @@ namespace gearit.src.script
 				return _robot.TriggersData;
 			}
 		}
+		*/
 	}
 }

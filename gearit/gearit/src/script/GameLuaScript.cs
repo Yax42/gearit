@@ -9,9 +9,9 @@ using gearit.src.map;
 
 namespace gearit.src.script
 {
-	class GameLuaScript : LuaScript
+	public class GameLuaScript : LuaScript
 	{
-		public GameLuaScript(GearitGame game, string path)
+		public GameLuaScript(IGearitGame game, string path)
 			: base(path)
 		{
 			int i = 0;

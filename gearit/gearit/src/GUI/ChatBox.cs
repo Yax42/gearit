@@ -12,6 +12,7 @@ namespace gearit.src.GUI
 	static public class ChatBox
 	{
 		static private Desktop _chat_box;
+		static private Frame _container_chat = new Frame();
 		static private ScreenManager _screen;
 		static private Control background = new Control();
 		static public Frame ButtonFrame;
@@ -19,6 +20,7 @@ namespace gearit.src.GUI
 		static private Boolean _has_input = false;
 		static private TextBox _input = new TextBox();
 		static public Action<String, Entry> InterceptNewItem = null;
+		static private Button btn_hide;
 
 
 		public enum Entry
@@ -29,7 +31,7 @@ namespace gearit.src.GUI
 			Error
 		};
 
-		static public int Width = 750;
+		static public int Width = 550;
 		static public int Height = 160;
 		static public int SIZE_ITEM = 22;
 
@@ -40,8 +42,11 @@ namespace gearit.src.GUI
 			_chat_box.Size = new Point(Width, Height);
 			_chat_box.Position = new Point(screen.Width - Width - 4, 4);
 
+			_container_chat.Parent = _chat_box;
+			_container_chat.Dock = DockStyle.Fill;
+
 			// Background
-			background.Parent = _chat_box;
+			background.Parent = _container_chat;
 			background.Style = "menu";
 			background.Dock = DockStyle.Fill;
 
@@ -57,7 +62,7 @@ namespace gearit.src.GUI
 			listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
 			listbox.Multiselect = false;
 			listbox.MaxSelected = 0;
-			listbox.Parent = _chat_box;
+			listbox.Parent = _container_chat;
 			listbox.Scrollbar.MouseScrollSpeed = 0.15f;
 			
 			OutputManager.LogMessage("Init ChatBox");
@@ -66,7 +71,20 @@ namespace gearit.src.GUI
 			_input.Position = new Point(0, Height - SIZE_ITEM);
 			_input.Visible = false;
 			_input.Style = "textbox";
-			_input.Parent = _chat_box;
+			_input.Parent = _container_chat;
+
+
+
+			btn_hide = new Button();
+			btn_hide.Size = new Squid.Point(21, 20);
+			btn_hide.Position = new Squid.Point(Width - 21, 0);
+			btn_hide.Text = "X\n";
+			btn_hide.Parent = _chat_box;
+
+			btn_hide.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				ChatBox.Toggle();
+			};
 		}
 
 		static public void Update()
@@ -74,8 +92,16 @@ namespace gearit.src.GUI
 			_chat_box.Update();
 
 			if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.Enter))
-				toggleInputMode();
+				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
 		}
+
+        static public void Toggle()
+        {
+            if (_container_chat.Visible == false)
+				_container_chat.Visible = true;
+            else
+				_container_chat.Visible = false;
+        }
 
 		private static void toggleInputMode()
 		{
@@ -143,6 +169,12 @@ namespace gearit.src.GUI
 			item.Style = "label";
 			listbox.Items.Add(item);
 
+			listbox.Scrollbar.SetValue(1);
+		}
+
+		static public void mergeEntry(string text)
+		{
+			listbox.Items.Last().Text += text;
 			listbox.Scrollbar.SetValue(1);
 		}
 	}

@@ -29,7 +29,6 @@ namespace gearit.src
 		private SpriteBatch _batch;
 		private Matrix _staticProj;
 		private Matrix _staticView;
-		private DebugViewXNA _debug;
 		private PrimitiveBatch _primitiveBatch;
 
 		public DrawGame(GraphicsDevice device)
@@ -44,25 +43,6 @@ namespace gearit.src
 
 			_primitiveBatch = new PrimitiveBatch(_device, 1000);
 
-
-			// set up a new basic effect, and enable vertex colors.
-			_basicEffect = new BasicEffect(device);
-			_basicEffect.VertexColorEnabled = true;
-		}
-
-
-
-		public DrawGame(GraphicsDevice device, DebugViewXNA debug)
-		{
-			_debug = debug;
-			_staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
-			Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);
-			_staticView = Matrix.CreateTranslation( -translateCenter) * Matrix.CreateTranslation(translateCenter);
-
-			_batch = new SpriteBatch(device);
-			_asset = new AssetCreator(device);
-			_primitiveBatch = new PrimitiveBatch(device, 1000);
-			_device = device;
 
 			// set up a new basic effect, and enable vertex colors.
 			_basicEffect = new BasicEffect(device);

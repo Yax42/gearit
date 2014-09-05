@@ -48,7 +48,7 @@ namespace gearit.src.editor.robot.action
 			{
 				To = Input.SimMousePos;
 			}
-			P1.getConnection(P2).moveAnchor(P1, To);
+			P1.getConnection(P2).moveAnchor(P1, To, RobotEditor.Instance.Robot);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
 		}
 
@@ -56,7 +56,7 @@ namespace gearit.src.editor.robot.action
 		{
 			HasBeenRevert = true;
 			Debug.Assert(P1.isConnected(P2));
-			P1.getConnection(P2).moveAnchor(P1, From);
+			P1.getConnection(P2).moveAnchor(P1, From, RobotEditor.Instance.Robot);
 		}
 
 

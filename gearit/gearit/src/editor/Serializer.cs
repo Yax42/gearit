@@ -10,7 +10,7 @@ using gearit.src.robot;
 
 namespace gearit.src.editor
 {
-	static class Serializer
+	public static class Serializer
 	{
 		/// <summary>
 		/// Serializer used for the serialization. (Duh!)
@@ -35,10 +35,12 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Create);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
-				OutputManager.LogInfo("Saving - success", filename);
+				//OutputManager.LogInfo("Saving - success", filename);
 				return true;
 			}
 			catch (IOException e)
@@ -57,7 +59,10 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				FileStream s = new FileStream(_path + filename, FileMode.Open);
+				if (!filename.StartsWith(_path))
+					filename = _path + filename;
+				FileStream s = new FileStream(filename, FileMode.Open);
+				SerializerHelper.CurrentPath = filename;
 				ISerializable obj = (ISerializable)_formatter.Deserialize(s);
 				s.Close();
 				OutputManager.LogInfo("Loading - success", filename);

@@ -14,7 +14,9 @@ namespace gearit.src.robot
 	[Serializable()]
 	public class Wheel : Piece, ISerializable
 	{
-		private const int _circleSegments = 32;
+        float SIZE_MIN = 0.1f;
+        float SIZE_MAX = 20;
+        private const int _circleSegments = 32;
 
 		public Wheel(Robot robot, float size) :
 			this(robot, size, Vector2.Zero)
@@ -73,6 +75,10 @@ namespace gearit.src.robot
 					resetShape();
 				}
 			}
+		}
+		public override bool IsValid()
+		{
+            return Weight > 0 && getSize() > SIZE_MIN && getSize() < SIZE_MAX;
 		}
 
 		public override Vector2 ShapeLocalOrigin()

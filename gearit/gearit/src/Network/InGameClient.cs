@@ -22,8 +22,7 @@ namespace gearit.src.server
             _port = port;
             _host = host;
             OutputManager.LogMessage("host:" + _host + " port:" + _port);
-            NetPeerConfiguration config = new NetPeerConfiguration("gear it");
-            config.AutoFlushSendQueue = false;
+            NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             s_client = new NetClient(config);
 
             s_client.RegisterReceivedCallback(new SendOrPostCallback(Receive));
@@ -34,12 +33,12 @@ namespace gearit.src.server
             try
             {
                 s_client.Start();
-                NetOutgoingMessage hail = s_client.CreateMessage("(Client)Connected to the server");
+                NetOutgoingMessage hail = s_client.CreateMessage("CLIENT - Connected to the server");
                 s_client.Connect(_host, _port, hail);
             }
             catch
             {
-                OutputManager.LogError("(Client)msg:Fail to connect to server");
+                OutputManager.LogError("CLIENT - Fail to connect to server");
             }
         }
 
@@ -79,7 +78,7 @@ namespace gearit.src.server
                             _connected = true;
                         else
                         {
-                            OutputManager.LogError("(Client)Disconnected");
+                            OutputManager.LogError("CLIENT - Disconnected");
                             _connected = false;
                         }
 
@@ -91,25 +90,25 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
-                        OutputManager.LogMessage("(Client)msg:" + msg);
+                        OutputManager.LogMessage("CLIENT -  msg: " + msg);
+                        Send("Hello i'm client");
                         break;
                     default:
                         //Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
-                        OutputManager.LogError("(Client)Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                        OutputManager.LogError("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         break;
                 }
                 s_client.Recycle(im);
             }
         }
 
-        public void Send(string text)
+        public static void Send(string text)
 		{
             if (_connected)
             {
                 NetOutgoingMessage om = s_client.CreateMessage();
                 om.Write(text);
-                s_client.SendMessage(om, s_client.Connections.First(), NetDeliveryMethod.ReliableOrdered);
-                //s_client.SendMessage(om, NetDeliveryMethod.ReliableOrdered);
+                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.ReliableOrdered, 0);
             }
         }
     }

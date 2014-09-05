@@ -5,19 +5,20 @@ using System.Text;
 using gearit;
 using gearit.src.robot;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
-namespace GeneticAlgorithm.src.Genome
+namespace gearit.src.GeneticAlgorithm.Genome
 {
 	class LowLevelGenome
 	{
 		internal const float kMaxSize = 3;
-		private Byte[] m_Data;
-		private int m_Current;
+		internal RawDna m_RawDna;
+		internal int m_Current;
 
-		internal LowLevelGenome(Byte[] data)
+		internal LowLevelGenome(RawDna rawDna, int beginning)
 		{
-			m_Current = 0;
-			m_Data = data;
+			m_RawDna = rawDna;
+			m_Current = beginning;
 		}
 
 		private int NextByteIndex
@@ -44,13 +45,21 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return m_Data[NextByteIndex];
+				return m_RawDna.Data[NextByteIndex];
 			}
+		}
+
+		internal Byte NextByteMax(int max)
+		{
+			Debug.Assert(max > 0 && max <= 255);
+			int idx = NextByteIndex;
+			m_RawDna.Data[idx] = (Byte) (((int) m_RawDna.Data[idx]) % max);
+			return m_RawDna.Data[idx];
 		}
 
 		internal bool NextBool(float trueChance)
 		{
-			return (NextByteIndex <= trueChance * 256);
+			return (NextByte <= trueChance * 256);
 		}
 
 
@@ -58,7 +67,23 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				return System.BitConverter.ToSingle(m_Data, NextFloatIndex);
+				return (NextInt % 1000000) / 1000.0f;
+			}
+		}
+
+		internal int NextInt
+		{
+			get
+			{
+				return System.BitConverter.ToInt32(m_RawDna.Data, NextFloatIndex);
+			}
+		}
+
+		internal int NextAbsInt
+		{
+			get
+			{
+				return Math.Abs(NextInt);
 			}
 		}
 
@@ -74,8 +99,7 @@ namespace GeneticAlgorithm.src.Genome
 		{
 			get
 			{
-				float res = NextFloat;
-				return res - (float)Math.Floor(res);
+				return (NextInt % 1000) / 1000.0f;
 			}
 		}
 

@@ -26,17 +26,17 @@ namespace gearit.src.script.api.game
 		}
 
 		#region Score
-		public void ScoreRobot(int score)
+		public void IntScore(int score)
 		{
 			_Robot.Score.IntScore = score;
 		}
 
-		public void ScoreRobot(float score)
+		public void FloatScore(float score)
 		{
 			_Robot.Score.FloatScore = score;
 		}
 
-		public void ScoreRobot(string strState)
+		public void StateScore(string strState)
 		{
 			var state = _stateDictionnary[strState];
 			if (state != null)
@@ -52,23 +52,23 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public int State
+		{
+			get
+			{
+				return _Robot.State;
+			}
+			set
+			{
+				_Robot.State = value;
+			}
+		}
+
 		public bool TriggerData(int idx)
 		{
 			bool res = _Robot.TriggersData[idx];
 			_Robot.TriggersData[idx] = false;
 			return res;
-		}
-
-		public bool[] TriggerDataA
-		{
-			get
-			{
-				return _Robot.TriggersData;
-			}
-			set
-			{
-				_Robot.TriggersData = value;
-			}
 		}
 
 		public override Vector2 Position
