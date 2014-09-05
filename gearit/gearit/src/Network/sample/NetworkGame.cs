@@ -97,10 +97,14 @@ namespace gearit.src.Network.sample
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			addOpponentRobot(robot2);
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addMainRobot(robot);
+
+			_world.Step(1/30f);
+
+			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			addOpponentRobot(robot2);
+
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
 			Debug.Assert(Map != null);
@@ -135,7 +139,7 @@ namespace gearit.src.Network.sample
 		public void addOpponentRobot(Robot robot)
 		{
 			Robots.Add(robot);
-			robot.move(new Vector2(Robots.Count * 10, -20));
+			robot.move(new Vector2(Robots.Count * 30, -20));
 			EnnemyRobot = robot;
 		}
 
@@ -144,7 +148,7 @@ namespace gearit.src.Network.sample
 			Robots.Add(robot);
 			_camera.TrackingBody = robot.Heart;
 			robot.InitScript();
-			robot.move(new Vector2(Robots.Count * 10, -20));
+			robot.move(new Vector2(Robots.Count * 30, -20));
 			MainRobot = robot;
 		}
 
@@ -165,8 +169,8 @@ namespace gearit.src.Network.sample
 				EnnemyRobot.PacketMotor = request.Data;
 			NetworkClient.CleanRequests();
 
-			foreach (Robot r in Robots)
-				r.Update(Map);
+			//foreach (Robot r in Robots)
+				MainRobot.Update(Map);
 
 			_gameMaster.run();
 			_camera.Update(gameTime);
