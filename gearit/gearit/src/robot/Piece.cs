@@ -65,13 +65,13 @@ namespace gearit.src.robot
 			Shown = true;
 			Sleeping = false;
 
-			AngularVelocityInternal = 0f;
-			Force = Vector2.Zero;
-			InvI = 0f;
-			InvMass = 0f;
-			LinearVelocityInternal = Vector2.Zero;
-			SleepTime = 0f;
-			Torque = 0f;
+			AngularVelocity = 0f;
+			//Force = Vector2.Zero;
+			//InvI = 0f;
+			//InvMass = 0f;
+			//LinearVelocityInternal = Vector2.Zero;
+			//SleepTime = 0f;
+			//Torque = 0f;
 			Rotation = 0f;
 			Mass = 0;
 		}
@@ -177,7 +177,7 @@ namespace gearit.src.robot
 			{
 				if (value > 0 && value < MaxMass)
 				{
-					Shape.ComputeProperties();
+					//Shape.ComputeProperties();
 					if (Shape.MassData.Area <= 0)
 					{
 						Debug.Assert(true);
@@ -379,9 +379,9 @@ namespace gearit.src.robot
 			return true;
 		}
 
-		public void Destroy()
+		public void Destroy(World world)
 		{
-			World.RemoveBody(this);
+			world.RemoveBody(this);
 			_robot = null;
 			//_fix.Destroy();
 		}

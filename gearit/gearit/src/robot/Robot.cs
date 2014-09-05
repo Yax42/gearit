@@ -429,7 +429,7 @@ namespace gearit.src.robot
 			}
 			foreach (Piece i in _pieces)
 			{
-				i.Destroy();
+				i.Destroy(_world);
 			}
 		}
 
