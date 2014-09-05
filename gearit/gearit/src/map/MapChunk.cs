@@ -21,12 +21,14 @@ namespace gearit.src.editor.map
 			if (isDynamic)
 				BodyType = BodyType.Dynamic;
 			Friction = 10;
+			CollisionCategories = Category.Cat31;
 		}
 
 		internal MapChunk(World world)
 			: base(world)
 		{
 			Friction = 100;
+			CollisionCategories = Category.Cat31;
 		}
 
 		public bool Contain(Vector2 p)

@@ -50,7 +50,7 @@ namespace gearit.src.robot
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
 			if (p1.GetType() == typeof(Rod))
-				LocalAnchorA.Y = 0;
+				LocalAnchorA = new Vector2(LocalAnchorA.X, 0);
 
 		}
 

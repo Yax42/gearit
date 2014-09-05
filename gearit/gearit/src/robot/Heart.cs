@@ -57,7 +57,7 @@ namespace gearit.src.robot
 
 		public void draw(SpriteBatch batch)
 		{
-			batch.Draw(_tex, ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
+			batch.Draw(_tex, utility.ConvertUnits.ToDisplayUnits(this.Position), null, Color.White, this.Rotation,
 					new Vector2(_tex.Width / 2f, _tex.Height / 3f), 1f, SpriteEffects.None, 0f);
 		}
 

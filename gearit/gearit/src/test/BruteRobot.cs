@@ -203,6 +203,25 @@ namespace gearit.src.utility
 			_heart_tex = _asset.TextureFromVertices(vertices, MaterialType.Blank, Color.Blue * 0.8f, 1f);
 			_heart.SetTransform(new Vector2(14, 0), 0); // 3.1415926f
 
+			//DUMMY
+
+/*
+			Body dummyPiece;
+			dummyPiece = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);
+			dummyPiece.CollisionGroup = 42;
+			dummyPiece.BodyType = BodyType.Dynamic;
+			_jointRod1 = new PrismaticJoint(_heart, _rod1End, Vector2.Zero, new Vector2(0, 0), new Vector2(-1, 1));
+			_jointRod1.LimitEnabled = true;
+			_jointRod1.Enabled = true;
+			_jointRod1.LowerLimit = 1;
+			_jointRod1.UpperLimit = _sizeRod1 * 3;
+			_jointRod1.MotorEnabled = true;
+			_jointRod1.MaxMotorForce = 100;
+			_jointRod1.MotorSpeed = 0f;
+			World.AddJoint(_jointRod1);
+*/
+
+
 		//Rod
 		/*
 		_rod1Start = BodyFactory.CreateCircle(World, 0.1f, 1f, Vector2.Zero);

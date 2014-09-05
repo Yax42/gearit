@@ -48,7 +48,7 @@ namespace gearit.xna
 			base.LoadContent();
 
 			//We enable diagnostics to show get values for our performance counters.
-			Settings.EnableDiagnostics = true;
+			//Settings.EnableDiagnostics = true;
 
 			if (World == null)
 			{

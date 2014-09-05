@@ -87,7 +87,7 @@ namespace gearit.src.utility
 
 			// translate the boundingbox center to the texture center
 			// because we use an orthographic projection for rendering later
-			AABB vertsBounds = verts.GetCollisionBox();
+			AABB vertsBounds = verts.GetAABB();//.GetCollisionBox();
 			verts.Translate(-vertsBounds.Center);
 
 			List<Vertices> decomposedVerts;

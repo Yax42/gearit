@@ -309,6 +309,17 @@ namespace gearit.src.robot
 			}
 		}
 
+		public void setCategorie(int v)
+		{
+			v %= 31; //31 is not an acceptable categorie because
+					//	it's already the map chunks categorie
+			Category cat = (Category) (1 << v);
+			foreach (Piece p in _pieces)
+			{
+				p.CollisionCategories = cat;
+			}
+		}
+
 		// For editor
 		public void fallAsleep(ISpot s, SleepingPack pack)
 		{
@@ -418,7 +429,7 @@ namespace gearit.src.robot
 			}
 			foreach (Piece i in _pieces)
 			{
-				i.Destroy();
+				i.Destroy(_world);
 			}
 		}
 
