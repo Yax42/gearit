@@ -119,13 +119,13 @@ namespace gearit.src
 
 		private void drawTexture(Fixture fixture, Transform xf, Color color)
 		{
-			switch (fixture.ShapeType)
+			switch (fixture.Shape.ShapeType)
 			{
 				case ShapeType.Circle:
 					{
 						CircleShape circle = (CircleShape)fixture.Shape;
 
-						Vector2 center = MathUtils.Multiply(ref xf, circle.Position);
+						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
 						drawCircle(center, radius, color, true);
@@ -139,7 +139,7 @@ namespace gearit.src
 						var ver = new Vector2[vertexCount];
 
 						for (int i = 0; i < vertexCount; ++i)
-							ver[i] = MathUtils.Multiply(ref xf, poly.Vertices[i]);
+							ver[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
 
 						for (int i = 1; i < vertexCount - 1; i++)
 						{
@@ -215,13 +215,13 @@ namespace gearit.src
 
 		private void draw(Fixture fixture, Transform xf, Color color)
 		{
-			switch (fixture.ShapeType)
+			switch (fixture.Shape.ShapeType)
 			{
 				case ShapeType.Circle:
 					{
 						CircleShape circle = (CircleShape)fixture.Shape;
 
-						Vector2 center = MathUtils.Multiply(ref xf, circle.Position);
+						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
 						drawCircle(center, radius, color, false);
@@ -238,7 +238,7 @@ namespace gearit.src
 
 						for (int i = 0; i < vertexCount; ++i)
 						{
-							ver[i] = MathUtils.Multiply(ref xf, poly.Vertices[i]);
+							ver[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
 						}
 
 						drawPolygon(ver, 0, vertexCount, color);
@@ -248,8 +248,8 @@ namespace gearit.src
 				case ShapeType.Edge:
 					{
 						EdgeShape edge = (EdgeShape)fixture.Shape;
-						Vector2 v1 = MathUtils.Multiply(ref xf, edge.Vertex1);
-						Vector2 v2 = MathUtils.Multiply(ref xf, edge.Vertex2);
+						Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
+						Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
 						drawLine(v1, v2, color);
 					}
 					break;

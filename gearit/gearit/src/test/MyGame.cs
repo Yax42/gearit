@@ -63,7 +63,7 @@ namespace gearit.src.utility
 		private RevoluteJoint _motorJoint2;
 
 		private PrismaticJoint _motorPris;
-		private SliderJoint _motorSlider;
+		//private SliderJoint _motorSlider;
 		/*// physics simulator debug view
 		DebugViewXNA _debugView;*/
 

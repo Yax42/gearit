@@ -94,8 +94,7 @@ namespace gearit.xna
 			{
 				throw new InvalidOperationException("Begin must be called before DrawLineShape can be called.");
 			}
-			if (shape.ShapeType != ShapeType.Edge &&
-				shape.ShapeType != ShapeType.Loop)
+			if (shape.ShapeType != ShapeType.Edge && shape.ShapeType != ShapeType.Chain)
 			{
 				throw new NotSupportedException("The specified shapeType is not supported by LineBatch.");
 			}
@@ -111,9 +110,9 @@ namespace gearit.xna
 				_lineVertices[_lineVertsCount].Color = _lineVertices[_lineVertsCount + 1].Color = color;
 				_lineVertsCount += 2;
 			}
-			else if (shape.ShapeType == ShapeType.Loop)
+			else if (shape.ShapeType == ShapeType.Chain)
 			{
-				LoopShape loop = (LoopShape)shape;
+				ChainShape loop = (ChainShape)shape;
 				for (int i = 0; i < loop.Vertices.Count; ++i)
 				{
 					if (_lineVertsCount >= _lineVertices.Length)

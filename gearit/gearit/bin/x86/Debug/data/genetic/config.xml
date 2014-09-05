@@ -1,4 +1,4 @@
-<Config PopulationSize="100"
+<Config PopulationSize="10"
 	NumberOfTests="1"
 	Reset="true"
 	DirectoryPath="0" />

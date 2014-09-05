@@ -393,5 +393,13 @@ namespace gearit.xna
 
 			return new Vector2(t.X, t.Y);
 		}
+
+		public void input()
+		{
+			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
+				zoomIn();
+			if (Input.justPressed(MouseKeys.WHEEL_UP))
+				zoomOut();
+		}
 	}
 }

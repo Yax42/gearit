@@ -133,6 +133,7 @@ namespace gearit.src.game
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 			HandleInput();
+			//Input.update();
 
 			_world.Step(delta);
 
@@ -178,6 +179,7 @@ namespace gearit.src.game
 			_drawGame.End();
 
 			base.Draw(gameTime);
+
 		}
 	}
 }

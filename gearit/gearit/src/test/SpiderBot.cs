@@ -92,17 +92,17 @@ namespace gearit.src.utility
 	   //			 v = -v;
 				if (v == 0)
 				{
-					_pris.MotorForce = 0;//v;
+					_pris.MotorImpulse = 0;//v;
 					_pris.MotorSpeed = 0;//v;
 				}
 				else if (v > 0)
 				{
-					_pris.MotorForce = _pris.MaxMotorForce;
+					_pris.MotorImpulse = _pris.MaxMotorForce;
 					_pris.MotorSpeed = _pris.MaxMotorForce;
 				}
 				else if (v < 0)
 				{
-					_pris.MotorForce = -_pris.MaxMotorForce;
+					_pris.MotorImpulse = -_pris.MaxMotorForce;
 					_pris.MotorSpeed = -_pris.MaxMotorForce;
 				}
 			}
