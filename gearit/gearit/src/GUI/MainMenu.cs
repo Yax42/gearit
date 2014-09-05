@@ -35,7 +35,7 @@ namespace GUI
 		private SoundManager _sound;
 		private RobotEditor _robot_editor;
 		private MapEditor _map_editor;
-		private MainOptions _Options;
+		private MenuOptions _Options;
 		private GearitGame _game;
 		private NetworkGame _networkGame;
 		private LifeManager _geneticAlorithm;
@@ -78,7 +78,7 @@ namespace GUI
 			_game = new GearitGame();
 			_networkGame = new NetworkGame();
 
-			_Options = new MainOptions("Options", _ScreenManager);
+			_Options = new MenuOptions();
 			_masterClient = new MasterClient();
             _play = new MenuPlay();
             _quit = new MenuQuit();

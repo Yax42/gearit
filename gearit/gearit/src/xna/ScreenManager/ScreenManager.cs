@@ -46,7 +46,6 @@ namespace gearit.xna
 		{
             // When drawing in other threads
             mutex = new Mutex();
-
 			// we must set EnabledGestures before we can query for them, but
 			// we don't assume the game wants to read them.
 			_contentManager = game.Content;
@@ -61,7 +60,21 @@ namespace gearit.xna
 			_graphics.PreferredBackBufferHeight = 720;
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 			_graphics.IsFullScreen = false;
+            _graphics.SynchronizeWithVerticalRetrace = true;
 		}
+
+        public void fpsUnlock()
+        {
+            //débloquer les fps
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            _graphics.ApplyChanges();
+        }
+
+        public void fpsLock()
+        {
+            _graphics.SynchronizeWithVerticalRetrace = true;
+            _graphics.ApplyChanges();
+        }
 
 		/// <summary>
 		/// Return Width
