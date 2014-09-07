@@ -34,19 +34,21 @@ namespace gearit.src.gui
         private CheckBox cb_fullScreen;
         private CheckBox cb_blockFps;
         private CheckBox cb_showFps;
-        private FrameRateCounter frc;
+        private FrameRateCounter frc = null;
         DropDownList combo = new DropDownList();
 
 
         public override void LoadContent()
         {
             base.LoadContent();
+            if (frc == null)
             frc = new FrameRateCounter(ScreenManager);
             VisibleMenu = true;
             _desktop = new Desktop();
             _desktop.Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
             _desktop.Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
 
+           
             combo.Size = new Squid.Point(158, 100 / 2);
             combo.Position = new Squid.Point(200, 100 / 2 - combo.Size.y / 2);
             combo.Label.Style = "comboLabel";
@@ -68,8 +70,8 @@ namespace gearit.src.gui
             {
                 combo.Dropdown.Position = new Squid.Point(combo.Dropdown.Position.x - MainMenu.MENU_WIDTH, combo.Dropdown.Position.y);
             };
-          
 
+            Console.WriteLine("One one one");
             // Button pressed
             ListBoxItem item = new ListBoxItem();
             item.Text = "Button Pressed";
@@ -89,6 +91,14 @@ namespace gearit.src.gui
             cb_fullScreen.Button.Style = "checkBox";
             cb_fullScreen.Button.Size = new Squid.Point(26, 26);
             cb_fullScreen.Button.Cursor = Cursors.Link;
+            if (ScreenManager.IsFullScreen == true)
+            {
+                cb_fullScreen.Checked = true;
+            }
+            else
+                cb_fullScreen.Checked = false;
+            //System.Diagnostics.Debug.WriteLine("isfullscreen =" + ScreenManager.IsFullScreen);
+
 
             cb_blockFps = new CheckBox();
             cb_blockFps.Text = "Unlock fps";
@@ -98,6 +108,10 @@ namespace gearit.src.gui
             cb_blockFps.Button.Style = "checkBox";
             cb_blockFps.Button.Size = new Squid.Point(26, 26);
             cb_blockFps.Button.Cursor = Cursors.Link;
+            if (ScreenManager.fpsIsLocked == true)
+                cb_blockFps.Checked = false;
+            else
+                cb_blockFps.Checked = true;
 
             cb_showFps = new CheckBox();
             cb_showFps.Text = "Show fps";
@@ -107,6 +121,11 @@ namespace gearit.src.gui
             cb_showFps.Button.Style = "checkBox";
             cb_showFps.Button.Size = new Squid.Point(26, 26);
             cb_showFps.Button.Cursor = Cursors.Link;
+            if (ScreenManager.Game.Components.Contains(frc))
+                cb_showFps.Checked = true;
+            else
+                cb_showFps.Checked = false;
+
             /*background.Parent = cb_fullScreen;
             background.Style = "menu";
             background.Dock = DockStyle.Fill;*/
@@ -118,9 +137,13 @@ namespace gearit.src.gui
             btn_save.MouseClick += delegate(Control snd, MouseEventArgs e)
             {
                 if (cb_fullScreen.Checked == true)
+                {
                     ScreenManager.activeFullScreen();
+                }
                 else
+                {
                     ScreenManager.deactivFullScreen();
+                }
 
                 if (cb_blockFps.Checked == true)
                 {

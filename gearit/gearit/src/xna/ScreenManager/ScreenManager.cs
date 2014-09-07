@@ -31,6 +31,8 @@ namespace gearit.xna
 
 		private SpriteBatch _spriteBatch;
 
+        public bool fpsIsLocked = true;
+
 		/// <summary>
 		/// Contains all the fonts avaliable for use.
 		/// </summary>
@@ -66,12 +68,14 @@ namespace gearit.xna
         public void fpsUnlock()
         {
             //débloquer les fps
+            this.fpsIsLocked = false;
             _graphics.SynchronizeWithVerticalRetrace = false;
             _graphics.ApplyChanges();
         }
 
         public void fpsLock()
         {
+            this.fpsIsLocked = true;
             _graphics.SynchronizeWithVerticalRetrace = true;
             _graphics.ApplyChanges();
         }
