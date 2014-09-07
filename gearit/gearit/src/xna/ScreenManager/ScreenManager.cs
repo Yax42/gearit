@@ -16,6 +16,7 @@ namespace gearit.xna
 	/// </summary>
 	public class ScreenManager : DrawableGameComponent
 	{
+		static public int BLOCKED_FPS = 60;
         // Be safe boys !
         private Mutex mutex;
 
@@ -31,7 +32,7 @@ namespace gearit.xna
 
 		private SpriteBatch _spriteBatch;
 
-        public bool fpsIsLocked = true;
+        public bool fpsIsLocked;
 
         private TimeSpan _elapsedTime = TimeSpan.Zero;
 		private int _frameCounter;
@@ -39,7 +40,7 @@ namespace gearit.xna
 
 		/// <summary>
 		/// Contains all the fonts avaliable for use.
-		/// </summary>
+			/// </summary>
 		private SpriteFonts _spriteFonts;
 
 		private List<RenderTarget2D> _transitions;
@@ -66,21 +67,24 @@ namespace gearit.xna
 			_graphics.PreferredBackBufferHeight = 720;
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 			_graphics.IsFullScreen = false;
-            _graphics.SynchronizeWithVerticalRetrace = true;
+            _graphics.SynchronizeWithVerticalRetrace = false;
+			game.Components.Add(new FrameRateCounter(this));
+			fpsLock();
 		}
 
         public void fpsUnlock()
         {
             //débloquer les fps
             this.fpsIsLocked = false;
-            _graphics.SynchronizeWithVerticalRetrace = false;
+			Game.IsFixedTimeStep = false;
             _graphics.ApplyChanges();
         }
 
         public void fpsLock()
         {
             this.fpsIsLocked = true;
-            _graphics.SynchronizeWithVerticalRetrace = true;
+			Game.TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 1000 / BLOCKED_FPS);
+			Game.IsFixedTimeStep = true;
             _graphics.ApplyChanges();
         }
 
@@ -216,12 +220,31 @@ namespace gearit.xna
 			}
 		}
 
+        public void CountFPS(GameTime gameTime)
+        {
+            _elapsedTime += gameTime.ElapsedGameTime;
+
+			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
+
+			_elapsedTime -= TimeSpan.FromSeconds(1);
+			_frameRate = _frameCounter;
+			_frameCounter = 0;
+        }
+
+        public int getFPS()
+        {
+            return (_frameRate);
+        }
+
+
 		/// <summary>
 		/// Allows each screen to run logic.
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
+            Console.WriteLine("update gametime = " + gameTime.ElapsedGameTime.Milliseconds);
             CountFPS(gameTime);
+
             beginDrawing();
 
 			// Update input
@@ -247,29 +270,13 @@ namespace gearit.xna
             stopDrawing();
 		}
 
-        public void CountFPS(GameTime gameTime)
-        {
-            _elapsedTime += gameTime.ElapsedGameTime;
-
-			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
-
-			_elapsedTime -= TimeSpan.FromSeconds(1);
-			_frameRate = _frameCounter;
-			_frameCounter = 0;
-        }
-
-        public int getFPS()
-        {
-            return (_frameRate);
-        }
-
 		/// <summary>
 		/// Tells each screen to draw itself.
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-            Console.WriteLine("gametime = " + gameTime.ElapsedGameTime.Milliseconds);
             _frameCounter++;
+            Console.WriteLine("draw gametime = " + gameTime.ElapsedGameTime.Milliseconds);
 
             beginDrawing();
 

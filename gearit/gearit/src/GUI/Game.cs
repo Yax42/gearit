@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Squid;
 using GUI;
 using gearit.src.server;
+using gearit.xna;
 
 namespace SquidXNA
 {
@@ -24,6 +25,8 @@ namespace SquidXNA
 			ScreenManager = new gearit.xna.ScreenManager(this);
 			ScreenManager.SetResolutionScreen(1280, 700);
 			Components.Add(ScreenManager);
+
+			Components.Add(new FrameRateCounter(ScreenManager));
 
 			this.Window.Title = "Gear It!";
 		}
