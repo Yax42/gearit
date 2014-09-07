@@ -10,10 +10,7 @@ namespace gearit.xna
 	/// </summary>
 	public class FrameRateCounter : DrawableGameComponent
 	{
-		private TimeSpan _elapsedTime = TimeSpan.Zero;
 		private NumberFormatInfo _format;
-		private int _frameCounter;
-		private int _frameRate;
 		private Vector2 _position;
 		private ScreenManager _screenManager;
 
@@ -32,20 +29,13 @@ namespace gearit.xna
 
 		public override void Update(GameTime gameTime)
 		{
-			_elapsedTime += gameTime.ElapsedGameTime;
-
-			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
-
-			_elapsedTime -= TimeSpan.FromSeconds(1);
-			_frameRate = _frameCounter;
-			_frameCounter = 0;
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
-			_frameCounter++;
+			
 
-			string fps = string.Format(_format, "{0} fps", _frameRate);
+			string fps = string.Format(_format, "{0} fps", _screenManager.getFPS());
 
 			_screenManager.SpriteBatch.Begin();
 			_screenManager.SpriteBatch.DrawString(_screenManager.Fonts.FrameRateCounterFont, fps,

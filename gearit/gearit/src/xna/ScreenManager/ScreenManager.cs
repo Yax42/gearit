@@ -33,6 +33,10 @@ namespace gearit.xna
 
         public bool fpsIsLocked = true;
 
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+		private int _frameCounter;
+		private int _frameRate;
+
 		/// <summary>
 		/// Contains all the fonts avaliable for use.
 		/// </summary>
@@ -217,6 +221,7 @@ namespace gearit.xna
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
+            CountFPS(gameTime);
             beginDrawing();
 
 			// Update input
@@ -242,11 +247,30 @@ namespace gearit.xna
             stopDrawing();
 		}
 
+        public void CountFPS(GameTime gameTime)
+        {
+            _elapsedTime += gameTime.ElapsedGameTime;
+
+			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
+
+			_elapsedTime -= TimeSpan.FromSeconds(1);
+			_frameRate = _frameCounter;
+			_frameCounter = 0;
+        }
+
+        public int getFPS()
+        {
+            return (_frameRate);
+        }
+
 		/// <summary>
 		/// Tells each screen to draw itself.
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
+            Console.WriteLine("gametime = " + gameTime.ElapsedGameTime.Milliseconds);
+            _frameCounter++;
+
             beginDrawing();
 
 			// Remove if problem with Squid
