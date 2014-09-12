@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Squid;
 using GUI;
 using gearit.src.server;
+using gearit.src.Network;
 
 namespace SquidXNA
 {

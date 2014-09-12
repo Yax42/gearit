@@ -12,7 +12,7 @@ using gearit.src;
 using gearit.src.GUI;
 using gearit.src.gui;
 using gearit.src.GeneticAlgorithm;
-using gearit.src.Network.sample;
+using gearit.src.Network;
 
 namespace GUI
 {
@@ -37,7 +37,7 @@ namespace GUI
 		private MapEditor _map_editor;
 		private MenuOptions _Options;
 		private GearitGame _game;
-		private NetworkGame _networkGame;
+		private NetworkClientGame _networkGame;
 		private LifeManager _geneticAlorithm;
 		private MasterClient _masterClient;
         private MenuPlay _play;
@@ -76,7 +76,7 @@ namespace GUI
 			_map_editor = new MapEditor();
 			_geneticAlorithm = new LifeManager();
 			_game = new GearitGame();
-			_networkGame = new NetworkGame();
+			_networkGame = new NetworkClientGame();
 
 			_Options = new MenuOptions();
 			_masterClient = new MasterClient();

@@ -8,7 +8,7 @@ using gearit.src.output;
 
 using Lidgren.Network;
 
-namespace gearit.src.server
+namespace gearit.src.Network
 {
     static class NetworkServer
     {
@@ -17,6 +17,7 @@ namespace gearit.src.server
         public static string _buffer;
         private static Thread serverThread;
         private static bool _server_launched;
+		private static NetworkServerGame Game;
 
         public static void Start(int port)
         {
@@ -54,8 +55,11 @@ namespace gearit.src.server
 
         public static void ServerMainLoop()
         {
+			Game = new NetworkServerGame();
+			Game.LoadContent();
             while (true)
             {
+				Game.Update(null);
                 NetIncomingMessage msg;
                 while ((msg = s_server.ReadMessage()) != null)
                 {

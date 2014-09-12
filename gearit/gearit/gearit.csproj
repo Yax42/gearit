@@ -46,7 +46,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +59,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lidgren.Network">
@@ -141,9 +142,11 @@
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />
+    <Compile Include="src\Network\InGamePacket.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />
     <Compile Include="src\Network\NetworkClient.cs" />
-    <Compile Include="src\Network\sample\NetworkGame.cs" />
+    <Compile Include="src\Network\NetworkClientGame.cs" />
+    <Compile Include="src\Network\NetworkServerGame.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />
     <Compile Include="src\script\api\game\GameRobotApi.cs" />

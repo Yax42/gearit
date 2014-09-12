@@ -16,9 +16,9 @@ using gearit.src.game;
 using System.Threading;
 using Lidgren.Network;
 
-namespace gearit.src.Network.sample
+namespace gearit.src.Network
 {
-	class NetworkGame : GameScreen, IDemoScreen, IGearitGame
+	class NetworkClientGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		private World _world;
 		private Camera2D _camera;
@@ -61,7 +61,7 @@ namespace gearit.src.Network.sample
 
 		#region IDemoScreen Members
 
-		public NetworkGame()
+		public NetworkClientGame()
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
@@ -97,11 +97,11 @@ namespace gearit.src.Network.sample
 			//clearRobot();
 			SerializerHelper.World = _world;
 
+
+
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addMainRobot(robot);
-
 			_world.Step(1/30f);
-
 			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addOpponentRobot(robot2);
 
