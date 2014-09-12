@@ -27,7 +27,7 @@ namespace gearit.src.robot
 		{
 			Position = new Vector2(3, 3);
 			_vertices = PolygonTools.CreateRectangle(1, 1);
-			_fix = CreateFixture(new PolygonShape(_vertices, 1f));
+			SetShape(new PolygonShape(_vertices, 1f));
 			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;
 			//_tex = robot.getAsset().TextureFromShape(_shape, MaterialType.Blank, Color.White, 1f);
@@ -41,7 +41,7 @@ namespace gearit.src.robot
 		{
 			List<Vector2> v = (List<Vector2>)info.GetValue("Vertices", typeof(List<Vector2>));
 			_vertices = new Vertices(v);
-			setShape(new PolygonShape(_vertices, 1), Robot._robotIdCounter);
+			SetShape(new PolygonShape(_vertices, 1));//, Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -66,7 +66,7 @@ namespace gearit.src.robot
             return (areSpotsOk() && _vertices.GetArea() > MIN_SIZE_AREA && _vertices.GetArea() < MAX_SIZE_AREA);
 		}
 
-		public void setShape(Vertices v)
+		public void ResetShape(Vertices v)
 		{
 			_vertices = v;
 			resetShape();
@@ -94,9 +94,7 @@ namespace gearit.src.robot
 
 		override public void resetShape()
 		{
-			Shape shape = new PolygonShape(_vertices, Shape.Density);
-			DestroyFixture(_fix);
-			_fix = CreateFixture(shape);
+			SetShape(new PolygonShape(_vertices, Shape.Density));
 		}
 
 		public Vector2 getCorner(int id)

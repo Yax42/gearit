@@ -30,7 +30,7 @@ namespace gearit.src.robot
 				return _fix.Shape;
 			}
 		}
-		internal Fixture _fix; //punaise |---
+		private Fixture _fix; //punaise |---
 		internal Texture2D _tex;
 		internal bool DidAct { get; set; }
 		internal Robot _robot;
@@ -40,6 +40,7 @@ namespace gearit.src.robot
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
 		{
+			_robot = robot;
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
@@ -50,10 +51,11 @@ namespace gearit.src.robot
 		internal Piece(Robot robot, Shape shape) :
 			base(robot.getWorld())
 		{
+			_robot = robot;
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
-			setShape(shape, robot.getId());
+			SetShape(shape);
 			Init(robot);
 		}
 
@@ -61,7 +63,6 @@ namespace gearit.src.robot
 		{
 			ColorValue = Color.ForestGreen;
 			robot.addPiece(this);
-			_robot = robot;
 			Shown = true;
 			Sleeping = false;
 
@@ -111,12 +112,12 @@ namespace gearit.src.robot
 			_tex = dg.textureFromShape(Shape, mater);
 		}
 
-		internal void setShape(Shape shape, int id)
+		internal void SetShape(Shape shape)
 		{
-			if (_fix != null)
+			if (_fix != null && _fix.Body != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
-			_fix.CollisionGroup = (short)(-id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
+			_fix.CollisionGroup = (short)(-Id()); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
 		}
 
 		internal void initShapeAndFixture(Shape shape)
@@ -229,6 +230,11 @@ namespace gearit.src.robot
 				}
 			}
 			return ((ISpot)res);
+		}
+
+		public int Id()
+		{
+			return _robot.getId();
 		}
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------

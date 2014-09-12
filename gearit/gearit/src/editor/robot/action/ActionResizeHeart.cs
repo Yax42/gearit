@@ -46,7 +46,7 @@ namespace gearit.src.editor.robot.action
 		{
 			if (HasBeenRevert)
 			{
-				Heart.setShape(To);
+				Heart.ResetShape(To);
 				return false;
 			}
 			if (Input.justPressed(MouseKeys.LEFT))
@@ -87,7 +87,7 @@ namespace gearit.src.editor.robot.action
 		public void revert()
 		{
 			HasBeenRevert = true;
-			Heart.setShape(From);
+			Heart.ResetShape(From);
 		}
 
 		public bool canBeReverted() { return _didSomething; }

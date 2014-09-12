@@ -41,7 +41,7 @@ namespace gearit.src.robot
 			base(info)
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
-			setShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1), Robot._robotIdCounter);
+			SetShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), 1));//, Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -67,9 +67,7 @@ namespace gearit.src.robot
 		{
 			if (_size < 0.01)
 				_size = 0.01f;
-			Shape shape = new PolygonShape(PolygonTools.CreateRectangle(_size, _width), Shape.Density);
-			DestroyFixture(_fix);
-			_fix = CreateFixture(shape);
+			SetShape(new PolygonShape(PolygonTools.CreateRectangle(_size, _width), Shape.Density));
 		}
 
 		virtual public void updateCharacteristics()

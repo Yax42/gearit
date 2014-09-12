@@ -37,7 +37,7 @@ namespace gearit.src.robot
 			base(info)
 		{
 			_size = (float)info.GetValue("Size", typeof(float));
-			setShape(new CircleShape(_size, 1), Robot._robotIdCounter);
+			SetShape(new CircleShape(_size, 1));//, Robot._robotIdCounter);
 			Weight = (float)info.GetValue("Weight", typeof(float));
 		}
 
@@ -56,9 +56,7 @@ namespace gearit.src.robot
 
 		override public void resetShape()
 		{
-			Shape shape = new CircleShape(_size, Shape.Density);
-			DestroyFixture(_fix);
-			_fix = CreateFixture(shape);
+			SetShape(new CircleShape(_size, Shape.Density));
 		}
 
 		public float Size
