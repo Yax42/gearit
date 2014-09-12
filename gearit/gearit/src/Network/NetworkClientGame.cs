@@ -97,13 +97,13 @@ namespace gearit.src.Network
 			//clearRobot();
 			SerializerHelper.World = _world;
 
+			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			addOpponentRobot(robot2);
 
+			_world.Step(1/30f);
 
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
 			addMainRobot(robot);
-			_world.Step(1/30f);
-			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			addOpponentRobot(robot2);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");

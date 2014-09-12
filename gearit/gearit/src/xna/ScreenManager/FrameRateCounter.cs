@@ -2,6 +2,7 @@
 using System.Globalization;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
+using Squid;
 
 namespace gearit.xna
 {
@@ -10,12 +11,12 @@ namespace gearit.xna
 	/// </summary>
 	public class FrameRateCounter : DrawableGameComponent
 	{
-		private TimeSpan _elapsedTime = TimeSpan.Zero;
 		private NumberFormatInfo _format;
-		private int _frameCounter;
-		private int _frameRate;
 		private Vector2 _position;
 		private ScreenManager _screenManager;
+        private Desktop _desktop = new Desktop();
+        private TextBox tb_ping = new TextBox();
+        private TextBox tb_ping_shadow = new TextBox();
 
 		public FrameRateCounter(ScreenManager screenManager)
 			: base(screenManager.Game)
@@ -23,36 +24,34 @@ namespace gearit.xna
 			_screenManager = screenManager;
 			_format = new NumberFormatInfo();
 			_format.NumberDecimalSeparator = ".";
-#if XBOX
-			_position = new Vector2(55, 35);
-#else
-			_position = new Vector2(30, 25);
-#endif
+
+            _desktop.Size = new Squid.Point(100, 100);
+            _desktop.Position = new Squid.Point(0, 0);
+
+            tb_ping_shadow.Position = new Squid.Point(30 + 1, 20 + 1);
+            tb_ping_shadow.Size = new Squid.Point(100, 40);
+            tb_ping_shadow.Style = "textblack";
+            tb_ping_shadow.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
+            tb_ping_shadow.Parent = _desktop;
+
+            tb_ping.Position = new Squid.Point(30, 20);
+            tb_ping.Size = new Squid.Point(100, 40);
+            tb_ping.Parent = _desktop;
+            tb_ping.Style = "textwhite";
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			_elapsedTime += gameTime.ElapsedGameTime;
+			string fps = string.Format(_format, "{0} fps", _screenManager.getFPS());
+            tb_ping.Text = fps;
+            tb_ping_shadow.Text = fps;
 
-			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
-
-			_elapsedTime -= TimeSpan.FromSeconds(1);
-			_frameRate = _frameCounter;
-			_frameCounter = 0;
+            _desktop.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
-			_frameCounter++;
-
-			string fps = string.Format(_format, "{0} fps", _frameRate);
-
-			_screenManager.SpriteBatch.Begin();
-			_screenManager.SpriteBatch.DrawString(_screenManager.Fonts.FrameRateCounterFont, fps,
-												  _position + Vector2.One, Color.Black);
-			_screenManager.SpriteBatch.DrawString(_screenManager.Fonts.FrameRateCounterFont, fps,
-												  _position, Color.White);
-			_screenManager.SpriteBatch.End();
+            _desktop.Draw();
 		}
 	}
 }
