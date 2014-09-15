@@ -58,14 +58,21 @@ namespace gearit.src.robot
 		[NonSerialized]
 		public static int _robotIdCounter = 1;
 		private RobotLuaScript _script;
-		private int _id;
+		public int Id
+		{
+			get;
+			private set;
+		}
 		public World _world;
 		public bool[] TriggersData;
 		private int _LastTrigger;
 		public Score Score = new Score();
 		public int State = 0;
-		private bool _extracted = false;
-		public bool Extracted { get { return _extracted; }}
+		public bool Extracted
+		{
+			get;
+			private set;
+		}
 
 		private RobotStateApi _Api;
 		public RobotStateApi Api
@@ -88,7 +95,7 @@ namespace gearit.src.robot
 		public Robot(World world)
 		{
 			_world = world;
-			_id = _robotIdCounter++;
+			Id = _robotIdCounter++;
 			_pieces = new List<Piece>();
 			_spots = new List<ISpot>();
 			new Heart(this);
@@ -115,7 +122,7 @@ namespace gearit.src.robot
 			// foreach (ISpot s in _spots)
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
-			_id = _robotIdCounter++;
+			Id = _robotIdCounter++;
 			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
@@ -143,6 +150,8 @@ namespace gearit.src.robot
 
 		public void Update(Map map)
 		{
+			if (Extracted)
+				return;
 			foreach (Trigger trigger in map.Triggers)
 			{
 				if (Heart.Trigger(trigger))
@@ -196,11 +205,6 @@ namespace gearit.src.robot
 		{
 			foreach (Piece p in _pieces)
 				p.ColorValue = col;
-		}
-
-		public int getId()
-		{
-			return (_id);
 		}
 
 		public int FindFirstFreeSpotNameId()
@@ -419,7 +423,7 @@ namespace gearit.src.robot
 			Debug.Assert(!Extracted);
 			if (Extracted)
 				return;
-			_extracted = true;
+			Extracted = true;
 			if (_script != null)
 				_script.stop();
 			_script = null;
@@ -570,6 +574,9 @@ namespace gearit.src.robot
 		}
 
 		#region Network
+		public byte[] OldPacketMotor;
+		
+
 		public byte[]	PacketMotor
 		{
 			get

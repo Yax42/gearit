@@ -20,14 +20,14 @@ namespace gearit.src.editor.map
 			Position = pos;
 			if (isDynamic)
 				BodyType = BodyType.Dynamic;
-			Friction = 10;
+			Friction = 1000;
 			CollisionCategories = Category.Cat31;
 		}
 
 		internal MapChunk(World world)
 			: base(world)
 		{
-			Friction = 100;
+			Friction = 1000;
 			CollisionCategories = Category.Cat31;
 		}
 

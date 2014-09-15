@@ -34,6 +34,8 @@ namespace gearit.src.GeneticAlgorithm
 		private float _Time = 0;
 		public float Time { get { return _Time; } }
 
+		public Robot MainRobot { get { return Robots[0]; } }
+
 		public GeneticGame()
 		{
 			_Robots = new List<Robot>();

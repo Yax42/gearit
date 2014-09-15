@@ -41,9 +41,13 @@ namespace gearit.src.Network
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-		private Robot MainRobot;
 		private Robot EnnemyRobot;
 
+		public Robot MainRobot
+		{
+			get;
+			set;
+		}
 
 		private DrawGame _drawGame;
 

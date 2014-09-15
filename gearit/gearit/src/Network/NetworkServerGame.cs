@@ -34,6 +34,15 @@ namespace gearit.src.Network
 		private Map _Map;
 		public Map Map { get { return _Map; } }
 
+		public Robot MainRobot
+		{
+			get
+			{
+				Debug.Assert(false);
+				return null;
+			}
+		}
+
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 

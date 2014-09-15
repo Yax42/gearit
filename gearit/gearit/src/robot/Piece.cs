@@ -75,6 +75,7 @@ namespace gearit.src.robot
 			//Torque = 0f;
 			Rotation = 0f;
 			Mass = 0;
+			Friction = 1000;
 		}
 
 		//
@@ -234,7 +235,7 @@ namespace gearit.src.robot
 
 		public int Id()
 		{
-			return _robot.getId();
+			return _robot.Id;
 		}
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
