@@ -63,14 +63,14 @@ namespace gearit.src.Network
 			Stopwatch clock = Stopwatch.StartNew();
             while (true)
             {
-				while (clock.Elapsed.TotalMilliseconds < 55)
+				while (clock.Elapsed.TotalMilliseconds < 18)
 					Thread.Sleep(1);
-				while (clock.Elapsed.TotalMilliseconds < 56)
+				while (clock.Elapsed.TotalMilliseconds < 19)
 					continue;
 				clock.Stop();
 				float delta = (float) clock.Elapsed.TotalMilliseconds;
 				Console.WriteLine("server delta: " + delta);
-				Game.Update(delta / 100);
+				Game.Update(delta / 1000);
 				clock = Stopwatch.StartNew();
                 NetIncomingMessage msg;
                 while ((msg = s_server.ReadMessage()) != null)

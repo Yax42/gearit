@@ -162,8 +162,8 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
-			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
-			float delta = 1 / 30f; // Static delta time for now, yea bitch!
+			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
+			//float delta = 2 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 			HandleInput();
 
