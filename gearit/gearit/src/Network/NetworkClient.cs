@@ -129,7 +129,7 @@ namespace gearit.src.Network
             {
                 NetOutgoingMessage om = s_client.CreateMessage();
                 om.Write(data);
-                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.ReliableOrdered, 0);
+                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.Unreliable, 0);
             }
         }
 

@@ -128,7 +128,7 @@ namespace gearit.src.Network
 				return;
             NetOutgoingMessage om = s_server.CreateMessage();
             om.Write(data);
-            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableOrdered, 0);
+            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.Unreliable, 0);
         }
 
         public static void manageRequest(NetIncomingMessage msg)

@@ -36,18 +36,18 @@ namespace gearit.src.Network
 		#endregion
 
 		#region Packets
-		private struct Packet_GameCommand
+		private struct Packet_GameCommand // size 1
 		{
 			public byte CommandId;
 		}
 
-		private struct Packet_RobotCommand
+		private struct Packet_RobotCommand // size 2
 		{
 			public byte RobotId;
 			public byte Command;
 		}
 
-		private struct Packet_RobotTransform
+		private struct Packet_RobotTransform // size 28
 		{
 			public byte RobotId;
 			public Vector2 Position;
@@ -56,7 +56,7 @@ namespace gearit.src.Network
 			public float AngularVelocity;
 		}
 
-		private struct Packet_MotorForce
+		private struct Packet_MotorForce // size 8
 		{
 			public byte RobotId;
 			public ushort MotorId;
@@ -152,13 +152,19 @@ namespace gearit.src.Network
 		{
 			Data = request.Data;
 			Idx = 0;
-			while (ApplyNextPacket()) ;
+			//while (ApplyNextPacket()) ;
+			ApplyNextPacket();
 		}
 
 		public bool ApplyNextPacket()
 		{
-			if (Data == null || Idx >= Data.Count())
+			if (Data == null)
 				return false;
+			if (Idx + 1 >= Data.Count())
+			{
+				Debug.Assert(false);
+				return false;
+			}
 			switch (Data[Idx])
 			{
 				case (byte)CommandId.GameCommand:
@@ -177,7 +183,8 @@ namespace gearit.src.Network
 					return false;
 					break;
 			}
-			return true;
+			//Debug.Assert(Idx == Data.Count());
+			return Idx != Data.Count();
 		}
 
 		private void ApplyPacket(Packet_GameCommand packet)
