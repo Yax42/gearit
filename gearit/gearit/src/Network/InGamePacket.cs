@@ -157,7 +157,7 @@ namespace gearit.src.Network
 
 		public bool ApplyNextPacket()
 		{
-			if (Idx >= Data.Count())
+			if (Data == null || Idx >= Data.Count())
 				return false;
 			switch (Data[Idx])
 			{
@@ -172,6 +172,9 @@ namespace gearit.src.Network
 					break;
 				case (byte)CommandId.RobotTransform:
 					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
+					break;
+				default:
+					return false;
 					break;
 			}
 			return true;

@@ -61,7 +61,7 @@ namespace gearit.src.robot
 		public int Id
 		{
 			get;
-			private set;
+			set;
 		}
 		public World _world;
 		public bool[] TriggersData;

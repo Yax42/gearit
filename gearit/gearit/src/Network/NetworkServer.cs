@@ -58,12 +58,14 @@ namespace gearit.src.Network
         {
 			Game = new NetworkServerGame();
 			Game.LoadContent();
+			bool toRecycle;
             while (true)
             {
 				Game.Update(null);
                 NetIncomingMessage msg;
                 while ((msg = s_server.ReadMessage()) != null)
                 {
+					toRecycle = true;
                     //OutputManager.LogMessage("Server received : " + msg.MessageType);
                     switch (msg.MessageType)
                     {
@@ -100,14 +102,16 @@ namespace gearit.src.Network
                             break;
                         case NetIncomingMessageType.Data:
                             manageRequest(msg);
+							toRecycle = false;
                             break;
                         default:
                             OutputManager.LogError("SERVER - Unhandled type: " + msg.MessageType);
                             break;
                     }
-                    s_server.Recycle(msg);
+					if (toRecycle)
+						s_server.Recycle(msg);
                 }
-                Thread.Sleep(1);
+                Thread.Sleep(33);
             }
         }
 
@@ -140,9 +144,16 @@ namespace gearit.src.Network
 
 		public static void ApplyRequests(InGamePacketManager packetManager)
 		{
-			foreach (NetIncomingMessage request in NetworkClient.Requests)
+			foreach (NetIncomingMessage request in Requests)
 				packetManager.ApplyRequest(request);
-			NetworkClient.CleanRequests();
+			CleanRequests();
+		}
+
+		public static void CleanRequests()
+		{
+			foreach (NetIncomingMessage request in Requests)
+				s_server.Recycle(request);
+			Requests.Clear();
 		}
     }
 }
