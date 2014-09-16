@@ -27,7 +27,6 @@ namespace GUI
 			base.LoadContent();
 
 			_menu = new GUI.MainMenu(ScreenManager);
-			ChatBox.init(ScreenManager);
 
 			// Mouse Cursor bug fix
 			//_background = new Squid.Desktop();
@@ -46,7 +45,6 @@ namespace GUI
 			}
 
 			_menu.Update();
-			ChatBox.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -54,8 +52,6 @@ namespace GUI
 			base.Draw(gameTime);
 
 			_menu.Draw();
-			if (ChatBox.getDesktop() != null)
-				ChatBox.getDesktop().Draw();
 		}
 	}
 }

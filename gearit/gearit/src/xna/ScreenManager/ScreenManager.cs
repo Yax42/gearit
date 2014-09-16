@@ -6,6 +6,7 @@ using gearit.src.utility;
 using System.Threading;
 using System;
 using Squid;
+using gearit.src.GUI;
 
 namespace gearit.xna
 {
@@ -212,6 +213,8 @@ namespace gearit.xna
 			_label.Parent = _desktop;
 			_label.Style = "message";
 			Message("DDDICK IDCK BUTTT ...", 5000);
+
+			ChatBox.init(this);
 		}
 
 		/// <summary>
@@ -294,6 +297,8 @@ namespace gearit.xna
 				_label.Visible = false;
 			_desktop.Update();
 
+			ChatBox.Update();
+
             stopDrawing();
 		}
 
@@ -317,7 +322,10 @@ namespace gearit.xna
 				screen.Draw(gameTime);
 			}
 
+			ChatBox.addEntry("dasd");
+
 			_desktop.Draw();
+			ChatBox.getDesktop().Draw();
 
             stopDrawing();
 		}

@@ -122,7 +122,7 @@ namespace gearit.src.Network
 
 			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
-			NetworkClient.Connect("10.41.177.244", 25552);
+			NetworkClient.Connect("127.0.0.1", 25552);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;

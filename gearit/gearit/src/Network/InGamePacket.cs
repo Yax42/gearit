@@ -19,6 +19,7 @@ namespace gearit.src.Network
 			End,
 			Pause,
 			UnPause,
+			Message,
 		};
 		public enum ERobotCommand
 		{
@@ -61,6 +62,12 @@ namespace gearit.src.Network
 			public byte RobotId;
 			public ushort MotorId;
 			public float Force;
+		}
+
+		private struct Packet_Message
+		{
+			string msg;
+			int duration;
 		}
 		#endregion
 

@@ -144,6 +144,8 @@ namespace gearit.src.GUI
 
 		static public void addEntry(string text, Entry entry = Entry.Message, Boolean intercept = false)
 		{
+			_screen.beginDrawing();
+
 			if (intercept && InterceptNewItem != null)
 			{
 				InterceptNewItem(text, entry);
@@ -170,6 +172,8 @@ namespace gearit.src.GUI
 			listbox.Items.Add(item);
 
 			listbox.Scrollbar.SetValue(1);
+
+			_screen.stopDrawing();
 		}
 
 		static public void mergeEntry(string text)
