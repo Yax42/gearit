@@ -42,6 +42,10 @@ namespace gearit.src.GeneticAlgorithm
 			_Map = null;
 		}
 
+		public void Message(string msg, int duration)
+		{
+		}
+
 		public void SetMap(string mapPath)
 		{
 			if (_Map != null)

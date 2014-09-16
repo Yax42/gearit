@@ -54,6 +54,10 @@ namespace gearit.src.Network
 		private float _Time = 0;
 		public float Time { get { return _Time; } }
 
+		public void Message(string msg, int duration)
+		{
+		}
+
 		public NetworkServerGame()
 		{
 			_Robots = new List<Robot>();

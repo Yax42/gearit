@@ -69,6 +69,7 @@ namespace SquidXNA
 			BlankTexture.SetData<Color>(new Color[] { new Color(255, 255, 255, 255) });
 
 			FontTypes.Add(Squid.Font.Default, new FontDetail ("Arial10", 8, true));
+			FontTypes.Add("Arial14", new FontDetail ("Arial14", 14, true));
 
 			KeyboardLayout = GetKeyboardLayout(0);
 			KeyStates = new byte[0x100];

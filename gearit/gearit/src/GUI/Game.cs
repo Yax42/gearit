@@ -57,6 +57,11 @@ namespace SquidXNA
 			baseStyle.Selected.Texture = "button_down.dds";
 			baseStyle.SelectedHot.Texture = "button_down.dds";
 
+			ControlStyle messageStyle = new ControlStyle();
+			messageStyle.TextAlign = Alignment.MiddleCenter;
+            messageStyle.BackColor = 0;
+			messageStyle.Font = "Arial14";
+
 			ControlStyle textStyle = new ControlStyle();
 			textStyle.TextPadding = new Margin(8, 0, 8, 0);
 			textStyle.TextAlign = Alignment.MiddleLeft;
@@ -231,6 +236,7 @@ namespace SquidXNA
 			addEventButtonStyle.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
 			addEventButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 
+			skin.Styles.Add("message", messageStyle);
 			skin.Styles.Add("textwhite", textStyle);
 			skin.Styles.Add("textblack", textStyleB);
 			skin.Styles.Add("item", itemStyle);

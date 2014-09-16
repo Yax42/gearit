@@ -60,6 +60,11 @@ namespace gearit.src.game
 			_world = new World(new Vector2(0, 9.8f));
 		}
 
+		public void Message(string msg, int duration)
+		{
+			ScreenManager.Message(msg, duration);
+		}
+
 		public string GetTitle()
 		{
 			return "GearIt";

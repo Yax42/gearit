@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using gearit.src.utility;
 using System.Threading;
 using System;
+using Squid;
 
 namespace gearit.xna
 {
@@ -37,6 +38,11 @@ namespace gearit.xna
         private TimeSpan _elapsedTime = TimeSpan.Zero;
 		private int _frameCounter;
 		private int _frameRate;
+
+		private Desktop _desktop;
+		private Label _label;
+		private int _ms_elapsed;
+		private int _duration;
 
 		/// <summary>
 		/// Contains all the fonts avaliable for use.
@@ -87,6 +93,13 @@ namespace gearit.xna
 			Game.IsFixedTimeStep = true;
             _graphics.ApplyChanges();
         }
+
+		public void Message(string msg, int duration = 2000)
+		{
+			_duration = duration;
+			_label.Visible = true;
+			_label.Text = msg;
+		}
 
 		/// <summary>
 		/// Return Width
@@ -189,6 +202,16 @@ namespace gearit.xna
 			base.Initialize();
 
 			_isInitialized = true;
+
+			_desktop = new Desktop();
+            _desktop.Size = new Squid.Point(Width, Height);
+            _desktop.Position = new Squid.Point(0, 0);
+			_label = new Label();
+			_label.Size = _desktop.Size - new Squid.Point(0, 100) ;
+			_label.Visible = false;
+			_label.Parent = _desktop;
+			_label.Style = "message";
+			Message("DDDICK IDCK BUTTT ...", 5000);
 		}
 
 		/// <summary>
@@ -242,7 +265,6 @@ namespace gearit.xna
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
-            Console.WriteLine("update gametime = " + gameTime.ElapsedGameTime.Milliseconds);
             CountFPS(gameTime);
 
             beginDrawing();
@@ -267,6 +289,11 @@ namespace gearit.xna
 				screen.Update(gameTime);
 			}
 
+			_ms_elapsed += gameTime.ElapsedGameTime.Milliseconds;
+			if (_label.Visible && _ms_elapsed > _duration)
+				_label.Visible = false;
+			_desktop.Update();
+
             stopDrawing();
 		}
 
@@ -276,7 +303,6 @@ namespace gearit.xna
 		public override void Draw(GameTime gameTime)
 		{
             _frameCounter++;
-            Console.WriteLine("draw gametime = " + gameTime.ElapsedGameTime.Milliseconds);
 
             beginDrawing();
 
@@ -290,6 +316,8 @@ namespace gearit.xna
 
 				screen.Draw(gameTime);
 			}
+
+			_desktop.Draw();
 
             stopDrawing();
 		}

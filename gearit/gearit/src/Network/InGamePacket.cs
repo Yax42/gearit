@@ -19,6 +19,7 @@ namespace gearit.src.Network
 			End,
 			Pause,
 			UnPause,
+			Message,
 		};
 		public enum ERobotCommand
 		{
@@ -36,18 +37,18 @@ namespace gearit.src.Network
 		#endregion
 
 		#region Packets
-		private struct Packet_GameCommand // size 1
+		private struct Packet_GameCommand
 		{
 			public byte CommandId;
 		}
 
-		private struct Packet_RobotCommand // size 2
+		private struct Packet_RobotCommand
 		{
 			public byte RobotId;
 			public byte Command;
 		}
 
-		private struct Packet_RobotTransform // size 28
+		private struct Packet_RobotTransform
 		{
 			public byte RobotId;
 			public Vector2 Position;
@@ -56,11 +57,17 @@ namespace gearit.src.Network
 			public float AngularVelocity;
 		}
 
-		private struct Packet_MotorForce // size 8
+		private struct Packet_MotorForce
 		{
 			public byte RobotId;
 			public ushort MotorId;
 			public float Force;
+		}
+
+		private struct Packet_Message
+		{
+			public string msg;
+			int duration;
 		}
 		#endregion
 
@@ -152,19 +159,13 @@ namespace gearit.src.Network
 		{
 			Data = request.Data;
 			Idx = 0;
-			//while (ApplyNextPacket()) ;
-			ApplyNextPacket();
+			while (ApplyNextPacket()) ;
 		}
 
 		public bool ApplyNextPacket()
 		{
-			if (Data == null)
+			if (Data == null || Idx + 1 >= Data.Count())
 				return false;
-			if (Idx + 1 >= Data.Count())
-			{
-				Debug.Assert(false);
-				return false;
-			}
 			switch (Data[Idx])
 			{
 				case (byte)CommandId.GameCommand:
@@ -183,8 +184,7 @@ namespace gearit.src.Network
 					return false;
 					break;
 			}
-			//Debug.Assert(Idx == Data.Count());
-			return Idx != Data.Count();
+			return true;
 		}
 
 		private void ApplyPacket(Packet_GameCommand packet)

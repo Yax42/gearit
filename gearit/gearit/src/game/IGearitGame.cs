@@ -11,6 +11,7 @@ namespace gearit.src.game
 	{
 		float Time { get; }
 		int FrameCount { get; }
+		void Message(string msg, int duration);
 		void Finish();
 		Map Map { get; }
 		List<Robot> Robots { get; }

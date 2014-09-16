@@ -44,5 +44,10 @@ namespace gearit.src.script
 		{
 			_game.Finish();
 		}
+
+		public void Message(string msg, int duration = 2000)
+		{
+			_game.Message(msg, duration);
+		}
 	}
 }
