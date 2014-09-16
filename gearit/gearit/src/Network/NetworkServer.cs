@@ -66,7 +66,6 @@ namespace gearit.src.Network
                 while ((msg = s_server.ReadMessage()) != null)
                 {
 					toRecycle = true;
-                    OutputManager.LogMessage("Server received : " + msg.MessageType);
                     switch (msg.MessageType)
                     {
                         case NetIncomingMessageType.ConnectionApproval:
