@@ -28,6 +28,7 @@ namespace gearit.src.game
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
+		private bool _pause;
 
 		private Map _Map;
 		public Map Map { get { return _Map; } }
@@ -81,6 +82,7 @@ namespace gearit.src.game
 		{
 			base.LoadContent();
 			_exiting = false;
+			_pause = false;
 
 			_FrameCount = 0;
 			_Time = 0;
@@ -136,6 +138,9 @@ namespace gearit.src.game
 
 		public override void Update(GameTime gameTime)
 		{
+			HandleInput();
+			if (_pause)
+				return;
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
@@ -173,6 +178,8 @@ namespace gearit.src.game
 				_camera.zoomIn();
 			if (Input.justPressed(MouseKeys.WHEEL_UP))
 				_camera.zoomOut();
+			if (Input.justPressed(Keys.P))
+				_pause = !_pause;
 		}
 
 		public override void Draw(GameTime gameTime)
