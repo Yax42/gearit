@@ -8,6 +8,7 @@ using gearit.src.output;
 
 using Lidgren.Network;
 using System.Diagnostics;
+using Microsoft.Xna.Framework;
 
 namespace gearit.src.Network
 {
@@ -21,6 +22,25 @@ namespace gearit.src.Network
 		private static NetworkServerGame Game;
         public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
 
+        public static void StaticStart(int port)
+		{
+            _port = port;
+            NetPeerConfiguration config = new NetPeerConfiguration("gearit");
+            config.MaximumConnections = 100;
+            config.Port = _port;
+
+            s_server = new NetServer(config);
+            _server_launched = false;
+
+                s_server.Start();
+                _server_launched = true;
+
+			Game = new NetworkServerGame();
+			Game.LoadContent();
+			Clock = Stopwatch.StartNew();
+		}
+
+		static Stopwatch Clock;
         public static void Start(int port)
         {
             _port = port;
@@ -53,6 +73,59 @@ namespace gearit.src.Network
                 serverThread.Abort();
                 s_server.Shutdown("Requested by user");
             }
+        }
+
+        public static void ServerUpdate()
+        {
+			bool toRecycle = false;
+			float delta = (float) Clock.Elapsed.TotalMilliseconds;
+			Console.WriteLine("server delta: " + delta);
+			Game.Update(1 / 30.0f);
+                NetIncomingMessage msg;
+                while ((msg = s_server.ReadMessage()) != null)
+                {
+					toRecycle = true;
+                    switch (msg.MessageType)
+                    {
+                        case NetIncomingMessageType.ConnectionApproval:
+                            NetIncomingMessage hail = msg.SenderConnection.RemoteHailMessage;
+                            Console.WriteLine(hail.ReadString());
+                            OutputManager.LogMessage("SERVER - msg:" + hail.ReadString());
+                            msg.SenderConnection.Approve();
+                            break;
+                        case NetIncomingMessageType.VerboseDebugMessage:
+                        case NetIncomingMessageType.DebugMessage:
+                        case NetIncomingMessageType.WarningMessage:
+                        case NetIncomingMessageType.ErrorMessage:
+                            OutputManager.LogError("SERVER - error: " + msg.ReadString());
+                            break;
+                        case NetIncomingMessageType.StatusChanged:
+                            NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
+
+                            string reason = msg.ReadString();
+                            OutputManager.LogMessage(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " " + status + ": " + reason);
+
+                            if (status == NetConnectionStatus.Connected)
+                            {
+                                OutputManager.LogMessage("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
+                                foreach (NetConnection conn in s_server.Connections)
+                                {
+                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
+                                    OutputManager.LogMessage(str);
+                                }
+                            }
+                            break;
+                        case NetIncomingMessageType.Data:
+                            manageRequest(msg);
+							toRecycle = false;
+                            break;
+                        default:
+                            OutputManager.LogError("SERVER - Unhandled type: " + msg.MessageType);
+                            break;
+                    }
+					if (toRecycle)
+						s_server.Recycle(msg);
+                }
         }
 
         public static void ServerMainLoop()
@@ -139,16 +212,18 @@ namespace gearit.src.Network
         public static void manageRequest(NetIncomingMessage msg)
         {
             Requests.Add(msg);
-			int id = 0;
-			if (s_server.Connections[0] == msg.SenderConnection)
-				id = 1;
-			Send(msg.Data, id);
         }
 
 		public static void ApplyRequests(InGamePacketManager packetManager)
 		{
 			foreach (NetIncomingMessage request in Requests)
+			{
 				packetManager.ApplyRequest(request);
+				int id = 0;
+				if (s_server.Connections[0] == request.SenderConnection)
+					id = 1;
+				Send(request.Data, id);
+			}
 			CleanRequests();
 		}
 

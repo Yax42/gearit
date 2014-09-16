@@ -96,6 +96,7 @@ namespace gearit.src.Network
 
 		public override void LoadContent()
 		{
+			NetworkServer.StaticStart(25552);
 			base.LoadContent();
 			_exiting = false;
 
@@ -162,12 +163,13 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
+			NetworkServer.ServerUpdate();
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 			HandleInput();
 
-			_world.Step(delta);
+			_world.Step(1/30.0f);
 
 
 			for (int i = 0; i < MainRobot.Spots.Count; i++)

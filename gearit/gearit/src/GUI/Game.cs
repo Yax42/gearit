@@ -299,7 +299,7 @@ namespace SquidXNA
 
 
             // To remove
-            NetworkServer.Start(25552);
+            //NetworkServer.Start(25552);
 		}
 
 		protected override void Update(GameTime gameTime)

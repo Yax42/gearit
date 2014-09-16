@@ -134,8 +134,7 @@ namespace gearit.src.Network
 
 			NetworkServer.ApplyRequests(PacketManager);
 
-			_world.Step(delta);
-
+			_world.Step(1 / 30.0f);
 
 			foreach (Robot r in Robots)
 			{
