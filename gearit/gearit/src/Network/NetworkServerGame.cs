@@ -146,7 +146,7 @@ namespace gearit.src.Network
 				}
 			}
 
-			_gameMaster.run();
+			//_gameMaster.run();
 			if (_exiting)
 				Exit();
 			_FrameCount++;
