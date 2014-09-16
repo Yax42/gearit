@@ -18,6 +18,7 @@ namespace gearit.src.Network
         private static Thread serverThread;
         private static bool _server_launched;
 		private static NetworkServerGame Game;
+        public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
 
         public static void Start(int port)
         {
@@ -128,6 +129,7 @@ namespace gearit.src.Network
 
         public static void manageRequest(NetIncomingMessage msg)
         {
+            Requests.Add(msg);
 			int id = 0;
 			if (s_server.Connections[0] == msg.SenderConnection)
 				id = 1;
@@ -135,5 +137,12 @@ namespace gearit.src.Network
 
             //OutputManager.LogMessage("Server received new request");
         }
+
+		public static void ApplyRequests(InGamePacketManager packetManager)
+		{
+			foreach (NetIncomingMessage request in NetworkClient.Requests)
+				packetManager.ApplyRequest(request);
+			NetworkClient.CleanRequests();
+		}
     }
 }

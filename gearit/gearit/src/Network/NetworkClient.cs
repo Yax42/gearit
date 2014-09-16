@@ -157,7 +157,13 @@ namespace gearit.src.Network
         public static void manageRequest(NetIncomingMessage msg)
         {
             Requests.Add(msg);
-
         }
+
+		public static void ApplyRequests(InGamePacketManager packetManager)
+		{
+			foreach (NetIncomingMessage request in NetworkClient.Requests)
+				packetManager.ApplyRequest(request);
+			NetworkClient.CleanRequests();
+		}
     }
 }

@@ -14,6 +14,6 @@ namespace gearit.src.game
 		void Finish();
 		Map Map { get; }
 		List<Robot> Robots { get; }
-		Robot MainRobot { get; }
+		int MainRobotId { get; }
 	}
 }

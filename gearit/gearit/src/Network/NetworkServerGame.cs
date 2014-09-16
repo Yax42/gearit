@@ -34,17 +34,18 @@ namespace gearit.src.Network
 		private Map _Map;
 		public Map Map { get { return _Map; } }
 
-		public Robot MainRobot
+		public int MainRobotId
 		{
 			get
 			{
 				Debug.Assert(false);
-				return null;
+				return 0;
 			}
 		}
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
+		private InGamePacketManager PacketManager;
 
 		// Action
 		private int _FrameCount = 0;
@@ -57,6 +58,7 @@ namespace gearit.src.Network
 		{
 			_Robots = new List<Robot>();
 			_world = new World(new Vector2(0, 9.8f));
+			PacketManager = new InGamePacketManager(this);
 		}
 
 		public void LoadContent()
@@ -71,6 +73,9 @@ namespace gearit.src.Network
 			//clearRobot();
 			SerializerHelper.World = _world;
 
+			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			_world.Step(1/30f);
+			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 
 
 			Debug.Assert(Robots != null);
@@ -87,6 +92,12 @@ namespace gearit.src.Network
 		public World GetWorld()
 		{
 			return (_world);
+		}
+
+		public void addRobot(Robot robot)
+		{
+			Robots.Add(robot);
+			robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 
 		public void SetMap(Map map)
@@ -114,13 +125,21 @@ namespace gearit.src.Network
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 
+			NetworkServer.ApplyRequests(PacketManager);
+
 			_world.Step(delta);
 
 
-			//foreach (Robot r in Robots)
-			//MainRobot.Update(Map);
+			foreach (Robot r in Robots)
+			{
+				byte[] packet = PacketManager.RobotTransform(r);
+				for (int i = 0; i < Robots.Count; i++)
+				{
+					NetworkServer.Send(packet, i);
+				}
+			}
 
-			//_gameMaster.run();
+			_gameMaster.run();
 			if (_exiting)
 				Exit();
 			_FrameCount++;

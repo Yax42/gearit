@@ -572,39 +572,5 @@ namespace gearit.src.robot
                 });
             });
 		}
-
-		#region Network
-		public byte[] OldPacketMotor;
-		
-
-		public byte[]	PacketMotor
-		{
-			get
-			{
-				byte[] res = new byte[Spots.Count * 4];
-				for (int i = 0; i < Spots.Count; i++)
-				{
-					var tmp = BitConverter.GetBytes(Spots[i].Force);
-					for (int j = 0; j < 4; j++)
-						res[i * 4 + j] = tmp[j];
-				}
-				return res;
-			}
-			set
-			{
-				byte[] motors = value;
-				for (int i = 0; i < Spots.Count; i++)
-				{
-					Spots[i].Force = System.BitConverter.ToSingle(motors, i * 4);
-				}
-			}
-
-		}
-
-
-		#endregion
-
-
-
 	}
 }

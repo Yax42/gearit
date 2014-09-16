@@ -118,7 +118,7 @@ namespace gearit.src.game
 			Robots.Clear();
 		}
 
-		public Robot MainRobot { get { return Robots[0]; } }
+		public int MainRobotId { get { return 0; } }
 
 		public void addRobot(Robot robot)
 		{

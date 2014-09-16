@@ -42,8 +42,10 @@ namespace gearit.src.Network
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 		private Robot EnnemyRobot;
+		private InGamePacketManager PacketManager;
 
-		public Robot MainRobot
+		public Robot MainRobot { get { return Robots[MainRobotId]; } }
+		public int MainRobotId
 		{
 			get;
 			set;
@@ -72,6 +74,7 @@ namespace gearit.src.Network
 			HasCursor = true;
 			_Robots = new List<Robot>();
 			_world = new World(new Vector2(0, 9.8f));
+			PacketManager = new InGamePacketManager(this);
 		}
 
 		public string GetTitle()
@@ -101,13 +104,10 @@ namespace gearit.src.Network
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			Robot robot2 = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			addOpponentRobot(robot2);
-
+			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			_world.Step(1/30f);
-
-			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			addMainRobot(robot);
+			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			setMainRobot(0);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
@@ -140,20 +140,17 @@ namespace gearit.src.Network
 			Robots.Clear();
 		}
 
-		public void addOpponentRobot(Robot robot)
+		public void addRobot(Robot robot)
 		{
 			Robots.Add(robot);
 			robot.move(new Vector2(Robots.Count * 30, -20));
-			EnnemyRobot = robot;
 		}
 
-		public void addMainRobot(Robot robot)
+		public void setMainRobot(int v)
 		{
-			Robots.Add(robot);
-			_camera.TrackingBody = robot.Heart;
-			robot.InitScript();
-			robot.move(new Vector2(Robots.Count * 30, -20));
-			MainRobot = robot;
+			MainRobotId = v;
+			_camera.TrackingBody = MainRobot.Heart;
+			MainRobot.InitScript();
 		}
 
 		public override void Update(GameTime gameTime)
@@ -168,15 +165,13 @@ namespace gearit.src.Network
 			_world.Step(delta);
 
 
-			NetworkClient.Send(MainRobot.PacketMotor);
-			foreach (NetIncomingMessage request in NetworkClient.Requests)
-				EnnemyRobot.PacketMotor = request.Data;
-			NetworkClient.CleanRequests();
+			for (int i = 0; i < MainRobot.Spots.Count; i++)
+				NetworkClient.Send(PacketManager.MotorForce(i));
+			NetworkClient.ApplyRequests(PacketManager);
 
-			//foreach (Robot r in Robots)
-				MainRobot.Update(Map);
+			MainRobot.Update(Map);
 
-			_gameMaster.run();
+			//_gameMaster.run();
 			_camera.Update(gameTime);
 			if (_exiting)
 				Exit();

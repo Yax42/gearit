@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using gearit.src.game;
 using System.Diagnostics;
 using gearit.src.robot;
+using Lidgren.Network;
 
 namespace gearit.src.Network
 {
@@ -100,7 +101,7 @@ namespace gearit.src.Network
 		public byte[] Data;
 #endregion
 
-		InGamePacketManager(IGearitGame game)
+		public InGamePacketManager(IGearitGame game)
 		{
 			Game = game;
 		}
@@ -114,9 +115,13 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
-		public byte[] RobotTransform()
+		public byte[] RobotTransform(int idRobot)
 		{
-			Robot r = Game.MainRobot;
+			return RobotTransform(Game.Robots[idRobot]);
+		}
+
+		public byte[] RobotTransform(Robot r)
+		{
 			Heart h = r.Heart;
 
 			Packet_RobotTransform res = new Packet_RobotTransform();
@@ -131,21 +136,29 @@ namespace gearit.src.Network
 
 		public byte[] MotorForce(int motorId)
 		{
-			Robot r = Game.MainRobot;
+			Robot r = Game.Robots[Game.MainRobotId];
 			Debug.Assert(motorId < r.Spots.Count);
 			Packet_MotorForce res = new Packet_MotorForce();
 			res.MotorId = (ushort)motorId;
 			res.Force = r.Spots[motorId].Force;
+			res.RobotId = (byte)Game.MainRobotId;
 			return PacketToRawData(res, CommandId.MotorForce);
 		}
 #endregion
 
 
 #region ApplyPacket
-
-		public void ApplyNextPacket()
+		public void ApplyRequest(NetIncomingMessage request)
 		{
-			Debug.Assert(Idx < Data.Count());
+			Data = request.Data;
+			Idx = 0;
+			while (ApplyNextPacket()) ;
+		}
+
+		public bool ApplyNextPacket()
+		{
+			if (Idx >= Data.Count())
+				return false;
 			switch (Data[Idx])
 			{
 				case (byte)CommandId.GameCommand:
@@ -161,6 +174,7 @@ namespace gearit.src.Network
 					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
 					break;
 			}
+			return true;
 		}
 
 		private void ApplyPacket(Packet_GameCommand packet)
