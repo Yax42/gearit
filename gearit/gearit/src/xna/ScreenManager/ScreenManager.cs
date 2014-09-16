@@ -322,8 +322,6 @@ namespace gearit.xna
 				screen.Draw(gameTime);
 			}
 
-			ChatBox.addEntry("dasd");
-
 			_desktop.Draw();
 			ChatBox.getDesktop().Draw();
 

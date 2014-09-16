@@ -7,6 +7,7 @@ using System.Threading;
 using gearit.src.output;
 
 using Lidgren.Network;
+using System.Diagnostics;
 
 namespace gearit.src.Network
 {
@@ -59,9 +60,18 @@ namespace gearit.src.Network
 			Game = new NetworkServerGame();
 			Game.LoadContent();
 			bool toRecycle;
+			Stopwatch clock = Stopwatch.StartNew();
             while (true)
             {
-				Game.Update(null);
+				while (clock.Elapsed.TotalMilliseconds < 55)
+					Thread.Sleep(1);
+				while (clock.Elapsed.TotalMilliseconds < 56)
+					continue;
+				clock.Stop();
+				float delta = (float) clock.Elapsed.TotalMilliseconds;
+				Console.WriteLine("server delta: " + delta);
+				Game.Update(delta / 100);
+				clock = Stopwatch.StartNew();
                 NetIncomingMessage msg;
                 while ((msg = s_server.ReadMessage()) != null)
                 {
@@ -107,7 +117,6 @@ namespace gearit.src.Network
 					if (toRecycle)
 						s_server.Recycle(msg);
                 }
-                Thread.Sleep(33);
             }
         }
 
@@ -124,7 +133,7 @@ namespace gearit.src.Network
 				return;
             NetOutgoingMessage om = s_server.CreateMessage();
             om.Write(data);
-            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.Unreliable, 0);
+            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableSequenced, 0);
         }
 
         public static void manageRequest(NetIncomingMessage msg)

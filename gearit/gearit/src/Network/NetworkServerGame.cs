@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using System.Diagnostics;
 using gearit.src.editor.robot;
+using System.Threading;
 
 namespace gearit.src.Network
 {
@@ -125,10 +126,10 @@ namespace gearit.src.Network
 			_world.Step(1/30f);
 		}
 
-		public void Update(GameTime gameTime)
+		public void Update(float delta)
 		{
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
-			float delta = 1 / 30f; // Static delta time for now, yea bitch!
+			//float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 
 			NetworkServer.ApplyRequests(PacketManager);
