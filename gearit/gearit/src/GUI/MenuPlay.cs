@@ -325,7 +325,7 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-                    NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port);
+                    NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port, null);
                 };
 
                 return cell;

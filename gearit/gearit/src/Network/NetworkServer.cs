@@ -69,7 +69,7 @@ namespace gearit.src.Network
 					continue;
 				clock.Stop();
 				float delta = (float) clock.Elapsed.TotalMilliseconds;
-				Console.WriteLine("server delta: " + delta);
+				//Console.WriteLine("server delta: " + delta);
 				Game.Update(delta / 1000);
 				clock = Stopwatch.StartNew();
                 NetIncomingMessage msg;

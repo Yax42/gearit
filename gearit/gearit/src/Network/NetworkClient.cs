@@ -6,6 +6,7 @@ using Lidgren.Network;
 using gearit.src.output;
 using System.Threading;
 using gearit.xna;
+using System.Diagnostics;
 
 namespace gearit.src.Network
 {
@@ -24,6 +25,7 @@ namespace gearit.src.Network
         public static EState State = EState.Disconnected;
         private static Mutex mutex = new Mutex();
         private static Thread clientThread;
+        private static InGamePacketManager PacketManager;
         public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
 
         public static EState getState()
@@ -46,10 +48,12 @@ namespace gearit.src.Network
             }
         }
 
-        public static void Connect(string host, int port)
+        public static void Connect(string host, int port, InGamePacketManager packetManager)
         {
             if (State == EState.Connecting)
                 return ;
+			Debug.Assert(packetManager != null);
+			PacketManager = packetManager;
 			PacketsList.Clear();
 
             Disconnect();
@@ -159,11 +163,30 @@ namespace gearit.src.Network
             Requests.Add(msg);
         }
 
-		public static void ApplyRequests(InGamePacketManager packetManager)
+		public static bool ContainsStepWorld()
 		{
 			foreach (NetIncomingMessage request in Requests)
-				packetManager.ApplyRequest(request);
-			CleanRequests();
+			{
+				if (request.Data[0] == (byte)InGamePacketManager.CommandId.StepWorld)
+					return true;
+			}
+			return false;
+		}
+
+		public static void ApplyRequests()
+		{
+			Console.Out.WriteLine("" + Requests.Count);
+			while (Requests.First().Data[0] != (byte)InGamePacketManager.CommandId.StepWorld)
+			{
+				PacketManager.ApplyRequest(Requests.First());
+				s_client.Recycle(Requests.First());
+				Requests.RemoveAt(0);
+			}
+			s_client.Recycle(Requests.First());
+			Requests.RemoveAt(0);
+
+			if (Requests.Count > 128) // au cas ou y a plus de requetes qui arrivent qu'il y en a de traitees
+				CleanRequests();
 		}
     }
 }

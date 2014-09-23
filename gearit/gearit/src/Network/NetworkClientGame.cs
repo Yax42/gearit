@@ -122,7 +122,7 @@ namespace gearit.src.Network
 
 			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
-			NetworkClient.Connect("127.0.0.1", 25552);
+			NetworkClient.Connect("127.0.0.1", 25552, PacketManager);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -162,6 +162,9 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
+			if (!NetworkClient.ContainsStepWorld())
+				return ;
+			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
 			//float delta = 2 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
@@ -172,7 +175,7 @@ namespace gearit.src.Network
 
 			for (int i = 0; i < MainRobot.Spots.Count; i++)
 				NetworkClient.Send(PacketManager.MotorForce(i));
-			NetworkClient.ApplyRequests(PacketManager);
+			NetworkClient.ApplyRequests();
 
 			MainRobot.Update(Map);
 

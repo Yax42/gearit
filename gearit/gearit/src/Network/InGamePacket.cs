@@ -33,6 +33,7 @@ namespace gearit.src.Network
 			RobotCommand,
 			RobotTransform,
 			MotorForce,
+			StepWorld,
 		};
 		#endregion
 
@@ -86,7 +87,7 @@ namespace gearit.src.Network
 
 		//http://stackoverflow.com/questions/3278827/how-to-convert-a-structure-to-a-byte-array-in-c
 
-		static private byte[] PacketToRawData<T>(T packet, CommandId id) where T : struct
+		private byte[] PacketToRawData<T>(T packet, CommandId id) where T : struct
 		{
 			int size = Marshal.SizeOf(packet);
 			byte[] arr = new byte[size + 1];
@@ -120,6 +121,13 @@ namespace gearit.src.Network
 			packet.RobotId = (byte) id;
 			packet.Command = (byte) command;
 			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] StepWorld()
+		{
+			byte[] res = new byte[1];
+			res[0] = (byte)CommandId.StepWorld;
+			return res;
 		}
 
 		public byte[] RobotTransform(int idRobot)
