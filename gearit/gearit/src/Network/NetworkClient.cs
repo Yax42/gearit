@@ -175,7 +175,7 @@ namespace gearit.src.Network
 
 		public static void ApplyRequests()
 		{
-			Console.Out.WriteLine("" + Requests.Count);
+			//Console.Out.WriteLine("" + Requests.Count);
 			while (Requests.First().Data[0] != (byte)InGamePacketManager.CommandId.StepWorld)
 			{
 				PacketManager.ApplyRequest(Requests.First());

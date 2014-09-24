@@ -7,10 +7,12 @@ using System.Diagnostics;
 using gearit.src.robot;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
+using gearit.src.editor.map;
 
 namespace gearit.src.script.api.game
 {
-	class GameRobotApi : GameObjectApi
+	public class GameRobotApi : GameObjectApi
 	{
 		private Robot _Robot;
 		private Dictionary<string, Score.VictoryState> _stateDictionnary;
@@ -26,10 +28,19 @@ namespace gearit.src.script.api.game
 			_Robot = robot;
 		}
 
-		public bool isTouching(GameRobotApi robotapi)
+		public bool IsTouching(GameChunkApi chunkapi)
 		{
-			return (true);
+			MapChunk chunk = chunkapi.__Chunk;
+			foreach (Body b in _Robot.Pieces)
+			{
+				for (ContactEdge c = chunkapi.__Chunk.ContactList; c != null; c = c.Next)
+				{
+					if (c.Other == b)
+						return (true);
+				}
+			}
 
+			return (false);
 		}
 
 

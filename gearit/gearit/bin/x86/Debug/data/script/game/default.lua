@@ -7,6 +7,6 @@ end
 if Robot_0:TriggerData(0) then
 	Game:Finish();
 end
-if Object_ball:isTouching(Object_left_zone) then
+if Robot_0:IsTouching(Object_test) then
 	Game:Finish();
 end

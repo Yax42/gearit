@@ -7,23 +7,24 @@ using Microsoft.Xna.Framework;
 using gearit.src.editor.map;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
+using System.Runtime.CompilerServices;
 
 namespace gearit.src.script.api.game
 {
-	class GameChunkApi : GameObjectApi
+	public class GameChunkApi : GameObjectApi
 	{
-		private MapChunk _Chunk;
+		public MapChunk __Chunk;
 
 		public GameChunkApi(MapChunk chunk)
 		{
-			_Chunk = chunk;
+			__Chunk = chunk;
 		}
 
-		public bool isTouching(GameChunkApi chunkapi)
+		public bool IsTouching(GameChunkApi chunkapi)
 		{
-			for (ContactEdge c = _Chunk.ContactList; c != null;  c = c.Next)
+			for (ContactEdge c = __Chunk.ContactList; c != null;  c = c.Next)
 			{
-				if (c.Other == chunkapi._Chunk)
+				if (c.Other == chunkapi.__Chunk)
 					return (true);
 			}
 
@@ -34,12 +35,12 @@ namespace gearit.src.script.api.game
 		{
 			get
 			{
-				return _Chunk.Position;
+				return __Chunk.Position;
 			}
 
 			set
 			{
-				_Chunk.Position = value;
+				__Chunk.Position = value;
 			}
 		}
 	}
