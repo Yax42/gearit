@@ -6,6 +6,7 @@ using gearit.src.game;
 using System.Diagnostics;
 using gearit.src.robot;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Dynamics;
 
 namespace gearit.src.script.api.game
 {
@@ -24,6 +25,13 @@ namespace gearit.src.script.api.game
 			_stateDictionnary.Add("STILL", Score.VictoryState.StillInProgress);
 			_Robot = robot;
 		}
+
+		public bool isTouching(GameRobotApi robotapi)
+		{
+			return (true);
+
+		}
+
 
 		#region Score
 		public void IntScore(int score)

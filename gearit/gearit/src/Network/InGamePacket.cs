@@ -19,7 +19,6 @@ namespace gearit.src.Network
 			End,
 			Pause,
 			UnPause,
-			Message,
 		};
 		public enum ERobotCommand
 		{
@@ -33,6 +32,7 @@ namespace gearit.src.Network
 			RobotCommand,
 			RobotTransform,
 			MotorForce,
+			Message,
 		};
 		#endregion
 
@@ -66,8 +66,8 @@ namespace gearit.src.Network
 
 		private struct Packet_Message
 		{
-			string msg;
-			int duration;
+			public string msg;
+			public int duration;
 		}
 		#endregion
 
@@ -186,6 +186,9 @@ namespace gearit.src.Network
 				case (byte)CommandId.RobotTransform:
 					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
 					break;
+				case (byte)CommandId.Message:
+					ApplyPacket(RawDataToPacket<Packet_Message>());
+					break;
 				default:
 					return false;
 					break;
@@ -194,14 +197,19 @@ namespace gearit.src.Network
 			return Idx != Data.Count();
 		}
 
+		private void ApplyPacket(Packet_Message packet)
+		{
+			Game.Message(packet.msg, packet.duration);
+		}
+
 		private void ApplyPacket(Packet_GameCommand packet)
 		{
 			switch (packet.CommandId)
 			{
 				case (byte) GameCommand.End:
+					Game.Finish();
 					break;
 				case (byte) GameCommand.Pause:
-					Game.Finish();
 					break;
 				case (byte) GameCommand.UnPause:
 					break;

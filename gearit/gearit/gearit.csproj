@@ -148,6 +148,7 @@
     <Compile Include="src\Network\NetworkClientGame.cs" />
     <Compile Include="src\Network\NetworkServerGame.cs" />
     <Compile Include="src\GUI\OptionsMenu\OptionsMenu.cs" />
+    <Compile Include="src\script\api\game\GameChunkApi.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />
     <Compile Include="src\script\api\game\GameRobotApi.cs" />

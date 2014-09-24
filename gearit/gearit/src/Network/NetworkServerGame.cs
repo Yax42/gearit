@@ -146,7 +146,7 @@ namespace gearit.src.Network
 				}
 			}
 
-			//_gameMaster.run();
+			_gameMaster.run();
 			if (_exiting)
 				Exit();
 			_FrameCount++;
@@ -154,7 +154,8 @@ namespace gearit.src.Network
 
 		public void Finish()
 		{
-				_exiting = true;
+			Console.WriteLine("finish game");
+			//_exiting = true;
 		}
 
 		public void Exit()
