@@ -136,7 +136,6 @@ namespace gearit.src.Network
 
 			_world.Step(delta * 2);
 
-
 			foreach (Robot r in Robots)
 			{
 				byte[] packet = PacketManager.RobotTransform(r);
@@ -145,6 +144,11 @@ namespace gearit.src.Network
 					NetworkServer.Send(packet, i);
 				}
 			}
+			for (int i = 0; i < Robots.Count; i++)
+			{
+				NetworkServer.Send(PacketManager.StepWorld(), i);
+			}
+			//Console.Out.WriteLine("server");
 
 			_gameMaster.run();
 			if (_exiting)
