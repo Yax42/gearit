@@ -21,7 +21,7 @@ namespace gearit.src.server
         {
             _port = port;
             _host = host;
-            OutputManager.LogMessage("host:" + _host + " port:" + _port);
+            OutputManager.LogNetwork("host:" + _host + " port:" + _port);
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             s_client = new NetClient(config);
 
@@ -38,7 +38,7 @@ namespace gearit.src.server
             }
             catch
             {
-                OutputManager.LogError("CLIENT - Fail to connect to server");
+                OutputManager.LogNetwork("CLIENT - Fail to connect to server");
             }
         }
 
@@ -78,7 +78,7 @@ namespace gearit.src.server
                             _connected = true;
                         else
                         {
-                            OutputManager.LogError("CLIENT - Disconnected");
+                            OutputManager.LogNetwork("CLIENT - Disconnected");
                             _connected = false;
                         }
 
@@ -90,12 +90,12 @@ namespace gearit.src.server
                         break;
                     case NetIncomingMessageType.Data:
                         string msg = im.ReadString();
-                        OutputManager.LogMessage("CLIENT -  msg: " + msg);
+                        OutputManager.LogNetwork("CLIENT -  msg: " + msg);
                         Send("Hello i'm client");
                         break;
                     default:
                         //Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
-                        OutputManager.LogError("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                        OutputManager.LogNetwork("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                         break;
                 }
                 s_client.Recycle(im);

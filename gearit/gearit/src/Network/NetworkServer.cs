@@ -48,11 +48,11 @@ namespace gearit.src.Network
                 serverThread.Start();
                 OutputManager.LogMessage(serverThread.IsAlive.ToString());
                 _server_launched = true;
-                OutputManager.LogMessage("[Server] Launched");
+                OutputManager.LogNetwork("[Server] Launched");
             }
             catch
             {
-                OutputManager.LogError("Server - Fail to Launch server");
+                OutputManager.LogNetwork("Server - Fail to Launch server");
             }
         }
 
@@ -70,10 +70,8 @@ namespace gearit.src.Network
 			Game.LoadContent();
 			bool toRecycle;
 			Stopwatch clock = Stopwatch.StartNew();
-			ResetToSends();
             while (true)
             {
-				ApplyRequests();
 				while (clock.Elapsed.TotalMilliseconds < 18)
 					Thread.Sleep(1);
 				while (clock.Elapsed.TotalMilliseconds < 19)
@@ -93,14 +91,14 @@ namespace gearit.src.Network
                         case NetIncomingMessageType.ConnectionApproval:
                             NetIncomingMessage hail = msg.SenderConnection.RemoteHailMessage;
                             Console.WriteLine(hail.ReadString());
-                            OutputManager.LogMessage("SERVER - msg:" + hail.ReadString());
+                            OutputManager.LogNetwork("SERVER - msg:" + hail.ReadString());
                             msg.SenderConnection.Approve();
                             break;
                         case NetIncomingMessageType.VerboseDebugMessage:
                         case NetIncomingMessageType.DebugMessage:
                         case NetIncomingMessageType.WarningMessage:
                         case NetIncomingMessageType.ErrorMessage:
-                            OutputManager.LogError("SERVER - error: " + msg.ReadString());
+                            OutputManager.LogNetwork("SERVER - error: " + msg.ReadString());
                             break;
                         case NetIncomingMessageType.StatusChanged:
                             NetConnectionStatus status = (NetConnectionStatus)msg.ReadByte();
@@ -110,11 +108,11 @@ namespace gearit.src.Network
 
                             if (status == NetConnectionStatus.Connected)
                             {
-                                OutputManager.LogMessage("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
+                                OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
                                 foreach (NetConnection conn in Peer.Connections)
                                 {
                                     string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
-                                    OutputManager.LogMessage(str);
+                                    OutputManager.LogNetwork(str);
                                 }
                             }
                             break;
@@ -123,7 +121,7 @@ namespace gearit.src.Network
 							toRecycle = false;
                             break;
                         default:
-                            OutputManager.LogError("SERVER - Unhandled type: " + msg.MessageType);
+                            OutputManager.LogNetwork("SERVER - Unhandled type: " + msg.MessageType);
                             break;
                     }
 					if (toRecycle)

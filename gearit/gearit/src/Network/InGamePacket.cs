@@ -8,6 +8,8 @@ using gearit.src.game;
 using System.Diagnostics;
 using gearit.src.robot;
 using Lidgren.Network;
+using gearit.src.editor.map;
+using FarseerPhysics.Dynamics;
 
 namespace gearit.src.Network
 {
@@ -30,7 +32,7 @@ namespace gearit.src.Network
 		{
 			GameCommand,
 			RobotCommand,
-			RobotTransform,
+			ObjectTransform,
 			MotorForce,
 			Message,
 			EndOfPacket,
@@ -50,9 +52,10 @@ namespace gearit.src.Network
 			public byte Command;
 		}
 
-		private struct Packet_RobotTransform // size 28
+		private struct Packet_ObjectTransform // size 28
 		{
-			public byte RobotId;
+			public bool IsRobot;
+			public ushort Id;
 			public Vector2 Position;
 			public float Rotation;
 			public Vector2 LinearVelocity;
@@ -102,7 +105,6 @@ namespace gearit.src.Network
 			return arr;
 		}
 
-
 #region Attributes
 
 		private IGearitGame Game;
@@ -138,17 +140,26 @@ namespace gearit.src.Network
 
 		public byte[] RobotTransform(Robot r)
 		{
-			Heart h = r.Heart;
-
-			Packet_RobotTransform res = new Packet_RobotTransform();
-
-			res.RobotId = (byte) r.Id;
-			res.Position = r.Position;
-			res.Rotation = h.Rotation;
-			res.LinearVelocity = h.LinearVelocity;
-			res.AngularVelocity = h.AngularVelocity;
-			return PacketToRawData(res, CommandId.RobotTransform);
+			return TransformBody(r.Heart, true, r.Id);
 		}
+
+		public byte[] ChunkTransform(int chunkId)
+		{
+			return TransformBody(Game.Map.Chunks[chunkId], false, chunkId);
+		}
+
+		private byte[] TransformBody(Body b, bool isRobot, int id)
+		{
+			Packet_ObjectTransform res = new Packet_ObjectTransform();
+			res.IsRobot = isRobot;
+			res.Id = (ushort) id;
+			res.Position = b.Position;
+			res.Rotation = b.Rotation;
+			res.LinearVelocity = b.LinearVelocity;
+			res.AngularVelocity = b.AngularVelocity;
+			return PacketToRawData(res, CommandId.ObjectTransform);
+		}
+
 
 		public byte[] MotorForce(int motorId)
 		{
@@ -200,8 +211,8 @@ namespace gearit.src.Network
 				case (byte)CommandId.RobotCommand:
 					ApplyPacket(RawDataToPacket<Packet_RobotCommand>());
 					break;
-				case (byte)CommandId.RobotTransform:
-					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
+				case (byte)CommandId.ObjectTransform:
+					ApplyPacket(RawDataToPacket<Packet_ObjectTransform>());
 					break;
 				case (byte)CommandId.BeginTransform:
 					Idx++;
@@ -261,22 +272,36 @@ namespace gearit.src.Network
 			}
 		}
 
-		private void ApplyPacket(Packet_RobotTransform packet)
+		private void ApplyPacket(Packet_ObjectTransform packet)
 		{
-			Debug.Assert(Game.Robots.Count > packet.RobotId);
-			if (Game.Robots.Count > packet.RobotId)
+			Body b = null;
+			if (packet.IsRobot)
 			{
-				Robot r = Game.Robots[packet.RobotId];
-				Debug.Assert(!r.Extracted);
-				if (!r.Extracted)
+				if (Game.Robots.Count > packet.Id)
 				{
-					Heart h = r.Heart;
-
-					h.AngularVelocity = packet.AngularVelocity;
-					h.LinearVelocity = packet.LinearVelocity;
-					h.Rotation = packet.Rotation;
-					r.Position = packet.Position;
+					Robot r = Game.Robots[packet.Id];
+					Debug.Assert(!r.Extracted);
+					if (!r.Extracted)
+					{
+						b = r.Heart;
+					}
 				}
+			}
+			else
+			{
+				if (Game.Map.Chunks.Count > packet.Id)
+				{
+					b = Game.Map.Chunks[packet.Id];
+				}
+			}
+
+			Debug.Assert(b != null);
+			if (b != null)
+			{
+				b.AngularVelocity = packet.AngularVelocity;
+				b.LinearVelocity = packet.LinearVelocity;
+				b.Rotation = packet.Rotation;
+				b.Position = packet.Position;
 			}
 		}
 

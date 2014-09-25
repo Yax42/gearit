@@ -53,7 +53,7 @@ namespace gearit.src.Network
 				YoungestRequests[idx] = msg;
 		}
 
-		public int UserId(NetIncomingMessage request)
+		private int UserId(NetIncomingMessage request)
 		{
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
@@ -64,7 +64,7 @@ namespace gearit.src.Network
 			return (0);
 		}
 
-		public bool IsYoungest(NetIncomingMessage request)
+		private bool IsYoungest(NetIncomingMessage request)
 		{
 			return request == YoungestRequests[UserId(request)];
 		}

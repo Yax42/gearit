@@ -131,6 +131,7 @@ namespace gearit.src.Network
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
 			//float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
+			NetworkServer.Instance.ApplyRequests();
 
 			_world.Step(delta * 2);
 
@@ -139,7 +140,7 @@ namespace gearit.src.Network
 				byte[] packet = PacketManager.RobotTransform(r);
 				for (int i = 0; i < Robots.Count; i++)
 				{
-					;// NetworkServer.PushRequestTransform(packet, i);
+					NetworkServer.Instance.PushRequestTransform(packet, i);
 				}
 			}
 			//Console.Out.WriteLine("server");

@@ -71,6 +71,7 @@ namespace gearit.src.Network
         public void Receive(object peer)
         {
             NetIncomingMessage im = ((NetClient)peer).ReadMessage();
+            //while ((msg = Peer.ReadMessage()) != null) { toRecycle = true;
             switch (im.MessageType)
             {
                 case NetIncomingMessageType.DebugMessage:
@@ -86,14 +87,14 @@ namespace gearit.src.Network
                         State = EState.Connected;
                     else
                         State = EState.Disconnected;
-                    OutputManager.LogError("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
+                    OutputManager.LogNetwork("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
                     break;
                 case NetIncomingMessageType.Data:
                     Client_ManageRequest(im);
 					return;
 					break;
                 default:
-                    OutputManager.LogError("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
+                    OutputManager.LogNetwork("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                     break;
             }
             Peer.Recycle(im);

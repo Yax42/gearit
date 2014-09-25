@@ -179,6 +179,8 @@ namespace gearit.src.Network
 
 			for (int i = 0; i < MainRobot.Spots.Count; i++)
 				NetworkClient.PushRequest(PacketManager.MotorForce(i));
+			NetworkClient.SendRequests();
+
 			NetworkClient.ApplyRequests();
 
 			MainRobot.Update(Map);

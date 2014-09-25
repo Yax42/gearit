@@ -28,7 +28,8 @@ namespace gearit.src.GUI
 			Message,
 			Info,
 			Warning,
-			Error
+			Network,
+			Error,
 		};
 
 		static public int Width = 550;
@@ -49,6 +50,7 @@ namespace gearit.src.GUI
 			background.Parent = _container_chat;
 			background.Style = "menu";
 			background.Dock = DockStyle.Fill;
+			background.Opacity = 500000f;
 
 			listbox.Margin = new Squid.Margin(2);
 			listbox.Size = new Point(Width, Height);
@@ -156,12 +158,21 @@ namespace gearit.src.GUI
 
 			if (entry != Entry.Message)
 			{
-				if (entry == Entry.Error)
-					text = "[color=ffFF4040]" + text + "[/color]";
-				else if (entry == Entry.Warning)
-					text = "[color=ffF4A460]" + text + "[/color]";
-				else if (entry == Entry.Info)
-					text = "[color=ff70DB93]" + text + "[/color]";
+				switch (entry)
+				{
+					case Entry.Error:
+						text = "[color=ffFF4040]" + text + "[/color]";
+						break;
+					case Entry.Warning:
+						text = "[color=ffF4A460]" + text + "[/color]";
+						break;
+					case Entry.Info:
+						text = "[color=ff70DB93]" + text + "[/color]";
+						break;
+					case Entry.Network:
+						text = "[color=ff3F9FF6]" + text + "[/color]";
+						break;
+				}
 				item.BBCodeEnabled = true;
 			}
 

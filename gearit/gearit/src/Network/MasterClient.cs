@@ -62,12 +62,12 @@ namespace gearit.src
 
 			//_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
             // Start Server
-            OutputManager.LogMessage("Server launch");
+            OutputManager.LogNetwork("Server launch");
             server.Start();
             System.Threading.Thread.Sleep(50);
             
             //Start Client
-            OutputManager.LogMessage("Client launch");
+            OutputManager.LogNetwork("Client launch");
             client.Start();
             System.Threading.Thread.Sleep(50);
 		}

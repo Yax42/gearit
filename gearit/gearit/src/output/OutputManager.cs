@@ -18,6 +18,11 @@ namespace gearit.src.output
 			Console.WriteLine("WARNING: #{0}", msg);
 			ChatBox.addEntry(msg, ChatBox.Entry.Warning);
 		}
+		static public void LogNetwork(String msg)
+		{
+			Console.WriteLine("Network: #{0}", msg);
+			ChatBox.addEntry(msg, ChatBox.Entry.Network);
+		}
 		static public void LogInfo(String msg)
 		{
 			Console.WriteLine("Info: #{0}", msg);
