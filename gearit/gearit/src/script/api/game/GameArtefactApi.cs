@@ -16,6 +16,11 @@ namespace gearit.src.script.api.game
 			_Artefact = art;
 		}
 
+		public bool isTouching(GameObjectApi o)
+		{
+			return (false);
+		}
+
 		public override Vector2 Position
 		{
 			get

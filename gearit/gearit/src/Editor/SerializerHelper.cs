@@ -110,7 +110,8 @@ namespace gearit.src.editor
 		private float _rotation;
 		private float _friction;
 		private List<SerializedFixture> _fixtures;
-	private BodyType _bodyType;
+		private BodyType _bodyType;
+		private string _user_data;
 
 
 		/// <summary>
@@ -126,6 +127,7 @@ namespace gearit.src.editor
 			sb._friction = body.Friction;
 			sb._position = body.Position;
 			sb._rotation = body.Rotation;
+			sb._user_data = (string) body.UserData;
 			sb._fixtures = new List<SerializedFixture>(body.FixtureList.Count());
 			foreach (Fixture f in body.FixtureList)
 				sb._fixtures.Add(SerializedFixture.convertFixture(f));
@@ -156,6 +158,7 @@ namespace gearit.src.editor
 			b.Friction = sbody._friction;
 			b.Position = sbody._position;
 			b.Rotation = sbody._rotation;
+			b.UserData = sbody._user_data;
 			foreach (SerializedFixture sf in sbody._fixtures)
 				SerializedFixture.convertSFixture(sf, b);
 		}

@@ -8,32 +8,42 @@ using gearit.src.output;
 
 using Lidgren.Network;
 using System.Diagnostics;
+using gearit.src.robot;
 
 namespace gearit.src.Network
 {
-    static class NetworkServer
+    class NetworkServer : INetwork
     {
-        public static int _port;
-        private static NetServer s_server;
-        public static string _buffer;
-        private static Thread serverThread;
-        private static bool _server_launched;
-		private static NetworkServerGame Game;
-        public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
+		public static NetworkServer Instance { get; private set; }
+        public string _buffer;
+        private Thread serverThread;
+        private bool _server_launched;
+		private NetworkServerGame Game;
 
-        public static void Start(int port)
-        {
-            _port = port;
+
+		private NetworkServer(NetworkServerGame game, NetPeerConfiguration config, int port)
+			: base(new NetServer(config), 2, game.PacketManager)
+		{
+			Game = game;
+			Port = port;
+			IsServer = true;
+		}
+
+       static public void Start(int port)
+		{
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
-            config.Port = _port;
+            config.Port = port;
+			Instance = new NetworkServer(new NetworkServerGame(), config, port);
+			Instance.PrivateStart();
+		}
 
-            s_server = new NetServer(config);
+        private void PrivateStart()
+        {
             _server_launched = false;
-
             try
             {
-                s_server.Start();
+				Peer.Start();
                 serverThread = new Thread(ServerMainLoop);
                 serverThread.Start();
                 OutputManager.LogMessage(serverThread.IsAlive.ToString());
@@ -46,34 +56,36 @@ namespace gearit.src.Network
             }
         }
 
-        public static void Stop()
+        public void Stop()
         {
             if (_server_launched)
             {
                 serverThread.Abort();
-                s_server.Shutdown("Requested by user");
+                Peer.Shutdown("Requested by user");
             }
         }
 
-        public static void ServerMainLoop()
+        public void ServerMainLoop()
         {
-			Game = new NetworkServerGame();
 			Game.LoadContent();
 			bool toRecycle;
 			Stopwatch clock = Stopwatch.StartNew();
+			ResetToSends();
             while (true)
             {
+				ApplyRequests();
 				while (clock.Elapsed.TotalMilliseconds < 18)
 					Thread.Sleep(1);
 				while (clock.Elapsed.TotalMilliseconds < 19)
 					continue;
 				clock.Stop();
 				float delta = (float) clock.Elapsed.TotalMilliseconds;
-				//Console.WriteLine("server delta: " + delta);
 				Game.Update(delta / 1000);
+				SendRequests();
+
 				clock = Stopwatch.StartNew();
                 NetIncomingMessage msg;
-                while ((msg = s_server.ReadMessage()) != null)
+                while ((msg = Peer.ReadMessage()) != null)
                 {
 					toRecycle = true;
                     switch (msg.MessageType)
@@ -99,7 +111,7 @@ namespace gearit.src.Network
                             if (status == NetConnectionStatus.Connected)
                             {
                                 OutputManager.LogMessage("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
-                                foreach (NetConnection conn in s_server.Connections)
+                                foreach (NetConnection conn in Peer.Connections)
                                 {
                                     string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
                                     OutputManager.LogMessage(str);
@@ -107,7 +119,7 @@ namespace gearit.src.Network
                             }
                             break;
                         case NetIncomingMessageType.Data:
-                            manageRequest(msg);
+                            Server_ManageRequest(msg);
 							toRecycle = false;
                             break;
                         default:
@@ -115,48 +127,36 @@ namespace gearit.src.Network
                             break;
                     }
 					if (toRecycle)
-						s_server.Recycle(msg);
+						Peer.Recycle(msg);
                 }
             }
         }
 
-        public static void Send(string text)
-        {
-                NetOutgoingMessage om = s_server.CreateMessage();
-                om.Write(text);
-                s_server.SendMessage(om, s_server.Connections, NetDeliveryMethod.ReliableOrdered, 0);
-        }
-
-        public static void Send(byte[] data, int id)
-        {
-			if (id >= s_server.Connections.Count)
-				return;
-            NetOutgoingMessage om = s_server.CreateMessage();
-            om.Write(data);
-            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableSequenced, 0);
-        }
-
-        public static void manageRequest(NetIncomingMessage msg)
-        {
-            Requests.Add(msg);
+		public void Server_ManageRequest(NetIncomingMessage msg)
+		{
 			int id = 0;
-			if (s_server.Connections[0] == msg.SenderConnection)
+			if (Peer.Connections[0] == msg.SenderConnection)
 				id = 1;
-			Send(msg.Data, id);
+			ManageRequest(msg, id);
+			PushRequest(msg.Data, id);
+		}
+
+#if false
+        public void oldSend(string text) // deprecated
+        {
+                NetOutgoingMessage om = Peer.CreateMessage();
+                om.Write(text);
+                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.Unreliable, 0);
         }
 
-		public static void ApplyRequests(InGamePacketManager packetManager)
-		{
-			foreach (NetIncomingMessage request in Requests)
-				packetManager.ApplyRequest(request);
-			CleanRequests();
-		}
-
-		public static void CleanRequests()
-		{
-			foreach (NetIncomingMessage request in Requests)
-				s_server.Recycle(request);
-			Requests.Clear();
-		}
-    }
+        public void oldSend(byte[] data, int id) // deprecated
+        {
+			if (id >= Peer.Connections.Count)
+				return;
+            NetOutgoingMessage om = Peer.CreateMessage();
+            om.Write(data);
+            Peer.SendMessage(om, Peer.Connections[id], NetDeliveryMethod.Unreliable, 0);
+        }
+#endif
+	}
 }

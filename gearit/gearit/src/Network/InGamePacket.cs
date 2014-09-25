@@ -19,7 +19,6 @@ namespace gearit.src.Network
 			End,
 			Pause,
 			UnPause,
-			Message,
 		};
 		public enum ERobotCommand
 		{
@@ -33,7 +32,9 @@ namespace gearit.src.Network
 			RobotCommand,
 			RobotTransform,
 			MotorForce,
-			StepWorld,
+			Message,
+			EndOfPacket,
+			BeginTransform,
 		};
 		#endregion
 
@@ -67,8 +68,8 @@ namespace gearit.src.Network
 
 		private struct Packet_Message
 		{
-			string msg;
-			int duration;
+			public string msg;
+			public int duration;
 		}
 		#endregion
 
@@ -123,16 +124,16 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
-		public byte[] StepWorld()
-		{
-			byte[] res = new byte[1];
-			res[0] = (byte)CommandId.StepWorld;
-			return res;
-		}
-
 		public byte[] RobotTransform(int idRobot)
 		{
 			return RobotTransform(Game.Robots[idRobot]);
+		}
+
+		public byte[] CreatePacket(CommandId cmd)
+		{
+			byte[] res = new byte[1];
+			res[0] = (byte) cmd;
+			return res;
 		}
 
 		public byte[] RobotTransform(Robot r)
@@ -163,19 +164,27 @@ namespace gearit.src.Network
 
 
 #region ApplyPacket
-		public void ApplyRequest(NetIncomingMessage request)
+#if false
+		public void Server_ApplyRequest(NetIncomingMessage request)
 		{
-			Data = request.Data;
 			Idx = 0;
-			//while (ApplyNextPacket()) ;
+			Data = request.Data;
 			ApplyNextPacket();
 		}
+#endif
 
-		public bool ApplyNextPacket()
+		public void ApplyRequest(NetIncomingMessage request, bool proceedTransform)
+		{
+			Idx = 4;
+			Data = request.Data;
+			while (ApplyNextPacket(proceedTransform)) ;
+		}
+
+		public bool ApplyNextPacket(bool proceedTransform = false)
 		{
 			if (Data == null)
 				return false;
-			if (Idx + 1 >= Data.Count())
+			if (Idx >= Data.Count())
 			{
 				Debug.Assert(false);
 				return false;
@@ -194,6 +203,15 @@ namespace gearit.src.Network
 				case (byte)CommandId.RobotTransform:
 					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
 					break;
+				case (byte)CommandId.BeginTransform:
+					Idx++;
+					return proceedTransform;
+					break;
+				case (byte)CommandId.EndOfPacket:
+					return false;
+				case (byte)CommandId.Message:
+					ApplyPacket(RawDataToPacket<Packet_Message>());
+					break;
 				default:
 					return false;
 					break;
@@ -202,14 +220,19 @@ namespace gearit.src.Network
 			return Idx != Data.Count();
 		}
 
+		private void ApplyPacket(Packet_Message packet)
+		{
+			Game.Message(packet.msg, packet.duration);
+		}
+
 		private void ApplyPacket(Packet_GameCommand packet)
 		{
 			switch (packet.CommandId)
 			{
 				case (byte) GameCommand.End:
+					Game.Finish();
 					break;
 				case (byte) GameCommand.Pause:
-					Game.Finish();
 					break;
 				case (byte) GameCommand.UnPause:
 					break;

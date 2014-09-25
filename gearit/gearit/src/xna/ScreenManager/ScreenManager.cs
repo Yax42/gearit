@@ -212,7 +212,6 @@ namespace gearit.xna
 			_label.Visible = false;
 			_label.Parent = _desktop;
 			_label.Style = "message";
-			Message("DDDICK IDCK BUTTT ...", 5000);
 
 			ChatBox.init(this);
 		}

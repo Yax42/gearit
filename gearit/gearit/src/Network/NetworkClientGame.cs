@@ -24,6 +24,8 @@ namespace gearit.src.Network
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool __exiting;
+		private NetworkClient NetworkClient;
+
 		private bool _exiting
 		{
 			get
@@ -112,7 +114,7 @@ namespace gearit.src.Network
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			setMainRobot(0);
+			setMainRobot(1);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
@@ -122,7 +124,9 @@ namespace gearit.src.Network
 
 			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
-			NetworkClient.Connect("127.0.0.1", 25552, PacketManager);
+			NetworkClient = new NetworkClient(PacketManager);
+			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
+			NetworkClient.Connect("127.0.0.1", 25552);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -162,7 +166,7 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
-			if (!NetworkClient.ContainsStepWorld())
+			if (NetworkClient.Requests.Count == 0)
 				return ;
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
@@ -174,7 +178,7 @@ namespace gearit.src.Network
 
 
 			for (int i = 0; i < MainRobot.Spots.Count; i++)
-				NetworkClient.Send(PacketManager.MotorForce(i));
+				NetworkClient.PushRequest(PacketManager.MotorForce(i));
 			NetworkClient.ApplyRequests();
 
 			MainRobot.Update(Map);

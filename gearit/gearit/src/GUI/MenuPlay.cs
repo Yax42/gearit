@@ -24,6 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using gearit.src.output;
 using gearit.src.Network;
+using System.Diagnostics;
 
 namespace gearit.src.gui
 {
@@ -325,7 +326,8 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-                    NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port, null);
+					Debug.Assert(false);
+                    //NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port, null);
                 };
 
                 return cell;

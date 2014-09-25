@@ -319,7 +319,7 @@ namespace SquidXNA
             base.OnExiting(sender, args);
 
             // Stop the threads
-            NetworkServer.Stop();
+            NetworkServer.Instance.Stop();
         }
 	}
 }
