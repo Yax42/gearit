@@ -19,6 +19,8 @@ namespace gearit.src.GUI.OptionsMenu
 		DropDownList _fullscreen;
 		DropDownList _volume;
 		Button _save_btn;
+        DropDownList _showFps;
+        FrameRateCounter _frc = null;
 
 		const int DIALOG_WIDTH = 400;
 		const int TAB_WIDTH = 156;
@@ -31,6 +33,8 @@ namespace gearit.src.GUI.OptionsMenu
 		public override void LoadContent()
 		{
 			base.LoadContent();
+            if (_frc == null)
+                _frc = new FrameRateCounter(ScreenManager);
 
 			VisibleMenu = true;
 
@@ -40,7 +44,7 @@ namespace gearit.src.GUI.OptionsMenu
 
 			_dialog_co = new Panel();
 			_dialog_co.Position = new Squid.Point(ScreenManager.Width / 2 - DIALOG_WIDTH, ScreenManager.Height / 4);
-			_dialog_co.Size = new Squid.Point((ScreenManager.Width - MainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 64);
+			_dialog_co.Size = new Squid.Point((ScreenManager.Width - MainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 120);
 			_dialog_co.Parent = _desktop;
 			_dialog_co.Style = "menu";
 
@@ -78,8 +82,18 @@ namespace gearit.src.GUI.OptionsMenu
 			if (!_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
 
-			// Volume control
-			addLabel(0, 170, (int)((float)_dialog_co.Size.x / 2.5), 34, "Volume");
+            // Show fps
+            addLabel(0, 220, (int)((float)_dialog_co.Size.x / 2.5), 34, "Show fps");
+            _showFps = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 220);
+            item = addListBoxItem(_showFps, "Yes");
+            if (ScreenManager.Game.Components.Contains(_frc))
+                _showFps.SelectedItem = item;
+            item = addListBoxItem(_showFps, "No");
+            if (!ScreenManager.Game.Components.Contains(_frc))
+                _showFps.SelectedItem = item;
+
+            // Volume control
+                addLabel(0, 170, (int)((float)_dialog_co.Size.x / 2.5), 34, "Volume");
 			_volume = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 170);
 			for (int i = 1; i <= 10; i++)
 				item = addListBoxItem(_volume, i.ToString());
@@ -108,6 +122,18 @@ namespace gearit.src.GUI.OptionsMenu
 					_screen._graphics.PreferredBackBufferHeight = Convert.ToInt32((res.Substring(res.LastIndexOf(" ") + 1)));
 					_screen._graphics.ApplyChanges();
 				}
+
+                //Apply fps
+                if (_showFps.SelectedItem.Text == "Yes")
+                {
+                    if (!ScreenManager.Game.Components.Contains(_frc))
+                    {
+                        ScreenManager.Game.Components.Add(_frc);
+                    }
+                }
+                else
+                    ScreenManager.Game.Components.Remove(_frc);
+
 				// Apply volume level
 			};
 		}
@@ -155,6 +181,10 @@ namespace gearit.src.GUI.OptionsMenu
 			dropBox.Button.Style = "comboButton";
 			dropBox.Listbox.Margin = new Margin(0, 0, 0, 0);
 			dropBox.Listbox.Style = "frame";
+            dropBox.Opened += delegate(Control sender, SquidEventArgs args)
+            {
+                dropBox.Dropdown.Position = new Squid.Point(dropBox.Dropdown.Position.x - MainMenu.MENU_WIDTH, dropBox.Dropdown.Position.y);
+            };
 
 			dropBox.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
 			dropBox.Listbox.Scrollbar.Margin = new Margin(0, 4, 4, 4);

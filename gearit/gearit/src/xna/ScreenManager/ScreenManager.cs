@@ -75,7 +75,7 @@ namespace gearit.xna
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 			_graphics.IsFullScreen = false;
             _graphics.SynchronizeWithVerticalRetrace = false;
-			game.Components.Add(new FrameRateCounter(this));
+			//game.Components.Add(new FrameRateCounter(this));
 			fpsLock();
 		}
 

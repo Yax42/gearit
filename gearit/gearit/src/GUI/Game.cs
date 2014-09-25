@@ -29,7 +29,7 @@ namespace SquidXNA
 			ScreenManager.SetResolutionScreen(1280, 720);
 			Components.Add(ScreenManager);
 
-			Components.Add(new FrameRateCounter(ScreenManager));
+			//Components.Add(new FrameRateCounter(ScreenManager));
 
 			this.Window.Title = "Gear It!";
 		}

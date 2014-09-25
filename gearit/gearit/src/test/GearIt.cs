@@ -20,9 +20,9 @@ namespace gearit.src.utility
 			ScreenManager = new ScreenManager(this);
 			Components.Add(ScreenManager);
 
-			FrameRateCounter frameRateCounter = new FrameRateCounter(ScreenManager);
+			/*FrameRateCounter frameRateCounter = new FrameRateCounter(ScreenManager);
 			frameRateCounter.DrawOrder = 101;
-			Components.Add(frameRateCounter);
+			Components.Add(frameRateCounter);*/
 		}
 
 		public ScreenManager ScreenManager { get; set; }
