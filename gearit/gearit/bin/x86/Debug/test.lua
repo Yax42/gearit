@@ -1,1 +1,1 @@
-data/script/default.gir.lua
+data/script/game/default.lua

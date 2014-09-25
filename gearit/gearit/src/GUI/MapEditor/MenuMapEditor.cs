@@ -39,6 +39,7 @@ namespace gearit.src.editor.map
 		private Button rb_wall = new Button();
 		private Button rb_ball = new Button();
 		private Button Help_btn;
+		private TextBox tb_id;
 
 		private TextBox helper = new TextBox();
 
@@ -160,7 +161,20 @@ namespace gearit.src.editor.map
 
 			y += ITEM_HEIGHT + PADDING;
 
+			lb = new Label();
+			lb.Parent = this;
+			lb.Text = "Id";
+			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
 
+			tb_id = new TextBox();
+			tb_id.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
+			tb_id.Position = new Squid.Point(MENU_WIDTH / 2, y);
+			tb_id.Parent = this;
+			tb_id.TextChanged += delegate(Control snd)
+			{
+				MapEditor.Instance.SelectChunk.UserData = tb_id.Text;
+			};
 
 			#region Helper
 			helper.Text =
@@ -278,6 +292,8 @@ namespace gearit.src.editor.map
 					_messageBoxSave = null;
 				}
 			}
+
+			tb_id.Text = (string) MapEditor.Instance.SelectChunk.UserData;
 		}
 
 		//---------------------SAVE&LOAD-----------------------------

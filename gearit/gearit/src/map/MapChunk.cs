@@ -38,6 +38,7 @@ namespace gearit.src.editor.map
 			return (FixtureList[0].Shape.TestPoint(ref t, ref p));
 		}
 
+
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
 	}
 }

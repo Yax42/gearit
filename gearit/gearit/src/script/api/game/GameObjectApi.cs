@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Dynamics;
 
 namespace gearit.src.script.api.game
 {
-	abstract class GameObjectApi
+	public abstract class GameObjectApi
 	{
 		abstract public Vector2 Position { get; set; }
 

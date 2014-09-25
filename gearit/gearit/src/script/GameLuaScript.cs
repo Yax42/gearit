@@ -6,6 +6,7 @@ using gearit.src.script.api.game;
 using gearit.src.game;
 using gearit.src.robot;
 using gearit.src.map;
+using gearit.src.editor.map;
 
 namespace gearit.src.script
 {
@@ -22,6 +23,9 @@ namespace gearit.src.script
 			foreach (Artefact a in game.Map.Artefacts)
 				this["Art_" + a.Id] = new GameArtefactApi(a);
 			this["Game"] = new GameApi(game);
+			
+			foreach (MapChunk c in game.Map.Chunks)
+				this["Object_" + c.UserData] = new GameChunkApi(c);
 		}
 	}
 }
