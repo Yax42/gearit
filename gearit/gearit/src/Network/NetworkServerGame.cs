@@ -12,6 +12,7 @@ using gearit.src.editor;
 using System.Diagnostics;
 using gearit.src.editor.robot;
 using System.Threading;
+using gearit.src.editor.map;
 
 namespace gearit.src.Network
 {
@@ -82,7 +83,6 @@ namespace gearit.src.Network
 			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 
-
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
 			Debug.Assert(Map != null);
@@ -142,6 +142,11 @@ namespace gearit.src.Network
 				{
 					NetworkServer.Instance.PushRequestTransform(packet, i);
 				}
+			}
+			for (int i = 0; i < Map.Chunks.Count; i++)
+			{
+				if (Map.Chunks[i].StringId != null && Map.Chunks[i].StringId != "")
+					NetworkServer.Instance.PushRequestTransform(PacketManager.ChunkTransform(i));
 			}
 			//Console.Out.WriteLine("server");
 
