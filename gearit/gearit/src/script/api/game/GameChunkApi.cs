@@ -31,7 +31,7 @@ namespace gearit.src.script.api.game
 			return (false);
 		}
 
-		public float IgnoreGravity
+		public float Mass
 		{
 			get { return __Chunk.Mass; }
             set { __Chunk.Mass = value; }
