@@ -21,22 +21,21 @@ namespace gearit.src.map
 			Vertices rectangleVertices = PolygonTools.CreateRectangle(1f, 1f);
 			PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
 			this.CreateFixture(rectangleShape);
-			Friction = 50;
 		}
 
 		//
 		// SERIALISATION
 		//
 		public PolygonChunk(SerializationInfo info, StreamingContext ctxt)
-			: base(SerializerHelper.World)
+			: base(info)
 		{
 			SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
-			Friction = 30;
 		}
 
 		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
+			serializeChunk(info);
 		}
 		//--------- END SERIALISATION
 

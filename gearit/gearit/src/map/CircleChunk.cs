@@ -26,7 +26,7 @@ namespace gearit.src.map
 		// SERIALISATION
 		//
 		public CircleChunk(SerializationInfo info, StreamingContext ctxt)
-			: base(SerializerHelper.World)
+			: base(info)
 		{
 			SerializedBody.convertSBody((SerializedBody)info.GetValue("SerializedBody", typeof(SerializedBody)), this);
 		}
@@ -34,6 +34,7 @@ namespace gearit.src.map
 		public override void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("SerializedBody", SerializedBody.convertBody(this), typeof(SerializedBody));
+			serializeChunk(info);
 		}
 		//--------- END SERIALISATION
 
