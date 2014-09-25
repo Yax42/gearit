@@ -20,6 +20,7 @@ namespace gearit.src.Network
 		protected NetPeer Peer;
 		protected int NumberOfPeers;
 
+		protected bool IsServer = false;
 		private int FrameCount;
 
 		protected INetwork(NetPeer peer, int numberOfPeers, InGamePacketManager packetManager)

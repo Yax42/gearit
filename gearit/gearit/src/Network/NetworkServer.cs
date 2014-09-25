@@ -26,6 +26,7 @@ namespace gearit.src.Network
 		{
 			Game = game;
 			Port = port;
+			IsServer = true;
 		}
 
        static public void Start(int port)
@@ -33,7 +34,6 @@ namespace gearit.src.Network
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
-
 			Instance = new NetworkServer(new NetworkServerGame(), config, port);
 			Instance.PrivateStart();
 		}
@@ -41,7 +41,6 @@ namespace gearit.src.Network
         private void PrivateStart()
         {
             _server_launched = false;
-
             try
             {
 				Peer.Start();
