@@ -33,7 +33,8 @@ namespace gearit.src.Network
 			RobotCommand,
 			RobotTransform,
 			MotorForce,
-			StepWorld,
+			EndOfPacket,
+			BeginTransform,
 		};
 		#endregion
 
@@ -123,16 +124,16 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
-		public byte[] StepWorld()
-		{
-			byte[] res = new byte[1];
-			res[0] = (byte)CommandId.StepWorld;
-			return res;
-		}
-
 		public byte[] RobotTransform(int idRobot)
 		{
 			return RobotTransform(Game.Robots[idRobot]);
+		}
+
+		public byte[] CreatePacket(CommandId cmd)
+		{
+			byte[] res = new byte[1];
+			res[0] = (byte) cmd;
+			return res;
 		}
 
 		public byte[] RobotTransform(Robot r)
@@ -163,19 +164,25 @@ namespace gearit.src.Network
 
 
 #region ApplyPacket
-		public void ApplyRequest(NetIncomingMessage request)
+		public void Server_ApplyRequest(NetIncomingMessage request)
 		{
-			Data = request.Data;
 			Idx = 0;
-			//while (ApplyNextPacket()) ;
+			Data = request.Data;
 			ApplyNextPacket();
 		}
 
-		public bool ApplyNextPacket()
+		public void Client_ApplyRequest(NetIncomingMessage request, bool proceedTransform)
+		{
+			Idx = 4;
+			Data = request.Data;
+			while (ApplyNextPacket(proceedTransform)) ;
+		}
+
+		public bool ApplyNextPacket(bool proceedTransform = false)
 		{
 			if (Data == null)
 				return false;
-			if (Idx + 1 >= Data.Count())
+			if (Idx >= Data.Count())
 			{
 				Debug.Assert(false);
 				return false;
@@ -193,6 +200,13 @@ namespace gearit.src.Network
 					break;
 				case (byte)CommandId.RobotTransform:
 					ApplyPacket(RawDataToPacket<Packet_RobotTransform>());
+					break;
+				case (byte)CommandId.BeginTransform:
+					Idx++;
+					return proceedTransform;
+					break;
+				case (byte)CommandId.EndOfPacket:
+					return false;
 					break;
 				default:
 					return false;

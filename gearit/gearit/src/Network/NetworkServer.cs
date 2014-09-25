@@ -8,11 +8,14 @@ using gearit.src.output;
 
 using Lidgren.Network;
 using System.Diagnostics;
+using gearit.src.robot;
 
 namespace gearit.src.Network
 {
     static class NetworkServer
     {
+		private static byte[][] ToSend = new byte[2][];
+		private static byte[][] TransformToSend = new byte[2][];
         public static int _port;
         private static NetServer s_server;
         public static string _buffer;
@@ -20,9 +23,13 @@ namespace gearit.src.Network
         private static bool _server_launched;
 		private static NetworkServerGame Game;
         public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
+		private static InGamePacketManager PacketManager;
 
         public static void Start(int port)
         {
+			ToSend[0] = null;
+			ToSend[1] = null;
+
             _port = port;
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
@@ -61,6 +68,8 @@ namespace gearit.src.Network
 			Game.LoadContent();
 			bool toRecycle;
 			Stopwatch clock = Stopwatch.StartNew();
+			ResetToSends();
+			PacketManager = Game.PacketManager;
             while (true)
             {
 				while (clock.Elapsed.TotalMilliseconds < 18)
@@ -71,6 +80,8 @@ namespace gearit.src.Network
 				float delta = (float) clock.Elapsed.TotalMilliseconds;
 				//Console.WriteLine("server delta: " + delta);
 				Game.Update(delta / 1000);
+				SendRequests();
+
 				clock = Stopwatch.StartNew();
                 NetIncomingMessage msg;
                 while ((msg = s_server.ReadMessage()) != null)
@@ -107,7 +118,7 @@ namespace gearit.src.Network
                             }
                             break;
                         case NetIncomingMessageType.Data:
-                            manageRequest(msg);
+                            ManageRequest(msg);
 							toRecycle = false;
                             break;
                         default:
@@ -120,35 +131,72 @@ namespace gearit.src.Network
             }
         }
 
-        public static void Send(string text)
+        public static void oldSend(string text) // deprecated
         {
                 NetOutgoingMessage om = s_server.CreateMessage();
                 om.Write(text);
-                s_server.SendMessage(om, s_server.Connections, NetDeliveryMethod.ReliableOrdered, 0);
+                s_server.SendMessage(om, s_server.Connections, NetDeliveryMethod.Unreliable, 0);
         }
 
-        public static void Send(byte[] data, int id)
+        public static void oldSend(byte[] data, int id) // deprecated
         {
 			if (id >= s_server.Connections.Count)
 				return;
             NetOutgoingMessage om = s_server.CreateMessage();
             om.Write(data);
-            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.ReliableSequenced, 0);
+            s_server.SendMessage(om, s_server.Connections[id], NetDeliveryMethod.Unreliable, 0);
         }
 
-        public static void manageRequest(NetIncomingMessage msg)
+        public static void SendRequests()
         {
-            Requests.Add(msg);
+			for (int i = 0; i < 2; i++)
+			{
+				if (i >= s_server.Connections.Count)
+					continue;
+				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), i);
+				PushRequest(TransformToSend[i], i);
+				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), i);
+				NetOutgoingMessage om = s_server.CreateMessage();
+				om.Write(ToSend[i]);
+				s_server.SendMessage(om, s_server.Connections[i], NetDeliveryMethod.Unreliable, 0);
+			}
+			ResetToSends();
+        }
+
+        public static void ManageRequest(NetIncomingMessage msg)
+        {
+			Requests.Add(msg);
 			int id = 0;
 			if (s_server.Connections[0] == msg.SenderConnection)
 				id = 1;
-			Send(msg.Data, id);
-        }
+			PushRequest(msg.Data, id);
+		}
 
-		public static void ApplyRequests(InGamePacketManager packetManager)
+		private static void ResetToSends()
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				TransformToSend[i] = new byte[0];
+				ToSend[i] = BitConverter.GetBytes(Game.FrameCount);
+				if (BitConverter.IsLittleEndian)
+					Array.Reverse(ToSend[i]);
+			}
+		}
+
+		public static void PushRequest(byte[] data, int robotId)
+		{
+			ToSend[robotId] = ToSend[robotId].Concat(data).ToArray();
+		}
+
+		public static void PushRequestTransform(byte[] data, int robotId)
+		{
+			TransformToSend[robotId] = TransformToSend[robotId].Concat(data).ToArray();
+		}
+
+		public static void ApplyRequests()
 		{
 			foreach (NetIncomingMessage request in Requests)
-				packetManager.ApplyRequest(request);
+				PacketManager.Server_ApplyRequest(request);
 			CleanRequests();
 		}
 

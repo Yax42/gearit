@@ -12,6 +12,7 @@ namespace gearit.src.Network
 {
     static class NetworkClient
     {
+		private static byte[][] ToSend = new byte[2][];
         public static int Port;
         public static string Host;
         private static NetClient s_client;
@@ -27,11 +28,7 @@ namespace gearit.src.Network
         private static Thread clientThread;
         private static InGamePacketManager PacketManager;
         public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
-
-        public static EState getState()
-        {
-            return (State);
-        }
+		private static NetIncomingMessage YoungestRequest = null;
 
         private static void tryToConnect()
         {
@@ -100,7 +97,7 @@ namespace gearit.src.Network
                     OutputManager.LogError("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
                     break;
                 case NetIncomingMessageType.Data:
-                    manageRequest(im);
+                    ManageRequest(im);
 					return;
 					break;
                 default:
@@ -125,6 +122,7 @@ namespace gearit.src.Network
 			foreach (NetIncomingMessage request in Requests)
 				s_client.Recycle(request);
 			Requests.Clear();
+			YoungestRequest = null;
 		}
 
         public static void Send(byte[] data)
@@ -158,35 +156,49 @@ namespace gearit.src.Network
 			}
 		}
 
-        public static void manageRequest(NetIncomingMessage msg)
+        public static void ManageRequest(NetIncomingMessage msg)
         {
             Requests.Add(msg);
+			if (YoungestRequest == null ||
+				BitConverter.ToInt32(YoungestRequest.Data, 0) < BitConverter.ToInt32(msg.Data, 0))
+				YoungestRequest = msg;
         }
-
-		public static bool ContainsStepWorld()
-		{
-			foreach (NetIncomingMessage request in Requests)
-			{
-				if (request.Data[0] == (byte)InGamePacketManager.CommandId.StepWorld)
-					return true;
-			}
-			return false;
-		}
 
 		public static void ApplyRequests()
 		{
 			Console.Out.WriteLine("" + Requests.Count);
-			while (Requests.First().Data[0] != (byte)InGamePacketManager.CommandId.StepWorld)
+			foreach (NetIncomingMessage request in Requests)
 			{
-				PacketManager.ApplyRequest(Requests.First());
-				s_client.Recycle(Requests.First());
-				Requests.RemoveAt(0);
+				PacketManager.Client_ApplyRequest(Requests.First(), request == YoungestRequest);
 			}
-			s_client.Recycle(Requests.First());
-			Requests.RemoveAt(0);
-
-			if (Requests.Count > 128) // au cas ou y a plus de requetes qui arrivent qu'il y en a de traitees
-				CleanRequests();
+			CleanRequests();
 		}
-    }
+
+        public static void SendRequests()
+        {
+			for (int i = 0; i < 2; i++)
+			{
+				if (i >= s_client.Connections.Count)
+					continue;
+				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), i);
+				NetOutgoingMessage om = s_client.CreateMessage();
+				om.Write(ToSend[i]);
+				s_client.SendMessage(om, s_client.Connections[, NetDeliveryMethod.Unreliable, 0);
+			}
+			ResetToSends();
+        }
+
+		private static void ResetToSends()
+		{
+			for (int i = 0; i < 2; i++)
+			{
+				ToSend[i] = new byte[0];
+			}
+		}
+
+		public static void PushRequest(byte[] data, int robotId)
+		{
+			ToSend[robotId] = ToSend[robotId].Concat(data).ToArray();
+		}
+	}
 }

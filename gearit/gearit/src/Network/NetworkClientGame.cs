@@ -112,7 +112,7 @@ namespace gearit.src.Network
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			setMainRobot(0);
+			setMainRobot(1);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
@@ -122,6 +122,7 @@ namespace gearit.src.Network
 
 			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
 
+			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
 			NetworkClient.Connect("127.0.0.1", 25552, PacketManager);
 
 			// I have no idea what this is.
@@ -162,7 +163,7 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
-			if (!NetworkClient.ContainsStepWorld())
+			if (NetworkClient.Requests.Count == 0)
 				return ;
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));

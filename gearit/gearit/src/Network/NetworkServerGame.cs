@@ -46,7 +46,7 @@ namespace gearit.src.Network
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-		private InGamePacketManager PacketManager;
+		public InGamePacketManager PacketManager;
 
 		// Action
 		private int _FrameCount = 0;
@@ -132,7 +132,7 @@ namespace gearit.src.Network
 			//float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 
-			NetworkServer.ApplyRequests(PacketManager);
+			NetworkServer.ApplyRequests();
 
 			_world.Step(delta * 2);
 
@@ -141,12 +141,8 @@ namespace gearit.src.Network
 				byte[] packet = PacketManager.RobotTransform(r);
 				for (int i = 0; i < Robots.Count; i++)
 				{
-					NetworkServer.Send(packet, i);
+					;// NetworkServer.PushRequestTransform(packet, i);
 				}
-			}
-			for (int i = 0; i < Robots.Count; i++)
-			{
-				NetworkServer.Send(PacketManager.StepWorld(), i);
 			}
 			//Console.Out.WriteLine("server");
 
