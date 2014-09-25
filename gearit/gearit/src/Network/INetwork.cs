@@ -9,25 +9,33 @@ namespace gearit.src.Network
 {
 	class INetwork
 	{
-		private static byte[][] TransformToSend;
-		private static byte[][] ToSend;
-		public static int Port;
-		public static string Host;
+		protected byte[][] TransformToSend;
+		protected byte[][] ToSend;
+		protected int Port;
+		protected string Host;
 
-		public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
-		protected static InGamePacketManager PacketManager;
-		protected static NetIncomingMessage[] YoungestRequests;
-		protected static NetPeer Peer;
-		protected static int NumberOfPeers;
+		public List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
+		private InGamePacketManager PacketManager;
+		protected NetIncomingMessage[] YoungestRequests;
+		protected NetPeer Peer;
+		protected int NumberOfPeers;
 
-		protected static void init (int numberOfPeers)
+		private int FrameCount;
+
+		protected INetwork(NetPeer peer, int numberOfPeers, InGamePacketManager packetManager)
 		{
+			Peer = peer;
+			PacketManager = packetManager;
 			NumberOfPeers = numberOfPeers;
 			ToSend = new byte[NumberOfPeers][];
 			TransformToSend = new byte[NumberOfPeers][];
+			YoungestRequests = new NetIncomingMessage[NumberOfPeers];
+			CleanRequests();
+			ResetToSends();
+			FrameCount = 0;
 		}
 
-		public static void CleanRequests()
+		public void CleanRequests()
 		{
 			foreach (NetIncomingMessage request in Requests)
 				Peer.Recycle(request);
@@ -36,22 +44,15 @@ namespace gearit.src.Network
 				YoungestRequests[i] = null;
 		}
 
-		public static void ManageRequest(NetIncomingMessage msg, int idx)
+		protected void ManageRequest(NetIncomingMessage msg, int idx)
 		{
 			Requests.Add(msg);
 			if (YoungestRequests[idx] == null ||
 				BitConverter.ToInt32(YoungestRequests[idx].Data, 0) < BitConverter.ToInt32(msg.Data, 0))
 				YoungestRequests[idx] = msg;
-			/*
-			Requests.Add(msg);
-			int id = 0;
-			if (s_server.Connections[0] == msg.SenderConnection)
-				id = 1;
-			PushRequest(msg.Data, id);
-			*/
 		}
 
-		public static int UserId(NetIncomingMessage request)
+		public int UserId(NetIncomingMessage request)
 		{
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
@@ -62,22 +63,12 @@ namespace gearit.src.Network
 			return (0);
 		}
 
-		public static bool IsYoungest(NetIncomingMessage request)
+		public bool IsYoungest(NetIncomingMessage request)
 		{
 			return request == YoungestRequests[UserId(request)];
 		}
 
-		public static void ApplyRequests()
-		{
-			Console.Out.WriteLine("" + Requests.Count);
-			foreach (NetIncomingMessage request in Requests)
-			{
-				PacketManager.Client_ApplyRequest(request, IsYoungest(request));
-			}
-			CleanRequests();
-		}
-
-		public static void SendRequests()
+		public void SendRequests()
 		{
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
@@ -96,47 +87,32 @@ namespace gearit.src.Network
 			ResetToSends();
 		}
 
-		private static void ResetToSends()
+		protected void ResetToSends()
 		{
-			for (int i = 0; i < 2; i++)
+			for (int i = 0; i < NumberOfPeers; i++)
 			{
 				TransformToSend[i] = new byte[0];
-				ToSend[i] = BitConverter.GetBytes(Game.FrameCount);
+				ToSend[i] = BitConverter.GetBytes(FrameCount++);
 				if (BitConverter.IsLittleEndian)
 					Array.Reverse(ToSend[i]);
 			}
 		}
 
-		public static void PushRequest(byte[] data, int robotId)
+		public void PushRequest(byte[] data, int userId = 0)
 		{
-			ToSend[robotId] = ToSend[robotId].Concat(data).ToArray();
+			ToSend[userId] = ToSend[userId].Concat(data).ToArray();
 		}
 
-
-		public static void ManageRequest(NetIncomingMessage msg)
+		public void PushRequestTransform(byte[] data, int userId = 0)
 		{
-			Requests.Add(msg);
-			int id = 0;
-			if (s_server.Connections[0] == msg.SenderConnection)
-				id = 1;
-			PushRequest(msg.Data, id);
+			TransformToSend[userId] = TransformToSend[userId].Concat(data).ToArray();
 		}
 
-
-
-		public static void PushRequestTransform(byte[] data, int robotId)
-		{
-			TransformToSend[robotId] = TransformToSend[robotId].Concat(data).ToArray();
-		}
-
-		public static void ApplyRequests()
+		public void ApplyRequests()
 		{
 			foreach (NetIncomingMessage request in Requests)
-				PacketManager.Server_ApplyRequest(request);
+				PacketManager.ApplyRequest(request, IsYoungest(request));
 			CleanRequests();
 		}
-
-	}
-}
 	}
 }

@@ -132,8 +132,6 @@ namespace gearit.src.Network
 			//float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 
-			NetworkServer.ApplyRequests();
-
 			_world.Step(delta * 2);
 
 			foreach (Robot r in Robots)

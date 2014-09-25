@@ -10,33 +10,30 @@ using System.Diagnostics;
 
 namespace gearit.src.Network
 {
-    static class NetworkClient
+    class NetworkClient : INetwork
     {
-		private static byte[][] ToSend = new byte[2][];
-        public static int Port;
-        public static string Host;
-        private static NetClient s_client;
-
         public enum EState
         {
             Connecting,
             Connected,
             Disconnected
         }
-        public static EState State = EState.Disconnected;
-        private static Mutex mutex = new Mutex();
-        private static Thread clientThread;
-        private static InGamePacketManager PacketManager;
-        public static List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
-		private static NetIncomingMessage YoungestRequest = null;
+        public EState State = EState.Disconnected;
+        private Mutex mutex = new Mutex();
+        private Thread clientThread;
 
-        private static void tryToConnect()
+		public NetworkClient(InGamePacketManager packetManager)
+			: base(new NetClient(new NetPeerConfiguration("gearit")), 1, packetManager)
+		{
+		}
+
+        private void tryToConnect()
         {
             try
             {
-                s_client.Start();
-                NetOutgoingMessage hail = s_client.CreateMessage("Hello I want connection kthxbye");
-                s_client.Connect(Host, Port, hail);
+                Peer.Start();
+                NetOutgoingMessage hail = Peer.CreateMessage("Hello I want connection kthxbye");
+                Peer.Connect(Host, Port, hail);
             }
             catch
             {
@@ -45,13 +42,10 @@ namespace gearit.src.Network
             }
         }
 
-        public static void Connect(string host, int port, InGamePacketManager packetManager)
+        public void Connect(string host, int port)
         {
             if (State == EState.Connecting)
                 return ;
-			Debug.Assert(packetManager != null);
-			PacketManager = packetManager;
-			PacketsList.Clear();
 
             Disconnect();
 
@@ -59,24 +53,22 @@ namespace gearit.src.Network
             Host = host;
             State = EState.Connecting;
 
-            NetPeerConfiguration config = new NetPeerConfiguration("gearit");
-            s_client = new NetClient(config);
-            s_client.RegisterReceivedCallback(new SendOrPostCallback(Receive));
+            Peer.RegisterReceivedCallback(new SendOrPostCallback(Receive));
 
             clientThread = new Thread(tryToConnect);
             clientThread.Start();
         }
 
-        public static void Disconnect()
+        public void Disconnect()
         {
             if (State == EState.Connected)
             {
-                s_client.Disconnect("Requested by user");
-                s_client.Shutdown("Bye");
+                ((NetClient) Peer).Disconnect("Requested by user");
+                Peer.Shutdown("Bye");
             }
         }
 
-        public static void Receive(object peer)
+        public void Receive(object peer)
         {
             NetIncomingMessage im = ((NetClient)peer).ReadMessage();
             switch (im.MessageType)
@@ -97,48 +89,44 @@ namespace gearit.src.Network
                     OutputManager.LogError("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
                     break;
                 case NetIncomingMessageType.Data:
-                    ManageRequest(im);
+                    Client_ManageRequest(im);
 					return;
 					break;
                 default:
                     OutputManager.LogError("CLIENT - Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes");
                     break;
             }
-            s_client.Recycle(im);
+            Peer.Recycle(im);
         }
 
-        public static void Send(string text)
+		public void Client_ManageRequest(NetIncomingMessage msg)
 		{
-            if (State == EState.Connected)
-            {
-                NetOutgoingMessage om = s_client.CreateMessage();
-                om.Write(text);
-                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.ReliableOrdered, 0);
-            }
-        }
-
-		public static void CleanRequests()
-		{
-			foreach (NetIncomingMessage request in Requests)
-				s_client.Recycle(request);
-			Requests.Clear();
-			YoungestRequest = null;
+			ManageRequest(msg, 0);
 		}
 
-        public static void Send(byte[] data)
+#if false
+        public void Send(string text)
 		{
             if (State == EState.Connected)
             {
-                NetOutgoingMessage om = s_client.CreateMessage();
-                om.Write(data);
-                s_client.SendMessage(om, s_client.Connections, NetDeliveryMethod.Unreliable, 0);
+                NetOutgoingMessage om = Peer.CreateMessage();
+                om.Write(text);
+                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.ReliableOrdered, 0);
             }
         }
 
+        public void Send(byte[] data)
+		{
+            if (State == EState.Connected)
+            {
+                NetOutgoingMessage om = Peer.CreateMessage();
+                om.Write(data);
+                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.Unreliable, 0);
+            }
+        }
 
-		static private Mutex PacketMutex = new Mutex();
-		static private List<NetIncomingMessage> PacketsList = new List<NetIncomingMessage>();
-		static public NetIncomingMessage Packet
+		private Mutex PacketMutex = new Mutex();
+		public NetIncomingMessage Packet
 		{
 			get
 			{
@@ -155,50 +143,6 @@ namespace gearit.src.Network
 				PacketMutex.ReleaseMutex();
 			}
 		}
-
-        public static void ManageRequest(NetIncomingMessage msg)
-        {
-            Requests.Add(msg);
-			if (YoungestRequest == null ||
-				BitConverter.ToInt32(YoungestRequest.Data, 0) < BitConverter.ToInt32(msg.Data, 0))
-				YoungestRequest = msg;
-        }
-
-		public static void ApplyRequests()
-		{
-			Console.Out.WriteLine("" + Requests.Count);
-			foreach (NetIncomingMessage request in Requests)
-			{
-				PacketManager.Client_ApplyRequest(Requests.First(), request == YoungestRequest);
-			}
-			CleanRequests();
-		}
-
-        public static void SendRequests()
-        {
-			for (int i = 0; i < 2; i++)
-			{
-				if (i >= s_client.Connections.Count)
-					continue;
-				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), i);
-				NetOutgoingMessage om = s_client.CreateMessage();
-				om.Write(ToSend[i]);
-				s_client.SendMessage(om, s_client.Connections[, NetDeliveryMethod.Unreliable, 0);
-			}
-			ResetToSends();
-        }
-
-		private static void ResetToSends()
-		{
-			for (int i = 0; i < 2; i++)
-			{
-				ToSend[i] = new byte[0];
-			}
-		}
-
-		public static void PushRequest(byte[] data, int robotId)
-		{
-			ToSend[robotId] = ToSend[robotId].Concat(data).ToArray();
-		}
+#endif
 	}
 }

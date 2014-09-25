@@ -164,14 +164,16 @@ namespace gearit.src.Network
 
 
 #region ApplyPacket
+#if false
 		public void Server_ApplyRequest(NetIncomingMessage request)
 		{
 			Idx = 0;
 			Data = request.Data;
 			ApplyNextPacket();
 		}
+#endif
 
-		public void Client_ApplyRequest(NetIncomingMessage request, bool proceedTransform)
+		public void ApplyRequest(NetIncomingMessage request, bool proceedTransform)
 		{
 			Idx = 4;
 			Data = request.Data;
