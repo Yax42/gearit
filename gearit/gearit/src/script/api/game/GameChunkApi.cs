@@ -31,17 +31,34 @@ namespace gearit.src.script.api.game
 			return (false);
 		}
 
+		public float IgnoreGravity
+		{
+			get { return __Chunk.Mass; }
+            set { __Chunk.Mass = value; }
+		}
+
+		public bool IgnoreGravity
+		{
+			get { return __Chunk.IgnoreGravity; }
+            set { __Chunk.IgnoreGravity = value; }
+		}
+
+		public float Gravity
+		{
+			get { return __Chunk.GravityScale; }
+            set { __Chunk.GravityScale = value; }
+		}
+
+		public float Friction
+		{
+			get { return __Chunk.Friction; }
+            set { __Chunk.Friction = value; }
+		}
+
 		public override Vector2 Position
 		{
-			get
-			{
-				return __Chunk.Position;
-			}
-
-			set
-			{
-				__Chunk.Position = value;
-			}
+			get { return __Chunk.Position; }
+            set { __Chunk.Position = value; }
 		}
 	}
 }

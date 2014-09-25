@@ -40,6 +40,8 @@ namespace gearit.src.editor.map
 		private Button rb_ball = new Button();
 		private Button Help_btn;
 		private TextBox tb_id;
+		private TextBox pos_x;
+		private TextBox pos_y;
 
 		private TextBox helper = new TextBox();
 
@@ -176,6 +178,44 @@ namespace gearit.src.editor.map
 				MapEditor.Instance.SelectChunk.StringId = tb_id.Text;
 			};
 
+			y += ITEM_HEIGHT + PADDING;
+
+			lb = new Label();
+			lb.Parent = this;
+			lb.Text = "Pos X";
+			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+
+			pos_x = new TextBox();
+			pos_x.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
+			pos_x.Position = new Squid.Point(MENU_WIDTH / 2, y);
+			pos_x.Parent = this;
+			pos_x.TextChanged += delegate(Control snd)
+			{
+				float res;
+				if (float.TryParse(((TextBox)snd).Text, out res))
+					MapEditor.Instance.SelectChunk.Position = new Microsoft.Xna.Framework.Vector2(res, MapEditor.Instance.SelectChunk.Position.Y);
+			};
+
+			y += ITEM_HEIGHT + PADDING;
+
+			lb = new Label();
+			lb.Parent = this;
+			lb.Text = "Pos Y";
+			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+
+			pos_y = new TextBox();
+			pos_y.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
+			pos_y.Position = new Squid.Point(MENU_WIDTH / 2, y);
+			pos_y.Parent = this;
+			pos_y.TextChanged += delegate(Control snd)
+			{
+				float res;
+				if (float.TryParse(((TextBox)snd).Text, out res))
+					MapEditor.Instance.SelectChunk.Position = new Microsoft.Xna.Framework.Vector2(MapEditor.Instance.SelectChunk.Position.X, res);
+			};
+
 			#region Helper
 			helper.Text =
 			"Help (F1)\n" +
@@ -294,6 +334,8 @@ namespace gearit.src.editor.map
 			}
 
 			tb_id.Text = (string) MapEditor.Instance.SelectChunk.StringId;
+			pos_x.Text = (string) MapEditor.Instance.SelectChunk.Position.X.ToString();
+			pos_y.Text = (string) MapEditor.Instance.SelectChunk.Position.Y.ToString();
 		}
 
 		//---------------------SAVE&LOAD-----------------------------
