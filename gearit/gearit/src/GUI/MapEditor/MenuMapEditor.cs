@@ -173,7 +173,7 @@ namespace gearit.src.editor.map
 			tb_id.Parent = this;
 			tb_id.TextChanged += delegate(Control snd)
 			{
-				MapEditor.Instance.SelectChunk.UserData = tb_id.Text;
+				MapEditor.Instance.SelectChunk.StringId = tb_id.Text;
 			};
 
 			#region Helper
@@ -293,7 +293,7 @@ namespace gearit.src.editor.map
 				}
 			}
 
-			tb_id.Text = (string) MapEditor.Instance.SelectChunk.UserData;
+			tb_id.Text = (string) MapEditor.Instance.SelectChunk.StringId;
 		}
 
 		//---------------------SAVE&LOAD-----------------------------

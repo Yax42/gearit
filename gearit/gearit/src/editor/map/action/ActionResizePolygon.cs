@@ -6,6 +6,7 @@ using gearit.src.map;
 using System.Diagnostics;
 using gearit.src.utility;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Collision.Shapes;
 
 namespace gearit.src.editor.map.action
 {
@@ -16,6 +17,8 @@ namespace gearit.src.editor.map.action
 		private Trigger _trigger;
 		private PolygonChunk _chunk;
 		private int _verticeId;
+		private PolygonShape _fromShape;
+		private PolygonShape _toShape;
 		private Vector2 _from;
 		private Vector2 _to;
 		
@@ -27,7 +30,9 @@ namespace gearit.src.editor.map.action
 				Debug.Assert(MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk));
 				_chunk = (PolygonChunk)MapEditor.Instance.SelectChunk;
 				_verticeId = _chunk.findVertice(Input.SimMousePos);
-				_from = _chunk.getVertice(_verticeId);
+				_fromShape = (PolygonShape)_chunk.FixtureList[0].Shape;
+				_toShape = _fromShape;
+				_from = Input.SimMousePos;
 			}
 			else
 			{
@@ -43,28 +48,40 @@ namespace gearit.src.editor.map.action
 		{
 			return Input.ctrlAltShift(false, false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
-				MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk);
+				!MapEditor.Instance.IsSelectDummy() &&
+				(ActionSwapEventMode.EventMode ||
+				MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk));
 		}
 
 		public bool run()
 		{
 			if (!_didRevert)
+			{
 				_to = Input.SimMousePos;
+				if (_isChunk)
+					_verticeId = _chunk.findVertice(Input.SimMousePos);
+			}
 			if (_isChunk)
 				_chunk.moveVertice(_to, _verticeId);
 			else
 				_trigger.MoveCorner(_to, _verticeId);
 
-			if (_didRevert)
-				return false;
-			return Input.pressed(MouseKeys.RIGHT);
+			if (!_didRevert)
+			{
+				if (_isChunk)
+					_toShape = (PolygonShape)_chunk.FixtureList[0].Shape;
+				return Input.pressed(MouseKeys.RIGHT);
+			}
+			return false;
 		}
 
 		public void revert()
 		{
 			_didRevert = true;
 			if (_isChunk)
-				_chunk.moveVertice(_from, _verticeId);
+			{
+				_chunk.SetPolygon(_fromShape);
+			}
 			else
 				_trigger.MoveCorner(_from, _verticeId);
 		}

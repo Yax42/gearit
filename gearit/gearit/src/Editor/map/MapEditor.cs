@@ -97,7 +97,6 @@ namespace gearit.src.editor.map
 			ActionFactory.init();
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
-			SelectChunk = null;
 			_world = null;
 			HasCursor = true;
 			Instance = this;
@@ -119,6 +118,10 @@ namespace gearit.src.editor.map
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.Dummy;
+
+			SelectChunk = null;
+			SelectTrigger = null;
+			ActionSwapEventMode.EventMode = false;
 
 			SerializerHelper.World = _world;
 			_map = new Map(_world);

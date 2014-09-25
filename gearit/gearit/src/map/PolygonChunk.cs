@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using FarseerPhysics.Common;
 using FarseerPhysics.Collision.Shapes;
 using gearit.src.editor;
+using System.Diagnostics;
 
 namespace gearit.src.map
 {
@@ -58,6 +59,24 @@ namespace gearit.src.map
 		public Vector2 getVertice(int verticeId)
 		{
 			return ((PolygonShape)FixtureList[0].Shape).Vertices[verticeId] + Position;
+		}
+
+		public void SetPolygon(PolygonShape shape)
+		{
+			PolygonShape backupShape = (PolygonShape)FixtureList[0].Shape;
+			float density = FixtureList[0].Shape.Density;
+
+			if (shape.Vertices.IsConvex() == false)
+			{
+				Debug.Assert(false);
+				return;
+			}
+			else
+			{
+				shape.Density = density;
+				DestroyFixture(FixtureList[0]);
+				CreateFixture(shape);
+			}
 		}
 
 		public void moveVertice(Vector2 p, int verticeId)
