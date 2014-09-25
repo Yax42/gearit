@@ -268,7 +268,8 @@ namespace FarseerPhysics
         /// <returns></returns>
         public static float MixFriction(float friction1, float friction2)
         {
-            return (float)Math.Sqrt(friction1 * friction2);
+			return 1000; // #GEARIT
+            //return (float)Math.Sqrt(friction1 * friction2);
         }
 
         /// <summary>

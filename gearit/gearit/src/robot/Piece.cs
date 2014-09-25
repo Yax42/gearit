@@ -75,7 +75,6 @@ namespace gearit.src.robot
 			//Torque = 0f;
 			Rotation = 0f;
 			Mass = 0;
-			Friction = 1000;
 		}
 
 		//

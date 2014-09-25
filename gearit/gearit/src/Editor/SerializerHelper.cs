@@ -64,7 +64,6 @@ namespace gearit.src.editor
 			SerializedFixture sf = new SerializedFixture();
 
 			sf._density = f.Shape.Density;
-			sf._friction = f.Friction;
 			sf._vertices = new List<Vector2>();
 			if (f.Shape.GetType() == typeof(PolygonShape))
 			{
@@ -123,7 +122,6 @@ namespace gearit.src.editor
 			SerializedBody sb = new SerializedBody();
 
 			sb._bodyType = body.BodyType;
-			sb._friction = body.Friction;
 			sb._position = body.Position;
 			sb._rotation = body.Rotation;
 			sb._fixtures = new List<SerializedFixture>(body.FixtureList.Count());
@@ -153,7 +151,6 @@ namespace gearit.src.editor
 		public static void convertSBody(SerializedBody sbody, Body b)
 		{
 			b.BodyType = sbody._bodyType;
-			b.Friction = sbody._friction;
 			b.Position = sbody._position;
 			b.Rotation = sbody._rotation;
 			foreach (SerializedFixture sf in sbody._fixtures)

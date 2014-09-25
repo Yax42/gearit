@@ -22,14 +22,12 @@ namespace gearit.src.editor.map
 			Position = pos;
 			if (isDynamic)
 				BodyType = BodyType.Dynamic;
-			Friction = 1000;
 			CollisionCategories = Category.Cat31;
 		}
 
 		internal MapChunk(World world)
 			: base(world)
 		{
-			Friction = 1000;
 			CollisionCategories = Category.Cat31;
 		}
 
@@ -37,7 +35,6 @@ namespace gearit.src.editor.map
 			base(SerializerHelper.World)
 		{
 			StringId = (string)info.GetValue("StringId", typeof(string));
-			Friction = 1000;
 			CollisionCategories = Category.Cat31;
 		}
 
