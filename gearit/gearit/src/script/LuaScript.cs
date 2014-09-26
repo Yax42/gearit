@@ -37,7 +37,7 @@ namespace gearit.src.script
 			}
 			catch (Exception ex)
 			{
-				OutputManager.LogError("Lua exception: " + ex.Message);
+				OutputManager.LogError("Lua script - crash: " + ex.Message);
 				_ok = false;
 				File.WriteAllText("test.lua", text);
 				throw (ex);
@@ -55,9 +55,8 @@ namespace gearit.src.script
 			}
 			catch (Exception ex)
 			{
-				OutputManager.LogError("Lua exception: " + ex.Message);
+				OutputManager.LogError("Lua script - crash: " + ex.Message);
 				_ok = false;
-				throw (ex);
 			}
 		}
 
