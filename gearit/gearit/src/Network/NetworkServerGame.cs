@@ -145,7 +145,9 @@ namespace gearit.src.Network
 			}
 			for (int i = 0; i < Map.Chunks.Count; i++)
 			{
-				if (Map.Chunks[i].StringId != null && Map.Chunks[i].StringId != "")
+				if ((Map.Chunks[i].StringId != null
+					&& Map.Chunks[i].StringId != "")
+					|| !Map.Chunks[i].IsStatic)
 					NetworkServer.Instance.PushRequestTransform(PacketManager.ChunkTransform(i));
 			}
 			//Console.Out.WriteLine("server");
