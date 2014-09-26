@@ -24,19 +24,9 @@ namespace gearit.src.script
 				ServerGame = (NetworkServerGame)game;
 			else
 				ServerGame = null;
-
-			int i = 0;
-			foreach (Robot r in game.Robots)
-			{
-				this["Robot_" + i++] = new GameRobotApi(r);
-			}
-			foreach (Artefact a in game.Map.Artefacts)
-				this["Art_" + a.Id] = new GameArtefactApi(a);
-			this["Game"] = new GameApi(game);
-			
-			foreach (MapChunk c in game.Map.Chunks)
-				if (c.StringId != null && c.StringId != "")
-					this["Object_" + c.StringId] = new GameChunkApi(c);
+			var g = new GameApi(game);
+			this["Game"] = g;
+			this["G"] = g;
 		}
 
 		public static bool IsServer { get { return Instance.ServerGame != null; } }
