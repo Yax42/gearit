@@ -352,13 +352,13 @@ namespace gearit.src.robot
 			return (getConnection(other) != null);
 		}
 
-		public ISpot getConnection(Piece other)
+		public RevoluteSpot getConnection(Piece other)
 		{
 			if (other == this)
 				return (null);
 			for (JointEdge i = JointList; i != null; i = i.Next)
 				if (i.Other == other)
-					return ((ISpot)i.Joint);
+					return ((RevoluteSpot)i.Joint);
 			return (null);
 		}
 

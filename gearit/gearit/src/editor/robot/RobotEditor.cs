@@ -140,7 +140,7 @@ namespace gearit.src.editor.robot
 				Select2 = Robot.Heart;
 		}
 
-		public void fallAsleep(ISpot s, SleepingPack pack)
+		public void fallAsleep(RevoluteSpot s, SleepingPack pack)
 		{
 			Robot.fallAsleep(s, pack);
 

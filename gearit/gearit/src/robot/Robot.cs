@@ -27,10 +27,10 @@ namespace gearit.src.robot
 	{
 		public SleepingPack()
 		{
-			SList = new List<ISpot>();
+			SList = new List<RevoluteSpot>();
 			PList = new List<Piece>();
 		}
-		public List<ISpot> SList;
+		public List<RevoluteSpot> SList;
 		public List<Piece> PList;
 	}
 	[Serializable()]
@@ -44,8 +44,8 @@ namespace gearit.src.robot
 				return _pieces;
 			}
 		}
-		private List<ISpot> _spots;
-		public List<ISpot> Spots
+		private List<RevoluteSpot> _spots;
+		public List<RevoluteSpot> Spots
 		{
 			get
 			{
@@ -97,7 +97,7 @@ namespace gearit.src.robot
 			_world = world;
 			Id = _robotIdCounter++;
 			_pieces = new List<Piece>();
-			_spots = new List<ISpot>();
+			_spots = new List<RevoluteSpot>();
 			new Heart(this);
 			//Console.WriteLine("Robot created.");
 			_script = null;
@@ -118,8 +118,8 @@ namespace gearit.src.robot
 			//foreach (Piece p in _pieces)
 			//SerializerHelper._world.AddBody((Body)p);
 
-			this._spots = (List<ISpot>)info.GetValue("Spots", typeof(List<ISpot>));
-			// foreach (ISpot s in _spots)
+			this._spots = (List<RevoluteSpot>)info.GetValue("Spots", typeof(List<RevoluteSpot>));
+			// foreach (RevoluteSpot s in _spots)
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
 			Id = _robotIdCounter++;
@@ -136,7 +136,7 @@ namespace gearit.src.robot
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));
 			info.AddValue("SpotCount", _prismaticCounter, typeof(int));
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
-			info.AddValue("Spots", _spots, typeof(List<ISpot>));
+			info.AddValue("Spots", _spots, typeof(List<RevoluteSpot>));
 		}
 		#endregion
 
@@ -216,7 +216,7 @@ namespace gearit.src.robot
 				ok = true;
 				res++;
 				string name = "spot" + res;
-				foreach (ISpot s in Spots)
+				foreach (RevoluteSpot s in Spots)
 				{
 					if (s.Name == name)
 					{
@@ -236,7 +236,7 @@ namespace gearit.src.robot
 				p.resetAct();
 		}
 
-		public void addSpot(ISpot spot)
+		public void addSpot(RevoluteSpot spot)
 		{
 			_spots.Add(spot);
 		}
@@ -270,7 +270,7 @@ namespace gearit.src.robot
 			get
 			{
 				float res = 0;
-				foreach (ISpot s in _spots)
+				foreach (RevoluteSpot s in _spots)
 					res += s.MaxForce;
 				return (res);
 			}
@@ -297,7 +297,7 @@ namespace gearit.src.robot
 			List<Piece> adjacentPieces = p.GenerateAdjacentPieceList();
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 			{
-				ISpot spot = (ISpot)i.Joint;
+				RevoluteSpot spot = (RevoluteSpot)i.Joint;
 				spot.fallAsleep(this, p);
 				pack.SList.Add(spot);
 			}
@@ -325,9 +325,9 @@ namespace gearit.src.robot
 		}
 
 		// For editor
-		public void fallAsleep(ISpot s, SleepingPack pack)
+		public void fallAsleep(RevoluteSpot s, SleepingPack pack)
 		{
-			s.fallAsleep(this);
+			s.fallAsleep(this, null);
 			pack.SList.Add(s);
 			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyA) == false)
 				fallAsleep((Piece) s.Joint.BodyA, pack, true);
@@ -344,12 +344,12 @@ namespace gearit.src.robot
 				i.Sleeping = false;
 			}
 			pack.PList.Clear();
-			foreach (ISpot i in pack.SList)
+			foreach (RevoluteSpot i in pack.SList)
 				i.wakeUp(this);
 			pack.SList.Clear();
 		}
 
-		public void forget(ISpot s)
+		public void forget(RevoluteSpot s)
 		{
 			_spots.Remove(s);
 		}
@@ -395,13 +395,13 @@ namespace gearit.src.robot
 			if (p == Heart)
 				return;
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
-				_spots.Remove((ISpot)i.Joint); // FIXME should remove link between bodies and spots.
+				_spots.Remove((RevoluteSpot)i.Joint); // FIXME should remove link between bodies and spots.
 			_pieces.Remove(p);
 			_world.RemoveBody(p);
 		}
 
 		// For runtime
-		public void Destroy(ISpot s)
+		public void Destroy(RevoluteSpot s)
 		{
 			_spots.Remove(s);
 			_world.RemoveJoint(s.Joint);
@@ -427,7 +427,7 @@ namespace gearit.src.robot
 			if (_script != null)
 				_script.stop();
 			_script = null;
-			foreach (ISpot i in _spots)
+			foreach (RevoluteSpot i in _spots)
 			{
 				_world.RemoveJoint(i.Joint);
 			}
@@ -482,7 +482,7 @@ namespace gearit.src.robot
 		public void InitScript()
 		{
 			/*
-			foreach (ISpot i in _spots)
+			foreach (RevoluteSpot i in _spots)
 				if (i.GetType() == typeof(PrismaticSpot))
 					((PrismaticSpot)i).updateLimit();
 			*/
@@ -549,7 +549,7 @@ namespace gearit.src.robot
 		}
         bool AllSpotsConnected()
         {
-            return Spots.All((ISpot sp) =>
+            return Spots.All((RevoluteSpot sp) =>
                 {
                     Joint joint = (Joint)sp;
                     return joint.BodyA != null && joint.BodyB != null;
@@ -557,10 +557,10 @@ namespace gearit.src.robot
         }
         bool AllDifferentSpots()
         {
-            return Spots.All((ISpot sp) =>
+            return Spots.All((RevoluteSpot sp) =>
             {
                 Joint joint = (Joint)sp;
-                return Spots.All((ISpot sp_other) =>
+                return Spots.All((RevoluteSpot sp_other) =>
                 {
                     if (sp == sp_other)
                         return true;

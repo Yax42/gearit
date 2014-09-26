@@ -47,8 +47,8 @@ namespace gearit.src.robot
 
 	class CommonSpot
 	{
-		private ISpot _spot;
-		public CommonSpot(ISpot spot)
+		private RevoluteSpot _spot;
+		public CommonSpot(RevoluteSpot spot)
 		{
 			_spot = spot;
 		}

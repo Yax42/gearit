@@ -43,9 +43,9 @@ namespace gearit.src.robot
 			MotorEnabled = true;
 			LimitEnabled = false;
 			ColorValue = Color.Black;
-			robot.addSpot(this);
+			//robot.addSpot(this); //tmp
 			_joint = (Joint)this;
-			_common = new CommonSpot(this);
+			//_common = new CommonSpot(this); tmp
 		}
 
 		public void wakeUp(Robot robot)
@@ -78,7 +78,7 @@ namespace gearit.src.robot
 			LimitEnabled = false;
 			ColorValue = Color.Black;
 			_joint = (Joint)this;
-			_common = new CommonSpot(this);
+			// _common = new CommonSpot(this); // tmp
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

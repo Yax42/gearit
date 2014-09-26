@@ -12,7 +12,7 @@ namespace gearit.src.editor.robot.action
 	class ActionDeleteSpot : IAction
 	{
 		private SleepingPack Pack;
-		private ISpot Spot;
+		private RevoluteSpot Spot;
 		private Piece P1;
 		private Piece P2;
 
