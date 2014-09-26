@@ -32,7 +32,7 @@ namespace gearit.src.GUI
 			Error,
 		};
 
-		static public int Width = 550;
+		static public int Width = 720;
 		static public int Height = 160;
 		static public int SIZE_ITEM = 22;
 
@@ -80,7 +80,7 @@ namespace gearit.src.GUI
 			btn_hide = new Button();
 			btn_hide.Size = new Squid.Point(21, 20);
 			btn_hide.Position = new Squid.Point(Width - 21, 0);
-			btn_hide.Text = "X\n";
+			btn_hide.Text = "-\n";
 			btn_hide.Parent = _chat_box;
 
 			btn_hide.MouseClick += delegate(Control snd, MouseEventArgs e)

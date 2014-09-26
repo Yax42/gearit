@@ -25,6 +25,7 @@ namespace gearit.src.Network
 			: base(new NetServer(config), 2, game.PacketManager)
 		{
 			Game = game;
+			ResetToSends();
 			Port = port;
 			IsServer = true;
 		}
@@ -143,9 +144,11 @@ namespace gearit.src.Network
 		{
 			get
 			{
-				byte[] res = Game.Events;
+				return Game.Events;
+			}
+			set
+			{
 				Game.Events = new byte[0];
-				return res;
 			}
 		}
 

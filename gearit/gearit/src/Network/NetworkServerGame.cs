@@ -139,11 +139,9 @@ namespace gearit.src.Network
 
 			foreach (Robot r in Robots)
 			{
-				byte[] packet = PacketManager.RobotTransform(r);
-				for (int i = 0; i < Robots.Count; i++)
-				{
-					NetworkServer.Instance.PushRequestTransform(packet, i);
-				}
+				NetworkServer.Instance.PushRequestTransform(PacketManager.RobotTransform(r));
+				for (int i = 1; i < r.Pieces.Count; i++) // i = 1 parce qu'on veut ignorer le coeur
+					NetworkServer.Instance.PushRequestTransform(PacketManager.RobotPieceTransform(r, i));
 			}
 			for (int i = 0; i < Map.Chunks.Count; i++)
 			{

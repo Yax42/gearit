@@ -9,7 +9,7 @@ namespace gearit.src.Network
 {
 	abstract class INetwork
 	{
-		protected byte[][] TransformToSend;
+		protected byte[] TransformToSend;
 		protected byte[][] ToSend;
 		protected int Port;
 		protected string Host;
@@ -29,10 +29,8 @@ namespace gearit.src.Network
 			PacketManager = packetManager;
 			NumberOfPeers = numberOfPeers;
 			ToSend = new byte[NumberOfPeers][];
-			TransformToSend = new byte[NumberOfPeers][];
 			YoungestRequests = new NetIncomingMessage[NumberOfPeers];
 			CleanRequests();
-			ResetToSends();
 			FrameCount = 0;
 		}
 
@@ -69,7 +67,7 @@ namespace gearit.src.Network
 			return request == YoungestRequests[UserId(request)];
 		}
 
-		protected abstract byte[] Events { get; }
+		protected abstract byte[] Events { get; set; }
 
 		public void SendRequests()
 		{
@@ -81,7 +79,7 @@ namespace gearit.src.Network
 				if (TransformToSend.Count() > 0)
 				{
 					PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), i);
-					PushRequest(TransformToSend[i], i);
+					PushRequest(TransformToSend, i);
 				}
 				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), i);
 				NetOutgoingMessage om = Peer.CreateMessage();
@@ -93,9 +91,10 @@ namespace gearit.src.Network
 
 		protected void ResetToSends()
 		{
+			TransformToSend = new byte[0];
+			Events = null;
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
-				TransformToSend[i] = new byte[0];
 				ToSend[i] = BitConverter.GetBytes(FrameCount++);
 				if (BitConverter.IsLittleEndian)
 					Array.Reverse(ToSend[i]);
@@ -107,9 +106,9 @@ namespace gearit.src.Network
 			ToSend[userId] = ToSend[userId].Concat(data).ToArray();
 		}
 
-		public void PushRequestTransform(byte[] data, int userId = 0)
+		public void PushRequestTransform(byte[] data)
 		{
-			TransformToSend[userId] = TransformToSend[userId].Concat(data).ToArray();
+			TransformToSend = TransformToSend.Concat(data).ToArray();
 		}
 
 		public void ApplyRequests()

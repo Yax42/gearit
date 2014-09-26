@@ -25,6 +25,7 @@ namespace gearit.src.Network
 		public NetworkClient(InGamePacketManager packetManager)
 			: base(new NetClient(new NetPeerConfiguration("gearit")), 1, packetManager)
 		{
+			ResetToSends();
 		}
 
         private void tryToConnect()
@@ -105,7 +106,7 @@ namespace gearit.src.Network
 			ManageRequest(msg, 0);
 		}
 
-		protected override byte[] Events { get { return new byte[0]; } }
+		protected override byte[] Events { get { return new byte[0]; } set { } }
 
 #if false
         public void Send(string text)

@@ -51,6 +51,8 @@ namespace gearit.src.Network
 		};
 		#endregion
 
+//----------------------------------------------------------------------------
+
 		#region Packets
 		private struct Packet_GameCommand // size 1
 		{
@@ -72,15 +74,22 @@ namespace gearit.src.Network
 			public Vector2 Position;
 		}
 
+		enum TransformType
+		{
+			Robot,
+			Piece,
+			Chunk,
+		};
+
 		private struct Packet_ObjectTransform // size 28
 		{
-			public bool IsRobot;
+			public byte Type;
+			public byte RobotId;
 			public ushort Id;
 			public Vector2 Position;
 			public float Rotation;
 			public Vector2 LinearVelocity;
 			public float AngularVelocity;
-
 		}
 
 		private struct Packet_MotorForce // size 8
@@ -96,6 +105,8 @@ namespace gearit.src.Network
 			public int duration;
 		}
 		#endregion
+
+//----------------------------------------------------------------------------
 
 		private T RawDataToPacket<T>() where T : struct
 		{
@@ -138,6 +149,8 @@ namespace gearit.src.Network
 			Game = game;
 		}
 
+//----------------------------------------------------------------------------
+
 #region GetRawData
 		public byte[] RobotCommand(int id, ERobotCommand command)
 		{
@@ -155,6 +168,38 @@ namespace gearit.src.Network
 			packet.Position = pos;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
+
+#if false
+		private struct Packet_SpotTransform
+		{
+			public byte RobotId;
+			public ushort SpotId;
+			public float Angle;
+		}
+		private void ApplyPacket(Packet_SpotTransform packet)
+		{
+			Debug.Assert(Game.Robots.Count > packet.RobotId);
+			if (Game.Robots.Count <= packet.RobotId)
+				return;
+			Robot r = Game.Robots[packet.RobotId];
+			Debug.Assert(!r.Extracted);
+			if (r.Extracted)
+				return;
+			Debug.Assert(r.Spots.Count > packet.SpotId);
+			if (r.Spots.Count <= packet.SpotId)
+				return;
+			r.Spots[packet.SpotId].JointAngle = packet.Angle;
+		}
+		public byte[] SpotTransform(int idRobot, int idSpot)
+		{
+			Packet_SpotTransform res = new Packet_SpotTransform();
+			res.RobotId = (byte) idRobot;
+			res.SpotId = (ushort) idSpot;
+			res.Angle = Game.Robots[idRobot].Spots[idSpot].JointAngle;
+			return PacketToRawData(res, CommandId.ObjectTransform);
+		}
+#endif
+
 
 		public byte[] RobotTransform(int idRobot)
 		{
@@ -186,20 +231,26 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.ChunkCommand);
 		}
 
+		public byte[] RobotPieceTransform(Robot r, int id)
+		{
+			return TransformBody(r.Pieces[id], TransformType.Piece, id, r.Id);
+		}
+
 		public byte[] RobotTransform(Robot r)
 		{
-			return TransformBody(r.Heart, true, r.Id);
+			return TransformBody(r.Heart, TransformType.Robot, 0, r.Id);
 		}
 
 		public byte[] ChunkTransform(int chunkId)
 		{
-			return TransformBody(Game.Map.Chunks[chunkId], false, chunkId);
+			return TransformBody(Game.Map.Chunks[chunkId], TransformType.Chunk, chunkId, 0);
 		}
 
-		private byte[] TransformBody(Body b, bool isRobot, int id)
+		private byte[] TransformBody(Body b, TransformType type, int id, int robotId)
 		{
 			Packet_ObjectTransform res = new Packet_ObjectTransform();
-			res.IsRobot = isRobot;
+			res.Type = (byte)type;
+			res.RobotId = (byte) robotId;
 			res.Id = (ushort) id;
 			res.Position = b.Position;
 			res.Rotation = b.Rotation;
@@ -221,6 +272,7 @@ namespace gearit.src.Network
 		}
 #endregion
 
+//----------------------------------------------------------------------------
 
 #region ApplyPacket
 
@@ -350,36 +402,48 @@ namespace gearit.src.Network
 		private void ApplyPacket(Packet_ObjectTransform packet)
 		{
 			Body b = null;
-			if (packet.IsRobot)
+			if (packet.Type == (byte) TransformType.Robot)
 			{
-				if (Game.Robots.Count > packet.Id)
+				if (Game.Robots.Count > packet.RobotId)
 				{
-					Robot r = Game.Robots[packet.Id];
+					Robot r = Game.Robots[packet.RobotId];
 					Debug.Assert(!r.Extracted);
 					if (!r.Extracted)
 					{
 						b = r.Heart;
-						r.move(packet.Position);
 					}
 				}
 			}
-			else
+			else if (packet.Type == (byte) TransformType.Chunk)
 			{
 				if (Game.Map.Chunks.Count > packet.Id)
 				{
 					b = Game.Map.Chunks[packet.Id];
-					b.Position = packet.Position;
+				}
+			}
+			else if (packet.Type == (byte) TransformType.Piece)
+			{
+				if (Game.Robots.Count > packet.RobotId)
+				{
+					Robot r = Game.Robots[packet.RobotId];
+					Debug.Assert(!r.Extracted);
+					if (!r.Extracted && r.Pieces.Count > packet.Id)
+					{
+						b = r.Pieces[packet.Id];
+					}
 				}
 			}
 
 			Debug.Assert(b != null);
 			if (b != null)
 			{
+				b.Position = packet.Position;
 				b.AngularVelocity = packet.AngularVelocity;
 				b.LinearVelocity = packet.LinearVelocity;
 				b.Rotation = packet.Rotation;
 			}
 		}
+
 
 		private void ApplyPacket(Packet_MotorForce packet)
 		{
@@ -395,6 +459,7 @@ namespace gearit.src.Network
 				}
 			}
 		}
+
 #endregion
 	}
 }
