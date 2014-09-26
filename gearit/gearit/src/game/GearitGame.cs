@@ -144,7 +144,6 @@ namespace gearit.src.game
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
 			float delta = 1 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
-			HandleInput();
 			//Input.update();
 
 			_world.Step(delta);

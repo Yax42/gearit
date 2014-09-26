@@ -147,7 +147,6 @@ namespace gearit.src.Network
 				PacketMutex.ReleaseMutex();
 			}
 		}
-<<<<<<< HEAD
 #endif
 	}
 }
