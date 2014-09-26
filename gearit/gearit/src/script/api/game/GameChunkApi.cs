@@ -49,6 +49,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.IsStatic; }
 			set
 			{
+				PushEvent(InGamePacketManager.EChunkCommand.Static, value);
 				__Chunk.IsStatic = value;
 			}
 		}
