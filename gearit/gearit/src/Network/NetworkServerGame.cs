@@ -20,6 +20,8 @@ namespace gearit.src.Network
 	{
 		private World _world;
 		private GameLuaScript _gameMaster;
+		public byte[] Events =  new byte[0];
+
 		private bool __exiting;
 		private bool _exiting
 		{

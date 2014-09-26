@@ -139,6 +139,16 @@ namespace gearit.src.Network
 			PushRequest(msg.Data, id);
 		}
 
+		protected override byte[] Events
+		{
+			get
+			{
+				byte[] res = Game.Events;
+				Game.Events = new byte[0];
+				return res;
+			}
+		}
+
 #if false
         public void oldSend(string text) // deprecated
         {

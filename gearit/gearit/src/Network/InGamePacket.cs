@@ -27,7 +27,17 @@ namespace gearit.src.Network
 			Remove,
 			Win,
 			Lose,
+			Teleport,
 		};
+		public enum EChunkCommand
+		{
+			Static,
+			Mass,
+			IgnoreGravity,
+			Gravity,
+			Friction,
+		};
+
 		public enum CommandId
 		{
 			GameCommand,
@@ -37,6 +47,7 @@ namespace gearit.src.Network
 			Message,
 			EndOfPacket,
 			BeginTransform,
+			ChunkCommand,
 		};
 		#endregion
 
@@ -46,10 +57,19 @@ namespace gearit.src.Network
 			public byte CommandId;
 		}
 
+		private struct Packet_ChunkCommand
+		{
+			public byte ChunkId;
+			public byte Command;
+			public bool BoolData;
+			public float FloatData;
+		}
+
 		private struct Packet_RobotCommand // size 2
 		{
 			public byte RobotId;
 			public byte Command;
+			public Vector2 Position;
 		}
 
 		private struct Packet_ObjectTransform // size 28
@@ -60,6 +80,7 @@ namespace gearit.src.Network
 			public float Rotation;
 			public Vector2 LinearVelocity;
 			public float AngularVelocity;
+
 		}
 
 		private struct Packet_MotorForce // size 8
@@ -126,6 +147,15 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
+		public byte[] TeleportRobot(int id, Vector2 pos)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			packet.Command = (byte)ERobotCommand.Teleport;
+			packet.Position = pos;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
 		public byte[] RobotTransform(int idRobot)
 		{
 			return RobotTransform(Game.Robots[idRobot]);
@@ -136,6 +166,24 @@ namespace gearit.src.Network
 			byte[] res = new byte[1];
 			res[0] = (byte) cmd;
 			return res;
+		}
+
+		public byte[] ChunkCommand(EChunkCommand cmd, int id, bool data)
+		{
+			var packet = new Packet_ChunkCommand();
+			packet.ChunkId = (byte) id;
+			packet.Command = (byte) cmd;
+			packet.BoolData = data;
+			return PacketToRawData(packet, CommandId.ChunkCommand);
+		}
+
+		public byte[] ChunkCommand(EChunkCommand cmd, int id, float data)
+		{
+			var packet = new Packet_ChunkCommand();
+			packet.ChunkId = (byte) id;
+			packet.Command = (byte) cmd;
+			packet.FloatData = data;
+			return PacketToRawData(packet, CommandId.ChunkCommand);
 		}
 
 		public byte[] RobotTransform(Robot r)
@@ -175,14 +223,6 @@ namespace gearit.src.Network
 
 
 #region ApplyPacket
-#if false
-		public void Server_ApplyRequest(NetIncomingMessage request)
-		{
-			Idx = 0;
-			Data = request.Data;
-			ApplyNextPacket();
-		}
-#endif
 
 		public void ApplyRequest(NetIncomingMessage request, bool proceedTransform)
 		{
@@ -214,6 +254,9 @@ namespace gearit.src.Network
 				case (byte)CommandId.ObjectTransform:
 					ApplyPacket(RawDataToPacket<Packet_ObjectTransform>());
 					break;
+				case (byte)CommandId.ChunkCommand:
+					ApplyPacket(RawDataToPacket<Packet_ChunkCommand>());
+					break;
 				case (byte)CommandId.BeginTransform:
 					Idx++;
 					return proceedTransform;
@@ -229,6 +272,33 @@ namespace gearit.src.Network
 			}
 			//Debug.Assert(Idx == Data.Count());
 			return Idx != Data.Count();
+		}
+
+		private void ApplyPacket(Packet_ChunkCommand packet)
+		{
+			if (Game.Map.Chunks.Count <= packet.ChunkId)
+			{
+				Debug.Assert(false);
+				return;
+			}
+			switch (packet.Command)
+			{
+				case (byte)EChunkCommand.Friction:
+					// Not doing anything cause we do not modify the friction for now
+					break;
+				case (byte)EChunkCommand.Gravity:
+					Game.Map.Chunks[packet.ChunkId].GravityScale = packet.FloatData;
+					break;
+				case (byte)EChunkCommand.IgnoreGravity:
+					Game.Map.Chunks[packet.ChunkId].IgnoreGravity = packet.BoolData;
+					break;
+				case (byte)EChunkCommand.Mass:
+					Game.Map.Chunks[packet.ChunkId].Mass = packet.FloatData;
+					break;
+				case (byte)EChunkCommand.Static:
+					Game.Map.Chunks[packet.ChunkId].IsStatic = packet.BoolData;
+					break;
+			}
 		}
 
 		private void ApplyPacket(Packet_Message packet)
@@ -269,6 +339,11 @@ namespace gearit.src.Network
 				case (byte) ERobotCommand.Remove:
 					r.ExtractFromWorld();
 					break;
+				case (byte) ERobotCommand.Teleport:
+					Vector2 deltaPos = packet.Position - r.Position;
+					foreach (Piece p in r.Pieces)
+						p.Position += deltaPos;
+					break;
 			}
 		}
 
@@ -284,6 +359,7 @@ namespace gearit.src.Network
 					if (!r.Extracted)
 					{
 						b = r.Heart;
+						r.move(packet.Position);
 					}
 				}
 			}
@@ -292,6 +368,7 @@ namespace gearit.src.Network
 				if (Game.Map.Chunks.Count > packet.Id)
 				{
 					b = Game.Map.Chunks[packet.Id];
+					b.Position = packet.Position;
 				}
 			}
 
@@ -301,7 +378,6 @@ namespace gearit.src.Network
 				b.AngularVelocity = packet.AngularVelocity;
 				b.LinearVelocity = packet.LinearVelocity;
 				b.Rotation = packet.Rotation;
-				b.Position = packet.Position;
 			}
 		}
 

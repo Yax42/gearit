@@ -8,6 +8,7 @@ using gearit.src.editor.map;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using System.Runtime.CompilerServices;
+using gearit.src.Network;
 
 namespace gearit.src.script.api.game
 {
@@ -31,40 +32,78 @@ namespace gearit.src.script.api.game
 			return (false);
 		}
 
+		private void PushEvent(InGamePacketManager.EChunkCommand cmd, bool data)
+		{
+			if (GameLuaScript.IsServer)
+				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
+		}
+
+		private void PushEvent(InGamePacketManager.EChunkCommand cmd, float data)
+		{
+			if (GameLuaScript.IsServer)
+				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
+		}
+
 		public bool Static
 		{
 			get { return __Chunk.IsStatic; }
-			set { __Chunk.IsStatic = value; }
+			set
+			{
+				__Chunk.IsStatic = value;
+			}
 		}
 
 		public float Mass
 		{
 			get { return __Chunk.Mass; }
-            set { __Chunk.Mass = value; }
+            set
+			{
+				PushEvent(InGamePacketManager.EChunkCommand.Mass, value);
+				__Chunk.Mass = value;
+			}
 		}
 
 		public bool IgnoreGravity
 		{
 			get { return __Chunk.IgnoreGravity; }
-            set { __Chunk.IgnoreGravity = value; }
+            set
+			{
+				PushEvent(InGamePacketManager.EChunkCommand.IgnoreGravity, value);
+				__Chunk.IgnoreGravity = value;
+			}
 		}
 
 		public float Gravity
 		{
 			get { return __Chunk.GravityScale; }
-            set { __Chunk.GravityScale = value; }
+            set
+			{
+				PushEvent(InGamePacketManager.EChunkCommand.Gravity, value);
+				__Chunk.GravityScale = value;
+			}
 		}
 
 		public float Friction
 		{
 			get { return __Chunk.Friction; }
-            set { __Chunk.Friction = value; }
+            set
+			{
+				PushEvent(InGamePacketManager.EChunkCommand.Friction, value);
+				 __Chunk.Friction = value;
+			}
 		}
 
 		public override Vector2 Position
 		{
 			get { return __Chunk.Position; }
             set { __Chunk.Position = value; }
+		}
+
+		public void Reset()
+		{
+			__Chunk.Rotation = 0;
+			__Chunk.LinearVelocity = Vector2.Zero;
+			__Chunk.AngularVelocity = 0;
 		}
 	}
 }

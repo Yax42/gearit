@@ -36,7 +36,7 @@ namespace gearit.src.editor.map
 		private List<IAction> _redoActionsLog;
 		private IAction _currentAction;
 
-		public static MapEditor Instance { set; get; }
+		public static MapEditor Instance { private set; get; }
 
 		public MapChunk SelectChunk
 		{

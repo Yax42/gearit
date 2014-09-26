@@ -105,6 +105,8 @@ namespace gearit.src.Network
 			ManageRequest(msg, 0);
 		}
 
+		protected override byte[] Events { get { return new byte[0]; } }
+
 #if false
         public void Send(string text)
 		{

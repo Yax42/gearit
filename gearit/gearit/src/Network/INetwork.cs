@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace gearit.src.Network
 {
-	class INetwork
+	abstract class INetwork
 	{
 		protected byte[][] TransformToSend;
 		protected byte[][] ToSend;
@@ -69,12 +69,15 @@ namespace gearit.src.Network
 			return request == YoungestRequests[UserId(request)];
 		}
 
+		protected abstract byte[] Events { get; }
+
 		public void SendRequests()
 		{
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
 				if (i >= Peer.Connections.Count)
 					continue;
+				PushRequest(Events, i);
 				if (TransformToSend.Count() > 0)
 				{
 					PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), i);
