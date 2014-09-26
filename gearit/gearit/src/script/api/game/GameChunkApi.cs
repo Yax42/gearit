@@ -31,6 +31,12 @@ namespace gearit.src.script.api.game
 			return (false);
 		}
 
+		public bool Static
+		{
+			get { return __Chunk.IsStatic; }
+			set { __Chunk.IsStatic = value; }
+		}
+
 		public float Mass
 		{
 			get { return __Chunk.Mass; }

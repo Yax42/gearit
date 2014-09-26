@@ -14,7 +14,7 @@ namespace gearit.src.script.api.game
 {
 	public class GameRobotApi : GameObjectApi
 	{
-		private Robot _Robot;
+		public Robot __Robot;
 		private Dictionary<string, Score.VictoryState> _stateDictionnary;
 
 		public GameRobotApi(Robot robot)
@@ -25,13 +25,31 @@ namespace gearit.src.script.api.game
 			_stateDictionnary.Add("DRAW", Score.VictoryState.Draw);
 			_stateDictionnary.Add("UNKNOWN", Score.VictoryState.Unknown);
 			_stateDictionnary.Add("STILL", Score.VictoryState.StillInProgress);
-			_Robot = robot;
+			__Robot = robot;
+		}
+
+		public bool IsTouching(GameRobotApi robotapi)
+		{
+			Robot chunk = robotapi.__Robot;
+			foreach (Body b in __Robot.Pieces)
+			{
+				foreach (Body b2 in robotapi.__Robot.Pieces)
+				{
+					for (ContactEdge c = b2.ContactList; c != null; c = c.Next)
+					{
+						if (c.Other == b)
+							return (true);
+					}
+				}
+			}
+
+			return (false);
 		}
 
 		public bool IsTouching(GameChunkApi chunkapi)
 		{
 			MapChunk chunk = chunkapi.__Chunk;
-			foreach (Body b in _Robot.Pieces)
+			foreach (Body b in __Robot.Pieces)
 			{
 				for (ContactEdge c = chunkapi.__Chunk.ContactList; c != null; c = c.Next)
 				{
@@ -47,19 +65,19 @@ namespace gearit.src.script.api.game
 		#region Score
 		public void IntScore(int score)
 		{
-			_Robot.Score.IntScore = score;
+			__Robot.Score.IntScore = score;
 		}
 
 		public void FloatScore(float score)
 		{
-			_Robot.Score.FloatScore = score;
+			__Robot.Score.FloatScore = score;
 		}
 
 		public void StateScore(string strState)
 		{
 			var state = _stateDictionnary[strState];
 			if (state != null)
-			_Robot.Score.State = state;
+			__Robot.Score.State = state;
 		}
 		#endregion
 
@@ -67,7 +85,7 @@ namespace gearit.src.script.api.game
 		{
 			get
 			{
-				return _Robot.LastTrigger;
+				return __Robot.LastTrigger;
 			}
 		}
 
@@ -75,18 +93,18 @@ namespace gearit.src.script.api.game
 		{
 			get
 			{
-				return _Robot.State;
+				return __Robot.State;
 			}
 			set
 			{
-				_Robot.State = value;
+				__Robot.State = value;
 			}
 		}
 
 		public bool TriggerData(int idx)
 		{
-			bool res = _Robot.TriggersData[idx];
-			_Robot.TriggersData[idx] = false;
+			bool res = __Robot.TriggersData[idx];
+			__Robot.TriggersData[idx] = false;
 			return res;
 		}
 
@@ -94,12 +112,12 @@ namespace gearit.src.script.api.game
 		{
 			get
 			{
-				return _Robot.Position;
+				return __Robot.Position;
 			}
 
 			set
 			{
-				_Robot.Position = value;
+				__Robot.Position = value;
 			}
 		}
 	}
