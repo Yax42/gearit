@@ -30,7 +30,6 @@ namespace gearit.src.script.api.game
 
 		public bool IsTouching(GameRobotApi robotapi)
 		{
-			Robot chunk = robotapi.__Robot;
 			foreach (Body b in __Robot.Pieces)
 			{
 				foreach (Body b2 in robotapi.__Robot.Pieces)

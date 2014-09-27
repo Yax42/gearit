@@ -21,6 +21,11 @@ namespace gearit.src.script.api.game
 			__Chunk = chunk;
 		}
 
+		public bool IsTouching(GameRobotApi robotapi)
+		{
+			return (robotapi.IsTouching(this));
+		}
+
 		public bool IsTouching(GameChunkApi chunkapi)
 		{
 			for (ContactEdge c = __Chunk.ContactList; c != null;  c = c.Next)
