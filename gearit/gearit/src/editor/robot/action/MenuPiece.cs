@@ -138,12 +138,14 @@ namespace gearit.src.editor.robot
 				_s_maxforce.Display = spot.MaxForce.ToString();
 
 				// Check if Prismatic
+				/*
 				if (spot.GetType() == typeof(PrismaticSpot))
 				{
 					_s_size.Display = "Distance: " + ((PrismaticSpot)spot).getSize().ToString();
 					_s_size.Visible = true;
 				}
 				else
+				*/
 					_s_size.Visible = false;
 			}
 		}

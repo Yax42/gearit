@@ -113,7 +113,7 @@ namespace gearit.src.utility
 		Piece wheel2 = new Wheel(_robot, 1f, Vector2.Zero);
 		Piece dot2 = new Wheel(_robot, 0.2f, Vector2.Zero);
 			dot2.move(new Vector2(1, -1));
-			new PrismaticSpot(_robot, _robot.Heart, dot2);//).moveAnchor(_robot.Heart, new Vector2(0.5f, -0.5f));
+			//new PrismaticSpot(_robot, _robot.Heart, dot2);//).moveAnchor(_robot.Heart, new Vector2(0.5f, -0.5f));
 			new RevoluteSpot(_robot, wheel2, dot2);
 		
 			//_lua = new LuaTest(Camera, _robot, "bruterobot");

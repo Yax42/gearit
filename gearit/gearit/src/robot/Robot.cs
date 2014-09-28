@@ -91,6 +91,7 @@ namespace gearit.src.robot
 			}
 		}
 
+		public bool IsInEditor = false;
 
 		public Robot(World world)
 		{
@@ -317,7 +318,7 @@ namespace gearit.src.robot
 			for (JointEdge i = p.JointList; i != null; i = i.Next)
 			{
 				RevoluteSpot spot = (RevoluteSpot)i.Joint;
-				spot.fallAsleep(this, p);
+				spot.fallAsleep(p);
 				pack.SList.Add(spot);
 			}
 			p.JointList = null;
@@ -346,7 +347,7 @@ namespace gearit.src.robot
 		// For editor
 		public void fallAsleep(RevoluteSpot s, SleepingPack pack)
 		{
-			s.fallAsleep(this, null);
+			s.fallAsleep(null);
 			pack.SList.Add(s);
 			if (IsPieceConnectedToHeart((Piece) s.Joint.BodyA) == false)
 				fallAsleep((Piece) s.Joint.BodyA, pack, true);
@@ -364,7 +365,7 @@ namespace gearit.src.robot
 			}
 			pack.PList.Clear();
 			foreach (RevoluteSpot i in pack.SList)
-				i.wakeUp(this);
+				i.wakeUp();
 			pack.SList.Clear();
 		}
 

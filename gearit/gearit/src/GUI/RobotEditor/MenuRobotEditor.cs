@@ -969,12 +969,13 @@ namespace gearit.src.GUI
 				}
 
 				// Check if Prismatic
+				/*
 				if (spot.GetType() == typeof(PrismaticSpot))
 				{
 					spot_distance.Text = ((PrismaticSpot)spot).getSize().ToString();
 					spot_distance_container.Visible = true;
 				}
-				else
+				else*/
 					spot_distance_container.Visible = false;
 			}
 		}

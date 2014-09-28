@@ -265,8 +265,8 @@ namespace gearit.src.robot
 				{
 					if (i.Joint.GetType() == typeof(RevoluteSpot))
 						((RevoluteSpot)i.Joint).rotate(this, angle);
-					if (i.Joint.GetType() == typeof(PrismaticSpot))
-						((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
+					//if (i.Joint.GetType() == typeof(PrismaticSpot))
+					//	((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
 				}
 			}
 			else if (isConnected(comparator))
@@ -293,10 +293,10 @@ namespace gearit.src.robot
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
-				if (i.Joint.GetType() == typeof(RevoluteSpot))
+				//if (i.Joint.GetType() == typeof(RevoluteSpot))
 					((RevoluteSpot)i.Joint).SynchroniseAnchors(this);
-				else
-					((PrismaticSpot)i.Joint).updateAxis();
+				//else
+				//	((PrismaticSpot)i.Joint).updateAxis();
 			}
 			updateCharacteristics();
 		}

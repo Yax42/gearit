@@ -75,6 +75,7 @@ namespace gearit.src.Network
 			{
 				if (i >= Peer.Connections.Count)
 					continue;
+				
 				PushRequest(Events, i);
 				if (TransformToSend.Count() > 0)
 				{

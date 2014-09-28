@@ -19,15 +19,12 @@ namespace gearit.src.robot
 	public class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
 	{
 		private static float _spotSize = 0.05f;
-		private static Vector2 _topLeft = new Vector2(-_spotSize, -_spotSize);
-		private static Vector2 _topRight = new Vector2(_spotSize, -_spotSize);
-		private static Vector2 _botLeft = new Vector2(-_spotSize, _spotSize);
-		private static Vector2 _botRight = new Vector2(_spotSize, _spotSize);
 
 		 //private AngleJoint _angleJoint;
 		static private Texture2D _tex;
 		private Joint _joint;
 		private CommonSpot _common;
+		private Robot Robot;
 		public Joint Joint { get { return _joint; } }
 
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
@@ -38,15 +35,16 @@ namespace gearit.src.robot
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2, Vector2 anchor1, Vector2 anchor2) :
 			base(p1, p2, anchor1, anchor2)
 		{
+			Robot = robot;
 			Name = "spot" + robot.FindFirstFreeSpotNameId();
-			robot.getWorld().AddJoint(this);
+			Robot.getWorld().AddJoint(this);
 			Enabled = true;
 			MaxMotorTorque = 10;
 			MotorSpeed = 0f;
 			MotorEnabled = true;
 			ColorValue = Color.Black;
-			robot.addSpot(this);
-			SynchroniseAnchors(p1, robot);
+			Robot.addSpot(this);
+			SynchroniseAnchors(p1);
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
 			if (p1.GetType() == typeof(Rod))
@@ -54,14 +52,14 @@ namespace gearit.src.robot
 
 		}
 
-		public void wakeUp(Robot robot)
+		public void wakeUp()
 		{
-			_common.wakeUp(robot);
+			_common.wakeUp(Robot);
 		}
 
-		public void fallAsleep(Robot robot, Piece p)
+		public void fallAsleep(Piece p)
 		{
-			_common.fallAsleep(robot, p);
+			_common.fallAsleep(Robot, p);
 		}
 
 		#region Serialization
@@ -72,6 +70,7 @@ namespace gearit.src.robot
 			(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
 			(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
 		{
+			Robot = SerializerHelper.CurrentRobot;
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
@@ -118,7 +117,7 @@ namespace gearit.src.robot
 				if (value < 0)
 					return;
 				_MaxAngle = value;
-				if (!Frozen)
+				if (!Frozen && !Robot.IsInEditor)
 					UpperLimit = _MaxAngle;
 			}
 		}
@@ -135,7 +134,7 @@ namespace gearit.src.robot
 				if (value > 0)
 					return;
 				_MinAngle = value;
-				if (!Frozen)
+				if (!Frozen && !Robot.IsInEditor)
 					LowerLimit = _MinAngle;
 			}
 		}
@@ -152,6 +151,8 @@ namespace gearit.src.robot
 				if (_Frozen == value)
 					return;
 				_Frozen = value;
+				if (Robot.IsInEditor)
+					return;
 				if (_Frozen)
 				{
 					LowerLimit = JointAngle;
@@ -180,7 +181,7 @@ namespace gearit.src.robot
 			set
 			{
 				_LimitEnabled = value;
-				if (!Frozen)
+				if (!Frozen && !Robot.IsInEditor)
 					base.LimitEnabled = _LimitEnabled;
 			}
 		}
@@ -223,10 +224,10 @@ namespace gearit.src.robot
 			swap(p1, p2, Vector2.Zero);
 		}
 
-		public void moveAnchor(Piece p, Vector2 anchor, Robot robot = null)
+		public void moveAnchor(Piece p, Vector2 anchor)
 		{
-			if (robot != null)
-				robot.ResetAct();
+			if (Robot != null)
+				Robot.ResetAct();
 			if (BodyA == p)
 				LocalAnchorA = BodyA.GetLocalPoint(anchor);
 			if (BodyB == p)
@@ -249,10 +250,10 @@ namespace gearit.src.robot
 			get { return ActualWorldAnchorA - ActualWorldAnchorB; }
 		}
 
-		public void SynchroniseAnchors(Piece piece, Robot robot = null)
+		public void SynchroniseAnchors(Piece piece)
 		{
-			if (robot != null)
-				robot.ResetAct();
+			if (Robot != null)
+				Robot.ResetAct();
 			if (piece == BodyA)
 				((Piece)BodyB).move(WorldAnchorA - ActualWorldAnchorB);
 			else
@@ -261,8 +262,8 @@ namespace gearit.src.robot
 
 		public void rotate(Piece piece, float angle, Robot robot = null)
 		{
-			if (robot != null)
-				robot.ResetAct();
+			if (Robot != null)
+				Robot.ResetAct();
 			if (piece == BodyA)
 				((Piece)BodyB).rotateDelta(angle);
 			else
@@ -304,33 +305,34 @@ namespace gearit.src.robot
 		private void _drawDebug(DrawGame game, Vector2 pos)
 		{
 			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
-			Vector2 corner = pos - _topLeft;
+			//Vector2 corner = pos - _topLeft;
 			//Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
 
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
 			Color tmp = ColorValue;
 			if (LimitEnabled)
 				ColorValue = Color.Pink;
-			game.drawLine(pos + _topLeft, pos + _topRight, ColorValue);
-			game.drawLine(pos + _topRight, pos + _botRight, ColorValue);
-			game.drawLine(pos + _botRight, pos + _botLeft, ColorValue);
-			game.drawLine(pos + _botLeft, pos + _topLeft, ColorValue);
+			game.drawSquare(pos, _spotSize, ColorValue);
+			if (Frozen)
+				game.drawSquare(pos, _spotSize * 0.7f, Color.Cyan);
 			ColorValue = tmp;
 
 			if (LimitEnabled == false)
-				return;
+				tmp = tmp;// return;
+			else
+				tmp = tmp;
 			Vector2 target;
 			//float tmpUpper = UpperLimit/ +(LowerLimit > UpperLimit ? (float)Math.PI * 2 : 0);
 			int count = 0;
 			bool limitReached = false;
-			for (float angle = LowerLimit; angle < UpperLimit; angle += 0.01f)
+			for (float angle = LowerLimit; angle < UpperLimit; angle += 0.02f)
 			{
 				count++;
 				target.X = (float)Math.Cos(angle) * 0.1f;
 				target.Y = (float)Math.Sin(angle) * 0.1f;
 				if (angle >= 0 && limitReached == false)
 				{
-					game.drawLine(pos, pos + target, new Color(0, 255, 0));
+					game.drawLine(pos, pos + target, new Color(LimitEnabled ? 0.5f : 0, 0.5f, 0, 0.4f));
 					limitReached = true;
 				}
 				else

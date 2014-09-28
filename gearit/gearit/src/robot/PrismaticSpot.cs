@@ -16,6 +16,7 @@ using FarseerPhysics.Common;
 
 namespace gearit.src.robot
 {
+#if false
 	[Serializable()]
 	public class PrismaticSpot : PrismaticJoint, ISpot, ISerializable
 	{
@@ -244,4 +245,5 @@ namespace gearit.src.robot
 		public Color ColorValue { get; set; }
 		public string Name { get; set; }
 	}
+#endif
 }

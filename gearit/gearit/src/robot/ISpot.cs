@@ -22,7 +22,7 @@ namespace gearit.src.robot
 
 		void swap(Piece p1, Piece p2);
 
-		void moveAnchor(Piece p, Vector2 anchor, Robot robot = null);
+		void moveAnchor(Piece p, Vector2 anchor);
 
 		float MaxForce { get; set; }
 
@@ -40,9 +40,9 @@ namespace gearit.src.robot
 
 		void moveLocal(Piece p, Vector2 pos);
 
-		void fallAsleep(Robot robot, Piece p = null);
+		void fallAsleep(Piece p = null);
 
-		void wakeUp(Robot robot);
+		void wakeUp();
 	}
 
 	class CommonSpot

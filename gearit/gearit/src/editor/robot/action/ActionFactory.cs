@@ -29,6 +29,7 @@ namespace gearit.src.editor.robot.action
 		SAVE_ROBOT,
 		CHANGE_LIMIT,
 		SWAP_LIMIT,
+		LIMIT_FROZEN,
 		UNDO,
 		REDO,
 		CREATE_PIECE,
@@ -98,6 +99,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.LOAD_ROBOT) return new ActionLoadRobot();
 			if (action == ActionTypes.CHANGE_LIMIT) return new ActionChangeLimit();
 			if (action == ActionTypes.SWAP_LIMIT) return new ActionSwapLimit();
+			if (action == ActionTypes.LIMIT_FROZEN) return new ActionFreezeSpot();
 			if (action == ActionTypes.UNDO) return new ActionUndo();
 			if (action == ActionTypes.REDO) return new ActionRedo();
 			if (action == ActionTypes.CREATE_PIECE) return new ActionCreatePiece();

@@ -12,38 +12,29 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionSwapLimit : IAction
 	{
-		ISpot Spot;
+		private bool _isOK;
+		private RevoluteSpot _spot;
 		public void init()
 		{
-			Piece p1 = RobotEditor.Instance.Select1;
-			Piece p2 = RobotEditor.Instance.Select2;
-			if (p1.isConnected(p2))
-				Spot = p1.getConnection(p2);
-			else
-				Spot = null;
+			_spot = RobotEditor.Instance.SelectedSpot;
+			_isOK = (_spot != null);
 		}
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.F)));
+			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.Q)));
 		}
 
 		public bool run()
 		{
-			if (Spot != null && Spot.GetType() == typeof(RevoluteSpot))
-				((RevoluteSpot)Spot).LimitEnabled = !((RevoluteSpot)Spot).LimitEnabled;
-			return (false);
+			if (_isOK)
+				_spot.LimitEnabled = !_spot.LimitEnabled;
+			return false;
 		}
 
-		public void revert()
-		{
-			run();
-		}
+		public void revert() { run(); }
 
-		public bool canBeReverted()
-		{
-			return (Spot != null && Spot.GetType() == typeof(RevoluteSpot));
-		}
+		public bool canBeReverted() { return true; }
 
 		public ActionTypes type() { return ActionTypes.SWAP_LIMIT; }
 	}

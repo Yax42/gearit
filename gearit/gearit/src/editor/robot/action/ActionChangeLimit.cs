@@ -12,24 +12,39 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionChangeLimit : IAction
 	{
+		private Piece P1;
+		private Piece P2;
+		private float From;
+		private float To;
+		private bool HasBeenRevert;
+		private bool IsOk;
 		private int _step;
-		public void init() { _step = 0; }
+
+		public void init()
+		{
+			_step = 0;
+			P1 = RobotEditor.Instance.Select1;
+			P2 = RobotEditor.Instance.Select2;
+			HasBeenRevert = false;
+
+			IsOk = P1.isConnected(P2);
+			if (IsOk)
+			{
+				From = P1.getConnection(P2).MaxAngle;
+				To = From;
+			}
+		}
 
 		public bool shortcut()
 		{
-			return false;
-			return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.S)));
+			return (Input.ctrlAltShift(false, false, true) && (Input.justPressed(Keys.Q)));
 		}
 
-		public bool run(ref Robot robot, ref Piece selected1, ref Piece selected2)
+		public bool run()
 		{
-			ISpot spot = selected1.getConnection(selected2);
-
-			if (spot == null || spot.GetType() != typeof(RevoluteSpot))
-				return (false);
-			RevoluteSpot revSpot = (RevoluteSpot)spot;
-			if (revSpot.LimitEnabled == false)
-				return (false);
+			if (!IsOk)
+				return false;
+			RevoluteSpot revSpot = (RevoluteSpot)P1.getConnection(P2);;
 			if (_step == 0)
 			{
 				revSpot.LowerLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - revSpot.WorldAnchorA, new Vector2(1, 0));
@@ -52,8 +67,6 @@ namespace gearit.src.editor.robot.action
 				_step++;
 			return (true);
 		}
-
-		public bool run() { return false; }
 
 		public void revert() { }
 

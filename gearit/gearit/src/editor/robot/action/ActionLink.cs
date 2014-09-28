@@ -117,8 +117,8 @@ namespace gearit.src.editor.robot.action
 
 			if (IsPrismatic)
 			{
-				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-				new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+				//new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+				//new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
 			}
 			else
 			{

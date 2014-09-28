@@ -39,9 +39,9 @@ namespace gearit.src.editor.robot.action
 			else
 				anchor1 = select1.ShapeLocalOrigin();
 
-			if (IsPrismatic)
+			/*if (IsPrismatic)
 				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-			else
+			else*/
 			{
 				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
 			}

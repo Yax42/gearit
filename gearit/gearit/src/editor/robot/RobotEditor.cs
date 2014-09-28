@@ -32,6 +32,7 @@ namespace gearit.src.editor.robot
 		// Action
 		public Piece Select1 {get; set;}
 		public Piece Select2 {get; set;}
+		public RevoluteSpot SelectedSpot { get { return Select1.getConnection(Select2); } }
 		private List<IAction> _actionsLog;
 		private List<IAction> _redoActionsLog;
 		private IAction _currentAction;
@@ -114,6 +115,7 @@ namespace gearit.src.editor.robot
 			Select1 = Robot.Heart;
 			Select2 = Robot.Heart;
 		}
+
 
 		public override void Update(GameTime gameTime)
 		{
@@ -227,7 +229,6 @@ namespace gearit.src.editor.robot
 				Select1.getConnection(Select2).ColorValue =
 					new Color(MathLib.LoopIn(_time * 10, 255), 255, MathLib.LoopIn(_time * 10, 255));
 
-
 			Robot.drawDebug(_draw_game);
 
 			if (Select1.isConnected(Select2))
@@ -283,7 +284,18 @@ namespace gearit.src.editor.robot
 
 		//-----------------------ROBOT-------------------------------------
 
-		public Robot Robot { get; set; }
+
+		private Robot _Robot;
+		public Robot Robot
+		{
+			get { return _Robot; }
+			set
+			{
+				_Robot = value;
+				_Robot.IsInEditor = true;
+			}
+		}
+
 		public void resetRobot(Robot bot)
 		{
 			if (Robot != null)

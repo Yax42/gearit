@@ -11,6 +11,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Collision.Shapes;
 using gearit.src.editor;
 using FarseerPhysics.DebugViews;
+using gearit.src.robot;
 
 namespace gearit.src
 {
@@ -164,6 +165,13 @@ namespace gearit.src
 			_lineVertices[_triangleVertsCount++] = new VertexPositionColor(new Vector3(p3, 0f), col);
 		}
 
+		public void drawSquare(Vector2 pos, float ray, Color col)
+		{
+			drawLine(pos + new Vector2(-ray, -ray), pos + new Vector2(ray, -ray), col);
+			drawLine(pos + new Vector2(ray, -ray), pos + new Vector2(ray, ray), col);
+			drawLine(pos + new Vector2(ray, ray), pos + new Vector2(-ray, ray), col);
+			drawLine(pos + new Vector2(-ray, ray), pos +  new Vector2(-ray, -ray), col);
+		}
 		public void drawLine(Vector2 p1, Vector2 p2, Color col)
 		{
 			_primitiveBatch.AddVertex(p1, col, PrimitiveType.LineList);
@@ -197,12 +205,21 @@ namespace gearit.src
 			}
 		}
 
-		public void draw(Body b, Color col)
+		public void draw(Body b, Color col, int a = 128)
 		{
+			col.A = (byte) a;
 			Transform xf;
 			b.GetTransform(out xf);
 			foreach (Fixture f in b.FixtureList)
 				draw(f, xf, col);
+#if DRAW_DEBUG
+			if (b.GetType() == typeof(Rod))
+			{
+				Rod p = (Rod)b;
+				drawCircle(p.TMP_pos, p.TMP_dist, new Color(1, 0,0,0.1f), false);
+			}
+#endif
+
 			/*** Bon gros bullshit
 			Texture2D texture = new Texture2D(_device, 1, 1);
 			texture.SetData<Color>(new Color[] { Color.Orange});
@@ -268,7 +285,6 @@ namespace gearit.src
 
 		public void drawPolygon(Vector2[] vertices, int from, int count, Color color)
 		{
-			color.A = 128;
 			paintPolygon(vertices, from, count, color);
 			for (int i = from; i < count + from - 1; i++)
 				drawLine(vertices[i], vertices[i + 1], color);
@@ -277,7 +293,6 @@ namespace gearit.src
 
 		public void drawCircle(Vector2 center, float radius, Color color, bool paint = false)
 		{
-			color.A = 128;
 			const double increment = Math.PI * 2.0 / _circleSegments;
 			double theta = 0.0;
 			Vector2[] vers = new Vector2[_circleSegments];
