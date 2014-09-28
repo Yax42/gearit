@@ -246,12 +246,31 @@ namespace gearit.src.robot
 			_pieces.Add(piece);
 		}
 
-		public Piece getPiece(Vector2 p)
+		public Piece ClosePiece(Vector2 p)
+		{
+			float minFound = 1000000f;
+			Piece res = Heart; 
+			for (int i = _pieces.Count - 1; i > 0; i--)
+				if (_pieces[i].Shown)
+				{
+					float curDist = _pieces[i].DistanceSquared(p);
+					if (curDist < minFound)
+					{
+						minFound = curDist;
+						res = Pieces[i];
+					}
+				}
+			return res;
+		}
+
+		public Piece GetPiece(Vector2 p)
 		{
 			for (int i = _pieces.Count - 1; i > 0; i--)
 				if (_pieces[i].Shown && _pieces[i].Contain(p))
-					return (_pieces[i]);
-			return (Heart);
+					return _pieces[i];
+			if (Heart.Shown && Heart.Contain(p))
+				return Heart;
+			return ClosePiece(p);
 		}
 
 		public float Weight
@@ -360,10 +379,7 @@ namespace gearit.src.robot
 		public void drawDebug(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-				if (_pieces[i].Shown)
-					dg.draw(_pieces[i], _pieces[i].ColorValue);
-				else 
-					dg.draw(_pieces[i], new Color(new Vector4(_pieces[i].ColorValue.ToVector3(), 0.16f)));
+				dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i].Shown ? 128 : 32);
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].drawDebug(dg);
 		}
@@ -466,16 +482,11 @@ namespace gearit.src.robot
 			}
 		}
 
-		public List<SpotApi> GetSpotApi()
+		public List<RevoluteApi> GetSpotApi()
 		{
-			List<SpotApi> res = new List<SpotApi>();
+			List<RevoluteApi> res = new List<RevoluteApi>();
 			for (int i = 0; i < _spots.Count; i++)
-			{
-				if (_spots[i].GetType() == typeof(PrismaticSpot))
-					res.Add(new PrismaticApi(_spots[i]));
-				else
-					res.Add(new RevoluteApi(_spots[i]));
-			}
+				res.Add(new RevoluteApi(_spots[i]));
 			return (res);
 		}
 

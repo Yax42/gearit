@@ -74,6 +74,12 @@ namespace gearit.src.robot
 				}
 			}
 		}
+
+		public override float DistanceSquared(Vector2 p)
+		{
+			return Vector2.DistanceSquared(p, Position) - (_size * _size);
+		}
+
 		public override bool IsValid()
 		{
             return Weight > 0 && getSize() > SIZE_MIN && getSize() < SIZE_MAX;

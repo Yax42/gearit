@@ -195,6 +195,8 @@ namespace gearit.src.robot
 			}
 		}
 
+		public abstract float DistanceSquared(Vector2 p);
+
 		public bool Contain(Vector2 p)
 		{
 			Transform t;

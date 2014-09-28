@@ -8,6 +8,7 @@ using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Joints;
 using gearit.src.utility;
+using System.Diagnostics;
 
 namespace gearit.src.robot
 {
@@ -142,12 +143,12 @@ namespace gearit.src.robot
 
 		private float endsSize()
 		{
-			return (_endB - _endA).Length() / 2;
+			return (Direction).Length() / 2;
 		}
 
 		private float endsAngle()
 		{
-			return (MathLib.Angle(_endB - _endA));
+			return (MathLib.Angle(Direction));
 		}
 
 		public bool CloseEnd(Vector2 pos)
@@ -178,6 +179,40 @@ namespace gearit.src.robot
 		{
             
 			return new Vector2(_size, 0);
+		}
+
+		public Vector2 DirectionNormalized
+		{
+			get { return Direction / _size;}
+		}
+
+		public Vector2 Direction
+		{
+			get { return _endB - _endA; }
+		}
+
+#if DRAW_DEBUG
+		public float TMP_dist = 1;
+		public Vector2 TMP_pos;
+#endif
+		public override float DistanceSquared(Vector2 p)
+		{
+			Vector2 origin = p;
+			Vector2 dir = Direction;
+			p = p - _endA;
+			float dot = Vector2.Dot(dir, p) / dir.LengthSquared();
+			if (dot > 1)
+				dot = 1;
+			if (dot < 0)
+				dot = 0;
+			Vector2 closePos = dir * dot;
+
+#if DRAW_DEBUG
+			TMP_dist = Vector2.Distance(p, closePos);
+			TMP_pos = _endA + closePos;
+#endif
+
+			return Vector2.DistanceSquared(p, closePos);
 		}
 	}
 }

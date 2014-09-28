@@ -190,6 +190,11 @@ namespace gearit.src.robot
 			return (Shape.MassData.Area);
 		}
 
+		public override float DistanceSquared(Vector2 p)
+		{
+			return 10000f;
+		}
+
 		public override Vector2 ShapeLocalOrigin()
 		{
 			Vector2 res = Vector2.Zero;

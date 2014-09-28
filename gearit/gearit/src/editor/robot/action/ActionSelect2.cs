@@ -10,7 +10,7 @@ namespace gearit.src.editor.robot.action
 	{
 		public void init()
 		{
-			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.getPiece(Input.SimMousePos);
+			RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
 		}
 
 		public bool shortcut()
