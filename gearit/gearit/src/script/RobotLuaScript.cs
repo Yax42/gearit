@@ -16,7 +16,7 @@ namespace gearit.src.script
 	class RobotLuaScript : LuaScript
 	{
 
-		public RobotLuaScript(List<SpotApi> api, RobotStateApi robotApi, string text, bool isFile = true)
+		public RobotLuaScript(List<RevoluteApi> api, RobotStateApi robotApi, string text, bool isFile = true)
 			: base(text, isFile)
 		{
 			for (int i = 0; i < api.Count; i++)

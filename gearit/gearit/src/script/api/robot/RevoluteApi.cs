@@ -8,19 +8,34 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.script
 {
-	class RevoluteApi : SpotApi
+	public class RevoluteApi
 	{
-		RevoluteSpot _revolute;
-		public RevoluteApi(ISpot spot) :
-		base(spot)
+		internal RevoluteSpot _spot;
+
+		public RevoluteApi(RevoluteSpot spot)
 		{
-			_revolute = (RevoluteSpot)spot;
+			_spot = spot;
 		}
 
-		public float Angle()
+		public string Name()
 		{
-			return (_revolute.JointAngle);
+			return (_spot.Name);
 		}
+
+		public float Motor
+		{
+			get { return _spot.Force; }
+			set
+			{
+				if (value > 1)
+					value = 1;
+				else if (value < -1)
+					value = -1;
+				_spot.Force = value;
+			}
+		}
+
+		public float Angle { get { return _spot.JointAngle; } }
 
 #if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle
@@ -41,7 +56,7 @@ namespace gearit.src.script
 			set { _revolute.Frozen = value; }
 		}
 
-		public bool LimitEnabled
+		public bool Limited
 		{
 			get { return _revolute.SpotLimitEnabled; }
 			set { _revolute.SpotLimitEnabled = value; }

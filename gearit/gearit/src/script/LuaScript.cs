@@ -16,9 +16,11 @@ namespace gearit.src.script
 		private LuaFunction _loadedScript;
 		private LuaFunction _frameCountScript;
 		private bool _ok;
+		private string FileName;
 
 		public LuaScript(string text, bool isFile = true)
 		{
+			FileName = text;
 			_ok = true;
 			try
 			{
@@ -55,7 +57,7 @@ namespace gearit.src.script
 			}
 			catch (Exception ex)
 			{
-				OutputManager.LogError("Lua script - crash: " + ex.Message);
+				OutputManager.LogError("Lua script (" + FileName + ") - crash: " + ex.Message);
 				_ok = false;
 			}
 		}

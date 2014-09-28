@@ -49,7 +49,7 @@ namespace gearit.src.Network
                 serverThread.Start();
                 OutputManager.LogMessage(serverThread.IsAlive.ToString());
                 _server_launched = true;
-                OutputManager.LogNetwork("[Server] Launched");
+                OutputManager.LogNetwork("(Server) Launched");
             }
             catch
             {
@@ -112,7 +112,7 @@ namespace gearit.src.Network
                                 OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
                                 foreach (NetConnection conn in Peer.Connections)
                                 {
-                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
+                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " (" + conn.Status + ")";
                                     OutputManager.LogNetwork(str);
                                 }
                             }
@@ -133,10 +133,16 @@ namespace gearit.src.Network
 
 		public void Server_ManageRequest(NetIncomingMessage msg)
 		{
+			int i;
+			for (i = 0; i < Peer.Connections.Count; i++)
+				if (Peer.Connections[i] == msg.SenderConnection)
+					break;
+			Debug.Assert(i < Peer.Connections.Count);
+			ManageRequest(msg, i);
+
 			int id = 0;
 			if (Peer.Connections[0] == msg.SenderConnection)
 				id = 1;
-			ManageRequest(msg, id);
 			PushRequest(msg.Data, id);
 		}
 

@@ -41,7 +41,7 @@ namespace gearit.src.server
             }
             catch
             {
-                OutputManager.LogNetwork("[Server] Fail to Launch server");
+                OutputManager.LogNetwork("(Server) Fail to Launch server");
             }
         }
 
@@ -87,7 +87,7 @@ namespace gearit.src.server
                                 OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
                                 foreach (NetConnection conn in s_server.Connections)
                                 {
-                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " [" + conn.Status + "]";
+                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " (" + conn.Status + ")";
                                     OutputManager.LogMessage(str);
                                     NetOutgoingMessage om = s_server.CreateMessage();
                                     om.Write("You are connected!");
