@@ -75,6 +75,14 @@ namespace gearit.src.robot
 			}
 		}
 
+		public override Vector2 ClosestPositionInside(Vector2 p)
+		{
+			var dir = p - Position;
+			if (dir.LengthSquared() <= (_size * _size))
+				return p + Position;
+			return Vector2.Normalize(dir) * _size;
+		}
+
 		public override float DistanceSquared(Vector2 p)
 		{
 			return Vector2.DistanceSquared(p, Position) - (_size * _size);

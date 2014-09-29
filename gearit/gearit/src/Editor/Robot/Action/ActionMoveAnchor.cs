@@ -44,9 +44,14 @@ namespace gearit.src.editor.robot.action
 				return false;
 			Debug.Assert(P1.isConnected(P2));
 
-			if (!HasBeenRevert && P1.Contain(Input.SimMousePos))
+			if (!HasBeenRevert)
 			{
-				To = Input.SimMousePos;
+				if (P1.GetType() != typeof(Heart))
+				{
+					To = P1.ClosestPositionInside(Input.SimMousePos);
+				}
+				else if (P1.Contain(Input.SimMousePos))
+					To = Input.SimMousePos;
 			}
 			P1.getConnection(P2).moveAnchor(P1, To);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));

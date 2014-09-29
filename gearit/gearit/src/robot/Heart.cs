@@ -195,6 +195,11 @@ namespace gearit.src.robot
 			return 10000f;
 		}
 
+		public override Vector2 ClosestPositionInside(Vector2 p)
+		{
+			return Vector2.Zero;
+		}
+
 		public override Vector2 ShapeLocalOrigin()
 		{
 			Vector2 res = Vector2.Zero;

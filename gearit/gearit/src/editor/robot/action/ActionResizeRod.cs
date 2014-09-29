@@ -39,26 +39,16 @@ namespace gearit.src.editor.robot.action
 			if (RobotEditor.Instance.Select1.GetType() != typeof(Rod))
 				return false;
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
-
-			return (Input.ctrlAltShift(false, false, false)
-					|| Input.ctrlAltShift(false, false, true))
-					&& Input.justPressed(Keys.S)
-					&& RobotEditor.Instance.Select1.GetType() == typeof(Rod);
 		}
 
 		public bool run()
 		{
 			if (!HasBeenRevert)
-			{
 				To = Input.SimMousePos;
-			}
 			RobotEditor.Instance.Robot.ResetActEnds();
 			Rod.SetEnd(To, EndId, Select);
-			//foreach (Piece p in list)
-			//	((Rod)p).GenerateEndsFromAnchors()
-			return (Input.justPressed(MouseKeys.LEFT) == false
-				&& Input.released(MouseKeys.RIGHT) == false
-				&& Input.justReleased(Keys.S) == false);
+			return Input.justPressed(MouseKeys.LEFT) == false
+				&& Input.released(MouseKeys.RIGHT) == false;
 		}
 
 		public void revert()

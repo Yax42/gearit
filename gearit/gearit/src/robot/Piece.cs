@@ -296,18 +296,12 @@ namespace gearit.src.robot
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
-				RevoluteSpot rev = (RevoluteSpot)i.Joint;
-				if (dynamic && i.Other.GetType() == typeof(Rod))
-				{
-					Rod r = (Rod)i.Other;
-					bool isA = (i.Joint.BodyB == this);
-					r.GenerateEndFromAnchor(rev);
-				}
-				else
-					((RevoluteSpot)i.Joint).SynchroniseAnchors(this, dynamic, false);
+				((RevoluteSpot)i.Joint).SynchroniseAnchors((Piece)i.Other, dynamic, false);
 			}
 			updateCharacteristics();
 		}
+
+		abstract public Vector2 ClosestPositionInside(Vector2 p);
 
 		virtual public void resize(float size, bool reset = false)
 		{

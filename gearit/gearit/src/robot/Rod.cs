@@ -130,7 +130,7 @@ namespace gearit.src.robot
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
 			if (Aok)
 			{
-				if ((_endB - endA).LengthSquared() < 000.1f)
+				if ((_endB - endA).LengthSquared() < 0.001f)
 					return;
 				if ((_endB - endA).LengthSquared() > 1000f)
 				{
@@ -142,7 +142,7 @@ namespace gearit.src.robot
 			}
 			if (Bok)
 			{
-				if ((_endA - endB).LengthSquared() < 000.1f)
+				if ((_endA - endB).LengthSquared() < 0.001f)
 					return;
 				if ((_endA - endB).LengthSquared() > 1000f)
 				{
@@ -299,24 +299,26 @@ namespace gearit.src.robot
 		public float TMP_dist = 1;
 		public Vector2 TMP_pos;
 #endif
-		public override float DistanceSquared(Vector2 p)
+		public override Vector2 ClosestPositionInside(Vector2 p)
 		{
-			Vector2 origin = p;
 			Vector2 dir = Direction;
-			p = p - _endA;
-			float dot = Vector2.Dot(dir, p) / dir.LengthSquared();
+			float dot = Vector2.Dot(dir, p - _endA) / dir.LengthSquared();
 			if (dot > 1)
 				dot = 1;
 			if (dot < 0)
 				dot = 0;
-			Vector2 closePos = dir * dot;
+			return _endA + dir * dot;
+		}
 
+		public override float DistanceSquared(Vector2 p)
+		{
 #if DRAW_DEBUG
+			var closePos = ClosestPositionInside(p);
 			TMP_dist = Vector2.Distance(p, closePos);
 			TMP_pos = _endA + closePos;
 #endif
+			return Vector2.DistanceSquared(p, ClosestPositionInside(p));
 
-			return Vector2.DistanceSquared(p, closePos);
 		}
 	}
 }

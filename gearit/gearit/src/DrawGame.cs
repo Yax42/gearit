@@ -216,7 +216,7 @@ namespace gearit.src
 			if (b.GetType() == typeof(Rod))
 			{
 				Rod p = (Rod)b;
-				drawCircle(p.TMP_pos, p.TMP_dist, new Color(1, 0,0,0.1f), false);
+				drawCircle(p.TMP_pos, p.TMP_dist, new Color(1, 0,0,0.03f), false);
 			}
 #endif
 
