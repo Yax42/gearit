@@ -16,20 +16,23 @@ namespace gearit.src.editor
 	public static class SerializerHelper
 	{
 		public static World World = null;
-		public static Robot _CurrentRobot = null;
+		public static Robot CurrentRobot = null;
 		public static string CurrentPath;
-		public static Robot CurrentRobot
+		public static Dictionary<int, Piece> Ptrmap = null;
+		private static bool _IsNextRobotInEditor = false;
+		public static bool IsNextRobotInEditor
 		{
 			get
 			{
-				return _CurrentRobot;
+				bool res = _IsNextRobotInEditor;
+				_IsNextRobotInEditor = false;
+				return res;
 			}
 			set
 			{
-				_CurrentRobot = value;
+				_IsNextRobotInEditor = value;
 			}
 		}
-		public static Dictionary<int, Piece> Ptrmap = null;
 
 		public static void Add(int code, Piece p)
 		{

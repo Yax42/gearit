@@ -26,6 +26,8 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
+			if (RobotEditor.Instance.Select1.GetType() == typeof(Rod))
+				return false;
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
 		}
 
@@ -36,14 +38,15 @@ namespace gearit.src.editor.robot.action
 				To = Input.SimMousePos;
 			}
 
-			P1.move(To, RobotEditor.Instance.Robot);
+			RobotEditor.Instance.Robot.ResetActEnds();
+			P1.move(To, true, true);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
 		}
 
 		public void revert()
 		{
 			HasBeenRevert = true;
-			P1.move(From, RobotEditor.Instance.Robot);
+			P1.move(From, true, true);
 		}
 
 		public bool canBeReverted() { return true; }

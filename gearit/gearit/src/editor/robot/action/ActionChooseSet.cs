@@ -15,7 +15,7 @@ namespace gearit.src.editor.robot.action
 		{
 			set
 			{
-				MenuRobotEditor.Instance.IsPrismatic = value;
+				MenuRobotEditor.Instance.IsPrismatic = false;
 			}
 			get
 			{

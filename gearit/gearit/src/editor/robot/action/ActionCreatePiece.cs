@@ -66,12 +66,13 @@ namespace gearit.src.editor.robot.action
 			}
 			else if (!ActionChooseSet.IsWheel)
 			{
+				RobotEditor.Instance.Robot.ResetActEnds();
 				FrameCount++;
 				if (FrameCount < 2)
 					return true;
 				else if (FrameCount == 2)
 					((Rod)P1).GenerateEnds();
-				((Rod)P1).setEnd(Input.SimMousePos, false);
+				((Rod)P1).SetEnd(Input.SimMousePos, false);
 				return Input.pressed(Keys.W);
 			}
 			return false;

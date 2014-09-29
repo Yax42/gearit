@@ -45,7 +45,7 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.ForestGreen;
-			Init(robot);
+			Init();
 		}
 
 		internal Piece(Robot robot, Shape shape) :
@@ -56,13 +56,15 @@ namespace gearit.src.robot
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
 			SetShape(shape);
-			Init(robot);
+			Init();
 		}
 
-		private void Init(Robot robot)
+		private void Init()
 		{
+			if (_robot.IsInEditor)
+				IsStatic = true;
 			ColorValue = Color.ForestGreen;
-			robot.addPiece(this);
+			_robot.addPiece(this);
 			Shown = true;
 			Sleeping = false;
 
@@ -91,6 +93,8 @@ namespace gearit.src.robot
 			SerializerHelper.Add(oldHashMap, this);
 			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
+			if (_robot.IsInEditor)
+				IsStatic = true;
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
@@ -241,32 +245,31 @@ namespace gearit.src.robot
 
 		//----------AFFECTING-SPOTS-ACTIONS--------------
 
-		public void rotate(float angle, Piece comparator, Robot robot = null)
+		public void rotate(float angle, Piece comparator, bool dynamic = false, bool reset = false)
 		{
-			if (robot != null)
-				robot.ResetAct();
-			rotateDelta(angle - Rotation, comparator);
+			if (reset)
+				_robot.ResetAct();
+			rotateDelta(angle - Rotation, comparator, dynamic);
 		}
 
-		public void rotateDelta(float angle)
+		public void rotateDelta(float angle, bool dynamic = false)
 		{
-			rotateDelta(angle, this);
+			rotateDelta(angle, this, dynamic);
 		}
 		
-		public void rotateDelta(float angle, Piece comparator)
+		public void rotateDelta(float angle, Piece comparator, bool dynamic)
 		{
 			if (DidAct)
 				return;
 			DidAct = true;
 			Rotation += angle;
+			if (dynamic)
+				return;
 			if (comparator == this)
 			{
 				for (JointEdge i = JointList; i != null; i = i.Next)
 				{
-					if (i.Joint.GetType() == typeof(RevoluteSpot))
 						((RevoluteSpot)i.Joint).rotate(this, angle);
-					//if (i.Joint.GetType() == typeof(PrismaticSpot))
-					//	((PrismaticSpot)i.Joint).rotateNoRepercussion(this, angle);
 				}
 			}
 			else if (isConnected(comparator))
@@ -278,33 +281,38 @@ namespace gearit.src.robot
 			//updateCharacteristics();
 		}
 
-		public void moveDelta(Vector2 pos)
+		public void moveDelta(Vector2 pos, bool dynamic)
 		{
-			move(pos + Position);
+			move(pos + Position, dynamic);
 		}
 
-		virtual public void move(Vector2 pos, Robot robot = null)
+		virtual public void move(Vector2 pos, bool dynamic = false, bool reset = false)
 		{
-			if (robot != null)
-				robot.ResetAct();
+			if (reset)
+				_robot.ResetAct();
 			if (DidAct)
 				return;
 			DidAct = true;
 			Position = pos;
 			for (JointEdge i = JointList; i != null; i = i.Next)
 			{
-				//if (i.Joint.GetType() == typeof(RevoluteSpot))
-					((RevoluteSpot)i.Joint).SynchroniseAnchors(this);
-				//else
-				//	((PrismaticSpot)i.Joint).updateAxis();
+				RevoluteSpot rev = (RevoluteSpot)i.Joint;
+				if (dynamic && i.Other.GetType() == typeof(Rod))
+				{
+					Rod r = (Rod)i.Other;
+					bool isA = (i.Joint.BodyB == this);
+					r.GenerateEndFromAnchor(rev);
+				}
+				else
+					((RevoluteSpot)i.Joint).SynchroniseAnchors(this, dynamic, false);
 			}
 			updateCharacteristics();
 		}
 
-		virtual public void resize(float size, Robot robot = null)
+		virtual public void resize(float size, bool reset = false)
 		{
-			if (robot != null)
-				robot.ResetAct();
+			if (reset)
+				_robot.ResetAct();
 			if (_size == 0)
 				_size = size;
 			else

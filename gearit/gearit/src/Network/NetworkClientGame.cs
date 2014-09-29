@@ -114,7 +114,7 @@ namespace gearit.src.Network
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			setMainRobot(1);
+			setMainRobot(0);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
@@ -126,6 +126,7 @@ namespace gearit.src.Network
 
 			NetworkClient = new NetworkClient(PacketManager);
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
+			//NetworkClient.Connect("81.249.189.167", 25552);
 			NetworkClient.Connect("127.0.0.1", 25552);
 
 			// I have no idea what this is.
@@ -166,8 +167,8 @@ namespace gearit.src.Network
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 				return ;
-			if (NetworkClient.Requests.Count == 0)
-				return ;
+//			if (NetworkClient.Requests.Count == 0)
+//				return ;
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
 			//float delta = 2 / 30f; // Static delta time for now, yea bitch!

@@ -101,7 +101,7 @@ namespace gearit.src.editor.robot.action
 			}
 
 			if (ActionChooseSet.IsWheel)
-				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f);//, Input.SimMousePos);
+				return;//P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f);//, Input.SimMousePos);
 			else
 			{
 				P1 = new Rod(RobotEditor.Instance.Robot, 2);//, Input.SimMousePos);
@@ -115,15 +115,16 @@ namespace gearit.src.editor.robot.action
 			else
 				anchor1 = select1.ShapeLocalOrigin();
 
-			if (IsPrismatic)
+			/*if (IsPrismatic)
 			{
-				//new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-				//new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+				new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
 			}
-			else
+			else*/
 			{
-				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-				new RevoluteSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+				var r1 = new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
+				var r2 = new RevoluteSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+				((Rod)P1).GenerateEndFromAnchor(r2, r1);
 			}
 			RobotEditor.Instance.Select1 = P1;
 		}
@@ -135,10 +136,6 @@ namespace gearit.src.editor.robot.action
 			if (HasBeenRevert)
 			{
 				RobotEditor.Instance.Robot.wakeUp(Pack);
-			}
-			else if (!ActionChooseSet.IsWheel)
-			{
-				((Rod)P1).GenerateEnds();
 			}
 			return false;
 		}

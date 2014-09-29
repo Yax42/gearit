@@ -25,18 +25,21 @@ namespace gearit.src.editor.robot.action
 			HasBeenRevert = false;
 			Debug.Assert(RobotEditor.Instance.Select1.GetType() == typeof(Rod));
 			Rod = (Rod) RobotEditor.Instance.Select1;
-			Rod.GenerateEnds();
 			EndId = Rod.CloseEnd(Input.SimMousePos);
 			From = Rod.getEnd(EndId);
-			if (Input.pressed(Keys.LeftShift))
-				Select = RobotEditor.Instance.Select2;
-			else
+			//if (Input.pressed(Keys.LeftShift))
+			//	Select = RobotEditor.Instance.Select2;
+			//else
 				Select = null;
 
 		}
 
 		public bool shortcut()
 		{
+			if (RobotEditor.Instance.Select1.GetType() != typeof(Rod))
+				return false;
+			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
+
 			return (Input.ctrlAltShift(false, false, false)
 					|| Input.ctrlAltShift(false, false, true))
 					&& Input.justPressed(Keys.S)
@@ -49,14 +52,19 @@ namespace gearit.src.editor.robot.action
 			{
 				To = Input.SimMousePos;
 			}
-			Rod.setEnd(To, EndId, Select);
-			return (Input.justPressed(MouseKeys.LEFT) == false && Input.justReleased(Keys.S) == false);
+			RobotEditor.Instance.Robot.ResetActEnds();
+			Rod.SetEnd(To, EndId, Select);
+			//foreach (Piece p in list)
+			//	((Rod)p).GenerateEndsFromAnchors()
+			return (Input.justPressed(MouseKeys.LEFT) == false
+				&& Input.released(MouseKeys.RIGHT) == false
+				&& Input.justReleased(Keys.S) == false);
 		}
 
 		public void revert()
 		{
 			HasBeenRevert = true;
-			Rod.setEnd(From, EndId, Select);
+			Rod.SetEnd(From, EndId, Select);
 		}
 
 		public bool canBeReverted() { return true; }

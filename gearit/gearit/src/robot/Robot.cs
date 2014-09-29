@@ -93,8 +93,9 @@ namespace gearit.src.robot
 
 		public bool IsInEditor = false;
 
-		public Robot(World world)
+		public Robot(World world, bool isInEditor = false)
 		{
+			IsInEditor = isInEditor;
 			_world = world;
 			Id = _robotIdCounter++;
 			_pieces = new List<Piece>();
@@ -109,6 +110,7 @@ namespace gearit.src.robot
 		#region Serialization
 		public Robot(SerializationInfo info, StreamingContext ctxt)
 		{
+			IsInEditor = SerializerHelper.IsNextRobotInEditor;
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
@@ -235,6 +237,17 @@ namespace gearit.src.robot
 		{
 			foreach (Piece p in _pieces)
 				p.resetAct();
+		}
+
+		public void ResetActEnds()
+		{
+			ResetAct();
+			foreach (Piece p in _pieces)
+				if (p.GetType() == typeof(Rod))
+				{
+					((Rod)p).DidAct_EndA = false;
+					((Rod)p).DidAct_EndB = false;
+				}
 		}
 
 		public void addSpot(RevoluteSpot spot)
@@ -468,7 +481,7 @@ namespace gearit.src.robot
 		{
 			//for (int i = 1; i < _pieces.Count; i++)
 			//	_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
-			Heart.move(pos, this);
+			Heart.move(pos, false, true);
 		}
 
 		public Vector2 Position

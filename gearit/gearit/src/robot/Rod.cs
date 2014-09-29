@@ -17,10 +17,26 @@ namespace gearit.src.robot
 	{
         float SIZE_MIN = 0.1f;
         float SIZE_MAX = 20;
+		private bool EndsGenerated = false;
 		private const float _width = 0.02f;
 
 		private Vector2 _endA;
 		private Vector2 _endB;
+
+		public bool DidAct_EndA;
+		public bool DidAct_EndB;
+		public bool DidAct_End(bool isA)
+		{
+			return isA ? DidAct_EndA : DidAct_EndB;
+		}
+
+		public void DidAct_End(bool isA, bool v)
+		{
+			if (isA)
+				DidAct_EndA = v;
+			else
+				DidAct_EndB = v;
+		}
 
 		public Rod(Robot robot, float size) :
 			this(robot, size, Vector2.Zero)
@@ -73,7 +89,7 @@ namespace gearit.src.robot
 
 		virtual public void updateCharacteristics()
 		{
-			GenerateEnds();
+			//GenerateEnds();
 		}
 
 		override public float getSize()
@@ -101,31 +117,52 @@ namespace gearit.src.robot
 		
 		//--------ENDS-------------
 
-		private void updateEnds(Piece comparator = null)
+		private void UpdateEnds(Piece comparator = null, bool dynamic = false)
 		{
-			rotate(endsAngle(), comparator, _robot);
-
-			resize(endsSize(), _robot);
-
-			move(endsPosition(), _robot);
+			Debug.Assert(_robot.IsInEditor);
+			rotate(endsAngle(), comparator, dynamic, true);
+			resize(endsSize(), true);
+			move(endsPosition(), dynamic, true);
 		}
 
-		public void setEnd(Vector2 end, bool isA, Piece comparator = null)
+		private void SetEnds(Vector2 endA, bool Aok, Vector2 endB, bool Bok, Piece comparator = null)
 		{
 			double previous_angle_degree = MathLib.RadiansToDegrees(endsAngle());
-			if (isA)
+			if (Aok)
 			{
-				if ((_endB - end).LengthSquared() < 0.01f)
+				if ((_endB - endA).LengthSquared() < 000.1f)
 					return;
-				_endA = end;
+				if ((_endB - endA).LengthSquared() > 1000f)
+				{
+					Debug.Assert(false);
+					return;
+				}
+				DidAct_EndA = true;
+				_endA = endA;
 			}
-			else
+			if (Bok)
 			{
-				if ((_endA - end).LengthSquared() < 0.01f)
+				if ((_endA - endB).LengthSquared() < 000.1f)
 					return;
-				_endB = end;
+				if ((_endA - endB).LengthSquared() > 1000f)
+				{
+					Debug.Assert(false);
+					return;
+				}
+				DidAct_EndB = true;
+				_endB = endB;
 			}
-			updateEnds(comparator);
+			UpdateEnds(comparator, true);
+		}
+
+		public void SetEnds(Vector2 endA, Vector2 endB, Piece comparator = null)
+		{
+			SetEnds(endA, true, endB, true, comparator);
+		}
+
+		public void SetEnd(Vector2 end, bool isA, Piece comparator = null)
+		{
+			SetEnds(end, isA, end, !isA, comparator);
 		}
 
 		public Vector2 getEnd(bool isA)
@@ -153,14 +190,81 @@ namespace gearit.src.robot
 
 		public bool CloseEnd(Vector2 pos)
 		{
-			return (pos - _endA).LengthSquared() < (pos - _endB).LengthSquared();
+			return Vector2.DistanceSquared(pos, _endA)
+					< Vector2.DistanceSquared(pos, _endB);
 		}
+
 		public void GenerateEnds()
 		{
+			//Debug.Assert(!EndsGenerated);
+			EndsGenerated = true;
 			Vector2 semiEnd = MathLib.PolarCoor(_size, Rotation);
 			_endA = Position - semiEnd;
 			_endB = Position + semiEnd;
 		}
+
+		public void GenerateEndFromAnchor(RevoluteSpot r)
+		{
+			Vector2 goal;
+			bool isAnchorA;
+
+			if (r.BodyB == this)
+			{
+				goal = r.WorldAnchorA;
+				isAnchorA = false;
+			}
+			else if (r.BodyA == this)
+			{
+				goal = r.WorldAnchorB;
+				isAnchorA = true;
+			}
+			else
+			{
+				Debug.Assert(false);
+				return;
+			}
+			bool isA = CloseEnd(goal);
+			if (isA)
+				isA = isA;
+			else
+				isA = isA;
+			if (DidAct_End(isA))
+				return;
+
+			float Ap = Direction.Length();
+			float ap = Vector2.Distance(isA ? _endB : _endA, (isAnchorA ? r.WorldAnchorA : r.WorldAnchorB));
+			if (ap < 0.001f)
+				return;
+			Vector2 bp = (isAnchorA ? r.WorldAnchorB : r.WorldAnchorA) - (isAnchorA ? r.WorldAnchorA : r.WorldAnchorB);
+			Vector2 res = ((Ap / ap) * bp) + (isA ? _endA : _endB);
+			SetEnd(res, isA);
+		}
+
+		public void GenerateEndFromAnchor(RevoluteSpot r1, RevoluteSpot r2)
+		{
+			Vector2 endA;
+			Vector2 endB;
+			if (r1.BodyA == this)
+				endA = r1.WorldAnchorB;
+			else if (r1.BodyB == this)
+				endA = r1.WorldAnchorA;
+			else
+			{
+				Debug.Assert(false);
+				return;
+			}
+			if (r2.BodyA == this)
+				endB = r2.WorldAnchorB;
+			else if (r2.BodyB == this)
+				endB = r2.WorldAnchorA;
+			else
+			{
+				Debug.Assert(false);
+				return;
+			}
+			SetEnds(endA, endB);
+		}
+
         public bool LocalAnchorsValid()
         {
             for (JointEdge jn = JointList; jn != null; jn = jn.Next)

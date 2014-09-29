@@ -105,7 +105,7 @@ namespace gearit.src.editor.robot
 
 			// Robot
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
-			Robot = new Robot(_world);
+			Robot = new Robot(_world, true);
 			Select1 = Robot.Heart;
 			Select2 = Robot.Heart;
 		}
@@ -285,16 +285,7 @@ namespace gearit.src.editor.robot
 		//-----------------------ROBOT-------------------------------------
 
 
-		private Robot _Robot;
-		public Robot Robot
-		{
-			get { return _Robot; }
-			set
-			{
-				_Robot = value;
-				_Robot.IsInEditor = true;
-			}
-		}
+		public Robot Robot;
 
 		public void resetRobot(Robot bot)
 		{
