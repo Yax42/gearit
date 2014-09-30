@@ -130,6 +130,7 @@ namespace gearit.src.game
 		public void addRobot(Robot robot)
 		{
 			Robots.Add(robot);
+			_world.Step(0);
 			if (Robots.Count == 1)
 				_camera.TrackingBody = robot.Heart;
 			robot.InitScript();

@@ -11,10 +11,10 @@ if Input:pressed(K_D) then
 end
 if Input:pressed(K_W) then
 	spot2.Motor = 1
-	spot3.Motor = 1
+	spot3.Motor = -1
 end
 if Input:pressed(K_S) then
-	spot3.Motor = -1
+	spot3.Motor = 1
 	spot2.Motor = -1
 end
 
@@ -30,4 +30,9 @@ if Input:pressed(K_E) then
 end
 if Input:pressed(K_Q) then
 	spot2.Frozen = false
+end
+
+if Input:pressed(K_F) then
+	spot3.Motor = 0
+	spot2.Motor = 0
 end

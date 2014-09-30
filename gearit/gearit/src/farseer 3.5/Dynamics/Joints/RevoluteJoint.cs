@@ -63,6 +63,7 @@ namespace FarseerPhysics.Dynamics.Joints
         private Mat33 _mass;			// effective mass for point-to-point constraint.
         private float _motorMass;	    // effective mass for motor/limit angular constraint.
         private LimitState _limitState;
+		public LimitState LimitState { get { return _limitState; } } // #GEARIT
 
         internal RevoluteJoint()
         {

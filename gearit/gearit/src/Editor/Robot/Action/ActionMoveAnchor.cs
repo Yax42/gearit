@@ -21,8 +21,8 @@ namespace gearit.src.editor.robot.action
 
 		public void init()
 		{
-			P1 = RobotEditor.Instance.Select1;
-			P2 = RobotEditor.Instance.Select2;
+			P2 = RobotEditor.Instance.Select1;
+			P1 = RobotEditor.Instance.Select2;
 			HasBeenRevert = false;
 
 			IsOk = P1.isConnected(P2);

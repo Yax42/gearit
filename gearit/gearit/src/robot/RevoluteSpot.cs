@@ -109,6 +109,32 @@ namespace gearit.src.robot
 
 		#region MotorControl
 
+		private bool AutoFreezeOnLimits = true;
+		LimitState AutoFreezeState = LimitState.Inactive;
+		public void ProcessAutoFreeze()
+		{
+			if (!AutoFreezeOnLimits
+				|| AutoFreezeState == LimitState
+				|| (LimitState != LimitState.AtLower
+				&& LimitState != LimitState.AtUpper)
+				|| Frozen)
+					return;
+			AutoFreezeState = LimitState;
+			if (AutoFreezeState == LimitState.AtLower)
+			{
+				LowerLimit = MinAngle;
+				UpperLimit = MinAngle;
+			}
+			else
+			{
+				LowerLimit = MaxAngle;
+				UpperLimit = MaxAngle;
+			}
+			//LimitEnabled = true; // normalement deja actif
+			MotorEnabled = false;
+			_Frozen = true;
+		}
+
 		private float _MaxAngle;
 		public float MaxAngle
 		{
@@ -161,14 +187,15 @@ namespace gearit.src.robot
 				{
 					LowerLimit = JointAngle;
 					UpperLimit = JointAngle;
-					base.LimitEnabled = true;
+					LimitEnabled = true;
 					MotorEnabled = false;
 				}
 				else
 				{
-					UpperLimit = MaxAngle +ReferenceAngle;
-					LowerLimit = MinAngle +ReferenceAngle;
+					UpperLimit = MaxAngle;
+					LowerLimit = MinAngle;
 					LimitEnabled = _SpotLimitEnabled;
+					AutoFreezeState = LimitState.Inactive;
 					MotorEnabled = true;
 				}
 			}
@@ -193,7 +220,13 @@ namespace gearit.src.robot
 		public float Force
 		{
 			get { return MotorSpeed / 15; }
-			set { MotorSpeed = value * 15; }
+			set
+			{
+				MotorSpeed = value * 15;
+				if ((value <= 0 && AutoFreezeState == LimitState.AtUpper)
+					|| (value >= 0 && AutoFreezeState == LimitState.AtLower))
+					Frozen = false;
+			}
 		}
 
 		public float MaxForce

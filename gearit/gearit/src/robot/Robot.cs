@@ -167,6 +167,8 @@ namespace gearit.src.robot
 			}
 			if (_script != null)
 				_script.run();
+			foreach (RevoluteSpot s in Spots)
+				s.ProcessAutoFreeze();
 		}
 
 		public Heart Heart
@@ -479,8 +481,6 @@ namespace gearit.src.robot
 
 		public void move(Vector2 pos)
 		{
-			//for (int i = 1; i < _pieces.Count; i++)
-			//	_pieces[i].Position = (pos + _pieces[i].Position - Heart.Position);
 			Heart.move(pos, false, true);
 		}
 
