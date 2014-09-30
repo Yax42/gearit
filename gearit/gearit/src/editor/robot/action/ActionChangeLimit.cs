@@ -12,27 +12,32 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionChangeLimit : IAction
 	{
-		private Piece P1;
-		private Piece P2;
 		private float From;
 		private float To;
 		private bool HasBeenRevert;
 		private bool IsOk;
 		private int _step;
+		private Vector2 PreviousPos;
+		private Vector2 Origin;
+		private RevoluteSpot RevSpot;
 
 		public void init()
 		{
+			Piece p1 = RobotEditor.Instance.Select1;
+			Piece p2 = RobotEditor.Instance.Select2;
+			IsOk = p1.isConnected(p2);
+			if (!IsOk)
+				return;
 			_step = 0;
-			P1 = RobotEditor.Instance.Select1;
-			P2 = RobotEditor.Instance.Select2;
 			HasBeenRevert = false;
+			RevSpot = (RevoluteSpot)p1.getConnection(p2);
 
-			IsOk = P1.isConnected(P2);
-			if (IsOk)
-			{
-				From = P1.getConnection(P2).MaxAngle;
-				To = From;
-			}
+			From = RevSpot.MaxAngle;
+			To = From;
+			RevSpot.MaxAngle = 0;
+			RevSpot.MinAngle = 0;
+			Origin = RevSpot.WorldAnchorA;
+			PreviousPos = Input.SimMousePos - Origin;
 		}
 
 		public bool shortcut()
@@ -44,22 +49,31 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!IsOk)
 				return false;
-			RevoluteSpot revSpot = (RevoluteSpot)P1.getConnection(P2);;
+			Vector2 currentPos = Input.SimMousePos - RevSpot.WorldAnchorA;
+			float deltaAngle = (float) MathUtils.VectorAngle(PreviousPos, currentPos);
+			PreviousPos = currentPos;
+//(float) MathUtils.VectorAngle(currentPos, PreviousPos);
+
 			if (_step == 0)
 			{
-				revSpot.LowerLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - revSpot.WorldAnchorA, new Vector2(1, 0));
-				if (revSpot.LowerLimit > 0)
-					revSpot.LowerLimit -= (float)Math.PI * 2;
-				if (revSpot.UpperLimit - revSpot.LowerLimit > Math.PI * 2)
-					revSpot.UpperLimit = (float)Math.PI * 2 + revSpot.LowerLimit;
+				RevSpot.VirtualLimitBegin = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0));
 			}
 			else if (_step == 1)
 			{
-				revSpot.UpperLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - revSpot.WorldAnchorA, new Vector2(1, 0));
-				if (revSpot.UpperLimit < 0)
-					revSpot.UpperLimit += (float)Math.PI * 2;
-				if (revSpot.UpperLimit - revSpot.LowerLimit > Math.PI * 2)
-					revSpot.LowerLimit = -(float)Math.PI * 2 + revSpot.UpperLimit;
+				RevSpot.MinAngle += deltaAngle;
+				if (RevSpot.MinAngle > 0)
+					RevSpot.MinAngle = 0;
+				//if (RevSpot.UpperLimit < RevSpot.LowerLimit)
+				//	RevSpot.UpperLimit = RevSpot.LowerLimit;
+			}
+			else if (_step == 2)
+			{
+				//RevSpot.UpperLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0)) - RevSpot.VirtualLimitBegin;
+				RevSpot.MaxAngle += deltaAngle;
+				if (RevSpot.MaxAngle < 0)
+					RevSpot.MaxAngle = 0;
+				//if (RevSpot.UpperLimit - RevSpot.LowerLimit > Math.PI * 2)
+				//	RevSpot.LowerLimit = -(float)Math.PI * 2 + RevSpot.UpperLimit;
 			}
 			else
 				return (false);

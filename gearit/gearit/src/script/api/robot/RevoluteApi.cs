@@ -37,6 +37,12 @@ namespace gearit.src.script
 
 		public float Angle { get { return _spot.JointAngle; } }
 
+		public bool Frozen
+		{
+			get { return _spot.Frozen; }
+			set { _spot.Frozen = value; }
+		}
+
 #if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle
 		{
@@ -50,11 +56,6 @@ namespace gearit.src.script
 			set { _revolute.MinAngle = value; }
 		}
 
-		public bool Frozen
-		{
-			get { return _revolute.Frozen; }
-			set { _revolute.Frozen = value; }
-		}
 
 		public bool Limited
 		{

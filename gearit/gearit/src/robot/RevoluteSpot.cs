@@ -26,6 +26,7 @@ namespace gearit.src.robot
 		private CommonSpot _common;
 		private Robot Robot;
 		public Joint Joint { get { return _joint; } }
+		public float VirtualLimitBegin;
 
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
 			this(robot, p1, p2, Vector2.Zero, Vector2.Zero)
@@ -75,14 +76,15 @@ namespace gearit.src.robot
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;
 
+			MotorEnabled = true;
 			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));	
 			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));	
 			MinAngle = (float)info.GetValue("MinAngle", typeof(float));	
 			SpotLimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));	
+			VirtualLimitBegin = (float)info.GetValue("VirtualLimitBegin", typeof(float));	
+			Frozen = (bool)info.GetValue("Frozen", typeof(bool));	
 
 			MotorSpeed = 0f;
-			MotorEnabled = true;
-			LimitEnabled = false;
 			ColorValue = Color.Black;
 			_joint = (Joint)this;
 			_common = new CommonSpot(this);
@@ -100,6 +102,8 @@ namespace gearit.src.robot
 			info.AddValue("MaxAngle", MaxAngle, typeof(float));
 			info.AddValue("MinAngle", MinAngle, typeof(float));
 			info.AddValue("LimitEnabled", SpotLimitEnabled, typeof(bool));
+			info.AddValue("VirtualLimitBegin", VirtualLimitBegin, typeof(float));
+			info.AddValue("Frozen", Frozen, typeof(bool));
 		}
 		#endregion
 
@@ -115,7 +119,7 @@ namespace gearit.src.robot
 			set
 			{
 				if (value < 0)
-					return;
+					value = 0;
 				_MaxAngle = value;
 				if (!Frozen && !Robot.IsInEditor)
 					UpperLimit = _MaxAngle;
@@ -132,7 +136,7 @@ namespace gearit.src.robot
 			set
 			{
 				if (value > 0)
-					return;
+					value = 0;
 				_MinAngle = value;
 				if (!Frozen && !Robot.IsInEditor)
 					LowerLimit = _MinAngle;
@@ -162,27 +166,27 @@ namespace gearit.src.robot
 				}
 				else
 				{
-					LowerLimit = MaxAngle;
-					UpperLimit = MinAngle;
-					base.LimitEnabled = _LimitEnabled;
+					UpperLimit = MaxAngle +ReferenceAngle;
+					LowerLimit = MinAngle +ReferenceAngle;
+					LimitEnabled = _SpotLimitEnabled;
 					MotorEnabled = true;
 				}
 			}
 		}
 
-		private bool _LimitEnabled;
+		private bool _SpotLimitEnabled;
 		public bool SpotLimitEnabled
 		{
 			get
 			{
-				return _LimitEnabled;
+				return _SpotLimitEnabled;
 			}
 
 			set
 			{
-				_LimitEnabled = value;
+				_SpotLimitEnabled = value;
 				if (!Frozen && !Robot.IsInEditor)
-					base.LimitEnabled = _LimitEnabled;
+					base.LimitEnabled = _SpotLimitEnabled;
 			}
 		}
 
@@ -309,48 +313,49 @@ namespace gearit.src.robot
 		#region Draw
 		public void drawDebug(DrawGame game)
 		{
-			_drawDebug(game, WorldAnchorA);
-			_drawDebug(game, WorldAnchorB);
+			DrawDebug(game, WorldAnchorA);
+			DrawDebug(game, WorldAnchorB);
+			DrawLimits(game);
 		}
 
-		private void _drawDebug(DrawGame game, Vector2 pos)
+		private void DrawDebug(DrawGame game, Vector2 pos)
 		{
-			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
-			//Vector2 corner = pos - _topLeft;
-			//Vector2 corner2 = BodyA.Position + LocalAnchorA + _botRight;
-
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
 			Color tmp = ColorValue;
-			if (LimitEnabled)
+			if (SpotLimitEnabled)
 				ColorValue = Color.Pink;
-			game.drawSquare(pos, _spotSize, ColorValue);
+			game.drawSquare(pos, _spotSize, ColorValue, false);
 			if (Frozen)
-				game.drawSquare(pos, _spotSize * 0.7f, Color.Cyan);
+				game.drawSquare(pos, _spotSize * 0.7f, Color.Cyan, true);
 			ColorValue = tmp;
 
-			if (LimitEnabled == false)
-				tmp = tmp;// return;
-			else
-				tmp = tmp;
-			Vector2 target;
-			//float tmpUpper = UpperLimit/ +(LowerLimit > UpperLimit ? (float)Math.PI * 2 : 0);
-			int count = 0;
-			bool limitReached = false;
-			for (float angle = LowerLimit; angle < UpperLimit; angle += 0.02f)
-			{
-				count++;
-				target.X = (float)Math.Cos(angle) * 0.1f;
-				target.Y = (float)Math.Sin(angle) * 0.1f;
-				if (angle >= 0 && limitReached == false)
-				{
-					game.drawLine(pos, pos + target, new Color(LimitEnabled ? 0.5f : 0, 0.5f, 0, 0.4f));
-					limitReached = true;
-				}
-				else
-					game.drawLine(pos, pos + target,
-						new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
-			}
 		}
+
+		private void DrawLimits(DrawGame game)
+		{
+			if (!SpotLimitEnabled)
+				;// return;
+			int count = 0;
+			for (float angleBefore = MinAngle; angleBefore < MaxAngle; angleBefore += 0.1f)
+			{
+				DrawLimit(game, angleBefore + VirtualLimitBegin, 0.1f + 0.001f * count);
+				count++;
+			}
+			DrawLimit(game, MinAngle + VirtualLimitBegin, 0.001f * count + 0.25f);
+			DrawLimit(game, MaxAngle + VirtualLimitBegin, 0.001f * count + 0.25f);
+		}
+
+		private void DrawLimit(DrawGame game, float angle, float factor)
+		{
+			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
+			Vector2 target;
+			target.X = (float)Math.Cos(angle) * factor;
+			target.Y = (float)Math.Sin(angle) * factor;
+			game.drawLine(WorldAnchorA, WorldAnchorA + target,
+					new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
+		}
+
+
 		#endregion
 
 		public string Name { get; set; }

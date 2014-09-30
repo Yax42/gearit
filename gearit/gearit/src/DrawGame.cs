@@ -165,12 +165,25 @@ namespace gearit.src
 			_lineVertices[_triangleVertsCount++] = new VertexPositionColor(new Vector3(p3, 0f), col);
 		}
 
-		public void drawSquare(Vector2 pos, float ray, Color col)
+		public void drawSquare(Vector2 pos, float ray, Color col, bool full)
 		{
-			drawLine(pos + new Vector2(-ray, -ray), pos + new Vector2(ray, -ray), col);
-			drawLine(pos + new Vector2(ray, -ray), pos + new Vector2(ray, ray), col);
-			drawLine(pos + new Vector2(ray, ray), pos + new Vector2(-ray, ray), col);
-			drawLine(pos + new Vector2(-ray, ray), pos +  new Vector2(-ray, -ray), col);
+			if (full)
+			{
+				_primitiveBatch.AddVertex(pos + new Vector2(-ray, -ray), col, PrimitiveType.TriangleList);
+				_primitiveBatch.AddVertex(pos + new Vector2(ray, -ray), col, PrimitiveType.TriangleList);
+				_primitiveBatch.AddVertex(pos + new Vector2(-ray, ray), col, PrimitiveType.TriangleList);
+
+				_primitiveBatch.AddVertex(pos + new Vector2(-ray, ray), col, PrimitiveType.TriangleList);
+				_primitiveBatch.AddVertex(pos + new Vector2(ray, -ray), col, PrimitiveType.TriangleList);
+				_primitiveBatch.AddVertex(pos + new Vector2(ray, ray), col, PrimitiveType.TriangleList);
+			}
+			else
+			{
+				drawLine(pos + new Vector2(-ray, -ray), pos + new Vector2(ray, -ray), col);
+				drawLine(pos + new Vector2(ray, -ray), pos + new Vector2(ray, ray), col);
+				drawLine(pos + new Vector2(ray, ray), pos + new Vector2(-ray, ray), col);
+				drawLine(pos + new Vector2(-ray, ray), pos + new Vector2(-ray, -ray), col);
+			}
 		}
 		public void drawLine(Vector2 p1, Vector2 p2, Color col)
 		{
@@ -216,7 +229,7 @@ namespace gearit.src
 			if (b.GetType() == typeof(Rod))
 			{
 				Rod p = (Rod)b;
-				drawCircle(p.TMP_pos, p.TMP_dist, new Color(1, 0,0,0.03f), false);
+				drawCircle(p.TMP_pos, 1 + p.TMP_dist, new Color(1, 0,0,0.03f), false);
 			}
 #endif
 

@@ -334,7 +334,7 @@ namespace gearit.src.robot
 #if DRAW_DEBUG
 			var closePos = ClosestPositionInside(p);
 			TMP_dist = Vector2.Distance(p, closePos);
-			TMP_pos = _endA + closePos;
+			TMP_pos = closePos;
 #endif
 			return Vector2.DistanceSquared(p, ClosestPositionInside(p));
 

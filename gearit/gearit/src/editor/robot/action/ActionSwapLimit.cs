@@ -28,7 +28,7 @@ namespace gearit.src.editor.robot.action
 		public bool run()
 		{
 			if (_isOK)
-				_spot.LimitEnabled = !_spot.LimitEnabled;
+				_spot.SpotLimitEnabled = !_spot.SpotLimitEnabled;
 			return false;
 		}
 

@@ -29,9 +29,16 @@ namespace gearit.src.editor.robot.action
 			SerializerHelper.IsNextRobotInEditor = true;
 			Robot robot = (Robot)Serializer.DeserializeItem("robot/" + RobotEditor.Instance.NamePath + ".gir");
 			if (robot == null)
+			{
 				RobotEditor.Instance.resetNamePath();
-			else
-				RobotEditor.Instance.resetRobot(robot);
+				return false;
+			}
+			RobotEditor.Instance.resetRobot(robot);
+			foreach (Piece p in robot.Pieces)
+			{
+				if (p.GetType() == typeof(Rod))
+					((Rod)p).GenerateEnds();
+			}
 
 			// Lua
 			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
