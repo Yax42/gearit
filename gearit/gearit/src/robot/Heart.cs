@@ -197,7 +197,10 @@ namespace gearit.src.robot
 
 		public override Vector2 ClosestPositionInside(Vector2 p)
 		{
-			return Vector2.Zero;
+			if (Contain(p))
+				return p;
+			else
+				return Position + ShapeLocalOrigin();
 		}
 
 		public override Vector2 ShapeLocalOrigin()

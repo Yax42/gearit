@@ -77,7 +77,6 @@ namespace gearit.src.editor.robot.action
 		private Piece P1;
 		private bool HasBeenRevert;
 		private SleepingPack Pack;
-		private bool IsPrismatic;
 		private int FrameCount;
 		private bool IsOk;
 
@@ -88,9 +87,8 @@ namespace gearit.src.editor.robot.action
 			Piece select2 = RobotEditor.Instance.Select2;
 			Pack = new SleepingPack();
 			HasBeenRevert = false;
-			Vector2 anchor2 = Vector2.Zero;
 
-			if (select2.isConnected(select1) || select1 == select2)
+			if (select1 == select2)
 			{
 				IsOk = false;
 				return;
@@ -100,34 +98,35 @@ namespace gearit.src.editor.robot.action
 				IsOk = true;
 			}
 
-			if (ActionChooseSet.IsWheel)
-				return;//P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f);//, Input.SimMousePos);
-			else
-			{
-				P1 = new Rod(RobotEditor.Instance.Robot, 2);//, Input.SimMousePos);
-				anchor2 = new Vector2(-2, 0);
-			}
-			IsPrismatic = ActionChooseSet.IsPrismatic;
-
+			Vector2 anchor2;
 			Vector2 anchor1;
-			if (select1.Contain(Input.SimMousePos))
-				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
-			else
-				anchor1 = select1.ShapeLocalOrigin();
-
-			/*if (IsPrismatic)
+			P1 = new Rod(RobotEditor.Instance.Robot, 2);
+			anchor1 = GetAnchor(select1);
+			anchor2 = GetAnchor(select2);
+			if (Vector2.Distance(anchor1, anchor2) < 0.1f)
 			{
-				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-				new PrismaticSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
+				IsOk = false;
+				return;
 			}
-			else*/
-			{
-				var r1 = new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-				var r2 = new RevoluteSpot(RobotEditor.Instance.Robot, select2, P1, Vector2.Zero, -anchor2);
-				((Rod)P1).GenerateEndFromAnchor(r2, r1);
-			}
+			var r1 = new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, select1.GetLocalPoint(anchor1), new Vector2(2, 0));
+			var r2 = new RevoluteSpot(RobotEditor.Instance.Robot, select2, P1, select2.GetLocalPoint(anchor2), new Vector2(-2, 0));
+			((Rod)P1).GenerateEndFromAnchor(r2, r1);
 			RobotEditor.Instance.Select1 = P1;
 		}
+
+		private Vector2 GetAnchor(Piece p)
+		{
+			if (p.GetType() == typeof(Rod))
+			{
+				Rod r = (Rod)p;
+				Vector2 anchor = r.GetEnd(r.CloseEnd(Input.SimMousePos));
+				return anchor;
+			}
+			else
+				return Vector2.Zero;
+
+		}
+
 
 		public bool run()
 		{

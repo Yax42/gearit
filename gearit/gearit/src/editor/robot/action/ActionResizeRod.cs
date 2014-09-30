@@ -26,7 +26,7 @@ namespace gearit.src.editor.robot.action
 			Debug.Assert(RobotEditor.Instance.Select1.GetType() == typeof(Rod));
 			Rod = (Rod) RobotEditor.Instance.Select1;
 			EndId = Rod.CloseEnd(Input.SimMousePos);
-			From = Rod.getEnd(EndId);
+			From = Rod.GetEnd(EndId);
 			//if (Input.pressed(Keys.LeftShift))
 			//	Select = RobotEditor.Instance.Select2;
 			//else

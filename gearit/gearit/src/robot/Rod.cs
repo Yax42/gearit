@@ -134,7 +134,6 @@ namespace gearit.src.robot
 					return;
 				if ((_endB - endA).LengthSquared() > 1000f)
 				{
-					Debug.Assert(false);
 					return;
 				}
 				DidAct_EndA = true;
@@ -146,7 +145,6 @@ namespace gearit.src.robot
 					return;
 				if ((_endA - endB).LengthSquared() > 1000f)
 				{
-					Debug.Assert(false);
 					return;
 				}
 				DidAct_EndB = true;
@@ -165,7 +163,7 @@ namespace gearit.src.robot
 			SetEnds(end, isA, end, !isA, comparator);
 		}
 
-		public Vector2 getEnd(bool isA)
+		public Vector2 GetEnd(bool isA)
 		{
 			if (isA)
 				return _endA;
@@ -224,15 +222,16 @@ namespace gearit.src.robot
 				return;
 			}
 			bool isA = CloseEnd(goal);
-			if (isA)
-				isA = isA;
-			else
-				isA = isA;
 			if (DidAct_End(isA))
 				return;
 
 			float Ap = Direction.Length();
 			float ap = Vector2.Distance(isA ? _endB : _endA, (isAnchorA ? r.WorldAnchorA : r.WorldAnchorB));
+			if (ap < 0.001f)
+			{
+				isA = !isA;
+				ap = Vector2.Distance(isA ? _endB : _endA, (isAnchorA ? r.WorldAnchorA : r.WorldAnchorB));
+			}
 			if (ap < 0.001f)
 				return;
 			Vector2 bp = (isAnchorA ? r.WorldAnchorB : r.WorldAnchorA) - (isAnchorA ? r.WorldAnchorA : r.WorldAnchorB);
@@ -245,24 +244,44 @@ namespace gearit.src.robot
 			Vector2 endA;
 			Vector2 endB;
 			if (r1.BodyA == this)
+			{
 				endA = r1.WorldAnchorB;
+				r1.WorldAnchorA = r1.WorldAnchorB;
+			}
 			else if (r1.BodyB == this)
+			{
 				endA = r1.WorldAnchorA;
+				r1.WorldAnchorB = r1.WorldAnchorA;
+			}
 			else
 			{
 				Debug.Assert(false);
 				return;
 			}
 			if (r2.BodyA == this)
+			{
 				endB = r2.WorldAnchorB;
+				r2.WorldAnchorA = r2.WorldAnchorB;
+			}
 			else if (r2.BodyB == this)
+			{
 				endB = r2.WorldAnchorA;
+				r2.WorldAnchorB = r2.WorldAnchorA;
+			}
 			else
 			{
 				Debug.Assert(false);
 				return;
 			}
 			SetEnds(endA, endB);
+			if (r1.BodyA == this)
+				r1.WorldAnchorA = r1.WorldAnchorB;
+			else if (r1.BodyB == this)
+				r1.WorldAnchorB = r1.WorldAnchorA;
+			if (r2.BodyA == this)
+				r2.WorldAnchorA = r2.WorldAnchorB;
+			else if (r2.BodyB == this)
+				r2.WorldAnchorB = r2.WorldAnchorA;
 		}
 
         public bool LocalAnchorsValid()

@@ -270,6 +270,7 @@ namespace gearit.src.GUI
 			//y += lb.Size.y + PADDING;
 
 			// Piece jointure type
+#if false
 			rb_revolute.Text = "Revolute";
 			rb_revolute.Style = "itemMenuButton";
 			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
@@ -296,6 +297,7 @@ namespace gearit.src.GUI
 				if (!rb_prismatic.Checked)
 					swap_jointure();
 			};
+#endif
 			y += ITEM_HEIGHT + PADDING;
 
 			#endregion
@@ -518,11 +520,12 @@ namespace gearit.src.GUI
 			"Delete spot S.........................................(shift+R)\n" +
 			"Move A to S anchor...............................(shift+right click)\n" +
 			"Resize A................................................(S)\n" +
-			"Resize A and rotate B (Rods only).........(shift+S)\n" +
+			//"Resize A and rotate B (Rods only).........(shift+S)\n" +
 			"Switch piece type pT.............................(A)\n" +
-			"Switch spot type sT...............................(shift+A)\n" +
-			"Create a pT and link it to A with a sT....(W)\n" +
-			"Link A and B with a sT..........................(shfit+W)\n" +
+			//"Switch spot type sT...............................(shift+A)\n" +
+			"Create a pT linked to A.........................(W)\n" +
+			"Create a pT linked to A in a close position....(ctrl+W)\n" +
+			"Link A and B.........................................(shift+W)\n" +
 			"Move camera........................................(scroll click)\n" +
 			"Zoom/Unzoom.......................................(scrolling)\n" +
 			"Undo......................................................(ctrl+Z)\n" +

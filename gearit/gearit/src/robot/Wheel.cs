@@ -79,8 +79,8 @@ namespace gearit.src.robot
 		{
 			var dir = p - Position;
 			if (dir.LengthSquared() <= (_size * _size))
-				return p + Position;
-			return Vector2.Normalize(dir) * _size;
+				return p;
+			return Position + Vector2.Normalize(dir) * _size;
 		}
 
 		public override float DistanceSquared(Vector2 p)

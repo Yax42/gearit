@@ -34,23 +34,22 @@ namespace gearit.src.editor.robot.action
 			IsPrismatic = ActionChooseSet.IsPrismatic;
 
 			Vector2 anchor1;
-			if (select1.Contain(Input.SimMousePos))
+			if (Input.ctrlAltShift(true, false, false))
+				anchor1 = select1.GetLocalPoint(select1.ClosestPositionInside(Input.SimMousePos));
+			else if (select1.Contain(Input.SimMousePos))
 				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
 			else
 				anchor1 = select1.ShapeLocalOrigin();
 
-			/*if (IsPrismatic)
-				new PrismaticSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-			else*/
-			{
-				new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
-			}
+			new RevoluteSpot(RobotEditor.Instance.Robot, select1, P1, anchor1, anchor2);
 			RobotEditor.Instance.Select1 = P1;
 		}
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.W));
+			return ((Input.ctrlAltShift(false, false, false)
+				|| Input.ctrlAltShift(true, false, false))
+				&& Input.justPressed(Keys.W));
 		}
 
 		public bool run()
