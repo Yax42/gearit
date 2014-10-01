@@ -22,7 +22,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return Input.ctrlAltShift(false, false, false)
+			return Input.CtrlAltShift(false, false, false)
 				&& Input.justPressed(MouseKeys.LEFT);
 		}
 

@@ -18,7 +18,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
+			if (Input.CtrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
 				MenuRobotEditor.Instance.loadRobot();
 			return false;
 		}
@@ -73,8 +73,8 @@ namespace gearit.src.editor.robot.action
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
-
-		public ActionTypes type() { return ActionTypes.LOAD_ROBOT; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.LOAD_ROBOT; }
 	}
 }

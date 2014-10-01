@@ -35,7 +35,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, true) && Input.justPressed(MouseKeys.RIGHT));
+			return (Input.CtrlAltShift(false, false, true) && Input.justPressed(MouseKeys.RIGHT));
 		}
 
 		public bool run()
@@ -64,9 +64,8 @@ namespace gearit.src.editor.robot.action
 			P1.getConnection(P2).moveAnchor(P1, From);
 		}
 
-
-		public bool canBeReverted() { return IsOk; }
-
-		public ActionTypes type() { return ActionTypes.MOVE_ANCHOR; }
+		public bool canBeReverted { get { return IsOk; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.MOVE_ANCHOR; }
 	}
 }

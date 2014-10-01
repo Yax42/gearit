@@ -28,7 +28,7 @@ namespace gearit.src.editor.map.action
 		{
 			if (ActionSwapEventMode.EventMode)
 				return false;
-			return Input.ctrlAltShift(false, false, true) &&
+			return Input.CtrlAltShift(false, false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
 				MapEditor.Instance.SelectChunk.GetType() == typeof(CircleChunk);
 		}

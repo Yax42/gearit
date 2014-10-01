@@ -37,7 +37,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return Input.ctrlAltShift(false, false, false)
+			return Input.CtrlAltShift(false, false, false)
 					&& Input.justPressed(Keys.S)
 					&& RobotEditor.Instance.Select1.GetType() == typeof(Heart);
 		}
@@ -90,8 +90,8 @@ namespace gearit.src.editor.robot.action
 			Heart.ResetShape(From);
 		}
 
-		public bool canBeReverted() { return _didSomething; }
-
-		public ActionTypes type() { return ActionTypes.RESIZE_HEART; }
+		public bool canBeReverted { get { return _didSomething; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.RESIZE_HEART; }
 	}
 }

@@ -129,6 +129,7 @@
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\DrawGame.cs" />
     <Compile Include="src\editor\robot\action\ActionFreezeSpot.cs" />
+    <Compile Include="src\editor\robot\action\ActionSetMirrorAxis.cs" />
     <Compile Include="src\game\IGearitGame.cs" />
     <Compile Include="src\GeneticAlgorithm\GameDrawing.cs" />
     <Compile Include="src\GeneticAlgorithm\GeneticGame.cs" />
@@ -321,7 +322,6 @@
     <Compile Include="src\editor\robot\action\ActionDummy.cs" />
     <Compile Include="src\editor\robot\action\ActionFactory.cs" />
     <Compile Include="src\editor\robot\action\ActionRedo.cs" />
-    <Compile Include="src\editor\robot\action\ActionResizeRod.cs" />
     <Compile Include="src\editor\robot\action\ActionResizeWheel.cs" />
     <Compile Include="src\editor\robot\action\ActionUndo.cs" />
     <Compile Include="src\GUI\InputManager.cs" />

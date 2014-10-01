@@ -20,7 +20,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.Q)));
+			return (Input.CtrlAltShift(true, false, false) && (Input.justPressed(Keys.Q)));
 		}
 
 		public bool run()
@@ -32,8 +32,8 @@ namespace gearit.src.editor.robot.action
 
 		public void revert() { run(); }
 
-		public bool canBeReverted() { return true; }
-
-		public ActionTypes type() { return ActionTypes.LIMIT_FROZEN; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.LIMIT_FROZEN; }
 	}
 }

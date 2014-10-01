@@ -14,8 +14,8 @@ namespace gearit.src.editor.robot.action
 		public bool run() { return false; }
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
-
-		public ActionTypes type() { return ActionTypes.NONE; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.NONE; }
 	}
 }

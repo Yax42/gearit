@@ -41,7 +41,8 @@ namespace gearit.src.editor.robot.action
 		{
 			//if (RobotEditor.Instance.Select1.GetType() == typeof(Rod))
 			//	return false;
-			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
+			return (Input.CtrlAltShift(false, false, false)
+				&& Input.justPressed(MouseKeys.RIGHT));
 		}
 
 		public bool run()
@@ -68,8 +69,9 @@ namespace gearit.src.editor.robot.action
 				P1.move(From, false, true);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return false; } }
 
-		public ActionTypes type() { return ActionTypes.MOVE_PIECE; }
+		public ActionTypes Type() { return ActionTypes.MOVE_PIECE; }
 	}
 }

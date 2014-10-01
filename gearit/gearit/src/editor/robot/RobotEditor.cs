@@ -27,15 +27,53 @@ namespace gearit.src.editor.robot
 		private RectangleOverlay _background;
 
 		// Robot
-		private DrawGame _draw_game;
+		private DrawGame DrawGame;
 
 		// Action
-		public Piece Select1 {get; set;}
-		public Piece Select2 {get; set;}
+		private Piece _Select1;
+		public Piece Select1
+		{
+			get
+			{
+				if (MirrorAxis.Mirroring)
+					return MirrorSelect1;
+				else
+					return _Select1;
+			}
+			set
+			{
+				if (MirrorAxis.Mirroring)
+					MirrorSelect1 = value;
+				else
+					_Select1 = value;
+			}
+		}
+
+		private Piece _Select2;
+		public Piece Select2
+		{
+			get
+			{
+				if (MirrorAxis.Mirroring)
+					return MirrorSelect2;
+				else
+					return _Select2;
+			}
+			set
+			{
+				if (MirrorAxis.Mirroring)
+					MirrorSelect2 = value;
+				else
+					_Select2 = value;
+			}
+		}
+		public Piece MirrorSelect1 {get; set;}
+		public Piece MirrorSelect2 {get; set;}
 		public RevoluteSpot SelectedSpot { get { return Select1.getConnection(Select2); } }
 		private List<IAction> _actionsLog;
 		private List<IAction> _redoActionsLog;
 		private IAction _currentAction;
+		private IAction _mirrorAction;
 
 		private int _time = 0;
 
@@ -80,6 +118,7 @@ namespace gearit.src.editor.robot
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.create(ActionTypes.NONE);
+			_mirrorAction = ActionFactory.create(ActionTypes.NONE);
 
 			// World
 			if (_world == null)
@@ -103,10 +142,13 @@ namespace gearit.src.editor.robot
 			SerializerHelper.World = _world;
 
 			// Robot
-			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			Robot = new Robot(_world, true);
+
 			Select1 = Robot.Heart;
 			Select2 = Robot.Heart;
+			MirrorSelect1 = Robot.Heart;
+			MirrorSelect2 = Robot.Heart;
 		}
 
 		public void selectHeart()
@@ -151,34 +193,52 @@ namespace gearit.src.editor.robot
 				Select2 = Robot.Heart;
 		}
 
-		public void doAction(ActionTypes action)
+		public void doAction(ActionTypes action = ActionTypes.NONE)
 		{
-			if (_currentAction.type() == ActionTypes.NONE)
+			if (_currentAction.Type() == ActionTypes.NONE)
 			{
-				_currentAction = ActionFactory.create(action);
+				if (action == ActionTypes.NONE)
+					_currentAction = ActionFactory.createFromShortcut();
+				else
+					_currentAction = ActionFactory.create(action);
 				_currentAction.init();
+				if (Input.Alt && _currentAction.canBeMirrored)
+				{
+					MirrorAxis.Mirroring = true;
+					_mirrorAction = ActionFactory.create(_currentAction.Type());
+					_mirrorAction.init();
+					MirrorAxis.Mirroring = false;
+				}
 			}
+		}
+
+		private void PushRevertAction(IAction action)
+		{
+			if (!action.canBeReverted)
+				return;
+			_actionsLog.Insert(0, action);
+				if (_actionsLog.Count > 200)
+			_actionsLog.RemoveAt(_actionsLog.Count - 1);
+			_redoActionsLog.Clear();
 		}
 
 		private void HandleInput()
 		{
-			if (_currentAction.type() == ActionTypes.NONE)
+			if (_currentAction.Type() == ActionTypes.NONE)
 			{
 				if (MenuRobotEditor.Instance.hasFocus())
 					return;
-				_currentAction = ActionFactory.createFromShortcut();
-				_currentAction.init();
+				doAction();
 			}
+			MirrorAxis.Mirroring = true;
+			_mirrorAction.run();
+			MirrorAxis.Mirroring = false;
 			if (_currentAction.run() == false)
 			{
-				if (_currentAction.canBeReverted())
-				{
-					_actionsLog.Insert(0, _currentAction);
-					if (_actionsLog.Count > 200)
-						_actionsLog.RemoveAt(_actionsLog.Count - 1);
-					_redoActionsLog.Clear();
-				}
+				PushRevertAction(_currentAction);
+				PushRevertAction(_mirrorAction);
 				_currentAction = ActionFactory.Dummy;
+				_mirrorAction = ActionFactory.Dummy;
 			}
 			_camera.input();
 		}
@@ -207,16 +267,22 @@ namespace gearit.src.editor.robot
 		{
 			get
 			{
-				return _currentAction.type();
+				return _currentAction.Type();
 			}
 		}
 
-		private void drawRobot()
+		private void DrawRobot()
 		{
-			if (_currentAction.type() == ActionTypes.RESIZE_HEART
-				|| _currentAction.type() == ActionTypes.MOVE_PIECE
-				|| _currentAction.type() == ActionTypes.RESIZE_WHEEL)
-				Select1.ColorValue = Color.GreenYellow;
+			if (MirrorSelect1 == MirrorSelect2)
+				MirrorSelect1.ColorValue = Color.Pink;
+			else
+			{
+				MirrorSelect2.ColorValue = Color.Cyan;
+				MirrorSelect1.ColorValue = Color.IndianRed;
+			}
+
+			if (_currentAction.Type() == ActionTypes.RESIZE_HEART)
+				Select1.ColorValue = Color.White;
 			else if (Select2 == Select1)
 				Select2.ColorValue = Color.Violet;
 			else
@@ -228,7 +294,7 @@ namespace gearit.src.editor.robot
 				Select1.getConnection(Select2).ColorValue =
 					new Color(MathLib.LoopIn(_time * 10, 255), 255, MathLib.LoopIn(_time * 10, 255));
 
-			Robot.drawDebug(_draw_game);
+			Robot.drawDebug(DrawGame);
 
 			if (Select1.isConnected(Select2))
 				Select1.getConnection(Select2).ColorValue = Color.Black;
@@ -236,9 +302,16 @@ namespace gearit.src.editor.robot
 			Select1.ColorValue = Color.DarkSeaGreen;
 		}
 
+		private void DrawMarks()
+		{
+			DrawGame.drawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
+							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
+							Color.White);
+		}
+
 		public void drawRobotTexture()
 		{
-			Robot.drawDebugTexture(_draw_game);
+			Robot.drawDebugTexture(DrawGame);
 		}
 
 		//----------------------------NAME-------------------------------------
@@ -307,13 +380,14 @@ namespace gearit.src.editor.robot
 		{
 			base.Draw(gameTime);
 
-			//_draw_game.Begin(_camera);
-			//_draw_game.End();
+			//DrawGame.Begin(_camera);
+			//DrawGame.End();
 
-			_draw_game.BeginPrimitive(_camera);
+			DrawGame.BeginPrimitive(_camera);
 			drawRobotTexture();
-			drawRobot();
-			_draw_game.EndPrimitive();
+			DrawRobot();
+			DrawMarks();
+			DrawGame.EndPrimitive();
 			
 			MenuRobotEditor.Instance.Draw();
 		}

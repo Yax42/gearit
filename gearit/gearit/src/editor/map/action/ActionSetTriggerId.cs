@@ -27,7 +27,7 @@ namespace gearit.src.editor.map.action
 				return false;
 			return (Input.justPressed(MouseKeys.LEFT)
 				|| Input.justPressed(MouseKeys.RIGHT))
-				&& Input.ctrlAltShift(false, true, false);
+				&& Input.CtrlAltShift(false, true, false);
 		}
 
 		public bool run()

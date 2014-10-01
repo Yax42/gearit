@@ -16,7 +16,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.Y));
+			return (Input.CtrlAltShift(true, false, false) && Input.justPressed(Keys.Y));
 		}
 
 		public bool run() { return false; }

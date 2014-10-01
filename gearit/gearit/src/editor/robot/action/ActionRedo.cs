@@ -16,15 +16,15 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(true, false, false) && Input.justPressed(Keys.Y));
+			return (Input.CtrlAltShift(true, false, false) && Input.justPressed(Keys.Y));
 		}
 
 		public bool run() { return false; }
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
-
-		public ActionTypes type() { return ActionTypes.REDO; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.REDO; }
 	}
 }

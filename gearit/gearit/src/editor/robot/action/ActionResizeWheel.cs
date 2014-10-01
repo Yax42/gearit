@@ -26,7 +26,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return Input.ctrlAltShift(false, false, false)
+			return Input.CtrlAltShift(false, false, false)
 					&& Input.justPressed(Keys.S)
 					&& RobotEditor.Instance.Select1.GetType() == typeof(Wheel);
 		}
@@ -47,8 +47,8 @@ namespace gearit.src.editor.robot.action
 			Wheel.Size = From;
 		}
 
-		public bool canBeReverted() { return true; }
-
-		public ActionTypes type() { return ActionTypes.RESIZE_WHEEL; }
+		public bool canBeReverted { get {return true; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.RESIZE_WHEEL; }
 	}
 }

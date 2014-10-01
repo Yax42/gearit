@@ -17,7 +17,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			if (Input.ctrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
+			if (Input.CtrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
 				MenuMapEditor.Instance.loadMap();
 			return false;
 		}

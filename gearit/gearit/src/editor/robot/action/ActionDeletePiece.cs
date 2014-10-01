@@ -21,7 +21,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, false) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
+			return (Input.CtrlAltShift(false, false, false) && (Input.justPressed(Keys.Delete) || Input.justPressed(Keys.Back) || Input.justPressed(Keys.R)));
 		}
 
 		public bool run()
@@ -40,8 +40,8 @@ namespace gearit.src.editor.robot.action
 			RobotEditor.Instance.Robot.wakeUp(Pack);
 		}
 
-		public bool canBeReverted() { return true; }
-
-		public ActionTypes type() { return ActionTypes.DELETE_PIECE; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.DELETE_PIECE; }
 	}
 }

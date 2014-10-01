@@ -23,8 +23,8 @@ namespace gearit.src.editor.robot.action
 		public bool run() { return false; }
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
-
-		public ActionTypes type() { return ActionTypes.SHOW_HELP; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.SHOW_HELP; }
 	}
 }

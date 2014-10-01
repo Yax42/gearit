@@ -15,7 +15,7 @@ namespace gearit.src.editor.robot.action
 		//feature non fonctionnelle yet
 		public bool shortcut()
 		{
-			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(Keys.Enter));
+			return (Input.CtrlAltShift(false, false, false) && Input.justPressed(Keys.Enter));
 		}
 
 		public bool run()
@@ -26,8 +26,8 @@ namespace gearit.src.editor.robot.action
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
-
-		public ActionTypes type() { return ActionTypes.LAUNCH; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.LAUNCH; }
 	}
 }

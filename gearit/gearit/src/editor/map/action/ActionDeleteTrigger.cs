@@ -24,7 +24,7 @@ namespace gearit.src.editor.map.action
 			if (MapEditor.Instance.SelectTrigger == null)
 				return false;
 			return Input.justPressed(Keys.R)
-				&& Input.ctrlAltShift(false, false, false)
+				&& Input.CtrlAltShift(false, false, false)
 				&& MapEditor.Instance.SelectTrigger.Contain(Input.SimMousePos);
 		}
 

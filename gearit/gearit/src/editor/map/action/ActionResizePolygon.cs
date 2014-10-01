@@ -46,7 +46,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return Input.ctrlAltShift(false, false, true) &&
+			return Input.CtrlAltShift(false, false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
 				!MapEditor.Instance.IsSelectDummy() &&
 				(ActionSwapEventMode.EventMode ||

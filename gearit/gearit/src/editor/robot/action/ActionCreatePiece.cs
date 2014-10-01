@@ -32,7 +32,7 @@ namespace gearit.src.editor.robot.action
 			}
 
 			Vector2 anchor1;
-			if (Input.ctrlAltShift(true, false, false))
+			if (Input.CtrlAltShift(true, false, false))
 				anchor1 = select1.GetLocalPoint(select1.ClosestPositionInside(Input.SimMousePos));
 			else if (select1.Contain(Input.SimMousePos))
 				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
@@ -45,8 +45,8 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return ((Input.ctrlAltShift(false, false, false)
-				|| Input.ctrlAltShift(true, false, false))
+			return ((Input.CtrlAltShift(false, false, false)
+				|| Input.CtrlAltShift(true, false, false))
 				&& Input.justPressed(Keys.W));
 		}
 
@@ -56,7 +56,7 @@ namespace gearit.src.editor.robot.action
 			{
 				RobotEditor.Instance.Robot.wakeUp(Pack);
 			}
-			else if (!ActionChooseSet.IsWheel)
+			else if (P1.GetType() == typeof(Rod))
 			{
 				RobotEditor.Instance.Robot.ResetActEnds();
 				FrameCount++;
@@ -76,8 +76,8 @@ namespace gearit.src.editor.robot.action
 			RobotEditor.Instance.fallAsleep(P1, Pack);
 		}
 
-		public bool canBeReverted() { return true; }
-
-		public ActionTypes type() { return ActionTypes.CREATE_PIECE; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return false; } }
+		public ActionTypes Type() { return ActionTypes.CREATE_PIECE; }
 	}
 }

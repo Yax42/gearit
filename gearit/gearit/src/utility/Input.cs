@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using gearit.src.editor.robot.action;
 
 namespace gearit.src.utility
 {
@@ -115,10 +116,21 @@ namespace gearit.src.utility
 			}
 		}
 
+		static public Vector2 _SimMousePos;
 		static public Vector2 SimMousePos
 		{
-			get;
-			set;
+			get
+			{
+				if (MirrorAxis.Mirroring)
+					return MirrorAxis.AxedPosition(_SimMousePos);
+				else
+					return _SimMousePos;
+			}
+			set
+			{
+				_SimMousePos = value;
+			}
+
 		}
 
 		static public bool mouseChanged()
@@ -268,9 +280,38 @@ namespace gearit.src.utility
 				return ("");
 		}
 
-		static public bool ctrlAltShift(bool ctrl, bool alt, bool shift)
+		static public bool Alt
 		{
-			return (pressed(Keys.LeftControl) == ctrl && pressed(Keys.LeftAlt) == alt && pressed(Keys.LeftShift) == shift);
+			get
+			{
+				return pressed(Keys.LeftAlt) || pressed(Keys.RightAlt);
+			}
+		}
+
+		static public bool Shift
+		{
+			get
+			{
+				return pressed(Keys.LeftShift) || pressed(Keys.RightShift);
+			}
+		}
+
+		static public bool Ctrl
+		{
+			get
+			{
+				return pressed(Keys.LeftControl) || pressed(Keys.RightControl);
+			}
+		}
+
+		static public bool CtrlAltShift(bool ctrl, bool alt, bool shift)
+		{
+			return (ctrl == Ctrl && alt == Alt && shift == Shift);
+		}
+
+		static public bool aCtrlShift(bool ctrl, bool shift)
+		{
+			return (ctrl == Ctrl && shift == Shift);
 		}
 
 		/********************/

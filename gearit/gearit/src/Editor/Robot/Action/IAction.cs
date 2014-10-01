@@ -8,11 +8,13 @@ namespace gearit.src.editor.robot.action
 {
 	interface IAction
 	{
-		bool canBeReverted();
+		bool canBeMirrored { get; }
+		bool canBeReverted { get; }
 		void init();
 		bool shortcut();
 		bool run();
 		void revert();
-		ActionTypes type();
+		ActionTypes Type();
+
 	}
 }
