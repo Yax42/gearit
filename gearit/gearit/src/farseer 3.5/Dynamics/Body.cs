@@ -76,6 +76,11 @@ namespace FarseerPhysics.Dynamics
         internal float _invMass;
         internal float _sleepTime;
         internal Sweep _sweep; // the swept motion for CCD
+		internal Sweep Sweep // #GEARIT
+		{
+			get { return _sweep; }
+			set { _sweep = value; }
+		}
         internal float _torque;
         internal World _world;
         internal Transform _xf; // the body origin transform

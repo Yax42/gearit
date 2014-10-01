@@ -10,6 +10,7 @@ using gearit.src.robot;
 using Lidgren.Network;
 using gearit.src.editor.map;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Common;
 
 namespace gearit.src.Network
 {
@@ -86,10 +87,7 @@ namespace gearit.src.Network
 			public byte Type;
 			public byte RobotId;
 			public ushort Id;
-			public Vector2 Position;
-			public float Rotation;
-			public Vector2 LinearVelocity;
-			public float AngularVelocity;
+			public Sweep Sweep;
 		}
 
 		private struct Packet_MotorForce // size 8
@@ -252,10 +250,7 @@ namespace gearit.src.Network
 			res.Type = (byte)type;
 			res.RobotId = (byte) robotId;
 			res.Id = (ushort) id;
-			res.Position = b.Position;
-			res.Rotation = b.Rotation;
-			res.LinearVelocity = b.LinearVelocity;
-			res.AngularVelocity = b.AngularVelocity;
+			res.Sweep = b.Sweep;
 			return PacketToRawData(res, CommandId.ObjectTransform);
 		}
 
@@ -437,10 +432,7 @@ namespace gearit.src.Network
 			Debug.Assert(b != null);
 			if (b != null)
 			{
-				b.Position = packet.Position;
-				b.AngularVelocity = packet.AngularVelocity;
-				b.LinearVelocity = packet.LinearVelocity;
-				b.Rotation = packet.Rotation;
+				b.Sweep = packet.Sweep;
 			}
 		}
 
