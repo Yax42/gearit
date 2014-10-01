@@ -298,6 +298,8 @@ namespace gearit.src.editor.robot
 
 			if (Select1.isConnected(Select2))
 				Select1.getConnection(Select2).ColorValue = Color.Black;
+			MirrorSelect1.ColorValue = Color.DarkSeaGreen;
+			MirrorSelect2.ColorValue = Color.DarkSeaGreen;
 			Select2.ColorValue = Color.DarkSeaGreen;
 			Select1.ColorValue = Color.DarkSeaGreen;
 		}

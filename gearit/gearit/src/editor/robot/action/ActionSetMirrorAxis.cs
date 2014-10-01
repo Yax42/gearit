@@ -34,13 +34,13 @@ namespace gearit.src.editor.robot.action
 
 		public void init()
 		{
-			EditingDirection = Input.CtrlAltShift(false, false, false);
+			EditingDirection = Input.CtrlShift(false, false);
 		}
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, false)
-				|| Input.CtrlAltShift(false, false, true))
+			return (Input.CtrlShift(false, false)
+				|| Input.CtrlShift(false, true))
 				&& Input.justPressed(Keys.F);
 		}
 

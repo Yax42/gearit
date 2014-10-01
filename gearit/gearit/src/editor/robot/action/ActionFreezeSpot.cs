@@ -20,7 +20,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(true, false, false) && (Input.justPressed(Keys.Q)));
+			return (Input.CtrlShift(true, false) && (Input.justPressed(Keys.Q)));
 		}
 
 		public bool run()

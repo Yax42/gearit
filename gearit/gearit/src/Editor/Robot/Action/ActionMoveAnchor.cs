@@ -35,7 +35,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, true) && Input.justPressed(MouseKeys.RIGHT));
+			return (Input.CtrlShift(false, true) && Input.justPressed(MouseKeys.RIGHT));
 		}
 
 		public bool run()

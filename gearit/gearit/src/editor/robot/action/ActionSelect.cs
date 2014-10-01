@@ -14,11 +14,13 @@ namespace gearit.src.editor.robot.action
 	{
 		public void init()
 		{
-			if (Input.CtrlAltShift(false, false, false))
+			if (Input.Alt)
+				MirrorAxis.Mirroring = true;
+			if (Input.CtrlShift(false, false))
 				RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
-			else if (Input.CtrlAltShift(false, false, true))
+			else if (Input.CtrlShift(false, true))
 				RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
-			else if (Input.CtrlAltShift(true, false, false))
+			else if (Input.CtrlShift(true, false))
 			{
 				var rev = RobotEditor.Instance.Robot.GetCloseSpot(Input.SimMousePos);
 				if (rev != null)
@@ -29,13 +31,16 @@ namespace gearit.src.editor.robot.action
 			}
 			else
 				Debug.Assert(false);
+
+			if (Input.Alt)
+				MirrorAxis.Mirroring = false;
 		}
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, false)
-				|| Input.CtrlAltShift(false, false, true)
-				|| Input.CtrlAltShift(true, false, false))
+			return (Input.CtrlShift(false, false)
+				|| Input.CtrlShift(false, true)
+				|| Input.CtrlShift(true, false))
 				&& Input.justPressed(MouseKeys.LEFT);
 		}
 

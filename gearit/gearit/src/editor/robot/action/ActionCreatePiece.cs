@@ -32,7 +32,7 @@ namespace gearit.src.editor.robot.action
 			}
 
 			Vector2 anchor1;
-			if (Input.CtrlAltShift(true, false, false))
+			if (Input.CtrlShift(true, false))
 				anchor1 = select1.GetLocalPoint(select1.ClosestPositionInside(Input.SimMousePos));
 			else if (select1.Contain(Input.SimMousePos))
 				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
@@ -45,8 +45,8 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return ((Input.CtrlAltShift(false, false, false)
-				|| Input.CtrlAltShift(true, false, false))
+			return ((Input.CtrlShift(false, false)
+				|| Input.CtrlShift(true, false))
 				&& Input.justPressed(Keys.W));
 		}
 

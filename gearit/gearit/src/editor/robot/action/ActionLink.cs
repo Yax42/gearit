@@ -140,7 +140,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, true) && Input.justPressed(Keys.W));
+			return (Input.CtrlShift(false, true) && Input.justPressed(Keys.W));
 		}
 
 		public bool canBeReverted { get { return IsOk; } }

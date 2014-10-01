@@ -15,7 +15,7 @@ namespace gearit.src.editor.robot.action
 		//feature non fonctionnelle yet
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, false) && Input.justPressed(Keys.Enter));
+			return (Input.CtrlShift(false, false) && Input.justPressed(Keys.Enter));
 		}
 
 		public bool run()

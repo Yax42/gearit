@@ -309,7 +309,7 @@ namespace gearit.src.utility
 			return (ctrl == Ctrl && alt == Alt && shift == Shift);
 		}
 
-		static public bool aCtrlShift(bool ctrl, bool shift)
+		static public bool CtrlShift(bool ctrl, bool shift)
 		{
 			return (ctrl == Ctrl && shift == Shift);
 		}

@@ -41,7 +41,7 @@ namespace gearit.src.editor.robot.action
 		{
 			//if (RobotEditor.Instance.Select1.GetType() == typeof(Rod))
 			//	return false;
-			return (Input.CtrlAltShift(false, false, false)
+			return (Input.CtrlShift(false, false)
 				&& Input.justPressed(MouseKeys.RIGHT));
 		}
 
@@ -70,7 +70,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get { return true; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public ActionTypes Type() { return ActionTypes.MOVE_PIECE; }
 	}

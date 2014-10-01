@@ -22,7 +22,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, true) && (Input.justPressed(Keys.Q)));
+			return (Input.CtrlShift(false, true) && (Input.justPressed(Keys.Q)));
 		}
 
 		public bool run()

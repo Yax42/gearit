@@ -26,7 +26,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return Input.CtrlAltShift(false, false, false)
+			return Input.CtrlShift(false, false)
 					&& Input.justPressed(Keys.S)
 					&& RobotEditor.Instance.Select1.GetType() == typeof(Wheel);
 		}
