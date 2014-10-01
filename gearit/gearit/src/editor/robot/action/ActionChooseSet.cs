@@ -11,18 +11,6 @@ namespace gearit.src.editor.robot.action
 {
 	class ActionChooseSet : IAction
 	{
-		static public bool IsPrismatic
-		{
-			set
-			{
-				MenuRobotEditor.Instance.IsPrismatic = false;
-			}
-			get
-			{
-				return MenuRobotEditor.Instance.IsPrismatic;
-			}
-		}
-
 		static public bool IsWheel
 		{
 			set
@@ -37,16 +25,12 @@ namespace gearit.src.editor.robot.action
 
 		public void init()
 		{
-			if (Input.ctrlAltShift(false, false, true))
-				IsPrismatic = !IsPrismatic;
-			else
-				IsWheel = !IsWheel;
+			IsWheel = !IsWheel;
 		}
 
 		public bool shortcut()
 		{
-			return ((Input.ctrlAltShift(false, false, false)
-					|| Input.ctrlAltShift(false, false, true))
+			return (Input.ctrlAltShift(false, false, false)
 					&& (Input.justPressed(Keys.A)));
 		}
 

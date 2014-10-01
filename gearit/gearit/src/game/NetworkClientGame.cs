@@ -114,6 +114,7 @@ namespace gearit.src.Network
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
 			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			_world.Step(1/30f);
 			setMainRobot(0);
 
 			Debug.Assert(Robots != null);
@@ -175,7 +176,7 @@ namespace gearit.src.Network
 			_Time += delta;
 			HandleInput();
 
-			_world.Step(delta);
+			_world.Step(0);
 
 
 			for (int i = 0; i < MainRobot.Spots.Count; i++)

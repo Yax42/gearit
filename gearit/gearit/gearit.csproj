@@ -147,8 +147,8 @@
     <Compile Include="src\Network\InGamePacket.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />
     <Compile Include="src\Network\NetworkClient.cs" />
-    <Compile Include="src\Network\NetworkClientGame.cs" />
-    <Compile Include="src\Network\NetworkServerGame.cs" />
+    <Compile Include="src\game\NetworkClientGame.cs" />
+    <Compile Include="src\game\NetworkServerGame.cs" />
     <Compile Include="src\GUI\OptionsMenu\OptionsMenu.cs" />
     <Compile Include="src\script\api\game\GameChunkApi.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
@@ -381,7 +381,6 @@
     <Compile Include="src\test\MyGame.cs" />
     <Compile Include="src\robot\Heart.cs" />
     <Compile Include="src\robot\Piece.cs" />
-    <Compile Include="src\robot\PrismaticSpot.cs" />
     <Compile Include="src\robot\RevoluteSpot.cs" />
     <Compile Include="src\robot\Robot.cs" />
     <Compile Include="src\robot\ISpot.cs" />

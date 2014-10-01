@@ -14,7 +14,6 @@ namespace gearit.src.editor.robot.action
 		private Piece P1;
 		private bool HasBeenRevert;
 		private SleepingPack Pack;
-		private bool IsPrismatic;
 		private int FrameCount;
 
 		public void init()
@@ -31,7 +30,6 @@ namespace gearit.src.editor.robot.action
 				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
 				anchor2 = new Vector2(-2, 0);
 			}
-			IsPrismatic = ActionChooseSet.IsPrismatic;
 
 			Vector2 anchor1;
 			if (Input.ctrlAltShift(true, false, false))
@@ -57,11 +55,6 @@ namespace gearit.src.editor.robot.action
 			if (HasBeenRevert)
 			{
 				RobotEditor.Instance.Robot.wakeUp(Pack);
-			}
-			else if (IsPrismatic)
-			{
-				P1.move(Input.SimMousePos);
-				return (Input.pressed(Keys.W));// && !Input.justPressed(MouseKeys.LEFT));
 			}
 			else if (!ActionChooseSet.IsWheel)
 			{

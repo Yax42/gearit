@@ -52,8 +52,6 @@ namespace gearit.src.editor.robot
 			_menu_tools = new MenuOverlay(_screen, pos, size, new Color(200, 200, 200), MenuLayout.Horizontal);
 			//item = new SpriteMenuItem(_menu_tools, "RobotEditor/revolute", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
 			//item.addFocus((int)ActionTypes.REV_SPOT, bg_focus, bg_pressed);
-			//item = new SpriteMenuItem(_menu_tools, "RobotEditor/prismatic", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
-			//item.addFocus((int)ActionTypes.PRIS_SPOT, bg_focus, bg_pressed);
 			//item = new SpriteMenuItem(_menu_tools, "RobotEditor/run", padding, ItemMenuLayout.MaxFromMin, ItemMenuAlignement.VerticalCenter | ItemMenuAlignement.HorizontalCenter, 1.5f);
 			//item.addFocus((int)ActionTypes.LAUNCH, bg_focus, bg_pressed);
 
@@ -84,7 +82,6 @@ namespace gearit.src.editor.robot
 			_s_maxforce.setLabel("Max force", _screen.Fonts.DetailsFont, Color.Black);
 			_s_maxforce.Type = InputMenuItemType.Decimal;
 			
-			// Prismatic spot
 			_s_size = new TextMenuItem(_menu_properties, "Size", _screen.Fonts.DetailsFont, c_text, padding, ItemMenuLayout.MaxFromMin, align, 1f);
 		 }
 
@@ -136,17 +133,7 @@ namespace gearit.src.editor.robot
 			{
 				_s_name.Display = spot.Name;
 				_s_maxforce.Display = spot.MaxForce.ToString();
-
-				// Check if Prismatic
-				/*
-				if (spot.GetType() == typeof(PrismaticSpot))
-				{
-					_s_size.Display = "Distance: " + ((PrismaticSpot)spot).getSize().ToString();
-					_s_size.Visible = true;
-				}
-				else
-				*/
-					_s_size.Visible = false;
+				_s_size.Visible = false;
 			}
 		}
 

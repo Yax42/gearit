@@ -82,8 +82,9 @@ namespace gearit.src.Network
 			SerializerHelper.World = _world;
 
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			_world.Step(1/30f);
+			_world.Step(0f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			_world.Step(0f);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");

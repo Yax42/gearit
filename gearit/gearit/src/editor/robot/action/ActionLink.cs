@@ -20,11 +20,9 @@ namespace gearit.src.editor.robot.action
 		private SleepingPack Pack;
 		private Vector2 From;
 		private Vector2 To;
-		private bool IsPrismatic;
 
 		public void init()
 		{
-			IsPrismatic = ActionChooseSet.IsPrismatic;
 			Pack = new SleepingPack();
 			P1 = RobotEditor.Instance.Select1;
 			P2 = RobotEditor.Instance.Select2;
@@ -49,16 +47,12 @@ namespace gearit.src.editor.robot.action
 				Debug.Assert(P1 != P2);
 				if (Spot == null)
 				{
-					if (IsPrismatic)
-						Spot = new PrismaticSpot(RobotEditor.Instance.Robot, P1, P2);
-					else
-						Spot = new RevoluteSpot(RobotEditor.Instance.Robot, P1, P2);
+					Spot = new RevoluteSpot(RobotEditor.Instance.Robot, P1, P2);
 				}
 				else
 				{
 					RobotEditor.Instance.Robot.wakeUp(Pack);
-					if (!IsPrismatic)
-						P2.move(To);
+					P2.move(To);
 				}
 			}
 			return (false);
@@ -69,8 +63,7 @@ namespace gearit.src.editor.robot.action
 			if (IsOk && Spot != null)
 			{
 				RobotEditor.Instance.fallAsleep(Spot, Pack);
-				if (!IsPrismatic)
-					P2.move(From);
+				P2.move(From);
 			}
 		}
 #endif

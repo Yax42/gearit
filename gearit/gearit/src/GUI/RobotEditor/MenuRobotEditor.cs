@@ -40,7 +40,6 @@ namespace gearit.src.GUI
 		// Tools
 		private ListBox lb_jointure;
 		private Button rb_revolute = new Button();
-		private Button rb_prismatic = new Button();
 		private Label label_name;
 		private Label label_weight;
 		private Label label_force;
@@ -99,19 +98,6 @@ namespace gearit.src.GUI
 
 		public static MenuRobotEditor Instance { set; get; }
 
-		public bool IsPrismatic
-		{
-			get
-			{
-				return rb_prismatic.Checked;
-			}
-			set
-			{
-				rb_prismatic.Checked = value;
-				rb_revolute.Checked = !value;
-			}
-		}
-
 		public bool IsWheel
 		{
 			get
@@ -163,7 +149,6 @@ namespace gearit.src.GUI
 
 			//// Tools section
 			// Auto select menu tools
-			rb_prismatic.Checked = true;
 			Label lb;
 
 			// Title
@@ -270,34 +255,6 @@ namespace gearit.src.GUI
 			//y += lb.Size.y + PADDING;
 
 			// Piece jointure type
-#if false
-			rb_revolute.Text = "Revolute";
-			rb_revolute.Style = "itemMenuButton";
-			rb_revolute.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			rb_revolute.Position = new Squid.Point(0, y);
-			rb_revolute.Parent = this;
-			rb_revolute.Tooltip = "Circular motor (Shift+A)";
-
-			rb_prismatic.Text = "Prismatic";
-			rb_prismatic.Style = "itemMenuButton";
-			rb_prismatic.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			rb_prismatic.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-			rb_prismatic.Parent = this;
-			rb_prismatic.Tooltip = "Piston motor (Shift+A)";
-
-			// Callback button
-			rb_revolute.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				if (!rb_revolute.Checked)
-					swap_jointure();
-			};
-
-			rb_prismatic.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				if (!rb_prismatic.Checked)
-					swap_jointure();
-			};
-#endif
 			y += ITEM_HEIGHT + PADDING;
 
 			#endregion
@@ -913,7 +870,6 @@ namespace gearit.src.GUI
 		public void swap_jointure()
 		{
 			rb_revolute.Checked = !rb_revolute.Checked;
-			rb_prismatic.Checked = !rb_prismatic.Checked;
 		}
 
 		public void swap_pieces()
@@ -971,15 +927,7 @@ namespace gearit.src.GUI
 					spot_force.Text = spot.MaxForce.ToString();
 				}
 
-				// Check if Prismatic
-				/*
-				if (spot.GetType() == typeof(PrismaticSpot))
-				{
-					spot_distance.Text = ((PrismaticSpot)spot).getSize().ToString();
-					spot_distance_container.Visible = true;
-				}
-				else*/
-					spot_distance_container.Visible = false;
+				spot_distance_container.Visible = false;
 			}
 		}
 

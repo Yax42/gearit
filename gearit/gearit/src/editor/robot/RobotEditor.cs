@@ -75,7 +75,6 @@ namespace gearit.src.editor.robot
 			new MenuRobotEditor(ScreenManager);
 
 			ActionChooseSet.IsWheel = false;
-			ActionChooseSet.IsPrismatic = false;
 
 			// Action
 			_actionsLog = new List<IAction>();

@@ -52,7 +52,6 @@ namespace gearit.src.robot
 				return _spots;
 			}
 		}
-		private int _prismaticCounter = 0;
 		private int _revoluteCounter = 0;
 
 		[NonSerialized]
@@ -116,7 +115,6 @@ namespace gearit.src.robot
 			_world = SerializerHelper.World;
 			Name = Path.GetFileNameWithoutExtension(SerializerHelper.CurrentPath);// (string)info.GetValue("Name", typeof(string));
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
-			_prismaticCounter = (int)info.GetValue("SpotCount", typeof(int));
 			this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
 			//foreach (Piece p in _pieces)
 			//SerializerHelper._world.AddBody((Body)p);
@@ -137,7 +135,6 @@ namespace gearit.src.robot
 			Heart.move(new Vector2());
 			//info.AddValue("Name", Name, typeof(string));
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));
-			info.AddValue("SpotCount", _prismaticCounter, typeof(int));
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
 			info.AddValue("Spots", _spots, typeof(List<RevoluteSpot>));
 		}
@@ -414,8 +411,7 @@ namespace gearit.src.robot
 				dg.draw(_pieces[i], _pieces[i].ColorValue);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
-				//if (_spots[i].GetType() == typeof(PrismaticSpot))
-					_spots[i].drawDebug(dg);
+				_spots[i].drawDebug(dg);
 		}
 		#endregion
 
@@ -506,11 +502,6 @@ namespace gearit.src.robot
 
 		public void InitScript()
 		{
-			/*
-			foreach (RevoluteSpot i in _spots)
-				if (i.GetType() == typeof(PrismaticSpot))
-					((PrismaticSpot)i).updateLimit();
-			*/
 			if (_script == null)
 				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile(Name));
 		}
@@ -531,7 +522,6 @@ namespace gearit.src.robot
 		}
 
 		public int revCount() { return (_revoluteCounter++); }
-		public int prisCount() { return (_prismaticCounter++); }
 
 		// Filename for robot & lua
 		public string Name { get; set; }
