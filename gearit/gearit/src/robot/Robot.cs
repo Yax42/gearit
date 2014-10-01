@@ -286,6 +286,26 @@ namespace gearit.src.robot
 			return ClosePiece(p);
 		}
 
+		public RevoluteSpot GetCloseSpot(Vector2 p)
+		{
+			float minFound = 1000000f;
+			RevoluteSpot res = null;
+			foreach (RevoluteSpot s in _spots)
+			{
+				if (s.Shown)
+				{
+					float curDist = Vector2.DistanceSquared(p, s.WorldAnchorA);
+					if (curDist < minFound)
+					{
+						minFound = curDist;
+						res = s;
+					}
+				}
+			}
+			return res;
+		}
+
+
 		public float Weight
 		{
 			get

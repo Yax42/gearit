@@ -9,8 +9,7 @@ namespace gearit.src.editor.robot.action
 	enum ActionTypes
 	{
 		NONE = 0,
-		MAIN_SELECT,
-		SELECT2,
+		SELECT,
 		SWAP_SELECT,
 		DELETE_PIECE,
 		MOVE_PIECE,
@@ -22,7 +21,6 @@ namespace gearit.src.editor.robot.action
 		LINK,
 		RESIZE_HEART,
 		RESIZE_WHEEL,
-		RESIZE_ROD,
 		CHOOSE_SET,
 		MOVE_ROBOT,
 		LOAD_ROBOT,
@@ -79,8 +77,7 @@ namespace gearit.src.editor.robot.action
 		{
 			Debug.Assert(_isInit);
 			if (action == ActionTypes.NONE) return _dummy;
-			if (action == ActionTypes.MAIN_SELECT) return new ActionMainSelect();
-			if (action == ActionTypes.SELECT2) return new ActionSelect2();
+			if (action == ActionTypes.SELECT) return new ActionSelect();
 			if (action == ActionTypes.SWAP_SELECT) return new ActionSwapSelects();
 			if (action == ActionTypes.DELETE_PIECE) return new ActionDeletePiece();
 			if (action == ActionTypes.MOVE_PIECE) return new ActionMovePiece();
@@ -92,7 +89,6 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.LINK) return new ActionLink();
 			if (action == ActionTypes.RESIZE_HEART) return new ActionResizeHeart();
 			if (action == ActionTypes.RESIZE_WHEEL) return new ActionResizeWheel();
-			if (action == ActionTypes.RESIZE_ROD) return new ActionResizeRod();
 			if (action == ActionTypes.CHOOSE_SET) return new ActionChooseSet();
 			if (action == ActionTypes.MOVE_ROBOT) return new ActionMoveRobot();
 			if (action == ActionTypes.SAVE_ROBOT) return new ActionSaveRobot();

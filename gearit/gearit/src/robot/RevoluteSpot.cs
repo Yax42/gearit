@@ -343,6 +343,7 @@ namespace gearit.src.robot
 		}
 		#endregion
 
+		public bool Shown { get { return ((Piece)BodyA).Shown || ((Piece)BodyB).Shown; } }
 		#region Draw
 		public void drawDebug(DrawGame game)
 		{
@@ -361,7 +362,6 @@ namespace gearit.src.robot
 			if (Frozen)
 				game.drawSquare(pos, _spotSize * 0.7f, Color.Cyan, true);
 			ColorValue = tmp;
-
 		}
 
 		private void DrawLimits(DrawGame game)
@@ -380,12 +380,11 @@ namespace gearit.src.robot
 
 		private void DrawLimit(DrawGame game, float angle, float factor)
 		{
-			bool isVisible = ((Piece)BodyA).Shown || ((Piece)BodyB).Shown;
 			Vector2 target;
 			target.X = (float)Math.Cos(angle) * factor;
 			target.Y = (float)Math.Sin(angle) * factor;
 			game.drawLine(WorldAnchorA, WorldAnchorA + target,
-					new Color(new Vector4(ColorValue.ToVector3(), isVisible ? 1f : 0.16f)));
+					new Color(new Vector4(ColorValue.ToVector3(), Shown ? 1f : 0.16f)));
 		}
 
 

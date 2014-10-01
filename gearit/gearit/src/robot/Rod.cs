@@ -89,7 +89,7 @@ namespace gearit.src.robot
 
 		virtual public void updateCharacteristics()
 		{
-			//GenerateEnds();
+			GenerateEnds();
 		}
 
 		override public float getSize()

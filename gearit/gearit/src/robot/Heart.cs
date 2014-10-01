@@ -25,8 +25,7 @@ namespace gearit.src.robot
 		public Heart(Robot robot) :
 			base(robot)
 		{
-			Position = new Vector2(3, 3);
-			_vertices = PolygonTools.CreateRectangle(1, 1);
+			_vertices = PolygonTools.CreateRectangle(3, 1);
 			SetShape(new PolygonShape(_vertices, 1f));
 			Weight = 20;
 			//_vertices = ((PolygonShape)_fix.Shape).Vertices;

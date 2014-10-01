@@ -15,19 +15,32 @@ namespace gearit.src.editor.robot.action
 		private Vector2 To;
 		private Piece P1;
 		private bool HasBeenRevert;
+		private bool EndId;
+		private bool IsRod;
+		private Rod Rod;
 
 		public void init()
 		{
 			HasBeenRevert = false;
 			P1 = RobotEditor.Instance.Select1;
-			From = P1.Position;
+			IsRod = (RobotEditor.Instance.Select1.GetType() == typeof(Rod));
+			if (IsRod)
+			{
+				Rod = (Rod) P1;
+				EndId = Rod.CloseEnd(Input.SimMousePos);
+				From = Rod.GetEnd(EndId);
+			}
+			else
+			{
+				From = P1.Position;
+			}
 			To = From;
 		}
 
 		public bool shortcut()
 		{
-			if (RobotEditor.Instance.Select1.GetType() == typeof(Rod))
-				return false;
+			//if (RobotEditor.Instance.Select1.GetType() == typeof(Rod))
+			//	return false;
 			return (Input.ctrlAltShift(false, false, false) && Input.justPressed(MouseKeys.RIGHT));
 		}
 
@@ -37,16 +50,22 @@ namespace gearit.src.editor.robot.action
 			{
 				To = Input.SimMousePos;
 			}
-
 			RobotEditor.Instance.Robot.ResetActEnds();
-			P1.move(To, true, true);
+			if (IsRod)
+				Rod.SetEnd(To, EndId);
+			else
+				P1.move(To, true, true);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
 		}
 
 		public void revert()
 		{
 			HasBeenRevert = true;
-			P1.move(From, true, true);
+			RobotEditor.Instance.Robot.ResetActEnds();
+			if (IsRod)
+				Rod.SetEnd(From, EndId);
+			else
+				P1.move(From, false, true);
 		}
 
 		public bool canBeReverted() { return true; }
