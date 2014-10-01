@@ -112,7 +112,7 @@ namespace gearit.src.editor.robot.action
 			if (p.GetType() == typeof(Rod))
 			{
 				Rod r = (Rod)p;
-				Vector2 anchor = r.GetEnd(r.CloseEnd(Input.SimMousePos));
+				Vector2 anchor = r.GetEnd(r.CloseEnd(Input.VirtualSimMousePos));
 				return anchor;
 			}
 			else
@@ -144,7 +144,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get { return IsOk; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.LINK; }
 	}
 }

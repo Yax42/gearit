@@ -35,7 +35,7 @@ namespace gearit.src.utility
 		{
 			_keyboard = Keyboard.GetState();
 			_mouse = Mouse.GetState();
-			SimMousePos = Vector2.Zero;
+			VirtualSimMousePos = Vector2.Zero;
 
 			// MAPPING DICTONARY KEYBOARD
 			_map_keys = new Dictionary<Keys, string>();
@@ -116,19 +116,19 @@ namespace gearit.src.utility
 			}
 		}
 
-		static public Vector2 _SimMousePos;
-		static public Vector2 SimMousePos
+		static public Vector2 SimMousePos;
+		static public Vector2 VirtualSimMousePos
 		{
 			get
 			{
 				if (MirrorAxis.Mirroring)
-					return MirrorAxis.AxedPosition(_SimMousePos);
+					return MirrorAxis.AxedPosition(SimMousePos);
 				else
-					return _SimMousePos;
+					return SimMousePos;
 			}
 			set
 			{
-				_SimMousePos = value;
+				SimMousePos = value;
 			}
 
 		}

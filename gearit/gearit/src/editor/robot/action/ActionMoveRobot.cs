@@ -29,7 +29,7 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!HasBeenRevert)
 			{
-				To = Input.SimMousePos;
+				To = Input.VirtualSimMousePos;
 			}
 
 			RobotEditor.Instance.Robot.move(To);

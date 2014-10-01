@@ -46,7 +46,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool run()
 		{
-			Vector2 pos = Input.SimMousePos - (EditingDirection ? MirrorAxis.Origin : Vector2.Zero);
+			Vector2 pos = Input.VirtualSimMousePos - (EditingDirection ? MirrorAxis.Origin : Vector2.Zero);
 			if (Input.pressed(MouseKeys.RIGHT))
 				pos.X = 0;
 			if (Input.pressed(MouseKeys.LEFT))

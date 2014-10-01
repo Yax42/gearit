@@ -48,10 +48,10 @@ namespace gearit.src.editor.robot.action
 			{
 				if (P1.GetType() != typeof(Heart))
 				{
-					To = P1.ClosestPositionInside(Input.SimMousePos);
+					To = P1.ClosestPositionInside(Input.VirtualSimMousePos);
 				}
-				else if (P1.Contain(Input.SimMousePos))
-					To = Input.SimMousePos;
+				else if (P1.Contain(Input.VirtualSimMousePos))
+					To = Input.VirtualSimMousePos;
 			}
 			P1.getConnection(P2).moveAnchor(P1, To);
 			return (!HasBeenRevert && Input.pressed(MouseKeys.RIGHT));
@@ -65,7 +65,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get { return IsOk; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.MOVE_ANCHOR; }
 	}
 }

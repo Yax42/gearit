@@ -33,7 +33,7 @@ namespace gearit.src.editor.robot.action
 		public void revert() { run(); }
 
 		public bool canBeReverted { get { return true; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.LIMIT_FROZEN; }
 	}
 }

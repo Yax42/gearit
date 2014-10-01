@@ -24,18 +24,18 @@ namespace gearit.src.editor.robot.action
 			HasBeenRevert = false;
 			Vector2 anchor2 = Vector2.Zero;
 			if (ActionChooseSet.IsWheel)
-				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.SimMousePos);
+				P1 = new Wheel(RobotEditor.Instance.Robot, 0.5f, Input.VirtualSimMousePos);
 			else
 			{
-				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.SimMousePos);
+				P1 = new Rod(RobotEditor.Instance.Robot, 2, Input.VirtualSimMousePos);
 				anchor2 = new Vector2(-2, 0);
 			}
 
 			Vector2 anchor1;
 			if (Input.CtrlShift(true, false))
-				anchor1 = select1.GetLocalPoint(select1.ClosestPositionInside(Input.SimMousePos));
-			else if (select1.Contain(Input.SimMousePos))
-				anchor1 = select1.GetLocalPoint(Input.SimMousePos);
+				anchor1 = select1.GetLocalPoint(select1.ClosestPositionInside(Input.VirtualSimMousePos));
+			else if (select1.Contain(Input.VirtualSimMousePos))
+				anchor1 = select1.GetLocalPoint(Input.VirtualSimMousePos);
 			else
 				anchor1 = select1.ShapeLocalOrigin();
 
@@ -64,7 +64,7 @@ namespace gearit.src.editor.robot.action
 					return true;
 				else if (FrameCount == 2)
 					((Rod)P1).GenerateEnds();
-				((Rod)P1).SetEnd(Input.SimMousePos, false);
+				((Rod)P1).SetEnd(Input.VirtualSimMousePos, false);
 				return Input.pressed(Keys.W);
 			}
 			return false;
@@ -77,7 +77,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get { return true; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.CREATE_PIECE; }
 	}
 }

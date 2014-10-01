@@ -176,21 +176,25 @@ namespace gearit.src.editor.robot
 		public void fallAsleep(Piece p, SleepingPack pack)
 		{
 			Robot.fallAsleep(p, pack);
-
-			if (Select1.Sleeping)
-				Select1 = Robot.Heart;
-			if (Select2.Sleeping)
-				Select2 = Robot.Heart;
+			AsleepSelections();
 		}
 
 		public void fallAsleep(RevoluteSpot s, SleepingPack pack)
 		{
 			Robot.fallAsleep(s, pack);
+			AsleepSelections();
+		}
 
+		private void AsleepSelections()
+		{
 			if (Select1.Sleeping)
 				Select1 = Robot.Heart;
 			if (Select2.Sleeping)
 				Select2 = Robot.Heart;
+			if (MirrorSelect1.Sleeping)
+				MirrorSelect1 = Robot.Heart;
+			if (MirrorSelect2.Sleeping)
+				MirrorSelect2 = Robot.Heart;
 		}
 
 		public void doAction(ActionTypes action = ActionTypes.NONE)

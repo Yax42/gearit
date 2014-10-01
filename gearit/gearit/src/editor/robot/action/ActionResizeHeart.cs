@@ -29,7 +29,7 @@ namespace gearit.src.editor.robot.action
 			Debug.Assert(RobotEditor.Instance.Select1.GetType() == typeof(Heart));
 			Heart = (Heart) RobotEditor.Instance.Select1;
 			From = Heart.getShapeClone();
-			_corner = Heart.getCorner(Input.SimMousePos);
+			_corner = Heart.getCorner(Input.VirtualSimMousePos);
 			_moving = true;
 			_isFirstFrame = true;
 			_didSomething = false;
@@ -52,7 +52,7 @@ namespace gearit.src.editor.robot.action
 			if (Input.justPressed(MouseKeys.LEFT))
 			{
 				_moving = true;
-				_corner = Heart.getCorner(Input.SimMousePos);
+				_corner = Heart.getCorner(Input.VirtualSimMousePos);
 			}
 			if (Input.pressed(MouseKeys.LEFT))
 			{
@@ -65,13 +65,13 @@ namespace gearit.src.editor.robot.action
 				}
 				else if (_moving)
 				{
-					Heart.moveCorner(_corner, Input.SimMousePos);
+					Heart.moveCorner(_corner, Input.VirtualSimMousePos);
 					_didSomething = true;
 				}
 			}
 			else if (Input.justPressed(MouseKeys.RIGHT))
 			{
-				if (Heart.addCorner(Input.SimMousePos))
+				if (Heart.addCorner(Input.VirtualSimMousePos))
 					_didSomething = true;
 			}
 			if ((Input.justPressed(Keys.S) == true && !_isFirstFrame) || Input.justPressed(Keys.Escape))
@@ -91,7 +91,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get { return _didSomething; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.RESIZE_HEART; }
 	}
 }

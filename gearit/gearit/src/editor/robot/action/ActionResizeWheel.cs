@@ -35,7 +35,7 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!HasBeenRevert)
 			{
-				To = (Input.SimMousePos - Wheel.Position).Length();
+				To = (Input.VirtualSimMousePos - Wheel.Position).Length();
 			}
 			Wheel.Size = To;
 			return (Input.justPressed(MouseKeys.LEFT) == false && Input.justReleased(Keys.S) == false);
@@ -48,7 +48,7 @@ namespace gearit.src.editor.robot.action
 		}
 
 		public bool canBeReverted { get {return true; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.RESIZE_WHEEL; }
 	}
 }

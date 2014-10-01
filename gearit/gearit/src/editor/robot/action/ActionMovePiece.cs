@@ -27,7 +27,7 @@ namespace gearit.src.editor.robot.action
 			if (IsRod)
 			{
 				Rod = (Rod) P1;
-				EndId = Rod.CloseEnd(Input.SimMousePos);
+				EndId = Rod.CloseEnd(Input.VirtualSimMousePos);
 				From = Rod.GetEnd(EndId);
 			}
 			else
@@ -49,7 +49,7 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!HasBeenRevert)
 			{
-				To = Input.SimMousePos;
+				To = Input.VirtualSimMousePos;
 			}
 			RobotEditor.Instance.Robot.ResetActEnds();
 			if (IsRod)

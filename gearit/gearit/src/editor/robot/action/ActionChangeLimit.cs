@@ -37,7 +37,7 @@ namespace gearit.src.editor.robot.action
 			RevSpot.MaxAngle = 0;
 			RevSpot.MinAngle = 0;
 			Origin = RevSpot.WorldAnchorA;
-			PreviousPos = Input.SimMousePos - Origin;
+			PreviousPos = Input.VirtualSimMousePos - Origin;
 		}
 
 		public bool shortcut()
@@ -49,16 +49,16 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!IsOk)
 				return false;
-			Vector2 currentPos = Input.SimMousePos - RevSpot.WorldAnchorA;
+			Vector2 currentPos = Input.VirtualSimMousePos - RevSpot.WorldAnchorA;
 			float deltaAngle = (float) MathUtils.VectorAngle(PreviousPos, currentPos);
 			PreviousPos = currentPos;
 //(float) MathUtils.VectorAngle(currentPos, PreviousPos);
 
 			if (_step == 0)
 			{
-				RevSpot.VirtualLimitBegin = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0));
+				RevSpot.VirtualLimitBegin = -(float)MathUtils.VectorAngle(Input.VirtualSimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0));
 			}
-			else if (_step == 1)
+			else if (_step == (MirrorAxis.Mirroring ? 2 : 1))
 			{
 				RevSpot.MinAngle += deltaAngle;
 				if (RevSpot.MinAngle > 0)
@@ -66,7 +66,7 @@ namespace gearit.src.editor.robot.action
 				//if (RevSpot.UpperLimit < RevSpot.LowerLimit)
 				//	RevSpot.UpperLimit = RevSpot.LowerLimit;
 			}
-			else if (_step == 2)
+			else if (_step == (MirrorAxis.Mirroring ? 1 : 2))
 			{
 				//RevSpot.UpperLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0)) - RevSpot.VirtualLimitBegin;
 				RevSpot.MaxAngle += deltaAngle;
@@ -85,7 +85,7 @@ namespace gearit.src.editor.robot.action
 		public void revert() { }
 
 		public bool canBeReverted { get { return false; } }
-		public bool canBeMirrored { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 		public ActionTypes Type() { return ActionTypes.CHANGE_LIMIT; }
 	}
 }
