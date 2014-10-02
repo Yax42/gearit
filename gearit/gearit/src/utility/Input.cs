@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
+﻿using System.Collections.Generic;
+using gearit.src.editor;
 using Microsoft.Xna.Framework;
-using gearit.src.editor.robot.action;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.utility
 {
@@ -121,10 +118,12 @@ namespace gearit.src.utility
 		{
 			get
 			{
-				if (MirrorAxis.Mirroring)
-					return MirrorAxis.AxedPosition(SimMousePos);
-				else
-					return SimMousePos;
+				var res = SimMousePos;
+				if (LockAxis.Active)
+					res = LockAxis.Transform(res);
+				if (MirrorAxis.Active)
+					res = MirrorAxis.Transform(res);
+				return res;
 			}
 			set
 			{

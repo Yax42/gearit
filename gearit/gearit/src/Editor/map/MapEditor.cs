@@ -243,6 +243,7 @@ namespace gearit.src.editor.map
 			if (ActionSwapEventMode.EventMode)
 				ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
 			_draw_game.Begin(_camera);
+			_draw_game.DrawGrille();
 
 			_map.DrawDebug(_draw_game, ActionSwapEventMode.EventMode);
 

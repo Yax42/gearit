@@ -58,7 +58,7 @@ namespace gearit.src.editor.robot.action
 			{
 				RevSpot.VirtualLimitBegin = -(float)MathUtils.VectorAngle(Input.VirtualSimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0));
 			}
-			else if (_step == (MirrorAxis.Mirroring ? 2 : 1))
+			else if (_step == (MirrorAxis.Active ? 2 : 1))
 			{
 				RevSpot.MinAngle += deltaAngle;
 				if (RevSpot.MinAngle > 0)
@@ -66,7 +66,7 @@ namespace gearit.src.editor.robot.action
 				//if (RevSpot.UpperLimit < RevSpot.LowerLimit)
 				//	RevSpot.UpperLimit = RevSpot.LowerLimit;
 			}
-			else if (_step == (MirrorAxis.Mirroring ? 1 : 2))
+			else if (_step == (MirrorAxis.Active ? 1 : 2))
 			{
 				//RevSpot.UpperLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0)) - RevSpot.VirtualLimitBegin;
 				RevSpot.MaxAngle += deltaAngle;

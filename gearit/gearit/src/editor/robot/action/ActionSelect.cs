@@ -15,7 +15,7 @@ namespace gearit.src.editor.robot.action
 		public void init()
 		{
 			if (Input.Alt)
-				MirrorAxis.Mirroring = true;
+				MirrorAxis.Active = true;
 			if (Input.CtrlShift(false, false))
 				RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
 			else if (Input.CtrlShift(false, true))
@@ -33,7 +33,7 @@ namespace gearit.src.editor.robot.action
 				Debug.Assert(false);
 
 			if (Input.Alt)
-				MirrorAxis.Mirroring = false;
+				MirrorAxis.Active = false;
 		}
 
 		public bool shortcut()

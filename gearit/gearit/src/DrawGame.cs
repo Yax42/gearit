@@ -179,13 +179,13 @@ namespace gearit.src
 			}
 			else
 			{
-				drawLine(pos + new Vector2(-ray, -ray), pos + new Vector2(ray, -ray), col);
-				drawLine(pos + new Vector2(ray, -ray), pos + new Vector2(ray, ray), col);
-				drawLine(pos + new Vector2(ray, ray), pos + new Vector2(-ray, ray), col);
-				drawLine(pos + new Vector2(-ray, ray), pos + new Vector2(-ray, -ray), col);
+				DrawLine(pos + new Vector2(-ray, -ray), pos + new Vector2(ray, -ray), col);
+				DrawLine(pos + new Vector2(ray, -ray), pos + new Vector2(ray, ray), col);
+				DrawLine(pos + new Vector2(ray, ray), pos + new Vector2(-ray, ray), col);
+				DrawLine(pos + new Vector2(-ray, ray), pos + new Vector2(-ray, -ray), col);
 			}
 		}
-		public void drawLine(Vector2 p1, Vector2 p2, Color col)
+		public void DrawLine(Vector2 p1, Vector2 p2, Color col)
 		{
 			_primitiveBatch.AddVertex(p1, col, PrimitiveType.LineList);
 			_primitiveBatch.AddVertex(p2, col, PrimitiveType.LineList);
@@ -256,7 +256,7 @@ namespace gearit.src
 
 						drawCircle(center, radius, color, false);
 						float angle = fixture.Body.Rotation;
-						drawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), color);
+						DrawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), color);
 					}
 					break;
 
@@ -280,7 +280,7 @@ namespace gearit.src
 						EdgeShape edge = (EdgeShape)fixture.Shape;
 						Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
 						Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
-						drawLine(v1, v2, color);
+						DrawLine(v1, v2, color);
 					}
 					break;
 			}
@@ -296,12 +296,36 @@ namespace gearit.src
 			}
 		}
 
+		public void DrawGrille()
+		{
+			DrawGrille(Vector2.Zero, 100, 3);
+		}
+
+		public void DrawGrille(Vector2 center, int count, int size)
+		{
+			Vector2 origin = center - new Vector2(count * size / 2);
+			int globalSize = count * size;
+			Color col = Color.Cyan;
+			col.A = 30;
+
+			for (int i = 1; i < count; i++)
+			{
+				DrawLine(origin + new Vector2(i * size, 0),
+					origin + new Vector2(i * size, globalSize),
+					col);
+				DrawLine(origin + new Vector2(0, i * size),
+					origin + new Vector2(globalSize, i * size),
+					col);
+			}
+
+		}
+
 		public void drawPolygon(Vector2[] vertices, int from, int count, Color color)
 		{
 			paintPolygon(vertices, from, count, color);
 			for (int i = from; i < count + from - 1; i++)
-				drawLine(vertices[i], vertices[i + 1], color);
-			drawLine(vertices[from + count - 1], vertices[from], color);
+				DrawLine(vertices[i], vertices[i + 1], color);
+			DrawLine(vertices[from + count - 1], vertices[from], color);
 		}
 
 		public void drawCircle(Vector2 center, float radius, Color color, bool paint = false)
@@ -341,7 +365,7 @@ namespace gearit.src
 
 		public Texture2D textureFromShape(Shape shape, MaterialType mater)
 		{
-		return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
+			return (_asset.TextureFromShape(shape, mater, Color.White, 1f));
 		}
 	}
 }

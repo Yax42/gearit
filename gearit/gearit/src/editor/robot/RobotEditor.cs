@@ -35,14 +35,14 @@ namespace gearit.src.editor.robot
 		{
 			get
 			{
-				if (MirrorAxis.Mirroring)
+				if (MirrorAxis.Active)
 					return MirrorSelect1;
 				else
 					return _Select1;
 			}
 			set
 			{
-				if (MirrorAxis.Mirroring)
+				if (MirrorAxis.Active)
 					MirrorSelect1 = value;
 				else
 					_Select1 = value;
@@ -54,14 +54,14 @@ namespace gearit.src.editor.robot
 		{
 			get
 			{
-				if (MirrorAxis.Mirroring)
+				if (MirrorAxis.Active)
 					return MirrorSelect2;
 				else
 					return _Select2;
 			}
 			set
 			{
-				if (MirrorAxis.Mirroring)
+				if (MirrorAxis.Active)
 					MirrorSelect2 = value;
 				else
 					_Select2 = value;
@@ -208,10 +208,10 @@ namespace gearit.src.editor.robot
 				_currentAction.init();
 				if (Input.Alt && _currentAction.canBeMirrored)
 				{
-					MirrorAxis.Mirroring = true;
+					MirrorAxis.Active = true;
 					_mirrorAction = ActionFactory.create(_currentAction.Type());
 					_mirrorAction.init();
-					MirrorAxis.Mirroring = false;
+					MirrorAxis.Active = false;
 				}
 			}
 		}
@@ -228,15 +228,18 @@ namespace gearit.src.editor.robot
 
 		private void HandleInput()
 		{
+			if (Input.justPressed(Keys.X))
+				LockAxis.Origin = Input.SimMousePos;
+			LockAxis.Active = Input.pressed(Keys.X);
 			if (_currentAction.Type() == ActionTypes.NONE)
 			{
 				if (MenuRobotEditor.Instance.hasFocus())
 					return;
 				doAction();
 			}
-			MirrorAxis.Mirroring = true;
+			MirrorAxis.Active = true;
 			_mirrorAction.run();
-			MirrorAxis.Mirroring = false;
+			MirrorAxis.Active = false;
 			if (_currentAction.run() == false)
 			{
 				PushRevertAction(_currentAction);
@@ -273,51 +276,6 @@ namespace gearit.src.editor.robot
 			{
 				return _currentAction.Type();
 			}
-		}
-
-		private void DrawRobot()
-		{
-			if (MirrorSelect1 == MirrorSelect2)
-				MirrorSelect1.ColorValue = Color.Pink;
-			else
-			{
-				MirrorSelect2.ColorValue = Color.Cyan;
-				MirrorSelect1.ColorValue = Color.IndianRed;
-			}
-
-			if (_currentAction.Type() == ActionTypes.RESIZE_HEART)
-				Select1.ColorValue = Color.White;
-			else if (Select2 == Select1)
-				Select2.ColorValue = Color.Violet;
-			else
-			{
-				Select2.ColorValue = Color.Blue;
-				Select1.ColorValue = Color.Red;
-			}
-			if (Select1.isConnected(Select2))
-				Select1.getConnection(Select2).ColorValue =
-					new Color(MathLib.LoopIn(_time * 10, 255), 255, MathLib.LoopIn(_time * 10, 255));
-
-			Robot.drawDebug(DrawGame);
-
-			if (Select1.isConnected(Select2))
-				Select1.getConnection(Select2).ColorValue = Color.Black;
-			MirrorSelect1.ColorValue = Color.DarkSeaGreen;
-			MirrorSelect2.ColorValue = Color.DarkSeaGreen;
-			Select2.ColorValue = Color.DarkSeaGreen;
-			Select1.ColorValue = Color.DarkSeaGreen;
-		}
-
-		private void DrawMarks()
-		{
-			DrawGame.drawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
-							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
-							Color.White);
-		}
-
-		public void drawRobotTexture()
-		{
-			Robot.drawDebugTexture(DrawGame);
 		}
 
 		//----------------------------NAME-------------------------------------
@@ -382,6 +340,59 @@ namespace gearit.src.editor.robot
 
 		//-----------------------------------------------------------------
 
+		private void DrawRobot()
+		{
+			if (MirrorSelect1 == MirrorSelect2)
+				MirrorSelect1.ColorValue = Color.Pink;
+			else
+			{
+				MirrorSelect2.ColorValue = Color.Cyan;
+				MirrorSelect1.ColorValue = Color.IndianRed;
+			}
+
+			if (_currentAction.Type() == ActionTypes.RESIZE_HEART)
+				Select1.ColorValue = Color.White;
+			else if (Select2 == Select1)
+				Select2.ColorValue = Color.Violet;
+			else
+			{
+				Select2.ColorValue = Color.Blue;
+				Select1.ColorValue = Color.Red;
+			}
+			if (Select1.isConnected(Select2))
+				Select1.getConnection(Select2).ColorValue =
+					new Color(MathLib.LoopIn(_time * 10, 255), 255, MathLib.LoopIn(_time * 10, 255));
+
+			Robot.drawDebug(DrawGame);
+
+			if (Select1.isConnected(Select2))
+				Select1.getConnection(Select2).ColorValue = Color.Black;
+			MirrorSelect1.ColorValue = Color.DarkSeaGreen;
+			MirrorSelect2.ColorValue = Color.DarkSeaGreen;
+			Select2.ColorValue = Color.DarkSeaGreen;
+			Select1.ColorValue = Color.DarkSeaGreen;
+		}
+
+		private void DrawMarks()
+		{
+			Color col = Color.White;
+			col.A = 76;
+			DrawGame.DrawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
+							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
+							col);
+			col = Color.Orange;
+			col.A = 76;
+			DrawGame.DrawLine(LockAxis.Origin - 1000 * LockAxis.Dir,
+							LockAxis.Origin + 1000 * LockAxis.Dir,
+							col);
+		}
+
+		public void DrawRobotTexture()
+		{
+			Robot.drawDebugTexture(DrawGame);
+		}
+
+
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
@@ -390,7 +401,8 @@ namespace gearit.src.editor.robot
 			//DrawGame.End();
 
 			DrawGame.BeginPrimitive(_camera);
-			drawRobotTexture();
+			DrawGame.DrawGrille();
+			DrawRobotTexture();
 			DrawRobot();
 			DrawMarks();
 			DrawGame.EndPrimitive();

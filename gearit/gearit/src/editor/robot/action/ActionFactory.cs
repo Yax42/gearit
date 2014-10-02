@@ -31,7 +31,7 @@ namespace gearit.src.editor.robot.action
 		UNDO,
 		REDO,
 		CREATE_PIECE,
-		SET_MIRROR,
+		SET_AXIS,
 		SHOW_HELP,
 		EXIT,
 		COUNT
@@ -100,7 +100,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.UNDO) return new ActionUndo();
 			if (action == ActionTypes.REDO) return new ActionRedo();
 			if (action == ActionTypes.CREATE_PIECE) return new ActionCreatePiece();
-			if (action == ActionTypes.SET_MIRROR) return new ActionSetMirrorAxis();
+			if (action == ActionTypes.SET_AXIS) return new ActionSetAxis();
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			if (action == ActionTypes.EXIT) return new ActionExit();
 			return _dummy;

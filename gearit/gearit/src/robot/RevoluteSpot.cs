@@ -383,7 +383,7 @@ namespace gearit.src.robot
 			Vector2 target;
 			target.X = (float)Math.Cos(angle) * factor;
 			target.Y = (float)Math.Sin(angle) * factor;
-			game.drawLine(WorldAnchorA, WorldAnchorA + target,
+			game.DrawLine(WorldAnchorA, WorldAnchorA + target,
 					new Color(new Vector4(ColorValue.ToVector3(), Shown ? 1f : 0.16f)));
 		}
 
