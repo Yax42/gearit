@@ -223,9 +223,10 @@ namespace gearit.src.robot
 			set
 			{
 				MotorSpeed = value * 15;
-				if ((value <= 0 && AutoFreezeState == LimitState.AtUpper)
-					|| (value >= 0 && AutoFreezeState == LimitState.AtLower))
-					Frozen = false;
+				if ((value > 0 && AutoFreezeState == LimitState.AtUpper)
+					|| (value < 0 && AutoFreezeState == LimitState.AtLower))
+					return;
+				Frozen = false;
 			}
 		}
 
