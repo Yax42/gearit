@@ -348,20 +348,24 @@ namespace gearit.src.robot
 		public void drawDebug(DrawGame game)
 		{
 			DrawDebug(game, WorldAnchorA);
-			DrawDebug(game, WorldAnchorB);
+			DrawAnchorDebug(game, WorldAnchorA);
+			DrawAnchorDebug(game, WorldAnchorB);
 			DrawLimits(game);
+		}
+
+		private void DrawAnchorDebug(DrawGame game, Vector2 pos)
+		{
+			game.drawSquare(pos, _spotSize, Color.Black, false);
 		}
 
 		private void DrawDebug(DrawGame game, Vector2 pos)
 		{
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
-			Color tmp = ColorValue;
+			game.DrawCircle(pos, _spotSize * 1.2f, ColorValue, true);
 			if (SpotLimitEnabled)
-				ColorValue = Color.Pink;
-			game.drawSquare(pos, _spotSize, ColorValue, false);
+				game.DrawCircle(pos, _spotSize * 1f, Color.Pink, true);
 			if (Frozen)
-				game.drawSquare(pos, _spotSize * 0.7f, Color.Cyan, true);
-			ColorValue = tmp;
+				game.drawSquare(pos, _spotSize * 0.7f, Color.Yellow, true);
 		}
 
 		private void DrawLimits(DrawGame game)

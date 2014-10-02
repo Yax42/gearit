@@ -203,7 +203,7 @@ namespace gearit.src.editor
 
 		public void input(bool canMove = true)
 		{
-			if (canMove && Input.pressed(MouseKeys.MIDDLE) || (Input.pressed(Keys.V)))
+			if (canMove && Input.pressed(MouseKeys.MIDDLE))// || (Input.pressed(Keys.V)))
 				move(Input.mouseOffset());
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				zoomIn();

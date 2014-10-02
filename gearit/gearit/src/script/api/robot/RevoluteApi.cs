@@ -43,6 +43,16 @@ namespace gearit.src.script
 			set { _spot.Frozen = value; }
 		}
 
+		public bool HitMax
+		{
+			get { return _spot.LimitState == FarseerPhysics.Dynamics.Joints.LimitState.AtUpper; }
+		}
+
+		public bool HitMin
+		{
+			get { return _spot.LimitState == FarseerPhysics.Dynamics.Joints.LimitState.AtLower; }
+		}
+
 #if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle
 		{

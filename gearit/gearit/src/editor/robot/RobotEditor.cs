@@ -67,8 +67,8 @@ namespace gearit.src.editor.robot
 					_Select2 = value;
 			}
 		}
-		public Piece MirrorSelect1 {get; set;}
-		public Piece MirrorSelect2 {get; set;}
+		private Piece MirrorSelect1 {get; set;}
+		private Piece MirrorSelect2 {get; set;}
 		public RevoluteSpot SelectedSpot { get { return Select1.getConnection(Select2); } }
 		private List<IAction> _actionsLog;
 		private List<IAction> _redoActionsLog;
@@ -209,8 +209,11 @@ namespace gearit.src.editor.robot
 				if (Input.Alt && _currentAction.canBeMirrored)
 				{
 					MirrorAxis.Active = true;
-					_mirrorAction = ActionFactory.create(_currentAction.Type());
-					_mirrorAction.init();
+					_mirrorAction = ActionFactory.createFromShortcut();
+					if (_mirrorAction.Type() == _currentAction.Type())
+						_mirrorAction.init();
+					else
+						_mirrorAction = ActionFactory.Dummy;
 					MirrorAxis.Active = false;
 				}
 			}
@@ -230,7 +233,7 @@ namespace gearit.src.editor.robot
 		{
 			if (Input.justPressed(Keys.X))
 				LockAxis.Origin = Input.SimMousePos;
-			LockAxis.Active = Input.pressed(Keys.X);
+			LockAxis.Active = Input.pressed(Keys.X) && _currentAction.Type() != ActionTypes.SET_AXIS;
 			if (_currentAction.Type() == ActionTypes.NONE)
 			{
 				if (MenuRobotEditor.Instance.hasFocus())
@@ -346,7 +349,7 @@ namespace gearit.src.editor.robot
 				MirrorSelect1.ColorValue = Color.Pink;
 			else
 			{
-				MirrorSelect2.ColorValue = Color.Cyan;
+				MirrorSelect2.ColorValue = Color.CadetBlue;
 				MirrorSelect1.ColorValue = Color.IndianRed;
 			}
 
@@ -392,6 +395,24 @@ namespace gearit.src.editor.robot
 			Robot.drawDebugTexture(DrawGame);
 		}
 
+		private void DrawValues(IAction action)
+		{
+			if (action.Type() == ActionTypes.CHANGE_VALUES)
+			{
+				var act = (ActionChangeValues)action;
+				int power = act.Power + 1;
+				Vector2 ori = act.Origin;
+				int unit = act.Unit;
+				float delta = (float) (2f * Math.PI) / 10f;
+				for (int i = 0; i < 10; i++)
+				{
+					var pos = ori + 0.5f * new Vector2((float)Math.Cos(i * delta),
+						(float)Math.Sin(i * delta));
+					DrawGame.DrawCircle(pos, (i == unit ? power * 0.05f : 0.05f),
+						(i == unit) ? new Color(0.5f, 0.2f + power / 10f, power / 20f, 1) : Color.Brown , true);
+				}
+			}
+		}
 
 		public override void Draw(GameTime gameTime)
 		{
@@ -404,6 +425,9 @@ namespace gearit.src.editor.robot
 			DrawGame.DrawGrille();
 			DrawRobotTexture();
 			DrawRobot();
+			DrawValues(_currentAction);
+			DrawValues(_mirrorAction);
+
 			DrawMarks();
 			DrawGame.EndPrimitive();
 			

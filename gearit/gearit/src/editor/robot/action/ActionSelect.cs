@@ -18,9 +18,9 @@ namespace gearit.src.editor.robot.action
 				MirrorAxis.Active = true;
 			if (Input.CtrlShift(false, false))
 				RobotEditor.Instance.Select1 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
-			else if (Input.CtrlShift(false, true))
-				RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
 			else if (Input.CtrlShift(true, false))
+				RobotEditor.Instance.Select2 = RobotEditor.Instance.Robot.GetPiece(Input.SimMousePos);
+			else if (Input.CtrlShift(false, true))
 			{
 				var rev = RobotEditor.Instance.Robot.GetCloseSpot(Input.SimMousePos);
 				if (rev != null)

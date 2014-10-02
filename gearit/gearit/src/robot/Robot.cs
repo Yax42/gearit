@@ -162,10 +162,10 @@ namespace gearit.src.robot
 						TriggersData[trigger.Id] = true;
 				}
 			}
-			if (_script != null)
-				_script.run();
 			foreach (RevoluteSpot s in Spots)
 				s.ProcessAutoFreeze();
+			if (_script != null)
+				_script.run();
 		}
 
 		public Heart Heart

@@ -129,7 +129,7 @@ namespace gearit.src
 						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
-						drawCircle(center, radius, color, true);
+						DrawCircle(center, radius, color, true);
 					}
 					break;
 
@@ -254,7 +254,7 @@ namespace gearit.src
 						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
-						drawCircle(center, radius, color, false);
+						DrawCircle(center, radius, color, false);
 						float angle = fixture.Body.Rotation;
 						DrawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), color);
 					}
@@ -328,7 +328,7 @@ namespace gearit.src
 			DrawLine(vertices[from + count - 1], vertices[from], color);
 		}
 
-		public void drawCircle(Vector2 center, float radius, Color color, bool paint = false)
+		public void DrawCircle(Vector2 center, float radius, Color color, bool paint = false)
 		{
 			const double increment = Math.PI * 2.0 / _circleSegments;
 			double theta = 0.0;

@@ -30,7 +30,7 @@ namespace gearit.src.editor.robot.action
 				return;
 			_step = 0;
 			HasBeenRevert = false;
-			RevSpot = (RevoluteSpot)p1.getConnection(p2);
+			RevSpot = p1.getConnection(p2);
 
 			From = RevSpot.MaxAngle;
 			To = From;

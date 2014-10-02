@@ -23,7 +23,6 @@ namespace gearit.src.script
 			return (Input.released((Keys)key));
 		}
 
-	/*
 		public bool justPressed(int key)
 		{
 			return (Input.justPressed((Keys)key));
@@ -33,6 +32,5 @@ namespace gearit.src.script
 		{
 			return (Input.justReleased((Keys)key));
 		}
-	*/
 	}
 }

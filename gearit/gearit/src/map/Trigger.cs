@@ -155,7 +155,7 @@ namespace gearit.src.map
 		public void DrawDebug(DrawGame dg, Color col)
 		{
 			for (int i = 0; i < Id; i++ )
-				dg.drawCircle(new Vector2(From.X + 0.2f * i, From.Y), 0.1f, Color.Black);
+				dg.DrawCircle(new Vector2(From.X + 0.2f * i, From.Y), 0.1f, Color.Black);
 			dg.drawPolygon(_Vertices, 0, 4, col);
 		}
 	}

@@ -32,6 +32,7 @@ namespace gearit.src.editor.robot.action
 		REDO,
 		CREATE_PIECE,
 		SET_AXIS,
+		CHANGE_VALUES,
 		SHOW_HELP,
 		EXIT,
 		COUNT
@@ -101,6 +102,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.REDO) return new ActionRedo();
 			if (action == ActionTypes.CREATE_PIECE) return new ActionCreatePiece();
 			if (action == ActionTypes.SET_AXIS) return new ActionSetAxis();
+			if (action == ActionTypes.CHANGE_VALUES) return new ActionChangeValues();
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			if (action == ActionTypes.EXIT) return new ActionExit();
 			return _dummy;
