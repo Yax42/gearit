@@ -93,6 +93,11 @@ namespace gearit.src.GUI
 		{
 			_chat_box.Update();
 
+            if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F11))
+            {
+                ChatBox.Toggle();
+            }
+
 			if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.Enter))
 				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
 		}
