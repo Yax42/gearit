@@ -523,7 +523,7 @@ namespace gearit.src.robot
 		public void InitScript()
 		{
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile(Name));
+				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile("robot/script/" + Name));
 		}
 
 		public void InitScript(string script)

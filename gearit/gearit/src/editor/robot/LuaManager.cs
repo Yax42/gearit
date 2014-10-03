@@ -111,7 +111,7 @@ namespace gearit.src.editor.robot
 
 		public static string LuaFile(string name)
 		{
-			return @"data/script/" + name + ".lua";
+			return @"data/" + name + ".lua";
 		}
 		public static string Regex
 		{

@@ -185,6 +185,24 @@ namespace gearit.src
 				DrawLine(pos + new Vector2(-ray, ray), pos + new Vector2(-ray, -ray), col);
 			}
 		}
+
+		public void DrawLNumber(int v, Vector2 p, float alpha)
+		{
+			/*
+			float delta = (float) (2f * Math.PI) / 10f;
+
+			for (int i = 0; i < 10; i++)
+			{
+				Color col = new Color(1f - ((i + 2) / 3) / 3f, 1f - ((i + 2) / 3) / 3f,1, alpha );
+
+				var pos = ori + 0.5f * new Vector2((float)Math.Cos(i * delta),
+					(float)Math.Sin(i * delta));
+				DrawGame.DrawCircle(pos, (i == unit ? power * 0.05f : 0.05f),
+					(i == unit) ? new Color(0.5f, 0.2f + power / 10f, power / 20f, 1) : Color.Brown , true);
+			}
+			*/
+		}
+
 		public void DrawLine(Vector2 p1, Vector2 p2, Color col)
 		{
 			_primitiveBatch.AddVertex(p1, col, PrimitiveType.LineList);

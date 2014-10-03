@@ -91,7 +91,7 @@ namespace gearit.src.Network
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 
-			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("game/default"));
+			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("map/script/default"));
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;

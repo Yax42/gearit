@@ -41,7 +41,7 @@ namespace gearit.src.editor.robot.action
 			}
 
 			// Lua
-			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
+			var filename = LuaManager.LuaFile("robot/script/" + RobotEditor.Instance.Robot.Name);
 			string lua = "";
 
 			// Read the file as one string.

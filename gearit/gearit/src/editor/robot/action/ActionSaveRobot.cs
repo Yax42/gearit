@@ -43,7 +43,7 @@ namespace gearit.src.editor.robot.action
 
 			#region Lua
 
-			var filename = LuaManager.LuaFile(RobotEditor.Instance.Robot.Name);
+			var filename = LuaManager.LuaFile("robot/script/" + RobotEditor.Instance.Robot.Name);
 
 			// Read the file as one string.
 			try

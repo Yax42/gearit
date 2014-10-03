@@ -29,6 +29,8 @@ namespace gearit.src.editor.robot.action
 				Backup = Piece.Weight;
 			else
 				Backup = Spot.MaxForce;
+			Unit = 1;
+			Power = 1;
 		}
 
 		public bool shortcut()
@@ -52,39 +54,37 @@ namespace gearit.src.editor.robot.action
 
 		public int Unit
 		{
-			get
-			{
-				float angle = (float)MathUtils.VectorAngle(Input.VirtualSimMousePos - Origin, new Vector2(0, MirrorAxis.Active ? 1 : -1));
-				angle *= -1;
-				angle -= (float) Math.PI / 2;
-				while (angle < 0)
-					angle += (float)(2f * Math.PI);
-				return (int)((angle / (Math.PI * 2f)) * 10);
-			}
+			get;
+			private set;
 		}
-		
+
 		public int Power
 		{
-			get
-			{
-				int v = (int) ((Vector2.Distance(Input.VirtualSimMousePos, Origin) - 0.5f) * 3f);
-				if (v < 0)
-					v = 0;
-				return v;
-			}
+			get;
+			private set;
 		}
 
 
 		public bool run()
 		{
+			if (Input.justPressed(MouseKeys.LEFT))
+				Unit++;
+			if (Unit > 9)
+				Unit = 0;
+			if (Input.justPressed(MouseKeys.RIGHT))
+				Power++;
+			if (Power > 5)
+				Power = 1;
+
 			float v = Unit;
 			int power = Power;
-			for (int i = 0; i < power; i++)
+			for (int i = 1; i < power; i++)
 				v *= 10f;
 			if (IsPiece)
 				Piece.Weight = v;
 			else
 				Spot.MaxForce = v;
+			if (false)
 			if (Input.justPressed(MouseKeys.RIGHT))
 			{
 				if (IsPiece)
@@ -94,8 +94,7 @@ namespace gearit.src.editor.robot.action
 				return false;
 			}
 
-			return (Input.justPressed(MouseKeys.LEFT) == false
-					&& Input.justReleased(Keys.V) == false);
+			return (Input.justReleased(Keys.V) == false);
 		}
 
 		public void revert() { }
