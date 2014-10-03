@@ -77,8 +77,8 @@ namespace gearit.src.robot
 			Enabled = true;
 
 			MotorEnabled = true;
-			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));	
-			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));	
+			MaxMotorTorque = (float)info.GetValue("MaxForce", typeof(float));
+			MaxAngle = (float)info.GetValue("MaxAngle", typeof(float));
 			MinAngle = (float)info.GetValue("MinAngle", typeof(float));	
 			SpotLimitEnabled = (bool)info.GetValue("LimitEnabled", typeof(bool));	
 			VirtualLimitBegin = (float)info.GetValue("VirtualLimitBegin", typeof(float));	
@@ -110,7 +110,7 @@ namespace gearit.src.robot
 		#region MotorControl
 
 		private bool AutoFreezeOnLimits = true;
-		LimitState AutoFreezeState = LimitState.Inactive;
+		public LimitState AutoFreezeState = LimitState.Inactive;
 		public void ProcessAutoFreeze()
 		{
 			if (!AutoFreezeOnLimits
@@ -144,8 +144,6 @@ namespace gearit.src.robot
 			}
 			set
 			{
-				if (value < 0)
-					value = 0;
 				_MaxAngle = value;
 				if (!Frozen && !Robot.IsInEditor)
 					UpperLimit = _MaxAngle;
@@ -161,11 +159,28 @@ namespace gearit.src.robot
 			}
 			set
 			{
-				if (value > 0)
-					value = 0;
 				_MinAngle = value;
 				if (!Frozen && !Robot.IsInEditor)
 					LowerLimit = _MinAngle;
+			}
+		}
+
+		public void AddLimitsCycle(int count)
+		{
+			float delta = Math.Abs(MaxAngle - MinAngle);
+			if (Frozen && UpperLimit == MaxAngle && count >= 0)
+			{
+				Frozen = false;
+				MinAngle = MaxAngle;
+				MaxAngle += delta;
+				Frozen = true;
+			}
+			else if (Frozen && UpperLimit == MinAngle && count <= 0)
+			{
+				Frozen = false;
+				MaxAngle = MinAngle;
+				MinAngle -= delta;
+				Frozen = true;
 			}
 		}
 
@@ -232,8 +247,8 @@ namespace gearit.src.robot
 
 		public float MaxForce
 		{
-			get { return MaxMotorTorque; }
-			set { MaxMotorTorque = value; }
+			get { return MaxMotorTorque / 100f; }
+			set { MaxMotorTorque = value * 100f; }
 		}
 		#endregion
 

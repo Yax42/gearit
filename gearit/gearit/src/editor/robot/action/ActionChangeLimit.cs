@@ -20,6 +20,8 @@ namespace gearit.src.editor.robot.action
 		private Vector2 PreviousPos;
 		private Vector2 Origin;
 		private RevoluteSpot RevSpot;
+		private float angle;
+		private bool First;
 
 		public void init()
 		{
@@ -38,12 +40,30 @@ namespace gearit.src.editor.robot.action
 			RevSpot.MinAngle = 0;
 			Origin = RevSpot.WorldAnchorA;
 			PreviousPos = Input.VirtualSimMousePos - Origin;
+			First = true;
 		}
 
 		public bool shortcut()
 		{
 			return (Input.CtrlShift(false, false) && (Input.justPressed(Keys.Q)));
 		}
+
+		private float Angle
+		{
+			get
+			{
+				if (Input.Shift)
+				{
+					float factor = 2f * (float) Math.PI / 16f;
+					int res = (int) (angle / factor - 0.5f);
+					return res * factor;
+				}
+				else
+					return angle;
+
+			}
+		}
+
 
 		public bool run()
 		{
@@ -52,7 +72,8 @@ namespace gearit.src.editor.robot.action
 			Vector2 currentPos = Input.VirtualSimMousePos - RevSpot.WorldAnchorA;
 			float deltaAngle = (float) MathUtils.VectorAngle(PreviousPos, currentPos);
 			PreviousPos = currentPos;
-//(float) MathUtils.VectorAngle(currentPos, PreviousPos);
+			//(float) MathUtils.VectorAngle(currentPos, PreviousPos);
+			angle += deltaAngle;
 
 			if (_step == 0)
 			{
@@ -60,25 +81,34 @@ namespace gearit.src.editor.robot.action
 			}
 			else if (_step == (MirrorAxis.Active ? 2 : 1))
 			{
-				RevSpot.MinAngle += deltaAngle;
-				if (RevSpot.MinAngle > 0)
-					RevSpot.MinAngle = 0;
-				//if (RevSpot.UpperLimit < RevSpot.LowerLimit)
-				//	RevSpot.UpperLimit = RevSpot.LowerLimit;
+				if (First)
+				{
+					angle = RevSpot.MinAngle;
+					First = false;
+				}
+				if (angle > 0)
+					angle = 0;
+				RevSpot.MinAngle = Angle;
 			}
 			else if (_step == (MirrorAxis.Active ? 1 : 2))
 			{
+				if (First)
+				{
+					angle = RevSpot.MaxAngle;
+					First = false;
+				}
 				//RevSpot.UpperLimit = -(float)MathUtils.VectorAngle(Input.SimMousePos - RevSpot.WorldAnchorA, new Vector2(1, 0)) - RevSpot.VirtualLimitBegin;
-				RevSpot.MaxAngle += deltaAngle;
-				if (RevSpot.MaxAngle < 0)
-					RevSpot.MaxAngle = 0;
-				//if (RevSpot.UpperLimit - RevSpot.LowerLimit > Math.PI * 2)
-				//	RevSpot.LowerLimit = -(float)Math.PI * 2 + RevSpot.UpperLimit;
+				if (angle < 0)
+					angle = 0;
+				RevSpot.MaxAngle = Angle;
 			}
 			else
 				return (false);
 			if (Input.justPressed(MouseKeys.LEFT))
+			{
 				_step++;
+				First = true;
+			}
 			return (true);
 		}
 

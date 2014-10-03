@@ -45,13 +45,19 @@ namespace gearit.src.script
 
 		public bool HitMax
 		{
-			get { return _spot.LimitState == FarseerPhysics.Dynamics.Joints.LimitState.AtUpper; }
+			get { return _spot.AutoFreezeState == FarseerPhysics.Dynamics.Joints.LimitState.AtUpper; }
 		}
 
 		public bool HitMin
 		{
-			get { return _spot.LimitState == FarseerPhysics.Dynamics.Joints.LimitState.AtLower; }
+			get { return _spot.AutoFreezeState == FarseerPhysics.Dynamics.Joints.LimitState.AtLower; }
 		}
+
+		public void AddLimitsCycle(int count)
+		{
+			_spot.AddLimitsCycle(count);
+		}
+
 
 #if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle
@@ -65,7 +71,6 @@ namespace gearit.src.script
 			get { return _revolute.MinAngle; }
 			set { _revolute.MinAngle = value; }
 		}
-
 
 		public bool Limited
 		{

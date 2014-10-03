@@ -39,17 +39,25 @@ if Input:pressed(K_Up) then
 elseif Input:pressed(K_Down) then
 	spot10.Motor = -1
 	spot9.Motor = 1
+else
+	spot10.Frozen = true
+	spot9.Frozen = true
 end
 
-if Input:pressed(K_Down) then
-	spot5.Motor = -1
-	spot4.Motor = 1
-end
-if Input:pressed(K_Up) then
-	spot4.Motor = -1
+if Input:pressed(K_X) then
 	spot5.Motor = 1
+	spot4.Motor = -1
 end
 
+
+if spot5.Frozen and Input:released(K_X) then
+	spot5:AddLimitsCycle(1)
+end
+if spot4.Frozen and Input:released(K_X) then
+	spot4:AddLimitsCycle(-1)
+end
+
+	
 if Input:pressed(K_A) then
 	spot2.Motor = -1
 	spot3.Motor = -1

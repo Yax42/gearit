@@ -18,7 +18,7 @@ namespace gearit.src.robot
         float SIZE_MIN = 0.1f;
         float SIZE_MAX = 20;
 		private bool EndsGenerated = false;
-		private const float _width = 0.02f;
+		private const float _width = 0.1f;
 
 		private Vector2 _endA;
 		private Vector2 _endB;
