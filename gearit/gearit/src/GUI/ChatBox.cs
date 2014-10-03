@@ -93,7 +93,7 @@ namespace gearit.src.GUI
 		{
 			_chat_box.Update();
 
-            if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F11))
+            if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F2))
             {
                 ChatBox.Toggle();
             }
