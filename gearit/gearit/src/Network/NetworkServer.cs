@@ -12,6 +12,9 @@ using gearit.src.robot;
 
 namespace gearit.src.Network
 {
+    /// <summary>
+    /// Network specific server
+    /// </summary>
     class NetworkServer : INetwork
     {
 		public static NetworkServer Instance { get; private set; }

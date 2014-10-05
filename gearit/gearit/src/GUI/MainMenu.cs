@@ -17,6 +17,9 @@ using gearit.src.GUI.OptionsMenu;
 
 namespace GUI
 {
+    /// <summary>
+    /// Navigation menu to access every part of the game
+    /// </summary>
 	public class MainMenu : Desktop
 	{
 		private ScreenManager _ScreenManager;

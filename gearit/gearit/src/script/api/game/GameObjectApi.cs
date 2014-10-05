@@ -7,6 +7,9 @@ using FarseerPhysics.Dynamics;
 
 namespace gearit.src.script.api.game
 {
+    /// <summary>
+    /// Lua API for abstract object in World
+    /// </summary>
 	public abstract class GameObjectApi
 	{
 		abstract public Vector2 Position { get; set; }

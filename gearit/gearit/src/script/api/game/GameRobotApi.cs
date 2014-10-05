@@ -12,6 +12,9 @@ using gearit.src.editor.map;
 
 namespace gearit.src.script.api.game
 {
+    /// <summary>
+    /// Lua api for Robot in a game
+    /// </summary>
 	public class GameRobotApi : GameObjectApi
 	{
 		public Robot __Robot;

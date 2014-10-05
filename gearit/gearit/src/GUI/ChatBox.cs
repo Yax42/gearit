@@ -9,6 +9,9 @@ using gearit.src.utility;
 
 namespace gearit.src.GUI
 {
+    /// <summary>
+    /// ChatBox for logging messages and communication between players
+    /// </summary>
 	static public class ChatBox
 	{
 		static private Desktop _chat_box;

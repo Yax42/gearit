@@ -18,6 +18,9 @@ namespace gearit.src.script
 		private bool _ok;
 		private string FileName;
 
+        /// <summary>
+        /// Lua implementation of lua library to manage script
+        /// </summary>
 		public LuaScript(string text, bool isFile = true)
 		{
 			FileName = text;

@@ -6,6 +6,9 @@ using Squid;
 
 namespace gearit.src.GUI
 {
+    /// <summary>
+    /// Popup messagebox for interaction with user
+    /// </summary>
 	public class MessageBox : Dialog
 	{
 		public Label TitleLabel;

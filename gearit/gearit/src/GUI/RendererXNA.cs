@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SquidXNA
 {
+    /// <summary>
+    /// Bridge between Squid and XNA for rendering
+    /// </summary>
 	public class RendererXNA : Squid.ISquidRenderer
 	{
 		[DllImport("user32.dll")]

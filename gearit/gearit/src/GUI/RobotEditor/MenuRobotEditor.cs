@@ -17,6 +17,9 @@ using System.IO;
 
 namespace gearit.src.GUI
 {
+    /// <summary>
+    /// Menu specific for Robot Edition : lua script/properties/...
+    /// </summary>
 	class MenuRobotEditor : Desktop
 	{
 		// Editor

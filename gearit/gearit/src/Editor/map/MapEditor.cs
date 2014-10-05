@@ -19,6 +19,9 @@ using FarseerPhysics.DebugViews;
 namespace gearit.src.editor.map
 {
 
+    /// <summary>
+    /// Map Editor : create and manage maps to play in a game
+    /// </summary>
 	class MapEditor : GameScreen, IDemoScreen
 	{
 		private World _world;

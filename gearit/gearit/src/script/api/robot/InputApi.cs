@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.script
 {
+    /// <summary>
+    /// Lua API for accessing input
+    /// </summary>
 	class InputApi
 	{
 		public InputApi()

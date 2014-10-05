@@ -13,6 +13,9 @@ using gearit.src.editor.map;
 
 namespace gearit.src.editor.map
 {
+    /// <summary>
+    /// Menu of the Map Editor for easy interaction
+    /// </summary>
 	class MenuMapEditor : Desktop
 	{
 		// Propertie

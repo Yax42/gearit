@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.script.api.game
 {
+    /// <summary>
+    /// Lua API for artefact (Position in space)
+    /// </summary>
 	class GameArtefactApi : GameObjectApi
 	{
 		private Artefact _Artefact;

@@ -28,6 +28,9 @@ using System.Diagnostics;
 
 namespace gearit.src.gui
 {
+    /// <summary>
+    /// List server / interaction with Game Master server / Connexion
+    /// </summary>
 
     class MenuPlay : GameScreen, IDemoScreen
 	{

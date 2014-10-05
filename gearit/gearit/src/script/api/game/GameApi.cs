@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace gearit.src.script
 {
+    /// <summary>
+	/// Lua API for IGearitGame accesible via script
+    /// </summary>
 	class GameApi
 	{
 		private IGearitGame _game;

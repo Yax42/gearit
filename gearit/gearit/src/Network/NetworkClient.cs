@@ -10,6 +10,9 @@ using System.Diagnostics;
 
 namespace gearit.src.Network
 {
+    /// <summary>
+    /// Network specific client
+    /// </summary>
     class NetworkClient : INetwork
     {
         public enum EState

@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace gearit.src.Network
 {
+    /// <summary>
+    /// Abstract class Network for server and client
+    /// </summary>
 	abstract class INetwork
 	{
 		protected byte[] TransformToSend;

@@ -8,6 +8,9 @@ using gearit.src.robot;
 
 namespace gearit.src.GUI
 {
+    /// <summary>
+    /// Lua script editor action
+    /// </summary>
 	class TreeNodeAction : Panel
 	{
 		static int PADDING = 16;

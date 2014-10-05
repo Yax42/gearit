@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SquidXNA
 {
+    /// <summary>
+    /// Manage input from mouse/keyboard
+    /// </summary>
 	public class InputManager : GameComponent
 	{
 		private class InputKey
