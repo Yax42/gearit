@@ -20,7 +20,7 @@ namespace gearit.src.editor.map
 {
 
     /// <summary>
-    /// Map Editor : create and manage maps to play in a game
+    /// Handle the whole Map editor
     /// </summary>
 	class MapEditor : GameScreen, IDemoScreen
 	{
