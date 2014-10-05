@@ -8,6 +8,9 @@ using gearit.src.GUI;
 
 namespace gearit.src.editor.robot
 {
+    /// <summary>
+    /// Handle the whole Robot editor
+    /// </summary>
 	class LuaManager
 	{
 		public static string Header

@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.editor
 {
+
+    /// <summary>
+	/// Camera controlled by the user while in editor
+    /// </summary>
 	class EditorCamera : ICamera
 	{
 		private const float _minZoom = 0.02f;

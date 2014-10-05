@@ -13,7 +13,7 @@ namespace gearit.src.editor
 	public static class Serializer
 	{
 		/// <summary>
-		/// Serializer used for the serialization. (Duh!)
+		/// Serializer used for the serialization of Map and Editor
 		/// </summary>
 		private static IFormatter _formatter;
 		private const string _path = "data/";

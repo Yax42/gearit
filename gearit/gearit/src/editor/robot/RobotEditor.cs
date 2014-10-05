@@ -18,6 +18,9 @@ using FarseerPhysics.DebugViews;
 
 namespace gearit.src.editor.robot
 {
+    /// <summary>
+    /// Handle the whole Robot editor
+    /// </summary>
 	class RobotEditor : GameScreen, IDemoScreen
 	{
 		private World _world;

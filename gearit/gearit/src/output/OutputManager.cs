@@ -6,6 +6,9 @@ using gearit.src.GUI;
 
 namespace gearit.src.output
 {
+    /// <summary>
+    /// That controls the console
+    /// </summary>
 	class OutputManager
 	{
 		static public void LogError(String msg)
