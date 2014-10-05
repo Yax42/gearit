@@ -13,6 +13,9 @@ using gearit.src.editor;
 
 namespace gearit.src.map
 {
+    /// <summary>
+	/// PolygonChunk is a type of MapChunk
+    /// </summary>
 	[Serializable()]
 	class CircleChunk : MapChunk, ISerializable
 	{

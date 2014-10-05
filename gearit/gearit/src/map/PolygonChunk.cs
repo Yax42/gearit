@@ -14,6 +14,9 @@ using System.Diagnostics;
 namespace gearit.src.map
 {
 	[Serializable()]
+    /// <summary>
+	/// PolygonChunk is a type of MapChunk
+    /// </summary>
 	class PolygonChunk : MapChunk, ISerializable
 	{
 		public PolygonChunk(World world, bool isDynamic, Vector2 pos)

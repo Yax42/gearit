@@ -1,1 +1,1 @@
-data/script/default.lua
+data/map/script/default.lua

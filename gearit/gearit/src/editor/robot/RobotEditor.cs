@@ -145,16 +145,15 @@ namespace gearit.src.editor.robot
 			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			Robot = new Robot(_world, true);
 
-			Select1 = Robot.Heart;
-			Select2 = Robot.Heart;
-			MirrorSelect1 = Robot.Heart;
-			MirrorSelect2 = Robot.Heart;
+			selectHeart();
 		}
 
 		public void selectHeart()
 		{
 			Select1 = Robot.Heart;
 			Select2 = Robot.Heart;
+			MirrorSelect1 = Robot.Heart;
+			MirrorSelect2 = Robot.Heart;
 		}
 
 
@@ -333,8 +332,7 @@ namespace gearit.src.editor.robot
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
 			Robot = bot;
-			Select1 = Robot.Heart;
-			Select2 = Robot.Heart;
+			selectHeart();
 		}
 
 		public void deleteRobot()

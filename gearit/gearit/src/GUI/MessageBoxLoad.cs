@@ -16,7 +16,7 @@ namespace gearit.src.GUI
 
 		public MessageBoxLoad(string folder, string extension, Desktop dk, Action<String> cbLoad, Action<bool> setFocus)
 		{
-			_msg = MessageBox.Show(new Point(300, 160), "Load Robot", "Name", MessageBoxButtons.OKCancel, dk);
+			_msg = MessageBox.Show(new Point(300, 160), "Load", "Name", MessageBoxButtons.OKCancel, dk);
 
 			// Event type choice
 			combo.Size = new Squid.Point(158, 34);

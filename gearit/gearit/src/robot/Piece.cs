@@ -19,6 +19,9 @@ using System.Diagnostics;
 namespace gearit.src.robot
 {
 	[Serializable()]
+    /// <summary>
+	/// A Robot is physically composed of Pieces, inheriting from the fpe Body class
+    /// </summary>
 	public abstract class Piece : Body, ISerializable
 	{
 		internal const float MaxMass = 1000;

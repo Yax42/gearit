@@ -16,6 +16,9 @@ using FarseerPhysics.Common;
 namespace gearit.src.robot
 {
 	[Serializable()]
+    /// <summary>
+    /// Every Pieces of are linked to each other with a RevoluteSpot
+    /// </summary>
 	public class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
 	{
 		private static float _spotSize = 0.05f;
@@ -359,7 +362,7 @@ namespace gearit.src.robot
 		}
 		#endregion
 
-		public bool Shown { get { return ((Piece)BodyA).Shown || ((Piece)BodyB).Shown; } }
+		public bool Shown { get { return ((Piece)BodyA).Shown && ((Piece)BodyB).Shown; } }
 		#region Draw
 		public void drawDebug(DrawGame game)
 		{
@@ -391,11 +394,11 @@ namespace gearit.src.robot
 			int count = 0;
 			for (float angleBefore = MinAngle; angleBefore < MaxAngle; angleBefore += 0.1f)
 			{
-				DrawLimit(game, angleBefore + VirtualLimitBegin, 0.1f + 0.001f * count);
+				DrawLimit(game, angleBefore + VirtualLimitBegin, 0.15f + 0.002f * count);
 				count++;
 			}
-			DrawLimit(game, MinAngle + VirtualLimitBegin, 0.001f * count + 0.25f);
-			DrawLimit(game, MaxAngle + VirtualLimitBegin, 0.001f * count + 0.25f);
+			DrawLimit(game, MinAngle + VirtualLimitBegin, 0.002f * count + 0.25f);
+			DrawLimit(game, MaxAngle + VirtualLimitBegin, 0.002f * count + 0.25f);
 		}
 
 		private void DrawLimit(DrawGame game, float angle, float factor)

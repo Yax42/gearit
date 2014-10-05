@@ -14,6 +14,9 @@ using gearit.src.map;
 
 namespace gearit.src.robot
 {
+    /// <summary>
+    /// Heart is the main Piece of Robot
+    /// </summary>
 	[Serializable()]
 	public class Heart : Piece, ISerializable
 	{

@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 
 namespace gearit.src.map
 {
+    /// <summary>
+	/// Areas that will be triggered when a robot comes in
+    /// </summary>
 	[Serializable()]
 	public class Trigger : ISerializable
 	{

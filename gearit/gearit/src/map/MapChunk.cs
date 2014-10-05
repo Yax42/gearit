@@ -12,6 +12,9 @@ using System.Runtime.Serialization;
 namespace gearit.src.editor.map
 {
 	[Serializable()]
+    /// <summary>
+	/// A Map is physically composed of MapChunks, they inherit from the fpe Body class
+    /// </summary>
 	public abstract class MapChunk : Body, ISerializable
 	{
 		public string StringId { get; set; }

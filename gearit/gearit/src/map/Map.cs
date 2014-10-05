@@ -13,6 +13,9 @@ using gearit.src.editor.map;
 
 namespace gearit.src.map
 {
+    /// <summary>
+	/// Map contains every information of map that will be played on
+    /// </summary>
 	[Serializable()]
 	public class Map : ISerializable
 	{

@@ -11,6 +11,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace gearit.src.robot
 {
+    /// <summary>
+    /// Wheel is one of the three kind of Piece
+    /// </summary>
 	[Serializable()]
 	public class Wheel : Piece, ISerializable
 	{

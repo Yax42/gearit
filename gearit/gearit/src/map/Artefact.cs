@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 
 namespace gearit.src.map
 {
+    /// <summary>
+    /// Artefact are used in the scripting of the map
+    /// </summary>
 	[Serializable()]
 	public class Artefact : ISerializable
 	{

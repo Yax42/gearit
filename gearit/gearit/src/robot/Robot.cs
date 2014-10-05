@@ -33,6 +33,9 @@ namespace gearit.src.robot
 		public List<RevoluteSpot> SList;
 		public List<Piece> PList;
 	}
+    /// <summary>
+    /// The Robot is the class of the actual character the player will create and play with.
+    /// </summary>
 	[Serializable()]
 	public class Robot : ISerializable
 	{

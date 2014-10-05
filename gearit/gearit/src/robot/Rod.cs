@@ -13,6 +13,9 @@ using System.Diagnostics;
 namespace gearit.src.robot
 {
 	[Serializable()]
+    /// <summary>
+    /// Rod is one of the three kind of Piece
+    /// </summary>
 	public class Rod : Piece, ISerializable
 	{
         float SIZE_MIN = 0.1f;
