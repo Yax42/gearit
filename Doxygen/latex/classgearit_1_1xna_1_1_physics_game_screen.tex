@@ -1,0 +1,152 @@
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen}{\section{gearit.\+xna.\+Physics\+Game\+Screen Class Reference}
+\label{classgearit_1_1xna_1_1_physics_game_screen}\index{gearit.\+xna.\+Physics\+Game\+Screen@{gearit.\+xna.\+Physics\+Game\+Screen}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+Inherited by gearit.\+src.\+utility.\+Brute\+Robot, gearit.\+src.\+utility.\+Gladiato\+Robot, gearit.\+src.\+utility.\+My\+Game, and gearit.\+src.\+utility.\+Spider\+Bot.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a902ae9fff35a62621f5de9def0acc805}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a2a1148ee32c0ae8649eac17c55ad2190}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a2ef66f8d93dc4e4d6eec880fe308e0b5}{Handle\+Input} (\hyperlink{classgearit_1_1xna_1_1_input_helper}{Input\+Helper} input, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a7ef13b676ea43fa6bed07daef39e175d}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_camera2_d}{Camera2\+D} \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_aed6fb58ffb825763a6f785c3ffea0c36}{Camera}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a3e80e155535c159fd6b55e4cb0afaf42}{Physics\+Game\+Screen} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a45d956c0d109d7a21da1172d0c79978b}{Set\+User\+Agent} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} agent, float force, float torque)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a}{Debug\+View\+X\+N\+A} \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_ae0567f5ebb324f6f711f9a669a25d10a}{Debug\+View}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a077b075ebe915c9d1270fb11fed0ce72}{World}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_af257434a4a106ea94c3cdb9706ce86f1}{Enable\+Camera\+Control}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a3e80e155535c159fd6b55e4cb0afaf42}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Physics\+Game\+Screen@{Physics\+Game\+Screen}}
+\index{Physics\+Game\+Screen@{Physics\+Game\+Screen}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Physics\+Game\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Physics\+Game\+Screen.\+Physics\+Game\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a3e80e155535c159fd6b55e4cb0afaf42}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a7ef13b676ea43fa6bed07daef39e175d}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Physics\+Game\+Screen.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a7ef13b676ea43fa6bed07daef39e175d}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a2ef66f8d93dc4e4d6eec880fe308e0b5}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Handle\+Input@{Handle\+Input}}
+\index{Handle\+Input@{Handle\+Input}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Handle\+Input}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Physics\+Game\+Screen.\+Handle\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf Input\+Helper}}]{input, }
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a2ef66f8d93dc4e4d6eec880fe308e0b5}
+
+
+Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a902ae9fff35a62621f5de9def0acc805}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Physics\+Game\+Screen.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a902ae9fff35a62621f5de9def0acc805}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a45d956c0d109d7a21da1172d0c79978b}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Set\+User\+Agent@{Set\+User\+Agent}}
+\index{Set\+User\+Agent@{Set\+User\+Agent}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Set\+User\+Agent}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Physics\+Game\+Screen.\+Set\+User\+Agent (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{agent, }
+\item[{float}]{force, }
+\item[{float}]{torque}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a45d956c0d109d7a21da1172d0c79978b}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a2a1148ee32c0ae8649eac17c55ad2190}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Physics\+Game\+Screen.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a2a1148ee32c0ae8649eac17c55ad2190}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_aed6fb58ffb825763a6f785c3ffea0c36}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Camera@{Camera}}
+\index{Camera@{Camera}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera2\+D} gearit.\+xna.\+Physics\+Game\+Screen.\+Camera}}\label{classgearit_1_1xna_1_1_physics_game_screen_aed6fb58ffb825763a6f785c3ffea0c36}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_ae0567f5ebb324f6f711f9a669a25d10a}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Debug\+View@{Debug\+View}}
+\index{Debug\+View@{Debug\+View}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Debug\+View}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Debug\+View\+X\+N\+A} gearit.\+xna.\+Physics\+Game\+Screen.\+Debug\+View\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_ae0567f5ebb324f6f711f9a669a25d10a}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_a077b075ebe915c9d1270fb11fed0ce72}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!World@{World}}
+\index{World@{World}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+xna.\+Physics\+Game\+Screen.\+World\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_a077b075ebe915c9d1270fb11fed0ce72}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1xna_1_1_physics_game_screen_af257434a4a106ea94c3cdb9706ce86f1}{\index{gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}!Enable\+Camera\+Control@{Enable\+Camera\+Control}}
+\index{Enable\+Camera\+Control@{Enable\+Camera\+Control}!gearit\+::xna\+::\+Physics\+Game\+Screen@{gearit\+::xna\+::\+Physics\+Game\+Screen}}
+\subsubsection[{Enable\+Camera\+Control}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Physics\+Game\+Screen.\+Enable\+Camera\+Control\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_physics_game_screen_af257434a4a106ea94c3cdb9706ce86f1}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_physics_game_screen_8cs}{Physics\+Game\+Screen.\+cs}\end{DoxyCompactItemize}

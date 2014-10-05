@@ -1,0 +1,184 @@
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22}{\section{Farseer\+Physics.\+Common.\+Mat22 Struct Reference}
+\label{struct_farseer_physics_1_1_common_1_1_mat22}\index{Farseer\+Physics.\+Common.\+Mat22@{Farseer\+Physics.\+Common.\+Mat22}}
+}
+
+
+A 2-\/by-\/2 matrix. Stored in column-\/major order.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_ae8162285afc19822b689d7d798a99e49}{Mat22} (Vector2 c1, Vector2 c2)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using columns. \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_aa65e5c879aeea87294636d97ed2cddc2}{Mat22} (float a11, float a12, float a21, float a22)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using scalars. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_aede1191cceecf875a2b6ffc4829ff63a}{Set} (Vector2 c1, Vector2 c2)
+\begin{DoxyCompactList}\small\item\em Initialize this matrix using columns. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_a707235e3da72229f790159d0ca3dfaf7}{Set\+Identity} ()
+\begin{DoxyCompactList}\small\item\em Set this to the identity matrix. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_a827df16d61a5332e819fc7a6a72aa512}{Set\+Zero} ()
+\begin{DoxyCompactList}\small\item\em Set this matrix to all zeros. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_ac94f7d183d7016e4042377b326d553a1}{Solve} (Vector2 b)
+\begin{DoxyCompactList}\small\item\em Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_a0ed822fe6999175b5eb62406f883a5d8}{Add} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22}{Mat22} A, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22}{Mat22} B, out \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22}{Mat22} R)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_aa015023e16afd7001baf3962dd4968a0}{ex}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_a96d3ed874759e3e896b0819d668e07d0}{ey}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_common_1_1_mat22}{Mat22} \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22_ad3c54ce6b23cc803179665459170f4df}{Inverse}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A 2-\/by-\/2 matrix. Stored in column-\/major order. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_ae8162285afc19822b689d7d798a99e49}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Mat22@{Mat22}}
+\index{Mat22@{Mat22}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Mat22}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Mat22.\+Mat22 (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{c1, }
+\item[{Vector2}]{c2}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_ae8162285afc19822b689d7d798a99e49}
+
+
+Construct this matrix using columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c1} & The c1.\\
+\hline
+{\em c2} & The c2.\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_aa65e5c879aeea87294636d97ed2cddc2}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Mat22@{Mat22}}
+\index{Mat22@{Mat22}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Mat22}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Mat22.\+Mat22 (
+\begin{DoxyParamCaption}
+\item[{float}]{a11, }
+\item[{float}]{a12, }
+\item[{float}]{a21, }
+\item[{float}]{a22}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_aa65e5c879aeea87294636d97ed2cddc2}
+
+
+Construct this matrix using scalars. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a11} & The a11.\\
+\hline
+{\em a12} & The a12.\\
+\hline
+{\em a21} & The a21.\\
+\hline
+{\em a22} & The a22.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_a0ed822fe6999175b5eb62406f883a5d8}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Add@{Add}}
+\index{Add@{Add}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}static void Farseer\+Physics.\+Common.\+Mat22.\+Add (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Mat22}}]{A, }
+\item[{ref {\bf Mat22}}]{B, }
+\item[{out {\bf Mat22}}]{R}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_farseer_physics_1_1_common_1_1_mat22_a0ed822fe6999175b5eb62406f883a5d8}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_aede1191cceecf875a2b6ffc4829ff63a}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Set@{Set}}
+\index{Set@{Set}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Set}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat22.\+Set (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{c1, }
+\item[{Vector2}]{c2}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_aede1191cceecf875a2b6ffc4829ff63a}
+
+
+Initialize this matrix using columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c1} & The c1.\\
+\hline
+{\em c2} & The c2.\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_a707235e3da72229f790159d0ca3dfaf7}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Set\+Identity@{Set\+Identity}}
+\index{Set\+Identity@{Set\+Identity}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Set\+Identity}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat22.\+Set\+Identity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_a707235e3da72229f790159d0ca3dfaf7}
+
+
+Set this to the identity matrix. 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_a827df16d61a5332e819fc7a6a72aa512}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Set\+Zero@{Set\+Zero}}
+\index{Set\+Zero@{Set\+Zero}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Set\+Zero}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat22.\+Set\+Zero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_a827df16d61a5332e819fc7a6a72aa512}
+
+
+Set this matrix to all zeros. 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_ac94f7d183d7016e4042377b326d553a1}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Solve@{Solve}}
+\index{Solve@{Solve}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Solve}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Mat22.\+Solve (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{b}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat22_ac94f7d183d7016e4042377b326d553a1}
+
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The b.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_aa015023e16afd7001baf3962dd4968a0}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!ex@{ex}}
+\index{ex@{ex}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{ex}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Mat22.\+ex}}\label{struct_farseer_physics_1_1_common_1_1_mat22_aa015023e16afd7001baf3962dd4968a0}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_a96d3ed874759e3e896b0819d668e07d0}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!ey@{ey}}
+\index{ey@{ey}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{ey}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Mat22.\+ey}}\label{struct_farseer_physics_1_1_common_1_1_mat22_a96d3ed874759e3e896b0819d668e07d0}
+
+
+\subsection{Property Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat22_ad3c54ce6b23cc803179665459170f4df}{\index{Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Farseer\+Physics\+::\+Common\+::\+Mat22@{Farseer\+Physics\+::\+Common\+::\+Mat22}}
+\subsubsection[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat22} Farseer\+Physics.\+Common.\+Mat22.\+Inverse\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_common_1_1_mat22_ad3c54ce6b23cc803179665459170f4df}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\hyperlink{_math_8cs}{Math.\+cs}\end{DoxyCompactItemize}

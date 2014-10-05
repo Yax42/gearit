@@ -1,0 +1,271 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter}{\section{Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter}\index{Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter@{Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a8fd7eac2279567f34ac900d0dae81e1c}{Texture\+Converter} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a44552f9f3192067d667b4838fd6a8baa}{Texture\+Converter} (byte?alpha\+Tolerance, float?hull\+Tolerance, bool?hole\+Detection, bool?multipart\+Detection, bool?pixel\+Offset\+Optimization, Matrix?transform)
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a501ff35a7421e27f353a0f9fff7f582b}{Texture\+Converter} (uint\mbox{[}$\,$\mbox{]} data, int width)
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af2fd302f4f9e67525b2110a58908d685}{Texture\+Converter} (uint\mbox{[}$\,$\mbox{]} data, int width, byte?alpha\+Tolerance, float?hull\+Tolerance, bool?hole\+Detection, bool?multipart\+Detection, bool?pixel\+Offset\+Optimization, Matrix?transform)
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a87129b24da5ae834791097c935d55241}{Detect\+Vertices} ()
+\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a146b64a9a847b3af2f47d2aa0f1bdd89}{Is\+Solid} (ref Vector2 v)
+\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_aa6cec99696c7682edd70381a26dbdc3a}{Is\+Solid} (ref int x, ref int y)
+\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a173cd26b1cd3aa79a038edf2475955b2}{Is\+Solid} (ref int index)
+\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_adc0ff63493327ae1045bcee674ce3e61}{In\+Bounds} (ref Vector2 coord)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af065998af049be57013a532d54577f3d}{Detect\+Vertices} (uint\mbox{[}$\,$\mbox{]} data, int width)
+\begin{DoxyCompactList}\small\item\em Detects the vertices of the supplied texture data. (Polygon\+Detection\+Type.\+Integrated) \end{DoxyCompactList}\item 
+static \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a04a9acf7681849a9dc583b0cebbe058b}{Detect\+Vertices} (uint\mbox{[}$\,$\mbox{]} data, int width, bool hole\+Detection)
+\begin{DoxyCompactList}\small\item\em Detects the vertices of the supplied texture data. \end{DoxyCompactList}\item 
+static List$<$ \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9912dfec3261594c9b8d262abd72f6f7}{Detect\+Vertices} (uint\mbox{[}$\,$\mbox{]} data, int width, float hull\+Tolerance, byte alpha\+Tolerance, bool multi\+Part\+Detection, bool hole\+Detection)
+\begin{DoxyCompactList}\small\item\em Detects the vertices of the supplied texture data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_texture_tools_a8c78f960d4da62793329adae2e15d451}{Vertices\+Detection\+Type} \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a916cf6fed1888505c4a78805de1ae29e}{Polygon\+Detection\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the polygon detection type. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a71f8b7b1315b5a7f050cccd090319602}{Hole\+Detection}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Will detect texture 'holes' if set to true. Slows down the detection. Default is false. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7569532d4e5404d05a1942531b00702c}{Multipart\+Detection}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Will detect texture multiple 'solid' isles if set to true. Slows down the detection. Default is false. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a0915e8529d7d750eb57500f1e4933b22}{Pixel\+Offset\+Optimization}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Will optimize the vertex positions along the interpolated normal between two edges about a half pixel (post processing). Default is false. \end{DoxyCompactList}\item 
+Matrix \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a69dd8362fb1e579191fb62f8a6ae1359}{Transform}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Can be used for scaling. \end{DoxyCompactList}\item 
+byte \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9cd8c2626f9dd33e1d181af04439766b}{Alpha\+Tolerance}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Alpha (coverage) tolerance. Default is 20\+: Every pixel with a coverage value equal or greater to 20 will be counts as solid. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7ae3025e2217a3d3256bf9c1b7dff34c}{Hull\+Tolerance}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Default is 1.\+5f. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a8fd7eac2279567f34ac900d0dae81e1c}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Texture\+Converter@{Texture\+Converter}}
+\index{Texture\+Converter@{Texture\+Converter}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Texture\+Converter}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Texture\+Converter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a8fd7eac2279567f34ac900d0dae81e1c}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a44552f9f3192067d667b4838fd6a8baa}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Texture\+Converter@{Texture\+Converter}}
+\index{Texture\+Converter@{Texture\+Converter}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Texture\+Converter}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Texture\+Converter (
+\begin{DoxyParamCaption}
+\item[{byte?}]{alpha\+Tolerance, }
+\item[{float?}]{hull\+Tolerance, }
+\item[{bool?}]{hole\+Detection, }
+\item[{bool?}]{multipart\+Detection, }
+\item[{bool?}]{pixel\+Offset\+Optimization, }
+\item[{Matrix?}]{transform}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a44552f9f3192067d667b4838fd6a8baa}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a501ff35a7421e27f353a0f9fff7f582b}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Texture\+Converter@{Texture\+Converter}}
+\index{Texture\+Converter@{Texture\+Converter}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Texture\+Converter}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Texture\+Converter (
+\begin{DoxyParamCaption}
+\item[{uint\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a501ff35a7421e27f353a0f9fff7f582b}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af2fd302f4f9e67525b2110a58908d685}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Texture\+Converter@{Texture\+Converter}}
+\index{Texture\+Converter@{Texture\+Converter}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Texture\+Converter}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Texture\+Converter (
+\begin{DoxyParamCaption}
+\item[{uint\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{width, }
+\item[{byte?}]{alpha\+Tolerance, }
+\item[{float?}]{hull\+Tolerance, }
+\item[{bool?}]{hole\+Detection, }
+\item[{bool?}]{multipart\+Detection, }
+\item[{bool?}]{pixel\+Offset\+Optimization, }
+\item[{Matrix?}]{transform}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af2fd302f4f9e67525b2110a58908d685}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af065998af049be57013a532d54577f3d}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Detect\+Vertices@{Detect\+Vertices}}
+\index{Detect\+Vertices@{Detect\+Vertices}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Detect\+Vertices}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Vertices} Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Detect\+Vertices (
+\begin{DoxyParamCaption}
+\item[{uint\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_af065998af049be57013a532d54577f3d}
+
+
+Detects the vertices of the supplied texture data. (Polygon\+Detection\+Type.\+Integrated) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The texture data.\\
+\hline
+{\em width} & The texture width.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a04a9acf7681849a9dc583b0cebbe058b}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Detect\+Vertices@{Detect\+Vertices}}
+\index{Detect\+Vertices@{Detect\+Vertices}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Detect\+Vertices}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Vertices} Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Detect\+Vertices (
+\begin{DoxyParamCaption}
+\item[{uint\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{width, }
+\item[{bool}]{hole\+Detection}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a04a9acf7681849a9dc583b0cebbe058b}
+
+
+Detects the vertices of the supplied texture data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The texture data.\\
+\hline
+{\em width} & The texture width.\\
+\hline
+{\em hole\+Detection} & if set to {\ttfamily true} it will perform hole detection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9912dfec3261594c9b8d262abd72f6f7}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Detect\+Vertices@{Detect\+Vertices}}
+\index{Detect\+Vertices@{Detect\+Vertices}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Detect\+Vertices}]{\setlength{\rightskip}{0pt plus 5cm}static List$<${\bf Vertices}$>$ Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Detect\+Vertices (
+\begin{DoxyParamCaption}
+\item[{uint\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{width, }
+\item[{float}]{hull\+Tolerance, }
+\item[{byte}]{alpha\+Tolerance, }
+\item[{bool}]{multi\+Part\+Detection, }
+\item[{bool}]{hole\+Detection}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9912dfec3261594c9b8d262abd72f6f7}
+
+
+Detects the vertices of the supplied texture data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The texture data.\\
+\hline
+{\em width} & The texture width.\\
+\hline
+{\em hole\+Detection} & if set to {\ttfamily true} it will perform hole detection.\\
+\hline
+{\em hull\+Tolerance} & The hull tolerance.\\
+\hline
+{\em alpha\+Tolerance} & The alpha tolerance.\\
+\hline
+{\em multi\+Part\+Detection} & if set to {\ttfamily true} it will perform multi part detection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a87129b24da5ae834791097c935d55241}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Detect\+Vertices@{Detect\+Vertices}}
+\index{Detect\+Vertices@{Detect\+Vertices}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Detect\+Vertices}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Vertices}$>$ Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Detect\+Vertices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a87129b24da5ae834791097c935d55241}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_adc0ff63493327ae1045bcee674ce3e61}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!In\+Bounds@{In\+Bounds}}
+\index{In\+Bounds@{In\+Bounds}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{In\+Bounds}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+In\+Bounds (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{coord}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_adc0ff63493327ae1045bcee674ce3e61}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a146b64a9a847b3af2f47d2aa0f1bdd89}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Is\+Solid@{Is\+Solid}}
+\index{Is\+Solid@{Is\+Solid}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Is\+Solid}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Is\+Solid (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a146b64a9a847b3af2f47d2aa0f1bdd89}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_aa6cec99696c7682edd70381a26dbdc3a}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Is\+Solid@{Is\+Solid}}
+\index{Is\+Solid@{Is\+Solid}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Is\+Solid}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Is\+Solid (
+\begin{DoxyParamCaption}
+\item[{ref int}]{x, }
+\item[{ref int}]{y}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_aa6cec99696c7682edd70381a26dbdc3a}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a173cd26b1cd3aa79a038edf2475955b2}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Is\+Solid@{Is\+Solid}}
+\index{Is\+Solid@{Is\+Solid}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Is\+Solid}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Is\+Solid (
+\begin{DoxyParamCaption}
+\item[{ref int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a173cd26b1cd3aa79a038edf2475955b2}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9cd8c2626f9dd33e1d181af04439766b}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Alpha\+Tolerance@{Alpha\+Tolerance}}
+\index{Alpha\+Tolerance@{Alpha\+Tolerance}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Alpha\+Tolerance}]{\setlength{\rightskip}{0pt plus 5cm}byte Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Alpha\+Tolerance\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a9cd8c2626f9dd33e1d181af04439766b}
+
+
+Alpha (coverage) tolerance. Default is 20\+: Every pixel with a coverage value equal or greater to 20 will be counts as solid. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a71f8b7b1315b5a7f050cccd090319602}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Hole\+Detection@{Hole\+Detection}}
+\index{Hole\+Detection@{Hole\+Detection}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Hole\+Detection}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Hole\+Detection\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a71f8b7b1315b5a7f050cccd090319602}
+
+
+Will detect texture 'holes' if set to true. Slows down the detection. Default is false. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7ae3025e2217a3d3256bf9c1b7dff34c}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Hull\+Tolerance@{Hull\+Tolerance}}
+\index{Hull\+Tolerance@{Hull\+Tolerance}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Hull\+Tolerance}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Hull\+Tolerance\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7ae3025e2217a3d3256bf9c1b7dff34c}
+
+
+Default is 1.\+5f. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7569532d4e5404d05a1942531b00702c}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Multipart\+Detection@{Multipart\+Detection}}
+\index{Multipart\+Detection@{Multipart\+Detection}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Multipart\+Detection}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Multipart\+Detection\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a7569532d4e5404d05a1942531b00702c}
+
+
+Will detect texture multiple 'solid' isles if set to true. Slows down the detection. Default is false. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a0915e8529d7d750eb57500f1e4933b22}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Pixel\+Offset\+Optimization@{Pixel\+Offset\+Optimization}}
+\index{Pixel\+Offset\+Optimization@{Pixel\+Offset\+Optimization}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Pixel\+Offset\+Optimization}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Pixel\+Offset\+Optimization\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a0915e8529d7d750eb57500f1e4933b22}
+
+
+Will optimize the vertex positions along the interpolated normal between two edges about a half pixel (post processing). Default is false. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a916cf6fed1888505c4a78805de1ae29e}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Polygon\+Detection\+Type@{Polygon\+Detection\+Type}}
+\index{Polygon\+Detection\+Type@{Polygon\+Detection\+Type}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Polygon\+Detection\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices\+Detection\+Type} Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Polygon\+Detection\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a916cf6fed1888505c4a78805de1ae29e}
+
+
+Get or set the polygon detection type. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a69dd8362fb1e579191fb62f8a6ae1359}{\index{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}!Transform@{Transform}}
+\index{Transform@{Transform}!Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter@{Farseer\+Physics\+::\+Common\+::\+Texture\+Tools\+::\+Texture\+Converter}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}Matrix Farseer\+Physics.\+Common.\+Texture\+Tools.\+Texture\+Converter.\+Transform\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_texture_tools_1_1_texture_converter_a69dd8362fb1e579191fb62f8a6ae1359}
+
+
+Can be used for scaling. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\+Texture\+Tools/\hyperlink{_texture_converter_8cs}{Texture\+Converter.\+cs}\end{DoxyCompactItemize}

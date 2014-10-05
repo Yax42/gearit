@@ -1,0 +1,319 @@
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{\section{Farseer\+Physics.\+Collision.\+A\+A\+B\+B Struct Reference}
+\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}\index{Farseer\+Physics.\+Collision.\+A\+A\+B\+B@{Farseer\+Physics.\+Collision.\+A\+A\+B\+B}}
+}
+
+
+An axis aligned bounding box.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa4c7be6cfcfc78e8c194354917d679e2}{A\+A\+B\+B} (Vector2 min, Vector2 max)
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1a358a16dfb6ab89b360b4689634ab3e}{A\+A\+B\+B} (ref Vector2 min, ref Vector2 max)
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a7e3b8eee9e66d14145cc40268f73f9f0}{A\+A\+B\+B} (Vector2 center, float width, float height)
+\item 
+bool \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5debe9d033d01b4fd482b9cc5da126d6}{Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Verify that the bounds are sorted. And the bounds are valid numbers (not Na\+N). \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aed920cb5b92a781b51655c36deda0596}{Combine} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Combine an \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} into this one. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ae67e2c2f39a405de8640664da88c53cc}{Combine} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb1, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb2)
+\begin{DoxyCompactList}\small\item\em Combine two A\+A\+B\+Bs into this one. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_acc86c08d41c52dc6170f2a3e7d9187ff}{Contains} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Does this aabb contain the provided \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a0ad83b468452fe8bd6c99bd0ad665446}{Contains} (ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Determines whether the A\+A\+A\+B\+B contains the specified point. \end{DoxyCompactList}\item 
+bool \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa7aea235da2e73629a492a5214f58e63}{Ray\+Cast} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Ray\+Cast\+Output} output, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input} input, bool do\+Interior\+Check=true)
+\begin{DoxyCompactList}\small\item\em Raycast against this \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} using the specificed points and maxfraction (found in input) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1eee3e6c40da7e7bd8c1982cf7344d39}{Test\+Overlap} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} a, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} b)
+\begin{DoxyCompactList}\small\item\em Test if the two A\+A\+B\+Bs overlap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa5a8a3782ec44c1ee419c19f8a5cb7d3}{Lower\+Bound}
+\begin{DoxyCompactList}\small\item\em The lower vertex \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8503a517e68256b9b18be9f88f609aba}{Upper\+Bound}
+\begin{DoxyCompactList}\small\item\em The upper vertex \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ad123d853c488ddf9bf7538e77e0a5ee8}{Width}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1102684069e3e30f60f5794a85338eca}{Height}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abe9fe22280f3632a426c128a510c0a50}{Center}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the center of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8fd600398e2ec71570a41da8fcd3662f}{Extents}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the extents of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} (half-\/widths). \end{DoxyCompactList}\item 
+float \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5557baf39b04bfef610a9a0617b6d6de}{Perimeter}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the perimeter length \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abc026b85181ffb46e9a4c38b517c2a19}{Vertices}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the vertices of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1f429bfa132dd57a12a2f32257c9b07c}{Q1}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em First quadrant \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a561951ca97081d28bb2df45b98b1ffd4}{Q2}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Second quadrant \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ada20115bacc6796b36769ac4abca4131}{Q3}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Third quadrant \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a53e6c86a8bcda02bafcf080ba8a6a417}{Q4}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Forth quadrant \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An axis aligned bounding box. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa4c7be6cfcfc78e8c194354917d679e2}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!A\+A\+B\+B@{A\+A\+B\+B}}
+\index{A\+A\+B\+B@{A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{min, }
+\item[{Vector2}]{max}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa4c7be6cfcfc78e8c194354917d679e2}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1a358a16dfb6ab89b360b4689634ab3e}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!A\+A\+B\+B@{A\+A\+B\+B}}
+\index{A\+A\+B\+B@{A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{min, }
+\item[{ref Vector2}]{max}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1a358a16dfb6ab89b360b4689634ab3e}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a7e3b8eee9e66d14145cc40268f73f9f0}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!A\+A\+B\+B@{A\+A\+B\+B}}
+\index{A\+A\+B\+B@{A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{width, }
+\item[{float}]{height}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a7e3b8eee9e66d14145cc40268f73f9f0}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aed920cb5b92a781b51655c36deda0596}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Combine@{Combine}}
+\index{Combine@{Combine}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Combine}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Combine (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aed920cb5b92a781b51655c36deda0596}
+
+
+Combine an \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} into this one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb.\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ae67e2c2f39a405de8640664da88c53cc}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Combine@{Combine}}
+\index{Combine@{Combine}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Combine}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Combine (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{aabb1, }
+\item[{ref {\bf A\+A\+B\+B}}]{aabb2}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ae67e2c2f39a405de8640664da88c53cc}
+
+
+Combine two A\+A\+B\+Bs into this one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb1} & The aabb1.\\
+\hline
+{\em aabb2} & The aabb2.\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_acc86c08d41c52dc6170f2a3e7d9187ff}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Contains@{Contains}}
+\index{Contains@{Contains}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Contains}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Contains (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_acc86c08d41c52dc6170f2a3e7d9187ff}
+
+
+Does this aabb contain the provided \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if it contains the specified aabb; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a0ad83b468452fe8bd6c99bd0ad665446}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Contains@{Contains}}
+\index{Contains@{Contains}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Contains}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Contains (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a0ad83b468452fe8bd6c99bd0ad665446}
+
+
+Determines whether the A\+A\+A\+B\+B contains the specified point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & The point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if it contains the specified point; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5debe9d033d01b4fd482b9cc5da126d6}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Is\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5debe9d033d01b4fd482b9cc5da126d6}
+
+
+Verify that the bounds are sorted. And the bounds are valid numbers (not Na\+N). 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is valid; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa7aea235da2e73629a492a5214f58e63}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{out {\bf Ray\+Cast\+Output}}]{output, }
+\item[{ref {\bf Ray\+Cast\+Input}}]{input, }
+\item[{bool}]{do\+Interior\+Check = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa7aea235da2e73629a492a5214f58e63}
+
+
+Raycast against this \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} using the specificed points and maxfraction (found in input) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & The results of the raycast.\\
+\hline
+{\em input} & The parameters for the raycast.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the ray intersects the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}
+\end{DoxyReturn}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1eee3e6c40da7e7bd8c1982cf7344d39}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Test\+Overlap@{Test\+Overlap}}
+\index{Test\+Overlap@{Test\+Overlap}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Test\+Overlap}]{\setlength{\rightskip}{0pt plus 5cm}static bool Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Test\+Overlap (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{a, }
+\item[{ref {\bf A\+A\+B\+B}}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1eee3e6c40da7e7bd8c1982cf7344d39}
+
+
+Test if the two A\+A\+B\+Bs overlap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}.\\
+\hline
+{\em b} & The second \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if they are overlapping.
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa5a8a3782ec44c1ee419c19f8a5cb7d3}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Lower\+Bound@{Lower\+Bound}}
+\index{Lower\+Bound@{Lower\+Bound}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Lower\+Bound}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Lower\+Bound}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_aa5a8a3782ec44c1ee419c19f8a5cb7d3}
+
+
+The lower vertex 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8503a517e68256b9b18be9f88f609aba}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Upper\+Bound@{Upper\+Bound}}
+\index{Upper\+Bound@{Upper\+Bound}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Upper\+Bound}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Upper\+Bound}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8503a517e68256b9b18be9f88f609aba}
+
+
+The upper vertex 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abe9fe22280f3632a426c128a510c0a50}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Center@{Center}}
+\index{Center@{Center}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Center\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abe9fe22280f3632a426c128a510c0a50}
+
+
+Get the center of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8fd600398e2ec71570a41da8fcd3662f}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Extents@{Extents}}
+\index{Extents@{Extents}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Extents}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Extents\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a8fd600398e2ec71570a41da8fcd3662f}
+
+
+Get the extents of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} (half-\/widths). 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1102684069e3e30f60f5794a85338eca}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Height@{Height}}
+\index{Height@{Height}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Height}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Height\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1102684069e3e30f60f5794a85338eca}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5557baf39b04bfef610a9a0617b6d6de}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Perimeter@{Perimeter}}
+\index{Perimeter@{Perimeter}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Perimeter}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Perimeter\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a5557baf39b04bfef610a9a0617b6d6de}
+
+
+Get the perimeter length 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1f429bfa132dd57a12a2f32257c9b07c}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Q1@{Q1}}
+\index{Q1@{Q1}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Q1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Q1\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a1f429bfa132dd57a12a2f32257c9b07c}
+
+
+First quadrant 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a561951ca97081d28bb2df45b98b1ffd4}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Q2@{Q2}}
+\index{Q2@{Q2}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Q2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Q2\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a561951ca97081d28bb2df45b98b1ffd4}
+
+
+Second quadrant 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ada20115bacc6796b36769ac4abca4131}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Q3@{Q3}}
+\index{Q3@{Q3}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Q3}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Q3\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ada20115bacc6796b36769ac4abca4131}
+
+
+Third quadrant 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a53e6c86a8bcda02bafcf080ba8a6a417}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Q4@{Q4}}
+\index{Q4@{Q4}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Q4}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Q4\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_a53e6c86a8bcda02bafcf080ba8a6a417}
+
+
+Forth quadrant 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abc026b85181ffb46e9a4c38b517c2a19}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Vertices\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_abc026b85181ffb46e9a4c38b517c2a19}
+
+
+Gets the vertices of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. 
+
+The corners of the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}\hypertarget{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ad123d853c488ddf9bf7538e77e0a5ee8}{\index{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}!Width@{Width}}
+\index{Width@{Width}!Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B@{Farseer\+Physics\+::\+Collision\+::\+A\+A\+B\+B}}
+\subsubsection[{Width}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+A\+A\+B\+B.\+Width\hspace{0.3cm}{\ttfamily [get]}}}\label{struct_farseer_physics_1_1_collision_1_1_a_a_b_b_ad123d853c488ddf9bf7538e77e0a5ee8}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\hyperlink{_collision_8cs}{Collision.\+cs}\end{DoxyCompactItemize}

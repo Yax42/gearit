@@ -1,0 +1,149 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint}}
+}
+
+
+A mouse joint is used to make a point on a body track a specified world point. This a soft constraint with a maximum force. This allows the constraint to stretch and without applying huge forces. N\+O\+T\+E\+: this joint is not documented in the manual because it was developed to be used in the testbed. If you want to learn how to use the mouse joint, look at the testbed.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_ad8330f7c9e36fb0f965ce4e651de519f}{Fixed\+Mouse\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body, Vector2 world\+Anchor)
+\begin{DoxyCompactList}\small\item\em This requires a world target point, tuning parameters, and the time step. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_acfb73894a3d9f72003b536878e2b59e8}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a2becffede0c5bba84ab601e12c492bc1}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a66919599e7b6d25f4fec6cc94b4f6a20}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a54c1f2aef9425006b3ed6345d72a67d8}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a65b1f1ec7c9ef075ea581311eb1b6cf1}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a15679214ccd9400ab18e4eb99237926a}{Max\+Force}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The maximum constraint force that can be exerted to move the candidate body. Usually you will express as some multiple of the weight (multiplier $\ast$ mass $\ast$ gravity). \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a44b8d829d42c0a2c057ab0671ef0fd83}{Frequency}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The response speed. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a311969f45e435d7547b30c5adb8d4289}{Damping\+Ratio}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The damping ratio. 0 = no damping, 1 = critical damping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A mouse joint is used to make a point on a body track a specified world point. This a soft constraint with a maximum force. This allows the constraint to stretch and without applying huge forces. N\+O\+T\+E\+: this joint is not documented in the manual because it was developed to be used in the testbed. If you want to learn how to use the mouse joint, look at the testbed. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_ad8330f7c9e36fb0f965ce4e651de519f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Fixed\+Mouse\+Joint@{Fixed\+Mouse\+Joint}}
+\index{Fixed\+Mouse\+Joint@{Fixed\+Mouse\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Fixed\+Mouse\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Fixed\+Mouse\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body, }
+\item[{Vector2}]{world\+Anchor}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_ad8330f7c9e36fb0f965ce4e651de519f}
+
+
+This requires a world target point, tuning parameters, and the time step. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The body.\\
+\hline
+{\em world\+Anchor} & The target.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_acfb73894a3d9f72003b536878e2b59e8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_acfb73894a3d9f72003b536878e2b59e8}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a2becffede0c5bba84ab601e12c492bc1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a2becffede0c5bba84ab601e12c492bc1}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a311969f45e435d7547b30c5adb8d4289}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Damping\+Ratio@{Damping\+Ratio}}
+\index{Damping\+Ratio@{Damping\+Ratio}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Damping\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Damping\+Ratio\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a311969f45e435d7547b30c5adb8d4289}
+
+
+The damping ratio. 0 = no damping, 1 = critical damping. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a44b8d829d42c0a2c057ab0671ef0fd83}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Frequency@{Frequency}}
+\index{Frequency@{Frequency}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Frequency}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Frequency\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a44b8d829d42c0a2c057ab0671ef0fd83}
+
+
+The response speed. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a66919599e7b6d25f4fec6cc94b4f6a20}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a66919599e7b6d25f4fec6cc94b4f6a20}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a15679214ccd9400ab18e4eb99237926a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!Max\+Force@{Max\+Force}}
+\index{Max\+Force@{Max\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{Max\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+Max\+Force\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a15679214ccd9400ab18e4eb99237926a}
+
+
+The maximum constraint force that can be exerted to move the candidate body. Usually you will express as some multiple of the weight (multiplier $\ast$ mass $\ast$ gravity). 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a54c1f2aef9425006b3ed6345d72a67d8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a54c1f2aef9425006b3ed6345d72a67d8}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a65b1f1ec7c9ef075ea581311eb1b6cf1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Fixed\+Mouse\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a65b1f1ec7c9ef075ea581311eb1b6cf1}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_fixed_mouse_joint_8cs}{Fixed\+Mouse\+Joint.\+cs}\end{DoxyCompactItemize}

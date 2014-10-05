@@ -1,0 +1,104 @@
+\hypertarget{namespace_farseer_physics_1_1_common}{\section{Package Farseer\+Physics.\+Common}
+\label{namespace_farseer_physics_1_1_common}\index{Farseer\+Physics.\+Common@{Farseer\+Physics.\+Common}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_convex_hull}{Convex\+Hull}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition}{Decomposition}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_physics_logic}{Physics\+Logic}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation}{Polygon\+Manipulation}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_texture_tools}{Texture\+Tools}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries File\+Buffer}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_fixed_array2_3_01_t_01_4}{Fixed\+Array2$<$ T $>$}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_fixed_array3_3_01_t_01_4}{Fixed\+Array3$<$ T $>$}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_fixed_array4_3_01_t_01_4}{Fixed\+Array4$<$ T $>$}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_fixed_array8_3_01_t_01_4}{Fixed\+Array8$<$ T $>$}
+\item 
+class {\bfseries Line\+Tools}
+\begin{DoxyCompactList}\small\item\em Collection of helper methods for misc collisions. Does float tolerance and line collisions with lines and A\+A\+B\+Bs. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_mat22}{Mat22}
+\begin{DoxyCompactList}\small\item\em A 2-\/by-\/2 matrix. Stored in column-\/major order. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33}{Mat33}
+\begin{DoxyCompactList}\small\item\em A 3-\/by-\/3 matrix. Stored in column-\/major order. \end{DoxyCompactList}\item 
+class {\bfseries Math\+Utils}
+\item 
+class \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path}\+: Very similar to \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices}, but this class contains vectors describing control points on a Catmull-\/\+Rom curve. \end{DoxyCompactList}\item 
+class {\bfseries Path\+Manager}
+\begin{DoxyCompactList}\small\item\em An easy to use manager for creating paths. \end{DoxyCompactList}\item 
+class {\bfseries Polygon\+Tools}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_rot}{Rot}
+\begin{DoxyCompactList}\small\item\em Rotation \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep}{Sweep}
+\begin{DoxyCompactList}\small\item\em This describes the motion of a body/shape for T\+O\+I computation. Shapes are defined with respect to the body origin, which may no coincide with the center of mass. However, to support dynamics we must interpolate the center of mass position. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform}
+\begin{DoxyCompactList}\small\item\em A transform contains translation and rotation. It is used to represent the position and orientation of rigid frames. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices}
+\item 
+class {\bfseries World\+Serializer}
+\begin{DoxyCompactList}\small\item\em Serialize the world into an X\+M\+L file \end{DoxyCompactList}\item 
+class {\bfseries World\+Xml\+Deserializer}
+\item 
+class {\bfseries World\+Xml\+Serializer}
+\item 
+class {\bfseries X\+M\+L\+Fragment\+Attribute}
+\item 
+class {\bfseries X\+M\+L\+Fragment\+Element}
+\item 
+class {\bfseries X\+M\+L\+Fragment\+Exception}
+\item 
+class {\bfseries X\+M\+L\+Fragment\+Parser}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2}{Polygon\+Error} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a70a47cae4eb221930f2663fd244369ea}{Polygon\+Error.\+No\+Error}, 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0c102ced3f80f774f01bc8afd57b3476}{Polygon\+Error.\+Invalid\+Amount\+Of\+Vertices}, 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2acdc1287219057b99b6a4a9885a3a490d}{Polygon\+Error.\+Not\+Simple}, 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a751aa663d12b704bb5f0d52db13667ee}{Polygon\+Error.\+Not\+Counter\+Clock\+Wise}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0a31d96e9c3d3ed4569ab3bd8e00de05}{Polygon\+Error.\+Not\+Convex}, 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a52d9613893b8e72f4688a51696199ecf}{Polygon\+Error.\+Area\+Too\+Small}, 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2ae0df3b706ac8cffaf103e5f8e600dc8c}{Polygon\+Error.\+Side\+Too\+Small}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2}{\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Polygon\+Error@{Polygon\+Error}}
+\index{Polygon\+Error@{Polygon\+Error}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}
+\subsubsection[{Polygon\+Error}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Common.\+Polygon\+Error}}}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{No\+Error@{No\+Error}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!No\+Error@{No\+Error}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a70a47cae4eb221930f2663fd244369ea}{No\+Error}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a70a47cae4eb221930f2663fd244369ea}
+}]There were no errors in the polygon \index{Invalid\+Amount\+Of\+Vertices@{Invalid\+Amount\+Of\+Vertices}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Invalid\+Amount\+Of\+Vertices@{Invalid\+Amount\+Of\+Vertices}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0c102ced3f80f774f01bc8afd57b3476}{Invalid\+Amount\+Of\+Vertices}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0c102ced3f80f774f01bc8afd57b3476}
+}]Polygon must have between 3 and Settings.\+Max\+Polygon\+Vertices vertices. \index{Not\+Simple@{Not\+Simple}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Not\+Simple@{Not\+Simple}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2acdc1287219057b99b6a4a9885a3a490d}{Not\+Simple}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2acdc1287219057b99b6a4a9885a3a490d}
+}]Polygon must be simple. This means no overlapping edges. \index{Not\+Counter\+Clock\+Wise@{Not\+Counter\+Clock\+Wise}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Not\+Counter\+Clock\+Wise@{Not\+Counter\+Clock\+Wise}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a751aa663d12b704bb5f0d52db13667ee}{Not\+Counter\+Clock\+Wise}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a751aa663d12b704bb5f0d52db13667ee}
+}]Polygon must have a counter clockwise winding. \index{Not\+Convex@{Not\+Convex}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Not\+Convex@{Not\+Convex}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0a31d96e9c3d3ed4569ab3bd8e00de05}{Not\+Convex}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a0a31d96e9c3d3ed4569ab3bd8e00de05}
+}]The polygon is concave, it needs to be convex. \index{Area\+Too\+Small@{Area\+Too\+Small}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Area\+Too\+Small@{Area\+Too\+Small}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a52d9613893b8e72f4688a51696199ecf}{Area\+Too\+Small}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2a52d9613893b8e72f4688a51696199ecf}
+}]Polygon area is too small. \index{Side\+Too\+Small@{Side\+Too\+Small}!Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}}\index{Farseer\+Physics\+::\+Common@{Farseer\+Physics\+::\+Common}!Side\+Too\+Small@{Side\+Too\+Small}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2ae0df3b706ac8cffaf103e5f8e600dc8c}{Side\+Too\+Small}\label{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2ae0df3b706ac8cffaf103e5f8e600dc8c}
+}]The polygon has a side that is too short. \end{description}
+\end{Desc}

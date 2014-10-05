@@ -1,0 +1,333 @@
+\hypertarget{namespace_farseer_physics_1_1_dynamics}{\section{Package Farseer\+Physics.\+Dynamics}
+\label{namespace_farseer_physics_1_1_dynamics}\index{Farseer\+Physics.\+Dynamics@{Farseer\+Physics.\+Dynamics}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_contacts}{Contacts}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints}{Joints}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body}
+\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body}{Breakable\+Body}
+\begin{DoxyCompactList}\small\item\em A type of body that supports multiple fixtures that can break apart. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contact_manager}{Contact\+Manager}
+\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture}
+\begin{DoxyCompactList}\small\item\em A fixture is used to attach a Shape to a body for collision detection. A fixture inherits its transform from its parent. Fixtures hold additional non-\/geometric data such as friction, collision filters, etc. Fixtures are created via \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{Body.\+Create\+Fixture}. Warning\+: You cannot reuse fixtures. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy}
+\begin{DoxyCompactList}\small\item\em This proxy is used internally to connect fixtures to the broad-\/phase. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_island}{Island}
+\begin{DoxyCompactList}\small\item\em This is an internal class. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_position}{Position}
+\begin{DoxyCompactList}\small\item\em This is an internal structure. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_solver_data}{Solver\+Data}
+\begin{DoxyCompactList}\small\item\em Solver Data. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_time_step}{Time\+Step}
+\begin{DoxyCompactList}\small\item\em This is an internal structure. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_velocity}{Velocity}
+\begin{DoxyCompactList}\small\item\em This is an internal structure. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World}
+\begin{DoxyCompactList}\small\item\em The world class manages all physics entities, dynamic simulation, and asynchronous queries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199}{Body\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a84a8921b25f505d0d2077aeb5db4bc16}{Body\+Type.\+Static}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a40c78b58b86002ee38fad2d3c9dd787e}{Body\+Type.\+Kinematic}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a971fd8cc345d8bd9f92e9f7d88fdf20c}{Body\+Type.\+Dynamic}
+ \}
+\begin{DoxyCompactList}\small\item\em The body type. \end{DoxyCompactList}\item 
+enum \hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6adf97f83acf6453d4a6a4b1070f3754}{Category.\+None} = 0, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befab1c94ca2fbc3e78fc30069c8d0f01680}{Category.\+All} = int.\+Max\+Value, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa7cd6dfa1e5c487327adc06188deb0fb6}{Category.\+Cat1} = 1, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae40de42d219daec83c36108458c33448}{Category.\+Cat2} = 2, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37f6adc37f0d87173121e583167d6cc1}{Category.\+Cat3} = 4, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa129f228c0d7a220b0553d8cba9184121}{Category.\+Cat4} = 8, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaaa470590104819dd8bfe57561230fb03}{Category.\+Cat5} = 16, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac54ad63095318697d3211bcd63f58154}{Category.\+Cat6} = 32, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf600d208aab66127dd4464dba35a3121}{Category.\+Cat7} = 64, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5e086afde3ccd07c854219e8f918cf8c}{Category.\+Cat8} = 128, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaedb8dbf31ba7788483f002ee267d463d}{Category.\+Cat9} = 256, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaae7c1e1d2ced9c571dec4729a0719a57}{Category.\+Cat10} = 512, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad6ef569d172c8ca14f4b545017eb6257}{Category.\+Cat11} = 1024, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf459944a0cb3e3dc7203be0221b520fd}{Category.\+Cat12} = 2048, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa28d24c9232f6eb4ad18795275c0c1ffd}{Category.\+Cat13} = 4096, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa40afc2da1fba8a10f074ee178ae91dc4}{Category.\+Cat14} = 8192, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4fa4065ca62791ccdc0151e5f2dd3535}{Category.\+Cat15} = 16384, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6909665d1b64813a26565474bdb6ad75}{Category.\+Cat16} = 32768, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad000b7d55eb653c7b9a21c03e9245734}{Category.\+Cat17} = 65536, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4b4092506652347fba6782f2dee8fe71}{Category.\+Cat18} = 131072, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa1369e3d226710ca96fd1271335ca279d}{Category.\+Cat19} = 262144, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa00b694b917c4a7f22fa6b73ca2a72c47}{Category.\+Cat20} = 524288, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa732bebff73009bf2971c83fbcf7026bd}{Category.\+Cat21} = 1048576, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaddd5143c22227cc8d8e845e84f7446bc}{Category.\+Cat22} = 2097152, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6d07f1a28c7240fb705ca7e821d0717f}{Category.\+Cat23} = 4194304, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37e6497fce444c3d0fdc324d1fa184da}{Category.\+Cat24} = 8388608, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5337ec1c99c36d2395a6021da682b7e2}{Category.\+Cat25} = 16777216, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa8f1c8155630c68d0dbd60a328262ce88}{Category.\+Cat26} = 33554432, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaee74bb3fc6c6c1a8239365e81f202dbc}{Category.\+Cat27} = 67108864, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa2c95aa5e1ba4e7610b5e0916cad67b6a}{Category.\+Cat28} = 134217728, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae14512278a9ad6eecf0182ef9c51d935}{Category.\+Cat29} = 268435456, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa49649770cc6a2f7530fd82b4cf61eecd}{Category.\+Cat30} = 536870912, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac147cfa91b1fb061dabcf50391df6d84}{Category.\+Cat31} = 1073741824
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a9f14bccf84c77834b2365a50815aaad2}{End\+Contact\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact)
+\begin{DoxyCompactList}\small\item\em This delegate is called when a contact is deleted \end{DoxyCompactList}\item 
+delegate bool \hyperlink{namespace_farseer_physics_1_1_dynamics_a99b82c4cad7efb4a314b7683e1e5b9f5}{Begin\+Contact\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact)
+\begin{DoxyCompactList}\small\item\em This delegate is called when a contact is created \end{DoxyCompactList}\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_aae28b8226bebdf50920ba4950f4dc0ca}{Pre\+Solve\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold}{Manifold} old\+Manifold)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_ab059675aeb57a622f51aeb9cb2d05a14}{Post\+Solve\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_velocity_constraint}{Contact\+Velocity\+Constraint} impulse)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a4b415cdd212573683a0002ac70b38c53}{Fixture\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a9da8e70b5e8c9bde4473fcf8e47d0fb1}{Joint\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} joint)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_af77daabe9aac262e951d74f86d6c54dc}{Body\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a3eb71c1aad910dfe002a3500cc678c0b}{Controller\+Delegate} (\hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} controller)
+\item 
+delegate bool \hyperlink{namespace_farseer_physics_1_1_dynamics_a0c43ff149e8b9f3224e7f5dd805281b2}{Collision\+Filter\+Delegate} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+B)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a18794aefafdc6a2a661ec21fc83951b9}{Broadphase\+Delegate} (ref \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy} proxy\+A, ref \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy} proxy\+B)
+\item 
+delegate bool \hyperlink{namespace_farseer_physics_1_1_dynamics_a14ac50ab47cb11796f6a624587b36cca}{Before\+Collision\+Event\+Handler} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+B)
+\item 
+delegate bool \hyperlink{namespace_farseer_physics_1_1_dynamics_a7ec118e60eba61920ca0e4252b5b766d}{On\+Collision\+Event\+Handler} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+B, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_a035ecfe770afb57ab9c71fa4f491201b}{After\+Collision\+Event\+Handler} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+B, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} contact, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_velocity_constraint}{Contact\+Velocity\+Constraint} impulse)
+\item 
+delegate void \hyperlink{namespace_farseer_physics_1_1_dynamics_ade34460148f9d799a829e85e0631fc69}{On\+Separation\+Event\+Handler} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture\+B)
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Body\+Type@{Body\+Type}}
+\index{Body\+Type@{Body\+Type}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Body\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Dynamics.\+Body\+Type}}}\label{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199}
+
+
+The body type. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Static@{Static}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Static@{Static}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a84a8921b25f505d0d2077aeb5db4bc16}{Static}\label{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a84a8921b25f505d0d2077aeb5db4bc16}
+}]Zero velocity, may be manually moved. Note\+: even static bodies have mass. \index{Kinematic@{Kinematic}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Kinematic@{Kinematic}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a40c78b58b86002ee38fad2d3c9dd787e}{Kinematic}\label{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a40c78b58b86002ee38fad2d3c9dd787e}
+}]Zero mass, non-\/zero velocity set by user, moved by solver \index{Dynamic@{Dynamic}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Dynamic@{Dynamic}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a971fd8cc345d8bd9f92e9f7d88fdf20c}{Dynamic}\label{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199a971fd8cc345d8bd9f92e9f7d88fdf20c}
+}]Positive mass, non-\/zero velocity determined by forces, moved by solver \end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Category@{Category}}
+\index{Category@{Category}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Category}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Dynamics.\+Category}}}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{None@{None}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!None@{None}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6adf97f83acf6453d4a6a4b1070f3754}{None}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6adf97f83acf6453d4a6a4b1070f3754}
+}]\index{All@{All}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!All@{All}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befab1c94ca2fbc3e78fc30069c8d0f01680}{All}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befab1c94ca2fbc3e78fc30069c8d0f01680}
+}]\index{Cat1@{Cat1}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat1@{Cat1}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa7cd6dfa1e5c487327adc06188deb0fb6}{Cat1}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa7cd6dfa1e5c487327adc06188deb0fb6}
+}]\index{Cat2@{Cat2}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat2@{Cat2}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae40de42d219daec83c36108458c33448}{Cat2}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae40de42d219daec83c36108458c33448}
+}]\index{Cat3@{Cat3}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat3@{Cat3}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37f6adc37f0d87173121e583167d6cc1}{Cat3}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37f6adc37f0d87173121e583167d6cc1}
+}]\index{Cat4@{Cat4}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat4@{Cat4}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa129f228c0d7a220b0553d8cba9184121}{Cat4}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa129f228c0d7a220b0553d8cba9184121}
+}]\index{Cat5@{Cat5}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat5@{Cat5}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaaa470590104819dd8bfe57561230fb03}{Cat5}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaaa470590104819dd8bfe57561230fb03}
+}]\index{Cat6@{Cat6}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat6@{Cat6}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac54ad63095318697d3211bcd63f58154}{Cat6}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac54ad63095318697d3211bcd63f58154}
+}]\index{Cat7@{Cat7}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat7@{Cat7}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf600d208aab66127dd4464dba35a3121}{Cat7}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf600d208aab66127dd4464dba35a3121}
+}]\index{Cat8@{Cat8}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat8@{Cat8}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5e086afde3ccd07c854219e8f918cf8c}{Cat8}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5e086afde3ccd07c854219e8f918cf8c}
+}]\index{Cat9@{Cat9}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat9@{Cat9}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaedb8dbf31ba7788483f002ee267d463d}{Cat9}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaedb8dbf31ba7788483f002ee267d463d}
+}]\index{Cat10@{Cat10}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat10@{Cat10}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaae7c1e1d2ced9c571dec4729a0719a57}{Cat10}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaae7c1e1d2ced9c571dec4729a0719a57}
+}]\index{Cat11@{Cat11}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat11@{Cat11}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad6ef569d172c8ca14f4b545017eb6257}{Cat11}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad6ef569d172c8ca14f4b545017eb6257}
+}]\index{Cat12@{Cat12}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat12@{Cat12}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf459944a0cb3e3dc7203be0221b520fd}{Cat12}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf459944a0cb3e3dc7203be0221b520fd}
+}]\index{Cat13@{Cat13}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat13@{Cat13}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa28d24c9232f6eb4ad18795275c0c1ffd}{Cat13}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa28d24c9232f6eb4ad18795275c0c1ffd}
+}]\index{Cat14@{Cat14}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat14@{Cat14}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa40afc2da1fba8a10f074ee178ae91dc4}{Cat14}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa40afc2da1fba8a10f074ee178ae91dc4}
+}]\index{Cat15@{Cat15}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat15@{Cat15}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4fa4065ca62791ccdc0151e5f2dd3535}{Cat15}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4fa4065ca62791ccdc0151e5f2dd3535}
+}]\index{Cat16@{Cat16}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat16@{Cat16}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6909665d1b64813a26565474bdb6ad75}{Cat16}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6909665d1b64813a26565474bdb6ad75}
+}]\index{Cat17@{Cat17}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat17@{Cat17}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad000b7d55eb653c7b9a21c03e9245734}{Cat17}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad000b7d55eb653c7b9a21c03e9245734}
+}]\index{Cat18@{Cat18}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat18@{Cat18}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4b4092506652347fba6782f2dee8fe71}{Cat18}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4b4092506652347fba6782f2dee8fe71}
+}]\index{Cat19@{Cat19}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat19@{Cat19}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa1369e3d226710ca96fd1271335ca279d}{Cat19}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa1369e3d226710ca96fd1271335ca279d}
+}]\index{Cat20@{Cat20}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat20@{Cat20}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa00b694b917c4a7f22fa6b73ca2a72c47}{Cat20}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa00b694b917c4a7f22fa6b73ca2a72c47}
+}]\index{Cat21@{Cat21}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat21@{Cat21}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa732bebff73009bf2971c83fbcf7026bd}{Cat21}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa732bebff73009bf2971c83fbcf7026bd}
+}]\index{Cat22@{Cat22}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat22@{Cat22}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaddd5143c22227cc8d8e845e84f7446bc}{Cat22}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaddd5143c22227cc8d8e845e84f7446bc}
+}]\index{Cat23@{Cat23}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat23@{Cat23}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6d07f1a28c7240fb705ca7e821d0717f}{Cat23}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6d07f1a28c7240fb705ca7e821d0717f}
+}]\index{Cat24@{Cat24}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat24@{Cat24}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37e6497fce444c3d0fdc324d1fa184da}{Cat24}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37e6497fce444c3d0fdc324d1fa184da}
+}]\index{Cat25@{Cat25}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat25@{Cat25}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5337ec1c99c36d2395a6021da682b7e2}{Cat25}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5337ec1c99c36d2395a6021da682b7e2}
+}]\index{Cat26@{Cat26}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat26@{Cat26}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa8f1c8155630c68d0dbd60a328262ce88}{Cat26}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa8f1c8155630c68d0dbd60a328262ce88}
+}]\index{Cat27@{Cat27}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat27@{Cat27}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaee74bb3fc6c6c1a8239365e81f202dbc}{Cat27}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaee74bb3fc6c6c1a8239365e81f202dbc}
+}]\index{Cat28@{Cat28}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat28@{Cat28}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa2c95aa5e1ba4e7610b5e0916cad67b6a}{Cat28}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa2c95aa5e1ba4e7610b5e0916cad67b6a}
+}]\index{Cat29@{Cat29}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat29@{Cat29}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae14512278a9ad6eecf0182ef9c51d935}{Cat29}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae14512278a9ad6eecf0182ef9c51d935}
+}]\index{Cat30@{Cat30}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat30@{Cat30}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa49649770cc6a2f7530fd82b4cf61eecd}{Cat30}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa49649770cc6a2f7530fd82b4cf61eecd}
+}]\index{Cat31@{Cat31}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Cat31@{Cat31}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac147cfa91b1fb061dabcf50391df6d84}{Cat31}\label{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac147cfa91b1fb061dabcf50391df6d84}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a035ecfe770afb57ab9c71fa4f491201b}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!After\+Collision\+Event\+Handler@{After\+Collision\+Event\+Handler}}
+\index{After\+Collision\+Event\+Handler@{After\+Collision\+Event\+Handler}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{After\+Collision\+Event\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+After\+Collision\+Event\+Handler (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture\+A, }
+\item[{Fixture}]{fixture\+B, }
+\item[{{\bf Contact}}]{contact, }
+\item[{{\bf Contact\+Velocity\+Constraint}}]{impulse}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a035ecfe770afb57ab9c71fa4f491201b}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a14ac50ab47cb11796f6a624587b36cca}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Before\+Collision\+Event\+Handler@{Before\+Collision\+Event\+Handler}}
+\index{Before\+Collision\+Event\+Handler@{Before\+Collision\+Event\+Handler}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Before\+Collision\+Event\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate bool Farseer\+Physics.\+Dynamics.\+Before\+Collision\+Event\+Handler (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture\+A, }
+\item[{Fixture}]{fixture\+B}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a14ac50ab47cb11796f6a624587b36cca}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a99b82c4cad7efb4a314b7683e1e5b9f5}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Begin\+Contact\+Delegate@{Begin\+Contact\+Delegate}}
+\index{Begin\+Contact\+Delegate@{Begin\+Contact\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Begin\+Contact\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate bool Farseer\+Physics.\+Dynamics.\+Begin\+Contact\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Contact}}]{contact}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a99b82c4cad7efb4a314b7683e1e5b9f5}
+
+
+This delegate is called when a contact is created 
+
+\hypertarget{namespace_farseer_physics_1_1_dynamics_af77daabe9aac262e951d74f86d6c54dc}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Body\+Delegate@{Body\+Delegate}}
+\index{Body\+Delegate@{Body\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Body\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Body\+Delegate (
+\begin{DoxyParamCaption}
+\item[{Body}]{body}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_af77daabe9aac262e951d74f86d6c54dc}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a18794aefafdc6a2a661ec21fc83951b9}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Broadphase\+Delegate@{Broadphase\+Delegate}}
+\index{Broadphase\+Delegate@{Broadphase\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Broadphase\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Broadphase\+Delegate (
+\begin{DoxyParamCaption}
+\item[{ref Fixture\+Proxy}]{proxy\+A, }
+\item[{ref Fixture\+Proxy}]{proxy\+B}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a18794aefafdc6a2a661ec21fc83951b9}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a0c43ff149e8b9f3224e7f5dd805281b2}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Collision\+Filter\+Delegate@{Collision\+Filter\+Delegate}}
+\index{Collision\+Filter\+Delegate@{Collision\+Filter\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Collision\+Filter\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate bool Farseer\+Physics.\+Dynamics.\+Collision\+Filter\+Delegate (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture\+A, }
+\item[{Fixture}]{fixture\+B}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a0c43ff149e8b9f3224e7f5dd805281b2}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a3eb71c1aad910dfe002a3500cc678c0b}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Controller\+Delegate@{Controller\+Delegate}}
+\index{Controller\+Delegate@{Controller\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Controller\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Controller\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Controller}}]{controller}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a3eb71c1aad910dfe002a3500cc678c0b}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a9f14bccf84c77834b2365a50815aaad2}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!End\+Contact\+Delegate@{End\+Contact\+Delegate}}
+\index{End\+Contact\+Delegate@{End\+Contact\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{End\+Contact\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+End\+Contact\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Contact}}]{contact}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a9f14bccf84c77834b2365a50815aaad2}
+
+
+This delegate is called when a contact is deleted 
+
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a4b415cdd212573683a0002ac70b38c53}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Fixture\+Delegate@{Fixture\+Delegate}}
+\index{Fixture\+Delegate@{Fixture\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Fixture\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Fixture\+Delegate (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a4b415cdd212573683a0002ac70b38c53}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a9da8e70b5e8c9bde4473fcf8e47d0fb1}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Joint\+Delegate@{Joint\+Delegate}}
+\index{Joint\+Delegate@{Joint\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Joint\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Joint\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Joint}}]{joint}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a9da8e70b5e8c9bde4473fcf8e47d0fb1}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_a7ec118e60eba61920ca0e4252b5b766d}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!On\+Collision\+Event\+Handler@{On\+Collision\+Event\+Handler}}
+\index{On\+Collision\+Event\+Handler@{On\+Collision\+Event\+Handler}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{On\+Collision\+Event\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate bool Farseer\+Physics.\+Dynamics.\+On\+Collision\+Event\+Handler (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture\+A, }
+\item[{Fixture}]{fixture\+B, }
+\item[{{\bf Contact}}]{contact}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_a7ec118e60eba61920ca0e4252b5b766d}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ade34460148f9d799a829e85e0631fc69}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!On\+Separation\+Event\+Handler@{On\+Separation\+Event\+Handler}}
+\index{On\+Separation\+Event\+Handler@{On\+Separation\+Event\+Handler}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{On\+Separation\+Event\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+On\+Separation\+Event\+Handler (
+\begin{DoxyParamCaption}
+\item[{Fixture}]{fixture\+A, }
+\item[{Fixture}]{fixture\+B}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_ade34460148f9d799a829e85e0631fc69}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_ab059675aeb57a622f51aeb9cb2d05a14}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Post\+Solve\+Delegate@{Post\+Solve\+Delegate}}
+\index{Post\+Solve\+Delegate@{Post\+Solve\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Post\+Solve\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Post\+Solve\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Contact}}]{contact, }
+\item[{{\bf Contact\+Velocity\+Constraint}}]{impulse}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_ab059675aeb57a622f51aeb9cb2d05a14}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_aae28b8226bebdf50920ba4950f4dc0ca}{\index{Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}!Pre\+Solve\+Delegate@{Pre\+Solve\+Delegate}}
+\index{Pre\+Solve\+Delegate@{Pre\+Solve\+Delegate}!Farseer\+Physics\+::\+Dynamics@{Farseer\+Physics\+::\+Dynamics}}
+\subsubsection[{Pre\+Solve\+Delegate}]{\setlength{\rightskip}{0pt plus 5cm}delegate void Farseer\+Physics.\+Dynamics.\+Pre\+Solve\+Delegate (
+\begin{DoxyParamCaption}
+\item[{{\bf Contact}}]{contact, }
+\item[{ref {\bf Manifold}}]{old\+Manifold}
+\end{DoxyParamCaption}
+)}}\label{namespace_farseer_physics_1_1_dynamics_aae28b8226bebdf50920ba4950f4dc0ca}

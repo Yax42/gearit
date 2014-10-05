@@ -1,0 +1,496 @@
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a}{\section{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A Class Reference}
+\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a}\index{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A@{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}}
+}
+
+
+A debug view that works in X\+N\+A. A debug view shows you what happens inside the physics engine. You can view bodies, joints, fixtures and more.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_debug_view_base}{Farseer\+Physics.\+Debug\+View\+Base}, and I\+Disposable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab17b6f0568ba96ae47a0aab19e3c28cd}{Debug\+View\+X\+N\+A} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae4549e7b49ab1b86d12892c2a96c5709}{Begin\+Custom\+Draw} (ref Matrix projection, ref Matrix view)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a317d0626aaa12f0a728908d099805ad5}{End\+Custom\+Draw} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_acce3501b8b55204d7c5dcb5087439365}{Dispose} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5a7c8f51c60d37c6f8afa9e9935cc4fa}{Draw\+A\+A\+B\+B} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb, Color color)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aecb5a9cfc6e23f4c9b13a7338b8f214d}{Draw\+Shape} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture, \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} xf, Color color)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af4a1beb3a718fab044de65978ae42d72}{Draw\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, float red, float green, float blue, bool closed=true)
+\begin{DoxyCompactList}\small\item\em Draw a closed polygon provided in C\+C\+W order. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a525aef903a50647ef357c7cbda053b21}{Draw\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, Color color)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a8f354de1d08a4238c08bf5517cd4edd9}{Draw\+Solid\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, float red, float green, float blue)
+\begin{DoxyCompactList}\small\item\em Draw a solid closed polygon provided in C\+C\+W order. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3b3c347d3627434242e7ce44fcc7f2ce}{Draw\+Solid\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, Color color)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac4b6e7f661fe256ff23bde0ec1a14713}{Draw\+Solid\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, Color color, bool outline)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a75984f74bf9524308af106ab6bfae7c3}{Draw\+Circle} (Vector2 center, float radius, float red, float green, float blue)
+\begin{DoxyCompactList}\small\item\em Draw a circle. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a07047258137750530ae4fcc846d76eaf}{Draw\+Circle} (Vector2 center, float radius, Color color)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a42566b0b92bb6d2cca381ffedda3f43c}{Draw\+Solid\+Circle} (Vector2 center, float radius, Vector2 axis, float red, float green, float blue)
+\begin{DoxyCompactList}\small\item\em Draw a solid circle. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5b0bd4073a7b53e28efdd962b6510dda}{Draw\+Solid\+Circle} (Vector2 center, float radius, Vector2 axis, Color color)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a2dc50b1a908147503be02c62637b7c42}{Draw\+Segment} (Vector2 start, Vector2 end, float red, float green, float blue)
+\begin{DoxyCompactList}\small\item\em Draw a line segment. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a496ada28f2546d12afc07bec12119141}{Draw\+Segment} (Vector2 start, Vector2 end, Color color)
+\item 
+override void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af5c82364068ab0aa715596db3744e982}{Draw\+Transform} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform)
+\begin{DoxyCompactList}\small\item\em Draw a transform. Choose your own length scale. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab7f7b79e3bcb78cbd842db94541d89c2}{Draw\+Point} (Vector2 p, float size, Color color)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a617a00aeb1169d04755a5014cec80639}{Draw\+String} (int x, int y, string s, params object\mbox{[}$\,$\mbox{]} args)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4c164391075a56e1b478d9c30cb6c828}{Draw\+Arrow} (Vector2 start, Vector2 end, float length, float width, bool draw\+Start\+Indicator, Color color)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4db37bedf47439df6bf4e49ac883ccc8}{Render\+Debug\+Data} (ref Matrix projection, ref Matrix view)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a47ecd4649b53f9fe64f0a4636b2bed36}{Render\+Debug\+Data} (ref Matrix projection)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aebcae450d2982a848fae2bde43e68067}{Load\+Content} (Graphics\+Device device, Content\+Manager content)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a1fcf6a297b9a650d61c6eb3975034de6}{Default\+Shape\+Color} = new Color(0.\+9f, 0.\+7f, 0.\+7f)
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3687289d48f3c0c7b66b68e99e533622}{Inactive\+Shape\+Color} = new Color(0.\+5f, 0.\+5f, 0.\+3f)
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac339e99337c43588035b07b798b86dae}{Kinematic\+Shape\+Color} = new Color(0.\+5f, 0.\+5f, 0.\+9f)
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a0a62aa35edab36c58407cb5ebef29ed4}{Sleeping\+Shape\+Color} = new Color(0.\+6f, 0.\+6f, 0.\+6f)
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_afcd0e17376d6376f4cf86222513d6e23}{Static\+Shape\+Color} = new Color(0.\+5f, 0.\+9f, 0.\+5f)
+\item 
+Color \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a6a6df24c4abbe85b2442ddf9f6976155}{Text\+Color} = Color.\+White
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a576632d8b6c6b462036a77cdcffc7758}{Debug\+Panel\+Position} = new Vector2(40, 100)
+\item 
+bool \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5fb446e6cc811636693f1f9a829f3579}{Adaptive\+Limits} = true
+\item 
+int \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a26b28c2306bbad804bcbfc36957f86c6}{Values\+To\+Graph} = 500
+\item 
+int \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac73e104c662748920b4e4a4b9a2f86e8}{Minimum\+Value}
+\item 
+int \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae105d24209925046b4c841c36d82270e}{Maximum\+Value} = 1000
+\item 
+Rectangle \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_adb9f9ea3431e3b457263fde9ef090c0d}{Performance\+Panel\+Bounds} = new Rectangle(250, 100, 200, 100)
+\item 
+bool \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_abd4aa06bc1d5e05f6abaa69abf41fc11}{Enabled} = true
+\item 
+const int \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a816de98d7cab5baaa04565e9523c5199}{Circle\+Segments} = 32
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A debug view that works in X\+N\+A. A debug view shows you what happens inside the physics engine. You can view bodies, joints, fixtures and more. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab17b6f0568ba96ae47a0aab19e3c28cd}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Debug\+View\+X\+N\+A@{Debug\+View\+X\+N\+A}}
+\index{Debug\+View\+X\+N\+A@{Debug\+View\+X\+N\+A}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Debug\+View\+X\+N\+A}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Debug\+View\+X\+N\+A (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab17b6f0568ba96ae47a0aab19e3c28cd}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae4549e7b49ab1b86d12892c2a96c5709}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Begin\+Custom\+Draw@{Begin\+Custom\+Draw}}
+\index{Begin\+Custom\+Draw@{Begin\+Custom\+Draw}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Begin\+Custom\+Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Begin\+Custom\+Draw (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{projection, }
+\item[{ref Matrix}]{view}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae4549e7b49ab1b86d12892c2a96c5709}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_acce3501b8b55204d7c5dcb5087439365}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_acce3501b8b55204d7c5dcb5087439365}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5a7c8f51c60d37c6f8afa9e9935cc4fa}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+A\+A\+B\+B@{Draw\+A\+A\+B\+B}}
+\index{Draw\+A\+A\+B\+B@{Draw\+A\+A\+B\+B}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{aabb, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5a7c8f51c60d37c6f8afa9e9935cc4fa}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4c164391075a56e1b478d9c30cb6c828}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Arrow@{Draw\+Arrow}}
+\index{Draw\+Arrow@{Draw\+Arrow}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Arrow}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Arrow (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{start, }
+\item[{Vector2}]{end, }
+\item[{float}]{length, }
+\item[{float}]{width, }
+\item[{bool}]{draw\+Start\+Indicator, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4c164391075a56e1b478d9c30cb6c828}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a75984f74bf9524308af106ab6bfae7c3}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Circle@{Draw\+Circle}}
+\index{Draw\+Circle@{Draw\+Circle}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a75984f74bf9524308af106ab6bfae7c3}
+
+
+Draw a circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center.\\
+\hline
+{\em radius} & The radius.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_a8d3ba26bbbfa8a445bb6cb01df4a08f8}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a07047258137750530ae4fcc846d76eaf}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Circle@{Draw\+Circle}}
+\index{Draw\+Circle@{Draw\+Circle}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a07047258137750530ae4fcc846d76eaf}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab7f7b79e3bcb78cbd842db94541d89c2}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Point@{Draw\+Point}}
+\index{Draw\+Point@{Draw\+Point}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Point}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p, }
+\item[{float}]{size, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ab7f7b79e3bcb78cbd842db94541d89c2}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af4a1beb3a718fab044de65978ae42d72}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Polygon@{Draw\+Polygon}}
+\index{Draw\+Polygon@{Draw\+Polygon}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green, }
+\item[{bool}]{closed = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af4a1beb3a718fab044de65978ae42d72}
+
+
+Draw a closed polygon provided in C\+C\+W order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices.\\
+\hline
+{\em count} & The vertex count.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_a1161f43cb54f76eba7c78f89adb474b5}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a525aef903a50647ef357c7cbda053b21}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Polygon@{Draw\+Polygon}}
+\index{Draw\+Polygon@{Draw\+Polygon}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a525aef903a50647ef357c7cbda053b21}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a2dc50b1a908147503be02c62637b7c42}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Segment@{Draw\+Segment}}
+\index{Draw\+Segment@{Draw\+Segment}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Segment}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Segment (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{start, }
+\item[{Vector2}]{end, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a2dc50b1a908147503be02c62637b7c42}
+
+
+Draw a line segment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The start.\\
+\hline
+{\em end} & The end.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_a407e1d6d318b6295e409e5075e7c3127}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a496ada28f2546d12afc07bec12119141}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Segment@{Draw\+Segment}}
+\index{Draw\+Segment@{Draw\+Segment}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Segment}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Segment (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{start, }
+\item[{Vector2}]{end, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a496ada28f2546d12afc07bec12119141}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aecb5a9cfc6e23f4c9b13a7338b8f214d}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Shape@{Draw\+Shape}}
+\index{Draw\+Shape@{Draw\+Shape}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Fixture}}]{fixture, }
+\item[{{\bf Transform}}]{xf, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aecb5a9cfc6e23f4c9b13a7338b8f214d}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a42566b0b92bb6d2cca381ffedda3f43c}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Solid\+Circle@{Draw\+Solid\+Circle}}
+\index{Draw\+Solid\+Circle@{Draw\+Solid\+Circle}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Solid\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Solid\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{Vector2}]{axis, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a42566b0b92bb6d2cca381ffedda3f43c}
+
+
+Draw a solid circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center.\\
+\hline
+{\em radius} & The radius.\\
+\hline
+{\em axis} & The axis.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_a30f0bf0bb90e97cdd5be695b30f94a48}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5b0bd4073a7b53e28efdd962b6510dda}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Solid\+Circle@{Draw\+Solid\+Circle}}
+\index{Draw\+Solid\+Circle@{Draw\+Solid\+Circle}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Solid\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Solid\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{Vector2}]{axis, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5b0bd4073a7b53e28efdd962b6510dda}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a8f354de1d08a4238c08bf5517cd4edd9}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}}
+\index{Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Solid\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Solid\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a8f354de1d08a4238c08bf5517cd4edd9}
+
+
+Draw a solid closed polygon provided in C\+C\+W order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices.\\
+\hline
+{\em count} & The vertex count.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_ae193fb495686fa900f8ecea641ab9573}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3b3c347d3627434242e7ce44fcc7f2ce}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}}
+\index{Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Solid\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Solid\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3b3c347d3627434242e7ce44fcc7f2ce}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac4b6e7f661fe256ff23bde0ec1a14713}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}}
+\index{Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Solid\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Solid\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{Color}]{color, }
+\item[{bool}]{outline}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac4b6e7f661fe256ff23bde0ec1a14713}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a617a00aeb1169d04755a5014cec80639}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+String@{Draw\+String}}
+\index{Draw\+String@{Draw\+String}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+String}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+String (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{string}]{s, }
+\item[{params object\mbox{[}$\,$\mbox{]}}]{args}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a617a00aeb1169d04755a5014cec80639}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af5c82364068ab0aa715596db3744e982}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Draw\+Transform@{Draw\+Transform}}
+\index{Draw\+Transform@{Draw\+Transform}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Draw\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Draw\+Transform (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Transform}}]{transform}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af5c82364068ab0aa715596db3744e982}
+
+
+Draw a transform. Choose your own length scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transform.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_debug_view_base_af3fa45abad1dc7eaf0bdb665c3a521f7}{Farseer\+Physics.\+Debug\+View\+Base}.
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a317d0626aaa12f0a728908d099805ad5}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!End\+Custom\+Draw@{End\+Custom\+Draw}}
+\index{End\+Custom\+Draw@{End\+Custom\+Draw}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{End\+Custom\+Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+End\+Custom\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a317d0626aaa12f0a728908d099805ad5}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aebcae450d2982a848fae2bde43e68067}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Load\+Content (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{device, }
+\item[{Content\+Manager}]{content}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_aebcae450d2982a848fae2bde43e68067}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4db37bedf47439df6bf4e49ac883ccc8}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Render\+Debug\+Data@{Render\+Debug\+Data}}
+\index{Render\+Debug\+Data@{Render\+Debug\+Data}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Render\+Debug\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Render\+Debug\+Data (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{projection, }
+\item[{ref Matrix}]{view}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a4db37bedf47439df6bf4e49ac883ccc8}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a47ecd4649b53f9fe64f0a4636b2bed36}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Render\+Debug\+Data@{Render\+Debug\+Data}}
+\index{Render\+Debug\+Data@{Render\+Debug\+Data}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Render\+Debug\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Render\+Debug\+Data (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{projection}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a47ecd4649b53f9fe64f0a4636b2bed36}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5fb446e6cc811636693f1f9a829f3579}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Adaptive\+Limits@{Adaptive\+Limits}}
+\index{Adaptive\+Limits@{Adaptive\+Limits}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Adaptive\+Limits}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Adaptive\+Limits = true}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a5fb446e6cc811636693f1f9a829f3579}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a816de98d7cab5baaa04565e9523c5199}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Circle\+Segments@{Circle\+Segments}}
+\index{Circle\+Segments@{Circle\+Segments}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Circle\+Segments}]{\setlength{\rightskip}{0pt plus 5cm}const int Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Circle\+Segments = 32}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a816de98d7cab5baaa04565e9523c5199}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a576632d8b6c6b462036a77cdcffc7758}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Debug\+Panel\+Position@{Debug\+Panel\+Position}}
+\index{Debug\+Panel\+Position@{Debug\+Panel\+Position}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Debug\+Panel\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Debug\+Panel\+Position = new Vector2(40, 100)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a576632d8b6c6b462036a77cdcffc7758}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a1fcf6a297b9a650d61c6eb3975034de6}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Default\+Shape\+Color@{Default\+Shape\+Color}}
+\index{Default\+Shape\+Color@{Default\+Shape\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Default\+Shape\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Default\+Shape\+Color = new Color(0.\+9f, 0.\+7f, 0.\+7f)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a1fcf6a297b9a650d61c6eb3975034de6}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_abd4aa06bc1d5e05f6abaa69abf41fc11}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Enabled = true}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_abd4aa06bc1d5e05f6abaa69abf41fc11}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3687289d48f3c0c7b66b68e99e533622}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Inactive\+Shape\+Color@{Inactive\+Shape\+Color}}
+\index{Inactive\+Shape\+Color@{Inactive\+Shape\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Inactive\+Shape\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Inactive\+Shape\+Color = new Color(0.\+5f, 0.\+5f, 0.\+3f)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a3687289d48f3c0c7b66b68e99e533622}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac339e99337c43588035b07b798b86dae}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Kinematic\+Shape\+Color@{Kinematic\+Shape\+Color}}
+\index{Kinematic\+Shape\+Color@{Kinematic\+Shape\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Kinematic\+Shape\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Kinematic\+Shape\+Color = new Color(0.\+5f, 0.\+5f, 0.\+9f)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac339e99337c43588035b07b798b86dae}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae105d24209925046b4c841c36d82270e}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Maximum\+Value@{Maximum\+Value}}
+\index{Maximum\+Value@{Maximum\+Value}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Maximum\+Value}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Maximum\+Value = 1000}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ae105d24209925046b4c841c36d82270e}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac73e104c662748920b4e4a4b9a2f86e8}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Minimum\+Value@{Minimum\+Value}}
+\index{Minimum\+Value@{Minimum\+Value}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Minimum\+Value}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Minimum\+Value}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_ac73e104c662748920b4e4a4b9a2f86e8}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_adb9f9ea3431e3b457263fde9ef090c0d}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Performance\+Panel\+Bounds@{Performance\+Panel\+Bounds}}
+\index{Performance\+Panel\+Bounds@{Performance\+Panel\+Bounds}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Performance\+Panel\+Bounds}]{\setlength{\rightskip}{0pt plus 5cm}Rectangle Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Performance\+Panel\+Bounds = new Rectangle(250, 100, 200, 100)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_adb9f9ea3431e3b457263fde9ef090c0d}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a0a62aa35edab36c58407cb5ebef29ed4}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Sleeping\+Shape\+Color@{Sleeping\+Shape\+Color}}
+\index{Sleeping\+Shape\+Color@{Sleeping\+Shape\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Sleeping\+Shape\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Sleeping\+Shape\+Color = new Color(0.\+6f, 0.\+6f, 0.\+6f)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a0a62aa35edab36c58407cb5ebef29ed4}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_afcd0e17376d6376f4cf86222513d6e23}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Static\+Shape\+Color@{Static\+Shape\+Color}}
+\index{Static\+Shape\+Color@{Static\+Shape\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Static\+Shape\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Static\+Shape\+Color = new Color(0.\+5f, 0.\+9f, 0.\+5f)}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_afcd0e17376d6376f4cf86222513d6e23}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a6a6df24c4abbe85b2442ddf9f6976155}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Text\+Color@{Text\+Color}}
+\index{Text\+Color@{Text\+Color}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Text\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Color Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Text\+Color = Color.\+White}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a6a6df24c4abbe85b2442ddf9f6976155}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a26b28c2306bbad804bcbfc36957f86c6}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}!Values\+To\+Graph@{Values\+To\+Graph}}
+\index{Values\+To\+Graph@{Values\+To\+Graph}!Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A@{Farseer\+Physics\+::\+Debug\+Views\+::\+Debug\+View\+X\+N\+A}}
+\subsubsection[{Values\+To\+Graph}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A.\+Values\+To\+Graph = 500}}\label{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a26b28c2306bbad804bcbfc36957f86c6}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/debug/\hyperlink{_debug_view_x_n_a_8cs}{Debug\+View\+X\+N\+A.\+cs}\end{DoxyCompactItemize}

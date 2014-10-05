@@ -1,0 +1,209 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data}{\section{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data}\index{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data@{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data}}
+}
+
+
+Contains filter data that can determine whether an object should be processed or not.  
+
+
+
+
+Inherited by \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_physics_logic}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Physics\+Logic}, and \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a1513f817fadd766ee29203130ec909a2}{Is\+Active\+On} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a5052d8686f473b9c770f3d9afade8568}{Add\+Disabled\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Adds the category. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a2d64cfa6e19efa80097c6a95cb88e66d}{Remove\+Disabled\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Removes the category. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a3a6ad17292037fe543a38d146ed38a9c}{Is\+In\+Disabled\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Determines whether this body ignores the the specified controller. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a40d9f07bf96b71d92120d294f64c428c}{Add\+Enabled\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Adds the category. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a7df22d524a65f85b5fac1c6216713c30}{Remove\+Enabled\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Removes the category. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_aef0dbd52f247ade25e8a1d2f323f6464}{Is\+In\+Enabled\+In\+Category} (\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} category)
+\begin{DoxyCompactList}\small\item\em Determines whether this body ignores the the specified controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_accff4c3d01561843d2e6daaf3db73c95}{Disabled\+On\+Categories} = Category.\+None
+\begin{DoxyCompactList}\small\item\em Disable the logic on specific categories. Category.\+None by default. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_ae3edc879b314a66d8ff67e5d2d0a8fec}{Disabled\+On\+Group}
+\begin{DoxyCompactList}\small\item\em Disable the logic on specific groups \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a087e65e175df45d7642ab40569f74e3f}{Enabled\+On\+Categories} = Category.\+All
+\begin{DoxyCompactList}\small\item\em Enable the logic on specific categories Category.\+All by default. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a36a8f83ec200dbac9fc42c59cabe1726}{Enabled\+On\+Group}
+\begin{DoxyCompactList}\small\item\em Enable the logic on specific groups. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains filter data that can determine whether an object should be processed or not. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a5052d8686f473b9c770f3d9afade8568}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Add\+Disabled\+Category@{Add\+Disabled\+Category}}
+\index{Add\+Disabled\+Category@{Add\+Disabled\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Add\+Disabled\+Category}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Add\+Disabled\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a5052d8686f473b9c770f3d9afade8568}
+
+
+Adds the category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a40d9f07bf96b71d92120d294f64c428c}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Add\+Enabled\+Category@{Add\+Enabled\+Category}}
+\index{Add\+Enabled\+Category@{Add\+Enabled\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Add\+Enabled\+Category}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Add\+Enabled\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a40d9f07bf96b71d92120d294f64c428c}
+
+
+Adds the category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a1513f817fadd766ee29203130ec909a2}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Is\+Active\+On@{Is\+Active\+On}}
+\index{Is\+Active\+On@{Is\+Active\+On}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Is\+Active\+On}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Is\+Active\+On (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a1513f817fadd766ee29203130ec909a2}
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_af4c2a3233d1d1a1b9b54311b7776cd97}{Farseer\+Physics.\+Controllers.\+Controller}, and \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_physics_logic_a33921a532cb4382f0943a692882351b6}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Physics\+Logic}.
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a3a6ad17292037fe543a38d146ed38a9c}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Is\+In\+Disabled\+Category@{Is\+In\+Disabled\+Category}}
+\index{Is\+In\+Disabled\+Category@{Is\+In\+Disabled\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Is\+In\+Disabled\+Category}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Is\+In\+Disabled\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a3a6ad17292037fe543a38d146ed38a9c}
+
+
+Determines whether this body ignores the the specified controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the object has the specified category; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_aef0dbd52f247ade25e8a1d2f323f6464}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Is\+In\+Enabled\+In\+Category@{Is\+In\+Enabled\+In\+Category}}
+\index{Is\+In\+Enabled\+In\+Category@{Is\+In\+Enabled\+In\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Is\+In\+Enabled\+In\+Category}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Is\+In\+Enabled\+In\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_aef0dbd52f247ade25e8a1d2f323f6464}
+
+
+Determines whether this body ignores the the specified controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the object has the specified category; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a2d64cfa6e19efa80097c6a95cb88e66d}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Remove\+Disabled\+Category@{Remove\+Disabled\+Category}}
+\index{Remove\+Disabled\+Category@{Remove\+Disabled\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Remove\+Disabled\+Category}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Remove\+Disabled\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a2d64cfa6e19efa80097c6a95cb88e66d}
+
+
+Removes the category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a7df22d524a65f85b5fac1c6216713c30}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Remove\+Enabled\+Category@{Remove\+Enabled\+Category}}
+\index{Remove\+Enabled\+Category@{Remove\+Enabled\+Category}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Remove\+Enabled\+Category}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Remove\+Enabled\+Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Category}}]{category}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a7df22d524a65f85b5fac1c6216713c30}
+
+
+Removes the category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_accff4c3d01561843d2e6daaf3db73c95}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Disabled\+On\+Categories@{Disabled\+On\+Categories}}
+\index{Disabled\+On\+Categories@{Disabled\+On\+Categories}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Disabled\+On\+Categories}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Disabled\+On\+Categories = Category.\+None}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_accff4c3d01561843d2e6daaf3db73c95}
+
+
+Disable the logic on specific categories. Category.\+None by default. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_ae3edc879b314a66d8ff67e5d2d0a8fec}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Disabled\+On\+Group@{Disabled\+On\+Group}}
+\index{Disabled\+On\+Group@{Disabled\+On\+Group}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Disabled\+On\+Group}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Disabled\+On\+Group}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_ae3edc879b314a66d8ff67e5d2d0a8fec}
+
+
+Disable the logic on specific groups 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a087e65e175df45d7642ab40569f74e3f}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Enabled\+On\+Categories@{Enabled\+On\+Categories}}
+\index{Enabled\+On\+Categories@{Enabled\+On\+Categories}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Enabled\+On\+Categories}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Enabled\+On\+Categories = Category.\+All}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a087e65e175df45d7642ab40569f74e3f}
+
+
+Enable the logic on specific categories Category.\+All by default. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a36a8f83ec200dbac9fc42c59cabe1726}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}!Enabled\+On\+Group@{Enabled\+On\+Group}}
+\index{Enabled\+On\+Group@{Enabled\+On\+Group}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Filter\+Data}}
+\subsubsection[{Enabled\+On\+Group}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data.\+Enabled\+On\+Group}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a36a8f83ec200dbac9fc42c59cabe1726}
+
+
+Enable the logic on specific groups. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\+Physics\+Logic/\hyperlink{_filter_data_8cs}{Filter\+Data.\+cs}\end{DoxyCompactItemize}

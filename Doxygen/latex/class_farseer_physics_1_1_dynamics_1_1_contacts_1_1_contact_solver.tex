@@ -1,0 +1,129 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver}{\section{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver}\index{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver@{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries World\+Manifold}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_abc0cbdfd07f0243d6cf8f8a605aaf950}{Reset} (\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_time_step}{Time\+Step} step, int count, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact}\mbox{[}$\,$\mbox{]} contacts, \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_position}{Position}\mbox{[}$\,$\mbox{]} positions, \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_velocity}{Velocity}\mbox{[}$\,$\mbox{]} velocities, bool warmstarting=Settings.\+Enable\+Warmstarting)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a5d5473b7500fc2198b8744c04c86b332}{Initialize\+Velocity\+Constraints} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a9f084f4d3ace03015beeab4e750e6350}{Warm\+Start} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a191e151ef7bd0d8e0f1b76c1d31ec5d0}{Solve\+Velocity\+Constraints} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a26526c78fadf8aa493d0e2ad9c9637c1}{Store\+Impulses} ()
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a00a8f27b9d4ed2e675da6ffbb0792580}{Solve\+Position\+Constraints} ()
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ad7b1b321ef2a539aa57a9e3e7f5c44f3}{Solve\+T\+O\+I\+Position\+Constraints} (int toi\+Index\+A, int toi\+Index\+B)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_time_step}{Time\+Step} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a553d6dc58400d717c71923ab42011d2d}{\+\_\+step}
+\item 
+\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_position}{Position}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_acbad0865c2eeece43b778ecc93c200e1}{\+\_\+positions}
+\item 
+\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_velocity}{Velocity}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ac7ea6374a8e5143378e7afa44128c0d2}{\+\_\+velocities}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_position_constraint}{Contact\+Position\+Constraint}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a0561ab41fef1e5a5edee6746c2301153}{\+\_\+position\+Constraints}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_velocity_constraint}{Contact\+Velocity\+Constraint}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a79e50d0893b382d63029a1bbbae6471e}{\+\_\+velocity\+Constraints}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a21630dddc2fc4de973a5a1719371b375}{\+\_\+contacts}
+\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a28a10e8d8fc01b7c7e747e107059a102}{\+\_\+count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a5d5473b7500fc2198b8744c04c86b332}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Initialize\+Velocity\+Constraints@{Initialize\+Velocity\+Constraints}}
+\index{Initialize\+Velocity\+Constraints@{Initialize\+Velocity\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Initialize\+Velocity\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Initialize\+Velocity\+Constraints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a5d5473b7500fc2198b8744c04c86b332}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_abc0cbdfd07f0243d6cf8f8a605aaf950}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Reset@{Reset}}
+\index{Reset@{Reset}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Reset (
+\begin{DoxyParamCaption}
+\item[{{\bf Time\+Step}}]{step, }
+\item[{int}]{count, }
+\item[{{\bf Contact}\mbox{[}$\,$\mbox{]}}]{contacts, }
+\item[{{\bf Position}\mbox{[}$\,$\mbox{]}}]{positions, }
+\item[{{\bf Velocity}\mbox{[}$\,$\mbox{]}}]{velocities, }
+\item[{bool}]{warmstarting = {\ttfamily Settings.EnableWarmstarting}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_abc0cbdfd07f0243d6cf8f8a605aaf950}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a00a8f27b9d4ed2e675da6ffbb0792580}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Solve\+Position\+Constraints@{Solve\+Position\+Constraints}}
+\index{Solve\+Position\+Constraints@{Solve\+Position\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Solve\+Position\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Solve\+Position\+Constraints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a00a8f27b9d4ed2e675da6ffbb0792580}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ad7b1b321ef2a539aa57a9e3e7f5c44f3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Solve\+T\+O\+I\+Position\+Constraints@{Solve\+T\+O\+I\+Position\+Constraints}}
+\index{Solve\+T\+O\+I\+Position\+Constraints@{Solve\+T\+O\+I\+Position\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Solve\+T\+O\+I\+Position\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Solve\+T\+O\+I\+Position\+Constraints (
+\begin{DoxyParamCaption}
+\item[{int}]{toi\+Index\+A, }
+\item[{int}]{toi\+Index\+B}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ad7b1b321ef2a539aa57a9e3e7f5c44f3}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a191e151ef7bd0d8e0f1b76c1d31ec5d0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Solve\+Velocity\+Constraints@{Solve\+Velocity\+Constraints}}
+\index{Solve\+Velocity\+Constraints@{Solve\+Velocity\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Solve\+Velocity\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Solve\+Velocity\+Constraints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a191e151ef7bd0d8e0f1b76c1d31ec5d0}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a26526c78fadf8aa493d0e2ad9c9637c1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Store\+Impulses@{Store\+Impulses}}
+\index{Store\+Impulses@{Store\+Impulses}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Store\+Impulses}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Store\+Impulses (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a26526c78fadf8aa493d0e2ad9c9637c1}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a9f084f4d3ace03015beeab4e750e6350}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!Warm\+Start@{Warm\+Start}}
+\index{Warm\+Start@{Warm\+Start}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{Warm\+Start}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+Warm\+Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a9f084f4d3ace03015beeab4e750e6350}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a21630dddc2fc4de973a5a1719371b375}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+contacts@{\+\_\+contacts}}
+\index{\+\_\+contacts@{\+\_\+contacts}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+contacts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+contacts}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a21630dddc2fc4de973a5a1719371b375}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a28a10e8d8fc01b7c7e747e107059a102}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+count@{\+\_\+count}}
+\index{\+\_\+count@{\+\_\+count}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+count}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a28a10e8d8fc01b7c7e747e107059a102}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a0561ab41fef1e5a5edee6746c2301153}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+position\+Constraints@{\+\_\+position\+Constraints}}
+\index{\+\_\+position\+Constraints@{\+\_\+position\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+position\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact\+Position\+Constraint} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+position\+Constraints}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a0561ab41fef1e5a5edee6746c2301153}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_acbad0865c2eeece43b778ecc93c200e1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+positions@{\+\_\+positions}}
+\index{\+\_\+positions@{\+\_\+positions}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+positions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Position} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+positions}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_acbad0865c2eeece43b778ecc93c200e1}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a553d6dc58400d717c71923ab42011d2d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+step@{\+\_\+step}}
+\index{\+\_\+step@{\+\_\+step}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+step}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Time\+Step} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+step}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a553d6dc58400d717c71923ab42011d2d}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ac7ea6374a8e5143378e7afa44128c0d2}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+velocities@{\+\_\+velocities}}
+\index{\+\_\+velocities@{\+\_\+velocities}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+velocities}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Velocity} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+velocities}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_ac7ea6374a8e5143378e7afa44128c0d2}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a79e50d0893b382d63029a1bbbae6471e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}!\+\_\+velocity\+Constraints@{\+\_\+velocity\+Constraints}}
+\index{\+\_\+velocity\+Constraints@{\+\_\+velocity\+Constraints}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact\+Solver}}
+\subsubsection[{\+\_\+velocity\+Constraints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact\+Velocity\+Constraint} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact\+Solver.\+\_\+velocity\+Constraints}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_solver_a79e50d0893b382d63029a1bbbae6471e}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Contacts/\hyperlink{_contact_solver_8cs}{Contact\+Solver.\+cs}\end{DoxyCompactItemize}

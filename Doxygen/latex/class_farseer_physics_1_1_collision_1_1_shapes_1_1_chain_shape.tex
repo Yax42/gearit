@@ -1,0 +1,298 @@
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}{\section{Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape Class Reference}
+\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}\index{Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape@{Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape}}
+}
+
+
+A chain shape is a free form sequence of line segments. The chain has two-\/sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Connectivity information is used to create smooth collisions. W\+A\+R\+N\+I\+N\+G\+: The chain will not collide properly if there are self-\/intersections.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aee16e64d49af2dcc5b5d2b6ce3457b46}{Chain\+Shape} ()
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}{Chain\+Shape}. By default have 0 in density. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac58577c737388f32d7ca9d2372b44b8e}{Chain\+Shape} (\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} vertices, bool create\+Loop=false)
+\begin{DoxyCompactList}\small\item\em Create a new chainshape from the vertices. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_edge_shape}{Edge\+Shape} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aae9ce81f0fd250503f1dc26e6de54ea7}{Get\+Child\+Edge} (int index)
+\begin{DoxyCompactList}\small\item\em Get a child edge. \end{DoxyCompactList}\item 
+override bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae61a83dc7db45b85bf9e134bf7150ded}{Test\+Point} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Test a point for containment in this shape. Note\+: This only works for convex shapes. \end{DoxyCompactList}\item 
+override bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a2a73fff5e7564fcfb49bff3cd4423b87}{Ray\+Cast} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Ray\+Cast\+Output} output, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input} input, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Cast a ray against a child shape. \end{DoxyCompactList}\item 
+override void \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a1af8f0dd3a6e0bcf96b6d4ee6f83cce9}{Compute\+A\+A\+B\+B} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Given a transform, compute the associated axis aligned bounding box for a child shape. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a0373cabe4e3bb81c4160064ad48b27af}{Compute\+Submerged\+Area} (ref Vector2 normal, float offset, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} xf, out Vector2 sc)
+\begin{DoxyCompactList}\small\item\em Used for the buoyancy controller \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac75a9b332c0ecc37ac489e308a2d4e5e}{Compare\+To} (\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}{Chain\+Shape} shape)
+\begin{DoxyCompactList}\small\item\em Compare the chain to another chain \end{DoxyCompactList}\item 
+override \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae59a8182d965159d59731c5f14b2b8c2}{Clone} ()
+\begin{DoxyCompactList}\small\item\em Clone the concrete shape \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a5e122a3851ec154ec51873b16a190741}{Vertices}
+\begin{DoxyCompactList}\small\item\em The vertices. These are not owned/freed by the chain \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ad82757cb99f4c21b84f18b87a25656b6}{Compute\+Properties} ()
+\begin{DoxyCompactList}\small\item\em Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin, not the centroid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override int \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a8a15316b72b32797214108457cfcfee6}{Child\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a201a5e0c8ca5c79ceb9278a16c1bc4e3}{Prev\+Vertex}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Establish connectivity to a vertex that precedes the first vertex. Don't call this for loops. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a71a764c759d334dcc27353f804a81dfc}{Next\+Vertex}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Establish connectivity to a vertex that follows the last vertex. Don't call this for loops. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A chain shape is a free form sequence of line segments. The chain has two-\/sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Connectivity information is used to create smooth collisions. W\+A\+R\+N\+I\+N\+G\+: The chain will not collide properly if there are self-\/intersections. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aee16e64d49af2dcc5b5d2b6ce3457b46}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Chain\+Shape@{Chain\+Shape}}
+\index{Chain\+Shape@{Chain\+Shape}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Chain\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Chain\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aee16e64d49af2dcc5b5d2b6ce3457b46}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}{Chain\+Shape}. By default have 0 in density. 
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac58577c737388f32d7ca9d2372b44b8e}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Chain\+Shape@{Chain\+Shape}}
+\index{Chain\+Shape@{Chain\+Shape}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Chain\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Chain\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertices}}]{vertices, }
+\item[{bool}]{create\+Loop = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac58577c737388f32d7ca9d2372b44b8e}
+
+
+Create a new chainshape from the vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices to use. Must contain 2 or more vertices.\\
+\hline
+{\em create\+Loop} & Set to true to create a closed loop. It connects the first vertice to the last, and automatically adjusts connectivity to create smooth collisions along the chain.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae59a8182d965159d59731c5f14b2b8c2}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Clone@{Clone}}
+\index{Clone@{Clone}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Clone}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Shape} Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae59a8182d965159d59731c5f14b2b8c2}
+
+
+Clone the concrete shape 
+
+\begin{DoxyReturn}{Returns}
+A clone of the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a2ed8c71b5d46dd12f11c6849bbc97249}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac75a9b332c0ecc37ac489e308a2d4e5e}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Compare\+To@{Compare\+To}}
+\index{Compare\+To@{Compare\+To}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Compare\+To}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Compare\+To (
+\begin{DoxyParamCaption}
+\item[{{\bf Chain\+Shape}}]{shape}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ac75a9b332c0ecc37ac489e308a2d4e5e}
+
+
+Compare the chain to another chain 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape} & The other chain\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the two chain shapes are the same
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a1af8f0dd3a6e0bcf96b6d4ee6f83cce9}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Compute\+A\+A\+B\+B@{Compute\+A\+A\+B\+B}}
+\index{Compute\+A\+A\+B\+B@{Compute\+A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Compute\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Compute\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{out {\bf A\+A\+B\+B}}]{aabb, }
+\item[{ref {\bf Transform}}]{transform, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a1af8f0dd3a6e0bcf96b6d4ee6f83cce9}
+
+
+Given a transform, compute the associated axis aligned bounding box for a child shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb results.\\
+\hline
+{\em transform} & The world transform of the shape.\\
+\hline
+{\em child\+Index} & The child shape index.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a9804a429e96e36a36bdc22f6d06bcc6c}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ad82757cb99f4c21b84f18b87a25656b6}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Compute\+Properties@{Compute\+Properties}}
+\index{Compute\+Properties@{Compute\+Properties}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Compute\+Properties}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Compute\+Properties (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ad82757cb99f4c21b84f18b87a25656b6}
+
+
+Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin, not the centroid. 
+
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a7f84cb12e8f22b497c37ec6202990fe9}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a0373cabe4e3bb81c4160064ad48b27af}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Compute\+Submerged\+Area@{Compute\+Submerged\+Area}}
+\index{Compute\+Submerged\+Area@{Compute\+Submerged\+Area}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Compute\+Submerged\+Area}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Compute\+Submerged\+Area (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{normal, }
+\item[{float}]{offset, }
+\item[{ref {\bf Transform}}]{xf, }
+\item[{out Vector2}]{sc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a0373cabe4e3bb81c4160064ad48b27af}
+
+
+Used for the buoyancy controller 
+
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a8042406b3145e2535247e81536ed4e3e}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aae9ce81f0fd250503f1dc26e6de54ea7}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Get\+Child\+Edge@{Get\+Child\+Edge}}
+\index{Get\+Child\+Edge@{Get\+Child\+Edge}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Get\+Child\+Edge}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Edge\+Shape} Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Get\+Child\+Edge (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_aae9ce81f0fd250503f1dc26e6de54ea7}
+
+
+Get a child edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a2a73fff5e7564fcfb49bff3cd4423b87}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}override bool Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{out {\bf Ray\+Cast\+Output}}]{output, }
+\item[{ref {\bf Ray\+Cast\+Input}}]{input, }
+\item[{ref {\bf Transform}}]{transform, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a2a73fff5e7564fcfb49bff3cd4423b87}
+
+
+Cast a ray against a child shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & The ray-\/cast results.\\
+\hline
+{\em input} & The ray-\/cast input parameters.\\
+\hline
+{\em transform} & The transform to be applied to the shape.\\
+\hline
+{\em child\+Index} & The child shape index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the ray-\/cast hits the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_aa032bbd2ea521bb5a917e4d860638d3a}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae61a83dc7db45b85bf9e134bf7150ded}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Test\+Point@{Test\+Point}}
+\index{Test\+Point@{Test\+Point}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Test\+Point}]{\setlength{\rightskip}{0pt plus 5cm}override bool Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Test\+Point (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Transform}}]{transform, }
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_ae61a83dc7db45b85bf9e134bf7150ded}
+
+
+Test a point for containment in this shape. Note\+: This only works for convex shapes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The shape world transform.\\
+\hline
+{\em point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the point is inside the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a2b93a18850e5f40fcc96f2f7744d5d2e}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a5e122a3851ec154ec51873b16a190741}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Vertices}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a5e122a3851ec154ec51873b16a190741}
+
+
+The vertices. These are not owned/freed by the chain \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape}. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a8a15316b72b32797214108457cfcfee6}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Child\+Count@{Child\+Count}}
+\index{Child\+Count@{Child\+Count}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Child\+Count}]{\setlength{\rightskip}{0pt plus 5cm}override int Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Child\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a8a15316b72b32797214108457cfcfee6}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a71a764c759d334dcc27353f804a81dfc}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Next\+Vertex@{Next\+Vertex}}
+\index{Next\+Vertex@{Next\+Vertex}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Next\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Next\+Vertex\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a71a764c759d334dcc27353f804a81dfc}
+
+
+Establish connectivity to a vertex that follows the last vertex. Don't call this for loops. 
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a201a5e0c8ca5c79ceb9278a16c1bc4e3}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}!Prev\+Vertex@{Prev\+Vertex}}
+\index{Prev\+Vertex@{Prev\+Vertex}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Chain\+Shape}}
+\subsubsection[{Prev\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+Shapes.\+Chain\+Shape.\+Prev\+Vertex\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape_a201a5e0c8ca5c79ceb9278a16c1bc4e3}
+
+
+Establish connectivity to a vertex that precedes the first vertex. Don't call this for loops. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\+Shapes/\hyperlink{_chain_shape_8cs}{Chain\+Shape.\+cs}\end{DoxyCompactItemize}

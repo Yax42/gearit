@@ -1,0 +1,143 @@
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event}{\section{gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event Class Reference}
+\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event}\index{gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event@{gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event}}
+}
+
+
+Inherits Panel.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a793877eaff33c5285d171e4de39ef65c}{Tree\+Node\+Event} (int width)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6a1509b7214968fca07ed3d0018b7afa}{set\+Key} (string key)
+\item 
+\hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_action}{Tree\+Node\+Action} \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_af1574dafd6b733eed75b61c35a3b2fd0}{add\+Action} ()
+\item 
+string \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a7708bc85c1e4eb9dad27e27c8a6784a0}{to\+Lua} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a52ea75063ad02a7046c998c66ba9f75c}{toggle\+Visibility} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ae8225271439ac48fc8c96a30aeca0460}{is\+Valide} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a32727ad934162d1b8421dd4ba716606d}{add\+A\+Key} (Microsoft.\+Xna.\+Framework.\+Input.\+Keys key)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_adba7edeb809e69a570193f23c9f1e2ad}{is\+Open} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_aec5b77df4325270ae065dda43c8c5526}{Close} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ad0792632f561aad4867ac0041adf1ded}{Open} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a93e50fc52d1e28b91dcfd87e75a41d85}{remove\+Node} (\hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_action}{Tree\+Node\+Action} node)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_action}{Tree\+Node\+Action} $>$ \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6279e1e9718e8cf6ac41d274ab999875}{\+\_\+nodes} = new List$<$\hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_action}{Tree\+Node\+Action}$>$()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a900e22ae19083fb754207a36ebf679a7}{On\+Update} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a793877eaff33c5285d171e4de39ef65c}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!Tree\+Node\+Event@{Tree\+Node\+Event}}
+\index{Tree\+Node\+Event@{Tree\+Node\+Event}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{Tree\+Node\+Event}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+Tree\+Node\+Event (
+\begin{DoxyParamCaption}
+\item[{int}]{width}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a793877eaff33c5285d171e4de39ef65c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_af1574dafd6b733eed75b61c35a3b2fd0}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!add\+Action@{add\+Action}}
+\index{add\+Action@{add\+Action}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{add\+Action}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree\+Node\+Action} gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+add\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_af1574dafd6b733eed75b61c35a3b2fd0}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a32727ad934162d1b8421dd4ba716606d}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!add\+A\+Key@{add\+A\+Key}}
+\index{add\+A\+Key@{add\+A\+Key}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{add\+A\+Key}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+add\+A\+Key (
+\begin{DoxyParamCaption}
+\item[{Microsoft.\+Xna.\+Framework.\+Input.\+Keys}]{key}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a32727ad934162d1b8421dd4ba716606d}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_aec5b77df4325270ae065dda43c8c5526}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!Close@{Close}}
+\index{Close@{Close}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{Close}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+Close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_aec5b77df4325270ae065dda43c8c5526}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_adba7edeb809e69a570193f23c9f1e2ad}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!is\+Open@{is\+Open}}
+\index{is\+Open@{is\+Open}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{is\+Open}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+is\+Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_adba7edeb809e69a570193f23c9f1e2ad}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ae8225271439ac48fc8c96a30aeca0460}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!is\+Valide@{is\+Valide}}
+\index{is\+Valide@{is\+Valide}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{is\+Valide}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+is\+Valide (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ae8225271439ac48fc8c96a30aeca0460}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a900e22ae19083fb754207a36ebf679a7}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!On\+Update@{On\+Update}}
+\index{On\+Update@{On\+Update}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{On\+Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+On\+Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a900e22ae19083fb754207a36ebf679a7}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ad0792632f561aad4867ac0041adf1ded}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!Open@{Open}}
+\index{Open@{Open}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{Open}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_ad0792632f561aad4867ac0041adf1ded}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a93e50fc52d1e28b91dcfd87e75a41d85}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!remove\+Node@{remove\+Node}}
+\index{remove\+Node@{remove\+Node}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{remove\+Node}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+remove\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree\+Node\+Action}}]{node}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a93e50fc52d1e28b91dcfd87e75a41d85}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6a1509b7214968fca07ed3d0018b7afa}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!set\+Key@{set\+Key}}
+\index{set\+Key@{set\+Key}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{set\+Key}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+set\+Key (
+\begin{DoxyParamCaption}
+\item[{string}]{key}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6a1509b7214968fca07ed3d0018b7afa}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a52ea75063ad02a7046c998c66ba9f75c}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!toggle\+Visibility@{toggle\+Visibility}}
+\index{toggle\+Visibility@{toggle\+Visibility}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{toggle\+Visibility}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+toggle\+Visibility (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a52ea75063ad02a7046c998c66ba9f75c}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a7708bc85c1e4eb9dad27e27c8a6784a0}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!to\+Lua@{to\+Lua}}
+\index{to\+Lua@{to\+Lua}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{to\+Lua}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+to\+Lua (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a7708bc85c1e4eb9dad27e27c8a6784a0}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6279e1e9718e8cf6ac41d274ab999875}{\index{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}!\+\_\+nodes@{\+\_\+nodes}}
+\index{\+\_\+nodes@{\+\_\+nodes}!gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event@{gearit\+::src\+::\+G\+U\+I\+::\+Tree\+Node\+Event}}
+\subsubsection[{\+\_\+nodes}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Tree\+Node\+Action}$>$ gearit.\+src.\+G\+U\+I.\+Tree\+Node\+Event.\+\_\+nodes = new List$<${\bf Tree\+Node\+Action}$>$()}}\label{classgearit_1_1src_1_1_g_u_i_1_1_tree_node_event_a6279e1e9718e8cf6ac41d274ab999875}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+G\+U\+I/\+Robot\+Editor/\hyperlink{_tree_node_event_8cs}{Tree\+Node\+Event.\+cs}\end{DoxyCompactItemize}

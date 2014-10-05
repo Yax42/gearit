@@ -1,0 +1,363 @@
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece}{\section{gearit.\+src.\+robot.\+Piece Class Reference}
+\label{classgearit_1_1src_1_1robot_1_1_piece}\index{gearit.\+src.\+robot.\+Piece@{gearit.\+src.\+robot.\+Piece}}
+}
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Farseer\+Physics.\+Dynamics.\+Body}, and I\+Serializable.
+
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1robot_1_1_heart}{gearit.\+src.\+robot.\+Heart}, \hyperlink{classgearit_1_1src_1_1robot_1_1_rod}{gearit.\+src.\+robot.\+Rod}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel}{gearit.\+src.\+robot.\+Wheel}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_acdaa01c5a96d67505c78c84a43739cf5}{Get\+Object\+Data} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a7138381e04573eb0385cef9d43f3e813}{reset\+Shape} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a7853b0c5286960d4f6c117a132d1c13a}{set\+Texture} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg, \hyperlink{namespacegearit_1_1src_1_1utility_a1a6b5ed88f62fe3a535053fa2d4fa491}{Material\+Type} mater)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a437355c3fe754b6007c26e5f08a4d0e8}{remove\+Spot} (\hyperlink{interfacegearit_1_1src_1_1robot_1_1_i_spot}{I\+Spot} spot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ac44f258dd88e48b639e7016019703d24}{add\+Spot} (\hyperlink{interfacegearit_1_1src_1_1robot_1_1_i_spot}{I\+Spot} spot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_af7b23e31638ea432071194ce735156a6}{reset\+Act} ()
+\item 
+abstract float \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a6cd722f6fe034264f9256cfbb195d255}{Distance\+Squared} (Vector2 p)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_acaf17d46dfbb63584c2a0d06a6e9df82}{Contain} (Vector2 p)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a9800faf55fb67996a3d5085c424f000c}{Local\+Contain} (Vector2 p)
+\item 
+\hyperlink{interfacegearit_1_1src_1_1robot_1_1_i_spot}{I\+Spot} \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a6a573bef5c079be7de39dfdba9eac0f3}{get\+Spot} (Vector2 p)
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_abb4ca140935f78c00f8e5168fbd53084}{Id} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ad62aad475f917d24e964d77933ebdeb2}{rotate} (float angle, \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} comparator, bool dynamic=false, bool reset=false)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a7cb7f9b0b1a8c277fa3b3180763b46e9}{rotate\+Delta} (float angle, bool dynamic=false)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ab9042e8988624edb637536df1a6f71a1}{rotate\+Delta} (float angle, \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} comparator, bool dynamic)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_af8107105b20d1016dc0788ffd49ceaba}{move\+Delta} (Vector2 pos, bool dynamic)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a65658f471e89011981559b9cbb2ae6ce}{move} (Vector2 pos, bool dynamic=false, bool reset=false)
+\item 
+abstract Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a29b20ef39df90622eee472d713ddb8ff}{Closest\+Position\+Inside} (Vector2 p)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a2f7dafb3dd4f686b1277f0e009ff92ed}{resize} (float size, bool reset=false)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ac21fce159c527c84b1227f26eba00457}{scale} (float scale)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_aff24ce3e57f43eb7ba0c21d00ba0179b}{update\+Characteristics} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ac40f288c13629341a7477ddad59cf1b4}{are\+Spots\+Ok} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a14b100be1ce29f8e50f7a4a37f252394}{is\+Connected} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} other)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a859ba487a030c5e83e1cd646660f6c38}{get\+Connection} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} other)
+\item 
+abstract float \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a003b880cb315dcbd5564e987b807a533}{get\+Size} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_abf64586f3b69920173b94734f8c5ad3b}{draw} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg)
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} $>$ \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a63284f83e676fed914d604bb63b3bafa}{Generate\+Adjacent\+Piece\+List} ()
+\item 
+virtual bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a681c42311965842c33374dcce7023e07}{Is\+Valid} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ac088c3e9dcb9882e880d6e910ead101d}{Destroy} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\item 
+abstract Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ab921691e385a02bfcdb99af25f276260}{Shape\+Local\+Origin} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a969fdc25f07ef2b1fc15aa360a157efd}{All\+Spots\+Are\+Contained\+In\+Surface} ()
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a22837d8d8ce49065a18a64df4397641d}{Sleeping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+virtual float \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a296326e78b47f09749230b97d8a00b6c}{Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Color \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a4600408118052b88110902c3386d4255}{Color\+Value}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a7f04d7c15839af2c999187e7b7fdd278}{Shown}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ac44f258dd88e48b639e7016019703d24}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!add\+Spot@{add\+Spot}}
+\index{add\+Spot@{add\+Spot}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{add\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+add\+Spot (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Spot}}]{spot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_ac44f258dd88e48b639e7016019703d24}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a969fdc25f07ef2b1fc15aa360a157efd}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!All\+Spots\+Are\+Contained\+In\+Surface@{All\+Spots\+Are\+Contained\+In\+Surface}}
+\index{All\+Spots\+Are\+Contained\+In\+Surface@{All\+Spots\+Are\+Contained\+In\+Surface}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{All\+Spots\+Are\+Contained\+In\+Surface}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+All\+Spots\+Are\+Contained\+In\+Surface (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a969fdc25f07ef2b1fc15aa360a157efd}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ac40f288c13629341a7477ddad59cf1b4}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!are\+Spots\+Ok@{are\+Spots\+Ok}}
+\index{are\+Spots\+Ok@{are\+Spots\+Ok}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{are\+Spots\+Ok}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+are\+Spots\+Ok (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_ac40f288c13629341a7477ddad59cf1b4}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a29b20ef39df90622eee472d713ddb8ff}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Closest\+Position\+Inside@{Closest\+Position\+Inside}}
+\index{Closest\+Position\+Inside@{Closest\+Position\+Inside}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Closest\+Position\+Inside}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 gearit.\+src.\+robot.\+Piece.\+Closest\+Position\+Inside (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a29b20ef39df90622eee472d713ddb8ff}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_ab2b2e91a17d9c39fa36e58667527598b}{gearit.\+src.\+robot.\+Rod}, \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_ab4622425c42f5010e5def4d6d93fbc06}{gearit.\+src.\+robot.\+Heart}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_af846d9609aa1c7a178fc3b5f622df206}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_acaf17d46dfbb63584c2a0d06a6e9df82}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Contain@{Contain}}
+\index{Contain@{Contain}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Contain}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+Contain (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_acaf17d46dfbb63584c2a0d06a6e9df82}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ac088c3e9dcb9882e880d6e910ead101d}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+Destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_ac088c3e9dcb9882e880d6e910ead101d}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a6cd722f6fe034264f9256cfbb195d255}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Distance\+Squared@{Distance\+Squared}}
+\index{Distance\+Squared@{Distance\+Squared}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Distance\+Squared}]{\setlength{\rightskip}{0pt plus 5cm}abstract float gearit.\+src.\+robot.\+Piece.\+Distance\+Squared (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a6cd722f6fe034264f9256cfbb195d255}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_a7103977ea32f5d3f378f46626f885459}{gearit.\+src.\+robot.\+Rod}, \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_aa168294845abc76d160077e60a5d8ed8}{gearit.\+src.\+robot.\+Heart}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_aab527883ae40529f44ad9d7207f249a4}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_abf64586f3b69920173b94734f8c5ad3b}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!draw@{draw}}
+\index{draw@{draw}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_abf64586f3b69920173b94734f8c5ad3b}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a63284f83e676fed914d604bb63b3bafa}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Generate\+Adjacent\+Piece\+List@{Generate\+Adjacent\+Piece\+List}}
+\index{Generate\+Adjacent\+Piece\+List@{Generate\+Adjacent\+Piece\+List}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Generate\+Adjacent\+Piece\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Piece}$>$ gearit.\+src.\+robot.\+Piece.\+Generate\+Adjacent\+Piece\+List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a63284f83e676fed914d604bb63b3bafa}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a859ba487a030c5e83e1cd646660f6c38}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!get\+Connection@{get\+Connection}}
+\index{get\+Connection@{get\+Connection}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{get\+Connection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Revolute\+Spot} gearit.\+src.\+robot.\+Piece.\+get\+Connection (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{other}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a859ba487a030c5e83e1cd646660f6c38}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_acdaa01c5a96d67505c78c84a43739cf5}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Get\+Object\+Data@{Get\+Object\+Data}}
+\index{Get\+Object\+Data@{Get\+Object\+Data}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Get\+Object\+Data}]{\setlength{\rightskip}{0pt plus 5cm}abstract void gearit.\+src.\+robot.\+Piece.\+Get\+Object\+Data (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_acdaa01c5a96d67505c78c84a43739cf5}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_aeaf2dd011a484e591bd8d977fe62ac52}{gearit.\+src.\+robot.\+Rod}, \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a7c08e07bed9647315d5a409823344044}{gearit.\+src.\+robot.\+Heart}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_ad80d4ab25ce754ea965fd281500a3f85}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a003b880cb315dcbd5564e987b807a533}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}abstract float gearit.\+src.\+robot.\+Piece.\+get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a003b880cb315dcbd5564e987b807a533}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a04aa4abe0ad58c7fe7049d12bec75782}{gearit.\+src.\+robot.\+Heart}, \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_acafc38899bd84e8b2316bc9be3210fe0}{gearit.\+src.\+robot.\+Rod}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_a53187a3061ac473ea26bde10b17c5609}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a6a573bef5c079be7de39dfdba9eac0f3}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!get\+Spot@{get\+Spot}}
+\index{get\+Spot@{get\+Spot}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{get\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Spot} gearit.\+src.\+robot.\+Piece.\+get\+Spot (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a6a573bef5c079be7de39dfdba9eac0f3}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_abb4ca140935f78c00f8e5168fbd53084}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Id@{Id}}
+\index{Id@{Id}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Piece.\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_abb4ca140935f78c00f8e5168fbd53084}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a14b100be1ce29f8e50f7a4a37f252394}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!is\+Connected@{is\+Connected}}
+\index{is\+Connected@{is\+Connected}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{is\+Connected}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+is\+Connected (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{other}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a14b100be1ce29f8e50f7a4a37f252394}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a681c42311965842c33374dcce7023e07}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Is\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool gearit.\+src.\+robot.\+Piece.\+Is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a681c42311965842c33374dcce7023e07}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_ae7aa0ceae5dad57dfb532933d4b1b88d}{gearit.\+src.\+robot.\+Rod}, \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_adec972aa89332e630fcf7d09bd86c90c}{gearit.\+src.\+robot.\+Heart}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_a1cd59fa76d80d4a66ee587950d823a39}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a9800faf55fb67996a3d5085c424f000c}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Local\+Contain@{Local\+Contain}}
+\index{Local\+Contain@{Local\+Contain}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Local\+Contain}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+Local\+Contain (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a9800faf55fb67996a3d5085c424f000c}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a65658f471e89011981559b9cbb2ae6ce}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!move@{move}}
+\index{move@{move}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+robot.\+Piece.\+move (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{bool}]{dynamic = {\ttfamily false}, }
+\item[{bool}]{reset = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a65658f471e89011981559b9cbb2ae6ce}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_af8107105b20d1016dc0788ffd49ceaba}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!move\+Delta@{move\+Delta}}
+\index{move\+Delta@{move\+Delta}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{move\+Delta}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+move\+Delta (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{bool}]{dynamic}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_af8107105b20d1016dc0788ffd49ceaba}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a437355c3fe754b6007c26e5f08a4d0e8}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!remove\+Spot@{remove\+Spot}}
+\index{remove\+Spot@{remove\+Spot}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{remove\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+remove\+Spot (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Spot}}]{spot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a437355c3fe754b6007c26e5f08a4d0e8}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_af7b23e31638ea432071194ce735156a6}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!reset\+Act@{reset\+Act}}
+\index{reset\+Act@{reset\+Act}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{reset\+Act}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+reset\+Act (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_af7b23e31638ea432071194ce735156a6}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a7138381e04573eb0385cef9d43f3e813}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!reset\+Shape@{reset\+Shape}}
+\index{reset\+Shape@{reset\+Shape}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{reset\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+robot.\+Piece.\+reset\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a7138381e04573eb0385cef9d43f3e813}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a5555d8f8aadbbf5e193d06ab3a51b26d}{gearit.\+src.\+robot.\+Heart}, \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_aecff9e164fdba30916c6afa5db2e6a4f}{gearit.\+src.\+robot.\+Rod}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_ae75e8069a811803d95c10ea05aaad609}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a2f7dafb3dd4f686b1277f0e009ff92ed}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!resize@{resize}}
+\index{resize@{resize}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{resize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+robot.\+Piece.\+resize (
+\begin{DoxyParamCaption}
+\item[{float}]{size, }
+\item[{bool}]{reset = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a2f7dafb3dd4f686b1277f0e009ff92ed}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ad62aad475f917d24e964d77933ebdeb2}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!rotate@{rotate}}
+\index{rotate@{rotate}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{angle, }
+\item[{{\bf Piece}}]{comparator, }
+\item[{bool}]{dynamic = {\ttfamily false}, }
+\item[{bool}]{reset = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_ad62aad475f917d24e964d77933ebdeb2}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a7cb7f9b0b1a8c277fa3b3180763b46e9}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!rotate\+Delta@{rotate\+Delta}}
+\index{rotate\+Delta@{rotate\+Delta}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{rotate\+Delta}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+rotate\+Delta (
+\begin{DoxyParamCaption}
+\item[{float}]{angle, }
+\item[{bool}]{dynamic = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a7cb7f9b0b1a8c277fa3b3180763b46e9}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ab9042e8988624edb637536df1a6f71a1}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!rotate\+Delta@{rotate\+Delta}}
+\index{rotate\+Delta@{rotate\+Delta}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{rotate\+Delta}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+rotate\+Delta (
+\begin{DoxyParamCaption}
+\item[{float}]{angle, }
+\item[{{\bf Piece}}]{comparator, }
+\item[{bool}]{dynamic}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_ab9042e8988624edb637536df1a6f71a1}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ac21fce159c527c84b1227f26eba00457}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!scale@{scale}}
+\index{scale@{scale}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+robot.\+Piece.\+scale (
+\begin{DoxyParamCaption}
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_ac21fce159c527c84b1227f26eba00457}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a7853b0c5286960d4f6c117a132d1c13a}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!set\+Texture@{set\+Texture}}
+\index{set\+Texture@{set\+Texture}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{set\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Piece.\+set\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg, }
+\item[{{\bf Material\+Type}}]{mater}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_piece_a7853b0c5286960d4f6c117a132d1c13a}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_ab921691e385a02bfcdb99af25f276260}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Shape\+Local\+Origin@{Shape\+Local\+Origin}}
+\index{Shape\+Local\+Origin@{Shape\+Local\+Origin}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Shape\+Local\+Origin}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 gearit.\+src.\+robot.\+Piece.\+Shape\+Local\+Origin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_ab921691e385a02bfcdb99af25f276260}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_a306f2cbfd5a5510f55a17c4b8f07b2ee}{gearit.\+src.\+robot.\+Rod}, \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a8a6e44525d8d48b4e82c91bc74ec63bf}{gearit.\+src.\+robot.\+Heart}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_wheel_a967c20594697bf89f33a381d2698443b}{gearit.\+src.\+robot.\+Wheel}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_aff24ce3e57f43eb7ba0c21d00ba0179b}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!update\+Characteristics@{update\+Characteristics}}
+\index{update\+Characteristics@{update\+Characteristics}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{update\+Characteristics}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+robot.\+Piece.\+update\+Characteristics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_aff24ce3e57f43eb7ba0c21d00ba0179b}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1robot_1_1_rod_ae3c886a97641a5c5911153a1848c8647}{gearit.\+src.\+robot.\+Rod}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a4600408118052b88110902c3386d4255}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Color\+Value@{Color\+Value}}
+\index{Color\+Value@{Color\+Value}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Color\+Value}]{\setlength{\rightskip}{0pt plus 5cm}Color gearit.\+src.\+robot.\+Piece.\+Color\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a4600408118052b88110902c3386d4255}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a7f04d7c15839af2c999187e7b7fdd278}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Shown@{Shown}}
+\index{Shown@{Shown}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Shown}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+Shown\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a7f04d7c15839af2c999187e7b7fdd278}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a22837d8d8ce49065a18a64df4397641d}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Sleeping@{Sleeping}}
+\index{Sleeping@{Sleeping}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Sleeping}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Piece.\+Sleeping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a22837d8d8ce49065a18a64df4397641d}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_piece_a296326e78b47f09749230b97d8a00b6c}{\index{gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}!Weight@{Weight}}
+\index{Weight@{Weight}!gearit\+::src\+::robot\+::\+Piece@{gearit\+::src\+::robot\+::\+Piece}}
+\subsubsection[{Weight}]{\setlength{\rightskip}{0pt plus 5cm}virtual float gearit.\+src.\+robot.\+Piece.\+Weight\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_piece_a296326e78b47f09749230b97d8a00b6c}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/robot/\hyperlink{_piece_8cs}{Piece.\+cs}\end{DoxyCompactItemize}

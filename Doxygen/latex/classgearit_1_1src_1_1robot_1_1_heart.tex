@@ -1,0 +1,215 @@
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart}{\section{gearit.\+src.\+robot.\+Heart Class Reference}
+\label{classgearit_1_1src_1_1robot_1_1_heart}\index{gearit.\+src.\+robot.\+Heart@{gearit.\+src.\+robot.\+Heart}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{gearit.\+src.\+robot.\+Piece}, and I\+Serializable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_heart_aae8fe1f5a851e312671c388d85e2cdef}{Heart} (\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} robot)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_heart_abbf2e83bed0507a0f46df9c858ac920f}{Heart} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+override void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a7c08e07bed9647315d5a409823344044}{Get\+Object\+Data} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_af830f0dedfd8ce3db43a9ef74bda6143}{draw} (Sprite\+Batch batch)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_afc6baa8cc3cf66e8a1768f10ab0761e0}{Reset\+Shape} (\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} v)
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_aefa7cf672e4df884308cfdf217f0ddd6}{get\+Shape\+Clone} ()
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a649572e721893c41c5a2fc897bf1cfeb}{get\+Corner} (Vector2 p)
+\item 
+override void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a5555d8f8aadbbf5e193d06ab3a51b26d}{reset\+Shape} ()
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a49374d9684d5b1a379145f64e010eea6}{get\+Corner} (int id)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_aeca15387a267b45af8665256602ed3f3}{move\+Corner} (int id, Vector2 pos)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a36566816f461fac49912ebc61d0f9ad4}{Trigger} (\hyperlink{classgearit_1_1src_1_1map_1_1_trigger}{Trigger} trigger)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a5b57c83c92c934c6973c27d4593bd6d0}{add\+Corner} (Vector2 p)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_ab80c951fd2929d4e0da256816d9fe8b9}{remove\+Corner} (int id)
+\item 
+override float \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a04aa4abe0ad58c7fe7049d12bec75782}{get\+Size} ()
+\item 
+override float \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_aa168294845abc76d160077e60a5d8ed8}{Distance\+Squared} (Vector2 p)
+\item 
+override Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_ab4622425c42f5010e5def4d6d93fbc06}{Closest\+Position\+Inside} (Vector2 p)
+\item 
+override Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_a8a6e44525d8d48b4e82c91bc74ec63bf}{Shape\+Local\+Origin} ()
+\item 
+override bool \hyperlink{classgearit_1_1src_1_1robot_1_1_heart_adec972aa89332e630fcf7d09bd86c90c}{Is\+Valid} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_aae8fe1f5a851e312671c388d85e2cdef}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Heart@{Heart}}
+\index{Heart@{Heart}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Heart}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+robot.\+Heart.\+Heart (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot}}]{robot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_aae8fe1f5a851e312671c388d85e2cdef}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_abbf2e83bed0507a0f46df9c858ac920f}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Heart@{Heart}}
+\index{Heart@{Heart}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Heart}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+robot.\+Heart.\+Heart (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_abbf2e83bed0507a0f46df9c858ac920f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a5b57c83c92c934c6973c27d4593bd6d0}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!add\+Corner@{add\+Corner}}
+\index{add\+Corner@{add\+Corner}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{add\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Heart.\+add\+Corner (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_a5b57c83c92c934c6973c27d4593bd6d0}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_ab4622425c42f5010e5def4d6d93fbc06}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Closest\+Position\+Inside@{Closest\+Position\+Inside}}
+\index{Closest\+Position\+Inside@{Closest\+Position\+Inside}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Closest\+Position\+Inside}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 gearit.\+src.\+robot.\+Heart.\+Closest\+Position\+Inside (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_ab4622425c42f5010e5def4d6d93fbc06}
+
+
+Implements \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a29b20ef39df90622eee472d713ddb8ff}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_aa168294845abc76d160077e60a5d8ed8}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Distance\+Squared@{Distance\+Squared}}
+\index{Distance\+Squared@{Distance\+Squared}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Distance\+Squared}]{\setlength{\rightskip}{0pt plus 5cm}override float gearit.\+src.\+robot.\+Heart.\+Distance\+Squared (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_aa168294845abc76d160077e60a5d8ed8}
+
+
+Implements \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a6cd722f6fe034264f9256cfbb195d255}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_af830f0dedfd8ce3db43a9ef74bda6143}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!draw@{draw}}
+\index{draw@{draw}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Heart.\+draw (
+\begin{DoxyParamCaption}
+\item[{Sprite\+Batch}]{batch}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_af830f0dedfd8ce3db43a9ef74bda6143}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a649572e721893c41c5a2fc897bf1cfeb}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!get\+Corner@{get\+Corner}}
+\index{get\+Corner@{get\+Corner}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{get\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Heart.\+get\+Corner (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_a649572e721893c41c5a2fc897bf1cfeb}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a49374d9684d5b1a379145f64e010eea6}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!get\+Corner@{get\+Corner}}
+\index{get\+Corner@{get\+Corner}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{get\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+robot.\+Heart.\+get\+Corner (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_a49374d9684d5b1a379145f64e010eea6}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a7c08e07bed9647315d5a409823344044}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Get\+Object\+Data@{Get\+Object\+Data}}
+\index{Get\+Object\+Data@{Get\+Object\+Data}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Get\+Object\+Data}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+robot.\+Heart.\+Get\+Object\+Data (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_a7c08e07bed9647315d5a409823344044}
+
+
+Implements \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_acdaa01c5a96d67505c78c84a43739cf5}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_aefa7cf672e4df884308cfdf217f0ddd6}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!get\+Shape\+Clone@{get\+Shape\+Clone}}
+\index{get\+Shape\+Clone@{get\+Shape\+Clone}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{get\+Shape\+Clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} gearit.\+src.\+robot.\+Heart.\+get\+Shape\+Clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_aefa7cf672e4df884308cfdf217f0ddd6}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a04aa4abe0ad58c7fe7049d12bec75782}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}override float gearit.\+src.\+robot.\+Heart.\+get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_a04aa4abe0ad58c7fe7049d12bec75782}
+
+
+Implements \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a003b880cb315dcbd5564e987b807a533}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_adec972aa89332e630fcf7d09bd86c90c}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Is\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}override bool gearit.\+src.\+robot.\+Heart.\+Is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_adec972aa89332e630fcf7d09bd86c90c}
+
+
+Reimplemented from \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a681c42311965842c33374dcce7023e07}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_aeca15387a267b45af8665256602ed3f3}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!move\+Corner@{move\+Corner}}
+\index{move\+Corner@{move\+Corner}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{move\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Heart.\+move\+Corner (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{Vector2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_aeca15387a267b45af8665256602ed3f3}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_ab80c951fd2929d4e0da256816d9fe8b9}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!remove\+Corner@{remove\+Corner}}
+\index{remove\+Corner@{remove\+Corner}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{remove\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Heart.\+remove\+Corner (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_ab80c951fd2929d4e0da256816d9fe8b9}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_afc6baa8cc3cf66e8a1768f10ab0761e0}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Reset\+Shape@{Reset\+Shape}}
+\index{Reset\+Shape@{Reset\+Shape}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Reset\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Heart.\+Reset\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertices}}]{v}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_afc6baa8cc3cf66e8a1768f10ab0761e0}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a5555d8f8aadbbf5e193d06ab3a51b26d}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!reset\+Shape@{reset\+Shape}}
+\index{reset\+Shape@{reset\+Shape}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{reset\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+robot.\+Heart.\+reset\+Shape (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_a5555d8f8aadbbf5e193d06ab3a51b26d}
+
+
+Reimplemented from \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_a7138381e04573eb0385cef9d43f3e813}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a8a6e44525d8d48b4e82c91bc74ec63bf}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Shape\+Local\+Origin@{Shape\+Local\+Origin}}
+\index{Shape\+Local\+Origin@{Shape\+Local\+Origin}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Shape\+Local\+Origin}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 gearit.\+src.\+robot.\+Heart.\+Shape\+Local\+Origin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1robot_1_1_heart_a8a6e44525d8d48b4e82c91bc74ec63bf}
+
+
+Implements \hyperlink{classgearit_1_1src_1_1robot_1_1_piece_ab921691e385a02bfcdb99af25f276260}{gearit.\+src.\+robot.\+Piece}.
+
+\hypertarget{classgearit_1_1src_1_1robot_1_1_heart_a36566816f461fac49912ebc61d0f9ad4}{\index{gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}!Trigger@{Trigger}}
+\index{Trigger@{Trigger}!gearit\+::src\+::robot\+::\+Heart@{gearit\+::src\+::robot\+::\+Heart}}
+\subsubsection[{Trigger}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Heart.\+Trigger (
+\begin{DoxyParamCaption}
+\item[{{\bf Trigger}}]{trigger}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_heart_a36566816f461fac49912ebc61d0f9ad4}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/robot/\hyperlink{_heart_8cs}{Heart.\+cs}\end{DoxyCompactItemize}

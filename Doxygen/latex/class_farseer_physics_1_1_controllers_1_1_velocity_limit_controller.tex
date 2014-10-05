@@ -1,0 +1,136 @@
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{\section{Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller Class Reference}
+\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}\index{Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller@{Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller}}
+}
+
+
+Put a limit on the linear (translation -\/ the movespeed) and angular (rotation) velocity of bodies added to this controller.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a01861100f75c7b55cbdabd5a36872f6f}{Velocity\+Limit\+Controller} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Velocity\+Limit\+Controller} class. Sets the max linear velocity to Settings.\+Max\+Translation Sets the max angular velocity to Settings.\+Max\+Rotation \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a2a34ee3ebd6b1c47ad0548a6a7513d9c}{Velocity\+Limit\+Controller} (float max\+Linear\+Velocity, float max\+Angular\+Velocity)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Velocity\+Limit\+Controller} class. Pass in 0 or float.\+Max\+Value to disable the limit. max\+Angular\+Velocity = 0 will disable the angular velocity limit. \end{DoxyCompactList}\item 
+override void \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a9f06aad10ab9cd87954d9426a8a29a84}{Update} (float dt)
+\item 
+void \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a64b64dc9947dc0baa51f8227682b7cd2}{Add\+Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\item 
+void \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_ac78953ea2e1a8f4b1b6abf295e207be6}{Remove\+Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a7bfea35336215642dca269444852e983}{Limit\+Angular\+Velocity} = true
+\item 
+bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acdba7a259cc606675f3e356e44961ea6}{Limit\+Linear\+Velocity} = true
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acb4b2be9435eca10f3505474351095fe}{Max\+Angular\+Velocity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the max angular velocity. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a6d71700cce3bda3d5dc594d335be2d9f}{Max\+Linear\+Velocity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the max linear velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Put a limit on the linear (translation -\/ the movespeed) and angular (rotation) velocity of bodies added to this controller. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a01861100f75c7b55cbdabd5a36872f6f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}}
+\index{Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Velocity\+Limit\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Velocity\+Limit\+Controller (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a01861100f75c7b55cbdabd5a36872f6f}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Velocity\+Limit\+Controller} class. Sets the max linear velocity to Settings.\+Max\+Translation Sets the max angular velocity to Settings.\+Max\+Rotation 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a2a34ee3ebd6b1c47ad0548a6a7513d9c}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}}
+\index{Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Velocity\+Limit\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Velocity\+Limit\+Controller (
+\begin{DoxyParamCaption}
+\item[{float}]{max\+Linear\+Velocity, }
+\item[{float}]{max\+Angular\+Velocity}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a2a34ee3ebd6b1c47ad0548a6a7513d9c}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Velocity\+Limit\+Controller} class. Pass in 0 or float.\+Max\+Value to disable the limit. max\+Angular\+Velocity = 0 will disable the angular velocity limit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Linear\+Velocity} & The max linear velocity.\\
+\hline
+{\em max\+Angular\+Velocity} & The max angular velocity.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a64b64dc9947dc0baa51f8227682b7cd2}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Add\+Body@{Add\+Body}}
+\index{Add\+Body@{Add\+Body}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Add\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Add\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a64b64dc9947dc0baa51f8227682b7cd2}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_ac78953ea2e1a8f4b1b6abf295e207be6}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Remove\+Body@{Remove\+Body}}
+\index{Remove\+Body@{Remove\+Body}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Remove\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Remove\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_ac78953ea2e1a8f4b1b6abf295e207be6}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a9f06aad10ab9cd87954d9426a8a29a84}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Update@{Update}}
+\index{Update@{Update}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a9f06aad10ab9cd87954d9426a8a29a84}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a7bfea35336215642dca269444852e983}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Limit\+Angular\+Velocity@{Limit\+Angular\+Velocity}}
+\index{Limit\+Angular\+Velocity@{Limit\+Angular\+Velocity}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Limit\+Angular\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Limit\+Angular\+Velocity = true}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a7bfea35336215642dca269444852e983}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acdba7a259cc606675f3e356e44961ea6}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Limit\+Linear\+Velocity@{Limit\+Linear\+Velocity}}
+\index{Limit\+Linear\+Velocity@{Limit\+Linear\+Velocity}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Limit\+Linear\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Limit\+Linear\+Velocity = true}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acdba7a259cc606675f3e356e44961ea6}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acb4b2be9435eca10f3505474351095fe}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Max\+Angular\+Velocity@{Max\+Angular\+Velocity}}
+\index{Max\+Angular\+Velocity@{Max\+Angular\+Velocity}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Max\+Angular\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Max\+Angular\+Velocity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_acb4b2be9435eca10f3505474351095fe}
+
+
+Gets or sets the max angular velocity. 
+
+The max angular velocity.\hypertarget{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a6d71700cce3bda3d5dc594d335be2d9f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}!Max\+Linear\+Velocity@{Max\+Linear\+Velocity}}
+\index{Max\+Linear\+Velocity@{Max\+Linear\+Velocity}!Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Velocity\+Limit\+Controller}}
+\subsubsection[{Max\+Linear\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller.\+Max\+Linear\+Velocity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a6d71700cce3bda3d5dc594d335be2d9f}
+
+
+Gets or sets the max linear velocity. 
+
+The max linear velocity.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Controllers/\hyperlink{_velocity_limit_controller_8cs}{Velocity\+Limit\+Controller.\+cs}\end{DoxyCompactItemize}

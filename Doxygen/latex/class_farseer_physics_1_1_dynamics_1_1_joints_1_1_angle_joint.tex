@@ -1,0 +1,149 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint}}
+}
+
+
+Maintains a fixed angle between two bodies  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a085b14ac4a20ced1968c740c2f4c8674}{Angle\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B)
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}{Angle\+Joint} \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a19ce23a3970f7cee3a7c869b8941c5bb}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_af63e76838c76b9d88305e7320307e1ed}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a746ea8907dc1b6603ebaa78c293d350b}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a5b13e62b4d20eee9f5d6e2aebc826d3d}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_ab71740c25d87b0a1f80804387f7c733d}{Target\+Angle}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The desired angle between Body\+A and Body\+B \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_aa7cc30868103af9703678ad8f9c6eb20}{Bias\+Factor}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the bias factor. Defaults to 0.\+2 \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a0b78b8b3752ab65c78c926177fd661b6}{Max\+Impulse}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the maximum impulse Defaults to float.\+Max\+Value \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a27a6002baec2d2afa8e8ffdc506a8726}{Softness}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the softness of the joint Defaults to 0 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Maintains a fixed angle between two bodies 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a085b14ac4a20ced1968c740c2f4c8674}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Angle\+Joint@{Angle\+Joint}}
+\index{Angle\+Joint@{Angle\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Angle\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Angle\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a085b14ac4a20ced1968c740c2f4c8674}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}{Angle\+Joint} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a19ce23a3970f7cee3a7c869b8941c5bb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a19ce23a3970f7cee3a7c869b8941c5bb}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_af63e76838c76b9d88305e7320307e1ed}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_af63e76838c76b9d88305e7320307e1ed}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_aa7cc30868103af9703678ad8f9c6eb20}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Bias\+Factor@{Bias\+Factor}}
+\index{Bias\+Factor@{Bias\+Factor}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Bias\+Factor}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Bias\+Factor\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_aa7cc30868103af9703678ad8f9c6eb20}
+
+
+Gets or sets the bias factor. Defaults to 0.\+2 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a0b78b8b3752ab65c78c926177fd661b6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Max\+Impulse@{Max\+Impulse}}
+\index{Max\+Impulse@{Max\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Max\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Max\+Impulse\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a0b78b8b3752ab65c78c926177fd661b6}
+
+
+Gets or sets the maximum impulse Defaults to float.\+Max\+Value 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a27a6002baec2d2afa8e8ffdc506a8726}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Softness@{Softness}}
+\index{Softness@{Softness}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Softness}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Softness\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a27a6002baec2d2afa8e8ffdc506a8726}
+
+
+Gets or sets the softness of the joint Defaults to 0 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_ab71740c25d87b0a1f80804387f7c733d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!Target\+Angle@{Target\+Angle}}
+\index{Target\+Angle@{Target\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{Target\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+Target\+Angle\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_ab71740c25d87b0a1f80804387f7c733d}
+
+
+The desired angle between Body\+A and Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a746ea8907dc1b6603ebaa78c293d350b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a746ea8907dc1b6603ebaa78c293d350b}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a5b13e62b4d20eee9f5d6e2aebc826d3d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Angle\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a5b13e62b4d20eee9f5d6e2aebc826d3d}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_angle_joint_8cs}{Angle\+Joint.\+cs}\end{DoxyCompactItemize}

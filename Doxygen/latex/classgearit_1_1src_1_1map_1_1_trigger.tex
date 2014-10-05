@@ -1,0 +1,149 @@
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger}{\section{gearit.\+src.\+map.\+Trigger Class Reference}
+\label{classgearit_1_1src_1_1map_1_1_trigger}\index{gearit.\+src.\+map.\+Trigger@{gearit.\+src.\+map.\+Trigger}}
+}
+
+
+Inherits I\+Serializable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a6dbcfcde414592cd29d87f5868db85d3}{Trigger} (Vector2 pos, int id)
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a764e9add6641baff3cfc5af2d48b1a26}{Trigger} (Vector2 pos)
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_trigger_ae56325887273473c3535d214baacc101}{Trigger} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+void \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a59b3065825a6ca46c1f22e956c6915ad}{Get\+Object\+Data} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+int \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a12488425a65f31b10573b466244fe563}{Get\+Close\+Corner\+Id} (Vector2 pos)
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a8bdcf2351d419c27ad0766ee72e9ee67}{Corner} (int id)
+\item 
+void \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a7a7a84780dce3af0fc248d17cb5f5897}{Move\+Corner} (Vector2 pos, int id)
+\item 
+bool \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a63852ae167d2b73d9a83b64857b6e64c}{Contain} (Vector2 pos)
+\item 
+void \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a01ee77c12b290ebc4c56f47591096704}{Draw\+Debug} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg, Color col)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_aefa6f32ee5c2e56b0d8c558327ad8047}{Id\+Max} = 32
+\item 
+string \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a7a0302a533e52923f3e25a088825808a}{Name}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a31311392633427b030fa12e00de0593e}{Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_af8fb981eb74c809530dedcd3cf0d23c1}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a2add605485213c4842fda9b9994a5a63}{To}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1map_1_1_trigger_a898cd64b9b1f8a61297f7d64f3d16d41}{From}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a6dbcfcde414592cd29d87f5868db85d3}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Trigger@{Trigger}}
+\index{Trigger@{Trigger}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Trigger}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+map.\+Trigger.\+Trigger (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a6dbcfcde414592cd29d87f5868db85d3}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a764e9add6641baff3cfc5af2d48b1a26}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Trigger@{Trigger}}
+\index{Trigger@{Trigger}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Trigger}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+map.\+Trigger.\+Trigger (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a764e9add6641baff3cfc5af2d48b1a26}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_ae56325887273473c3535d214baacc101}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Trigger@{Trigger}}
+\index{Trigger@{Trigger}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Trigger}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+map.\+Trigger.\+Trigger (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_ae56325887273473c3535d214baacc101}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a63852ae167d2b73d9a83b64857b6e64c}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Contain@{Contain}}
+\index{Contain@{Contain}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Contain}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+map.\+Trigger.\+Contain (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a63852ae167d2b73d9a83b64857b6e64c}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a8bdcf2351d419c27ad0766ee72e9ee67}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Corner@{Corner}}
+\index{Corner@{Corner}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Corner}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+map.\+Trigger.\+Corner (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a8bdcf2351d419c27ad0766ee72e9ee67}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a01ee77c12b290ebc4c56f47591096704}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Draw\+Debug@{Draw\+Debug}}
+\index{Draw\+Debug@{Draw\+Debug}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Draw\+Debug}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+map.\+Trigger.\+Draw\+Debug (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg, }
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a01ee77c12b290ebc4c56f47591096704}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a12488425a65f31b10573b466244fe563}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Get\+Close\+Corner\+Id@{Get\+Close\+Corner\+Id}}
+\index{Get\+Close\+Corner\+Id@{Get\+Close\+Corner\+Id}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Get\+Close\+Corner\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+map.\+Trigger.\+Get\+Close\+Corner\+Id (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a12488425a65f31b10573b466244fe563}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a59b3065825a6ca46c1f22e956c6915ad}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Get\+Object\+Data@{Get\+Object\+Data}}
+\index{Get\+Object\+Data@{Get\+Object\+Data}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Get\+Object\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+map.\+Trigger.\+Get\+Object\+Data (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a59b3065825a6ca46c1f22e956c6915ad}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a7a7a84780dce3af0fc248d17cb5f5897}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Move\+Corner@{Move\+Corner}}
+\index{Move\+Corner@{Move\+Corner}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Move\+Corner}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+map.\+Trigger.\+Move\+Corner (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1map_1_1_trigger_a7a7a84780dce3af0fc248d17cb5f5897}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_aefa6f32ee5c2e56b0d8c558327ad8047}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Id\+Max@{Id\+Max}}
+\index{Id\+Max@{Id\+Max}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Id\+Max}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+map.\+Trigger.\+Id\+Max = 32}}\label{classgearit_1_1src_1_1map_1_1_trigger_aefa6f32ee5c2e56b0d8c558327ad8047}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a7a0302a533e52923f3e25a088825808a}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Name@{Name}}
+\index{Name@{Name}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+map.\+Trigger.\+Name}}\label{classgearit_1_1src_1_1map_1_1_trigger_a7a0302a533e52923f3e25a088825808a}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a898cd64b9b1f8a61297f7d64f3d16d41}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!From@{From}}
+\index{From@{From}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{From}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+map.\+Trigger.\+From\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1map_1_1_trigger_a898cd64b9b1f8a61297f7d64f3d16d41}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a31311392633427b030fa12e00de0593e}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Id@{Id}}
+\index{Id@{Id}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+map.\+Trigger.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1map_1_1_trigger_a31311392633427b030fa12e00de0593e}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_af8fb981eb74c809530dedcd3cf0d23c1}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!Position@{Position}}
+\index{Position@{Position}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+map.\+Trigger.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1map_1_1_trigger_af8fb981eb74c809530dedcd3cf0d23c1}
+\hypertarget{classgearit_1_1src_1_1map_1_1_trigger_a2add605485213c4842fda9b9994a5a63}{\index{gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}!To@{To}}
+\index{To@{To}!gearit\+::src\+::map\+::\+Trigger@{gearit\+::src\+::map\+::\+Trigger}}
+\subsubsection[{To}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+map.\+Trigger.\+To\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1map_1_1_trigger_a2add605485213c4842fda9b9994a5a63}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/map/\hyperlink{_trigger_8cs}{Trigger.\+cs}\end{DoxyCompactItemize}

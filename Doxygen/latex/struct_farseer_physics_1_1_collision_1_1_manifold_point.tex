@@ -1,0 +1,60 @@
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_point}{\section{Farseer\+Physics.\+Collision.\+Manifold\+Point Struct Reference}
+\label{struct_farseer_physics_1_1_collision_1_1_manifold_point}\index{Farseer\+Physics.\+Collision.\+Manifold\+Point@{Farseer\+Physics.\+Collision.\+Manifold\+Point}}
+}
+
+
+A manifold point is a contact point belonging to a contact manifold. It holds details related to the geometry and dynamics of the contact points. The local point usage depends on the manifold type\+: -\/\+Shape\+Type.\+Circles\+: the local center of circle\+B -\/\+Separation\+Function.\+Face\+A\+: the local center of cirlce\+B or the clip point of polygon\+B -\/\+Separation\+Function.\+Face\+B\+: the clip point of polygon\+A This structure is stored across time steps, so we keep it small. Note\+: the impulses are used for internal caching and may not provide reliable contact forces, especially for high speed collisions.  
+
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_contact_i_d}{Contact\+I\+D} \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point_ad77bd7009070038f52c49f35440bbd4d}{Id}
+\begin{DoxyCompactList}\small\item\em Uniquely identifies a contact point between two \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes} \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point_a258a7ac06bb64e7341ccda001f60fc24}{Local\+Point}
+\begin{DoxyCompactList}\small\item\em Usage depends on manifold type \end{DoxyCompactList}\item 
+float \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point_a41a8ebd48f2347b232288b1860d44319}{Normal\+Impulse}
+\begin{DoxyCompactList}\small\item\em The non-\/penetration impulse \end{DoxyCompactList}\item 
+float \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point_a342d1b9cb4d364f85d89a580f83c224b}{Tangent\+Impulse}
+\begin{DoxyCompactList}\small\item\em The friction impulse \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A manifold point is a contact point belonging to a contact manifold. It holds details related to the geometry and dynamics of the contact points. The local point usage depends on the manifold type\+: -\/\+Shape\+Type.\+Circles\+: the local center of circle\+B -\/\+Separation\+Function.\+Face\+A\+: the local center of cirlce\+B or the clip point of polygon\+B -\/\+Separation\+Function.\+Face\+B\+: the clip point of polygon\+A This structure is stored across time steps, so we keep it small. Note\+: the impulses are used for internal caching and may not provide reliable contact forces, especially for high speed collisions. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_point_ad77bd7009070038f52c49f35440bbd4d}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}!Id@{Id}}
+\index{Id@{Id}!Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}}
+\subsubsection[{Id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact\+I\+D} Farseer\+Physics.\+Collision.\+Manifold\+Point.\+Id}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_point_ad77bd7009070038f52c49f35440bbd4d}
+
+
+Uniquely identifies a contact point between two \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes} 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_point_a258a7ac06bb64e7341ccda001f60fc24}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}!Local\+Point@{Local\+Point}}
+\index{Local\+Point@{Local\+Point}!Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}}
+\subsubsection[{Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+Manifold\+Point.\+Local\+Point}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_point_a258a7ac06bb64e7341ccda001f60fc24}
+
+
+Usage depends on manifold type 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_point_a41a8ebd48f2347b232288b1860d44319}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}!Normal\+Impulse@{Normal\+Impulse}}
+\index{Normal\+Impulse@{Normal\+Impulse}!Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}}
+\subsubsection[{Normal\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+Manifold\+Point.\+Normal\+Impulse}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_point_a41a8ebd48f2347b232288b1860d44319}
+
+
+The non-\/penetration impulse 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_point_a342d1b9cb4d364f85d89a580f83c224b}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}!Tangent\+Impulse@{Tangent\+Impulse}}
+\index{Tangent\+Impulse@{Tangent\+Impulse}!Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point@{Farseer\+Physics\+::\+Collision\+::\+Manifold\+Point}}
+\subsubsection[{Tangent\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+Manifold\+Point.\+Tangent\+Impulse}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_point_a342d1b9cb4d364f85d89a580f83c224b}
+
+
+The friction impulse 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\hyperlink{_collision_8cs}{Collision.\+cs}\end{DoxyCompactItemize}

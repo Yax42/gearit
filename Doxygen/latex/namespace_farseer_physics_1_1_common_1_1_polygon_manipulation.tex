@@ -1,0 +1,42 @@
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation}{\section{Package Farseer\+Physics.\+Common.\+Polygon\+Manipulation}
+\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation}\index{Farseer\+Physics.\+Common.\+Polygon\+Manipulation@{Farseer\+Physics.\+Common.\+Polygon\+Manipulation}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Cutting\+Tools}
+\item 
+class {\bfseries Simple\+Combiner}
+\begin{DoxyCompactList}\small\item\em Combines a list of triangles into a list of convex polygons. Starts with a seed triangle, keep adding triangles to it until you can't add any more without making the polygon non-\/convex. \end{DoxyCompactList}\item 
+class {\bfseries Simplify\+Tools}
+\begin{DoxyCompactList}\small\item\em Provides a set of tools to simplify polygons in various ways. \end{DoxyCompactList}\item 
+class {\bfseries Yu\+Peng\+Clipper}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5}{Poly\+Clip\+Error} \{ \hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a6adf97f83acf6453d4a6a4b1070f3754}{Poly\+Clip\+Error.\+None}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5ad292f634700e4b9ca3f5a35372d22e6f}{Poly\+Clip\+Error.\+Degenerated\+Output}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a12b4f2335c258d659ce17a8d14b8693f}{Poly\+Clip\+Error.\+Non\+Simple\+Input}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5aa869e0bf0957ca8c26ff2c88e1271abc}{Poly\+Clip\+Error.\+Broken\+Result}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5}{\index{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}!Poly\+Clip\+Error@{Poly\+Clip\+Error}}
+\index{Poly\+Clip\+Error@{Poly\+Clip\+Error}!Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}}
+\subsubsection[{Poly\+Clip\+Error}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Common.\+Polygon\+Manipulation.\+Poly\+Clip\+Error}}}\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{None@{None}!Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}}\index{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}!None@{None}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a6adf97f83acf6453d4a6a4b1070f3754}{None}\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a6adf97f83acf6453d4a6a4b1070f3754}
+}]\index{Degenerated\+Output@{Degenerated\+Output}!Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}}\index{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}!Degenerated\+Output@{Degenerated\+Output}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5ad292f634700e4b9ca3f5a35372d22e6f}{Degenerated\+Output}\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5ad292f634700e4b9ca3f5a35372d22e6f}
+}]\index{Non\+Simple\+Input@{Non\+Simple\+Input}!Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}}\index{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}!Non\+Simple\+Input@{Non\+Simple\+Input}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a12b4f2335c258d659ce17a8d14b8693f}{Non\+Simple\+Input}\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5a12b4f2335c258d659ce17a8d14b8693f}
+}]\index{Broken\+Result@{Broken\+Result}!Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}}\index{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation@{Farseer\+Physics\+::\+Common\+::\+Polygon\+Manipulation}!Broken\+Result@{Broken\+Result}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5aa869e0bf0957ca8c26ff2c88e1271abc}{Broken\+Result}\label{namespace_farseer_physics_1_1_common_1_1_polygon_manipulation_a1b9a3408cd322ec7e46098324793b5d5aa869e0bf0957ca8c26ff2c88e1271abc}
+}]\end{description}
+\end{Desc}

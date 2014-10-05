@@ -1,0 +1,96 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body}{\section{Farseer\+Physics.\+Dynamics.\+Breakable\+Body Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body}\index{Farseer\+Physics.\+Dynamics.\+Breakable\+Body@{Farseer\+Physics.\+Dynamics.\+Breakable\+Body}}
+}
+
+
+A type of body that supports multiple fixtures that can break apart.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5c8de6dc920c5bd2ab23b282673cbebd}{Breakable\+Body} (I\+Enumerable$<$ \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} $>$ vertices, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world, float density)
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5f5fe7d2e354b075aea4f8f3f2104271}{Breakable\+Body} (I\+Enumerable$<$ \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} $>$ shapes, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_af20d64400d38f09cd56f5dd2bc872391}{Update} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_abcf35f64152998467c8d387a4e0702fa}{Break} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a16ad5811f16ea5710b06b5c1f99ae29a}{Broken}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a4b9f2642b0aa11a4ef658a90b323c314}{Main\+Body}
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a2a80b7144e2c9e8e22e47dfdcd3615d7}{Parts} = new List$<$\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture}$>$(8)
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a313f8f8c6e68a48af90c79925a2ad41d}{Strength} = 500.\+0f
+\begin{DoxyCompactList}\small\item\em The force needed to break the body apart. Default\+: 500 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A type of body that supports multiple fixtures that can break apart. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5c8de6dc920c5bd2ab23b282673cbebd}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Breakable\+Body@{Breakable\+Body}}
+\index{Breakable\+Body@{Breakable\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Breakable\+Body}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Breakable\+Body (
+\begin{DoxyParamCaption}
+\item[{I\+Enumerable$<$ {\bf Vertices} $>$}]{vertices, }
+\item[{{\bf World}}]{world, }
+\item[{float}]{density}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5c8de6dc920c5bd2ab23b282673cbebd}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5f5fe7d2e354b075aea4f8f3f2104271}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Breakable\+Body@{Breakable\+Body}}
+\index{Breakable\+Body@{Breakable\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Breakable\+Body}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Breakable\+Body (
+\begin{DoxyParamCaption}
+\item[{I\+Enumerable$<$ {\bf Shape} $>$}]{shapes, }
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a5f5fe7d2e354b075aea4f8f3f2104271}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_abcf35f64152998467c8d387a4e0702fa}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Break@{Break}}
+\index{Break@{Break}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Break}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Break (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_abcf35f64152998467c8d387a4e0702fa}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_af20d64400d38f09cd56f5dd2bc872391}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Update@{Update}}
+\index{Update@{Update}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_af20d64400d38f09cd56f5dd2bc872391}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a16ad5811f16ea5710b06b5c1f99ae29a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Broken@{Broken}}
+\index{Broken@{Broken}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Broken}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Broken}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a16ad5811f16ea5710b06b5c1f99ae29a}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a4b9f2642b0aa11a4ef658a90b323c314}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Main\+Body@{Main\+Body}}
+\index{Main\+Body@{Main\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Main\+Body}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Main\+Body}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a4b9f2642b0aa11a4ef658a90b323c314}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a2a80b7144e2c9e8e22e47dfdcd3615d7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Parts@{Parts}}
+\index{Parts@{Parts}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Parts}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Fixture}$>$ Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Parts = new List$<${\bf Fixture}$>$(8)}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a2a80b7144e2c9e8e22e47dfdcd3615d7}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a313f8f8c6e68a48af90c79925a2ad41d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}!Strength@{Strength}}
+\index{Strength@{Strength}!Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Breakable\+Body}}
+\subsubsection[{Strength}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Breakable\+Body.\+Strength = 500.\+0f}}\label{class_farseer_physics_1_1_dynamics_1_1_breakable_body_a313f8f8c6e68a48af90c79925a2ad41d}
+
+
+The force needed to break the body apart. Default\+: 500 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\hyperlink{_breakable_body_8cs}{Breakable\+Body.\+cs}\end{DoxyCompactItemize}

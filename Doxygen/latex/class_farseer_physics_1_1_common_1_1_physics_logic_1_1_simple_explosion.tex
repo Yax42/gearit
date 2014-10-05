@@ -1,0 +1,86 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion}{\section{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion}\index{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion@{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion}}
+}
+
+
+Creates a simple explosion that ignores other bodies hiding behind static bodies.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_physics_logic}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Physics\+Logic}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a9db70ebef114b09cf27fc2848f5a49a3}{Simple\+Explosion} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\item 
+Dictionary$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body}, Vector2 $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a40bece2c08476a43e43a06cda6fd1dce}{Activate} (Vector2 pos, float radius, float force, float max\+Force=float.\+Max\+Value)
+\begin{DoxyCompactList}\small\item\em Activate the explosion at the specified position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a1289d023050b9f35e6fa2fd3d4133630}{Power}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em This is the power used in the power function. A value of 1 means the force applied to bodies in the explosion is linear. A value of 2 means it is exponential. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Creates a simple explosion that ignores other bodies hiding behind static bodies. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a9db70ebef114b09cf27fc2848f5a49a3}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}!Simple\+Explosion@{Simple\+Explosion}}
+\index{Simple\+Explosion@{Simple\+Explosion}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}}
+\subsubsection[{Simple\+Explosion}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion.\+Simple\+Explosion (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a9db70ebef114b09cf27fc2848f5a49a3}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a40bece2c08476a43e43a06cda6fd1dce}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}!Activate@{Activate}}
+\index{Activate@{Activate}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}}
+\subsubsection[{Activate}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<${\bf Body}, Vector2$>$ Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion.\+Activate (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{float}]{radius, }
+\item[{float}]{force, }
+\item[{float}]{max\+Force = {\ttfamily float.MaxValue}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a40bece2c08476a43e43a06cda6fd1dce}
+
+
+Activate the explosion at the specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position (center) of the explosion.\\
+\hline
+{\em radius} & The radius of the explosion.\\
+\hline
+{\em force} & The force applied\\
+\hline
+{\em max\+Force} & A maximum amount of force. When force gets over this value, it will be equal to max\+Force\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of bodies and the amount of force that was applied to them.
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a1289d023050b9f35e6fa2fd3d4133630}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}!Power@{Power}}
+\index{Power@{Power}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Simple\+Explosion}}
+\subsubsection[{Power}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Physics\+Logic.\+Simple\+Explosion.\+Power\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_simple_explosion_a1289d023050b9f35e6fa2fd3d4133630}
+
+
+This is the power used in the power function. A value of 1 means the force applied to bodies in the explosion is linear. A value of 2 means it is exponential. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\+Physics\+Logic/\hyperlink{_simple_explosion_8cs}{Simple\+Explosion.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,288 @@
+\hypertarget{class_farseer_physics_1_1_debug_view_base}{\section{Farseer\+Physics.\+Debug\+View\+Base Class Reference}
+\label{class_farseer_physics_1_1_debug_view_base}\index{Farseer\+Physics.\+Debug\+View\+Base@{Farseer\+Physics.\+Debug\+View\+Base}}
+}
+
+
+Inherited by \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_view_base_a97cd50c9a6447e8206f1f78526f4851b}{Append\+Flags} (\hyperlink{namespace_farseer_physics_a49e4405bbcaeebabbc6951e026b697e2}{Debug\+View\+Flags} flags)
+\begin{DoxyCompactList}\small\item\em Append flags to the current flags. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_debug_view_base_aabc4a89ed05e54d9b5ed14560f401e67}{Remove\+Flags} (\hyperlink{namespace_farseer_physics_a49e4405bbcaeebabbc6951e026b697e2}{Debug\+View\+Flags} flags)
+\begin{DoxyCompactList}\small\item\em Remove flags from the current flags. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_a1161f43cb54f76eba7c78f89adb474b5}{Draw\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, float red, float blue, float green, bool closed=true)
+\begin{DoxyCompactList}\small\item\em Draw a closed polygon provided in C\+C\+W order. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_ae193fb495686fa900f8ecea641ab9573}{Draw\+Solid\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int count, float red, float blue, float green)
+\begin{DoxyCompactList}\small\item\em Draw a solid closed polygon provided in C\+C\+W order. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_a8d3ba26bbbfa8a445bb6cb01df4a08f8}{Draw\+Circle} (Vector2 center, float radius, float red, float blue, float green)
+\begin{DoxyCompactList}\small\item\em Draw a circle. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_a30f0bf0bb90e97cdd5be695b30f94a48}{Draw\+Solid\+Circle} (Vector2 center, float radius, Vector2 axis, float red, float blue, float green)
+\begin{DoxyCompactList}\small\item\em Draw a solid circle. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_a407e1d6d318b6295e409e5075e7c3127}{Draw\+Segment} (Vector2 start, Vector2 end, float red, float blue, float green)
+\begin{DoxyCompactList}\small\item\em Draw a line segment. \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_debug_view_base_af3fa45abad1dc7eaf0bdb665c3a521f7}{Draw\+Transform} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform)
+\begin{DoxyCompactList}\small\item\em Draw a transform. Choose your own length scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_debug_view_base_ae424baf585fa71975fcc3bc3ec77397a}{Debug\+View\+Base} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{class_farseer_physics_1_1_debug_view_base_a79c754ec56ede4e41b5faad2288652fe}{World}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{namespace_farseer_physics_a49e4405bbcaeebabbc6951e026b697e2}{Debug\+View\+Flags} \hyperlink{class_farseer_physics_1_1_debug_view_base_a03b15bf99b2c11d54cec2521bf30eeb2}{Flags}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the debug view flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implement and register this class with a World to provide debug drawing of physics entities in your game. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_view_base_ae424baf585fa71975fcc3bc3ec77397a}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Debug\+View\+Base@{Debug\+View\+Base}}
+\index{Debug\+View\+Base@{Debug\+View\+Base}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Debug\+View\+Base}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Debug\+View\+Base.\+Debug\+View\+Base (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_debug_view_base_ae424baf585fa71975fcc3bc3ec77397a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a97cd50c9a6447e8206f1f78526f4851b}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Append\+Flags@{Append\+Flags}}
+\index{Append\+Flags@{Append\+Flags}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Append\+Flags}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+View\+Base.\+Append\+Flags (
+\begin{DoxyParamCaption}
+\item[{{\bf Debug\+View\+Flags}}]{flags}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_view_base_a97cd50c9a6447e8206f1f78526f4851b}
+
+
+Append flags to the current flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & The flags.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a8d3ba26bbbfa8a445bb6cb01df4a08f8}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Circle@{Draw\+Circle}}
+\index{Draw\+Circle@{Draw\+Circle}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_a8d3ba26bbbfa8a445bb6cb01df4a08f8}
+
+
+Draw a circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center.\\
+\hline
+{\em radius} & The radius.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a75984f74bf9524308af106ab6bfae7c3}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a1161f43cb54f76eba7c78f89adb474b5}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Polygon@{Draw\+Polygon}}
+\index{Draw\+Polygon@{Draw\+Polygon}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green, }
+\item[{bool}]{closed = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_a1161f43cb54f76eba7c78f89adb474b5}
+
+
+Draw a closed polygon provided in C\+C\+W order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices.\\
+\hline
+{\em count} & The vertex count.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af4a1beb3a718fab044de65978ae42d72}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a407e1d6d318b6295e409e5075e7c3127}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Segment@{Draw\+Segment}}
+\index{Draw\+Segment@{Draw\+Segment}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Segment}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Segment (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{start, }
+\item[{Vector2}]{end, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_a407e1d6d318b6295e409e5075e7c3127}
+
+
+Draw a line segment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The start.\\
+\hline
+{\em end} & The end.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a2dc50b1a908147503be02c62637b7c42}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a30f0bf0bb90e97cdd5be695b30f94a48}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Solid\+Circle@{Draw\+Solid\+Circle}}
+\index{Draw\+Solid\+Circle@{Draw\+Solid\+Circle}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Solid\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Solid\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{Vector2}]{axis, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_a30f0bf0bb90e97cdd5be695b30f94a48}
+
+
+Draw a solid circle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & The center.\\
+\hline
+{\em radius} & The radius.\\
+\hline
+{\em axis} & The axis.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a42566b0b92bb6d2cca381ffedda3f43c}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_ae193fb495686fa900f8ecea641ab9573}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}}
+\index{Draw\+Solid\+Polygon@{Draw\+Solid\+Polygon}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Solid\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Solid\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{count, }
+\item[{float}]{red, }
+\item[{float}]{blue, }
+\item[{float}]{green}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_ae193fb495686fa900f8ecea641ab9573}
+
+
+Draw a solid closed polygon provided in C\+C\+W order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices.\\
+\hline
+{\em count} & The vertex count.\\
+\hline
+{\em red} & The red value.\\
+\hline
+{\em blue} & The blue value.\\
+\hline
+{\em green} & The green value.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_a8f354de1d08a4238c08bf5517cd4edd9}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_af3fa45abad1dc7eaf0bdb665c3a521f7}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Draw\+Transform@{Draw\+Transform}}
+\index{Draw\+Transform@{Draw\+Transform}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Draw\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Debug\+View\+Base.\+Draw\+Transform (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Transform}}]{transform}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_debug_view_base_af3fa45abad1dc7eaf0bdb665c3a521f7}
+
+
+Draw a transform. Choose your own length scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transform.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_debug_views_1_1_debug_view_x_n_a_af5c82364068ab0aa715596db3744e982}{Farseer\+Physics.\+Debug\+Views.\+Debug\+View\+X\+N\+A}.
+
+\hypertarget{class_farseer_physics_1_1_debug_view_base_aabc4a89ed05e54d9b5ed14560f401e67}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Remove\+Flags@{Remove\+Flags}}
+\index{Remove\+Flags@{Remove\+Flags}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Remove\+Flags}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+View\+Base.\+Remove\+Flags (
+\begin{DoxyParamCaption}
+\item[{{\bf Debug\+View\+Flags}}]{flags}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_view_base_aabc4a89ed05e54d9b5ed14560f401e67}
+
+
+Remove flags from the current flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & The flags.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_view_base_a03b15bf99b2c11d54cec2521bf30eeb2}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!Flags@{Flags}}
+\index{Flags@{Flags}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{Flags}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Debug\+View\+Flags} Farseer\+Physics.\+Debug\+View\+Base.\+Flags\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_debug_view_base_a03b15bf99b2c11d54cec2521bf30eeb2}
+
+
+Gets or sets the debug view flags. 
+
+The flags.\hypertarget{class_farseer_physics_1_1_debug_view_base_a79c754ec56ede4e41b5faad2288652fe}{\index{Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}!World@{World}}
+\index{World@{World}!Farseer\+Physics\+::\+Debug\+View\+Base@{Farseer\+Physics\+::\+Debug\+View\+Base}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} Farseer\+Physics.\+Debug\+View\+Base.\+World\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}}}\label{class_farseer_physics_1_1_debug_view_base_a79c754ec56ede4e41b5faad2288652fe}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\hyperlink{_debug_view_base_8cs}{Debug\+View\+Base.\+cs}\end{DoxyCompactItemize}

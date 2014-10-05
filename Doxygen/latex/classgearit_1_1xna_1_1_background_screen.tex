@@ -1,0 +1,96 @@
+\hypertarget{classgearit_1_1xna_1_1_background_screen}{\section{gearit.\+xna.\+Background\+Screen Class Reference}
+\label{classgearit_1_1xna_1_1_background_screen}\index{gearit.\+xna.\+Background\+Screen@{gearit.\+xna.\+Background\+Screen}}
+}
+
+
+The background screen sits behind all the other menu screens. It draws a background image that remains fixed in place regardless of whatever transitions the screens on top of it may be doing.  
+
+
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_background_screen_aa455f8f59e0b7e11ab1d0b5ef8be6cc8}{Background\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_background_screen_afca396e9c0fe48afc5cbd1653be9730c}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_background_screen_adfee70eb27a5f151f6c5014fdd493e93}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the background screen. Unlike most screens, this should not transition off even if it has been covered by another screen\+: it is supposed to be covered, after all! This overload forces the covered\+By\+Other\+Screen parameter to false in order to stop the base Update method wanting to transition off. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_background_screen_a87cfc05b4a8f699679624378844cc4d8}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Draws the background screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The background screen sits behind all the other menu screens. It draws a background image that remains fixed in place regardless of whatever transitions the screens on top of it may be doing. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_background_screen_aa455f8f59e0b7e11ab1d0b5ef8be6cc8}{\index{gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}!Background\+Screen@{Background\+Screen}}
+\index{Background\+Screen@{Background\+Screen}!gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}}
+\subsubsection[{Background\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Background\+Screen.\+Background\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_background_screen_aa455f8f59e0b7e11ab1d0b5ef8be6cc8}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_background_screen_a87cfc05b4a8f699679624378844cc4d8}{\index{gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Background\+Screen.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_background_screen_a87cfc05b4a8f699679624378844cc4d8}
+
+
+Draws the background screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_background_screen_afca396e9c0fe48afc5cbd1653be9730c}{\index{gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Background\+Screen.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_background_screen_afca396e9c0fe48afc5cbd1653be9730c}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_background_screen_adfee70eb27a5f151f6c5014fdd493e93}{\index{gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Background\+Screen@{gearit\+::xna\+::\+Background\+Screen}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Background\+Screen.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_background_screen_adfee70eb27a5f151f6c5014fdd493e93}
+
+
+Updates the background screen. Unlike most screens, this should not transition off even if it has been covered by another screen\+: it is supposed to be covered, after all! This overload forces the covered\+By\+Other\+Screen parameter to false in order to stop the base Update method wanting to transition off. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_background_screen_8cs}{Background\+Screen.\+cs}\end{DoxyCompactItemize}

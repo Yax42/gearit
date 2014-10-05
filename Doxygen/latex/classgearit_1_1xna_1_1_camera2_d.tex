@@ -1,0 +1,280 @@
+\hypertarget{classgearit_1_1xna_1_1_camera2_d}{\section{gearit.\+xna.\+Camera2\+D Class Reference}
+\label{classgearit_1_1xna_1_1_camera2_d}\index{gearit.\+xna.\+Camera2\+D@{gearit.\+xna.\+Camera2\+D}}
+}
+
+
+Inherits \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_camera2_d_a773df33cf166078cd4ff1dd87c9cee69}{Camera2\+D} (Graphics\+Device graphics)
+\begin{DoxyCompactList}\small\item\em The constructor for the \hyperlink{classgearit_1_1xna_1_1_camera2_d}{Camera2\+D} class. \end{DoxyCompactList}\item 
+Matrix \hyperlink{classgearit_1_1xna_1_1_camera2_d_a954c28042052256f49a3a1f8102459a4}{view} ()
+\item 
+Matrix \hyperlink{classgearit_1_1xna_1_1_camera2_d_a87ff1c51b4085fb4ddfb64ae8d785765}{projection} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_adfa85578bab16b2228d82755f065fbe1}{zoom\+In} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a56561d430a0c0efe639f75c30b5ff348}{zoom\+Out} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a7aa9739c4210a6605f25bb58a39dafaf}{Move\+Camera} (Vector2 amount)
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a541b430eb8529297a0380994269960b4}{Rotate\+Camera} (float amount)
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a836e342bc57a181b0e111eca0046cfa7}{Reset\+Camera} ()
+\begin{DoxyCompactList}\small\item\em Resets the camera to default values. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_abaaa9f2d566692b51615103c31233381}{center} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a2760ade6a85e08acb42fce0195facd9a}{Jump2\+Target} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_af79516e32acea49716efaad1bb6adf6a}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Moves the camera forward one timestep. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_a85eba6fc6a61bbb6e841edb2c7f50cbe}{Convert\+Screen\+To\+World} (Vector2 location)
+\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_a7bc6005e36d393927b04aa2d56bf4e95}{Convert\+World\+To\+Screen} (Vector2 location)
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_camera2_d_a18fa7963b374103fdfaab1607d46d884}{input} ()
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Matrix \hyperlink{classgearit_1_1xna_1_1_camera2_d_ab2fbc971de185e14e0675169c2067cf4}{View}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Matrix \hyperlink{classgearit_1_1xna_1_1_camera2_d_a26119c8c8951ad9e7a64b47f211b1e32}{Sim\+View}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Matrix \hyperlink{classgearit_1_1xna_1_1_camera2_d_a09dac4561fd789c364d243776fde4921}{Sim\+Projection}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_a521385c0e06f30380cf90da21d2807b2}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current position of the camera. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_aef67974a5b726a05b395b372099fcdc9}{Min\+Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The furthest up, and the furthest left the camera can go. if this value equals max\+Position, then no clamping will be applied (unless you override that function). \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_camera2_d_a79ff90e265356a7b38babf6315464cca}{Max\+Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em the furthest down, and the furthest right the camera will go. if this value equals min\+Position, then no clamping will be applied (unless you override that function). \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_camera2_d_a17b022dbd270f8e9e6ac8782b3b564d0}{Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current rotation of the camera in radians. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_camera2_d_ab31e75d2cc35168c1ad65431e66cbaf2}{Min\+Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the minimum rotation in radians. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_camera2_d_a3fad18af294799d0e9d703141494f07d}{Max\+Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the maximum rotation in radians. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_camera2_d_a3f3ff729da5335b0462906a6aceb928b}{Zoom}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current zoom \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{classgearit_1_1xna_1_1_camera2_d_a548949adba5873377df08185b72b930f}{Tracking\+Body}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em the body that this camera is currently tracking. Null if not tracking any. \end{DoxyCompactList}\item 
+bool \hyperlink{classgearit_1_1xna_1_1_camera2_d_adb9590e73552a7f2ed9119a5ab417a7d}{Enable\+Position\+Tracking}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_camera2_d_a377d82e34f9c49cabf863a366898de76}{Enable\+Rotation\+Tracking}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_camera2_d_a8bc2cab6731a06280859bf2219505dc8}{Enable\+Tracking}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a773df33cf166078cd4ff1dd87c9cee69}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Camera2\+D@{Camera2\+D}}
+\index{Camera2\+D@{Camera2\+D}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Camera2\+D}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Camera2\+D.\+Camera2\+D (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{graphics}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a773df33cf166078cd4ff1dd87c9cee69}
+
+
+The constructor for the \hyperlink{classgearit_1_1xna_1_1_camera2_d}{Camera2\+D} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graphics} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_abaaa9f2d566692b51615103c31233381}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!center@{center}}
+\index{center@{center}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+center (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_abaaa9f2d566692b51615103c31233381}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a85eba6fc6a61bbb6e841edb2c7f50cbe}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Convert\+Screen\+To\+World@{Convert\+Screen\+To\+World}}
+\index{Convert\+Screen\+To\+World@{Convert\+Screen\+To\+World}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Convert\+Screen\+To\+World}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+Convert\+Screen\+To\+World (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{location}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a85eba6fc6a61bbb6e841edb2c7f50cbe}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a7bc6005e36d393927b04aa2d56bf4e95}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Convert\+World\+To\+Screen@{Convert\+World\+To\+Screen}}
+\index{Convert\+World\+To\+Screen@{Convert\+World\+To\+Screen}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Convert\+World\+To\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+Convert\+World\+To\+Screen (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{location}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a7bc6005e36d393927b04aa2d56bf4e95}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a18fa7963b374103fdfaab1607d46d884}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!input@{input}}
+\index{input@{input}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{input}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a18fa7963b374103fdfaab1607d46d884}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a2760ade6a85e08acb42fce0195facd9a}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Jump2\+Target@{Jump2\+Target}}
+\index{Jump2\+Target@{Jump2\+Target}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Jump2\+Target}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+Jump2\+Target (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a2760ade6a85e08acb42fce0195facd9a}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a7aa9739c4210a6605f25bb58a39dafaf}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Move\+Camera@{Move\+Camera}}
+\index{Move\+Camera@{Move\+Camera}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Move\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+Move\+Camera (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{amount}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a7aa9739c4210a6605f25bb58a39dafaf}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a87ff1c51b4085fb4ddfb64ae8d785765}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!projection@{projection}}
+\index{projection@{projection}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{projection}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+xna.\+Camera2\+D.\+projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a87ff1c51b4085fb4ddfb64ae8d785765}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera_a4006986840ec011d607151d57a31ebe0}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a836e342bc57a181b0e111eca0046cfa7}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Reset\+Camera@{Reset\+Camera}}
+\index{Reset\+Camera@{Reset\+Camera}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Reset\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+Reset\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a836e342bc57a181b0e111eca0046cfa7}
+
+
+Resets the camera to default values. 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a541b430eb8529297a0380994269960b4}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Rotate\+Camera@{Rotate\+Camera}}
+\index{Rotate\+Camera@{Rotate\+Camera}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Rotate\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+Rotate\+Camera (
+\begin{DoxyParamCaption}
+\item[{float}]{amount}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a541b430eb8529297a0380994269960b4}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_af79516e32acea49716efaad1bb6adf6a}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_af79516e32acea49716efaad1bb6adf6a}
+
+
+Moves the camera forward one timestep. 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a954c28042052256f49a3a1f8102459a4}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!view@{view}}
+\index{view@{view}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{view}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+xna.\+Camera2\+D.\+view (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a954c28042052256f49a3a1f8102459a4}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera_aa350a390451ceceb99e8a36b5077f4f0}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_adfa85578bab16b2228d82755f065fbe1}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!zoom\+In@{zoom\+In}}
+\index{zoom\+In@{zoom\+In}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{zoom\+In}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+zoom\+In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_adfa85578bab16b2228d82755f065fbe1}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a56561d430a0c0efe639f75c30b5ff348}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!zoom\+Out@{zoom\+Out}}
+\index{zoom\+Out@{zoom\+Out}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{zoom\+Out}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Camera2\+D.\+zoom\+Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_camera2_d_a56561d430a0c0efe639f75c30b5ff348}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_adb9590e73552a7f2ed9119a5ab417a7d}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Enable\+Position\+Tracking@{Enable\+Position\+Tracking}}
+\index{Enable\+Position\+Tracking@{Enable\+Position\+Tracking}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Enable\+Position\+Tracking}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Camera2\+D.\+Enable\+Position\+Tracking\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_adb9590e73552a7f2ed9119a5ab417a7d}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a377d82e34f9c49cabf863a366898de76}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Enable\+Rotation\+Tracking@{Enable\+Rotation\+Tracking}}
+\index{Enable\+Rotation\+Tracking@{Enable\+Rotation\+Tracking}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Enable\+Rotation\+Tracking}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Camera2\+D.\+Enable\+Rotation\+Tracking\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a377d82e34f9c49cabf863a366898de76}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a8bc2cab6731a06280859bf2219505dc8}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Enable\+Tracking@{Enable\+Tracking}}
+\index{Enable\+Tracking@{Enable\+Tracking}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Enable\+Tracking}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Camera2\+D.\+Enable\+Tracking\hspace{0.3cm}{\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a8bc2cab6731a06280859bf2219505dc8}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a79ff90e265356a7b38babf6315464cca}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Max\+Position@{Max\+Position}}
+\index{Max\+Position@{Max\+Position}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Max\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+Max\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a79ff90e265356a7b38babf6315464cca}
+
+
+the furthest down, and the furthest right the camera will go. if this value equals min\+Position, then no clamping will be applied (unless you override that function). 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a3fad18af294799d0e9d703141494f07d}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Max\+Rotation@{Max\+Rotation}}
+\index{Max\+Rotation@{Max\+Rotation}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Max\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Camera2\+D.\+Max\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a3fad18af294799d0e9d703141494f07d}
+
+
+Gets or sets the maximum rotation in radians. 
+
+The max rotation.\hypertarget{classgearit_1_1xna_1_1_camera2_d_aef67974a5b726a05b395b372099fcdc9}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Min\+Position@{Min\+Position}}
+\index{Min\+Position@{Min\+Position}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Min\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+Min\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_aef67974a5b726a05b395b372099fcdc9}
+
+
+The furthest up, and the furthest left the camera can go. if this value equals max\+Position, then no clamping will be applied (unless you override that function). 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_ab31e75d2cc35168c1ad65431e66cbaf2}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Min\+Rotation@{Min\+Rotation}}
+\index{Min\+Rotation@{Min\+Rotation}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Min\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Camera2\+D.\+Min\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_ab31e75d2cc35168c1ad65431e66cbaf2}
+
+
+Gets or sets the minimum rotation in radians. 
+
+The min rotation.\hypertarget{classgearit_1_1xna_1_1_camera2_d_a521385c0e06f30380cf90da21d2807b2}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Position@{Position}}
+\index{Position@{Position}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Camera2\+D.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a521385c0e06f30380cf90da21d2807b2}
+
+
+The current position of the camera. 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a17b022dbd270f8e9e6ac8782b3b564d0}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Rotation@{Rotation}}
+\index{Rotation@{Rotation}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Rotation}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Camera2\+D.\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a17b022dbd270f8e9e6ac8782b3b564d0}
+
+
+The current rotation of the camera in radians. 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a09dac4561fd789c364d243776fde4921}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Sim\+Projection@{Sim\+Projection}}
+\index{Sim\+Projection@{Sim\+Projection}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Sim\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+xna.\+Camera2\+D.\+Sim\+Projection\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_camera2_d_a09dac4561fd789c364d243776fde4921}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a26119c8c8951ad9e7a64b47f211b1e32}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Sim\+View@{Sim\+View}}
+\index{Sim\+View@{Sim\+View}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Sim\+View}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+xna.\+Camera2\+D.\+Sim\+View\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_camera2_d_a26119c8c8951ad9e7a64b47f211b1e32}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a548949adba5873377df08185b72b930f}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Tracking\+Body@{Tracking\+Body}}
+\index{Tracking\+Body@{Tracking\+Body}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Tracking\+Body}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} gearit.\+xna.\+Camera2\+D.\+Tracking\+Body\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a548949adba5873377df08185b72b930f}
+
+
+the body that this camera is currently tracking. Null if not tracking any. 
+
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_ab2fbc971de185e14e0675169c2067cf4}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!View@{View}}
+\index{View@{View}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{View}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+xna.\+Camera2\+D.\+View\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_camera2_d_ab2fbc971de185e14e0675169c2067cf4}
+\hypertarget{classgearit_1_1xna_1_1_camera2_d_a3f3ff729da5335b0462906a6aceb928b}{\index{gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}!Zoom@{Zoom}}
+\index{Zoom@{Zoom}!gearit\+::xna\+::\+Camera2\+D@{gearit\+::xna\+::\+Camera2\+D}}
+\subsubsection[{Zoom}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Camera2\+D.\+Zoom\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_camera2_d_a3f3ff729da5335b0462906a6aceb928b}
+
+
+The current zoom 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_camera2_d_8cs}{Camera2\+D.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,251 @@
+\hypertarget{classgearit_1_1src_1_1_draw_game}{\section{gearit.\+src.\+Draw\+Game Class Reference}
+\label{classgearit_1_1src_1_1_draw_game}\index{gearit.\+src.\+Draw\+Game@{gearit.\+src.\+Draw\+Game}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_draw_game_a81b95a90673dd1486cde1896197c1488}{Draw\+Game} (Graphics\+Device device)
+\item 
+Sprite\+Batch \hyperlink{classgearit_1_1src_1_1_draw_game_ab14864ccf48b3bc23c94b707f294a576}{Batch} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_acfbcd9318dda537ccbadf0fb6d550308}{Begin} (\hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera}{I\+Camera} camera)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_ab68d60216c1778fb995376f7c139c26a}{Begin} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_abd94932a00fe2bfeff1fc4f6f116a52a}{Begin\+Primitive} (\hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera}{I\+Camera} camera)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a8b0ba0af9a3d84a02fbf2cdf97855681}{End} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a80684ee1863387eff416187cf693474b}{End\+Primitive} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_ac7adcca12a1c26baa80c1c47afda88f0}{draw\+Texture} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} b, Color c)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_accefffd1944ab7f864cb308129931c6d}{draw\+Triangle} (Vector2 p1, Vector2 p2, Vector2 p3, Color col)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_af3963ef698190db14eec0204a070d410}{draw\+Square} (Vector2 pos, float ray, Color col, bool full)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_ac310972d0b2b0f21cefbba43951002de}{Draw\+L\+Number} (int v, Vector2 p, float alpha)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a5228bf21594bd3dd923a81a64ab85ad2}{Draw\+Line} (Vector2 p1, Vector2 p2, Color col)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a8446a622b28f41a25435285eb377543d}{draw} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} b, Color col, int a=128)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a89cbd1b99215d12050c3b19a3a693d5b}{paint\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int from, int count, Color color)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_afe178743c77d0ad9b4c9dd16d84c50b2}{Draw\+Grille} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_aa2c664f5f646cb06517798fc3415f1c2}{Draw\+Grille} (Vector2 center, int count, int size)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a0bea1be1cf46216ff11330720ab89a5a}{draw\+Polygon} (Vector2\mbox{[}$\,$\mbox{]} vertices, int from, int count, Color color)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a675ad19331f4b32bbe38fa48d20ef214}{Draw\+Circle} (Vector2 center, float radius, Color color, bool paint=false)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a31eb1b354a4282be7cab5bd8a707a76d}{draw\+String} (Sprite\+Font font, string text, Vector2 pos, Color col, float rotation=0f, float scale=0f, Sprite\+Effects effects=\+Sprite\+Effects.\+None, float depth=0f)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_adbc6b684972c1ba6e0caf9b7843e3060}{draw\+Texture} (Texture2\+D texture, Rectangle rect, Color col)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_draw_game_a20c626a80c6a9ba8714551e974cb2bcc}{draw\+Texture} (Texture2\+D texture, Vector2 pos, Color col)
+\item 
+Texture2\+D \hyperlink{classgearit_1_1src_1_1_draw_game_ad78496fe5db069574f87ca86074c9e88}{texture\+From\+Shape} (\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} shape, \hyperlink{namespacegearit_1_1src_1_1utility_a1a6b5ed88f62fe3a535053fa2d4fa491}{Material\+Type} mater)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a81b95a90673dd1486cde1896197c1488}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+Game@{Draw\+Game}}
+\index{Draw\+Game@{Draw\+Game}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+Game}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Draw\+Game.\+Draw\+Game (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{device}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a81b95a90673dd1486cde1896197c1488}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_draw_game_ab14864ccf48b3bc23c94b707f294a576}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Batch@{Batch}}
+\index{Batch@{Batch}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Batch}]{\setlength{\rightskip}{0pt plus 5cm}Sprite\+Batch gearit.\+src.\+Draw\+Game.\+Batch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_ab14864ccf48b3bc23c94b707f294a576}
+\hypertarget{classgearit_1_1src_1_1_draw_game_acfbcd9318dda537ccbadf0fb6d550308}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Begin@{Begin}}
+\index{Begin@{Begin}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Begin}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Begin (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Camera}}]{camera}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_acfbcd9318dda537ccbadf0fb6d550308}
+\hypertarget{classgearit_1_1src_1_1_draw_game_ab68d60216c1778fb995376f7c139c26a}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Begin@{Begin}}
+\index{Begin@{Begin}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Begin}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_ab68d60216c1778fb995376f7c139c26a}
+\hypertarget{classgearit_1_1src_1_1_draw_game_abd94932a00fe2bfeff1fc4f6f116a52a}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Begin\+Primitive@{Begin\+Primitive}}
+\index{Begin\+Primitive@{Begin\+Primitive}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Begin\+Primitive}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Begin\+Primitive (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Camera}}]{camera}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_abd94932a00fe2bfeff1fc4f6f116a52a}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a8446a622b28f41a25435285eb377543d}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw@{draw}}
+\index{draw@{draw}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{b, }
+\item[{Color}]{col, }
+\item[{int}]{a = {\ttfamily 128}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a8446a622b28f41a25435285eb377543d}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a675ad19331f4b32bbe38fa48d20ef214}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+Circle@{Draw\+Circle}}
+\index{Draw\+Circle@{Draw\+Circle}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+Circle}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Draw\+Circle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{float}]{radius, }
+\item[{Color}]{color, }
+\item[{bool}]{paint = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a675ad19331f4b32bbe38fa48d20ef214}
+\hypertarget{classgearit_1_1src_1_1_draw_game_afe178743c77d0ad9b4c9dd16d84c50b2}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+Grille@{Draw\+Grille}}
+\index{Draw\+Grille@{Draw\+Grille}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+Grille}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Draw\+Grille (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_afe178743c77d0ad9b4c9dd16d84c50b2}
+\hypertarget{classgearit_1_1src_1_1_draw_game_aa2c664f5f646cb06517798fc3415f1c2}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+Grille@{Draw\+Grille}}
+\index{Draw\+Grille@{Draw\+Grille}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+Grille}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Draw\+Grille (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{center, }
+\item[{int}]{count, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_aa2c664f5f646cb06517798fc3415f1c2}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a5228bf21594bd3dd923a81a64ab85ad2}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+Line@{Draw\+Line}}
+\index{Draw\+Line@{Draw\+Line}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+Line}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Draw\+Line (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p1, }
+\item[{Vector2}]{p2, }
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a5228bf21594bd3dd923a81a64ab85ad2}
+\hypertarget{classgearit_1_1src_1_1_draw_game_ac310972d0b2b0f21cefbba43951002de}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!Draw\+L\+Number@{Draw\+L\+Number}}
+\index{Draw\+L\+Number@{Draw\+L\+Number}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{Draw\+L\+Number}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+Draw\+L\+Number (
+\begin{DoxyParamCaption}
+\item[{int}]{v, }
+\item[{Vector2}]{p, }
+\item[{float}]{alpha}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_ac310972d0b2b0f21cefbba43951002de}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a0bea1be1cf46216ff11330720ab89a5a}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Polygon@{draw\+Polygon}}
+\index{draw\+Polygon@{draw\+Polygon}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{from, }
+\item[{int}]{count, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a0bea1be1cf46216ff11330720ab89a5a}
+\hypertarget{classgearit_1_1src_1_1_draw_game_af3963ef698190db14eec0204a070d410}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Square@{draw\+Square}}
+\index{draw\+Square@{draw\+Square}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Square}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Square (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{float}]{ray, }
+\item[{Color}]{col, }
+\item[{bool}]{full}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_af3963ef698190db14eec0204a070d410}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a31eb1b354a4282be7cab5bd8a707a76d}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+String@{draw\+String}}
+\index{draw\+String@{draw\+String}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+String}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+String (
+\begin{DoxyParamCaption}
+\item[{Sprite\+Font}]{font, }
+\item[{string}]{text, }
+\item[{Vector2}]{pos, }
+\item[{Color}]{col, }
+\item[{float}]{rotation = {\ttfamily 0f}, }
+\item[{float}]{scale = {\ttfamily 0f}, }
+\item[{Sprite\+Effects}]{effects = {\ttfamily SpriteEffects.None}, }
+\item[{float}]{depth = {\ttfamily 0f}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a31eb1b354a4282be7cab5bd8a707a76d}
+\hypertarget{classgearit_1_1src_1_1_draw_game_ac7adcca12a1c26baa80c1c47afda88f0}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Texture@{draw\+Texture}}
+\index{draw\+Texture@{draw\+Texture}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{b, }
+\item[{Color}]{c}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_ac7adcca12a1c26baa80c1c47afda88f0}
+\hypertarget{classgearit_1_1src_1_1_draw_game_adbc6b684972c1ba6e0caf9b7843e3060}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Texture@{draw\+Texture}}
+\index{draw\+Texture@{draw\+Texture}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Texture (
+\begin{DoxyParamCaption}
+\item[{Texture2\+D}]{texture, }
+\item[{Rectangle}]{rect, }
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_adbc6b684972c1ba6e0caf9b7843e3060}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a20c626a80c6a9ba8714551e974cb2bcc}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Texture@{draw\+Texture}}
+\index{draw\+Texture@{draw\+Texture}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Texture (
+\begin{DoxyParamCaption}
+\item[{Texture2\+D}]{texture, }
+\item[{Vector2}]{pos, }
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a20c626a80c6a9ba8714551e974cb2bcc}
+\hypertarget{classgearit_1_1src_1_1_draw_game_accefffd1944ab7f864cb308129931c6d}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!draw\+Triangle@{draw\+Triangle}}
+\index{draw\+Triangle@{draw\+Triangle}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{draw\+Triangle}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+draw\+Triangle (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p1, }
+\item[{Vector2}]{p2, }
+\item[{Vector2}]{p3, }
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_accefffd1944ab7f864cb308129931c6d}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a8b0ba0af9a3d84a02fbf2cdf97855681}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!End@{End}}
+\index{End@{End}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{End}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+End (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a8b0ba0af9a3d84a02fbf2cdf97855681}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a80684ee1863387eff416187cf693474b}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!End\+Primitive@{End\+Primitive}}
+\index{End\+Primitive@{End\+Primitive}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{End\+Primitive}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+End\+Primitive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a80684ee1863387eff416187cf693474b}
+\hypertarget{classgearit_1_1src_1_1_draw_game_a89cbd1b99215d12050c3b19a3a693d5b}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!paint\+Polygon@{paint\+Polygon}}
+\index{paint\+Polygon@{paint\+Polygon}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{paint\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Draw\+Game.\+paint\+Polygon (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices, }
+\item[{int}]{from, }
+\item[{int}]{count, }
+\item[{Color}]{color}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_a89cbd1b99215d12050c3b19a3a693d5b}
+\hypertarget{classgearit_1_1src_1_1_draw_game_ad78496fe5db069574f87ca86074c9e88}{\index{gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}!texture\+From\+Shape@{texture\+From\+Shape}}
+\index{texture\+From\+Shape@{texture\+From\+Shape}!gearit\+::src\+::\+Draw\+Game@{gearit\+::src\+::\+Draw\+Game}}
+\subsubsection[{texture\+From\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}Texture2\+D gearit.\+src.\+Draw\+Game.\+texture\+From\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Shape}}]{shape, }
+\item[{{\bf Material\+Type}}]{mater}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_draw_game_ad78496fe5db069574f87ca86074c9e88}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\hyperlink{_draw_game_8cs}{Draw\+Game.\+cs}\end{DoxyCompactItemize}

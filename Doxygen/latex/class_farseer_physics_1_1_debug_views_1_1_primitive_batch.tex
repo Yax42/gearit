@@ -1,0 +1,133 @@
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{\section{Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch Class Reference}
+\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}\index{Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch@{Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch}}
+}
+
+
+Inherits I\+Disposable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a425412b15b877115c068a12a8206d4a4}{Primitive\+Batch} (Graphics\+Device graphics\+Device)
+\begin{DoxyCompactList}\small\item\em the constructor creates a new \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} and sets up all of the internals that \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} will need. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1e8f82174ac0e3046ecb55316c156c10}{Primitive\+Batch} (Graphics\+Device graphics\+Device, int buffer\+Size)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_ab148c1896130df8a071249df9b95c651}{Dispose} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_af86ed6ddf3343ff3a532d5ef6d4660d9}{Set\+Projection} (ref Matrix projection)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1527a16608db64e3886898e8f267997f}{Begin} (ref Matrix projection, ref Matrix view)
+\begin{DoxyCompactList}\small\item\em Begin is called to tell the \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} what kind of primitives will be drawn, and to prepare the graphics card to render those primitives. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a50d9a66408a6788361f4618d69c68d5b}{Is\+Ready} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a947d7d7f57a6aae11807c528be670bac}{Add\+Vertex} (Vector2 vertex, Color color, Primitive\+Type primitive\+Type)
+\item 
+void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_aeb4b8af721f82c08bb8aee4b84308857}{End} ()
+\begin{DoxyCompactList}\small\item\em End is called once all the primitives have been drawn using Add\+Vertex. it will call Flush to actually submit the draw call to the graphics card, and then tell the basic effect to end. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a7c2429ac47e24c88ff528446147b784c}{Dispose} (bool disposing)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a425412b15b877115c068a12a8206d4a4}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Primitive\+Batch@{Primitive\+Batch}}
+\index{Primitive\+Batch@{Primitive\+Batch}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Primitive\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Primitive\+Batch (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{graphics\+Device}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a425412b15b877115c068a12a8206d4a4}
+
+
+the constructor creates a new \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} and sets up all of the internals that \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} will need. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graphics\+Device} & The graphics device.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1e8f82174ac0e3046ecb55316c156c10}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Primitive\+Batch@{Primitive\+Batch}}
+\index{Primitive\+Batch@{Primitive\+Batch}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Primitive\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Primitive\+Batch (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{graphics\+Device, }
+\item[{int}]{buffer\+Size}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1e8f82174ac0e3046ecb55316c156c10}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a947d7d7f57a6aae11807c528be670bac}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Add\+Vertex@{Add\+Vertex}}
+\index{Add\+Vertex@{Add\+Vertex}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Add\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Add\+Vertex (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{vertex, }
+\item[{Color}]{color, }
+\item[{Primitive\+Type}]{primitive\+Type}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a947d7d7f57a6aae11807c528be670bac}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1527a16608db64e3886898e8f267997f}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Begin@{Begin}}
+\index{Begin@{Begin}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Begin}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Begin (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{projection, }
+\item[{ref Matrix}]{view}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a1527a16608db64e3886898e8f267997f}
+
+
+Begin is called to tell the \hyperlink{class_farseer_physics_1_1_debug_views_1_1_primitive_batch}{Primitive\+Batch} what kind of primitives will be drawn, and to prepare the graphics card to render those primitives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em projection} & The projection.\\
+\hline
+{\em view} & The view.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_ab148c1896130df8a071249df9b95c651}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_ab148c1896130df8a071249df9b95c651}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a7c2429ac47e24c88ff528446147b784c}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Dispose (
+\begin{DoxyParamCaption}
+\item[{bool}]{disposing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a7c2429ac47e24c88ff528446147b784c}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_aeb4b8af721f82c08bb8aee4b84308857}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!End@{End}}
+\index{End@{End}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{End}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+End (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_aeb4b8af721f82c08bb8aee4b84308857}
+
+
+End is called once all the primitives have been drawn using Add\+Vertex. it will call Flush to actually submit the draw call to the graphics card, and then tell the basic effect to end. 
+
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a50d9a66408a6788361f4618d69c68d5b}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Is\+Ready@{Is\+Ready}}
+\index{Is\+Ready@{Is\+Ready}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Is\+Ready}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Is\+Ready (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_a50d9a66408a6788361f4618d69c68d5b}
+\hypertarget{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_af86ed6ddf3343ff3a532d5ef6d4660d9}{\index{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}!Set\+Projection@{Set\+Projection}}
+\index{Set\+Projection@{Set\+Projection}!Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch@{Farseer\+Physics\+::\+Debug\+Views\+::\+Primitive\+Batch}}
+\subsubsection[{Set\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Debug\+Views.\+Primitive\+Batch.\+Set\+Projection (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{projection}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_debug_views_1_1_primitive_batch_af86ed6ddf3343ff3a532d5ef6d4660d9}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/debug/\hyperlink{_primitive_batch_8cs}{Primitive\+Batch.\+cs}\end{DoxyCompactItemize}

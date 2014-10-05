@@ -1,0 +1,454 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices}{\section{Farseer\+Physics.\+Common.\+Vertices Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_vertices}\index{Farseer\+Physics.\+Common.\+Vertices@{Farseer\+Physics.\+Common.\+Vertices}}
+}
+
+
+Inherits List$<$ Vector2 $>$.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a6f1ece304f6d7587578b5437927188a5}{Vertices} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices_ae375ee5f931a9d2039f138b6a188642d}{Vertices} (int capacity)
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices_ab0150200302553dc13b0ff4833e7924b}{Vertices} (I\+Enumerable$<$ Vector2 $>$ vertices)
+\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a69b1728e34ba6baedf61f4fbfaac504c}{Next\+Index} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the next index. Used for iterating all the edges with wrap-\/around. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a96bc2619839041bdc5cb2c07951fe274}{Next\+Vertex} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the next vertex. Used for iterating all the edges with wrap-\/around. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a7ad0c05df4e5f5966cbce549dfd852d6}{Previous\+Index} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the previous index. Used for iterating all the edges with wrap-\/around. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_aabf2444d2ed5ffcc364a5886d8f51cbb}{Previous\+Vertex} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the previous vertex. Used for iterating all the edges with wrap-\/around. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a261502c59c5edf613768d6889ea2162d}{Get\+Signed\+Area} ()
+\begin{DoxyCompactList}\small\item\em Gets the signed area. If the area is less than 0, it indicates that the polygon is clockwise winded. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a8ad6dd84be8e1478ef46928dc2e1e29f}{Get\+Area} ()
+\begin{DoxyCompactList}\small\item\em Gets the area. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_aa0374100393ab07badfea061da67e994}{Get\+Centroid} ()
+\begin{DoxyCompactList}\small\item\em Gets the centroid. \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_abc4e3f20dec6ada1ee7a2b4c3a4471f7}{Get\+A\+A\+B\+B} ()
+\begin{DoxyCompactList}\small\item\em Returns an A\+A\+B\+B that fully contains this polygon. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a378a0a8cd771dc805aea70f323df2aa5}{Translate} (Vector2 value)
+\begin{DoxyCompactList}\small\item\em Translates the vertices with the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a76202d93e9779629a55daf695787e936}{Translate} (ref Vector2 value)
+\begin{DoxyCompactList}\small\item\em Translates the vertices with the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a6fa9be7cbdf673988ac21be69cda3614}{Scale} (Vector2 value)
+\begin{DoxyCompactList}\small\item\em Scales the vertices with the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_afe7f3ef91d8fe7eb188a290e127d5b41}{Scale} (ref Vector2 value)
+\begin{DoxyCompactList}\small\item\em Scales the vertices with the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_af8c3a4b73c05b6556752d2bff70e3819}{Rotate} (float value)
+\begin{DoxyCompactList}\small\item\em Rotate the vertices with the defined value in radians. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_af83faabcc82176674229befaa7da7d8c}{Is\+Convex} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the polygon is convex. O(n$^\wedge$2) running time. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a43d61a329ebe7ebe784ee1aa9ae6a2a3}{Is\+Counter\+Clock\+Wise} ()
+\begin{DoxyCompactList}\small\item\em Indicates if the vertices are in counter clockwise order. Warning\+: If the area of the polygon is 0, it is unable to determine the winding. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_afccad120443de577a21bbdfd70a4ef9c}{Force\+Counter\+Clock\+Wise} ()
+\begin{DoxyCompactList}\small\item\em Forces the vertices to be counter clock wise order. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a0db95e4f9616196b5f894a8c9c0fdc00}{Is\+Simple} ()
+\begin{DoxyCompactList}\small\item\em Checks if the vertices forms an simple polygon by checking for edge crossings. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_common_a7a8a016dd0516330948901c81e5019e2}{Polygon\+Error} \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_aa0b17bd05010f2f4dc9efcb237951891}{Check\+Polygon} ()
+\begin{DoxyCompactList}\small\item\em Checks if the polygon is valid for use in the engine. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a6f197081f7fc8906989f2cfc028fd0ae}{Project\+To\+Axis} (ref Vector2 axis, out float min, out float max)
+\begin{DoxyCompactList}\small\item\em Projects to axis. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a8f0d3dffbce7b6372757cbfbf274ff6e}{Point\+In\+Polygon} (ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Winding number test for a point in a polygon. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a7387a33ad4bc4fcf420bdd93ea0f3e61}{Point\+In\+Polygon\+Angle} (ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Compute the sum of the angles made between the test point and each pair of points making up the polygon. If this sum is 2pi then the point is an interior point, if 0 then the point is an exterior point. ref\+: \href{http://ozviz.wasp.uwa.edu.au/~pbourke/geometry/insidepoly/}{\tt http\+://ozviz.\+wasp.\+uwa.\+edu.\+au/$\sim$pbourke/geometry/insidepoly/} -\/ Solution 2 \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a5f142425c62a49568b595021e92cd003}{Transform} (ref Matrix transform)
+\begin{DoxyCompactList}\small\item\em Transforms the polygon using the defined matrix. \end{DoxyCompactList}\item 
+override string \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a6dc89918d1f1d196965a8526504be73c}{To\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_vertices_a3967b79e34107fbe5d81f1a2940bdc24}{Holes}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em You can add holes to this collection. It will get respected by some of the triangulation algoithms, but otherwise not used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a6f1ece304f6d7587578b5437927188a5}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Vertices.\+Vertices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a6f1ece304f6d7587578b5437927188a5}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_ae375ee5f931a9d2039f138b6a188642d}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Vertices.\+Vertices (
+\begin{DoxyParamCaption}
+\item[{int}]{capacity}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_ae375ee5f931a9d2039f138b6a188642d}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_ab0150200302553dc13b0ff4833e7924b}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Vertices.\+Vertices (
+\begin{DoxyParamCaption}
+\item[{I\+Enumerable$<$ Vector2 $>$}]{vertices}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_ab0150200302553dc13b0ff4833e7924b}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_aa0b17bd05010f2f4dc9efcb237951891}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Check\+Polygon@{Check\+Polygon}}
+\index{Check\+Polygon@{Check\+Polygon}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Check\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Polygon\+Error} Farseer\+Physics.\+Common.\+Vertices.\+Check\+Polygon (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_aa0b17bd05010f2f4dc9efcb237951891}
+
+
+Checks if the polygon is valid for use in the engine. 
+
+Performs a full check, for simplicity, convexity, orientation, minimum angle, and volume.
+
+From Eric Jordan's convex decomposition library 
+
+\begin{DoxyReturn}{Returns}
+Polygon\+Error.\+No\+Error if there were no error.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_afccad120443de577a21bbdfd70a4ef9c}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Force\+Counter\+Clock\+Wise@{Force\+Counter\+Clock\+Wise}}
+\index{Force\+Counter\+Clock\+Wise@{Force\+Counter\+Clock\+Wise}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Force\+Counter\+Clock\+Wise}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Force\+Counter\+Clock\+Wise (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_afccad120443de577a21bbdfd70a4ef9c}
+
+
+Forces the vertices to be counter clock wise order. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_abc4e3f20dec6ada1ee7a2b4c3a4471f7}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Get\+A\+A\+B\+B@{Get\+A\+A\+B\+B}}
+\index{Get\+A\+A\+B\+B@{Get\+A\+A\+B\+B}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Get\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Common.\+Vertices.\+Get\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_abc4e3f20dec6ada1ee7a2b4c3a4471f7}
+
+
+Returns an A\+A\+B\+B that fully contains this polygon. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a8ad6dd84be8e1478ef46928dc2e1e29f}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Get\+Area@{Get\+Area}}
+\index{Get\+Area@{Get\+Area}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Get\+Area}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Vertices.\+Get\+Area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a8ad6dd84be8e1478ef46928dc2e1e29f}
+
+
+Gets the area. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_aa0374100393ab07badfea061da67e994}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Get\+Centroid@{Get\+Centroid}}
+\index{Get\+Centroid@{Get\+Centroid}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Get\+Centroid}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Vertices.\+Get\+Centroid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_aa0374100393ab07badfea061da67e994}
+
+
+Gets the centroid. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a261502c59c5edf613768d6889ea2162d}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Get\+Signed\+Area@{Get\+Signed\+Area}}
+\index{Get\+Signed\+Area@{Get\+Signed\+Area}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Get\+Signed\+Area}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Vertices.\+Get\+Signed\+Area (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a261502c59c5edf613768d6889ea2162d}
+
+
+Gets the signed area. If the area is less than 0, it indicates that the polygon is clockwise winded. 
+
+\begin{DoxyReturn}{Returns}
+The signed area
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_af83faabcc82176674229befaa7da7d8c}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Is\+Convex@{Is\+Convex}}
+\index{Is\+Convex@{Is\+Convex}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Is\+Convex}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Vertices.\+Is\+Convex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_af83faabcc82176674229befaa7da7d8c}
+
+
+Determines whether the polygon is convex. O(n$^\wedge$2) running time. 
+
+Assumptions\+:
+\begin{DoxyItemize}
+\item The polygon is in counter clockwise order
+\item The polygon has no overlapping edges 
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if it is convex; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a43d61a329ebe7ebe784ee1aa9ae6a2a3}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Is\+Counter\+Clock\+Wise@{Is\+Counter\+Clock\+Wise}}
+\index{Is\+Counter\+Clock\+Wise@{Is\+Counter\+Clock\+Wise}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Is\+Counter\+Clock\+Wise}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Vertices.\+Is\+Counter\+Clock\+Wise (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a43d61a329ebe7ebe784ee1aa9ae6a2a3}
+
+
+Indicates if the vertices are in counter clockwise order. Warning\+: If the area of the polygon is 0, it is unable to determine the winding. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a0db95e4f9616196b5f894a8c9c0fdc00}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Is\+Simple@{Is\+Simple}}
+\index{Is\+Simple@{Is\+Simple}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Is\+Simple}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Vertices.\+Is\+Simple (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a0db95e4f9616196b5f894a8c9c0fdc00}
+
+
+Checks if the vertices forms an simple polygon by checking for edge crossings. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a69b1728e34ba6baedf61f4fbfaac504c}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Next\+Index@{Next\+Index}}
+\index{Next\+Index@{Next\+Index}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Next\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Vertices.\+Next\+Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a69b1728e34ba6baedf61f4fbfaac504c}
+
+
+Gets the next index. Used for iterating all the edges with wrap-\/around. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The current index\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a96bc2619839041bdc5cb2c07951fe274}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Next\+Vertex@{Next\+Vertex}}
+\index{Next\+Vertex@{Next\+Vertex}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Next\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Vertices.\+Next\+Vertex (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a96bc2619839041bdc5cb2c07951fe274}
+
+
+Gets the next vertex. Used for iterating all the edges with wrap-\/around. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The current index\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a8f0d3dffbce7b6372757cbfbf274ff6e}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Point\+In\+Polygon@{Point\+In\+Polygon}}
+\index{Point\+In\+Polygon@{Point\+In\+Polygon}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Point\+In\+Polygon}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Vertices.\+Point\+In\+Polygon (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a8f0d3dffbce7b6372757cbfbf274ff6e}
+
+
+Winding number test for a point in a polygon. 
+
+See more info about the algorithm here\+: \href{http://softsurfer.com/Archive/algorithm_0103/algorithm_0103.htm}{\tt http\+://softsurfer.\+com/\+Archive/algorithm\+\_\+0103/algorithm\+\_\+0103.\+htm} 
+\begin{DoxyParams}{Parameters}
+{\em point} & The point to be tested.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if the winding number is zero and the point is outside the polygon, 1 if the point is inside the polygon, and 0 if the point is on the polygons edge.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a7387a33ad4bc4fcf420bdd93ea0f3e61}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Point\+In\+Polygon\+Angle@{Point\+In\+Polygon\+Angle}}
+\index{Point\+In\+Polygon\+Angle@{Point\+In\+Polygon\+Angle}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Point\+In\+Polygon\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Vertices.\+Point\+In\+Polygon\+Angle (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a7387a33ad4bc4fcf420bdd93ea0f3e61}
+
+
+Compute the sum of the angles made between the test point and each pair of points making up the polygon. If this sum is 2pi then the point is an interior point, if 0 then the point is an exterior point. ref\+: \href{http://ozviz.wasp.uwa.edu.au/~pbourke/geometry/insidepoly/}{\tt http\+://ozviz.\+wasp.\+uwa.\+edu.\+au/$\sim$pbourke/geometry/insidepoly/} -\/ Solution 2 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a7ad0c05df4e5f5966cbce549dfd852d6}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Previous\+Index@{Previous\+Index}}
+\index{Previous\+Index@{Previous\+Index}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Previous\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Vertices.\+Previous\+Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a7ad0c05df4e5f5966cbce549dfd852d6}
+
+
+Gets the previous index. Used for iterating all the edges with wrap-\/around. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The current index\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_aabf2444d2ed5ffcc364a5886d8f51cbb}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Previous\+Vertex@{Previous\+Vertex}}
+\index{Previous\+Vertex@{Previous\+Vertex}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Previous\+Vertex}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Vertices.\+Previous\+Vertex (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_aabf2444d2ed5ffcc364a5886d8f51cbb}
+
+
+Gets the previous vertex. Used for iterating all the edges with wrap-\/around. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The current index\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a6f197081f7fc8906989f2cfc028fd0ae}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Project\+To\+Axis@{Project\+To\+Axis}}
+\index{Project\+To\+Axis@{Project\+To\+Axis}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Project\+To\+Axis}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Project\+To\+Axis (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{axis, }
+\item[{out float}]{min, }
+\item[{out float}]{max}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a6f197081f7fc8906989f2cfc028fd0ae}
+
+
+Projects to axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & The axis.\\
+\hline
+{\em min} & The min.\\
+\hline
+{\em max} & The max.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_af8c3a4b73c05b6556752d2bff70e3819}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_af8c3a4b73c05b6556752d2bff70e3819}
+
+
+Rotate the vertices with the defined value in radians. 
+
+Warning\+: Using this method on an active set of vertices of a Body, will cause problems with collisions. Use Body.\+Rotation instead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The amount to rotate by in radians.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a6fa9be7cbdf673988ac21be69cda3614}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Scale@{Scale}}
+\index{Scale@{Scale}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Scale (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a6fa9be7cbdf673988ac21be69cda3614}
+
+
+Scales the vertices with the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The Value.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_afe7f3ef91d8fe7eb188a290e127d5b41}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Scale@{Scale}}
+\index{Scale@{Scale}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Scale (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_afe7f3ef91d8fe7eb188a290e127d5b41}
+
+
+Scales the vertices with the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The Value.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a6dc89918d1f1d196965a8526504be73c}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{To\+String}]{\setlength{\rightskip}{0pt plus 5cm}override string Farseer\+Physics.\+Common.\+Vertices.\+To\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a6dc89918d1f1d196965a8526504be73c}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a5f142425c62a49568b595021e92cd003}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Transform@{Transform}}
+\index{Transform@{Transform}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Transform (
+\begin{DoxyParamCaption}
+\item[{ref Matrix}]{transform}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a5f142425c62a49568b595021e92cd003}
+
+
+Transforms the polygon using the defined matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The matrix to use as transformation.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a378a0a8cd771dc805aea70f323df2aa5}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Translate@{Translate}}
+\index{Translate@{Translate}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Translate}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Translate (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a378a0a8cd771dc805aea70f323df2aa5}
+
+
+Translates the vertices with the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a76202d93e9779629a55daf695787e936}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Translate@{Translate}}
+\index{Translate@{Translate}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Translate}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Vertices.\+Translate (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_vertices_a76202d93e9779629a55daf695787e936}
+
+
+Translates the vertices with the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The vector.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_vertices_a3967b79e34107fbe5d81f1a2940bdc24}{\index{Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}!Holes@{Holes}}
+\index{Holes@{Holes}!Farseer\+Physics\+::\+Common\+::\+Vertices@{Farseer\+Physics\+::\+Common\+::\+Vertices}}
+\subsubsection[{Holes}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Vertices}$>$ Farseer\+Physics.\+Common.\+Vertices.\+Holes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_vertices_a3967b79e34107fbe5d81f1a2940bdc24}
+
+
+You can add holes to this collection. It will get respected by some of the triangulation algoithms, but otherwise not used. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\hyperlink{_vertices_8cs}{Vertices.\+cs}\end{DoxyCompactItemize}

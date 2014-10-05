@@ -1,0 +1,54 @@
+\hypertarget{_collision_8cs}{\section{gearit/gearit/src/farseer 3.5/\+Collision/\+Collision.cs File Reference}
+\label{_collision_8cs}\index{gearit/gearit/src/farseer 3.\+5/\+Collision/\+Collision.\+cs@{gearit/gearit/src/farseer 3.\+5/\+Collision/\+Collision.\+cs}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_contact_feature}{Farseer\+Physics.\+Collision.\+Contact\+Feature}
+\begin{DoxyCompactList}\small\item\em The features that intersect to form the contact point This must be 4 bytes or less. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_contact_i_d}{Farseer\+Physics.\+Collision.\+Contact\+I\+D}
+\begin{DoxyCompactList}\small\item\em Contact ids to facilitate warm starting. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point}{Farseer\+Physics.\+Collision.\+Manifold\+Point}
+\begin{DoxyCompactList}\small\item\em A manifold point is a contact point belonging to a contact manifold. It holds details related to the geometry and dynamics of the contact points. The local point usage depends on the manifold type\+: -\/\+Shape\+Type.\+Circles\+: the local center of circle\+B -\/\+Separation\+Function.\+Face\+A\+: the local center of cirlce\+B or the clip point of polygon\+B -\/\+Separation\+Function.\+Face\+B\+: the clip point of polygon\+A This structure is stored across time steps, so we keep it small. Note\+: the impulses are used for internal caching and may not provide reliable contact forces, especially for high speed collisions. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold}{Farseer\+Physics.\+Collision.\+Manifold}
+\begin{DoxyCompactList}\small\item\em A manifold for two touching convex \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes}. Box2\+D supports multiple types of contact\+: \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_clip_vertex}{Farseer\+Physics.\+Collision.\+Clip\+Vertex}
+\begin{DoxyCompactList}\small\item\em Used for computing contact manifolds. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Farseer\+Physics.\+Collision.\+Ray\+Cast\+Input}
+\begin{DoxyCompactList}\small\item\em Ray-\/cast input data. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Farseer\+Physics.\+Collision.\+Ray\+Cast\+Output}
+\begin{DoxyCompactList}\small\item\em Ray-\/cast output data. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{Farseer\+Physics.\+Collision.\+A\+A\+B\+B}
+\begin{DoxyCompactList}\small\item\em An axis aligned bounding box. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_temp_polygon}{Farseer\+Physics.\+Collision.\+Temp\+Polygon}
+\begin{DoxyCompactList}\small\item\em This holds polygon B expressed in frame A. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_e_p_axis}{Farseer\+Physics.\+Collision.\+E\+P\+Axis}
+\begin{DoxyCompactList}\small\item\em This structure is used to keep track of the best separating axis. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_reference_face}{Farseer\+Physics.\+Collision.\+Reference\+Face}
+\begin{DoxyCompactList}\small\item\em Reference face used for clipping \end{DoxyCompactList}\item 
+class {\bfseries Farseer\+Physics.\+Collision.\+Collision}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespace_farseer_physics_1_1_collision}{Collision} methods \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_collision}{Farseer\+Physics.\+Collision}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafae}{Farseer\+Physics.\+Collision.\+Manifold\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea0b746483cd6f7830702edd6ee7d8d4b9}{Farseer\+Physics.\+Collision.\+Manifold\+Type.\+Circles}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaeaf43c8682b4637a32c3fd76348733a5b0}{Farseer\+Physics.\+Collision.\+Manifold\+Type.\+Face\+A}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea9d0245173cf584f064c34d2be4718f0d}{Farseer\+Physics.\+Collision.\+Manifold\+Type.\+Face\+B}
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42}{Farseer\+Physics.\+Collision.\+Point\+State} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42abbb93ef26e3c101ff11cdd21cab08a94}{Farseer\+Physics.\+Collision.\+Point\+State.\+Null}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42aec211f7c20af43e742bf2570c3cb84f9}{Farseer\+Physics.\+Collision.\+Point\+State.\+Add}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a5a7dacb6e9b5ba37e22f825429355174}{Farseer\+Physics.\+Collision.\+Point\+State.\+Persist}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a1063e38cb53d94d386f21227fcd84717}{Farseer\+Physics.\+Collision.\+Point\+State.\+Remove}
+ \}
+\begin{DoxyCompactList}\small\item\em This is used for determining the state of contact points. \end{DoxyCompactList}\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9}{Farseer\+Physics.\+Collision.\+E\+P\+Axis\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a88183b946cc5f0e8c96b2e66e1c74a7e}{Farseer\+Physics.\+Collision.\+E\+P\+Axis\+Type.\+Unknown}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a2a187552a4c67d367110e85ea0087a4d}{Farseer\+Physics.\+Collision.\+E\+P\+Axis\+Type.\+Edge\+A}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a0a2d24d621ca67652605108f4d4eac97}{Farseer\+Physics.\+Collision.\+E\+P\+Axis\+Type.\+Edge\+B}
+ \}
+\end{DoxyCompactItemize}

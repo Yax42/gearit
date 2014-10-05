@@ -1,0 +1,145 @@
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33}{\section{Farseer\+Physics.\+Common.\+Mat33 Struct Reference}
+\label{struct_farseer_physics_1_1_common_1_1_mat33}\index{Farseer\+Physics.\+Common.\+Mat33@{Farseer\+Physics.\+Common.\+Mat33}}
+}
+
+
+A 3-\/by-\/3 matrix. Stored in column-\/major order.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_ac84482abfc43f5842f219e6e4adee774}{Mat33} (Vector3 c1, Vector3 c2, Vector3 c3)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using columns. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_a5704cacf267909772949b573542cadfb}{Set\+Zero} ()
+\begin{DoxyCompactList}\small\item\em Set this matrix to all zeros. \end{DoxyCompactList}\item 
+Vector3 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_a24cc2751b2e8e78404fdc1e24b54f9f4}{Solve33} (Vector3 b)
+\begin{DoxyCompactList}\small\item\em Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_acbdfb25dac490f23c67f7096ebff8d87}{Solve22} (Vector2 b)
+\begin{DoxyCompactList}\small\item\em Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. Solve only the upper 2-\/by-\/2 matrix equation. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_a3840056f6325213513c9a2ad0debda0c}{Get\+Inverse22} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33}{Mat33} M)
+\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_a4fab8f7880d1f673479b5e907734f840}{Get\+Sym\+Inverse33} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33}{Mat33} M)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector3 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_ae26309da39f12901e1ad482de69716fa}{ex}
+\item 
+Vector3 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_aa9a11f37f4560ffeab5c101d3a6d2367}{ey}
+\item 
+Vector3 \hyperlink{struct_farseer_physics_1_1_common_1_1_mat33_a2a90b6097670a3db5c53c2e41aeae20c}{ez}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A 3-\/by-\/3 matrix. Stored in column-\/major order. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_ac84482abfc43f5842f219e6e4adee774}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Mat33@{Mat33}}
+\index{Mat33@{Mat33}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Mat33}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Mat33.\+Mat33 (
+\begin{DoxyParamCaption}
+\item[{Vector3}]{c1, }
+\item[{Vector3}]{c2, }
+\item[{Vector3}]{c3}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_ac84482abfc43f5842f219e6e4adee774}
+
+
+Construct this matrix using columns. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c1} & The c1.\\
+\hline
+{\em c2} & The c2.\\
+\hline
+{\em c3} & The c3.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_a3840056f6325213513c9a2ad0debda0c}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Get\+Inverse22@{Get\+Inverse22}}
+\index{Get\+Inverse22@{Get\+Inverse22}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Get\+Inverse22}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat33.\+Get\+Inverse22 (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Mat33}}]{M}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_a3840056f6325213513c9a2ad0debda0c}
+Get the inverse of this matrix as a 2-\/by-\/2. Returns the zero matrix if singular. \hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_a4fab8f7880d1f673479b5e907734f840}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Get\+Sym\+Inverse33@{Get\+Sym\+Inverse33}}
+\index{Get\+Sym\+Inverse33@{Get\+Sym\+Inverse33}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Get\+Sym\+Inverse33}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat33.\+Get\+Sym\+Inverse33 (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Mat33}}]{M}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_a4fab8f7880d1f673479b5e907734f840}
+Get the symmetric inverse of this matrix as a 3-\/by-\/3. Returns the zero matrix if singular. \hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_a5704cacf267909772949b573542cadfb}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Set\+Zero@{Set\+Zero}}
+\index{Set\+Zero@{Set\+Zero}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Set\+Zero}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Mat33.\+Set\+Zero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_a5704cacf267909772949b573542cadfb}
+
+
+Set this matrix to all zeros. 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_acbdfb25dac490f23c67f7096ebff8d87}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Solve22@{Solve22}}
+\index{Solve22@{Solve22}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Solve22}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Mat33.\+Solve22 (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{b}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_acbdfb25dac490f23c67f7096ebff8d87}
+
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. Solve only the upper 2-\/by-\/2 matrix equation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The b.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_a24cc2751b2e8e78404fdc1e24b54f9f4}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!Solve33@{Solve33}}
+\index{Solve33@{Solve33}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{Solve33}]{\setlength{\rightskip}{0pt plus 5cm}Vector3 Farseer\+Physics.\+Common.\+Mat33.\+Solve33 (
+\begin{DoxyParamCaption}
+\item[{Vector3}]{b}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_mat33_a24cc2751b2e8e78404fdc1e24b54f9f4}
+
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & The b.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_ae26309da39f12901e1ad482de69716fa}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!ex@{ex}}
+\index{ex@{ex}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{ex}]{\setlength{\rightskip}{0pt plus 5cm}Vector3 Farseer\+Physics.\+Common.\+Mat33.\+ex}}\label{struct_farseer_physics_1_1_common_1_1_mat33_ae26309da39f12901e1ad482de69716fa}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_aa9a11f37f4560ffeab5c101d3a6d2367}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!ey@{ey}}
+\index{ey@{ey}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{ey}]{\setlength{\rightskip}{0pt plus 5cm}Vector3 Farseer\+Physics.\+Common.\+Mat33.\+ey}}\label{struct_farseer_physics_1_1_common_1_1_mat33_aa9a11f37f4560ffeab5c101d3a6d2367}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_mat33_a2a90b6097670a3db5c53c2e41aeae20c}{\index{Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}!ez@{ez}}
+\index{ez@{ez}!Farseer\+Physics\+::\+Common\+::\+Mat33@{Farseer\+Physics\+::\+Common\+::\+Mat33}}
+\subsubsection[{ez}]{\setlength{\rightskip}{0pt plus 5cm}Vector3 Farseer\+Physics.\+Common.\+Mat33.\+ez}}\label{struct_farseer_physics_1_1_common_1_1_mat33_a2a90b6097670a3db5c53c2e41aeae20c}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\hyperlink{_math_8cs}{Math.\+cs}\end{DoxyCompactItemize}

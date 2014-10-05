@@ -1,0 +1,88 @@
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller}{\section{Farseer\+Physics.\+Controllers.\+Controller Class Reference}
+\label{class_farseer_physics_1_1_controllers_1_1_controller}\index{Farseer\+Physics.\+Controllers.\+Controller@{Farseer\+Physics.\+Controllers.\+Controller}}
+}
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data}.
+
+
+
+Inherited by \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller}, \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}{Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller}, \hyperlink{class_farseer_physics_1_1_controllers_1_1_gravity_controller}{Farseer\+Physics.\+Controllers.\+Gravity\+Controller}, and \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_aa6e650f4049a56b8022d6b6ee688542d}{Controller} (\hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7}{Controller\+Type} controller\+Type)
+\item 
+override bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_af4c2a3233d1d1a1b9b54311b7776cd97}{Is\+Active\+On} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\item 
+abstract void \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}{Update} (float dt)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_a1697ca951f7473b9e293db648b52c184}{Enabled}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_ac759af410d23b3ae5fc26a3081b1bde6}{World}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller_aa6e650f4049a56b8022d6b6ee688542d}{\index{Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}}
+\subsubsection[{Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Controller.\+Controller (
+\begin{DoxyParamCaption}
+\item[{{\bf Controller\+Type}}]{controller\+Type}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_controller_aa6e650f4049a56b8022d6b6ee688542d}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller_af4c2a3233d1d1a1b9b54311b7776cd97}{\index{Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}!Is\+Active\+On@{Is\+Active\+On}}
+\index{Is\+Active\+On@{Is\+Active\+On}!Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}}
+\subsubsection[{Is\+Active\+On}]{\setlength{\rightskip}{0pt plus 5cm}override bool Farseer\+Physics.\+Controllers.\+Controller.\+Is\+Active\+On (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_controller_af4c2a3233d1d1a1b9b54311b7776cd97}
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_filter_data_a1513f817fadd766ee29203130ec909a2}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Filter\+Data}.
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}{\index{Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}!Update@{Update}}
+\index{Update@{Update}!Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Controllers.\+Controller.\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller}, \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller_a9f06aad10ab9cd87954d9426a8a29a84}{Farseer\+Physics.\+Controllers.\+Velocity\+Limit\+Controller}, \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ae897d6e7ac2783645da0bcd12ae7b94f}{Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller}, and \hyperlink{class_farseer_physics_1_1_controllers_1_1_gravity_controller_ac62378cc8f360e572b15f543def3d3ea}{Farseer\+Physics.\+Controllers.\+Gravity\+Controller}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller_a1697ca951f7473b9e293db648b52c184}{\index{Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Controllers.\+Controller.\+Enabled}}\label{class_farseer_physics_1_1_controllers_1_1_controller_a1697ca951f7473b9e293db648b52c184}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_controller_ac759af410d23b3ae5fc26a3081b1bde6}{\index{Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}!World@{World}}
+\index{World@{World}!Farseer\+Physics\+::\+Controllers\+::\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Controller}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} Farseer\+Physics.\+Controllers.\+Controller.\+World}}\label{class_farseer_physics_1_1_controllers_1_1_controller_ac759af410d23b3ae5fc26a3081b1bde6}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Controllers/\hyperlink{_controller_8cs}{Controller.\+cs}\end{DoxyCompactItemize}

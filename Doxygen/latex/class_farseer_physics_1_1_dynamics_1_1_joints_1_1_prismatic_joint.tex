@@ -1,0 +1,303 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint}}
+}
+
+
+A prismatic joint. This joint provides one degree of freedom\+: translation along an axis fixed in body\+A. Relative rotation is prevented. You can use a joint limit to restrict the range of motion and a joint motor to drive the motion or to model joint friction.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a5a513512c3a66a4bc72b0c8514147aeb}{Prismatic\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor\+A, Vector2 anchor\+B, Vector2 axis, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a892fa1e20b96c295664100830fa7c616}{Prismatic\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor, Vector2 axis, bool use\+World\+Coordinates=false)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a4c3d0dbc5ab731fa30c95ce03c425b49}{Set\+Limits} (float lower, float upper)
+\begin{DoxyCompactList}\small\item\em Set the joint limits, usually in meters. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a6206382a684948e0d2285b599dc39895}{Get\+Motor\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Gets the motor force. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa948e6e01ecceaf8f6e525ea69b0bec5}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a0786561dbda2ff4ac0ca4de0ade29907}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_af58c97ee02474eb8b0ce2b1dbabf9910}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a47991446da4f0c9d96fd5e989d3e1286}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a7e94a730d582ca7fc50c453b683000fb}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac4c9e37aaca70be7d56acd3e33477ad4}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a90c57e0f17039ca3a867d7f7aa0fe765}{Joint\+Translation}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current joint translation, usually in meters. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a68073910800636bdab7001343e76501c}{Joint\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current joint translation speed, usually in meters per second. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac898ef13b42fd543836c04bcd8f421d1}{Limit\+Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Is the joint limit enabled? \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_abb2b4f312dd63ec73565d4074eedf1b3}{Lower\+Limit}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the lower joint limit, usually in meters. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a80eb4690a1e1f5dd77706368f1ed0de5}{Upper\+Limit}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the upper joint limit, usually in meters. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a46e84f7405d6319bae6f56d7f0ad3ec2}{Motor\+Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Is the joint motor enabled? \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_adf5459361569cddd36123b406627b791}{Motor\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the motor speed, usually in meters per second. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a2a6327304c4c09f52dc54b450db62506}{Max\+Motor\+Force}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the maximum motor force, usually in N. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a8913389dfc0e78dedffe38abf569b3cf}{Motor\+Impulse}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current motor impulse, usually in N. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa3b41996a09424d779a8020f2035a18a}{Axis}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The axis at which the joint moves. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ab553386ce30b4abe877e6cfe784bfa05}{Local\+X\+Axis}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The axis in local coordinates relative to Body\+A \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a94a32ba9c7ca17df0ce648daa91ee673}{Reference\+Angle}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The reference angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A prismatic joint. This joint provides one degree of freedom\+: translation along an axis fixed in body\+A. Relative rotation is prevented. You can use a joint limit to restrict the range of motion and a joint motor to drive the motion or to model joint friction. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a5a513512c3a66a4bc72b0c8514147aeb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Prismatic\+Joint@{Prismatic\+Joint}}
+\index{Prismatic\+Joint@{Prismatic\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Prismatic\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Prismatic\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor\+A, }
+\item[{Vector2}]{anchor\+B, }
+\item[{Vector2}]{axis, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a5a513512c3a66a4bc72b0c8514147aeb}
+
+
+This requires defining a line of motion using an axis and an anchor point. The definition uses local anchor points and a local axis so that the initial configuration can violate the constraint slightly. The joint translation is zero when the local anchor points coincide in world space. Using local anchors and a local axis helps when saving and loading a game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body.\\
+\hline
+{\em body\+B} & The second body.\\
+\hline
+{\em anchor\+A} & The first body anchor.\\
+\hline
+{\em anchor\+B} & The second body anchor.\\
+\hline
+{\em axis} & The axis.\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a892fa1e20b96c295664100830fa7c616}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Prismatic\+Joint@{Prismatic\+Joint}}
+\index{Prismatic\+Joint@{Prismatic\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Prismatic\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Prismatic\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor, }
+\item[{Vector2}]{axis, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a892fa1e20b96c295664100830fa7c616}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a6206382a684948e0d2285b599dc39895}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Get\+Motor\+Force@{Get\+Motor\+Force}}
+\index{Get\+Motor\+Force@{Get\+Motor\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Get\+Motor\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Get\+Motor\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a6206382a684948e0d2285b599dc39895}
+
+
+Gets the motor force. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa948e6e01ecceaf8f6e525ea69b0bec5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa948e6e01ecceaf8f6e525ea69b0bec5}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a0786561dbda2ff4ac0ca4de0ade29907}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a0786561dbda2ff4ac0ca4de0ade29907}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a4c3d0dbc5ab731fa30c95ce03c425b49}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Set\+Limits@{Set\+Limits}}
+\index{Set\+Limits@{Set\+Limits}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Set\+Limits}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Set\+Limits (
+\begin{DoxyParamCaption}
+\item[{float}]{lower, }
+\item[{float}]{upper}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a4c3d0dbc5ab731fa30c95ce03c425b49}
+
+
+Set the joint limits, usually in meters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower limit\\
+\hline
+{\em upper} & The upper limit\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa3b41996a09424d779a8020f2035a18a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Axis@{Axis}}
+\index{Axis@{Axis}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Axis}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Axis\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa3b41996a09424d779a8020f2035a18a}
+
+
+The axis at which the joint moves. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a68073910800636bdab7001343e76501c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Joint\+Speed@{Joint\+Speed}}
+\index{Joint\+Speed@{Joint\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Joint\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Joint\+Speed\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a68073910800636bdab7001343e76501c}
+
+
+Get the current joint translation speed, usually in meters per second. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a90c57e0f17039ca3a867d7f7aa0fe765}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Joint\+Translation@{Joint\+Translation}}
+\index{Joint\+Translation@{Joint\+Translation}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Joint\+Translation}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Joint\+Translation\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a90c57e0f17039ca3a867d7f7aa0fe765}
+
+
+Get the current joint translation, usually in meters. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac898ef13b42fd543836c04bcd8f421d1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Limit\+Enabled@{Limit\+Enabled}}
+\index{Limit\+Enabled@{Limit\+Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Limit\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Limit\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac898ef13b42fd543836c04bcd8f421d1}
+
+
+Is the joint limit enabled? 
+
+{\ttfamily true} if \mbox{[}limit enabled\mbox{]}; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_af58c97ee02474eb8b0ce2b1dbabf9910}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_af58c97ee02474eb8b0ce2b1dbabf9910}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a47991446da4f0c9d96fd5e989d3e1286}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a47991446da4f0c9d96fd5e989d3e1286}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ab553386ce30b4abe877e6cfe784bfa05}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Local\+X\+Axis@{Local\+X\+Axis}}
+\index{Local\+X\+Axis@{Local\+X\+Axis}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Local\+X\+Axis}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Local\+X\+Axis\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ab553386ce30b4abe877e6cfe784bfa05}
+
+
+The axis in local coordinates relative to Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_abb2b4f312dd63ec73565d4074eedf1b3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Lower\+Limit@{Lower\+Limit}}
+\index{Lower\+Limit@{Lower\+Limit}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Lower\+Limit}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Lower\+Limit\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_abb2b4f312dd63ec73565d4074eedf1b3}
+
+
+Get the lower joint limit, usually in meters. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a2a6327304c4c09f52dc54b450db62506}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Max\+Motor\+Force@{Max\+Motor\+Force}}
+\index{Max\+Motor\+Force@{Max\+Motor\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Max\+Motor\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Max\+Motor\+Force\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a2a6327304c4c09f52dc54b450db62506}
+
+
+Set the maximum motor force, usually in N. 
+
+The force.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a46e84f7405d6319bae6f56d7f0ad3ec2}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Motor\+Enabled@{Motor\+Enabled}}
+\index{Motor\+Enabled@{Motor\+Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Motor\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Motor\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a46e84f7405d6319bae6f56d7f0ad3ec2}
+
+
+Is the joint motor enabled? 
+
+{\ttfamily true} if \mbox{[}motor enabled\mbox{]}; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a8913389dfc0e78dedffe38abf569b3cf}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Motor\+Impulse@{Motor\+Impulse}}
+\index{Motor\+Impulse@{Motor\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Motor\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Motor\+Impulse\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a8913389dfc0e78dedffe38abf569b3cf}
+
+
+Get the current motor impulse, usually in N. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_adf5459361569cddd36123b406627b791}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Motor\+Speed@{Motor\+Speed}}
+\index{Motor\+Speed@{Motor\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Motor\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Motor\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_adf5459361569cddd36123b406627b791}
+
+
+Set the motor speed, usually in meters per second. 
+
+The speed.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a94a32ba9c7ca17df0ce648daa91ee673}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Reference\+Angle@{Reference\+Angle}}
+\index{Reference\+Angle@{Reference\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Reference\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Reference\+Angle\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a94a32ba9c7ca17df0ce648daa91ee673}
+
+
+The reference angle. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a80eb4690a1e1f5dd77706368f1ed0de5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!Upper\+Limit@{Upper\+Limit}}
+\index{Upper\+Limit@{Upper\+Limit}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{Upper\+Limit}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+Upper\+Limit\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a80eb4690a1e1f5dd77706368f1ed0de5}
+
+
+Get the upper joint limit, usually in meters. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a7e94a730d582ca7fc50c453b683000fb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a7e94a730d582ca7fc50c453b683000fb}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac4c9e37aaca70be7d56acd3e33477ad4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Prismatic\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_ac4c9e37aaca70be7d56acd3e33477ad4}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_prismatic_joint_8cs}{Prismatic\+Joint.\+cs}\end{DoxyCompactItemize}

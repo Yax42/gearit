@@ -1,0 +1,324 @@
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase}{\section{Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase Class Reference}
+\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase}\index{Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase}}
+}
+
+
+The broad-\/phase is used for computing pairs and performing volume queries and ray casts. This broad-\/phase does not persist pairs. Instead, this reports potentially new pairs. It is up to the client to consume the new pairs and to track subsequent overlap.  
+
+
+
+
+Inherits \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2245654810f5fe2b291046c944505c18}{Dynamic\+Tree\+Broad\+Phase} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new broad phase based on the dynamic tree implementation \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a632f5315eb3149245dc26e8f11a0ef4f}{Add\+Proxy} (ref \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy} proxy)
+\begin{DoxyCompactList}\small\item\em Create a proxy with an initial \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. Pairs are not reported until Update\+Pairs is called. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a15ce4940d8b965cc05b23d61a21da9b9}{Remove\+Proxy} (int proxy\+Id)
+\begin{DoxyCompactList}\small\item\em Destroy a proxy. It is up to the client to remove any pairs. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7d74e989e6c42ecef6e48f3ce851e01d}{Move\+Proxy} (int proxy\+Id, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb, Vector2 displacement)
+\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aae641fa21358f80f82051dc6cbdc1d89}{Touch\+Proxy} (int proxy\+Id)
+\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7e0b1522e3cdcca4486a769641305a4e}{Get\+Fat\+A\+A\+B\+B} (int proxy\+Id, out \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} for a proxy. \end{DoxyCompactList}\item 
+\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy} \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aa4dd50882866b245e98b1ba569a0e4c5}{Get\+Proxy} (int proxy\+Id)
+\begin{DoxyCompactList}\small\item\em Get user data from a proxy. Returns null if the id is invalid. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3851d66b0cb7a1537cc45786aaf71370}{Test\+Overlap} (int proxy\+Id\+A, int proxy\+Id\+B)
+\begin{DoxyCompactList}\small\item\em Test overlap of fat A\+A\+B\+Bs. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_ab4d80cf0607521a387315f7a3cff0ae0}{Update\+Pairs} (Broadphase\+Delegate callback)
+\begin{DoxyCompactList}\small\item\em Update the pairs. This results in pair callbacks. This can only add pairs. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a6e5d585670c83a9358fd072a0ceeda47}{Query} (Func$<$ int, bool $>$ callback, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Query an \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} for overlapping proxies. The callback class is called for each proxy that overlaps the supplied \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a13ea808d72afd3008013f009e2b37958}{Ray\+Cast} (Func$<$ \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input}, int, float $>$ callback, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input} input)
+\begin{DoxyCompactList}\small\item\em Ray-\/cast against the proxies in the tree. This relies on the callback to perform a exact ray-\/cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k $\ast$ log(n), where k is the number of collisions and n is the number of proxies in the tree. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2cc2e2522b117183cb8cd1145c3781ab}{Shift\+Origin} (Vector2 new\+Origin)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3d2c33f76707c70fe4c8fc3964c50264}{Proxy\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the number of proxies. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a73c192ad114e8d962ccea45913a4edc5}{Tree\+Quality}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the tree quality based on the area of the tree. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a606b1f77d415f9a37c47a7c7e47a0039}{Tree\+Balance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the balance of the tree. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a0f6cc4b6cb6b8919a986ffa2d0ae382d}{Tree\+Height}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the height of the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The broad-\/phase is used for computing pairs and performing volume queries and ray casts. This broad-\/phase does not persist pairs. Instead, this reports potentially new pairs. It is up to the client to consume the new pairs and to track subsequent overlap. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2245654810f5fe2b291046c944505c18}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Dynamic\+Tree\+Broad\+Phase@{Dynamic\+Tree\+Broad\+Phase}}
+\index{Dynamic\+Tree\+Broad\+Phase@{Dynamic\+Tree\+Broad\+Phase}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Dynamic\+Tree\+Broad\+Phase}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Dynamic\+Tree\+Broad\+Phase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2245654810f5fe2b291046c944505c18}
+
+
+Constructs a new broad phase based on the dynamic tree implementation 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a632f5315eb3149245dc26e8f11a0ef4f}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Add\+Proxy@{Add\+Proxy}}
+\index{Add\+Proxy@{Add\+Proxy}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Add\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Add\+Proxy (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Fixture\+Proxy}}]{proxy}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a632f5315eb3149245dc26e8f11a0ef4f}
+
+
+Create a proxy with an initial \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. Pairs are not reported until Update\+Pairs is called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proxy} & The user data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a0a10f642ab61c295d503f2c0ec1cc3db}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7e0b1522e3cdcca4486a769641305a4e}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Get\+Fat\+A\+A\+B\+B@{Get\+Fat\+A\+A\+B\+B}}
+\index{Get\+Fat\+A\+A\+B\+B@{Get\+Fat\+A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Get\+Fat\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Get\+Fat\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id, }
+\item[{out {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7e0b1522e3cdcca4486a769641305a4e}
+
+
+Get the \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} for a proxy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proxy\+Id} & The proxy id.\\
+\hline
+{\em aabb} & The aabb.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a73d46eff2cc512bb99065f9c747ae956}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aa4dd50882866b245e98b1ba569a0e4c5}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Get\+Proxy@{Get\+Proxy}}
+\index{Get\+Proxy@{Get\+Proxy}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Get\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture\+Proxy} Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Get\+Proxy (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aa4dd50882866b245e98b1ba569a0e4c5}
+
+
+Get user data from a proxy. Returns null if the id is invalid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proxy\+Id} & The proxy id.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_ab04dd33ba989359a44e932fd1a211df1}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7d74e989e6c42ecef6e48f3ce851e01d}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Move\+Proxy@{Move\+Proxy}}
+\index{Move\+Proxy@{Move\+Proxy}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Move\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Move\+Proxy (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id, }
+\item[{ref {\bf A\+A\+B\+B}}]{aabb, }
+\item[{Vector2}]{displacement}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a7d74e989e6c42ecef6e48f3ce851e01d}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a33a57dd335b8534c6fbc10623acca7b4}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a6e5d585670c83a9358fd072a0ceeda47}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Query@{Query}}
+\index{Query@{Query}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Query}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Query (
+\begin{DoxyParamCaption}
+\item[{Func$<$ int, bool $>$}]{callback, }
+\item[{ref {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a6e5d585670c83a9358fd072a0ceeda47}
+
+
+Query an \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} for overlapping proxies. The callback class is called for each proxy that overlaps the supplied \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback.\\
+\hline
+{\em aabb} & The aabb.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_aec8aff4b9a324f4cf1ecaca3fd0d39f9}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a13ea808d72afd3008013f009e2b37958}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{Func$<$ {\bf Ray\+Cast\+Input}, int, float $>$}]{callback, }
+\item[{ref {\bf Ray\+Cast\+Input}}]{input}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a13ea808d72afd3008013f009e2b37958}
+
+
+Ray-\/cast against the proxies in the tree. This relies on the callback to perform a exact ray-\/cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k $\ast$ log(n), where k is the number of collisions and n is the number of proxies in the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & A callback class that is called for each proxy that is hit by the ray.\\
+\hline
+{\em input} & The ray-\/cast input data. The ray extends from p1 to p1 + max\+Fraction $\ast$ (p2 -\/ p1).\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a1e7ed0c5de3fdb3e21230c6b255f60bf}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a15ce4940d8b965cc05b23d61a21da9b9}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Remove\+Proxy@{Remove\+Proxy}}
+\index{Remove\+Proxy@{Remove\+Proxy}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Remove\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Remove\+Proxy (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a15ce4940d8b965cc05b23d61a21da9b9}
+
+
+Destroy a proxy. It is up to the client to remove any pairs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proxy\+Id} & The proxy id.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_ad3218d272893ffb2cebeb4cc99c953c4}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2cc2e2522b117183cb8cd1145c3781ab}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Shift\+Origin@{Shift\+Origin}}
+\index{Shift\+Origin@{Shift\+Origin}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Shift\+Origin}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Shift\+Origin (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{new\+Origin}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a2cc2e2522b117183cb8cd1145c3781ab}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a3a77c45767b553b406004ff2a9382a16}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3851d66b0cb7a1537cc45786aaf71370}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Test\+Overlap@{Test\+Overlap}}
+\index{Test\+Overlap@{Test\+Overlap}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Test\+Overlap}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Test\+Overlap (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id\+A, }
+\item[{int}]{proxy\+Id\+B}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3851d66b0cb7a1537cc45786aaf71370}
+
+
+Test overlap of fat A\+A\+B\+Bs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proxy\+Id\+A} & The proxy id A.\\
+\hline
+{\em proxy\+Id\+B} & The proxy id B.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a8417109442db0a81b8eeac2df1de06e5}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aae641fa21358f80f82051dc6cbdc1d89}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Touch\+Proxy@{Touch\+Proxy}}
+\index{Touch\+Proxy@{Touch\+Proxy}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Touch\+Proxy}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Touch\+Proxy (
+\begin{DoxyParamCaption}
+\item[{int}]{proxy\+Id}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_aae641fa21358f80f82051dc6cbdc1d89}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_aa30e889a670f0920021439edeade01eb}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_ab4d80cf0607521a387315f7a3cff0ae0}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Update\+Pairs@{Update\+Pairs}}
+\index{Update\+Pairs@{Update\+Pairs}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Update\+Pairs}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Update\+Pairs (
+\begin{DoxyParamCaption}
+\item[{Broadphase\+Delegate}]{callback}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_ab4d80cf0607521a387315f7a3cff0ae0}
+
+
+Update the pairs. This results in pair callbacks. This can only add pairs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase_a1830419926dabd7a7bf8bd729e18e587}{Farseer\+Physics.\+Collision.\+I\+Broad\+Phase}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3d2c33f76707c70fe4c8fc3964c50264}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Proxy\+Count@{Proxy\+Count}}
+\index{Proxy\+Count@{Proxy\+Count}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Proxy\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Proxy\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a3d2c33f76707c70fe4c8fc3964c50264}
+
+
+Get the number of proxies. 
+
+The proxy count.\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a606b1f77d415f9a37c47a7c7e47a0039}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Tree\+Balance@{Tree\+Balance}}
+\index{Tree\+Balance@{Tree\+Balance}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Tree\+Balance}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Tree\+Balance\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a606b1f77d415f9a37c47a7c7e47a0039}
+
+
+Gets the balance of the tree. 
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a0f6cc4b6cb6b8919a986ffa2d0ae382d}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Tree\+Height@{Tree\+Height}}
+\index{Tree\+Height@{Tree\+Height}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Tree\+Height}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Tree\+Height\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a0f6cc4b6cb6b8919a986ffa2d0ae382d}
+
+
+Gets the height of the tree. 
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a73c192ad114e8d962ccea45913a4edc5}{\index{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}!Tree\+Quality@{Tree\+Quality}}
+\index{Tree\+Quality@{Tree\+Quality}!Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase@{Farseer\+Physics\+::\+Collision\+::\+Dynamic\+Tree\+Broad\+Phase}}
+\subsubsection[{Tree\+Quality}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Collision.\+Dynamic\+Tree\+Broad\+Phase.\+Tree\+Quality\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase_a73c192ad114e8d962ccea45913a4edc5}
+
+
+Get the tree quality based on the area of the tree. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\hyperlink{_dynamic_tree_broad_phase_8cs}{Dynamic\+Tree\+Broad\+Phase.\+cs}\end{DoxyCompactItemize}

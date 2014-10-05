@@ -1,0 +1,152 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint}}
+}
+
+
+A motor joint is used to control the relative motion between two bodies. A typical usage is to control the movement of a dynamic body with respect to the ground.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a10a53e9f5982e4c5382aadabf9a05f0f}{Motor\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}{Motor\+Joint}. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_ac3cd72010e24ea71d6eeee9cb43b3cbc}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a858a34f8c7366b9f0583b1b6eb81f18b}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a87868c8580e42a737cb366c2d43e1810}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a2de0ddbd0e806836e61200eef86dc8eb}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a3c925e1cf88a8d1c0a4df75c7e46af07}{Max\+Force}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The maximum amount of force that can be applied to Body\+A \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_adbc6b74b1ac276d1e1838e74101b9ecb}{Max\+Torque}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The maximum amount of torque that can be applied to Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a0183de97eccd0e558e2e068159341efc}{Linear\+Offset}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The linear (translation) offset. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_abc065261bb1090dea10246e1a7a2d9e6}{Angular\+Offset}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the angular offset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A motor joint is used to control the relative motion between two bodies. A typical usage is to control the movement of a dynamic body with respect to the ground. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a10a53e9f5982e4c5382aadabf9a05f0f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Motor\+Joint@{Motor\+Joint}}
+\index{Motor\+Joint@{Motor\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Motor\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Motor\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a10a53e9f5982e4c5382aadabf9a05f0f}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}{Motor\+Joint}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_ac3cd72010e24ea71d6eeee9cb43b3cbc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_ac3cd72010e24ea71d6eeee9cb43b3cbc}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a858a34f8c7366b9f0583b1b6eb81f18b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a858a34f8c7366b9f0583b1b6eb81f18b}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_abc065261bb1090dea10246e1a7a2d9e6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Angular\+Offset@{Angular\+Offset}}
+\index{Angular\+Offset@{Angular\+Offset}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Angular\+Offset}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Angular\+Offset\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_abc065261bb1090dea10246e1a7a2d9e6}
+
+
+Get or set the angular offset. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a0183de97eccd0e558e2e068159341efc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Linear\+Offset@{Linear\+Offset}}
+\index{Linear\+Offset@{Linear\+Offset}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Linear\+Offset}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Linear\+Offset\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a0183de97eccd0e558e2e068159341efc}
+
+
+The linear (translation) offset. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a3c925e1cf88a8d1c0a4df75c7e46af07}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Max\+Force@{Max\+Force}}
+\index{Max\+Force@{Max\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Max\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Max\+Force\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a3c925e1cf88a8d1c0a4df75c7e46af07}
+
+
+The maximum amount of force that can be applied to Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_adbc6b74b1ac276d1e1838e74101b9ecb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!Max\+Torque@{Max\+Torque}}
+\index{Max\+Torque@{Max\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{Max\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+Max\+Torque\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_adbc6b74b1ac276d1e1838e74101b9ecb}
+
+
+The maximum amount of torque that can be applied to Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a87868c8580e42a737cb366c2d43e1810}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a87868c8580e42a737cb366c2d43e1810}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a2de0ddbd0e806836e61200eef86dc8eb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Motor\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a2de0ddbd0e806836e61200eef86dc8eb}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_motor_joint_8cs}{Motor\+Joint.\+cs}\end{DoxyCompactItemize}

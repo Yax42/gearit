@@ -1,0 +1,239 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint}}
+}
+
+
+A wheel joint. This joint provides two degrees of freedom\+: translation along an axis fixed in body\+A and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a28bc5fdbcb2a18696aca4d714402c937}{Wheel\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor, Vector2 axis, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}{Wheel\+Joint} \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a479bbcf7394644f6a8770a063bf0f0c2}{Get\+Motor\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Gets the torque of the motor \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_abe016ecc52738d2507053c6629ac2026}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_ab838e16faa39f71aa7178f52896678a2}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0fac7584a31acbfed90bdfb3ffb2f87a}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6f269effcc42c8839c43dba59ac90557}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6b404d403999f8a84f0afb2bd1da35b6}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a47212bee3d4a6f2bd79d80a1b6898fba}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aa262723cbde47316eb6ba8451ad141d4}{Axis}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The axis at which the suspension moves. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0b219be7ca20a841e87f69c66d5e3cc4}{Local\+X\+Axis}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The axis in local coordinates relative to Body\+A \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3253e1f5688e836cbac4aad027311122}{Motor\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The desired motor speed in radians per second. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a1cba869feb454f7d9a649bab8a7f510c}{Max\+Motor\+Torque}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The maximum motor torque, usually in N-\/m. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6ff4d519932477893f22e14f93a8a3e7}{Frequency}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Suspension frequency, zero indicates no suspension \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3a0f9dbb34ee64d4ea7b91d5d2c10b5c}{Damping\+Ratio}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Suspension damping ratio, one indicates critical damping \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aad96b5522262fc1d692987f4aa2ef748}{Joint\+Translation}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the translation along the axis \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aba2ae171523a4e7bc3995091255dcc10}{Joint\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the angular velocity of the joint \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3f178cdb193eebe5774759f24c2f2933}{Motor\+Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Enable/disable the joint motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A wheel joint. This joint provides two degrees of freedom\+: translation along an axis fixed in body\+A and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a28bc5fdbcb2a18696aca4d714402c937}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Wheel\+Joint@{Wheel\+Joint}}
+\index{Wheel\+Joint@{Wheel\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Wheel\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Wheel\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor, }
+\item[{Vector2}]{axis, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a28bc5fdbcb2a18696aca4d714402c937}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}{Wheel\+Joint} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+{\em anchor} & The anchor point\\
+\hline
+{\em axis} & The axis\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a479bbcf7394644f6a8770a063bf0f0c2}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Get\+Motor\+Torque@{Get\+Motor\+Torque}}
+\index{Get\+Motor\+Torque@{Get\+Motor\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Get\+Motor\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Get\+Motor\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a479bbcf7394644f6a8770a063bf0f0c2}
+
+
+Gets the torque of the motor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & inverse delta time\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_abe016ecc52738d2507053c6629ac2026}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_abe016ecc52738d2507053c6629ac2026}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_ab838e16faa39f71aa7178f52896678a2}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_ab838e16faa39f71aa7178f52896678a2}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aa262723cbde47316eb6ba8451ad141d4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Axis@{Axis}}
+\index{Axis@{Axis}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Axis}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Axis\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aa262723cbde47316eb6ba8451ad141d4}
+
+
+The axis at which the suspension moves. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3a0f9dbb34ee64d4ea7b91d5d2c10b5c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Damping\+Ratio@{Damping\+Ratio}}
+\index{Damping\+Ratio@{Damping\+Ratio}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Damping\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Damping\+Ratio\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3a0f9dbb34ee64d4ea7b91d5d2c10b5c}
+
+
+Suspension damping ratio, one indicates critical damping 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6ff4d519932477893f22e14f93a8a3e7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Frequency@{Frequency}}
+\index{Frequency@{Frequency}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Frequency}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Frequency\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6ff4d519932477893f22e14f93a8a3e7}
+
+
+Suspension frequency, zero indicates no suspension 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aba2ae171523a4e7bc3995091255dcc10}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Joint\+Speed@{Joint\+Speed}}
+\index{Joint\+Speed@{Joint\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Joint\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Joint\+Speed\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aba2ae171523a4e7bc3995091255dcc10}
+
+
+Gets the angular velocity of the joint 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aad96b5522262fc1d692987f4aa2ef748}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Joint\+Translation@{Joint\+Translation}}
+\index{Joint\+Translation@{Joint\+Translation}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Joint\+Translation}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Joint\+Translation\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_aad96b5522262fc1d692987f4aa2ef748}
+
+
+Gets the translation along the axis 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0fac7584a31acbfed90bdfb3ffb2f87a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0fac7584a31acbfed90bdfb3ffb2f87a}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6f269effcc42c8839c43dba59ac90557}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6f269effcc42c8839c43dba59ac90557}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0b219be7ca20a841e87f69c66d5e3cc4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Local\+X\+Axis@{Local\+X\+Axis}}
+\index{Local\+X\+Axis@{Local\+X\+Axis}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Local\+X\+Axis}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Local\+X\+Axis\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a0b219be7ca20a841e87f69c66d5e3cc4}
+
+
+The axis in local coordinates relative to Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a1cba869feb454f7d9a649bab8a7f510c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Max\+Motor\+Torque@{Max\+Motor\+Torque}}
+\index{Max\+Motor\+Torque@{Max\+Motor\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Max\+Motor\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Max\+Motor\+Torque\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a1cba869feb454f7d9a649bab8a7f510c}
+
+
+The maximum motor torque, usually in N-\/m. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3f178cdb193eebe5774759f24c2f2933}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Motor\+Enabled@{Motor\+Enabled}}
+\index{Motor\+Enabled@{Motor\+Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Motor\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Motor\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3f178cdb193eebe5774759f24c2f2933}
+
+
+Enable/disable the joint motor. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3253e1f5688e836cbac4aad027311122}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!Motor\+Speed@{Motor\+Speed}}
+\index{Motor\+Speed@{Motor\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{Motor\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+Motor\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a3253e1f5688e836cbac4aad027311122}
+
+
+The desired motor speed in radians per second. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6b404d403999f8a84f0afb2bd1da35b6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a6b404d403999f8a84f0afb2bd1da35b6}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a47212bee3d4a6f2bd79d80a1b6898fba}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Wheel\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_a47212bee3d4a6f2bd79d80a1b6898fba}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_wheel_joint_8cs}{Wheel\+Joint.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,1025 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body}{\section{Farseer\+Physics.\+Dynamics.\+Body Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_body}\index{Farseer\+Physics.\+Dynamics.\+Body@{Farseer\+Physics.\+Dynamics.\+Body}}
+}
+
+
+Inherits I\+Disposable.
+
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_chunk}{gearit.\+src.\+editor.\+map.\+Map\+Chunk}, and \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{gearit.\+src.\+robot.\+Piece}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af82f95f1db9636a2ecdfe6548e263c38}{Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world, Vector2?position=null, float rotation=0, object userdata=null)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af3f46e0c02f96a0bf3b170dadb425421}{Reset\+Dynamics} ()
+\begin{DoxyCompactList}\small\item\em Resets the dynamics of this body. Sets torque, force and linear/angular velocity to 0 \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{Create\+Fixture} (\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} shape, object user\+Data=null)
+\begin{DoxyCompactList}\small\item\em Creates a fixture and attach it to this body. If the density is non-\/zero, this function automatically updates the mass of the body. \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_contacts}{Contacts} are not created until the next time step. Warning\+: This function is locked during callbacks. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ad4964c5a47c1dc019be441521dc26a94}{Destroy\+Fixture} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture)
+\begin{DoxyCompactList}\small\item\em Destroy a fixture. This removes the fixture from the broad-\/phase and destroys all contacts associated with this fixture. This will automatically adjust the mass of the body if the body is dynamic and the fixture has positive density. All fixtures attached to a body are implicitly destroyed when the body is destroyed. Warning\+: This function is locked during callbacks. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a9f82d77545815e06d348e175d6961a99}{Set\+Transform} (ref Vector2 position, float rotation)
+\begin{DoxyCompactList}\small\item\em Set the position of the body's origin and rotation. This breaks any contacts and wakes the other bodies. Manipulating a body's transform may cause non-\/physical behavior. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a3cd2d427d5970dd692f00b422ead9717}{Set\+Transform} (Vector2 position, float rotation)
+\begin{DoxyCompactList}\small\item\em Set the position of the body's origin and rotation. This breaks any contacts and wakes the other bodies. Manipulating a body's transform may cause non-\/physical behavior. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af2338dc0af714946eb20e5debe78fa75}{Set\+Transform\+Ignore\+Contacts} (ref Vector2 position, float angle)
+\begin{DoxyCompactList}\small\item\em For teleporting a body without considering new contacts immediately. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a0dacc6ab845919e3c69b132c35bae05d}{Get\+Transform} (out \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform)
+\begin{DoxyCompactList}\small\item\em Get the body transform for the body's origin. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ab9a39313a0e36e4825f4b91213e61c7d}{Apply\+Force} (Vector2 force, Vector2 point)
+\begin{DoxyCompactList}\small\item\em Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a8fcc4341298fb142b1e39bcdbf2ec6a5}{Apply\+Force} (ref Vector2 force)
+\begin{DoxyCompactList}\small\item\em Applies a force at the center of mass. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_abf8e0a5749c21659059269a34289dffd}{Apply\+Force} (Vector2 force)
+\begin{DoxyCompactList}\small\item\em Applies a force at the center of mass. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a68f285bf947cb2a88671f4dc78e19993}{Apply\+Force} (ref Vector2 force, ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aefe7571d4badcb1120136ef6162d1aa7}{Apply\+Torque} (float torque)
+\begin{DoxyCompactList}\small\item\em Apply a torque. This affects the angular velocity without affecting the linear velocity of the center of mass. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a1619df958def618eaa84404a0c51f6fc}{Apply\+Linear\+Impulse} (Vector2 impulse)
+\begin{DoxyCompactList}\small\item\em Apply an impulse at a point. This immediately modifies the velocity. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ad4c3c4b3abeea87dc076bd5c77a5664e}{Apply\+Linear\+Impulse} (Vector2 impulse, Vector2 point)
+\begin{DoxyCompactList}\small\item\em Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ac876628bf3a5052a945f9051c5e04c7f}{Apply\+Linear\+Impulse} (ref Vector2 impulse)
+\begin{DoxyCompactList}\small\item\em Apply an impulse at a point. This immediately modifies the velocity. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a717217f1389379768f67beafbc86dd11}{Apply\+Linear\+Impulse} (ref Vector2 impulse, ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a411e2d14745f53b202219fdb03bb8dcb}{Apply\+Angular\+Impulse} (float impulse)
+\begin{DoxyCompactList}\small\item\em Apply an angular impulse. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa0f2f90fc6114001f028408bcb9012d3}{Reset\+Mass\+Data} ()
+\begin{DoxyCompactList}\small\item\em This resets the mass properties to the sum of the mass properties of the fixtures. This normally does not need to be called unless you called Set\+Mass\+Data to override the mass and you later want to reset the mass. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa78707878f7b06d5b58b471b33758e05}{Get\+World\+Point} (ref Vector2 local\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world coordinates of a point given the local coordinates. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a1a94cc35bd0abcaab9acf643cc621a3d}{Get\+World\+Point} (Vector2 local\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world coordinates of a point given the local coordinates. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a5539aa0b3f895c343e85c9603466375d}{Get\+World\+Vector} (ref Vector2 local\+Vector)
+\begin{DoxyCompactList}\small\item\em Get the world coordinates of a vector given the local coordinates. Note that the vector only takes the rotation into account, not the position. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a05445a4cba96410c0594dae0234214c4}{Get\+World\+Vector} (Vector2 local\+Vector)
+\begin{DoxyCompactList}\small\item\em Get the world coordinates of a vector given the local coordinates. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a95b1bdde1938e7656c156a8aa0de7b46}{Get\+Local\+Point} (ref Vector2 world\+Point)
+\begin{DoxyCompactList}\small\item\em Gets a local point relative to the body's origin given a world point. Note that the vector only takes the rotation into account, not the position. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a8584d0c8a7364369d66b4e3d4461f644}{Get\+Local\+Point} (Vector2 world\+Point)
+\begin{DoxyCompactList}\small\item\em Gets a local point relative to the body's origin given a world point. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_afd3a7f9e83d6f56da292d51c97119565}{Get\+Local\+Vector} (ref Vector2 world\+Vector)
+\begin{DoxyCompactList}\small\item\em Gets a local vector given a world vector. Note that the vector only takes the rotation into account, not the position. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a83683973b4430049b1aa37b52cd49246}{Get\+Local\+Vector} (Vector2 world\+Vector)
+\begin{DoxyCompactList}\small\item\em Gets a local vector given a world vector. Note that the vector only takes the rotation into account, not the position. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af378fc00f1e0cf6b88b19009b4040021}{Get\+Linear\+Velocity\+From\+World\+Point} (Vector2 world\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world linear velocity of a world point attached to this body. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a820aec7efc8bfcb3e7612e8829067007}{Get\+Linear\+Velocity\+From\+World\+Point} (ref Vector2 world\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world linear velocity of a world point attached to this body. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a390adf9391e4861245403613a9086958}{Get\+Linear\+Velocity\+From\+Local\+Point} (Vector2 local\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world velocity of a local point. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a71f5e27bcb7287c25480ebce4345a203}{Get\+Linear\+Velocity\+From\+Local\+Point} (ref Vector2 local\+Point)
+\begin{DoxyCompactList}\small\item\em Get the world velocity of a local point. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa9eff4489a8f0c127a973a940f1f9ac0}{Ignore\+Collision\+With} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} other)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a492cd4b6443acc3ef17d26ca9f3e13e8}{Restore\+Collision\+With} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} other)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aefa0274ac90eaa5731df4f53499ef418}{Dispose} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a20b0039f23574f6f1146d93f47a4b3a7}{Clone} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world=null)
+\begin{DoxyCompactList}\small\item\em Makes a clone of the body. Fixtures and therefore shapes are not included. Use \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a51d27c2c15f24d93020de38c25a11286}{Deep\+Clone()} to clone the body, as well as fixtures and shapes. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a51d27c2c15f24d93020de38c25a11286}{Deep\+Clone} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world=null)
+\begin{DoxyCompactList}\small\item\em Clones the body and all attached fixtures and shapes. Simply said, it makes a complete copy of the body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_common_1_1_physics_logic_1_1_physics_logic_filter}{Physics\+Logic\+Filter} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a9c8ca7305a43003e26afc43e1fa88e22}{Physics\+Logic\+Filter}
+\item 
+\hyperlink{struct_farseer_physics_1_1_controllers_1_1_controller_filter}{Controller\+Filter} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a38ed721c44280d3752f9fa44df47d9fb}{Controller\+Filter}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_acd7e9a50b5719b3e01ac23dd06477fcc}{Body\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A unique id for this body. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a056b7c7b72cb217cfcaa11560b712c2c}{Island\+Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aaf6bfac0accc22e0ed08d4a11d3917c6}{Gravity\+Scale}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Scale the gravity applied to this body. Defaults to 1. A value of 2 means double the gravity is applied to this body. \end{DoxyCompactList}\item 
+object \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a5180456df73f44075cd865b3dfedc9c8}{User\+Data}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the user data. Use this to store your application specific data. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a361a74c6501d8cf5b4a176bfed815cfe}{Revolutions}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the total number revolutions the body has made. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_ab48af7c74608f717f279410b48d77199}{Body\+Type} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a5cab6dcf07e3bfbc0a6546e031dca134}{Body\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the body type. Warning\+: Calling this mid-\/update might cause a crash. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ae0e95db409732f0aeac69a32495226b7}{Linear\+Velocity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or sets the linear velocity of the center of mass. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a140f114a8b8bc2fdffa415b6aa7b9427}{Angular\+Velocity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the angular velocity. Radians/second. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a32e1145d78bc3052db01ed242e35f300}{Linear\+Damping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the linear damping. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a1c0b5c20a655be9ffeccf19eea6def1c}{Angular\+Damping}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the angular damping. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a53ec3ed5fe9217ed48db503176d56bba}{Is\+Bullet}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this body should be included in the C\+C\+D solver. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a6c751c76463ec02d5af4223be31dde79}{Sleeping\+Allowed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em You can disable sleeping on this body. If you disable sleeping, the body will be woken. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a6641e547d28ab0560ecc8c37affc2b72}{Awake}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the sleep state of the body. A sleeping body has very low C\+P\+U cost. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a4e0a0f5f740db974471702e881371909}{Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the active state of the body. An inactive body is not simulated and cannot be collided with or woken up. If you pass a flag of true, all fixtures will be added to the broad-\/phase. If you pass a flag of false, all fixtures will be removed from the broad-\/phase and all contacts will be destroyed. Fixtures and joints are otherwise unaffected. You may continue to create/destroy fixtures and joints on inactive bodies. Fixtures on an inactive body are implicitly inactive and will not participate in collisions, ray-\/casts, or queries. \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints}{Joints} connected to an inactive body are implicitly inactive. An inactive body is still owned by a b2\+World object and remains in the body list. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ad4f25a8227521e9c48643baaa1744dd4}{Fixed\+Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set this body to have fixed rotation. This causes the mass to be reset. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_accbd764e3b9d421a0de41971adafe438}{Fixture\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets all the fixtures attached to this body. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_edge}{Joint\+Edge} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a21c76880b4afe8e795ab7d44e57c8d0c}{Joint\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the list of all joints attached to this body. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_edge}{Contact\+Edge} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_abf20705ae2317ab0ae2341160b64d2e5}{Contact\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the list of all contacts attached to this body. Warning\+: this list changes during the time step and you may miss some collisions if you don't use Contact\+Listener. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af2aab101c6f73716258de178ad8c2623}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the world body origin position. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a1d6da6608037dec385cae198b6c3f356}{Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the angle in radians. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa477c409660db90246adfdc07f4fede1}{Is\+Static}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this body is static. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a4488451c0dff0c328d772032ff776f31}{Is\+Kinematic}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this body is kinematic. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ad83498f3542a081b6dbaba625d4c8720}{Ignore\+Gravity}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this body ignores gravity. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a2f7cd7e7b79a7710cf9f7141ba2e8466}{World\+Center}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the world position of the center of mass. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a203f73f859e1a9fc0148fd55a839ec20}{Local\+Center}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the local position of the center of mass. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a1856ecffe4c463466a6ff9ca1803f664}{Mass}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the mass. Usually in kilograms (kg). \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_ae3d5f6e2aadcce6f3ee52f46e7a36a87}{Inertia}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the rotational inertia of the body about the local origin. usually in kg-\/m$^\wedge$2. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a756747715ac4eaa40ab91f2912faa773}{Restitution}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aaafb425a33fb4a2825570896d0f8a58e}{Friction}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa22daeba6218254a3234af0262fccc7b}{Collision\+Categories}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a5d044aee1c3411b4ed6375ca0c90fbfb}{Collides\+With}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aee9c3d9420664f0197aaeb4c49454098}{Ignore\+C\+C\+D\+With}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} objects can define which categories of bodies they wish to ignore C\+C\+D with. This allows certain bodies to be configured to ignore C\+C\+D with objects that aren't a penetration problem due to the way content has been prepared. This is compared against the other \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body}'s fixture Collision\+Categories within World.\+Solve\+T\+O\+I(). \end{DoxyCompactList}\item 
+short \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_aa2d1e2a82d22d1dfe0dabfad98b70966}{Collision\+Group}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a7677e7136c9ac2c2d1d65921881f192b}{Is\+Sensor}\hspace{0.3cm}{\ttfamily  \mbox{[}set\mbox{]}}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a990dae318ffb5c7f5b1750014e75f494}{Ignore\+C\+C\+D}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a7ec118e60eba61920ca0e4252b5b766d}{On\+Collision\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_abd008c3bb54e072a29e3c9e54b829266}{On\+Collision}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_ade34460148f9d799a829e85e0631fc69}{On\+Separation\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_acf11d7ed1240af9c9f4994645ea271d9}{On\+Separation}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a44eef473e47ff317a56975cdad5fc92e}{Is\+Disposed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af82f95f1db9636a2ecdfe6548e263c38}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Body@{Body}}
+\index{Body@{Body}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Body}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Body.\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world, }
+\item[{Vector2?}]{position = {\ttfamily null}, }
+\item[{float}]{rotation = {\ttfamily 0}, }
+\item[{object}]{userdata = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af82f95f1db9636a2ecdfe6548e263c38}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a411e2d14745f53b202219fdb03bb8dcb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Angular\+Impulse@{Apply\+Angular\+Impulse}}
+\index{Apply\+Angular\+Impulse@{Apply\+Angular\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Angular\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Angular\+Impulse (
+\begin{DoxyParamCaption}
+\item[{float}]{impulse}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a411e2d14745f53b202219fdb03bb8dcb}
+
+
+Apply an angular impulse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & The angular impulse in units of kg$\ast$m$\ast$m/s.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ab9a39313a0e36e4825f4b91213e61c7d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{force, }
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ab9a39313a0e36e4825f4b91213e61c7d}
+
+
+Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & The world force vector, usually in Newtons (N).\\
+\hline
+{\em point} & The world position of the point of application.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a8fcc4341298fb142b1e39bcdbf2ec6a5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{force}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a8fcc4341298fb142b1e39bcdbf2ec6a5}
+
+
+Applies a force at the center of mass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & The force.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_abf8e0a5749c21659059269a34289dffd}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{force}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_abf8e0a5749c21659059269a34289dffd}
+
+
+Applies a force at the center of mass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & The force.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a68f285bf947cb2a88671f4dc78e19993}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{force, }
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a68f285bf947cb2a88671f4dc78e19993}
+
+
+Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & The world force vector, usually in Newtons (N).\\
+\hline
+{\em point} & The world position of the point of application.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a1619df958def618eaa84404a0c51f6fc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}}
+\index{Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Linear\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Linear\+Impulse (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{impulse}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a1619df958def618eaa84404a0c51f6fc}
+
+
+Apply an impulse at a point. This immediately modifies the velocity. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & The world impulse vector, usually in N-\/seconds or kg-\/m/s.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ad4c3c4b3abeea87dc076bd5c77a5664e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}}
+\index{Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Linear\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Linear\+Impulse (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{impulse, }
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ad4c3c4b3abeea87dc076bd5c77a5664e}
+
+
+Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & The world impulse vector, usually in N-\/seconds or kg-\/m/s.\\
+\hline
+{\em point} & The world position of the point of application.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ac876628bf3a5052a945f9051c5e04c7f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}}
+\index{Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Linear\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Linear\+Impulse (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{impulse}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ac876628bf3a5052a945f9051c5e04c7f}
+
+
+Apply an impulse at a point. This immediately modifies the velocity. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & The world impulse vector, usually in N-\/seconds or kg-\/m/s.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a717217f1389379768f67beafbc86dd11}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}}
+\index{Apply\+Linear\+Impulse@{Apply\+Linear\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Linear\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Linear\+Impulse (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{impulse, }
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a717217f1389379768f67beafbc86dd11}
+
+
+Apply an impulse at a point. This immediately modifies the velocity. It also modifies the angular velocity if the point of application is not at the center of mass. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impulse} & The world impulse vector, usually in N-\/seconds or kg-\/m/s.\\
+\hline
+{\em point} & The world position of the point of application.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aefe7571d4badcb1120136ef6162d1aa7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Apply\+Torque@{Apply\+Torque}}
+\index{Apply\+Torque@{Apply\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Apply\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Apply\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{torque}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aefe7571d4badcb1120136ef6162d1aa7}
+
+
+Apply a torque. This affects the angular velocity without affecting the linear velocity of the center of mass. This wakes up the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em torque} & The torque about the z-\/axis (out of the screen), usually in N-\/m.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a20b0039f23574f6f1146d93f47a4b3a7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Clone@{Clone}}
+\index{Clone@{Clone}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Body.\+Clone (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a20b0039f23574f6f1146d93f47a4b3a7}
+
+
+Makes a clone of the body. Fixtures and therefore shapes are not included. Use \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_a51d27c2c15f24d93020de38c25a11286}{Deep\+Clone()} to clone the body, as well as fixtures and shapes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Create\+Fixture@{Create\+Fixture}}
+\index{Create\+Fixture@{Create\+Fixture}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Create\+Fixture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture} Farseer\+Physics.\+Dynamics.\+Body.\+Create\+Fixture (
+\begin{DoxyParamCaption}
+\item[{{\bf Shape}}]{shape, }
+\item[{object}]{user\+Data = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}
+
+
+Creates a fixture and attach it to this body. If the density is non-\/zero, this function automatically updates the mass of the body. \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_contacts}{Contacts} are not created until the next time step. Warning\+: This function is locked during callbacks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape} & The shape.\\
+\hline
+{\em user\+Data} & Application specific data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a51d27c2c15f24d93020de38c25a11286}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Deep\+Clone@{Deep\+Clone}}
+\index{Deep\+Clone@{Deep\+Clone}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Deep\+Clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Body.\+Deep\+Clone (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a51d27c2c15f24d93020de38c25a11286}
+
+
+Clones the body and all attached fixtures and shapes. Simply said, it makes a complete copy of the body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ad4964c5a47c1dc019be441521dc26a94}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Destroy\+Fixture@{Destroy\+Fixture}}
+\index{Destroy\+Fixture@{Destroy\+Fixture}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Destroy\+Fixture}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Destroy\+Fixture (
+\begin{DoxyParamCaption}
+\item[{{\bf Fixture}}]{fixture}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ad4964c5a47c1dc019be441521dc26a94}
+
+
+Destroy a fixture. This removes the fixture from the broad-\/phase and destroys all contacts associated with this fixture. This will automatically adjust the mass of the body if the body is dynamic and the fixture has positive density. All fixtures attached to a body are implicitly destroyed when the body is destroyed. Warning\+: This function is locked during callbacks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixture} & The fixture to be removed.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aefa0274ac90eaa5731df4f53499ef418}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aefa0274ac90eaa5731df4f53499ef418}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a390adf9391e4861245403613a9086958}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Linear\+Velocity\+From\+Local\+Point@{Get\+Linear\+Velocity\+From\+Local\+Point}}
+\index{Get\+Linear\+Velocity\+From\+Local\+Point@{Get\+Linear\+Velocity\+From\+Local\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Linear\+Velocity\+From\+Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Linear\+Velocity\+From\+Local\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{local\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a390adf9391e4861245403613a9086958}
+
+
+Get the world velocity of a local point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Point} & A point in local coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The world velocity of a point.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a71f5e27bcb7287c25480ebce4345a203}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Linear\+Velocity\+From\+Local\+Point@{Get\+Linear\+Velocity\+From\+Local\+Point}}
+\index{Get\+Linear\+Velocity\+From\+Local\+Point@{Get\+Linear\+Velocity\+From\+Local\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Linear\+Velocity\+From\+Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Linear\+Velocity\+From\+Local\+Point (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{local\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a71f5e27bcb7287c25480ebce4345a203}
+
+
+Get the world velocity of a local point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Point} & A point in local coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The world velocity of a point.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af378fc00f1e0cf6b88b19009b4040021}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Linear\+Velocity\+From\+World\+Point@{Get\+Linear\+Velocity\+From\+World\+Point}}
+\index{Get\+Linear\+Velocity\+From\+World\+Point@{Get\+Linear\+Velocity\+From\+World\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Linear\+Velocity\+From\+World\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Linear\+Velocity\+From\+World\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{world\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af378fc00f1e0cf6b88b19009b4040021}
+
+
+Get the world linear velocity of a world point attached to this body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The world velocity of a point.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a820aec7efc8bfcb3e7612e8829067007}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Linear\+Velocity\+From\+World\+Point@{Get\+Linear\+Velocity\+From\+World\+Point}}
+\index{Get\+Linear\+Velocity\+From\+World\+Point@{Get\+Linear\+Velocity\+From\+World\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Linear\+Velocity\+From\+World\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Linear\+Velocity\+From\+World\+Point (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{world\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a820aec7efc8bfcb3e7612e8829067007}
+
+
+Get the world linear velocity of a world point attached to this body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The world velocity of a point.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a95b1bdde1938e7656c156a8aa0de7b46}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Local\+Point@{Get\+Local\+Point}}
+\index{Get\+Local\+Point@{Get\+Local\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Local\+Point (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{world\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a95b1bdde1938e7656c156a8aa0de7b46}
+
+
+Gets a local point relative to the body's origin given a world point. Note that the vector only takes the rotation into account, not the position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding local point relative to the body's origin.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a8584d0c8a7364369d66b4e3d4461f644}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Local\+Point@{Get\+Local\+Point}}
+\index{Get\+Local\+Point@{Get\+Local\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Local\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{world\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a8584d0c8a7364369d66b4e3d4461f644}
+
+
+Gets a local point relative to the body's origin given a world point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding local point relative to the body's origin.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_afd3a7f9e83d6f56da292d51c97119565}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Local\+Vector@{Get\+Local\+Vector}}
+\index{Get\+Local\+Vector@{Get\+Local\+Vector}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Local\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Local\+Vector (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{world\+Vector}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_afd3a7f9e83d6f56da292d51c97119565}
+
+
+Gets a local vector given a world vector. Note that the vector only takes the rotation into account, not the position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Vector} & A vector in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding local vector.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a83683973b4430049b1aa37b52cd49246}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Local\+Vector@{Get\+Local\+Vector}}
+\index{Get\+Local\+Vector@{Get\+Local\+Vector}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Local\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Local\+Vector (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{world\+Vector}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a83683973b4430049b1aa37b52cd49246}
+
+
+Gets a local vector given a world vector. Note that the vector only takes the rotation into account, not the position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em world\+Vector} & A vector in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding local vector.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a0dacc6ab845919e3c69b132c35bae05d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Get\+Transform (
+\begin{DoxyParamCaption}
+\item[{out {\bf Transform}}]{transform}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a0dacc6ab845919e3c69b132c35bae05d}
+
+
+Get the body transform for the body's origin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transform of the body's origin.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa78707878f7b06d5b58b471b33758e05}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+World\+Point@{Get\+World\+Point}}
+\index{Get\+World\+Point@{Get\+World\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+World\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+World\+Point (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{local\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa78707878f7b06d5b58b471b33758e05}
+
+
+Get the world coordinates of a point given the local coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Point} & A point on the body measured relative the the body's origin.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The same point expressed in world coordinates.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a1a94cc35bd0abcaab9acf643cc621a3d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+World\+Point@{Get\+World\+Point}}
+\index{Get\+World\+Point@{Get\+World\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+World\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+World\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{local\+Point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a1a94cc35bd0abcaab9acf643cc621a3d}
+
+
+Get the world coordinates of a point given the local coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Point} & A point on the body measured relative the the body's origin.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The same point expressed in world coordinates.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a5539aa0b3f895c343e85c9603466375d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+World\+Vector@{Get\+World\+Vector}}
+\index{Get\+World\+Vector@{Get\+World\+Vector}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+World\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+World\+Vector (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{local\+Vector}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a5539aa0b3f895c343e85c9603466375d}
+
+
+Get the world coordinates of a vector given the local coordinates. Note that the vector only takes the rotation into account, not the position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Vector} & A vector fixed in the body.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The same vector expressed in world coordinates.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a05445a4cba96410c0594dae0234214c4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Get\+World\+Vector@{Get\+World\+Vector}}
+\index{Get\+World\+Vector@{Get\+World\+Vector}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Get\+World\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Get\+World\+Vector (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{local\+Vector}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a05445a4cba96410c0594dae0234214c4}
+
+
+Get the world coordinates of a vector given the local coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Vector} & A vector fixed in the body.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The same vector expressed in world coordinates.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa9eff4489a8f0c127a973a940f1f9ac0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Ignore\+Collision\+With@{Ignore\+Collision\+With}}
+\index{Ignore\+Collision\+With@{Ignore\+Collision\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Ignore\+Collision\+With}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Ignore\+Collision\+With (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa9eff4489a8f0c127a973a940f1f9ac0}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af3f46e0c02f96a0bf3b170dadb425421}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Reset\+Dynamics@{Reset\+Dynamics}}
+\index{Reset\+Dynamics@{Reset\+Dynamics}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Reset\+Dynamics}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Reset\+Dynamics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af3f46e0c02f96a0bf3b170dadb425421}
+
+
+Resets the dynamics of this body. Sets torque, force and linear/angular velocity to 0 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa0f2f90fc6114001f028408bcb9012d3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Reset\+Mass\+Data@{Reset\+Mass\+Data}}
+\index{Reset\+Mass\+Data@{Reset\+Mass\+Data}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Reset\+Mass\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Reset\+Mass\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa0f2f90fc6114001f028408bcb9012d3}
+
+
+This resets the mass properties to the sum of the mass properties of the fixtures. This normally does not need to be called unless you called Set\+Mass\+Data to override the mass and you later want to reset the mass. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a492cd4b6443acc3ef17d26ca9f3e13e8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Restore\+Collision\+With@{Restore\+Collision\+With}}
+\index{Restore\+Collision\+With@{Restore\+Collision\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Restore\+Collision\+With}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Restore\+Collision\+With (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a492cd4b6443acc3ef17d26ca9f3e13e8}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a9f82d77545815e06d348e175d6961a99}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Set\+Transform@{Set\+Transform}}
+\index{Set\+Transform@{Set\+Transform}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Set\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Set\+Transform (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{position, }
+\item[{float}]{rotation}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a9f82d77545815e06d348e175d6961a99}
+
+
+Set the position of the body's origin and rotation. This breaks any contacts and wakes the other bodies. Manipulating a body's transform may cause non-\/physical behavior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The world position of the body's local origin.\\
+\hline
+{\em rotation} & The world rotation in radians.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a3cd2d427d5970dd692f00b422ead9717}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Set\+Transform@{Set\+Transform}}
+\index{Set\+Transform@{Set\+Transform}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Set\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Set\+Transform (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{position, }
+\item[{float}]{rotation}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a3cd2d427d5970dd692f00b422ead9717}
+
+
+Set the position of the body's origin and rotation. This breaks any contacts and wakes the other bodies. Manipulating a body's transform may cause non-\/physical behavior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The world position of the body's local origin.\\
+\hline
+{\em rotation} & The world rotation in radians.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af2338dc0af714946eb20e5debe78fa75}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Set\+Transform\+Ignore\+Contacts@{Set\+Transform\+Ignore\+Contacts}}
+\index{Set\+Transform\+Ignore\+Contacts@{Set\+Transform\+Ignore\+Contacts}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Set\+Transform\+Ignore\+Contacts}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Body.\+Set\+Transform\+Ignore\+Contacts (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{position, }
+\item[{float}]{angle}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af2338dc0af714946eb20e5debe78fa75}
+
+
+For teleporting a body without considering new contacts immediately. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position.\\
+\hline
+{\em angle} & The angle.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a38ed721c44280d3752f9fa44df47d9fb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Controller\+Filter@{Controller\+Filter}}
+\index{Controller\+Filter@{Controller\+Filter}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Controller\+Filter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Controller\+Filter} Farseer\+Physics.\+Dynamics.\+Body.\+Controller\+Filter}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a38ed721c44280d3752f9fa44df47d9fb}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a9c8ca7305a43003e26afc43e1fa88e22}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Physics\+Logic\+Filter@{Physics\+Logic\+Filter}}
+\index{Physics\+Logic\+Filter@{Physics\+Logic\+Filter}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Physics\+Logic\+Filter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Physics\+Logic\+Filter} Farseer\+Physics.\+Dynamics.\+Body.\+Physics\+Logic\+Filter}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a9c8ca7305a43003e26afc43e1fa88e22}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a1c0b5c20a655be9ffeccf19eea6def1c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Angular\+Damping@{Angular\+Damping}}
+\index{Angular\+Damping@{Angular\+Damping}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Angular\+Damping}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Angular\+Damping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a1c0b5c20a655be9ffeccf19eea6def1c}
+
+
+Gets or sets the angular damping. 
+
+The angular damping.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a140f114a8b8bc2fdffa415b6aa7b9427}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Angular\+Velocity@{Angular\+Velocity}}
+\index{Angular\+Velocity@{Angular\+Velocity}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Angular\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Angular\+Velocity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a140f114a8b8bc2fdffa415b6aa7b9427}
+
+
+Gets or sets the angular velocity. Radians/second. 
+
+The angular velocity.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a6641e547d28ab0560ecc8c37affc2b72}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Awake@{Awake}}
+\index{Awake@{Awake}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Awake}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Awake\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a6641e547d28ab0560ecc8c37affc2b72}
+
+
+Set the sleep state of the body. A sleeping body has very low C\+P\+U cost. 
+
+{\ttfamily true} if awake; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_acd7e9a50b5719b3e01ac23dd06477fcc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Body\+Id@{Body\+Id}}
+\index{Body\+Id@{Body\+Id}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Body\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Body.\+Body\+Id\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_acd7e9a50b5719b3e01ac23dd06477fcc}
+
+
+A unique id for this body. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a5cab6dcf07e3bfbc0a6546e031dca134}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Body\+Type@{Body\+Type}}
+\index{Body\+Type@{Body\+Type}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Body\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body\+Type} Farseer\+Physics.\+Dynamics.\+Body.\+Body\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a5cab6dcf07e3bfbc0a6546e031dca134}
+
+
+Gets or sets the body type. Warning\+: Calling this mid-\/update might cause a crash. 
+
+The type of body.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a5d044aee1c3411b4ed6375ca0c90fbfb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Collides\+With@{Collides\+With}}
+\index{Collides\+With@{Collides\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Collides\+With}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Body.\+Collides\+With\hspace{0.3cm}{\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a5d044aee1c3411b4ed6375ca0c90fbfb}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa22daeba6218254a3234af0262fccc7b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Collision\+Categories@{Collision\+Categories}}
+\index{Collision\+Categories@{Collision\+Categories}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Collision\+Categories}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Body.\+Collision\+Categories\hspace{0.3cm}{\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa22daeba6218254a3234af0262fccc7b}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa2d1e2a82d22d1dfe0dabfad98b70966}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Collision\+Group@{Collision\+Group}}
+\index{Collision\+Group@{Collision\+Group}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Collision\+Group}]{\setlength{\rightskip}{0pt plus 5cm}short Farseer\+Physics.\+Dynamics.\+Body.\+Collision\+Group\hspace{0.3cm}{\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa2d1e2a82d22d1dfe0dabfad98b70966}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_abf20705ae2317ab0ae2341160b64d2e5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Contact\+List@{Contact\+List}}
+\index{Contact\+List@{Contact\+List}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Contact\+List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact\+Edge} Farseer\+Physics.\+Dynamics.\+Body.\+Contact\+List\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_abf20705ae2317ab0ae2341160b64d2e5}
+
+
+Get the list of all contacts attached to this body. Warning\+: this list changes during the time step and you may miss some collisions if you don't use Contact\+Listener. 
+
+The contact list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a4e0a0f5f740db974471702e881371909}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a4e0a0f5f740db974471702e881371909}
+
+
+Set the active state of the body. An inactive body is not simulated and cannot be collided with or woken up. If you pass a flag of true, all fixtures will be added to the broad-\/phase. If you pass a flag of false, all fixtures will be removed from the broad-\/phase and all contacts will be destroyed. Fixtures and joints are otherwise unaffected. You may continue to create/destroy fixtures and joints on inactive bodies. Fixtures on an inactive body are implicitly inactive and will not participate in collisions, ray-\/casts, or queries. \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints}{Joints} connected to an inactive body are implicitly inactive. An inactive body is still owned by a b2\+World object and remains in the body list. 
+
+{\ttfamily true} if active; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ad4f25a8227521e9c48643baaa1744dd4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Fixed\+Rotation@{Fixed\+Rotation}}
+\index{Fixed\+Rotation@{Fixed\+Rotation}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Fixed\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Fixed\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ad4f25a8227521e9c48643baaa1744dd4}
+
+
+Set this body to have fixed rotation. This causes the mass to be reset. 
+
+{\ttfamily true} if it has fixed rotation; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_accbd764e3b9d421a0de41971adafe438}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Fixture\+List@{Fixture\+List}}
+\index{Fixture\+List@{Fixture\+List}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Fixture\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Fixture}$>$ Farseer\+Physics.\+Dynamics.\+Body.\+Fixture\+List\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_accbd764e3b9d421a0de41971adafe438}
+
+
+Gets all the fixtures attached to this body. 
+
+The fixture list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aaafb425a33fb4a2825570896d0f8a58e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Friction@{Friction}}
+\index{Friction@{Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Friction}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Friction\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aaafb425a33fb4a2825570896d0f8a58e}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aaf6bfac0accc22e0ed08d4a11d3917c6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Gravity\+Scale@{Gravity\+Scale}}
+\index{Gravity\+Scale@{Gravity\+Scale}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Gravity\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Gravity\+Scale\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aaf6bfac0accc22e0ed08d4a11d3917c6}
+
+
+Scale the gravity applied to this body. Defaults to 1. A value of 2 means double the gravity is applied to this body. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a990dae318ffb5c7f5b1750014e75f494}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Ignore\+C\+C\+D@{Ignore\+C\+C\+D}}
+\index{Ignore\+C\+C\+D@{Ignore\+C\+C\+D}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Ignore\+C\+C\+D}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Ignore\+C\+C\+D\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a990dae318ffb5c7f5b1750014e75f494}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aee9c3d9420664f0197aaeb4c49454098}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Ignore\+C\+C\+D\+With@{Ignore\+C\+C\+D\+With}}
+\index{Ignore\+C\+C\+D\+With@{Ignore\+C\+C\+D\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Ignore\+C\+C\+D\+With}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Body.\+Ignore\+C\+C\+D\+With\hspace{0.3cm}{\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aee9c3d9420664f0197aaeb4c49454098}
+
+
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} objects can define which categories of bodies they wish to ignore C\+C\+D with. This allows certain bodies to be configured to ignore C\+C\+D with objects that aren't a penetration problem due to the way content has been prepared. This is compared against the other \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body}'s fixture Collision\+Categories within World.\+Solve\+T\+O\+I(). 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ad83498f3542a081b6dbaba625d4c8720}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Ignore\+Gravity@{Ignore\+Gravity}}
+\index{Ignore\+Gravity@{Ignore\+Gravity}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Ignore\+Gravity}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Ignore\+Gravity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ad83498f3542a081b6dbaba625d4c8720}
+
+
+Gets or sets a value indicating whether this body ignores gravity. 
+
+{\ttfamily true} if it ignores gravity; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ae3d5f6e2aadcce6f3ee52f46e7a36a87}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Inertia@{Inertia}}
+\index{Inertia@{Inertia}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Inertia}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Inertia\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ae3d5f6e2aadcce6f3ee52f46e7a36a87}
+
+
+Get or set the rotational inertia of the body about the local origin. usually in kg-\/m$^\wedge$2. 
+
+The inertia.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a53ec3ed5fe9217ed48db503176d56bba}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Is\+Bullet@{Is\+Bullet}}
+\index{Is\+Bullet@{Is\+Bullet}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Is\+Bullet}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Is\+Bullet\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a53ec3ed5fe9217ed48db503176d56bba}
+
+
+Gets or sets a value indicating whether this body should be included in the C\+C\+D solver. 
+
+{\ttfamily true} if this instance is included in C\+C\+D; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a44eef473e47ff317a56975cdad5fc92e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Is\+Disposed@{Is\+Disposed}}
+\index{Is\+Disposed@{Is\+Disposed}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Is\+Disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Is\+Disposed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a44eef473e47ff317a56975cdad5fc92e}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a4488451c0dff0c328d772032ff776f31}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Is\+Kinematic@{Is\+Kinematic}}
+\index{Is\+Kinematic@{Is\+Kinematic}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Is\+Kinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Is\+Kinematic\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a4488451c0dff0c328d772032ff776f31}
+
+
+Gets or sets a value indicating whether this body is kinematic. 
+
+{\ttfamily true} if this instance is kinematic; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a056b7c7b72cb217cfcaa11560b712c2c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Island\+Index@{Island\+Index}}
+\index{Island\+Index@{Island\+Index}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Island\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Body.\+Island\+Index\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a056b7c7b72cb217cfcaa11560b712c2c}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a7677e7136c9ac2c2d1d65921881f192b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Is\+Sensor@{Is\+Sensor}}
+\index{Is\+Sensor@{Is\+Sensor}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Is\+Sensor}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Is\+Sensor\hspace{0.3cm}{\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a7677e7136c9ac2c2d1d65921881f192b}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_aa477c409660db90246adfdc07f4fede1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Is\+Static@{Is\+Static}}
+\index{Is\+Static@{Is\+Static}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Is\+Static}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Is\+Static\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_aa477c409660db90246adfdc07f4fede1}
+
+
+Gets or sets a value indicating whether this body is static. 
+
+{\ttfamily true} if this instance is static; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a21c76880b4afe8e795ab7d44e57c8d0c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Joint\+List@{Joint\+List}}
+\index{Joint\+List@{Joint\+List}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Joint\+List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint\+Edge} Farseer\+Physics.\+Dynamics.\+Body.\+Joint\+List\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a21c76880b4afe8e795ab7d44e57c8d0c}
+
+
+Get the list of all joints attached to this body. 
+
+The joint list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a32e1145d78bc3052db01ed242e35f300}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Linear\+Damping@{Linear\+Damping}}
+\index{Linear\+Damping@{Linear\+Damping}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Linear\+Damping}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Linear\+Damping\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a32e1145d78bc3052db01ed242e35f300}
+
+
+Gets or sets the linear damping. 
+
+The linear damping.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_ae0e95db409732f0aeac69a32495226b7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Linear\+Velocity@{Linear\+Velocity}}
+\index{Linear\+Velocity@{Linear\+Velocity}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Linear\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Linear\+Velocity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_ae0e95db409732f0aeac69a32495226b7}
+
+
+Get or sets the linear velocity of the center of mass. 
+
+The linear velocity.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a203f73f859e1a9fc0148fd55a839ec20}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Local\+Center@{Local\+Center}}
+\index{Local\+Center@{Local\+Center}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Local\+Center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Local\+Center\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a203f73f859e1a9fc0148fd55a839ec20}
+
+
+Get the local position of the center of mass. 
+
+The local position.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a1856ecffe4c463466a6ff9ca1803f664}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Mass@{Mass}}
+\index{Mass@{Mass}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Mass}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Mass\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a1856ecffe4c463466a6ff9ca1803f664}
+
+
+Gets or sets the mass. Usually in kilograms (kg). 
+
+The mass.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_abd008c3bb54e072a29e3c9e54b829266}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!On\+Collision@{On\+Collision}}
+\index{On\+Collision@{On\+Collision}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{On\+Collision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf On\+Collision\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Body.\+On\+Collision\hspace{0.3cm}{\ttfamily [add]}, {\ttfamily [remove]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_abd008c3bb54e072a29e3c9e54b829266}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_acf11d7ed1240af9c9f4994645ea271d9}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!On\+Separation@{On\+Separation}}
+\index{On\+Separation@{On\+Separation}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{On\+Separation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf On\+Separation\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Body.\+On\+Separation\hspace{0.3cm}{\ttfamily [add]}, {\ttfamily [remove]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_acf11d7ed1240af9c9f4994645ea271d9}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_af2aab101c6f73716258de178ad8c2623}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Position@{Position}}
+\index{Position@{Position}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_af2aab101c6f73716258de178ad8c2623}
+
+
+Get the world body origin position. 
+
+\begin{DoxyReturn}{Returns}
+Return the world position of the body's origin.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a756747715ac4eaa40ab91f2912faa773}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Restitution@{Restitution}}
+\index{Restitution@{Restitution}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Restitution}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Restitution\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a756747715ac4eaa40ab91f2912faa773}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a361a74c6501d8cf5b4a176bfed815cfe}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Revolutions@{Revolutions}}
+\index{Revolutions@{Revolutions}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Revolutions}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Revolutions\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a361a74c6501d8cf5b4a176bfed815cfe}
+
+
+Gets the total number revolutions the body has made. 
+
+The revolutions.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a1d6da6608037dec385cae198b6c3f356}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Rotation@{Rotation}}
+\index{Rotation@{Rotation}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Rotation}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Body.\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a1d6da6608037dec385cae198b6c3f356}
+
+
+Get the angle in radians. 
+
+\begin{DoxyReturn}{Returns}
+Return the current world rotation angle in radians.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a6c751c76463ec02d5af4223be31dde79}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!Sleeping\+Allowed@{Sleeping\+Allowed}}
+\index{Sleeping\+Allowed@{Sleeping\+Allowed}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{Sleeping\+Allowed}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Body.\+Sleeping\+Allowed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a6c751c76463ec02d5af4223be31dde79}
+
+
+You can disable sleeping on this body. If you disable sleeping, the body will be woken. 
+
+{\ttfamily true} if sleeping is allowed; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a5180456df73f44075cd865b3dfedc9c8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!User\+Data@{User\+Data}}
+\index{User\+Data@{User\+Data}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{User\+Data}]{\setlength{\rightskip}{0pt plus 5cm}object Farseer\+Physics.\+Dynamics.\+Body.\+User\+Data\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a5180456df73f44075cd865b3dfedc9c8}
+
+
+Set the user data. Use this to store your application specific data. 
+
+The user data.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_body_a2f7cd7e7b79a7710cf9f7141ba2e8466}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}!World\+Center@{World\+Center}}
+\index{World\+Center@{World\+Center}!Farseer\+Physics\+::\+Dynamics\+::\+Body@{Farseer\+Physics\+::\+Dynamics\+::\+Body}}
+\subsubsection[{World\+Center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Body.\+World\+Center\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_body_a2f7cd7e7b79a7710cf9f7141ba2e8466}
+
+
+Get the world position of the center of mass. 
+
+The world position.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\hyperlink{_body_8cs}{Body.\+cs}\end{DoxyCompactItemize}

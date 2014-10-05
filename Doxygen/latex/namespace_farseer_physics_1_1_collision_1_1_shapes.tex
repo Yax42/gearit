@@ -1,0 +1,54 @@
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes}{\section{Package Farseer\+Physics.\+Collision.\+Shapes}
+\label{namespace_farseer_physics_1_1_collision_1_1_shapes}\index{Farseer\+Physics.\+Collision.\+Shapes@{Farseer\+Physics.\+Collision.\+Shapes}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_chain_shape}{Chain\+Shape}
+\begin{DoxyCompactList}\small\item\em A chain shape is a free form sequence of line segments. The chain has two-\/sided collision, so you can use inside and outside collision. Therefore, you may use any winding order. Connectivity information is used to create smooth collisions. W\+A\+R\+N\+I\+N\+G\+: The chain will not collide properly if there are self-\/intersections. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_circle_shape}{Circle\+Shape}
+\begin{DoxyCompactList}\small\item\em A circle shape. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_edge_shape}{Edge\+Shape}
+\begin{DoxyCompactList}\small\item\em A line segment (edge) shape. These can be connected in chains or loops to other edge shapes. The connectivity information is used to ensure correct contact normals. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_shapes_1_1_mass_data}{Mass\+Data}
+\begin{DoxyCompactList}\small\item\em This holds the mass data computed for a shape. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape}
+\begin{DoxyCompactList}\small\item\em Represents a simple non-\/selfintersecting convex polygon. Create a convex hull from the given array of points. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape}
+\begin{DoxyCompactList}\small\item\em A shape is used for collision detection. You can create a shape however you like. \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes} used for simulation in World are created automatically when a Fixture is created. \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes} may encapsulate a one or more child shapes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5e}{Shape\+Type} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea88183b946cc5f0e8c96b2e66e1c74a7e}{Shape\+Type.\+Unknown} = -\/1, 
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea30954d90085f6eaaf5817917fc5fecb3}{Shape\+Type.\+Circle} = 0, 
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5eae4a297a0f76119a442c2595ac040673e}{Shape\+Type.\+Edge} = 1, 
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea4c0a11247d92f73fb84baa51e37a3263}{Shape\+Type.\+Polygon} = 2, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea5320550175ad6f79ad658943b9c013a7}{Shape\+Type.\+Chain} = 3, 
+\hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea834c072a52bcf98866ed2eadaaa861a1}{Shape\+Type.\+Type\+Count} = 4
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5e}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Shape\+Type@{Shape\+Type}}
+\index{Shape\+Type@{Shape\+Type}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}
+\subsubsection[{Shape\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+Shapes.\+Shape\+Type}}}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5e}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Unknown@{Unknown}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Unknown@{Unknown}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea88183b946cc5f0e8c96b2e66e1c74a7e}
+}]\index{Circle@{Circle}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Circle@{Circle}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea30954d90085f6eaaf5817917fc5fecb3}{Circle}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea30954d90085f6eaaf5817917fc5fecb3}
+}]\index{Edge@{Edge}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Edge@{Edge}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5eae4a297a0f76119a442c2595ac040673e}{Edge}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5eae4a297a0f76119a442c2595ac040673e}
+}]\index{Polygon@{Polygon}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Polygon@{Polygon}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea4c0a11247d92f73fb84baa51e37a3263}{Polygon}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea4c0a11247d92f73fb84baa51e37a3263}
+}]\index{Chain@{Chain}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Chain@{Chain}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea5320550175ad6f79ad658943b9c013a7}{Chain}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea5320550175ad6f79ad658943b9c013a7}
+}]\index{Type\+Count@{Type\+Count}!Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}}\index{Farseer\+Physics\+::\+Collision\+::\+Shapes@{Farseer\+Physics\+::\+Collision\+::\+Shapes}!Type\+Count@{Type\+Count}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea834c072a52bcf98866ed2eadaaa861a1}{Type\+Count}\label{namespace_farseer_physics_1_1_collision_1_1_shapes_a54e12281f639907006495f4af9f45d5ea834c072a52bcf98866ed2eadaaa861a1}
+}]\end{description}
+\end{Desc}

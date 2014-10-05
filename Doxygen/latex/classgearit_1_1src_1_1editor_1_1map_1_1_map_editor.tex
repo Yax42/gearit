@@ -1,0 +1,198 @@
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor}{\section{gearit.\+src.\+editor.\+map.\+Map\+Editor Class Reference}
+\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor}\index{gearit.\+src.\+editor.\+map.\+Map\+Editor@{gearit.\+src.\+editor.\+map.\+Map\+Editor}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}, and \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ad730df21e0400bc62ea24b6958afb5b3}{Is\+Select\+Dummy} ()
+\item 
+string \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4d8ba51b7115bc297bf1c81f569612de}{Get\+Title} ()
+\item 
+string \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a89b851294b835383b72f871638ec950f}{Get\+Details} ()
+\item 
+\hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_adc49ab5928309959da461503883150ab}{Map\+Editor} ()
+\item 
+override void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a93ad16e2d78f73d7ad7d783f23481430}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ab14c09fac3adbf63f3e1c953805bca7c}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a43f50684a0d799b791a8b0ce066f35ab}{do\+Action} (\hyperlink{namespacegearit_1_1src_1_1editor_1_1map_1_1action_af036712a7d960b13d1e31954e65c00e3}{Action\+Types} action)
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a549faea057ff27783ca9612f01ae5bf0}{undo} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a58728c25b70e6e6dedf1df02ec1f7812}{redo} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a677d34e36d6a13203101514baeb7fb40}{reset\+Name\+Path} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac59d1e3d1f3711fab5c68362240dce19}{reset\+Map} (\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} map)
+\item 
+override void \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac02670b337e9893d7ee9401f40eca86d}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor}{Map\+Editor} \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a0f4982ba18a475f77638276aec9dcd44}{Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_chunk}{Map\+Chunk} \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a9b470c9742dff0859bf17de6ad4476b4}{Select\+Chunk}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_trigger}{Trigger} \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a1df353b14da747b5faa6fc5e9aaf71e9}{Select\+Trigger}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a3412ce3f8ad8152b102a399a9fe8fd44}{Map}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ada2c04f5469b9873b634e11ab602eadb}{World}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+string \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4fdc7890db446a2709f459e55e4bb369}{Name\+Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_adc49ab5928309959da461503883150ab}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Map\+Editor@{Map\+Editor}}
+\index{Map\+Editor@{Map\+Editor}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Map\+Editor}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Map\+Editor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_adc49ab5928309959da461503883150ab}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a43f50684a0d799b791a8b0ce066f35ab}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!do\+Action@{do\+Action}}
+\index{do\+Action@{do\+Action}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{do\+Action}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+do\+Action (
+\begin{DoxyParamCaption}
+\item[{{\bf Action\+Types}}]{action}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a43f50684a0d799b791a8b0ce066f35ab}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac02670b337e9893d7ee9401f40eca86d}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac02670b337e9893d7ee9401f40eca86d}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a89b851294b835383b72f871638ec950f}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Get\+Details@{Get\+Details}}
+\index{Get\+Details@{Get\+Details}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Get\+Details}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Get\+Details (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a89b851294b835383b72f871638ec950f}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_ab5a70d6cb4d68bd5f0be6865cca566fb}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4d8ba51b7115bc297bf1c81f569612de}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Get\+Title@{Get\+Title}}
+\index{Get\+Title@{Get\+Title}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Get\+Title}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Get\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4d8ba51b7115bc297bf1c81f569612de}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_a4e3bc273ec13c0a0d673b3c5c8aef788}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ad730df21e0400bc62ea24b6958afb5b3}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Is\+Select\+Dummy@{Is\+Select\+Dummy}}
+\index{Is\+Select\+Dummy@{Is\+Select\+Dummy}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Is\+Select\+Dummy}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Is\+Select\+Dummy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ad730df21e0400bc62ea24b6958afb5b3}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a93ad16e2d78f73d7ad7d783f23481430}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a93ad16e2d78f73d7ad7d783f23481430}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a58728c25b70e6e6dedf1df02ec1f7812}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!redo@{redo}}
+\index{redo@{redo}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{redo}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+redo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a58728c25b70e6e6dedf1df02ec1f7812}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac59d1e3d1f3711fab5c68362240dce19}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!reset\+Map@{reset\+Map}}
+\index{reset\+Map@{reset\+Map}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{reset\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+reset\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Map}}]{map}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac59d1e3d1f3711fab5c68362240dce19}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a677d34e36d6a13203101514baeb7fb40}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!reset\+Name\+Path@{reset\+Name\+Path}}
+\index{reset\+Name\+Path@{reset\+Name\+Path}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{reset\+Name\+Path}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+reset\+Name\+Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a677d34e36d6a13203101514baeb7fb40}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a549faea057ff27783ca9612f01ae5bf0}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!undo@{undo}}
+\index{undo@{undo}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{undo}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+undo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a549faea057ff27783ca9612f01ae5bf0}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ab14c09fac3adbf63f3e1c953805bca7c}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Update@{Update}}
+\index{Update@{Update}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ab14c09fac3adbf63f3e1c953805bca7c}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a0f4982ba18a475f77638276aec9dcd44}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Instance@{Instance}}
+\index{Instance@{Instance}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map\+Editor} gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a0f4982ba18a475f77638276aec9dcd44}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a3412ce3f8ad8152b102a399a9fe8fd44}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Map@{Map}}
+\index{Map@{Map}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map} gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Map\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a3412ce3f8ad8152b102a399a9fe8fd44}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4fdc7890db446a2709f459e55e4bb369}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Name\+Path@{Name\+Path}}
+\index{Name\+Path@{Name\+Path}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Name\+Path}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Name\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a4fdc7890db446a2709f459e55e4bb369}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a9b470c9742dff0859bf17de6ad4476b4}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Select\+Chunk@{Select\+Chunk}}
+\index{Select\+Chunk@{Select\+Chunk}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Select\+Chunk}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map\+Chunk} gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Select\+Chunk\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a9b470c9742dff0859bf17de6ad4476b4}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a1df353b14da747b5faa6fc5e9aaf71e9}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!Select\+Trigger@{Select\+Trigger}}
+\index{Select\+Trigger@{Select\+Trigger}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{Select\+Trigger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Trigger} gearit.\+src.\+editor.\+map.\+Map\+Editor.\+Select\+Trigger\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a1df353b14da747b5faa6fc5e9aaf71e9}
+\hypertarget{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ada2c04f5469b9873b634e11ab602eadb}{\index{gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}!World@{World}}
+\index{World@{World}!gearit\+::src\+::editor\+::map\+::\+Map\+Editor@{gearit\+::src\+::editor\+::map\+::\+Map\+Editor}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+editor.\+map.\+Map\+Editor.\+World\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ada2c04f5469b9873b634e11ab602eadb}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+Editor/map/\hyperlink{_map_editor_8cs}{Map\+Editor.\+cs}\end{DoxyCompactItemize}

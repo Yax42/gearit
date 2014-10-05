@@ -1,0 +1,117 @@
+\hypertarget{classgearit_1_1xna_1_1_logo_screen}{\section{gearit.\+xna.\+Logo\+Screen Class Reference}
+\label{classgearit_1_1xna_1_1_logo_screen}\index{gearit.\+xna.\+Logo\+Screen@{gearit.\+xna.\+Logo\+Screen}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_logo_screen_a85caf8bff892a140e67a9180a0b4594f}{Logo\+Screen} (Time\+Span duration)
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_logo_screen_a646c1ee1c9bfcd56b2a2bef091478cab}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Loads graphics content for this screen. The background texture is quite big, so we use our own local Content\+Manager to load it. This allows us to unload before going from the menus into the game itself, wheras if we used the shared Content\+Manager provided by the Game class, the content would remain loaded forever. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_logo_screen_a4a55ee7caac07a487e50c0c6cb387c91}{Unload\+Content} ()
+\begin{DoxyCompactList}\small\item\em Unloads graphics content for this screen. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_logo_screen_a915bae9fc8d3fc247b189da675ddf8d2}{Handle\+Input} (\hyperlink{classgearit_1_1xna_1_1_input_helper}{Input\+Helper} input, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_logo_screen_a7bd2562d2159104f939f45fbc8c9d841}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_logo_screen_af64f0e89eac852758372d386497bb9ad}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_a85caf8bff892a140e67a9180a0b4594f}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Logo\+Screen@{Logo\+Screen}}
+\index{Logo\+Screen@{Logo\+Screen}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Logo\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Logo\+Screen.\+Logo\+Screen (
+\begin{DoxyParamCaption}
+\item[{Time\+Span}]{duration}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_logo_screen_a85caf8bff892a140e67a9180a0b4594f}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_af64f0e89eac852758372d386497bb9ad}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Logo\+Screen.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_logo_screen_af64f0e89eac852758372d386497bb9ad}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_a915bae9fc8d3fc247b189da675ddf8d2}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Handle\+Input@{Handle\+Input}}
+\index{Handle\+Input@{Handle\+Input}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Handle\+Input}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Logo\+Screen.\+Handle\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf Input\+Helper}}]{input, }
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_logo_screen_a915bae9fc8d3fc247b189da675ddf8d2}
+
+
+Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_a646c1ee1c9bfcd56b2a2bef091478cab}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Logo\+Screen.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_logo_screen_a646c1ee1c9bfcd56b2a2bef091478cab}
+
+
+Loads graphics content for this screen. The background texture is quite big, so we use our own local Content\+Manager to load it. This allows us to unload before going from the menus into the game itself, wheras if we used the shared Content\+Manager provided by the Game class, the content would remain loaded forever. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_a4a55ee7caac07a487e50c0c6cb387c91}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Unload\+Content@{Unload\+Content}}
+\index{Unload\+Content@{Unload\+Content}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Unload\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Logo\+Screen.\+Unload\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_logo_screen_a4a55ee7caac07a487e50c0c6cb387c91}
+
+
+Unloads graphics content for this screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a5d51da08229da3cb5c561550df7a6c8c}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_logo_screen_a7bd2562d2159104f939f45fbc8c9d841}{\index{gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Logo\+Screen@{gearit\+::xna\+::\+Logo\+Screen}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Logo\+Screen.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_logo_screen_a7bd2562d2159104f939f45fbc8c9d841}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_logo_screen_8cs}{Logo\+Screen.\+cs}\end{DoxyCompactItemize}

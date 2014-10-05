@@ -1,0 +1,141 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{\section{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}\index{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact@{Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact}}
+}
+
+
+The class manages contact between two shapes. A contact exists for each overlapping A\+A\+B\+B in the broad-\/phase (except if filtered). Therefore a contact object may exist that has no contact points.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a08c917dc7f7d480b8985b1b9e9256974}{Reset\+Restitution} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a20661788ccd4c0dab8cf6dad7e014b06}{Reset\+Friction} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a12a9f693680bc9f66ec47de823eb6a78}{Get\+World\+Manifold} (out Vector2 normal, out Fixed\+Array2$<$ Vector2 $>$ points)
+\begin{DoxyCompactList}\small\item\em Gets the world manifold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a0da9032d4e7836b113256795fd67d257}{Fixture\+A}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a297c1856a9d01d0a8fcd66c61db2d666}{Fixture\+B}
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold}{Manifold} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_af602a35a9f73751b1bbbe811fdec5e3f}{Manifold}
+\begin{DoxyCompactList}\small\item\em Get the contact manifold. Do not modify the manifold unless you understand the internals of Box2\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac6ee00c35678be16250b1d9efe7ba648}{Friction}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a3028c01a113024dda14c9143b449883a}{Restitution}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a36370ced1defd0156ca5cf00b1b2683f}{Tangent\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the desired tangent speed for a conveyor belt behavior. In meters per second. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a68233bcbc44a590161f417c6e536480d}{Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a7d610dcd4c90bc723024de3d7f50db46}{Child\+Index\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the child primitive index for fixture A. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac3620ad558a4219e200de3c519c80652}{Child\+Index\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the child primitive index for fixture B. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ae7147b96fbc97e5784cf23762b8562cd}{Is\+Touching}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Determines whether this contact is touching. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class manages contact between two shapes. A contact exists for each overlapping A\+A\+B\+B in the broad-\/phase (except if filtered). Therefore a contact object may exist that has no contact points. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a12a9f693680bc9f66ec47de823eb6a78}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Get\+World\+Manifold@{Get\+World\+Manifold}}
+\index{Get\+World\+Manifold@{Get\+World\+Manifold}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Get\+World\+Manifold}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Get\+World\+Manifold (
+\begin{DoxyParamCaption}
+\item[{out Vector2}]{normal, }
+\item[{out Fixed\+Array2$<$ Vector2 $>$}]{points}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a12a9f693680bc9f66ec47de823eb6a78}
+
+
+Gets the world manifold. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a20661788ccd4c0dab8cf6dad7e014b06}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Reset\+Friction@{Reset\+Friction}}
+\index{Reset\+Friction@{Reset\+Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Reset\+Friction}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Reset\+Friction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a20661788ccd4c0dab8cf6dad7e014b06}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a08c917dc7f7d480b8985b1b9e9256974}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Reset\+Restitution@{Reset\+Restitution}}
+\index{Reset\+Restitution@{Reset\+Restitution}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Reset\+Restitution}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Reset\+Restitution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a08c917dc7f7d480b8985b1b9e9256974}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a0da9032d4e7836b113256795fd67d257}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Fixture\+A@{Fixture\+A}}
+\index{Fixture\+A@{Fixture\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Fixture\+A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Fixture\+A}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a0da9032d4e7836b113256795fd67d257}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a297c1856a9d01d0a8fcd66c61db2d666}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Fixture\+B@{Fixture\+B}}
+\index{Fixture\+B@{Fixture\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Fixture\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Fixture\+B}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a297c1856a9d01d0a8fcd66c61db2d666}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_af602a35a9f73751b1bbbe811fdec5e3f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Manifold@{Manifold}}
+\index{Manifold@{Manifold}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Manifold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Manifold} Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Manifold}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_af602a35a9f73751b1bbbe811fdec5e3f}
+
+
+Get the contact manifold. Do not modify the manifold unless you understand the internals of Box2\+D. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a7d610dcd4c90bc723024de3d7f50db46}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Child\+Index\+A@{Child\+Index\+A}}
+\index{Child\+Index\+A@{Child\+Index\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Child\+Index\+A}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Child\+Index\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a7d610dcd4c90bc723024de3d7f50db46}
+
+
+Get the child primitive index for fixture A. 
+
+The child index A.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac3620ad558a4219e200de3c519c80652}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Child\+Index\+B@{Child\+Index\+B}}
+\index{Child\+Index\+B@{Child\+Index\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Child\+Index\+B}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Child\+Index\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac3620ad558a4219e200de3c519c80652}
+
+
+Get the child primitive index for fixture B. 
+
+The child index B.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a68233bcbc44a590161f417c6e536480d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a68233bcbc44a590161f417c6e536480d}
+Enable/disable this contact. This can be used inside the pre-\/solve contact listener. The contact is only disabled for the current time step (or sub-\/step in continuous collisions). N\+O\+T\+E\+: If you are setting Enabled to a constant true or false, use the explicit Enable() or Disable() functions instead to save the C\+P\+U from doing a branch operation. \hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac6ee00c35678be16250b1d9efe7ba648}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Friction@{Friction}}
+\index{Friction@{Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Friction}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Friction\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ac6ee00c35678be16250b1d9efe7ba648}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ae7147b96fbc97e5784cf23762b8562cd}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Is\+Touching@{Is\+Touching}}
+\index{Is\+Touching@{Is\+Touching}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Is\+Touching}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Is\+Touching\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_ae7147b96fbc97e5784cf23762b8562cd}
+
+
+Determines whether this contact is touching. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is touching; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a3028c01a113024dda14c9143b449883a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Restitution@{Restitution}}
+\index{Restitution@{Restitution}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Restitution}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Restitution\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a3028c01a113024dda14c9143b449883a}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a36370ced1defd0156ca5cf00b1b2683f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}!Tangent\+Speed@{Tangent\+Speed}}
+\index{Tangent\+Speed@{Tangent\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact@{Farseer\+Physics\+::\+Dynamics\+::\+Contacts\+::\+Contact}}
+\subsubsection[{Tangent\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Contacts.\+Contact.\+Tangent\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact_a36370ced1defd0156ca5cf00b1b2683f}
+
+
+Get or set the desired tangent speed for a conveyor belt behavior. In meters per second. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Contacts/\hyperlink{_contact_8cs}{Contact.\+cs}\end{DoxyCompactItemize}

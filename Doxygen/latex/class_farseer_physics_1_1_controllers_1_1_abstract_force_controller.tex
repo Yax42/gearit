@@ -1,0 +1,382 @@
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{\section{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller Class Reference}
+\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}\index{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller@{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller}}
+}
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+
+
+Inherited by \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force}{Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force}.
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0}{Decay\+Modes} \{ \\*
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a6adf97f83acf6453d4a6a4b1070f3754}{Decay\+Modes.\+None}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a48c7c41b72e1d678923ce3571aa65b2d}{Decay\+Modes.\+Step}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a32a843da6ea40ab3b17a3421ccdf671b}{Decay\+Modes.\+Linear}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0ace3511fe6e3cab696c0e1a62d445cd01}{Decay\+Modes.\+Inverse\+Square}, 
+\\*
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a2cb4d4a3f8dacd623fa045a44febd476}{Decay\+Modes.\+Curve}
+ \}
+\begin{DoxyCompactList}\small\item\em Modes for Decay. Actual Decay must be implemented in inheriting classes \end{DoxyCompactList}\item 
+enum \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1}{Force\+Types} \{ \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a2a3cd5946cfd317eb99c3d32e35e2d4c}{Force\+Types.\+Point}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a4803e6b9e63dabf04de980788d6a13c4}{Force\+Types.\+Line}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1adeec4ff19974f12ed781cb9a59064214}{Force\+Types.\+Area}
+ \}
+\begin{DoxyCompactList}\small\item\em Forcetypes are used in the decay math to properly get the distance. They are also used to draw a representation in Debug\+View \end{DoxyCompactList}\item 
+enum \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62b}{Timing\+Modes} \{ \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62bae95589f4d6357f5680d489ad6997f338}{Timing\+Modes.\+Switched}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba073b1bbd5b71098e61f7c3b8240a29bf}{Timing\+Modes.\+Triggered}, 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba2cb4d4a3f8dacd623fa045a44febd476}{Timing\+Modes.\+Curve}
+ \}
+\begin{DoxyCompactList}\small\item\em Timing Modes Switched\+: Standard on/off mode using the baseclass enabled property Triggered\+: When the \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2546e91b21ebbd41af7745d8b785611f}{Trigger()} method is called the force is active for a specified Impulse Length Curve\+: Still to be defined. The basic idea is having a Trigger combined with a curve for the strength \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5b6ce208238fb56335f0b3bf304c748d}{Abstract\+Force\+Controller} ()
+\begin{DoxyCompactList}\small\item\em Constructor \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9bffc63e3ad30e00fe8d67d7e7cbb486}{Abstract\+Force\+Controller} (\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62b}{Timing\+Modes} mode)
+\begin{DoxyCompactList}\small\item\em Overloaded Contstructor with supplying Timing Mode \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2546e91b21ebbd41af7745d8b785611f}{Trigger} ()
+\begin{DoxyCompactList}\small\item\em Triggers the trigger modes (Trigger and Curve) \end{DoxyCompactList}\item 
+override void \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} Depending on the Timing\+Mode perform timing logic and call \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}{Apply\+Force()} \end{DoxyCompactList}\item 
+abstract void \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}{Apply\+Force} (float dt, float strength)
+\begin{DoxyCompactList}\small\item\em Apply the force supplying strength (wich is modified in \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Update()} according to the Timing\+Mode \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_microsoft_1_1_xna_1_1_framework_1_1_curve}{Curve} \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6008d9eb0d18504f641b93bb7490bd2b}{Decay\+Curve}
+\begin{DoxyCompactList}\small\item\em Curve to be used for Decay in Curve mode \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1}{Force\+Types} \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a107446959131dd903faffb77093d706c}{Force\+Type}
+\begin{DoxyCompactList}\small\item\em The Forcetype of the instance \end{DoxyCompactList}\item 
+\hyperlink{class_microsoft_1_1_xna_1_1_framework_1_1_curve}{Curve} \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a809763f82438ab59503135d9ca4f13b6}{Strength\+Curve}
+\begin{DoxyCompactList}\small\item\em Curve used by Curve Mode as an animated multiplier for the force strength. Only positions between 0 and 1 are considered as that range is stretched to have Impulse\+Length. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a831c6ff98fe2ad970b075fd82707f6dc}{Get\+Decay\+Multiplier} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\begin{DoxyCompactList}\small\item\em Calculate the Decay for a given body. Meant to ease force development and stick to the D\+R\+Y principle and provide unified and predictable decay math. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Random \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2e7ac49604ba54d24dd593aaa5b80e59}{Randomize}
+\begin{DoxyCompactList}\small\item\em Provided for reuse to provide Variation functionality in inheriting classes \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a230fc053e7e9335afe69278fb6fc282f}{Strength}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Global Strength of the force to be applied \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a4bac624e53c1adcfe1b9c9a876cf49d9}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Position of the Force. Can be ignored (left at (0,0) for forces that are not position-\/dependent \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a74f774f4b684643afe72823f6783fb8f}{Maximum\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Maximum speed of the bodies. Bodies that are travelling faster are supposed to be ignored \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a8bae1d3d1b67ab840c8c6e79ba478a83}{Maximum\+Force}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Maximum Force to be applied. As opposed to Maximum Speed this is independent of the velocity of the affected body \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62b}{Timing\+Modes} \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a06483288a809c2ade1c8b686d8aec4e7}{Timing\+Mode}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Timing Mode of the force instance \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a50412a793360702bac2c5653c5730d14}{Impulse\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Time of the current impulse. Incremented in update till Impulse\+Length is reached \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a77baf680be1aa753075cd59d419edfba}{Impulse\+Length}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Length of a triggered impulse. Used in both Triggered and Curve Mode \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9c7e70cd8c1d2c48d265e81240e2b95b}{Triggered}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicating if we are currently during an Impulse (Triggered and Curve Mode) \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a57ebfe526add8959ba2e4e2ef586b829}{Variation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Variation of the force applied to each body affected !! Must be used in inheriting classes properly !! \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0}{Decay\+Modes} \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a10a51f44dd3d177b9a6c61d5bede2b74}{Decay\+Mode}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em See Decay\+Modes \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6f91b4521dd401ec975f8f5fa6c8f98c}{Decay\+Start}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Start of the distance based Decay. To set a non decaying area \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ae217ee5b963ad0c5a6ccc4cbd6fe2423}{Decay\+End}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Maximum distance a force should be applied \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Decay\+Modes@{Decay\+Modes}}
+\index{Decay\+Modes@{Decay\+Modes}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Decay\+Modes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Decay\+Modes}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0}
+
+
+Modes for Decay. Actual Decay must be implemented in inheriting classes 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{None@{None}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!None@{None}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a6adf97f83acf6453d4a6a4b1070f3754}{None}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a6adf97f83acf6453d4a6a4b1070f3754}
+}]\index{Step@{Step}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Step@{Step}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a48c7c41b72e1d678923ce3571aa65b2d}{Step}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a48c7c41b72e1d678923ce3571aa65b2d}
+}]\index{Linear@{Linear}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Linear@{Linear}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a32a843da6ea40ab3b17a3421ccdf671b}{Linear}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a32a843da6ea40ab3b17a3421ccdf671b}
+}]\index{Inverse\+Square@{Inverse\+Square}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Inverse\+Square@{Inverse\+Square}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0ace3511fe6e3cab696c0e1a62d445cd01}{Inverse\+Square}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0ace3511fe6e3cab696c0e1a62d445cd01}
+}]\index{Curve@{Curve}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Curve@{Curve}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a2cb4d4a3f8dacd623fa045a44febd476}{Curve}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_aa49b5aa364a7f2f8a51af67437adabe0a2cb4d4a3f8dacd623fa045a44febd476}
+}]\end{description}
+\end{Desc}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Force\+Types@{Force\+Types}}
+\index{Force\+Types@{Force\+Types}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Force\+Types}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Force\+Types}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1}
+
+
+Forcetypes are used in the decay math to properly get the distance. They are also used to draw a representation in Debug\+View 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Point@{Point}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Point@{Point}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a2a3cd5946cfd317eb99c3d32e35e2d4c}{Point}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a2a3cd5946cfd317eb99c3d32e35e2d4c}
+}]\index{Line@{Line}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Line@{Line}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a4803e6b9e63dabf04de980788d6a13c4}{Line}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1a4803e6b9e63dabf04de980788d6a13c4}
+}]\index{Area@{Area}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Area@{Area}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1adeec4ff19974f12ed781cb9a59064214}{Area}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2bff9fa57e321530b860a86672a608a1adeec4ff19974f12ed781cb9a59064214}
+}]\end{description}
+\end{Desc}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62b}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Timing\+Modes@{Timing\+Modes}}
+\index{Timing\+Modes@{Timing\+Modes}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Timing\+Modes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Timing\+Modes}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62b}
+
+
+Timing Modes Switched\+: Standard on/off mode using the baseclass enabled property Triggered\+: When the \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2546e91b21ebbd41af7745d8b785611f}{Trigger()} method is called the force is active for a specified Impulse Length Curve\+: Still to be defined. The basic idea is having a Trigger combined with a curve for the strength 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Switched@{Switched}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Switched@{Switched}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62bae95589f4d6357f5680d489ad6997f338}{Switched}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62bae95589f4d6357f5680d489ad6997f338}
+}]\index{Triggered@{Triggered}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Triggered@{Triggered}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba073b1bbd5b71098e61f7c3b8240a29bf}{Triggered}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba073b1bbd5b71098e61f7c3b8240a29bf}
+}]\index{Curve@{Curve}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Curve@{Curve}}\item[{\em 
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba2cb4d4a3f8dacd623fa045a44febd476}{Curve}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5dc6c4b2c041b7c5c084873d89b4b62ba2cb4d4a3f8dacd623fa045a44febd476}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5b6ce208238fb56335f0b3bf304c748d}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Abstract\+Force\+Controller@{Abstract\+Force\+Controller}}
+\index{Abstract\+Force\+Controller@{Abstract\+Force\+Controller}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Abstract\+Force\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Abstract\+Force\+Controller (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a5b6ce208238fb56335f0b3bf304c748d}
+
+
+Constructor 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9bffc63e3ad30e00fe8d67d7e7cbb486}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Abstract\+Force\+Controller@{Abstract\+Force\+Controller}}
+\index{Abstract\+Force\+Controller@{Abstract\+Force\+Controller}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Abstract\+Force\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Abstract\+Force\+Controller (
+\begin{DoxyParamCaption}
+\item[{{\bf Timing\+Modes}}]{mode}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9bffc63e3ad30e00fe8d67d7e7cbb486}
+
+
+Overloaded Contstructor with supplying Timing Mode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}abstract void Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{dt, }
+\item[{float}]{strength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}
+
+
+Apply the force supplying strength (wich is modified in \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Update()} according to the Timing\+Mode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+{\em strength} & The strength\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_aaeed799d0256faf1d5272dbed5610f22}{Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force}.
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a831c6ff98fe2ad970b075fd82707f6dc}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Get\+Decay\+Multiplier@{Get\+Decay\+Multiplier}}
+\index{Get\+Decay\+Multiplier@{Get\+Decay\+Multiplier}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Get\+Decay\+Multiplier}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Get\+Decay\+Multiplier (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a831c6ff98fe2ad970b075fd82707f6dc}
+
+
+Calculate the Decay for a given body. Meant to ease force development and stick to the D\+R\+Y principle and provide unified and predictable decay math. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The body to calculate decay for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A multiplier to multiply the force with to add decay support in inheriting classes
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2546e91b21ebbd41af7745d8b785611f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Trigger@{Trigger}}
+\index{Trigger@{Trigger}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Trigger}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Trigger (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2546e91b21ebbd41af7745d8b785611f}
+
+
+Triggers the trigger modes (Trigger and Curve) 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Update@{Update}}
+\index{Update@{Update}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}
+
+
+Inherited from \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} Depending on the Timing\+Mode perform timing logic and call \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}{Apply\+Force()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6008d9eb0d18504f641b93bb7490bd2b}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Decay\+Curve@{Decay\+Curve}}
+\index{Decay\+Curve@{Decay\+Curve}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Decay\+Curve}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Curve} Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Decay\+Curve}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6008d9eb0d18504f641b93bb7490bd2b}
+
+
+Curve to be used for Decay in Curve mode 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a107446959131dd903faffb77093d706c}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Force\+Type@{Force\+Type}}
+\index{Force\+Type@{Force\+Type}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Force\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Force\+Types} Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Force\+Type}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a107446959131dd903faffb77093d706c}
+
+
+The Forcetype of the instance 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2e7ac49604ba54d24dd593aaa5b80e59}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Randomize@{Randomize}}
+\index{Randomize@{Randomize}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Randomize}]{\setlength{\rightskip}{0pt plus 5cm}Random Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Randomize\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a2e7ac49604ba54d24dd593aaa5b80e59}
+
+
+Provided for reuse to provide Variation functionality in inheriting classes 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a809763f82438ab59503135d9ca4f13b6}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Strength\+Curve@{Strength\+Curve}}
+\index{Strength\+Curve@{Strength\+Curve}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Strength\+Curve}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Curve} Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Strength\+Curve}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a809763f82438ab59503135d9ca4f13b6}
+
+
+Curve used by Curve Mode as an animated multiplier for the force strength. Only positions between 0 and 1 are considered as that range is stretched to have Impulse\+Length. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ae217ee5b963ad0c5a6ccc4cbd6fe2423}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Decay\+End@{Decay\+End}}
+\index{Decay\+End@{Decay\+End}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Decay\+End}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Decay\+End\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ae217ee5b963ad0c5a6ccc4cbd6fe2423}
+
+
+Maximum distance a force should be applied 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a10a51f44dd3d177b9a6c61d5bede2b74}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Decay\+Mode@{Decay\+Mode}}
+\index{Decay\+Mode@{Decay\+Mode}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Decay\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Decay\+Modes} Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Decay\+Mode\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a10a51f44dd3d177b9a6c61d5bede2b74}
+
+
+See Decay\+Modes 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6f91b4521dd401ec975f8f5fa6c8f98c}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Decay\+Start@{Decay\+Start}}
+\index{Decay\+Start@{Decay\+Start}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Decay\+Start}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Decay\+Start\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a6f91b4521dd401ec975f8f5fa6c8f98c}
+
+
+Start of the distance based Decay. To set a non decaying area 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a77baf680be1aa753075cd59d419edfba}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Impulse\+Length@{Impulse\+Length}}
+\index{Impulse\+Length@{Impulse\+Length}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Impulse\+Length}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Impulse\+Length\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a77baf680be1aa753075cd59d419edfba}
+
+
+Length of a triggered impulse. Used in both Triggered and Curve Mode 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a50412a793360702bac2c5653c5730d14}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Impulse\+Time@{Impulse\+Time}}
+\index{Impulse\+Time@{Impulse\+Time}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Impulse\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Impulse\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a50412a793360702bac2c5653c5730d14}
+
+
+Time of the current impulse. Incremented in update till Impulse\+Length is reached 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a8bae1d3d1b67ab840c8c6e79ba478a83}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Maximum\+Force@{Maximum\+Force}}
+\index{Maximum\+Force@{Maximum\+Force}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Maximum\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Maximum\+Force\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a8bae1d3d1b67ab840c8c6e79ba478a83}
+
+
+Maximum Force to be applied. As opposed to Maximum Speed this is independent of the velocity of the affected body 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a74f774f4b684643afe72823f6783fb8f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Maximum\+Speed@{Maximum\+Speed}}
+\index{Maximum\+Speed@{Maximum\+Speed}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Maximum\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Maximum\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a74f774f4b684643afe72823f6783fb8f}
+
+
+Maximum speed of the bodies. Bodies that are travelling faster are supposed to be ignored 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a4bac624e53c1adcfe1b9c9a876cf49d9}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Position@{Position}}
+\index{Position@{Position}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a4bac624e53c1adcfe1b9c9a876cf49d9}
+
+
+Position of the Force. Can be ignored (left at (0,0) for forces that are not position-\/dependent 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a230fc053e7e9335afe69278fb6fc282f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Strength@{Strength}}
+\index{Strength@{Strength}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Strength}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Strength\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a230fc053e7e9335afe69278fb6fc282f}
+
+
+Global Strength of the force to be applied 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a06483288a809c2ade1c8b686d8aec4e7}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Timing\+Mode@{Timing\+Mode}}
+\index{Timing\+Mode@{Timing\+Mode}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Timing\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Timing\+Modes} Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Timing\+Mode\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a06483288a809c2ade1c8b686d8aec4e7}
+
+
+Timing Mode of the force instance 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9c7e70cd8c1d2c48d265e81240e2b95b}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Triggered@{Triggered}}
+\index{Triggered@{Triggered}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Triggered}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Triggered\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a9c7e70cd8c1d2c48d265e81240e2b95b}
+
+
+Indicating if we are currently during an Impulse (Triggered and Curve Mode) 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a57ebfe526add8959ba2e4e2ef586b829}{\index{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}!Variation@{Variation}}
+\index{Variation@{Variation}!Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Abstract\+Force\+Controller}}
+\subsubsection[{Variation}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller.\+Variation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a57ebfe526add8959ba2e4e2ef586b829}
+
+
+Variation of the force applied to each body affected !! Must be used in inheriting classes properly !! 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Controllers/\hyperlink{_abstract_force_controller_8cs}{Abstract\+Force\+Controller.\+cs}\end{DoxyCompactItemize}

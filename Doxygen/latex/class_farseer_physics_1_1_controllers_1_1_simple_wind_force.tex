@@ -1,0 +1,87 @@
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_simple_wind_force}{\section{Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force Class Reference}
+\label{class_farseer_physics_1_1_controllers_1_1_simple_wind_force}\index{Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force@{Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force}}
+}
+
+
+Reference implementation for forces based on \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Abstract\+Force\+Controller} It supports all features provided by the base class and illustrates proper usage as an easy to understand example. As a side-\/effect it is a nice and easy to use wind force for your projects  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_aaeed799d0256faf1d5272dbed5610f22}{Apply\+Force} (float dt, float strength)
+\begin{DoxyCompactList}\small\item\em Apply the force supplying strength (wich is modified in \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Update()} according to the Timing\+Mode \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a21a98a90b15e78aba9fc26e0bb4273aa}{Direction}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Direction of the windforce \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a292d13f027c27324198e6c41cf6fb5e8}{Divergence}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The amount of Direction randomization. Allowed range is 0-\/1. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_ab81eaaca5b969766697c187fff14ad8c}{Ignore\+Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Ignore the position and apply the force. If off only in the \char`\"{}front\char`\"{} (relative to position and direction) will be affected \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Reference implementation for forces based on \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Abstract\+Force\+Controller} It supports all features provided by the base class and illustrates proper usage as an easy to understand example. As a side-\/effect it is a nice and easy to use wind force for your projects 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_aaeed799d0256faf1d5272dbed5610f22}{\index{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}!Apply\+Force@{Apply\+Force}}
+\index{Apply\+Force@{Apply\+Force}!Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}}
+\subsubsection[{Apply\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force.\+Apply\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{dt, }
+\item[{float}]{strength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_aaeed799d0256faf1d5272dbed5610f22}
+
+
+Apply the force supplying strength (wich is modified in \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_a63753663663088aa7f1a04f785f25bf7}{Update()} according to the Timing\+Mode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+{\em strength} & The strength\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller_ab180ac3ceeb3d3331f3cda632573f64e}{Farseer\+Physics.\+Controllers.\+Abstract\+Force\+Controller}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a21a98a90b15e78aba9fc26e0bb4273aa}{\index{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}!Direction@{Direction}}
+\index{Direction@{Direction}!Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}}
+\subsubsection[{Direction}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force.\+Direction\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a21a98a90b15e78aba9fc26e0bb4273aa}
+
+
+Direction of the windforce 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a292d13f027c27324198e6c41cf6fb5e8}{\index{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}!Divergence@{Divergence}}
+\index{Divergence@{Divergence}!Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}}
+\subsubsection[{Divergence}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force.\+Divergence\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_a292d13f027c27324198e6c41cf6fb5e8}
+
+
+The amount of Direction randomization. Allowed range is 0-\/1. 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_ab81eaaca5b969766697c187fff14ad8c}{\index{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}!Ignore\+Position@{Ignore\+Position}}
+\index{Ignore\+Position@{Ignore\+Position}!Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force@{Farseer\+Physics\+::\+Controllers\+::\+Simple\+Wind\+Force}}
+\subsubsection[{Ignore\+Position}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Controllers.\+Simple\+Wind\+Force.\+Ignore\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_simple_wind_force_ab81eaaca5b969766697c187fff14ad8c}
+
+
+Ignore the position and apply the force. If off only in the \char`\"{}front\char`\"{} (relative to position and direction) will be affected 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Controllers/\hyperlink{_simple_wind_force_8cs}{Simple\+Wind\+Force.\+cs}\end{DoxyCompactItemize}

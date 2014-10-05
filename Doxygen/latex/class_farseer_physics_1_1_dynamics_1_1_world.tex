@@ -1,0 +1,504 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world}{\section{Farseer\+Physics.\+Dynamics.\+World Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_world}\index{Farseer\+Physics.\+Dynamics.\+World@{Farseer\+Physics.\+Dynamics.\+World}}
+}
+
+
+The world class manages all physics entities, dynamic simulation, and asynchronous queries.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_abb77ebea65e884c3e11583aef171610a}{World} (Vector2 gravity)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} class. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a5f6ddee490706eb7d167ea79e80f09d8}{Remove\+Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\begin{DoxyCompactList}\small\item\em Destroy a rigid body. Warning\+: This automatically deletes all associated shapes and joints. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_aa0c260d943c03fc4107a54df9af72538}{Add\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} joint)
+\begin{DoxyCompactList}\small\item\em Create a joint to constrain bodies together. This may cause the connected bodies to cease colliding. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a4cf26af5b264f6e61d39a1c9334bf23f}{Remove\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} joint)
+\begin{DoxyCompactList}\small\item\em Destroy a joint. This may cause the connected bodies to begin colliding. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_af88d7180b9bd63fba9ea4af340b27492}{Process\+Changes} ()
+\begin{DoxyCompactList}\small\item\em All adds and removes are cached by the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} duing a \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} step. To process the changes before the world updates again, call this method. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_ae9fd3859184555ee6a6f00b2f8ac6a67}{Step} (float dt)
+\begin{DoxyCompactList}\small\item\em Take a time step. This performs collision detection, integration, and consraint solution. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a12dfbac25a081efbbe20fb6ab3b6c470}{Clear\+Forces} ()
+\begin{DoxyCompactList}\small\item\em Call this after you are done with time steps to clear the forces. You normally call this after each call to Step, unless you are performing sub-\/steps. By default, forces will be automatically cleared, so you don't need to call this function. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_ab3331be0043529ce54abd6a0e51fc6c6}{Query\+A\+A\+B\+B} (Func$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture}, bool $>$ callback, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Query the world for all fixtures that potentially overlap the provided A\+A\+B\+B. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_abf5b250824cf186835f060e7e320804a}{Query\+A\+A\+B\+B} (ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb)
+\begin{DoxyCompactList}\small\item\em Query the world for all fixtures that potentially overlap the provided A\+A\+B\+B. Use the overload with a callback for filtering and better performance. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a873cee4b0920bda96cc5995e128f2c5f}{Ray\+Cast} (Func$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture}, Vector2, Vector2, float, float $>$ callback, Vector2 point1, Vector2 point2)
+\begin{DoxyCompactList}\small\item\em Ray-\/cast the world for all fixtures in the path of the ray. Your callback controls whether you get the closest point, any point, or n-\/points. The ray-\/cast ignores shapes that contain the starting point. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_acc988b79bdf8f5a1d0c5bc1166737964}{Ray\+Cast} (Vector2 point1, Vector2 point2)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_acfa178fee4a3bdebb5e49a06b76ed49d}{Add\+Controller} (\hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} controller)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a7ce3dc6e96d6ecc2df9563cc51859b53}{Remove\+Controller} (\hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} controller)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a8e71b7e851d9741eefc320156f49ac00}{Add\+Breakable\+Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body}{Breakable\+Body} breakable\+Body)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a29d5487d60be2e44465b7a62b8d10e2f}{Remove\+Breakable\+Body} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body}{Breakable\+Body} breakable\+Body)
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a529ece73c739eb95797a40ee6bc3dd47}{Test\+Point} (Vector2 point)
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_afcd95f6c9f93169b576ffccde811c4eb}{Test\+Point\+All} (Vector2 point)
+\begin{DoxyCompactList}\small\item\em Returns a list of fixtures that are at the specified point. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a1e94e2d25c919d233cbfcd622158099f}{Shift\+Origin} (Vector2 new\+Origin)
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_ade373863bd3d3988c0d5a59ceaf566fb}{Clear} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_af77daabe9aac262e951d74f86d6c54dc}{Body\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a23cc22ac33248ec575e6844fe0715563}{Body\+Added}
+\begin{DoxyCompactList}\small\item\em Fires whenever a body has been added \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_af77daabe9aac262e951d74f86d6c54dc}{Body\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a9bf365c2d2805a63d56c9a8974e204b0}{Body\+Removed}
+\begin{DoxyCompactList}\small\item\em Fires whenever a body has been removed \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a4b415cdd212573683a0002ac70b38c53}{Fixture\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a25a304b9454a91f7cad9581cc267e8e1}{Fixture\+Added}
+\begin{DoxyCompactList}\small\item\em Fires whenever a fixture has been added \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a4b415cdd212573683a0002ac70b38c53}{Fixture\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a146075da975590183e5f1834b6c5647a}{Fixture\+Removed}
+\begin{DoxyCompactList}\small\item\em Fires whenever a fixture has been removed \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a9da8e70b5e8c9bde4473fcf8e47d0fb1}{Joint\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_ae36cf4ed417ecbf95c984b0f449d765c}{Joint\+Added}
+\begin{DoxyCompactList}\small\item\em Fires whenever a joint has been added \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a9da8e70b5e8c9bde4473fcf8e47d0fb1}{Joint\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a9427c555e5dd76cad2e4a534c87536ca}{Joint\+Removed}
+\begin{DoxyCompactList}\small\item\em Fires whenever a joint has been removed \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a3eb71c1aad910dfe002a3500cc678c0b}{Controller\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a6e9d7ed36e299314099adbb9fcf5bcf6}{Controller\+Added}
+\begin{DoxyCompactList}\small\item\em Fires every time a controller is added to the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World}. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a3eb71c1aad910dfe002a3500cc678c0b}{Controller\+Delegate} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_afec12857abc9ff2a5ecad21f984460e9}{Controller\+Removed}
+\begin{DoxyCompactList}\small\item\em Fires every time a controlelr is removed form the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World}. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_aed9ddcd16f6b9b7d96b332e0cdb1d6bc}{Gravity}
+\begin{DoxyCompactList}\small\item\em Change the global gravity vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a5cdff99e8f504152c79c5f7917dfdadb}{Controller\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_breakable_body}{Breakable\+Body} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_aea0e80ecc94dfc580fe748dfbbd4227b}{Breakable\+Body\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a48a6ab5b43a81669bdd031b0002b68e0}{Update\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a49060967dec88a723157b5e66e8815f8}{Continuous\+Physics\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_ab40da58a2a31928e02511cd39bc8871b}{Controllers\+Update\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_aa82073926ea06b7f51ba3e0e428527b6}{Add\+Remove\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a3e5b1b784859654686eb13b01006f329}{New\+Contacts\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a0cdddaf66ba8a41ffbf2bd04b7356797}{Contacts\+Update\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_af8b17d134fbadec351d2cd1d73917908}{Solve\+Update\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a5a99bf76957ac263a5a4fce8b3e960ee}{Proxy\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the number of broad-\/phase proxies. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_contact_manager}{Contact\+Manager} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_aee911720887213f3461704e10a2ec5cd}{Contact\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the contact manager for testing. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a5d727e7ad466b4773d13b46b391c4e18}{Body\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the world body list. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a568001d5076f056870dca126b649a8fe}{Joint\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the world joint list. \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_contacts_1_1_contact}{Contact} $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a10c4b997f789d459730a93f2431093d4}{Contact\+List}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the world contact list. With the returned contact, use Contact.\+Get\+Next to get the next contact in the world list. A null contact indicates the end of the list. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a6af4792f927f7380b33f3478084a571c}{Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em If false, the whole simulation stops. It still processes added and removed geometries. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_island}{Island} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world_a81007d18e77cd9f2c64a2160cd02aea5}{Island}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The world class manages all physics entities, dynamic simulation, and asynchronous queries. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_abb77ebea65e884c3e11583aef171610a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!World@{World}}
+\index{World@{World}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+World.\+World (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{gravity}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_abb77ebea65e884c3e11583aef171610a}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} class. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a8e71b7e851d9741eefc320156f49ac00}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Add\+Breakable\+Body@{Add\+Breakable\+Body}}
+\index{Add\+Breakable\+Body@{Add\+Breakable\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Add\+Breakable\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Add\+Breakable\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Breakable\+Body}}]{breakable\+Body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a8e71b7e851d9741eefc320156f49ac00}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_acfa178fee4a3bdebb5e49a06b76ed49d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Add\+Controller@{Add\+Controller}}
+\index{Add\+Controller@{Add\+Controller}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Add\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Add\+Controller (
+\begin{DoxyParamCaption}
+\item[{{\bf Controller}}]{controller}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_acfa178fee4a3bdebb5e49a06b76ed49d}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_aa0c260d943c03fc4107a54df9af72538}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Add\+Joint@{Add\+Joint}}
+\index{Add\+Joint@{Add\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Add\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Add\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Joint}}]{joint}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_aa0c260d943c03fc4107a54df9af72538}
+
+
+Create a joint to constrain bodies together. This may cause the connected bodies to cease colliding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joint} & The joint.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_ade373863bd3d3988c0d5a59ceaf566fb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Clear@{Clear}}
+\index{Clear@{Clear}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Clear}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_ade373863bd3d3988c0d5a59ceaf566fb}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a12dfbac25a081efbbe20fb6ab3b6c470}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Clear\+Forces@{Clear\+Forces}}
+\index{Clear\+Forces@{Clear\+Forces}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Clear\+Forces}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Clear\+Forces (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a12dfbac25a081efbbe20fb6ab3b6c470}
+
+
+Call this after you are done with time steps to clear the forces. You normally call this after each call to Step, unless you are performing sub-\/steps. By default, forces will be automatically cleared, so you don't need to call this function. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_af88d7180b9bd63fba9ea4af340b27492}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Process\+Changes@{Process\+Changes}}
+\index{Process\+Changes@{Process\+Changes}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Process\+Changes}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Process\+Changes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_af88d7180b9bd63fba9ea4af340b27492}
+
+
+All adds and removes are cached by the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} duing a \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} step. To process the changes before the world updates again, call this method. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_ab3331be0043529ce54abd6a0e51fc6c6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Query\+A\+A\+B\+B@{Query\+A\+A\+B\+B}}
+\index{Query\+A\+A\+B\+B@{Query\+A\+A\+B\+B}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Query\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Query\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{Func$<$ {\bf Fixture}, bool $>$}]{callback, }
+\item[{ref {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_ab3331be0043529ce54abd6a0e51fc6c6}
+
+
+Query the world for all fixtures that potentially overlap the provided A\+A\+B\+B. 
+
+Inside the callback\+: Return true\+: Continues the query Return false\+: Terminate the query 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & A user implemented callback class.\\
+\hline
+{\em aabb} & The aabb query box.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_abf5b250824cf186835f060e7e320804a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Query\+A\+A\+B\+B@{Query\+A\+A\+B\+B}}
+\index{Query\+A\+A\+B\+B@{Query\+A\+A\+B\+B}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Query\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Fixture}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Query\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{ref {\bf A\+A\+B\+B}}]{aabb}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_abf5b250824cf186835f060e7e320804a}
+
+
+Query the world for all fixtures that potentially overlap the provided A\+A\+B\+B. Use the overload with a callback for filtering and better performance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb query box.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of fixtures that were in the affected area.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a873cee4b0920bda96cc5995e128f2c5f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{Func$<$ {\bf Fixture}, Vector2, Vector2, float, float $>$}]{callback, }
+\item[{Vector2}]{point1, }
+\item[{Vector2}]{point2}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a873cee4b0920bda96cc5995e128f2c5f}
+
+
+Ray-\/cast the world for all fixtures in the path of the ray. Your callback controls whether you get the closest point, any point, or n-\/points. The ray-\/cast ignores shapes that contain the starting point. 
+
+Inside the callback\+: return -\/1\+: ignore this fixture and continue return 0\+: terminate the ray cast return fraction\+: clip the ray to this point return 1\+: don't clip the ray and continue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & A user implemented callback class.\\
+\hline
+{\em point1} & The ray starting point.\\
+\hline
+{\em point2} & The ray ending point.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_acc988b79bdf8f5a1d0c5bc1166737964}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Fixture}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{point1, }
+\item[{Vector2}]{point2}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_acc988b79bdf8f5a1d0c5bc1166737964}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a5f6ddee490706eb7d167ea79e80f09d8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Remove\+Body@{Remove\+Body}}
+\index{Remove\+Body@{Remove\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Remove\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Remove\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a5f6ddee490706eb7d167ea79e80f09d8}
+
+
+Destroy a rigid body. Warning\+: This automatically deletes all associated shapes and joints. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The body.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a29d5487d60be2e44465b7a62b8d10e2f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Remove\+Breakable\+Body@{Remove\+Breakable\+Body}}
+\index{Remove\+Breakable\+Body@{Remove\+Breakable\+Body}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Remove\+Breakable\+Body}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Remove\+Breakable\+Body (
+\begin{DoxyParamCaption}
+\item[{{\bf Breakable\+Body}}]{breakable\+Body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a29d5487d60be2e44465b7a62b8d10e2f}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a7ce3dc6e96d6ecc2df9563cc51859b53}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Remove\+Controller@{Remove\+Controller}}
+\index{Remove\+Controller@{Remove\+Controller}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Remove\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Remove\+Controller (
+\begin{DoxyParamCaption}
+\item[{{\bf Controller}}]{controller}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a7ce3dc6e96d6ecc2df9563cc51859b53}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a4cf26af5b264f6e61d39a1c9334bf23f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Remove\+Joint@{Remove\+Joint}}
+\index{Remove\+Joint@{Remove\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Remove\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Remove\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Joint}}]{joint}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a4cf26af5b264f6e61d39a1c9334bf23f}
+
+
+Destroy a joint. This may cause the connected bodies to begin colliding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joint} & The joint.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a1e94e2d25c919d233cbfcd622158099f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Shift\+Origin@{Shift\+Origin}}
+\index{Shift\+Origin@{Shift\+Origin}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Shift\+Origin}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Shift\+Origin (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{new\+Origin}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a1e94e2d25c919d233cbfcd622158099f}
+Shift the world origin. Useful for large worlds. The body shift formula is\+: position -\/= new\+Origin 
+\begin{DoxyParams}{Parameters}
+{\em new\+Origin} & the new origin with respect to the old origin Warning\+: Calling this method mid-\/update might cause a crash. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_ae9fd3859184555ee6a6f00b2f8ac6a67}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Step@{Step}}
+\index{Step@{Step}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Step}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+World.\+Step (
+\begin{DoxyParamCaption}
+\item[{float}]{dt}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_ae9fd3859184555ee6a6f00b2f8ac6a67}
+
+
+Take a time step. This performs collision detection, integration, and consraint solution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The amount of time to simulate, this should not vary.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a529ece73c739eb95797a40ee6bc3dd47}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Test\+Point@{Test\+Point}}
+\index{Test\+Point@{Test\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Test\+Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture} Farseer\+Physics.\+Dynamics.\+World.\+Test\+Point (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a529ece73c739eb95797a40ee6bc3dd47}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_afcd95f6c9f93169b576ffccde811c4eb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Test\+Point\+All@{Test\+Point\+All}}
+\index{Test\+Point\+All@{Test\+Point\+All}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Test\+Point\+All}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Fixture}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Test\+Point\+All (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_world_afcd95f6c9f93169b576ffccde811c4eb}
+
+
+Returns a list of fixtures that are at the specified point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & The point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a23cc22ac33248ec575e6844fe0715563}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Body\+Added@{Body\+Added}}
+\index{Body\+Added@{Body\+Added}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Body\+Added}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Body\+Added}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a23cc22ac33248ec575e6844fe0715563}
+
+
+Fires whenever a body has been added 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a9bf365c2d2805a63d56c9a8974e204b0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Body\+Removed@{Body\+Removed}}
+\index{Body\+Removed@{Body\+Removed}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Body\+Removed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Body\+Removed}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a9bf365c2d2805a63d56c9a8974e204b0}
+
+
+Fires whenever a body has been removed 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a6e9d7ed36e299314099adbb9fcf5bcf6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Controller\+Added@{Controller\+Added}}
+\index{Controller\+Added@{Controller\+Added}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Controller\+Added}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Controller\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Controller\+Added}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a6e9d7ed36e299314099adbb9fcf5bcf6}
+
+
+Fires every time a controller is added to the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World}. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_afec12857abc9ff2a5ecad21f984460e9}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Controller\+Removed@{Controller\+Removed}}
+\index{Controller\+Removed@{Controller\+Removed}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Controller\+Removed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Controller\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Controller\+Removed}}\label{class_farseer_physics_1_1_dynamics_1_1_world_afec12857abc9ff2a5ecad21f984460e9}
+
+
+Fires every time a controlelr is removed form the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World}. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a25a304b9454a91f7cad9581cc267e8e1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Fixture\+Added@{Fixture\+Added}}
+\index{Fixture\+Added@{Fixture\+Added}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Fixture\+Added}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Fixture\+Added}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a25a304b9454a91f7cad9581cc267e8e1}
+
+
+Fires whenever a fixture has been added 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a146075da975590183e5f1834b6c5647a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Fixture\+Removed@{Fixture\+Removed}}
+\index{Fixture\+Removed@{Fixture\+Removed}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Fixture\+Removed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Fixture\+Removed}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a146075da975590183e5f1834b6c5647a}
+
+
+Fires whenever a fixture has been removed 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_aed9ddcd16f6b9b7d96b332e0cdb1d6bc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Gravity@{Gravity}}
+\index{Gravity@{Gravity}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Gravity}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+World.\+Gravity}}\label{class_farseer_physics_1_1_dynamics_1_1_world_aed9ddcd16f6b9b7d96b332e0cdb1d6bc}
+
+
+Change the global gravity vector. 
+
+The gravity.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_ae36cf4ed417ecbf95c984b0f449d765c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Joint\+Added@{Joint\+Added}}
+\index{Joint\+Added@{Joint\+Added}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Joint\+Added}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Joint\+Added}}\label{class_farseer_physics_1_1_dynamics_1_1_world_ae36cf4ed417ecbf95c984b0f449d765c}
+
+
+Fires whenever a joint has been added 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a9427c555e5dd76cad2e4a534c87536ca}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Joint\+Removed@{Joint\+Removed}}
+\index{Joint\+Removed@{Joint\+Removed}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Joint\+Removed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint\+Delegate} Farseer\+Physics.\+Dynamics.\+World.\+Joint\+Removed}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a9427c555e5dd76cad2e4a534c87536ca}
+
+
+Fires whenever a joint has been removed 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_aa82073926ea06b7f51ba3e0e428527b6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Add\+Remove\+Time@{Add\+Remove\+Time}}
+\index{Add\+Remove\+Time@{Add\+Remove\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Add\+Remove\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Add\+Remove\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_aa82073926ea06b7f51ba3e0e428527b6}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a5d727e7ad466b4773d13b46b391c4e18}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Body\+List@{Body\+List}}
+\index{Body\+List@{Body\+List}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Body\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Body}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Body\+List\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a5d727e7ad466b4773d13b46b391c4e18}
+
+
+Get the world body list. 
+
+Thehead of the world body list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_aea0e80ecc94dfc580fe748dfbbd4227b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Breakable\+Body\+List@{Breakable\+Body\+List}}
+\index{Breakable\+Body\+List@{Breakable\+Body\+List}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Breakable\+Body\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Breakable\+Body}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Breakable\+Body\+List\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_aea0e80ecc94dfc580fe748dfbbd4227b}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a10c4b997f789d459730a93f2431093d4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Contact\+List@{Contact\+List}}
+\index{Contact\+List@{Contact\+List}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Contact\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Contact}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Contact\+List\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a10c4b997f789d459730a93f2431093d4}
+
+
+Get the world contact list. With the returned contact, use Contact.\+Get\+Next to get the next contact in the world list. A null contact indicates the end of the list. 
+
+The head of the world contact list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_aee911720887213f3461704e10a2ec5cd}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Contact\+Manager@{Contact\+Manager}}
+\index{Contact\+Manager@{Contact\+Manager}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Contact\+Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Contact\+Manager} Farseer\+Physics.\+Dynamics.\+World.\+Contact\+Manager\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_aee911720887213f3461704e10a2ec5cd}
+
+
+Get the contact manager for testing. 
+
+The contact manager.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a0cdddaf66ba8a41ffbf2bd04b7356797}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Contacts\+Update\+Time@{Contacts\+Update\+Time}}
+\index{Contacts\+Update\+Time@{Contacts\+Update\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Contacts\+Update\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Contacts\+Update\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a0cdddaf66ba8a41ffbf2bd04b7356797}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a49060967dec88a723157b5e66e8815f8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Continuous\+Physics\+Time@{Continuous\+Physics\+Time}}
+\index{Continuous\+Physics\+Time@{Continuous\+Physics\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Continuous\+Physics\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Continuous\+Physics\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a49060967dec88a723157b5e66e8815f8}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a5cdff99e8f504152c79c5f7917dfdadb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Controller\+List@{Controller\+List}}
+\index{Controller\+List@{Controller\+List}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Controller\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Controller}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Controller\+List\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a5cdff99e8f504152c79c5f7917dfdadb}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_ab40da58a2a31928e02511cd39bc8871b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Controllers\+Update\+Time@{Controllers\+Update\+Time}}
+\index{Controllers\+Update\+Time@{Controllers\+Update\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Controllers\+Update\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Controllers\+Update\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_ab40da58a2a31928e02511cd39bc8871b}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a6af4792f927f7380b33f3478084a571c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+World.\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a6af4792f927f7380b33f3478084a571c}
+
+
+If false, the whole simulation stops. It still processes added and removed geometries. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a81007d18e77cd9f2c64a2160cd02aea5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Island@{Island}}
+\index{Island@{Island}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Island}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Island} Farseer\+Physics.\+Dynamics.\+World.\+Island\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a81007d18e77cd9f2c64a2160cd02aea5}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a568001d5076f056870dca126b649a8fe}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Joint\+List@{Joint\+List}}
+\index{Joint\+List@{Joint\+List}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Joint\+List}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Joint}$>$ Farseer\+Physics.\+Dynamics.\+World.\+Joint\+List\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a568001d5076f056870dca126b649a8fe}
+
+
+Get the world joint list. 
+
+The joint list.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a3e5b1b784859654686eb13b01006f329}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!New\+Contacts\+Time@{New\+Contacts\+Time}}
+\index{New\+Contacts\+Time@{New\+Contacts\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{New\+Contacts\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+New\+Contacts\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a3e5b1b784859654686eb13b01006f329}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a5a99bf76957ac263a5a4fce8b3e960ee}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Proxy\+Count@{Proxy\+Count}}
+\index{Proxy\+Count@{Proxy\+Count}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Proxy\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+World.\+Proxy\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a5a99bf76957ac263a5a4fce8b3e960ee}
+
+
+Get the number of broad-\/phase proxies. 
+
+The proxy count.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_af8b17d134fbadec351d2cd1d73917908}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Solve\+Update\+Time@{Solve\+Update\+Time}}
+\index{Solve\+Update\+Time@{Solve\+Update\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Solve\+Update\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Solve\+Update\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_af8b17d134fbadec351d2cd1d73917908}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_world_a48a6ab5b43a81669bdd031b0002b68e0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}!Update\+Time@{Update\+Time}}
+\index{Update\+Time@{Update\+Time}!Farseer\+Physics\+::\+Dynamics\+::\+World@{Farseer\+Physics\+::\+Dynamics\+::\+World}}
+\subsubsection[{Update\+Time}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+World.\+Update\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_world_a48a6ab5b43a81669bdd031b0002b68e0}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\hyperlink{_world_8cs}{World.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,305 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint}}
+}
+
+
+A revolute joint constrains to bodies to share a common point while they are free to rotate about the point. The relative rotation about the shared point is the joint angle. You can limit the relative rotation with a joint limit that specifies a lower and upper angle. You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is provided so that infinite forces are not generated.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{gearit.\+src.\+robot.\+Revolute\+Spot}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a4f52ce45a6f14031f59de7c1bd7d6b66}{Revolute\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor\+A, Vector2 anchor\+B, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Revolute\+Joint}. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa660255e4189a7669bf6d22c036af6f1}{Revolute\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Revolute\+Joint}. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ac8fd08ff0ee4da08b676504a0a2a665b}{Set\+Limits} (float lower, float upper)
+\begin{DoxyCompactList}\small\item\em Set the joint limits, usually in meters. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a86c56b109dae1a649e758f183095c7c0}{Get\+Motor\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Gets the motor torque in N-\/m. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a2be3ff931fd9507d2fa673fafda208b6}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a5f3c423d27b54ec925af1462ccb88779}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35}{Limit\+State} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_acc7c3866ba3b0fe5c9f418934e7de6ee}{Limit\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a71a968de06a14313950d7e0c19ace6f3}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a365c567f4fc2af1277a1341e0024b62c}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_abca3c0a8d61cf8aff63898df838b4fa4}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a9f0de7928e71ca6fdd5dc8b7eef2ab9c}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_af3ec8195281b5fa8b9afa2b8017826e6}{Reference\+Angle}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The referance angle computed as Body\+B angle minus Body\+A angle. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a1b25358b2a05bf4c41f2d9811188b836}{Joint\+Angle}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current joint angle in radians. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a92f200e7f0133f7903c642372d9afc4d}{Joint\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current joint angle speed in radians per second. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a6aecb6df8ea5fb3efe6924a1cdbbcc48}{Limit\+Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Is the joint limit enabled? \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ad2b96bea210036937036e3eed1a4c58a}{Lower\+Limit}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the lower joint limit in radians. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a466ec9962a629cd64a455e0ceac6b0f4}{Upper\+Limit}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the upper joint limit in radians. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ae8688917ac794b28179dc088074363e1}{Motor\+Enabled}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Is the joint motor enabled? \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aaccf23cc3f7d91fbb41ae72cb2471566}{Motor\+Speed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the motor speed in radians per second. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a68c0f56642704ec1a93e960d62e3e369}{Max\+Motor\+Torque}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the maximum motor torque, usually in N-\/m. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa7a108f318d3a42bfb1095276f15a082}{Motor\+Impulse}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the current motor impulse, usually in N-\/m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A revolute joint constrains to bodies to share a common point while they are free to rotate about the point. The relative rotation about the shared point is the joint angle. You can limit the relative rotation with a joint limit that specifies a lower and upper angle. You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is provided so that infinite forces are not generated. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a4f52ce45a6f14031f59de7c1bd7d6b66}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Revolute\+Joint@{Revolute\+Joint}}
+\index{Revolute\+Joint@{Revolute\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Revolute\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Revolute\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor\+A, }
+\item[{Vector2}]{anchor\+B, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a4f52ce45a6f14031f59de7c1bd7d6b66}
+
+
+Constructor of \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Revolute\+Joint}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body.\\
+\hline
+{\em body\+B} & The second body.\\
+\hline
+{\em anchor\+A} & The first body anchor.\\
+\hline
+{\em anchor\+B} & The second anchor.\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa660255e4189a7669bf6d22c036af6f1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Revolute\+Joint@{Revolute\+Joint}}
+\index{Revolute\+Joint@{Revolute\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Revolute\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Revolute\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa660255e4189a7669bf6d22c036af6f1}
+
+
+Constructor of \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Revolute\+Joint}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body.\\
+\hline
+{\em body\+B} & The second body.\\
+\hline
+{\em anchor} & The shared anchor.\\
+\hline
+{\em use\+World\+Coordinates} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a86c56b109dae1a649e758f183095c7c0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Get\+Motor\+Torque@{Get\+Motor\+Torque}}
+\index{Get\+Motor\+Torque@{Get\+Motor\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Get\+Motor\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Get\+Motor\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a86c56b109dae1a649e758f183095c7c0}
+
+
+Gets the motor torque in N-\/m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a2be3ff931fd9507d2fa673fafda208b6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a2be3ff931fd9507d2fa673fafda208b6}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a5f3c423d27b54ec925af1462ccb88779}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a5f3c423d27b54ec925af1462ccb88779}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ac8fd08ff0ee4da08b676504a0a2a665b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Set\+Limits@{Set\+Limits}}
+\index{Set\+Limits@{Set\+Limits}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Set\+Limits}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Set\+Limits (
+\begin{DoxyParamCaption}
+\item[{float}]{lower, }
+\item[{float}]{upper}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ac8fd08ff0ee4da08b676504a0a2a665b}
+
+
+Set the joint limits, usually in meters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower limit\\
+\hline
+{\em upper} & The upper limit\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a1b25358b2a05bf4c41f2d9811188b836}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Joint\+Angle@{Joint\+Angle}}
+\index{Joint\+Angle@{Joint\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Joint\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Joint\+Angle\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a1b25358b2a05bf4c41f2d9811188b836}
+
+
+Get the current joint angle in radians. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a92f200e7f0133f7903c642372d9afc4d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Joint\+Speed@{Joint\+Speed}}
+\index{Joint\+Speed@{Joint\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Joint\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Joint\+Speed\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a92f200e7f0133f7903c642372d9afc4d}
+
+
+Get the current joint angle speed in radians per second. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a6aecb6df8ea5fb3efe6924a1cdbbcc48}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Limit\+Enabled@{Limit\+Enabled}}
+\index{Limit\+Enabled@{Limit\+Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Limit\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Limit\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a6aecb6df8ea5fb3efe6924a1cdbbcc48}
+
+
+Is the joint limit enabled? 
+
+{\ttfamily true} if \mbox{[}limit enabled\mbox{]}; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_acc7c3866ba3b0fe5c9f418934e7de6ee}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Limit\+State@{Limit\+State}}
+\index{Limit\+State@{Limit\+State}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Limit\+State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Limit\+State} Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Limit\+State\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_acc7c3866ba3b0fe5c9f418934e7de6ee}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a71a968de06a14313950d7e0c19ace6f3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a71a968de06a14313950d7e0c19ace6f3}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a365c567f4fc2af1277a1341e0024b62c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a365c567f4fc2af1277a1341e0024b62c}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ad2b96bea210036937036e3eed1a4c58a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Lower\+Limit@{Lower\+Limit}}
+\index{Lower\+Limit@{Lower\+Limit}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Lower\+Limit}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Lower\+Limit\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ad2b96bea210036937036e3eed1a4c58a}
+
+
+Get the lower joint limit in radians. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a68c0f56642704ec1a93e960d62e3e369}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Max\+Motor\+Torque@{Max\+Motor\+Torque}}
+\index{Max\+Motor\+Torque@{Max\+Motor\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Max\+Motor\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Max\+Motor\+Torque\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a68c0f56642704ec1a93e960d62e3e369}
+
+
+Get or set the maximum motor torque, usually in N-\/m. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ae8688917ac794b28179dc088074363e1}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Motor\+Enabled@{Motor\+Enabled}}
+\index{Motor\+Enabled@{Motor\+Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Motor\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Motor\+Enabled\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_ae8688917ac794b28179dc088074363e1}
+
+
+Is the joint motor enabled? 
+
+{\ttfamily true} if \mbox{[}motor enabled\mbox{]}; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa7a108f318d3a42bfb1095276f15a082}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Motor\+Impulse@{Motor\+Impulse}}
+\index{Motor\+Impulse@{Motor\+Impulse}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Motor\+Impulse}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Motor\+Impulse\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aa7a108f318d3a42bfb1095276f15a082}
+
+
+Get or set the current motor impulse, usually in N-\/m. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aaccf23cc3f7d91fbb41ae72cb2471566}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Motor\+Speed@{Motor\+Speed}}
+\index{Motor\+Speed@{Motor\+Speed}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Motor\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Motor\+Speed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_aaccf23cc3f7d91fbb41ae72cb2471566}
+
+
+Get or set the motor speed in radians per second. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_af3ec8195281b5fa8b9afa2b8017826e6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Reference\+Angle@{Reference\+Angle}}
+\index{Reference\+Angle@{Reference\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Reference\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Reference\+Angle\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_af3ec8195281b5fa8b9afa2b8017826e6}
+
+
+The referance angle computed as Body\+B angle minus Body\+A angle. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a466ec9962a629cd64a455e0ceac6b0f4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!Upper\+Limit@{Upper\+Limit}}
+\index{Upper\+Limit@{Upper\+Limit}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{Upper\+Limit}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+Upper\+Limit\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a466ec9962a629cd64a455e0ceac6b0f4}
+
+
+Get the upper joint limit in radians. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_abca3c0a8d61cf8aff63898df838b4fa4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_abca3c0a8d61cf8aff63898df838b4fa4}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a9f0de7928e71ca6fdd5dc8b7eef2ab9c}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Revolute\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a9f0de7928e71ca6fdd5dc8b7eef2ab9c}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_revolute_joint_8cs}{Revolute\+Joint.\+cs}\end{DoxyCompactItemize}

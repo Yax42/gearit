@@ -1,0 +1,134 @@
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints}{\section{Package Farseer\+Physics.\+Dynamics.\+Joints}
+\label{namespace_farseer_physics_1_1_dynamics_1_1_joints}\index{Farseer\+Physics.\+Dynamics.\+Joints@{Farseer\+Physics.\+Dynamics.\+Joints}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}{Angle\+Joint}
+\begin{DoxyCompactList}\small\item\em Maintains a fixed angle between two bodies \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_distance_joint}{Distance\+Joint}
+\begin{DoxyCompactList}\small\item\em A distance joint rains two points on two bodies to remain at a fixed distance from each other. You can view this as a massless, rigid rod. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint}{Fixed\+Mouse\+Joint}
+\begin{DoxyCompactList}\small\item\em A mouse joint is used to make a point on a body track a specified world point. This a soft constraint with a maximum force. This allows the constraint to stretch and without applying huge forces. N\+O\+T\+E\+: this joint is not documented in the manual because it was developed to be used in the testbed. If you want to learn how to use the mouse joint, look at the testbed. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_friction_joint}{Friction\+Joint}
+\begin{DoxyCompactList}\small\item\em Friction joint. This is used for top-\/down friction. It provides 2\+D translational friction and angular friction. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint}{Gear\+Joint}
+\begin{DoxyCompactList}\small\item\em A gear joint is used to connect two joints together. Either joint can be a revolute or prismatic joint. You specify a gear ratio to bind the motions together\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}coordinate1 + ratio $\ast$ coordinate2 = ant\mbox{]}\mbox{]}$>$ The ratio can be negative or positive. If one joint is a revolute joint and the other joint is a prismatic joint, then the ratio will have units of length or units of 1/length. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint}
+\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_edge}{Joint\+Edge}
+\begin{DoxyCompactList}\small\item\em A joint edge is used to connect bodies and joints together in a joint graph where each body is a node and each joint is an edge. A joint edge belongs to a doubly linked list maintained in each attached body. Each joint has two joint nodes, one for each attached body. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}{Motor\+Joint}
+\begin{DoxyCompactList}\small\item\em A motor joint is used to control the relative motion between two bodies. A typical usage is to control the movement of a dynamic body with respect to the ground. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint}{Prismatic\+Joint}
+\begin{DoxyCompactList}\small\item\em A prismatic joint. This joint provides one degree of freedom\+: translation along an axis fixed in body\+A. Relative rotation is prevented. You can use a joint limit to restrict the range of motion and a joint motor to drive the motion or to model joint friction. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}{Pulley\+Joint}
+\begin{DoxyCompactList}\small\item\em The pulley joint is connected to two bodies and two fixed world points. The pulley supports a ratio such that\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}length1 + ratio $\ast$ length2 $<$= constant\mbox{]}\mbox{]}$>$ Yes, the force transmitted is scaled by the ratio. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Revolute\+Joint}
+\begin{DoxyCompactList}\small\item\em A revolute joint constrains to bodies to share a common point while they are free to rotate about the point. The relative rotation about the shared point is the joint angle. You can limit the relative rotation with a joint limit that specifies a lower and upper angle. You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is provided so that infinite forces are not generated. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}{Rope\+Joint}
+\begin{DoxyCompactList}\small\item\em A rope joint enforces a maximum distance between two points on two bodies. It has no other effect. It can be used on ropes that are made up of several connected bodies, and if there is a need to support a heavy body. This joint is used for stabiliation of heavy objects on soft constraint joints. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint}{Weld\+Joint}
+\begin{DoxyCompactList}\small\item\em A weld joint essentially glues two bodies together. A weld joint may distort somewhat because the island constraint solver is approximate. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}{Wheel\+Joint}
+\begin{DoxyCompactList}\small\item\em A wheel joint. This joint provides two degrees of freedom\+: translation along an axis fixed in body\+A and rotation in the plane. You can use a joint limit to restrict the range of motion and a joint motor to drive the rotation or to model rotational friction. This joint is designed for vehicle suspensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749}{Joint\+Type} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a88183b946cc5f0e8c96b2e66e1c74a7e}{Joint\+Type.\+Unknown}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a358561ac4d41f41d479b7c54b19b639e}{Joint\+Type.\+Revolute}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a35fa8acd1b8b1beb23e6c2e24313570c}{Joint\+Type.\+Prismatic}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0aa6f4210bf373c95eda00232e93cd98}{Joint\+Type.\+Distance}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aba41903d01ed39b1b98768512c8e65f5}{Joint\+Type.\+Pulley}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749afb845762a66c26782f477febab5344dc}{Joint\+Type.\+Gear}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa5df60ef4fc4447353769d66661d2229}{Joint\+Type.\+Wheel}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a768bf199aed2d6ea5cd5d27017978530}{Joint\+Type.\+Weld}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a6513892a7d1f1a327b2d4de2b8f69b89}{Joint\+Type.\+Friction}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa3a77296cc85eb0c3175a09c0f7c3e60}{Joint\+Type.\+Rope}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ab33538179f5661a86cbe327a1793e199}{Joint\+Type.\+Motor}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a45f4ce6c3306644b1efe333f4f8d6929}{Joint\+Type.\+Angle}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749abe5d9f5fe5d17b1ed014e090a0f9d94d}{Joint\+Type.\+Fixed\+Mouse}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a59a85b3732f41a070284c0ee10611b7d}{Joint\+Type.\+Fixed\+Revolute}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a10c25cea0541b2393f6d6aed1c6c9736}{Joint\+Type.\+Fixed\+Distance}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ad46b8bc8437d639008f876c409cb2d0b}{Joint\+Type.\+Fixed\+Line}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a40cc91cbdb2b729c31040a77e354196b}{Joint\+Type.\+Fixed\+Prismatic}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a5e344a2279c3ac68f18fc1654170e7db}{Joint\+Type.\+Fixed\+Angle}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0977c53f423eee5673c8d142f232e7d6}{Joint\+Type.\+Fixed\+Friction}
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35}{Limit\+State} \{ \hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35a3cab03c00dbd11bc3569afa0748013f0}{Limit\+State.\+Inactive}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35aca182151063c1d84522f0a6b8bf974b9}{Limit\+State.\+At\+Lower}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35affd094d9668b346a58bb516fbcef4253}{Limit\+State.\+At\+Upper}, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35af5f286e73bda105e538310b3190f75c5}{Limit\+State.\+Equal}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Joint\+Type@{Joint\+Type}}
+\index{Joint\+Type@{Joint\+Type}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}
+\subsubsection[{Joint\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Dynamics.\+Joints.\+Joint\+Type}}}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Unknown@{Unknown}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Unknown@{Unknown}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a88183b946cc5f0e8c96b2e66e1c74a7e}
+}]\index{Revolute@{Revolute}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Revolute@{Revolute}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a358561ac4d41f41d479b7c54b19b639e}{Revolute}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a358561ac4d41f41d479b7c54b19b639e}
+}]\index{Prismatic@{Prismatic}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Prismatic@{Prismatic}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a35fa8acd1b8b1beb23e6c2e24313570c}{Prismatic}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a35fa8acd1b8b1beb23e6c2e24313570c}
+}]\index{Distance@{Distance}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Distance@{Distance}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0aa6f4210bf373c95eda00232e93cd98}{Distance}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0aa6f4210bf373c95eda00232e93cd98}
+}]\index{Pulley@{Pulley}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Pulley@{Pulley}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aba41903d01ed39b1b98768512c8e65f5}{Pulley}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aba41903d01ed39b1b98768512c8e65f5}
+}]\index{Gear@{Gear}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Gear@{Gear}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749afb845762a66c26782f477febab5344dc}{Gear}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749afb845762a66c26782f477febab5344dc}
+}]\index{Wheel@{Wheel}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Wheel@{Wheel}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa5df60ef4fc4447353769d66661d2229}{Wheel}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa5df60ef4fc4447353769d66661d2229}
+}]\index{Weld@{Weld}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Weld@{Weld}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a768bf199aed2d6ea5cd5d27017978530}{Weld}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a768bf199aed2d6ea5cd5d27017978530}
+}]\index{Friction@{Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Friction@{Friction}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a6513892a7d1f1a327b2d4de2b8f69b89}{Friction}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a6513892a7d1f1a327b2d4de2b8f69b89}
+}]\index{Rope@{Rope}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Rope@{Rope}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa3a77296cc85eb0c3175a09c0f7c3e60}{Rope}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749aa3a77296cc85eb0c3175a09c0f7c3e60}
+}]\index{Motor@{Motor}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Motor@{Motor}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ab33538179f5661a86cbe327a1793e199}{Motor}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ab33538179f5661a86cbe327a1793e199}
+}]\index{Angle@{Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Angle@{Angle}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a45f4ce6c3306644b1efe333f4f8d6929}{Angle}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a45f4ce6c3306644b1efe333f4f8d6929}
+}]\index{Fixed\+Mouse@{Fixed\+Mouse}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Mouse@{Fixed\+Mouse}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749abe5d9f5fe5d17b1ed014e090a0f9d94d}{Fixed\+Mouse}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749abe5d9f5fe5d17b1ed014e090a0f9d94d}
+}]\index{Fixed\+Revolute@{Fixed\+Revolute}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Revolute@{Fixed\+Revolute}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a59a85b3732f41a070284c0ee10611b7d}{Fixed\+Revolute}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a59a85b3732f41a070284c0ee10611b7d}
+}]\index{Fixed\+Distance@{Fixed\+Distance}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Distance@{Fixed\+Distance}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a10c25cea0541b2393f6d6aed1c6c9736}{Fixed\+Distance}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a10c25cea0541b2393f6d6aed1c6c9736}
+}]\index{Fixed\+Line@{Fixed\+Line}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Line@{Fixed\+Line}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ad46b8bc8437d639008f876c409cb2d0b}{Fixed\+Line}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749ad46b8bc8437d639008f876c409cb2d0b}
+}]\index{Fixed\+Prismatic@{Fixed\+Prismatic}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Prismatic@{Fixed\+Prismatic}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a40cc91cbdb2b729c31040a77e354196b}{Fixed\+Prismatic}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a40cc91cbdb2b729c31040a77e354196b}
+}]\index{Fixed\+Angle@{Fixed\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Angle@{Fixed\+Angle}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a5e344a2279c3ac68f18fc1654170e7db}{Fixed\+Angle}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a5e344a2279c3ac68f18fc1654170e7db}
+}]\index{Fixed\+Friction@{Fixed\+Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Fixed\+Friction@{Fixed\+Friction}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0977c53f423eee5673c8d142f232e7d6}{Fixed\+Friction}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749a0977c53f423eee5673c8d142f232e7d6}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Limit\+State@{Limit\+State}}
+\index{Limit\+State@{Limit\+State}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}
+\subsubsection[{Limit\+State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Dynamics.\+Joints.\+Limit\+State}}}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Inactive@{Inactive}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Inactive@{Inactive}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35a3cab03c00dbd11bc3569afa0748013f0}{Inactive}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35a3cab03c00dbd11bc3569afa0748013f0}
+}]\index{At\+Lower@{At\+Lower}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!At\+Lower@{At\+Lower}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35aca182151063c1d84522f0a6b8bf974b9}{At\+Lower}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35aca182151063c1d84522f0a6b8bf974b9}
+}]\index{At\+Upper@{At\+Upper}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!At\+Upper@{At\+Upper}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35affd094d9668b346a58bb516fbcef4253}{At\+Upper}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35affd094d9668b346a58bb516fbcef4253}
+}]\index{Equal@{Equal}!Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}}\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints@{Farseer\+Physics\+::\+Dynamics\+::\+Joints}!Equal@{Equal}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35af5f286e73bda105e538310b3190f75c5}{Equal}\label{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35af5f286e73bda105e538310b3190f75c5}
+}]\end{description}
+\end{Desc}

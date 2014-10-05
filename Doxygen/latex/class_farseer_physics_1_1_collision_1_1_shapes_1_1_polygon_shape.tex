@@ -1,0 +1,255 @@
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{\section{Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape Class Reference}
+\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}\index{Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape@{Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape}}
+}
+
+
+Represents a simple non-\/selfintersecting convex polygon. Create a convex hull from the given array of points.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_affa2db228b79a2a7d5a1f0c7f2ce8d9f}{Polygon\+Shape} (\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} vertices, float density)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape} class. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a1bac1381b29db8295932c02f9e76cf74}{Polygon\+Shape} (float density)
+\begin{DoxyCompactList}\small\item\em Create a new \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape} with the specified density. \end{DoxyCompactList}\item 
+override bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ad09b14d386dc6fe310826e700b4a68db}{Test\+Point} (ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Test a point for containment in this shape. Note\+: This only works for convex shapes. \end{DoxyCompactList}\item 
+override bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a37080c01ddd2f85713dd51204badeaf6}{Ray\+Cast} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Ray\+Cast\+Output} output, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input} input, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Cast a ray against a child shape. \end{DoxyCompactList}\item 
+override void \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a537990602fe017315491b1161476e2db}{Compute\+A\+A\+B\+B} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} transform, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Given a transform, compute the associated axis aligned bounding box for a child shape. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ab58f0cef9a7a72ef9ed96e6a8bd8a86e}{Compute\+Submerged\+Area} (ref Vector2 normal, float offset, ref \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} xf, out Vector2 sc)
+\begin{DoxyCompactList}\small\item\em Used for the buoyancy controller \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a0f4c6241b20e92df8a3fde62a07488f4}{Compare\+To} (\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape} shape)
+\item 
+override \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a86171eae83195591691749aafb617c24}{Clone} ()
+\begin{DoxyCompactList}\small\item\em Clone the concrete shape \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a68808da62dc2ce71047d891eb88d98f0}{Compute\+Properties} ()
+\begin{DoxyCompactList}\small\item\em Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin, not the centroid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a6a72b55efcc554264a65f783327be229}{Vertices}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Create a convex hull from the given array of local points. The number of vertices must be in the range \mbox{[}3, Settings.\+Max\+Polygon\+Vertices\mbox{]}. Warning\+: the points may be re-\/ordered, even if they form a convex polygon Warning\+: collinear points are handled but not removed. Collinear points may lead to poor stacking behavior. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a4086adf8267a351bdb82df98bffe9892}{Normals}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+override int \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ae3ce18e76aa9e2ddc7089ea156d12ed4}{Child\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a simple non-\/selfintersecting convex polygon. Create a convex hull from the given array of points. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_affa2db228b79a2a7d5a1f0c7f2ce8d9f}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Polygon\+Shape@{Polygon\+Shape}}
+\index{Polygon\+Shape@{Polygon\+Shape}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Polygon\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Polygon\+Shape (
+\begin{DoxyParamCaption}
+\item[{{\bf Vertices}}]{vertices, }
+\item[{float}]{density}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_affa2db228b79a2a7d5a1f0c7f2ce8d9f}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices.\\
+\hline
+{\em density} & The density.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a1bac1381b29db8295932c02f9e76cf74}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Polygon\+Shape@{Polygon\+Shape}}
+\index{Polygon\+Shape@{Polygon\+Shape}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Polygon\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Polygon\+Shape (
+\begin{DoxyParamCaption}
+\item[{float}]{density}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a1bac1381b29db8295932c02f9e76cf74}
+
+
+Create a new \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape}{Polygon\+Shape} with the specified density. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em density} & The density.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a86171eae83195591691749aafb617c24}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Clone@{Clone}}
+\index{Clone@{Clone}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Clone}]{\setlength{\rightskip}{0pt plus 5cm}override {\bf Shape} Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a86171eae83195591691749aafb617c24}
+
+
+Clone the concrete shape 
+
+\begin{DoxyReturn}{Returns}
+A clone of the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a2ed8c71b5d46dd12f11c6849bbc97249}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a0f4c6241b20e92df8a3fde62a07488f4}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Compare\+To@{Compare\+To}}
+\index{Compare\+To@{Compare\+To}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Compare\+To}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Compare\+To (
+\begin{DoxyParamCaption}
+\item[{{\bf Polygon\+Shape}}]{shape}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a0f4c6241b20e92df8a3fde62a07488f4}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a537990602fe017315491b1161476e2db}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Compute\+A\+A\+B\+B@{Compute\+A\+A\+B\+B}}
+\index{Compute\+A\+A\+B\+B@{Compute\+A\+A\+B\+B}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Compute\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Compute\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{out {\bf A\+A\+B\+B}}]{aabb, }
+\item[{ref {\bf Transform}}]{transform, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a537990602fe017315491b1161476e2db}
+
+
+Given a transform, compute the associated axis aligned bounding box for a child shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb results.\\
+\hline
+{\em transform} & The world transform of the shape.\\
+\hline
+{\em child\+Index} & The child shape index.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a9804a429e96e36a36bdc22f6d06bcc6c}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a68808da62dc2ce71047d891eb88d98f0}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Compute\+Properties@{Compute\+Properties}}
+\index{Compute\+Properties@{Compute\+Properties}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Compute\+Properties}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Compute\+Properties (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a68808da62dc2ce71047d891eb88d98f0}
+
+
+Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin, not the centroid. 
+
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a7f84cb12e8f22b497c37ec6202990fe9}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ab58f0cef9a7a72ef9ed96e6a8bd8a86e}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Compute\+Submerged\+Area@{Compute\+Submerged\+Area}}
+\index{Compute\+Submerged\+Area@{Compute\+Submerged\+Area}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Compute\+Submerged\+Area}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Compute\+Submerged\+Area (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{normal, }
+\item[{float}]{offset, }
+\item[{ref {\bf Transform}}]{xf, }
+\item[{out Vector2}]{sc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ab58f0cef9a7a72ef9ed96e6a8bd8a86e}
+
+
+Used for the buoyancy controller 
+
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a8042406b3145e2535247e81536ed4e3e}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a37080c01ddd2f85713dd51204badeaf6}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}override bool Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{out {\bf Ray\+Cast\+Output}}]{output, }
+\item[{ref {\bf Ray\+Cast\+Input}}]{input, }
+\item[{ref {\bf Transform}}]{transform, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a37080c01ddd2f85713dd51204badeaf6}
+
+
+Cast a ray against a child shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & The ray-\/cast results.\\
+\hline
+{\em input} & The ray-\/cast input parameters.\\
+\hline
+{\em transform} & The transform to be applied to the shape.\\
+\hline
+{\em child\+Index} & The child shape index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the ray-\/cast hits the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_aa032bbd2ea521bb5a917e4d860638d3a}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ad09b14d386dc6fe310826e700b4a68db}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Test\+Point@{Test\+Point}}
+\index{Test\+Point@{Test\+Point}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Test\+Point}]{\setlength{\rightskip}{0pt plus 5cm}override bool Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Test\+Point (
+\begin{DoxyParamCaption}
+\item[{ref {\bf Transform}}]{transform, }
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ad09b14d386dc6fe310826e700b4a68db}
+
+
+Test a point for containment in this shape. Note\+: This only works for convex shapes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The shape world transform.\\
+\hline
+{\em point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the point is inside the shape
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape_a2b93a18850e5f40fcc96f2f7744d5d2e}{Farseer\+Physics.\+Collision.\+Shapes.\+Shape}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ae3ce18e76aa9e2ddc7089ea156d12ed4}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Child\+Count@{Child\+Count}}
+\index{Child\+Count@{Child\+Count}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Child\+Count}]{\setlength{\rightskip}{0pt plus 5cm}override int Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Child\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_ae3ce18e76aa9e2ddc7089ea156d12ed4}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a4086adf8267a351bdb82df98bffe9892}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Normals@{Normals}}
+\index{Normals@{Normals}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Normals}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Normals\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a4086adf8267a351bdb82df98bffe9892}
+\hypertarget{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a6a72b55efcc554264a65f783327be229}{\index{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}!Vertices@{Vertices}}
+\index{Vertices@{Vertices}!Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape@{Farseer\+Physics\+::\+Collision\+::\+Shapes\+::\+Polygon\+Shape}}
+\subsubsection[{Vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} Farseer\+Physics.\+Collision.\+Shapes.\+Polygon\+Shape.\+Vertices\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_collision_1_1_shapes_1_1_polygon_shape_a6a72b55efcc554264a65f783327be229}
+
+
+Create a convex hull from the given array of local points. The number of vertices must be in the range \mbox{[}3, Settings.\+Max\+Polygon\+Vertices\mbox{]}. Warning\+: the points may be re-\/ordered, even if they form a convex polygon Warning\+: collinear points are handled but not removed. Collinear points may lead to poor stacking behavior. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\+Shapes/\hyperlink{_polygon_shape_8cs}{Polygon\+Shape.\+cs}\end{DoxyCompactItemize}

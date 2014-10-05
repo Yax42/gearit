@@ -1,0 +1,64 @@
+\hypertarget{namespace_farseer_physics_1_1_controllers}{\section{Package Farseer\+Physics.\+Controllers}
+\label{namespace_farseer_physics_1_1_controllers}\index{Farseer\+Physics.\+Controllers@{Farseer\+Physics.\+Controllers}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Abstract\+Force\+Controller}
+\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}{Buoyancy\+Controller}
+\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Controller}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_controllers_1_1_controller_filter}{Controller\+Filter}
+\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_gravity_controller}{Gravity\+Controller}
+\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_simple_wind_force}{Simple\+Wind\+Force}
+\begin{DoxyCompactList}\small\item\em Reference implementation for forces based on \hyperlink{class_farseer_physics_1_1_controllers_1_1_abstract_force_controller}{Abstract\+Force\+Controller} It supports all features provided by the base class and illustrates proper usage as an easy to understand example. As a side-\/effect it is a nice and easy to use wind force for your projects \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_controllers_1_1_velocity_limit_controller}{Velocity\+Limit\+Controller}
+\begin{DoxyCompactList}\small\item\em Put a limit on the linear (translation -\/ the movespeed) and angular (rotation) velocity of bodies added to this controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7}{Controller\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7af240b1c17d5df9a9776a8a16e371047f}{Controller\+Type.\+Gravity\+Controller} = (1 $<$$<$ 0), 
+\hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7a0ac198fbe8b5d46b2f4928b21f0f5b4c}{Controller\+Type.\+Velocity\+Limit\+Controller} = (1 $<$$<$ 1), 
+\hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ae7893f06d71650854a394854a72a9fa5}{Controller\+Type.\+Abstract\+Force\+Controller} = (1 $<$$<$ 2), 
+\hyperlink{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ab93140d2bf725083afb6cc01133527c4}{Controller\+Type.\+Buoyancy\+Controller} = (1 $<$$<$ 3)
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78c}{Gravity\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78ca32a843da6ea40ab3b17a3421ccdf671b}{Gravity\+Type.\+Linear}, 
+\hyperlink{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78cab5950247badd257aa18269aa0e183c6a}{Gravity\+Type.\+Distance\+Squared}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7}{\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Controller\+Type@{Controller\+Type}}
+\index{Controller\+Type@{Controller\+Type}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}
+\subsubsection[{Controller\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Controllers.\+Controller\+Type}}}\label{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Gravity\+Controller@{Gravity\+Controller}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Gravity\+Controller@{Gravity\+Controller}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7af240b1c17d5df9a9776a8a16e371047f}{Gravity\+Controller}\label{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7af240b1c17d5df9a9776a8a16e371047f}
+}]\index{Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Velocity\+Limit\+Controller@{Velocity\+Limit\+Controller}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7a0ac198fbe8b5d46b2f4928b21f0f5b4c}{Velocity\+Limit\+Controller}\label{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7a0ac198fbe8b5d46b2f4928b21f0f5b4c}
+}]\index{Abstract\+Force\+Controller@{Abstract\+Force\+Controller}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Abstract\+Force\+Controller@{Abstract\+Force\+Controller}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ae7893f06d71650854a394854a72a9fa5}{Abstract\+Force\+Controller}\label{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ae7893f06d71650854a394854a72a9fa5}
+}]\index{Buoyancy\+Controller@{Buoyancy\+Controller}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Buoyancy\+Controller@{Buoyancy\+Controller}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ab93140d2bf725083afb6cc01133527c4}{Buoyancy\+Controller}\label{namespace_farseer_physics_1_1_controllers_a0b34b986191b1dd53a0a4169d1add7c7ab93140d2bf725083afb6cc01133527c4}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78c}{\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Gravity\+Type@{Gravity\+Type}}
+\index{Gravity\+Type@{Gravity\+Type}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}
+\subsubsection[{Gravity\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Controllers.\+Gravity\+Type}}}\label{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78c}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Linear@{Linear}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Linear@{Linear}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78ca32a843da6ea40ab3b17a3421ccdf671b}{Linear}\label{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78ca32a843da6ea40ab3b17a3421ccdf671b}
+}]\index{Distance\+Squared@{Distance\+Squared}!Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}}\index{Farseer\+Physics\+::\+Controllers@{Farseer\+Physics\+::\+Controllers}!Distance\+Squared@{Distance\+Squared}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78cab5950247badd257aa18269aa0e183c6a}{Distance\+Squared}\label{namespace_farseer_physics_1_1_controllers_a0780c40c19c557616e5ce1d531d1a78cab5950247badd257aa18269aa0e183c6a}
+}]\end{description}
+\end{Desc}

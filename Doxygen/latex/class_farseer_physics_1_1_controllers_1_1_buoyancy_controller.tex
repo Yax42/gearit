@@ -1,0 +1,117 @@
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}{\section{Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller Class Reference}
+\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}\index{Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller@{Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller}}
+}
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a0bbd38a53c786f63e77feea9782dca54}{Buoyancy\+Controller} (\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} container, float density, float linear\+Drag\+Coefficient, float rotational\+Drag\+Coefficient, Vector2 gravity)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}{Buoyancy\+Controller} class. \end{DoxyCompactList}\item 
+override void \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ae897d6e7ac2783645da0bcd12ae7b94f}{Update} (float dt)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a4c3b651c041cb3c9abdb972e6833e9d0}{Angular\+Drag\+Coefficient}
+\begin{DoxyCompactList}\small\item\em Controls the rotational drag that the fluid exerts on the bodies within it. Use higher values will simulate thick fluid, like honey, lower values to simulate water-\/like fluids. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a57ba9c3aa147b770dd411f209ba92a6e}{Density}
+\begin{DoxyCompactList}\small\item\em Density of the fluid. Higher values will make things more buoyant, lower values will cause things to sink. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a2df8072945d7c6154e0bcc1c84052117}{Linear\+Drag\+Coefficient}
+\begin{DoxyCompactList}\small\item\em Controls the linear drag that the fluid exerts on the bodies within it. Use higher values will simulate thick fluid, like honey, lower values to simulate water-\/like fluids. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ab04dfa65ec34fdd8f0c31aadd5423417}{Velocity}
+\begin{DoxyCompactList}\small\item\em Acts like waterflow. Defaults to 0,0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_aab8b52db8eb3243c56ce5e2a0b525f58}{Container}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a0bbd38a53c786f63e77feea9782dca54}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Buoyancy\+Controller@{Buoyancy\+Controller}}
+\index{Buoyancy\+Controller@{Buoyancy\+Controller}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Buoyancy\+Controller}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Buoyancy\+Controller (
+\begin{DoxyParamCaption}
+\item[{{\bf A\+A\+B\+B}}]{container, }
+\item[{float}]{density, }
+\item[{float}]{linear\+Drag\+Coefficient, }
+\item[{float}]{rotational\+Drag\+Coefficient, }
+\item[{Vector2}]{gravity}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a0bbd38a53c786f63e77feea9782dca54}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller}{Buoyancy\+Controller} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em container} & Only bodies inside this A\+A\+B\+B will be influenced by the controller\\
+\hline
+{\em density} & Density of the fluid\\
+\hline
+{\em linear\+Drag\+Coefficient} & Linear drag coefficient of the fluid\\
+\hline
+{\em rotational\+Drag\+Coefficient} & Rotational drag coefficient of the fluid\\
+\hline
+{\em gravity} & The direction gravity acts. Buoyancy force will act in opposite direction of gravity.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ae897d6e7ac2783645da0bcd12ae7b94f}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Update@{Update}}
+\index{Update@{Update}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ae897d6e7ac2783645da0bcd12ae7b94f}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_controllers_1_1_controller_a1aff9a8d046a6e511d900d5eb354f3ea}{Farseer\+Physics.\+Controllers.\+Controller}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a4c3b651c041cb3c9abdb972e6833e9d0}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Angular\+Drag\+Coefficient@{Angular\+Drag\+Coefficient}}
+\index{Angular\+Drag\+Coefficient@{Angular\+Drag\+Coefficient}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Angular\+Drag\+Coefficient}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Angular\+Drag\+Coefficient}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a4c3b651c041cb3c9abdb972e6833e9d0}
+
+
+Controls the rotational drag that the fluid exerts on the bodies within it. Use higher values will simulate thick fluid, like honey, lower values to simulate water-\/like fluids. 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a57ba9c3aa147b770dd411f209ba92a6e}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Density@{Density}}
+\index{Density@{Density}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Density}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Density}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a57ba9c3aa147b770dd411f209ba92a6e}
+
+
+Density of the fluid. Higher values will make things more buoyant, lower values will cause things to sink. 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a2df8072945d7c6154e0bcc1c84052117}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Linear\+Drag\+Coefficient@{Linear\+Drag\+Coefficient}}
+\index{Linear\+Drag\+Coefficient@{Linear\+Drag\+Coefficient}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Linear\+Drag\+Coefficient}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Linear\+Drag\+Coefficient}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_a2df8072945d7c6154e0bcc1c84052117}
+
+
+Controls the linear drag that the fluid exerts on the bodies within it. Use higher values will simulate thick fluid, like honey, lower values to simulate water-\/like fluids. 
+
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ab04dfa65ec34fdd8f0c31aadd5423417}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Velocity}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Velocity}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_ab04dfa65ec34fdd8f0c31aadd5423417}
+
+
+Acts like waterflow. Defaults to 0,0. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_aab8b52db8eb3243c56ce5e2a0b525f58}{\index{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}!Container@{Container}}
+\index{Container@{Container}!Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller@{Farseer\+Physics\+::\+Controllers\+::\+Buoyancy\+Controller}}
+\subsubsection[{Container}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+A\+B\+B} Farseer\+Physics.\+Controllers.\+Buoyancy\+Controller.\+Container\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_controllers_1_1_buoyancy_controller_aab8b52db8eb3243c56ce5e2a0b525f58}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Controllers/\hyperlink{_buoyancy_controller_8cs}{Buoyancy\+Controller.\+cs}\end{DoxyCompactItemize}

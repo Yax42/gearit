@@ -1,0 +1,460 @@
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot}{\section{gearit.\+src.\+robot.\+Robot Class Reference}
+\label{classgearit_1_1src_1_1robot_1_1_robot}\index{gearit.\+src.\+robot.\+Robot@{gearit.\+src.\+robot.\+Robot}}
+}
+
+
+Inherits I\+Serializable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a7ac841c500d5ed51a26f3f9b401a9af2}{Robot} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world, bool is\+In\+Editor=false)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a7e4a423fc72103f28c3ca9cc3539ddde}{Robot} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ac3300f022e8744f7355fa8b6871ac062}{Get\+Object\+Data} (Serialization\+Info info, Streaming\+Context ctxt)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ad5de51386732d800c61deccabcc89347}{Update} (\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} map)
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a4ea8eaa66196979faebb1a48a076344a}{get\+World} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a27dbdffbcf378ab3a2c2fd6d57dd0c6f}{Is\+Piece\+Connected\+To\+Heart} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} piece)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a855521f4c7b3e9b0110edb3537cefe60}{set\+Color} (Color col)
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a0315628bee2f0f165dee7b15b953a9a6}{Find\+First\+Free\+Spot\+Name\+Id} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a3ecb7905e465c75103a8edac57c0d4d7}{Reset\+Act} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_afd1c0225d88394c44aa341051924d771}{Reset\+Act\+Ends} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aca31f79167658df4e1c00201e652d13e}{add\+Spot} (\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} spot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a02cb3e784efbed703e41c842ae65c9a9}{add\+Piece} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} piece)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_adb7009fa5776025621e69d85df63dfa7}{Close\+Piece} (Vector2 p)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a52d61f4419b94d1aec0b0838fee09415}{Get\+Piece} (Vector2 p)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aa347b18c64184d66e2d32ff4f844444c}{Get\+Close\+Spot} (Vector2 p)
+\item 
+float \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a6f53b80c92946021a6c167aba200492c}{get\+Motor\+Strength} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a490e71c6f9c18403b013901844760d0e}{show\+All} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a20cb38081d33e2c1e69f8229a6b721ea}{fall\+Asleep} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} p, \hyperlink{classgearit_1_1src_1_1robot_1_1_sleeping_pack}{Sleeping\+Pack} pack, bool Did\+Check=false)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_af2f16c1240b6009d37b555bd9269b308}{set\+Categorie} (int v)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a54ca096aa1e0a7228ce26b77f17cd133}{fall\+Asleep} (\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} s, \hyperlink{classgearit_1_1src_1_1robot_1_1_sleeping_pack}{Sleeping\+Pack} pack)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a450b1c0a50d17e1593b7b06b83b1bd10}{wake\+Up} (\hyperlink{classgearit_1_1src_1_1robot_1_1_sleeping_pack}{Sleeping\+Pack} pack)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a60ea55dc2a7344abde409f0295e8ba91}{forget} (\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} s)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ab6bbb7f8be1a761c89c752d033da343e}{draw\+Debug} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a1a6d789f58adfed9b7d1d303a3a9f120}{draw\+Debug\+Texture} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ac2660fc968c5a45753f18718732186cb}{draw} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} dg)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ad710fe35764a4c9b9a8592b5ef84bb78}{remove} (\hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} p)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a2043671ae95e91ba15e81d0bd8089ea0}{Destroy} (\hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} s)
+\item 
+Boolean \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_adb0d689b0376ab03435aa586c3b513ff}{has\+Spot} (string name)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a1caf43e0e86dd7b4496ff514012d5b27}{Extract\+From\+World} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ac3ea0430afb81b56abfd324bbaaad15f}{sleep} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aaf9a7aeb3822bc050a9323f25423814a}{move} (Vector2 pos)
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1script_1_1_revolute_api}{Revolute\+Api} $>$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a563fe3f12327cc63d73a6c818034e8b1}{Get\+Spot\+Api} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a7b87738882d4eb4e3dc0660debf7aa3f}{Init\+Script} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_abbb720472fefb50aae4935e7f79fa039}{Init\+Script} (string script)
+\item 
+void \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aa7cc9b5606c73f0d474c2a0821cb213f}{Stop\+Script} ()
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a846f4585c9dabff7be05740bcc4bb746}{rev\+Count} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_ad5d25dde2531e1db0446c92d0aeda566}{Is\+Valid} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aaa30736c9c217f099dec487a0c99efca}{\+\_\+world}
+\item 
+bool\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a2d6e2509c28ad24b6a0f5d187dfcbd87}{Triggers\+Data}
+\item 
+\hyperlink{classgearit_1_1src_1_1game_1_1_score}{Score} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a74cc5798006b9a50635d6615a4f0d873}{Score} = new \hyperlink{classgearit_1_1src_1_1game_1_1_score}{Score}()
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aff534ece12ba7e6b6dee626e97762589}{State} = 0
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a89e97a75a4fe16fe8cefb33dcd78cce3}{Is\+In\+Editor} = false
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a6fe19c5744472ee8187b6accc87400d3}{\+\_\+robot\+Id\+Counter} = 1
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_piece}{Piece} $>$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_aaf664027db298c7648f6537998cbb898}{Pieces}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_revolute_spot}{Revolute\+Spot} $>$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a47e6e14ba9a13c0ddb474a76dfdef307}{Spots}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a00d317eb97a55808ba8e238c4349cfdb}{Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a8d279a6a32a161cfa5de8e5a3baf46aa}{Extracted}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1script_1_1_robot_state_api}{Robot\+State\+Api} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_abd743aa87fbb407a0112d4febd0d7d8b}{Api}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_afe59a254b7beec2e30d93471cbced525}{Last\+Trigger}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_heart}{Heart} \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a997f94766781e22b420281d9175bdb11}{Heart}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a474061eeda5239305f83fa5450499e53}{Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_abb73a758e331cd30a102ea19107fa9b3}{Max\+Force}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_abc013d298542760926d94c21fd254905}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \hyperlink{classgearit_1_1src_1_1robot_1_1_robot_a193231ca77174695b8e0257b43c5cebf}{Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a7ac841c500d5ed51a26f3f9b401a9af2}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Robot@{Robot}}
+\index{Robot@{Robot}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Robot}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+robot.\+Robot.\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world, }
+\item[{bool}]{is\+In\+Editor = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a7ac841c500d5ed51a26f3f9b401a9af2}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a7e4a423fc72103f28c3ca9cc3539ddde}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Robot@{Robot}}
+\index{Robot@{Robot}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Robot}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+robot.\+Robot.\+Robot (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a7e4a423fc72103f28c3ca9cc3539ddde}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a02cb3e784efbed703e41c842ae65c9a9}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!add\+Piece@{add\+Piece}}
+\index{add\+Piece@{add\+Piece}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{add\+Piece}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+add\+Piece (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{piece}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a02cb3e784efbed703e41c842ae65c9a9}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aca31f79167658df4e1c00201e652d13e}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!add\+Spot@{add\+Spot}}
+\index{add\+Spot@{add\+Spot}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{add\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+add\+Spot (
+\begin{DoxyParamCaption}
+\item[{{\bf Revolute\+Spot}}]{spot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_aca31f79167658df4e1c00201e652d13e}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_adb7009fa5776025621e69d85df63dfa7}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Close\+Piece@{Close\+Piece}}
+\index{Close\+Piece@{Close\+Piece}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Close\+Piece}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Piece} gearit.\+src.\+robot.\+Robot.\+Close\+Piece (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_adb7009fa5776025621e69d85df63dfa7}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a2043671ae95e91ba15e81d0bd8089ea0}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Destroy}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf Revolute\+Spot}}]{s}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a2043671ae95e91ba15e81d0bd8089ea0}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ac2660fc968c5a45753f18718732186cb}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!draw@{draw}}
+\index{draw@{draw}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ac2660fc968c5a45753f18718732186cb}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ab6bbb7f8be1a761c89c752d033da343e}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!draw\+Debug@{draw\+Debug}}
+\index{draw\+Debug@{draw\+Debug}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{draw\+Debug}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+draw\+Debug (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ab6bbb7f8be1a761c89c752d033da343e}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a1a6d789f58adfed9b7d1d303a3a9f120}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!draw\+Debug\+Texture@{draw\+Debug\+Texture}}
+\index{draw\+Debug\+Texture@{draw\+Debug\+Texture}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{draw\+Debug\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+draw\+Debug\+Texture (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{dg}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a1a6d789f58adfed9b7d1d303a3a9f120}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a1caf43e0e86dd7b4496ff514012d5b27}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Extract\+From\+World@{Extract\+From\+World}}
+\index{Extract\+From\+World@{Extract\+From\+World}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Extract\+From\+World}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Extract\+From\+World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a1caf43e0e86dd7b4496ff514012d5b27}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a20cb38081d33e2c1e69f8229a6b721ea}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!fall\+Asleep@{fall\+Asleep}}
+\index{fall\+Asleep@{fall\+Asleep}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{fall\+Asleep}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+fall\+Asleep (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{p, }
+\item[{{\bf Sleeping\+Pack}}]{pack, }
+\item[{bool}]{Did\+Check = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a20cb38081d33e2c1e69f8229a6b721ea}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a54ca096aa1e0a7228ce26b77f17cd133}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!fall\+Asleep@{fall\+Asleep}}
+\index{fall\+Asleep@{fall\+Asleep}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{fall\+Asleep}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+fall\+Asleep (
+\begin{DoxyParamCaption}
+\item[{{\bf Revolute\+Spot}}]{s, }
+\item[{{\bf Sleeping\+Pack}}]{pack}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a54ca096aa1e0a7228ce26b77f17cd133}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a0315628bee2f0f165dee7b15b953a9a6}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Find\+First\+Free\+Spot\+Name\+Id@{Find\+First\+Free\+Spot\+Name\+Id}}
+\index{Find\+First\+Free\+Spot\+Name\+Id@{Find\+First\+Free\+Spot\+Name\+Id}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Find\+First\+Free\+Spot\+Name\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+Find\+First\+Free\+Spot\+Name\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a0315628bee2f0f165dee7b15b953a9a6}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a60ea55dc2a7344abde409f0295e8ba91}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!forget@{forget}}
+\index{forget@{forget}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{forget}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+forget (
+\begin{DoxyParamCaption}
+\item[{{\bf Revolute\+Spot}}]{s}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a60ea55dc2a7344abde409f0295e8ba91}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aa347b18c64184d66e2d32ff4f844444c}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Get\+Close\+Spot@{Get\+Close\+Spot}}
+\index{Get\+Close\+Spot@{Get\+Close\+Spot}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Get\+Close\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Revolute\+Spot} gearit.\+src.\+robot.\+Robot.\+Get\+Close\+Spot (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_aa347b18c64184d66e2d32ff4f844444c}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a6f53b80c92946021a6c167aba200492c}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!get\+Motor\+Strength@{get\+Motor\+Strength}}
+\index{get\+Motor\+Strength@{get\+Motor\+Strength}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{get\+Motor\+Strength}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+robot.\+Robot.\+get\+Motor\+Strength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a6f53b80c92946021a6c167aba200492c}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ac3300f022e8744f7355fa8b6871ac062}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Get\+Object\+Data@{Get\+Object\+Data}}
+\index{Get\+Object\+Data@{Get\+Object\+Data}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Get\+Object\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Get\+Object\+Data (
+\begin{DoxyParamCaption}
+\item[{Serialization\+Info}]{info, }
+\item[{Streaming\+Context}]{ctxt}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ac3300f022e8744f7355fa8b6871ac062}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a52d61f4419b94d1aec0b0838fee09415}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Get\+Piece@{Get\+Piece}}
+\index{Get\+Piece@{Get\+Piece}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Get\+Piece}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Piece} gearit.\+src.\+robot.\+Robot.\+Get\+Piece (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a52d61f4419b94d1aec0b0838fee09415}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a563fe3f12327cc63d73a6c818034e8b1}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Get\+Spot\+Api@{Get\+Spot\+Api}}
+\index{Get\+Spot\+Api@{Get\+Spot\+Api}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Get\+Spot\+Api}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Revolute\+Api}$>$ gearit.\+src.\+robot.\+Robot.\+Get\+Spot\+Api (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a563fe3f12327cc63d73a6c818034e8b1}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a4ea8eaa66196979faebb1a48a076344a}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!get\+World@{get\+World}}
+\index{get\+World@{get\+World}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{get\+World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+robot.\+Robot.\+get\+World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a4ea8eaa66196979faebb1a48a076344a}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_adb0d689b0376ab03435aa586c3b513ff}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!has\+Spot@{has\+Spot}}
+\index{has\+Spot@{has\+Spot}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{has\+Spot}]{\setlength{\rightskip}{0pt plus 5cm}Boolean gearit.\+src.\+robot.\+Robot.\+has\+Spot (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_adb0d689b0376ab03435aa586c3b513ff}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a7b87738882d4eb4e3dc0660debf7aa3f}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Init\+Script@{Init\+Script}}
+\index{Init\+Script@{Init\+Script}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Init\+Script}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Init\+Script (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a7b87738882d4eb4e3dc0660debf7aa3f}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_abbb720472fefb50aae4935e7f79fa039}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Init\+Script@{Init\+Script}}
+\index{Init\+Script@{Init\+Script}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Init\+Script}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Init\+Script (
+\begin{DoxyParamCaption}
+\item[{string}]{script}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_abbb720472fefb50aae4935e7f79fa039}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a27dbdffbcf378ab3a2c2fd6d57dd0c6f}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Is\+Piece\+Connected\+To\+Heart@{Is\+Piece\+Connected\+To\+Heart}}
+\index{Is\+Piece\+Connected\+To\+Heart@{Is\+Piece\+Connected\+To\+Heart}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Is\+Piece\+Connected\+To\+Heart}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Robot.\+Is\+Piece\+Connected\+To\+Heart (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{piece}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a27dbdffbcf378ab3a2c2fd6d57dd0c6f}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ad5d25dde2531e1db0446c92d0aeda566}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Is\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Robot.\+Is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ad5d25dde2531e1db0446c92d0aeda566}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aaf9a7aeb3822bc050a9323f25423814a}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!move@{move}}
+\index{move@{move}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+move (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_aaf9a7aeb3822bc050a9323f25423814a}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ad710fe35764a4c9b9a8592b5ef84bb78}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!remove@{remove}}
+\index{remove@{remove}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+remove (
+\begin{DoxyParamCaption}
+\item[{{\bf Piece}}]{p}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ad710fe35764a4c9b9a8592b5ef84bb78}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a3ecb7905e465c75103a8edac57c0d4d7}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Reset\+Act@{Reset\+Act}}
+\index{Reset\+Act@{Reset\+Act}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Reset\+Act}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Reset\+Act (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a3ecb7905e465c75103a8edac57c0d4d7}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_afd1c0225d88394c44aa341051924d771}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Reset\+Act\+Ends@{Reset\+Act\+Ends}}
+\index{Reset\+Act\+Ends@{Reset\+Act\+Ends}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Reset\+Act\+Ends}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Reset\+Act\+Ends (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_afd1c0225d88394c44aa341051924d771}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a846f4585c9dabff7be05740bcc4bb746}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!rev\+Count@{rev\+Count}}
+\index{rev\+Count@{rev\+Count}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{rev\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+rev\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a846f4585c9dabff7be05740bcc4bb746}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_af2f16c1240b6009d37b555bd9269b308}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!set\+Categorie@{set\+Categorie}}
+\index{set\+Categorie@{set\+Categorie}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{set\+Categorie}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+set\+Categorie (
+\begin{DoxyParamCaption}
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_af2f16c1240b6009d37b555bd9269b308}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a855521f4c7b3e9b0110edb3537cefe60}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{set\+Color}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+set\+Color (
+\begin{DoxyParamCaption}
+\item[{Color}]{col}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a855521f4c7b3e9b0110edb3537cefe60}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a490e71c6f9c18403b013901844760d0e}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!show\+All@{show\+All}}
+\index{show\+All@{show\+All}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{show\+All}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+show\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a490e71c6f9c18403b013901844760d0e}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ac3ea0430afb81b56abfd324bbaaad15f}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!sleep@{sleep}}
+\index{sleep@{sleep}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{sleep}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+sleep (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ac3ea0430afb81b56abfd324bbaaad15f}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aa7cc9b5606c73f0d474c2a0821cb213f}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Stop\+Script@{Stop\+Script}}
+\index{Stop\+Script@{Stop\+Script}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Stop\+Script}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Stop\+Script (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_aa7cc9b5606c73f0d474c2a0821cb213f}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_ad5de51386732d800c61deccabcc89347}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Update@{Update}}
+\index{Update@{Update}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf Map}}]{map}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_ad5de51386732d800c61deccabcc89347}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a450b1c0a50d17e1593b7b06b83b1bd10}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!wake\+Up@{wake\+Up}}
+\index{wake\+Up@{wake\+Up}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{wake\+Up}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+robot.\+Robot.\+wake\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Sleeping\+Pack}}]{pack}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1robot_1_1_robot_a450b1c0a50d17e1593b7b06b83b1bd10}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a6fe19c5744472ee8187b6accc87400d3}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!\+\_\+robot\+Id\+Counter@{\+\_\+robot\+Id\+Counter}}
+\index{\+\_\+robot\+Id\+Counter@{\+\_\+robot\+Id\+Counter}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{\+\_\+robot\+Id\+Counter}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+\_\+robot\+Id\+Counter = 1\hspace{0.3cm}{\ttfamily [static]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a6fe19c5744472ee8187b6accc87400d3}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aaa30736c9c217f099dec487a0c99efca}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!\+\_\+world@{\+\_\+world}}
+\index{\+\_\+world@{\+\_\+world}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{\+\_\+world}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+robot.\+Robot.\+\_\+world}}\label{classgearit_1_1src_1_1robot_1_1_robot_aaa30736c9c217f099dec487a0c99efca}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a89e97a75a4fe16fe8cefb33dcd78cce3}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Is\+In\+Editor@{Is\+In\+Editor}}
+\index{Is\+In\+Editor@{Is\+In\+Editor}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Is\+In\+Editor}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Robot.\+Is\+In\+Editor = false}}\label{classgearit_1_1src_1_1robot_1_1_robot_a89e97a75a4fe16fe8cefb33dcd78cce3}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a74cc5798006b9a50635d6615a4f0d873}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Score@{Score}}
+\index{Score@{Score}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Score}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Score} gearit.\+src.\+robot.\+Robot.\+Score = new {\bf Score}()}}\label{classgearit_1_1src_1_1robot_1_1_robot_a74cc5798006b9a50635d6615a4f0d873}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aff534ece12ba7e6b6dee626e97762589}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!State@{State}}
+\index{State@{State}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+State = 0}}\label{classgearit_1_1src_1_1robot_1_1_robot_aff534ece12ba7e6b6dee626e97762589}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a2d6e2509c28ad24b6a0f5d187dfcbd87}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Triggers\+Data@{Triggers\+Data}}
+\index{Triggers\+Data@{Triggers\+Data}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Triggers\+Data}]{\setlength{\rightskip}{0pt plus 5cm}bool \mbox{[}$\,$\mbox{]} gearit.\+src.\+robot.\+Robot.\+Triggers\+Data}}\label{classgearit_1_1src_1_1robot_1_1_robot_a2d6e2509c28ad24b6a0f5d187dfcbd87}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_abd743aa87fbb407a0112d4febd0d7d8b}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Api@{Api}}
+\index{Api@{Api}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Api}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Robot\+State\+Api} gearit.\+src.\+robot.\+Robot.\+Api\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_abd743aa87fbb407a0112d4febd0d7d8b}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a8d279a6a32a161cfa5de8e5a3baf46aa}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Extracted@{Extracted}}
+\index{Extracted@{Extracted}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Extracted}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+robot.\+Robot.\+Extracted\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a8d279a6a32a161cfa5de8e5a3baf46aa}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a997f94766781e22b420281d9175bdb11}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Heart@{Heart}}
+\index{Heart@{Heart}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Heart}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Heart} gearit.\+src.\+robot.\+Robot.\+Heart\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a997f94766781e22b420281d9175bdb11}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a00d317eb97a55808ba8e238c4349cfdb}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Id@{Id}}
+\index{Id@{Id}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a00d317eb97a55808ba8e238c4349cfdb}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_afe59a254b7beec2e30d93471cbced525}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Last\+Trigger@{Last\+Trigger}}
+\index{Last\+Trigger@{Last\+Trigger}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Last\+Trigger}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+robot.\+Robot.\+Last\+Trigger\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_afe59a254b7beec2e30d93471cbced525}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_abb73a758e331cd30a102ea19107fa9b3}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Max\+Force@{Max\+Force}}
+\index{Max\+Force@{Max\+Force}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Max\+Force}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+robot.\+Robot.\+Max\+Force\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_abb73a758e331cd30a102ea19107fa9b3}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a193231ca77174695b8e0257b43c5cebf}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Name@{Name}}
+\index{Name@{Name}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+robot.\+Robot.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a193231ca77174695b8e0257b43c5cebf}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_aaf664027db298c7648f6537998cbb898}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Pieces@{Pieces}}
+\index{Pieces@{Pieces}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Pieces}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Piece}$>$ gearit.\+src.\+robot.\+Robot.\+Pieces\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_aaf664027db298c7648f6537998cbb898}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_abc013d298542760926d94c21fd254905}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Position@{Position}}
+\index{Position@{Position}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+robot.\+Robot.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_abc013d298542760926d94c21fd254905}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a47e6e14ba9a13c0ddb474a76dfdef307}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Spots@{Spots}}
+\index{Spots@{Spots}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Spots}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Revolute\+Spot}$>$ gearit.\+src.\+robot.\+Robot.\+Spots\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a47e6e14ba9a13c0ddb474a76dfdef307}
+\hypertarget{classgearit_1_1src_1_1robot_1_1_robot_a474061eeda5239305f83fa5450499e53}{\index{gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}!Weight@{Weight}}
+\index{Weight@{Weight}!gearit\+::src\+::robot\+::\+Robot@{gearit\+::src\+::robot\+::\+Robot}}
+\subsubsection[{Weight}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+robot.\+Robot.\+Weight\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1robot_1_1_robot_a474061eeda5239305f83fa5450499e53}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/robot/\hyperlink{_robot_8cs}{Robot.\+cs}\end{DoxyCompactItemize}

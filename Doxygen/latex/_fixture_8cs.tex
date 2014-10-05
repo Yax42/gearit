@@ -1,0 +1,62 @@
+\hypertarget{_fixture_8cs}{\section{gearit/gearit/src/farseer 3.5/\+Dynamics/\+Fixture.cs File Reference}
+\label{_fixture_8cs}\index{gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Fixture.\+cs@{gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Fixture.\+cs}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Farseer\+Physics.\+Dynamics.\+Fixture\+Proxy}
+\begin{DoxyCompactList}\small\item\em This proxy is used internally to connect fixtures to the broad-\/phase. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Farseer\+Physics.\+Dynamics.\+Fixture}
+\begin{DoxyCompactList}\small\item\em A fixture is used to attach a Shape to a body for collision detection. A fixture inherits its transform from its parent. Fixtures hold additional non-\/geometric data such as friction, collision filters, etc. Fixtures are created via \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{Body.\+Create\+Fixture}. Warning\+: You cannot reuse fixtures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_dynamics}{Farseer\+Physics.\+Dynamics}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Farseer\+Physics.\+Dynamics.\+Category} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6adf97f83acf6453d4a6a4b1070f3754}{Farseer\+Physics.\+Dynamics.\+Category.\+None} = 0, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befab1c94ca2fbc3e78fc30069c8d0f01680}{Farseer\+Physics.\+Dynamics.\+Category.\+All} = int.\+Max\+Value, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa7cd6dfa1e5c487327adc06188deb0fb6}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat1} = 1, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae40de42d219daec83c36108458c33448}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat2} = 2, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37f6adc37f0d87173121e583167d6cc1}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat3} = 4, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa129f228c0d7a220b0553d8cba9184121}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat4} = 8, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaaa470590104819dd8bfe57561230fb03}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat5} = 16, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac54ad63095318697d3211bcd63f58154}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat6} = 32, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf600d208aab66127dd4464dba35a3121}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat7} = 64, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5e086afde3ccd07c854219e8f918cf8c}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat8} = 128, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaedb8dbf31ba7788483f002ee267d463d}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat9} = 256, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaae7c1e1d2ced9c571dec4729a0719a57}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat10} = 512, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad6ef569d172c8ca14f4b545017eb6257}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat11} = 1024, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaf459944a0cb3e3dc7203be0221b520fd}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat12} = 2048, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa28d24c9232f6eb4ad18795275c0c1ffd}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat13} = 4096, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa40afc2da1fba8a10f074ee178ae91dc4}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat14} = 8192, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4fa4065ca62791ccdc0151e5f2dd3535}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat15} = 16384, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6909665d1b64813a26565474bdb6ad75}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat16} = 32768, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befad000b7d55eb653c7b9a21c03e9245734}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat17} = 65536, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa4b4092506652347fba6782f2dee8fe71}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat18} = 131072, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa1369e3d226710ca96fd1271335ca279d}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat19} = 262144, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa00b694b917c4a7f22fa6b73ca2a72c47}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat20} = 524288, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa732bebff73009bf2971c83fbcf7026bd}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat21} = 1048576, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaddd5143c22227cc8d8e845e84f7446bc}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat22} = 2097152, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa6d07f1a28c7240fb705ca7e821d0717f}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat23} = 4194304, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa37e6497fce444c3d0fdc324d1fa184da}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat24} = 8388608, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa5337ec1c99c36d2395a6021da682b7e2}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat25} = 16777216, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa8f1c8155630c68d0dbd60a328262ce88}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat26} = 33554432, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befaee74bb3fc6c6c1a8239365e81f202dbc}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat27} = 67108864, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa2c95aa5e1ba4e7610b5e0916cad67b6a}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat28} = 134217728, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befae14512278a9ad6eecf0182ef9c51d935}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat29} = 268435456, 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befa49649770cc6a2f7530fd82b4cf61eecd}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat30} = 536870912, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11befac147cfa91b1fb061dabcf50391df6d84}{Farseer\+Physics.\+Dynamics.\+Category.\+Cat31} = 1073741824
+ \}
+\end{DoxyCompactItemize}

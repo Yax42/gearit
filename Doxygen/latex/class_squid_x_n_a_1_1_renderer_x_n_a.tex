@@ -1,0 +1,174 @@
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a}{\section{Squid\+X\+N\+A.\+Renderer\+X\+N\+A Class Reference}
+\label{class_squid_x_n_a_1_1_renderer_x_n_a}\index{Squid\+X\+N\+A.\+Renderer\+X\+N\+A@{Squid\+X\+N\+A.\+Renderer\+X\+N\+A}}
+}
+
+
+Inherits I\+Squid\+Renderer.
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_1_1_font_detail}{Font\+Detail}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a71fdf88965a4c090f51dee7529326498}{Renderer\+X\+N\+A} (\hyperlink{class_squid_x_n_a_1_1_game}{Game} game)
+\item 
+bool \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_acfb669e967e03a45739f5356456ba61a}{Translate\+Key} (int code, ref char character)
+\item 
+int \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a800647226c6d0cea3c2bd6af0b1f17fa}{Get\+Texture} (string name)
+\item 
+int \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a6214223cbee2d13ecbcd03960700feb1}{Get\+Font} (string name)
+\item 
+\hyperlink{_seidel_decomposer_8cs_a2a603daa342d957bd27dd0b1eb38af15}{Squid.\+Point} \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a1926b3c0450870c7ffcb728f776019e6}{Get\+Text\+Size} (string text, int font)
+\item 
+\hyperlink{_seidel_decomposer_8cs_a2a603daa342d957bd27dd0b1eb38af15}{Squid.\+Point} \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a3a60029b4781d76bd04bf4fe387549f3}{Get\+Texture\+Size} (int texture)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_aca1ac0d9c18d5203a26183a96b60bf93}{Draw\+Box} (int x, int y, int w, int h, int color)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_ae995c006bd789199b0e193178dbdae16}{Draw\+Text} (string text, int x, int y, int font, int color)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_ae5ba3402b915d8d4830a3c503a42b9d1}{Draw\+Texture} (int texture, int x, int y, int w, int h, Squid.\+Rectangle rect, int color)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_ac7ba04cae34a0cbb86118c2f013b26de}{Scissor} (int x, int y, int w, int h)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_aa49456bbde971e1d57d9e1a897d95175}{Start\+Batch} ()
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_abded26fb1dbf3ee844191df22f2bd850}{End\+Batch} (bool final)
+\item 
+void \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a0567fc9bfa93b2977ee1c6308262e743}{Dispose} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_squid_x_n_a_1_1_renderer_x_n_a_a779834d86bb1a547258e425a6002efa9}{Virtual\+Key\+To\+Scancode} (int key)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a71fdf88965a4c090f51dee7529326498}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Renderer\+X\+N\+A@{Renderer\+X\+N\+A}}
+\index{Renderer\+X\+N\+A@{Renderer\+X\+N\+A}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Renderer\+X\+N\+A}]{\setlength{\rightskip}{0pt plus 5cm}Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Renderer\+X\+N\+A (
+\begin{DoxyParamCaption}
+\item[{{\bf Game}}]{game}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a71fdf88965a4c090f51dee7529326498}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a0567fc9bfa93b2977ee1c6308262e743}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a0567fc9bfa93b2977ee1c6308262e743}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_aca1ac0d9c18d5203a26183a96b60bf93}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Draw\+Box@{Draw\+Box}}
+\index{Draw\+Box@{Draw\+Box}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Draw\+Box}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Draw\+Box (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h, }
+\item[{int}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_aca1ac0d9c18d5203a26183a96b60bf93}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_ae995c006bd789199b0e193178dbdae16}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Draw\+Text@{Draw\+Text}}
+\index{Draw\+Text@{Draw\+Text}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Draw\+Text}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Draw\+Text (
+\begin{DoxyParamCaption}
+\item[{string}]{text, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{font, }
+\item[{int}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_ae995c006bd789199b0e193178dbdae16}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_ae5ba3402b915d8d4830a3c503a42b9d1}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Draw\+Texture@{Draw\+Texture}}
+\index{Draw\+Texture@{Draw\+Texture}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Draw\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Draw\+Texture (
+\begin{DoxyParamCaption}
+\item[{int}]{texture, }
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h, }
+\item[{Squid.\+Rectangle}]{rect, }
+\item[{int}]{color}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_ae5ba3402b915d8d4830a3c503a42b9d1}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_abded26fb1dbf3ee844191df22f2bd850}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!End\+Batch@{End\+Batch}}
+\index{End\+Batch@{End\+Batch}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{End\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+End\+Batch (
+\begin{DoxyParamCaption}
+\item[{bool}]{final}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_abded26fb1dbf3ee844191df22f2bd850}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a6214223cbee2d13ecbcd03960700feb1}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Get\+Font@{Get\+Font}}
+\index{Get\+Font@{Get\+Font}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Get\+Font}]{\setlength{\rightskip}{0pt plus 5cm}int Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Get\+Font (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a6214223cbee2d13ecbcd03960700feb1}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a1926b3c0450870c7ffcb728f776019e6}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Get\+Text\+Size@{Get\+Text\+Size}}
+\index{Get\+Text\+Size@{Get\+Text\+Size}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Get\+Text\+Size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Squid.\+Point} Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Get\+Text\+Size (
+\begin{DoxyParamCaption}
+\item[{string}]{text, }
+\item[{int}]{font}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a1926b3c0450870c7ffcb728f776019e6}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a800647226c6d0cea3c2bd6af0b1f17fa}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Get\+Texture@{Get\+Texture}}
+\index{Get\+Texture@{Get\+Texture}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Get\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}int Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Get\+Texture (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a800647226c6d0cea3c2bd6af0b1f17fa}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a3a60029b4781d76bd04bf4fe387549f3}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Get\+Texture\+Size@{Get\+Texture\+Size}}
+\index{Get\+Texture\+Size@{Get\+Texture\+Size}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Get\+Texture\+Size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Squid.\+Point} Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Get\+Texture\+Size (
+\begin{DoxyParamCaption}
+\item[{int}]{texture}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a3a60029b4781d76bd04bf4fe387549f3}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_ac7ba04cae34a0cbb86118c2f013b26de}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Scissor@{Scissor}}
+\index{Scissor@{Scissor}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Scissor}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Scissor (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{w, }
+\item[{int}]{h}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_ac7ba04cae34a0cbb86118c2f013b26de}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_aa49456bbde971e1d57d9e1a897d95175}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Start\+Batch@{Start\+Batch}}
+\index{Start\+Batch@{Start\+Batch}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Start\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}void Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Start\+Batch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_aa49456bbde971e1d57d9e1a897d95175}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_acfb669e967e03a45739f5356456ba61a}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Translate\+Key@{Translate\+Key}}
+\index{Translate\+Key@{Translate\+Key}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Translate\+Key}]{\setlength{\rightskip}{0pt plus 5cm}bool Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Translate\+Key (
+\begin{DoxyParamCaption}
+\item[{int}]{code, }
+\item[{ref char}]{character}
+\end{DoxyParamCaption}
+)}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_acfb669e967e03a45739f5356456ba61a}
+\hypertarget{class_squid_x_n_a_1_1_renderer_x_n_a_a779834d86bb1a547258e425a6002efa9}{\index{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}!Virtual\+Key\+To\+Scancode@{Virtual\+Key\+To\+Scancode}}
+\index{Virtual\+Key\+To\+Scancode@{Virtual\+Key\+To\+Scancode}!Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A@{Squid\+X\+N\+A\+::\+Renderer\+X\+N\+A}}
+\subsubsection[{Virtual\+Key\+To\+Scancode}]{\setlength{\rightskip}{0pt plus 5cm}static int Squid\+X\+N\+A.\+Renderer\+X\+N\+A.\+Virtual\+Key\+To\+Scancode (
+\begin{DoxyParamCaption}
+\item[{int}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_squid_x_n_a_1_1_renderer_x_n_a_a779834d86bb1a547258e425a6002efa9}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+G\+U\+I/\hyperlink{_renderer_x_n_a_8cs}{Renderer\+X\+N\+A.\+cs}\end{DoxyCompactItemize}

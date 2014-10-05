@@ -1,0 +1,93 @@
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition}{\section{Package Farseer\+Physics.\+Common.\+Decomposition}
+\label{namespace_farseer_physics_1_1_common_1_1_decomposition}\index{Farseer\+Physics.\+Common.\+Decomposition@{Farseer\+Physics.\+Common.\+Decomposition}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_1_1_c_d_t}{C\+D\+T}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_1_1_seidel}{Seidel}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Bayazit\+Decomposer}
+\begin{DoxyCompactList}\small\item\em Convex decomposition algorithm created by Mark Bayazit (\href{http://mnbayazit.com/}{\tt http\+://mnbayazit.\+com/}) \end{DoxyCompactList}\item 
+class {\bfseries C\+D\+T\+Decomposer}
+\begin{DoxyCompactList}\small\item\em 2\+D constrained Delaunay triangulation algorithm. Based on the paper \char`\"{}\+Sweep-\/line algorithm for constrained Delaunay triangulation\char`\"{} by V. Domiter and and B. Zalik \end{DoxyCompactList}\item 
+class {\bfseries Earclip\+Decomposer}
+\begin{DoxyCompactList}\small\item\em Convex decomposition algorithm using ear clipping \end{DoxyCompactList}\item 
+class {\bfseries Flipcode\+Decomposer}
+\begin{DoxyCompactList}\small\item\em Convex decomposition algorithm created by unknown \end{DoxyCompactList}\item 
+class {\bfseries Seidel\+Decomposer}
+\begin{DoxyCompactList}\small\item\em Convex decomposition algorithm created by Raimund \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_1_1_seidel}{Seidel} \end{DoxyCompactList}\item 
+class {\bfseries Triangulate}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575}{Triangulation\+Algorithm} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a67ac673518d5cac732e925c3621006fd}{Triangulation\+Algorithm.\+Earclip}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a666e685ea058b7188395cd99aa1b8a19}{Triangulation\+Algorithm.\+Bayazit}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a0efdbf579d7141aad03cab430e30307c}{Triangulation\+Algorithm.\+Flipcode}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575aab178da569507fcd537f712af786ca97}{Triangulation\+Algorithm.\+Seidel}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575ae998f071c4e86f59551b73d6762c1671}{Triangulation\+Algorithm.\+Seidel\+Trapezoids}, 
+\hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a6601e04d7cfa7c4f369d32e14b0ff0e2}{Triangulation\+Algorithm.\+Delauny}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575}{\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Triangulation\+Algorithm@{Triangulation\+Algorithm}}
+\index{Triangulation\+Algorithm@{Triangulation\+Algorithm}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}
+\subsubsection[{Triangulation\+Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Common.\+Decomposition.\+Triangulation\+Algorithm}}}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Earclip@{Earclip}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Earclip@{Earclip}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a67ac673518d5cac732e925c3621006fd}{Earclip}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a67ac673518d5cac732e925c3621006fd}
+}]Convex decomposition algorithm using ear clipping Properties\+:
+\begin{DoxyItemize}
+\item Only works on simple polygons.
+\item Does not support holes.
+\item Running time is O(n$^\wedge$2), n = number of vertices. 
+\end{DoxyItemize}\index{Bayazit@{Bayazit}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Bayazit@{Bayazit}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a666e685ea058b7188395cd99aa1b8a19}{Bayazit}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a666e685ea058b7188395cd99aa1b8a19}
+}]Convex decomposition algorithm created by Mark Bayazit (\href{http://mnbayazit.com/}{\tt http\+://mnbayazit.\+com/}) Properties\+:
+\begin{DoxyItemize}
+\item Tries to decompose using polygons instead of triangles.
+\item Tends to produce optimal results with low processing time.
+\item Running time is O(nr), n = number of vertices, r = reflex vertices.
+\item Does not support holes. 
+\end{DoxyItemize}\index{Flipcode@{Flipcode}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Flipcode@{Flipcode}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a0efdbf579d7141aad03cab430e30307c}{Flipcode}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a0efdbf579d7141aad03cab430e30307c}
+}]Convex decomposition algorithm created by unknown Properties\+:
+\begin{DoxyItemize}
+\item No support for holes
+\item Very fast
+\item Only works on simple polygons
+\item Only works on counter clockwise polygons 
+\end{DoxyItemize}\index{Seidel@{Seidel}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Seidel@{Seidel}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575aab178da569507fcd537f712af786ca97}{Seidel}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575aab178da569507fcd537f712af786ca97}
+}]Convex decomposition algorithm created by Raimund \hyperlink{namespace_farseer_physics_1_1_common_1_1_decomposition_1_1_seidel}{Seidel} Properties\+:
+\begin{DoxyItemize}
+\item Decompose the polygon into trapezoids, then triangulate.
+\item To use the trapezoid data, use Convex\+Partition\+Trapezoid()
+\item Generate a lot of garbage due to incapsulation of the Poly2\+Tri library.
+\item Running time is O(n log n), n = number of vertices.
+\item Running time is almost linear for most simple polygons.
+\item Does not care about winding order. 
+\end{DoxyItemize}\index{Seidel\+Trapezoids@{Seidel\+Trapezoids}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Seidel\+Trapezoids@{Seidel\+Trapezoids}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575ae998f071c4e86f59551b73d6762c1671}{Seidel\+Trapezoids}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575ae998f071c4e86f59551b73d6762c1671}
+}]\index{Delauny@{Delauny}!Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}}\index{Farseer\+Physics\+::\+Common\+::\+Decomposition@{Farseer\+Physics\+::\+Common\+::\+Decomposition}!Delauny@{Delauny}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a6601e04d7cfa7c4f369d32e14b0ff0e2}{Delauny}\label{namespace_farseer_physics_1_1_common_1_1_decomposition_aaf4a6ce83f6797b197ff74a08b9f4575a6601e04d7cfa7c4f369d32e14b0ff0e2}
+}]2\+D constrained Delaunay triangulation algorithm. Based on the paper \char`\"{}\+Sweep-\/line algorithm for constrained Delaunay triangulation\char`\"{} by V. Domiter and and B. Zalik Properties\+:
+\begin{DoxyItemize}
+\item Creates triangles with a large interior angle.
+\item Supports holes
+\item Generate a lot of garbage due to incapsulation of the Poly2\+Tri library.
+\item Running time is O(n$^\wedge$2), n = number of vertices.
+\item Does not care about winding order. 
+\end{DoxyItemize}\end{description}
+\end{Desc}

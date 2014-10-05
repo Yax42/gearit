@@ -1,0 +1,167 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint}}
+}
+
+
+A weld joint essentially glues two bodies together. A weld joint may distort somewhat because the island constraint solver is approximate.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a6ee350e2dda9cb24c09dd9e458d64d5b}{Weld\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor\+A, Vector2 anchor\+B, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em You need to specify an anchor point where they are attached. The position of the anchor point is important for computing the reaction torque. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_afe396a2c0621221c31b0a728577ecad7}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a29b94e2a5b6d4f9c5a68bffef71cf80b}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae3d75d438fe741faee232734de8fa855}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_af93bf97a631774ec061477429a0f957b}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a2d66bcb8d00e09db224b64fa09644761}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_abe87f95300c07e6d849bd377a5c2ce16}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a1e3169f9106c4bc0cc2f95e8bdb7954f}{Reference\+Angle}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The body\+B angle minus body\+A angle in the reference state (radians). \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae9865abaa5f0d5578dfa0be8f9f00b09}{Frequency\+Hz}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The frequency of the joint. A higher frequency means a stiffer joint, but a too high value can cause the joint to oscillate. Default is 0, which means the joint does no spring calculations. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a0cd923a55969fcf2d432e88af96702f9}{Damping\+Ratio}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The damping on the joint. The damping is only used when the joint has a frequency ($>$ 0). A higher value means more damping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A weld joint essentially glues two bodies together. A weld joint may distort somewhat because the island constraint solver is approximate. 
+
+The joint is soft constraint based, which means the two bodies will move relative to each other, when a force is applied. To combine two bodies in a rigid fashion, combine the fixtures to a single body instead. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a6ee350e2dda9cb24c09dd9e458d64d5b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Weld\+Joint@{Weld\+Joint}}
+\index{Weld\+Joint@{Weld\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Weld\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Weld\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor\+A, }
+\item[{Vector2}]{anchor\+B, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a6ee350e2dda9cb24c09dd9e458d64d5b}
+
+
+You need to specify an anchor point where they are attached. The position of the anchor point is important for computing the reaction torque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+{\em anchor\+A} & The first body anchor.\\
+\hline
+{\em anchor\+B} & The second body anchor.\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_afe396a2c0621221c31b0a728577ecad7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_afe396a2c0621221c31b0a728577ecad7}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a29b94e2a5b6d4f9c5a68bffef71cf80b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a29b94e2a5b6d4f9c5a68bffef71cf80b}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a0cd923a55969fcf2d432e88af96702f9}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Damping\+Ratio@{Damping\+Ratio}}
+\index{Damping\+Ratio@{Damping\+Ratio}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Damping\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Damping\+Ratio\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a0cd923a55969fcf2d432e88af96702f9}
+
+
+The damping on the joint. The damping is only used when the joint has a frequency ($>$ 0). A higher value means more damping. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae9865abaa5f0d5578dfa0be8f9f00b09}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Frequency\+Hz@{Frequency\+Hz}}
+\index{Frequency\+Hz@{Frequency\+Hz}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Frequency\+Hz}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Frequency\+Hz\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae9865abaa5f0d5578dfa0be8f9f00b09}
+
+
+The frequency of the joint. A higher frequency means a stiffer joint, but a too high value can cause the joint to oscillate. Default is 0, which means the joint does no spring calculations. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae3d75d438fe741faee232734de8fa855}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_ae3d75d438fe741faee232734de8fa855}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_af93bf97a631774ec061477429a0f957b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_af93bf97a631774ec061477429a0f957b}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a1e3169f9106c4bc0cc2f95e8bdb7954f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!Reference\+Angle@{Reference\+Angle}}
+\index{Reference\+Angle@{Reference\+Angle}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{Reference\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+Reference\+Angle\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a1e3169f9106c4bc0cc2f95e8bdb7954f}
+
+
+The body\+B angle minus body\+A angle in the reference state (radians). 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a2d66bcb8d00e09db224b64fa09644761}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a2d66bcb8d00e09db224b64fa09644761}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_abe87f95300c07e6d849bd377a5c2ce16}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Weld\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_abe87f95300c07e6d849bd377a5c2ce16}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_weld_joint_8cs}{Weld\+Joint.\+cs}\end{DoxyCompactItemize}

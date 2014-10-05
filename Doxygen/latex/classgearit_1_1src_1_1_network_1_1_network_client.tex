@@ -1,0 +1,115 @@
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client}{\section{gearit.\+src.\+Network.\+Network\+Client Class Reference}
+\label{classgearit_1_1src_1_1_network_1_1_network_client}\index{gearit.\+src.\+Network.\+Network\+Client@{gearit.\+src.\+Network.\+Network\+Client}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network}{gearit.\+src.\+Network.\+I\+Network}.
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aee}{E\+State} \{ \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeae321c53b354930ba96f0243e652df458}{E\+State.\+Connecting}, 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeea2ec0d16e4ca169baedb9b2d50ec5c6d7}{E\+State.\+Connected}, 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeaef70e46fd3bbc21e3e1f0b6815e750c0}{E\+State.\+Disconnected}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a70548a9748e4545628f87ffb4ed500b8}{Network\+Client} (\hyperlink{classgearit_1_1src_1_1_network_1_1_in_game_packet_manager}{In\+Game\+Packet\+Manager} packet\+Manager)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_afcc11cbd1fd2d786b116c2d1d30f59b8}{Connect} (string host, int port)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a74a0f4fec48f511889a274c0055439e2}{Disconnect} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a9277f91c13b8af94e4fc8ff694c6a921}{Receive} (object peer)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_aaec0a47a10708def5d2f1bd3394381d9}{Client\+\_\+\+Manage\+Request} (Net\+Incoming\+Message msg)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aee}{E\+State} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a3117b735052b922fb7376bd13f85b740}{State} = E\+State.\+Disconnected
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override byte\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_a701aff727a060db8b87bba8cf16342ad}{Events}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aee}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!E\+State@{E\+State}}
+\index{E\+State@{E\+State}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{E\+State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf gearit.\+src.\+Network.\+Network\+Client.\+E\+State}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aee}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Connecting@{Connecting}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Connecting@{Connecting}}\item[{\em 
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeae321c53b354930ba96f0243e652df458}{Connecting}\label{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeae321c53b354930ba96f0243e652df458}
+}]\index{Connected@{Connected}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Connected@{Connected}}\item[{\em 
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeea2ec0d16e4ca169baedb9b2d50ec5c6d7}{Connected}\label{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeea2ec0d16e4ca169baedb9b2d50ec5c6d7}
+}]\index{Disconnected@{Disconnected}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Disconnected@{Disconnected}}\item[{\em 
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeaef70e46fd3bbc21e3e1f0b6815e750c0}{Disconnected}\label{classgearit_1_1src_1_1_network_1_1_network_client_a8c5d63a28969b69f509466b1e2138aeeaef70e46fd3bbc21e3e1f0b6815e750c0}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a70548a9748e4545628f87ffb4ed500b8}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Network\+Client@{Network\+Client}}
+\index{Network\+Client@{Network\+Client}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Network\+Client}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Network.\+Network\+Client.\+Network\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf In\+Game\+Packet\+Manager}}]{packet\+Manager}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a70548a9748e4545628f87ffb4ed500b8}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_aaec0a47a10708def5d2f1bd3394381d9}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Client\+\_\+\+Manage\+Request@{Client\+\_\+\+Manage\+Request}}
+\index{Client\+\_\+\+Manage\+Request@{Client\+\_\+\+Manage\+Request}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Client\+\_\+\+Manage\+Request}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client.\+Client\+\_\+\+Manage\+Request (
+\begin{DoxyParamCaption}
+\item[{Net\+Incoming\+Message}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_aaec0a47a10708def5d2f1bd3394381d9}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_afcc11cbd1fd2d786b116c2d1d30f59b8}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Connect@{Connect}}
+\index{Connect@{Connect}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Connect}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client.\+Connect (
+\begin{DoxyParamCaption}
+\item[{string}]{host, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_afcc11cbd1fd2d786b116c2d1d30f59b8}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a74a0f4fec48f511889a274c0055439e2}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Disconnect@{Disconnect}}
+\index{Disconnect@{Disconnect}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client.\+Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a74a0f4fec48f511889a274c0055439e2}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a9277f91c13b8af94e4fc8ff694c6a921}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Receive@{Receive}}
+\index{Receive@{Receive}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Receive}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client.\+Receive (
+\begin{DoxyParamCaption}
+\item[{object}]{peer}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a9277f91c13b8af94e4fc8ff694c6a921}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a3117b735052b922fb7376bd13f85b740}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!State@{State}}
+\index{State@{State}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf E\+State} gearit.\+src.\+Network.\+Network\+Client.\+State = E\+State.\+Disconnected}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a3117b735052b922fb7376bd13f85b740}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_a701aff727a060db8b87bba8cf16342ad}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}!Events@{Events}}
+\index{Events@{Events}!gearit\+::src\+::\+Network\+::\+Network\+Client@{gearit\+::src\+::\+Network\+::\+Network\+Client}}
+\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}override byte \mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+Network\+Client.\+Events\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_a701aff727a060db8b87bba8cf16342ad}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+Network/\hyperlink{_network_client_8cs}{Network\+Client.\+cs}\end{DoxyCompactItemize}

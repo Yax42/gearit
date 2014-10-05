@@ -1,0 +1,230 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}}
+}
+
+
+Inherited by \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_distance_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Distance\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_friction_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Friction\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint}, and \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+abstract float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_abfa904f80fd61465cb31c73faa347247}{Is\+Fixed\+Type} ()
+\begin{DoxyCompactList}\small\item\em Return true if the joint is a fixed type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a8ef109de7c22718a74fc79e3fca543ea}{Enabled} = true
+\begin{DoxyCompactList}\small\item\em Indicate if this join is enabled or not. Disabling a joint means it is still in the simulation, but inactive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a5e705dc70d8f4e26f83a3a19068c7d31}{Joint} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_ae9612786f85f36069ae135c65d1a5238}{Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B)
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a06322542d5c95f376bc483bfc85615b6}{Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\begin{DoxyCompactList}\small\item\em Constructor for fixed joint \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a7507ffbd25f098201fe8355760473752}{Wake\+Bodies} ()
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a9cdf2fbf2838f915432565f0d0953749}{Joint\+Type} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_acad2ef95a496b3c32b1ccec4f5cca2d5}{Joint\+Type}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the type of the joint. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a37bb538e0112f8536d86e352b4f1d4bc}{Body\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the first body attached to this joint. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a9889e8bfcb93d07f36e67404dadf30fa}{Body\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the second body attached to this joint. \end{DoxyCompactList}\item 
+abstract Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a58837c0ff61a2e98ae532d9be154a08f}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the anchor point on body\+A in world coordinates. On some joints, this value indicate the anchor point within the world. \end{DoxyCompactList}\item 
+abstract Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_afd3cafa4220f3ac2091b4357ded5bffb}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the anchor point on body\+B in world coordinates. On some joints, this value indicate the anchor point within the world. \end{DoxyCompactList}\item 
+object \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a826db0676007538867698ed61ec24c65}{User\+Data}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the user data pointer. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a970d4f1d6bcf16af3c82ea97ebc1a966}{Collide\+Connected}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set this flag to true if the attached bodies should collide. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a78584756db5015f83e5c5f54e132f634}{Breakpoint}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The Breakpoint simply indicates the maximum Value the Joint\+Error can be before it breaks. The default value is float.\+Max\+Value, which means it never breaks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Action$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint}, float $>$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aaf2b3615a95b0e3d40083b1fd886af74}{Broke}
+\begin{DoxyCompactList}\small\item\em Fires when the joint is broken. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a5e705dc70d8f4e26f83a3a19068c7d31}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Joint@{Joint}}
+\index{Joint@{Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Joint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a5e705dc70d8f4e26f83a3a19068c7d31}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_ae9612786f85f36069ae135c65d1a5238}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Joint@{Joint}}
+\index{Joint@{Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_ae9612786f85f36069ae135c65d1a5238}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a06322542d5c95f376bc483bfc85615b6}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Joint@{Joint}}
+\index{Joint@{Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a06322542d5c95f376bc483bfc85615b6}
+
+
+Constructor for fixed joint 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_aa948e6e01ecceaf8f6e525ea69b0bec5}{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a2be3ff931fd9507d2fa673fafda208b6}{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_abe016ecc52738d2507053c6629ac2026}{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a0bc5fda4f33a81ab1598d56a5d7dcabf}{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8448102d0e2e2f9c4d58c6d10aaadbba}{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_ac3cd72010e24ea71d6eeee9cb43b3cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_distance_joint_a65829cf4dd39def3d6a9dbf6f06c40ac}{Farseer\+Physics.\+Dynamics.\+Joints.\+Distance\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_acfb73894a3d9f72003b536878e2b59e8}{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_afe396a2c0621221c31b0a728577ecad7}{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a74aa0f9ba87f866ac03a176743f7398a}{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_friction_joint_a7f34a26cc99f146fe09066056f5b45b9}{Farseer\+Physics.\+Dynamics.\+Joints.\+Friction\+Joint}, and \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_a19ce23a3970f7cee3a7c869b8941c5bb}{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}abstract float Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_prismatic_joint_a0786561dbda2ff4ac0ca4de0ade29907}{Farseer\+Physics.\+Dynamics.\+Joints.\+Prismatic\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_revolute_joint_a5f3c423d27b54ec925af1462ccb88779}{Farseer\+Physics.\+Dynamics.\+Joints.\+Revolute\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_wheel_joint_ab838e16faa39f71aa7178f52896678a2}{Farseer\+Physics.\+Dynamics.\+Joints.\+Wheel\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a2b2c491c28382b3c53445e5990e23e61}{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a5b434934bbbddf36c29ca47a699e1315}{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_motor_joint_a858a34f8c7366b9f0583b1b6eb81f18b}{Farseer\+Physics.\+Dynamics.\+Joints.\+Motor\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_distance_joint_a67964e7d92ff9d0ed422b00dcc2d818b}{Farseer\+Physics.\+Dynamics.\+Joints.\+Distance\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_fixed_mouse_joint_a2becffede0c5bba84ab601e12c492bc1}{Farseer\+Physics.\+Dynamics.\+Joints.\+Fixed\+Mouse\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_weld_joint_a29b94e2a5b6d4f9c5a68bffef71cf80b}{Farseer\+Physics.\+Dynamics.\+Joints.\+Weld\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a4d03626df0cd9e34c9129efce2215884}{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint}, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_friction_joint_a6f468ec9c8a256b6d24d2b913216323e}{Farseer\+Physics.\+Dynamics.\+Joints.\+Friction\+Joint}, and \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_angle_joint_af63e76838c76b9d88305e7320307e1ed}{Farseer\+Physics.\+Dynamics.\+Joints.\+Angle\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_abfa904f80fd61465cb31c73faa347247}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Is\+Fixed\+Type@{Is\+Fixed\+Type}}
+\index{Is\+Fixed\+Type@{Is\+Fixed\+Type}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Is\+Fixed\+Type}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Is\+Fixed\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_abfa904f80fd61465cb31c73faa347247}
+
+
+Return true if the joint is a fixed type. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a7507ffbd25f098201fe8355760473752}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Wake\+Bodies@{Wake\+Bodies}}
+\index{Wake\+Bodies@{Wake\+Bodies}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Wake\+Bodies}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Wake\+Bodies (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a7507ffbd25f098201fe8355760473752}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a8ef109de7c22718a74fc79e3fca543ea}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Enabled@{Enabled}}
+\index{Enabled@{Enabled}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Enabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Enabled = true}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a8ef109de7c22718a74fc79e3fca543ea}
+
+
+Indicate if this join is enabled or not. Disabling a joint means it is still in the simulation, but inactive. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a37bb538e0112f8536d86e352b4f1d4bc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Body\+A@{Body\+A}}
+\index{Body\+A@{Body\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Body\+A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Body\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a37bb538e0112f8536d86e352b4f1d4bc}
+
+
+Get the first body attached to this joint. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a9889e8bfcb93d07f36e67404dadf30fa}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Body\+B@{Body\+B}}
+\index{Body\+B@{Body\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Body\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Body\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a9889e8bfcb93d07f36e67404dadf30fa}
+
+
+Get the second body attached to this joint. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a78584756db5015f83e5c5f54e132f634}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Breakpoint@{Breakpoint}}
+\index{Breakpoint@{Breakpoint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Breakpoint}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Breakpoint\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a78584756db5015f83e5c5f54e132f634}
+
+
+The Breakpoint simply indicates the maximum Value the Joint\+Error can be before it breaks. The default value is float.\+Max\+Value, which means it never breaks. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a970d4f1d6bcf16af3c82ea97ebc1a966}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Collide\+Connected@{Collide\+Connected}}
+\index{Collide\+Connected@{Collide\+Connected}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Collide\+Connected}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Collide\+Connected\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a970d4f1d6bcf16af3c82ea97ebc1a966}
+
+
+Set this flag to true if the attached bodies should collide. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_acad2ef95a496b3c32b1ccec4f5cca2d5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Joint\+Type@{Joint\+Type}}
+\index{Joint\+Type@{Joint\+Type}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Joint\+Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint\+Type} Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Joint\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_acad2ef95a496b3c32b1ccec4f5cca2d5}
+
+
+Gets or sets the type of the joint. 
+
+The type of the joint.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a826db0676007538867698ed61ec24c65}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!User\+Data@{User\+Data}}
+\index{User\+Data@{User\+Data}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{User\+Data}]{\setlength{\rightskip}{0pt plus 5cm}object Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+User\+Data\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a826db0676007538867698ed61ec24c65}
+
+
+Set the user data pointer. 
+
+The data.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a58837c0ff61a2e98ae532d9be154a08f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a58837c0ff61a2e98ae532d9be154a08f}
+
+
+Get the anchor point on body\+A in world coordinates. On some joints, this value indicate the anchor point within the world. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_afd3cafa4220f3ac2091b4357ded5bffb}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_afd3cafa4220f3ac2091b4357ded5bffb}
+
+
+Get the anchor point on body\+B in world coordinates. On some joints, this value indicate the anchor point within the world. 
+
+
+
+\subsection{Event Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aaf2b3615a95b0e3d40083b1fd886af74}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}!Broke@{Broke}}
+\index{Broke@{Broke}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Joint}}
+\subsubsection[{Broke}]{\setlength{\rightskip}{0pt plus 5cm}Action$<${\bf Joint}, float$>$ Farseer\+Physics.\+Dynamics.\+Joints.\+Joint.\+Broke}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aaf2b3615a95b0e3d40083b1fd886af74}
+
+
+Fires when the joint is broken. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_joint_8cs}{Joint.\+cs}\end{DoxyCompactItemize}

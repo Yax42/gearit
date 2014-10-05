@@ -1,0 +1,75 @@
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold}{\section{Farseer\+Physics.\+Collision.\+Manifold Struct Reference}
+\label{struct_farseer_physics_1_1_collision_1_1_manifold}\index{Farseer\+Physics.\+Collision.\+Manifold@{Farseer\+Physics.\+Collision.\+Manifold}}
+}
+
+
+A manifold for two touching convex \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes}. Box2\+D supports multiple types of contact\+:  
+
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_a49ad5b0ae45736b509d5445f8e04e823}{Local\+Normal}
+\begin{DoxyCompactList}\small\item\em Not use for Type.\+Separation\+Function.\+Points \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_a6502701f36cda294be0ffe4f081cb6ed}{Local\+Point}
+\begin{DoxyCompactList}\small\item\em Usage depends on manifold type \end{DoxyCompactList}\item 
+int \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_ac56b36d7ff7370ee663f27d62537ef3d}{Point\+Count}
+\begin{DoxyCompactList}\small\item\em The number of manifold points \end{DoxyCompactList}\item 
+Fixed\+Array2$<$ \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point}{Manifold\+Point} $>$ \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_a37a6a5311e01b146c829ce90c3cfb3d1}{Points}
+\begin{DoxyCompactList}\small\item\em The points of contact \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafae}{Manifold\+Type} \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_a4bd0e0439598b8525f6cbdc69e296736}{Type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A manifold for two touching convex \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes}. Box2\+D supports multiple types of contact\+: 
+
+
+\begin{DoxyItemize}
+\item Clip point versus plane with radius
+\item Point versus point with radius (circles) The local point usage depends on the manifold type\+:
+\item Shape\+Type.\+Circles\+: the local center of circle\+A
+\item Separation\+Function.\+Face\+A\+: the center of face\+A
+\item Separation\+Function.\+Face\+B\+: the center of face\+B Similarly the local normal usage\+:
+\item Shape\+Type.\+Circles\+: not used
+\item Separation\+Function.\+Face\+A\+: the normal on polygon\+A
+\item Separation\+Function.\+Face\+B\+: the normal on polygon\+B We store contacts in this way so that position correction can account for movement, which is critical for continuous physics. All contact scenarios must be expressed in one of these types. This structure is stored across time steps, so we keep it small. 
+\end{DoxyItemize}
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_a49ad5b0ae45736b509d5445f8e04e823}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}!Local\+Normal@{Local\+Normal}}
+\index{Local\+Normal@{Local\+Normal}!Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}}
+\subsubsection[{Local\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+Manifold.\+Local\+Normal}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_a49ad5b0ae45736b509d5445f8e04e823}
+
+
+Not use for Type.\+Separation\+Function.\+Points 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_a6502701f36cda294be0ffe4f081cb6ed}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}!Local\+Point@{Local\+Point}}
+\index{Local\+Point@{Local\+Point}!Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}}
+\subsubsection[{Local\+Point}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Collision.\+Manifold.\+Local\+Point}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_a6502701f36cda294be0ffe4f081cb6ed}
+
+
+Usage depends on manifold type 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_ac56b36d7ff7370ee663f27d62537ef3d}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}!Point\+Count@{Point\+Count}}
+\index{Point\+Count@{Point\+Count}!Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}}
+\subsubsection[{Point\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Collision.\+Manifold.\+Point\+Count}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_ac56b36d7ff7370ee663f27d62537ef3d}
+
+
+The number of manifold points 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_a37a6a5311e01b146c829ce90c3cfb3d1}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}!Points@{Points}}
+\index{Points@{Points}!Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}}
+\subsubsection[{Points}]{\setlength{\rightskip}{0pt plus 5cm}Fixed\+Array2$<${\bf Manifold\+Point}$>$ Farseer\+Physics.\+Collision.\+Manifold.\+Points}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_a37a6a5311e01b146c829ce90c3cfb3d1}
+
+
+The points of contact 
+
+\hypertarget{struct_farseer_physics_1_1_collision_1_1_manifold_a4bd0e0439598b8525f6cbdc69e296736}{\index{Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}!Type@{Type}}
+\index{Type@{Type}!Farseer\+Physics\+::\+Collision\+::\+Manifold@{Farseer\+Physics\+::\+Collision\+::\+Manifold}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Manifold\+Type} Farseer\+Physics.\+Collision.\+Manifold.\+Type}}\label{struct_farseer_physics_1_1_collision_1_1_manifold_a4bd0e0439598b8525f6cbdc69e296736}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Collision/\hyperlink{_collision_8cs}{Collision.\+cs}\end{DoxyCompactItemize}

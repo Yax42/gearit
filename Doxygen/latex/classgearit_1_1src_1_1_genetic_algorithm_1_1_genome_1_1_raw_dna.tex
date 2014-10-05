@@ -1,0 +1,193 @@
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna}{\section{gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna Class Reference}
+\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna}\index{gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna@{gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abb118078be8e9384a335ecf3490d560c}{Raw\+Dna} ()
+\item 
+\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af9d26afb6d55424876babbf0d0792163}{Raw\+Dna} (Byte\mbox{[}$\,$\mbox{]} data)
+\item 
+\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af49327960cac59379153f59742778562}{Raw\+Dna} (\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna}{Raw\+Dna} other)
+\item 
+\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5a85a5ed40098eb0403cf9fd2df46b90}{Raw\+Dna} (\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna}{Raw\+Dna} father, \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna}{Raw\+Dna} mother)
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a99346135155ba4b2aa825574a6ff1f6c}{Generate\+Phenotype} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0124374d9c8f9e3ed68fdb49c008903c}{Generate\+Software\+Pheonotype} (int id, int cycle\+Id, \hyperlink{interfacegearit_1_1src_1_1robot_1_1_i_spot}{I\+Spot} spot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a3b37e3ca3cd5c52d3df1783a10e03793}{Generate\+Hardware\+Pheonotype} (int id)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5c9824e0482851a18a5ef758c4b5b794}{Max\+Pieces} = 32
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a31881cc6cea0521eece9fc41bc149ae3}{Max\+Sequences} = 4
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5e7d29cfdd2c69c8340b7238cf611cd6}{Max\+Sequence\+Size} = 255
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af93190d28d1730de188a9d0cebbb20cc}{Software\+Chromosome\+Weight} = \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a31881cc6cea0521eece9fc41bc149ae3}{Max\+Sequences} $\ast$ 5 + 1
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a723a4b70da44b25c155f2756e917a776}{Hardware\+Chromosome\+Number} = \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5c9824e0482851a18a5ef758c4b5b794}{Max\+Pieces}
+\item 
+const int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a8b0396a23e7499b70c03c23429132e38}{First\+Hardware\+Index} = 1
+\item 
+\hyperlink{classgearit_1_1src_1_1game_1_1_score}{Score}\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a27ec75b7f548c45537ed34cb4bac7128}{Scores} = new \hyperlink{classgearit_1_1src_1_1game_1_1_score}{Score}\mbox{[}\hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a805951c3b52ce03b5b4206cd0d1bc935}{Cycle\+Number}\mbox{]}
+\item 
+Byte\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_aa01c0c63ae90482089b652162bb92aef}{Data}
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a1e1796bd5b235f0ca55bc5600b023091}{Robot}
+\item 
+string \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a4d69428321bbb376ac63d52653045172}{Script}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abd2e1995bb19fca0ede7aa3e9ecac17c}{Rank}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a6143f54990e5ad300313282331212185}{Life\+Time\+Left} = 5
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a805951c3b52ce03b5b4206cd0d1bc935}{Cycle\+Number}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a03464c0f505a70dca790c324a3625649}{Hardware\+Chromosome\+Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a688418dd02bffde8585e6b58eda34c7e}{Total\+Hardware\+Chromosome\+Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_ab46bb6a8ebca0281eced0fdfe770f908}{Software\+Chromosome\+Number}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a79c1a83ddfea4a887b926eb452116c4a}{Total\+Software\+Chromosome\+Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a30979bf5bf07c0071b4451f6bedfb616}{Total\+Dna\+Weight}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+static int \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0c45853e89561d3eb2ed89f57e74d806}{First\+Software\+Index}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abb118078be8e9384a335ecf3490d560c}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Raw\+Dna@{Raw\+Dna}}
+\index{Raw\+Dna@{Raw\+Dna}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Raw\+Dna}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Raw\+Dna (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abb118078be8e9384a335ecf3490d560c}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af9d26afb6d55424876babbf0d0792163}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Raw\+Dna@{Raw\+Dna}}
+\index{Raw\+Dna@{Raw\+Dna}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Raw\+Dna}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Raw\+Dna (
+\begin{DoxyParamCaption}
+\item[{Byte\mbox{[}$\,$\mbox{]}}]{data}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af9d26afb6d55424876babbf0d0792163}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af49327960cac59379153f59742778562}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Raw\+Dna@{Raw\+Dna}}
+\index{Raw\+Dna@{Raw\+Dna}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Raw\+Dna}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Raw\+Dna (
+\begin{DoxyParamCaption}
+\item[{{\bf Raw\+Dna}}]{other}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af49327960cac59379153f59742778562}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5a85a5ed40098eb0403cf9fd2df46b90}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Raw\+Dna@{Raw\+Dna}}
+\index{Raw\+Dna@{Raw\+Dna}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Raw\+Dna}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Raw\+Dna (
+\begin{DoxyParamCaption}
+\item[{{\bf Raw\+Dna}}]{father, }
+\item[{{\bf Raw\+Dna}}]{mother}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5a85a5ed40098eb0403cf9fd2df46b90}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a3b37e3ca3cd5c52d3df1783a10e03793}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Generate\+Hardware\+Pheonotype@{Generate\+Hardware\+Pheonotype}}
+\index{Generate\+Hardware\+Pheonotype@{Generate\+Hardware\+Pheonotype}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Generate\+Hardware\+Pheonotype}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Generate\+Hardware\+Pheonotype (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a3b37e3ca3cd5c52d3df1783a10e03793}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a99346135155ba4b2aa825574a6ff1f6c}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Generate\+Phenotype@{Generate\+Phenotype}}
+\index{Generate\+Phenotype@{Generate\+Phenotype}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Generate\+Phenotype}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Robot} gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Generate\+Phenotype (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a99346135155ba4b2aa825574a6ff1f6c}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0124374d9c8f9e3ed68fdb49c008903c}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Generate\+Software\+Pheonotype@{Generate\+Software\+Pheonotype}}
+\index{Generate\+Software\+Pheonotype@{Generate\+Software\+Pheonotype}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Generate\+Software\+Pheonotype}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Generate\+Software\+Pheonotype (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{cycle\+Id, }
+\item[{{\bf I\+Spot}}]{spot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0124374d9c8f9e3ed68fdb49c008903c}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a805951c3b52ce03b5b4206cd0d1bc935}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Cycle\+Number@{Cycle\+Number}}
+\index{Cycle\+Number@{Cycle\+Number}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Cycle\+Number}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Cycle\+Number\hspace{0.3cm}{\ttfamily [static]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a805951c3b52ce03b5b4206cd0d1bc935}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_aa01c0c63ae90482089b652162bb92aef}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Data@{Data}}
+\index{Data@{Data}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}Byte \mbox{[}$\,$\mbox{]} gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Data}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_aa01c0c63ae90482089b652162bb92aef}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a8b0396a23e7499b70c03c23429132e38}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!First\+Hardware\+Index@{First\+Hardware\+Index}}
+\index{First\+Hardware\+Index@{First\+Hardware\+Index}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{First\+Hardware\+Index}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+First\+Hardware\+Index = 1}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a8b0396a23e7499b70c03c23429132e38}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a723a4b70da44b25c155f2756e917a776}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Hardware\+Chromosome\+Number@{Hardware\+Chromosome\+Number}}
+\index{Hardware\+Chromosome\+Number@{Hardware\+Chromosome\+Number}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Hardware\+Chromosome\+Number}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Hardware\+Chromosome\+Number = {\bf Max\+Pieces}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a723a4b70da44b25c155f2756e917a776}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a6143f54990e5ad300313282331212185}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Life\+Time\+Left@{Life\+Time\+Left}}
+\index{Life\+Time\+Left@{Life\+Time\+Left}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Life\+Time\+Left}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Life\+Time\+Left = 5}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a6143f54990e5ad300313282331212185}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5c9824e0482851a18a5ef758c4b5b794}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Max\+Pieces@{Max\+Pieces}}
+\index{Max\+Pieces@{Max\+Pieces}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Max\+Pieces}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Max\+Pieces = 32}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5c9824e0482851a18a5ef758c4b5b794}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a31881cc6cea0521eece9fc41bc149ae3}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Max\+Sequences@{Max\+Sequences}}
+\index{Max\+Sequences@{Max\+Sequences}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Max\+Sequences}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Max\+Sequences = 4}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a31881cc6cea0521eece9fc41bc149ae3}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5e7d29cfdd2c69c8340b7238cf611cd6}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Max\+Sequence\+Size@{Max\+Sequence\+Size}}
+\index{Max\+Sequence\+Size@{Max\+Sequence\+Size}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Max\+Sequence\+Size}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Max\+Sequence\+Size = 255}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a5e7d29cfdd2c69c8340b7238cf611cd6}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abd2e1995bb19fca0ede7aa3e9ecac17c}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Rank@{Rank}}
+\index{Rank@{Rank}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Rank}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Rank}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_abd2e1995bb19fca0ede7aa3e9ecac17c}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a1e1796bd5b235f0ca55bc5600b023091}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Robot@{Robot}}
+\index{Robot@{Robot}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Robot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Robot} gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Robot}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a1e1796bd5b235f0ca55bc5600b023091}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a27ec75b7f548c45537ed34cb4bac7128}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Scores@{Scores}}
+\index{Scores@{Scores}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Scores}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Score} \mbox{[}$\,$\mbox{]} gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Scores = new {\bf Score}\mbox{[}{\bf Cycle\+Number}\mbox{]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a27ec75b7f548c45537ed34cb4bac7128}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a4d69428321bbb376ac63d52653045172}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Script@{Script}}
+\index{Script@{Script}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Script}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Script}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a4d69428321bbb376ac63d52653045172}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af93190d28d1730de188a9d0cebbb20cc}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Software\+Chromosome\+Weight@{Software\+Chromosome\+Weight}}
+\index{Software\+Chromosome\+Weight@{Software\+Chromosome\+Weight}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Software\+Chromosome\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}const int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Software\+Chromosome\+Weight = {\bf Max\+Sequences} $\ast$ 5 + 1}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_af93190d28d1730de188a9d0cebbb20cc}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0c45853e89561d3eb2ed89f57e74d806}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!First\+Software\+Index@{First\+Software\+Index}}
+\index{First\+Software\+Index@{First\+Software\+Index}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{First\+Software\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+First\+Software\+Index\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a0c45853e89561d3eb2ed89f57e74d806}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a03464c0f505a70dca790c324a3625649}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Hardware\+Chromosome\+Weight@{Hardware\+Chromosome\+Weight}}
+\index{Hardware\+Chromosome\+Weight@{Hardware\+Chromosome\+Weight}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Hardware\+Chromosome\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Hardware\+Chromosome\+Weight\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a03464c0f505a70dca790c324a3625649}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_ab46bb6a8ebca0281eced0fdfe770f908}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Software\+Chromosome\+Number@{Software\+Chromosome\+Number}}
+\index{Software\+Chromosome\+Number@{Software\+Chromosome\+Number}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Software\+Chromosome\+Number}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Software\+Chromosome\+Number\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_ab46bb6a8ebca0281eced0fdfe770f908}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a30979bf5bf07c0071b4451f6bedfb616}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Total\+Dna\+Weight@{Total\+Dna\+Weight}}
+\index{Total\+Dna\+Weight@{Total\+Dna\+Weight}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Total\+Dna\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Total\+Dna\+Weight\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a30979bf5bf07c0071b4451f6bedfb616}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a688418dd02bffde8585e6b58eda34c7e}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Total\+Hardware\+Chromosome\+Weight@{Total\+Hardware\+Chromosome\+Weight}}
+\index{Total\+Hardware\+Chromosome\+Weight@{Total\+Hardware\+Chromosome\+Weight}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Total\+Hardware\+Chromosome\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Total\+Hardware\+Chromosome\+Weight\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a688418dd02bffde8585e6b58eda34c7e}
+\hypertarget{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a79c1a83ddfea4a887b926eb452116c4a}{\index{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}!Total\+Software\+Chromosome\+Weight@{Total\+Software\+Chromosome\+Weight}}
+\index{Total\+Software\+Chromosome\+Weight@{Total\+Software\+Chromosome\+Weight}!gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna@{gearit\+::src\+::\+Genetic\+Algorithm\+::\+Genome\+::\+Raw\+Dna}}
+\subsubsection[{Total\+Software\+Chromosome\+Weight}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Genetic\+Algorithm.\+Genome.\+Raw\+Dna.\+Total\+Software\+Chromosome\+Weight\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}}\label{classgearit_1_1src_1_1_genetic_algorithm_1_1_genome_1_1_raw_dna_a79c1a83ddfea4a887b926eb452116c4a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+Genetic\+Algorithm/\+Genome/\hyperlink{_raw_dna_8cs}{Raw\+Dna.\+cs}\end{DoxyCompactItemize}

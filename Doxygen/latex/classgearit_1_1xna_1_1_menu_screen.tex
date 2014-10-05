@@ -1,0 +1,145 @@
+\hypertarget{classgearit_1_1xna_1_1_menu_screen}{\section{gearit.\+xna.\+Menu\+Screen Class Reference}
+\label{classgearit_1_1xna_1_1_menu_screen}\index{gearit.\+xna.\+Menu\+Screen@{gearit.\+xna.\+Menu\+Screen}}
+}
+
+
+Base class for screens that contain a menu of options. The user can move up and down to select an entry, or cancel to back out of the screen.  
+
+
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+Inherited by \hyperlink{classgearit_1_1xna_1_1_main_options}{gearit.\+xna.\+Main\+Options}, and \hyperlink{classgearit_1_1xna_1_1_video_option}{gearit.\+xna.\+Video\+Option}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_menu_screen_af02d8ae719c2a96d9177b55bfc4037da}{Menu\+Screen} (string menu\+Title)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_menu_screen_a59f14a74cafd089680c6a532e0a483be}{Add\+Menu\+Item} (string name, \hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023}{Entry\+Type} type, \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} screen)
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_menu_screen_ad7337ad9f9fb8864843a29d2d1292493}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_menu_screen_a996a8adf13061ec92b181f26100fa295}{Handle\+Input} (\hyperlink{classgearit_1_1xna_1_1_input_helper}{Input\+Helper} input, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Responds to user input, changing the selected entry and accepting or cancelling the menu. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_menu_screen_a78aa31f7ab98c7ece516891a3bb2ead5}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the menu. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_menu_screen_ae97daa22f51bce0a1a8de63da28eace1}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Draws the menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_menu_screen_acfbd25160eb0406564ad5a4b8cd9d950}{Update\+Menu\+Entry\+Locations} ()
+\begin{DoxyCompactList}\small\item\em Allows the screen the chance to position the menu entries. By default all menu entries are lined up in a vertical list, centered on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Base class for screens that contain a menu of options. The user can move up and down to select an entry, or cancel to back out of the screen. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_af02d8ae719c2a96d9177b55bfc4037da}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Menu\+Screen@{Menu\+Screen}}
+\index{Menu\+Screen@{Menu\+Screen}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Menu\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Menu\+Screen.\+Menu\+Screen (
+\begin{DoxyParamCaption}
+\item[{string}]{menu\+Title}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_screen_af02d8ae719c2a96d9177b55bfc4037da}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_a59f14a74cafd089680c6a532e0a483be}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Add\+Menu\+Item@{Add\+Menu\+Item}}
+\index{Add\+Menu\+Item@{Add\+Menu\+Item}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Add\+Menu\+Item}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Menu\+Screen.\+Add\+Menu\+Item (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{{\bf Entry\+Type}}]{type, }
+\item[{{\bf Game\+Screen}}]{screen}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_screen_a59f14a74cafd089680c6a532e0a483be}
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_ae97daa22f51bce0a1a8de63da28eace1}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Menu\+Screen.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_menu_screen_ae97daa22f51bce0a1a8de63da28eace1}
+
+
+Draws the menu. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_a996a8adf13061ec92b181f26100fa295}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Handle\+Input@{Handle\+Input}}
+\index{Handle\+Input@{Handle\+Input}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Handle\+Input}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Menu\+Screen.\+Handle\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf Input\+Helper}}]{input, }
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_menu_screen_a996a8adf13061ec92b181f26100fa295}
+
+
+Responds to user input, changing the selected entry and accepting or cancelling the menu. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_ad7337ad9f9fb8864843a29d2d1292493}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Menu\+Screen.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_menu_screen_ad7337ad9f9fb8864843a29d2d1292493}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_a78aa31f7ab98c7ece516891a3bb2ead5}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Menu\+Screen.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_menu_screen_a78aa31f7ab98c7ece516891a3bb2ead5}
+
+
+Updates the menu. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_menu_screen_acfbd25160eb0406564ad5a4b8cd9d950}{\index{gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}!Update\+Menu\+Entry\+Locations@{Update\+Menu\+Entry\+Locations}}
+\index{Update\+Menu\+Entry\+Locations@{Update\+Menu\+Entry\+Locations}!gearit\+::xna\+::\+Menu\+Screen@{gearit\+::xna\+::\+Menu\+Screen}}
+\subsubsection[{Update\+Menu\+Entry\+Locations}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Menu\+Screen.\+Update\+Menu\+Entry\+Locations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_menu_screen_acfbd25160eb0406564ad5a4b8cd9d950}
+
+
+Allows the screen the chance to position the menu entries. By default all menu entries are lined up in a vertical list, centered on the screen. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_menu_screen_8cs}{Menu\+Screen.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,307 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_path}{\section{Farseer\+Physics.\+Common.\+Path Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_path}\index{Farseer\+Physics.\+Common.\+Path@{Farseer\+Physics.\+Common.\+Path}}
+}
+
+
+\hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path}\+: Very similar to \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices}, but this class contains vectors describing control points on a Catmull-\/\+Rom curve.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_path_af7c5be13bc8942c419991c59dfe0fdd3}{Path} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_path_a76bb1f5e01b0993bec52e38d6dd7777a}{Path} (Vector2\mbox{[}$\,$\mbox{]} vertices)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_path_a13023943276476d6846c8d18ef064e9a}{Path} (I\+List$<$ Vector2 $>$ vertices)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_path_abf865d962e6fe3758bce609b9b114c7e}{Next\+Index} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the next index of a controlpoint \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_path_a9e2fa9abb574b690f43d1f677165c2d4}{Previous\+Index} (int index)
+\begin{DoxyCompactList}\small\item\em Gets the previous index of a controlpoint \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_a684ac09afe5bfff7aa264cb3a11b5b10}{Translate} (ref Vector2 vector)
+\begin{DoxyCompactList}\small\item\em Translates the control points by the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_a33ade4f8312c0561d14ca16449e59cd4}{Scale} (ref Vector2 value)
+\begin{DoxyCompactList}\small\item\em Scales the control points by the specified vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_a5f4628f5869db71b8c36e6fa846536e2}{Rotate} (float value)
+\begin{DoxyCompactList}\small\item\em Rotate the control points by the defined value in radians. \end{DoxyCompactList}\item 
+override string \hyperlink{class_farseer_physics_1_1_common_1_1_path_a61b202f0d4f302a73d1508432c6bfa0f}{To\+String} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices} \hyperlink{class_farseer_physics_1_1_common_1_1_path_a20584c8b2eb6962d4685c7d1595faaec}{Get\+Vertices} (int divisions)
+\begin{DoxyCompactList}\small\item\em Returns a set of points defining the curve with the specifed number of divisions between each control point. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_common_1_1_path_afe45b457dcc1028fa00f4f2c64a3b2b5}{Get\+Position} (float time)
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_common_1_1_path_a7a0612ba828150f7cbc65d18345411fe}{Get\+Position\+Normal} (float time)
+\begin{DoxyCompactList}\small\item\em Gets the normal for the given time. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_a0bb269a75a6d9032ceaed3e4f333318b}{Add} (Vector2 point)
+\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_ae064a831d128bdd12dcc0e9c21db49cb}{Remove} (Vector2 point)
+\item 
+void \hyperlink{class_farseer_physics_1_1_common_1_1_path_a72616643f115ee1286522ec1b485c3dd}{Remove\+At} (int index)
+\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_path_a22a0f5c0fbb4179e8490311ec46b1e00}{Get\+Length} ()
+\item 
+List$<$ Vector3 $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_path_a1655182357fd942a3c45baf20d8d15b2}{Subdivide\+Evenly} (int divisions)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Vector2 $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_path_a5b39543e094e1212637320b8001e24c3}{Control\+Points}
+\begin{DoxyCompactList}\small\item\em All the points that makes up the curve \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_path_a753a9d624f4da3f651f130cb6addc091}{Closed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em True if the curve is closed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path}\+: Very similar to \hyperlink{class_farseer_physics_1_1_common_1_1_vertices}{Vertices}, but this class contains vectors describing control points on a Catmull-\/\+Rom curve. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_af7c5be13bc8942c419991c59dfe0fdd3}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Path@{Path}}
+\index{Path@{Path}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Path}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Path.\+Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_af7c5be13bc8942c419991c59dfe0fdd3}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a76bb1f5e01b0993bec52e38d6dd7777a}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Path@{Path}}
+\index{Path@{Path}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Path}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Path.\+Path (
+\begin{DoxyParamCaption}
+\item[{Vector2\mbox{[}$\,$\mbox{]}}]{vertices}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a76bb1f5e01b0993bec52e38d6dd7777a}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices to created the path from.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a13023943276476d6846c8d18ef064e9a}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Path@{Path}}
+\index{Path@{Path}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Path}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Path.\+Path (
+\begin{DoxyParamCaption}
+\item[{I\+List$<$ Vector2 $>$}]{vertices}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a13023943276476d6846c8d18ef064e9a}
+
+
+Initializes a new instance of the \hyperlink{class_farseer_physics_1_1_common_1_1_path}{Path} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices to created the path from.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a0bb269a75a6d9032ceaed3e4f333318b}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Add@{Add}}
+\index{Add@{Add}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Add}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Add (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a0bb269a75a6d9032ceaed3e4f333318b}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a22a0f5c0fbb4179e8490311ec46b1e00}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Get\+Length@{Get\+Length}}
+\index{Get\+Length@{Get\+Length}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Get\+Length}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Path.\+Get\+Length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a22a0f5c0fbb4179e8490311ec46b1e00}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_afe45b457dcc1028fa00f4f2c64a3b2b5}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Get\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Path.\+Get\+Position (
+\begin{DoxyParamCaption}
+\item[{float}]{time}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_afe45b457dcc1028fa00f4f2c64a3b2b5}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a7a0612ba828150f7cbc65d18345411fe}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Get\+Position\+Normal@{Get\+Position\+Normal}}
+\index{Get\+Position\+Normal@{Get\+Position\+Normal}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Get\+Position\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Path.\+Get\+Position\+Normal (
+\begin{DoxyParamCaption}
+\item[{float}]{time}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a7a0612ba828150f7cbc65d18345411fe}
+
+
+Gets the normal for the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The time\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normal.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a20584c8b2eb6962d4685c7d1595faaec}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Get\+Vertices@{Get\+Vertices}}
+\index{Get\+Vertices@{Get\+Vertices}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Get\+Vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vertices} Farseer\+Physics.\+Common.\+Path.\+Get\+Vertices (
+\begin{DoxyParamCaption}
+\item[{int}]{divisions}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a20584c8b2eb6962d4685c7d1595faaec}
+
+
+Returns a set of points defining the curve with the specifed number of divisions between each control point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em divisions} & Number of divisions between each control point.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_abf865d962e6fe3758bce609b9b114c7e}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Next\+Index@{Next\+Index}}
+\index{Next\+Index@{Next\+Index}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Next\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Path.\+Next\+Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_abf865d962e6fe3758bce609b9b114c7e}
+
+
+Gets the next index of a controlpoint 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a9e2fa9abb574b690f43d1f677165c2d4}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Previous\+Index@{Previous\+Index}}
+\index{Previous\+Index@{Previous\+Index}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Previous\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Path.\+Previous\+Index (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a9e2fa9abb574b690f43d1f677165c2d4}
+
+
+Gets the previous index of a controlpoint 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_ae064a831d128bdd12dcc0e9c21db49cb}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Remove@{Remove}}
+\index{Remove@{Remove}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Remove}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Remove (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_ae064a831d128bdd12dcc0e9c21db49cb}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a72616643f115ee1286522ec1b485c3dd}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Remove\+At@{Remove\+At}}
+\index{Remove\+At@{Remove\+At}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Remove\+At}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Remove\+At (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a72616643f115ee1286522ec1b485c3dd}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a5f4628f5869db71b8c36e6fa846536e2}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a5f4628f5869db71b8c36e6fa846536e2}
+
+
+Rotate the control points by the defined value in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The amount to rotate by in radians.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a33ade4f8312c0561d14ca16449e59cd4}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Scale@{Scale}}
+\index{Scale@{Scale}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Scale (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a33ade4f8312c0561d14ca16449e59cd4}
+
+
+Scales the control points by the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The Value.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a1655182357fd942a3c45baf20d8d15b2}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Subdivide\+Evenly@{Subdivide\+Evenly}}
+\index{Subdivide\+Evenly@{Subdivide\+Evenly}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Subdivide\+Evenly}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Vector3$>$ Farseer\+Physics.\+Common.\+Path.\+Subdivide\+Evenly (
+\begin{DoxyParamCaption}
+\item[{int}]{divisions}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a1655182357fd942a3c45baf20d8d15b2}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a61b202f0d4f302a73d1508432c6bfa0f}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!To\+String@{To\+String}}
+\index{To\+String@{To\+String}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{To\+String}]{\setlength{\rightskip}{0pt plus 5cm}override string Farseer\+Physics.\+Common.\+Path.\+To\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a61b202f0d4f302a73d1508432c6bfa0f}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a684ac09afe5bfff7aa264cb3a11b5b10}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Translate@{Translate}}
+\index{Translate@{Translate}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Translate}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Path.\+Translate (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{vector}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_path_a684ac09afe5bfff7aa264cb3a11b5b10}
+
+
+Translates the control points by the specified vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The vector.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a5b39543e094e1212637320b8001e24c3}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Control\+Points@{Control\+Points}}
+\index{Control\+Points@{Control\+Points}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Control\+Points}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Vector2$>$ Farseer\+Physics.\+Common.\+Path.\+Control\+Points}}\label{class_farseer_physics_1_1_common_1_1_path_a5b39543e094e1212637320b8001e24c3}
+
+
+All the points that makes up the curve 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_path_a753a9d624f4da3f651f130cb6addc091}{\index{Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}!Closed@{Closed}}
+\index{Closed@{Closed}!Farseer\+Physics\+::\+Common\+::\+Path@{Farseer\+Physics\+::\+Common\+::\+Path}}
+\subsubsection[{Closed}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Path.\+Closed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_common_1_1_path_a753a9d624f4da3f651f130cb6addc091}
+
+
+True if the curve is closed. 
+
+{\ttfamily true} if closed; otherwise, {\ttfamily false}.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\hyperlink{_path_8cs}{Path.\+cs}\end{DoxyCompactItemize}

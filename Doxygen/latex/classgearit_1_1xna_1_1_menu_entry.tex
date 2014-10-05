@@ -1,0 +1,166 @@
+\hypertarget{classgearit_1_1xna_1_1_menu_entry}{\section{gearit.\+xna.\+Menu\+Entry Class Reference}
+\label{classgearit_1_1xna_1_1_menu_entry}\index{gearit.\+xna.\+Menu\+Entry@{gearit.\+xna.\+Menu\+Entry}}
+}
+
+
+Helper class represents a single entry in a \hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen}. By default this just draws the entry text string, but it can be customized to display menu entries in different ways. This also provides an event that will be raised when the menu entry is selected.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_menu_entry_a40e2d2dace3740ba578131a4180bd92e}{Menu\+Entry} (\hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen} menu, string text, \hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023}{Entry\+Type} type, \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} screen)
+\begin{DoxyCompactList}\small\item\em Constructs a new menu entry with the specified text. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_menu_entry_a6086e708e7f61a9eff6668bd0b447848}{Initialize} ()
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_menu_entry_a56b8d46bfc976955d2096ac07a21e9d9}{is\+Cancel\+Item} ()
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_menu_entry_a70cbdda44b14de2642095f5cf13d99db}{Is\+Exit\+Item} ()
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_menu_entry_abf04b41d1bd19d63c0600d8918ec8f97}{Is\+Selectable} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_menu_entry_aa68874f80c8ead99a3ac265724be7796}{Update} (bool is\+Selected, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the menu entry. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_menu_entry_acbeac93d88cbbfc432a13ddf2df75cb2}{Draw} ()
+\begin{DoxyCompactList}\small\item\em Draws the menu entry. This can be overridden to customize the appearance. \end{DoxyCompactList}\item 
+int \hyperlink{classgearit_1_1xna_1_1_menu_entry_a9a5ef264087c9129167f26db314b5d90}{Get\+Height} ()
+\begin{DoxyCompactList}\small\item\em Queries how much space this menu entry requires. \end{DoxyCompactList}\item 
+int \hyperlink{classgearit_1_1xna_1_1_menu_entry_a918a4f3de7cf3d489058753a5eb8ceeb}{Get\+Width} ()
+\begin{DoxyCompactList}\small\item\em Queries how wide the entry is, used for centering on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classgearit_1_1xna_1_1_menu_entry_a4c9cc29aa9d4312a5349ed2cf1639655}{Text}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the text of this menu entry. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{classgearit_1_1xna_1_1_menu_entry_a2f1edd60412c1051d8038fa3a2bbfff4}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the position at which to draw this menu entry. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_menu_entry_a7f6ac993a7eab9463451725d77433cbc}{Alpha}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} \hyperlink{classgearit_1_1xna_1_1_menu_entry_a83543c01ecdf4bd04bde3f98b1a44977}{Screen}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper class represents a single entry in a \hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen}. By default this just draws the entry text string, but it can be customized to display menu entries in different ways. This also provides an event that will be raised when the menu entry is selected. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a40e2d2dace3740ba578131a4180bd92e}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Menu\+Entry@{Menu\+Entry}}
+\index{Menu\+Entry@{Menu\+Entry}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Menu\+Entry}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Menu\+Entry.\+Menu\+Entry (
+\begin{DoxyParamCaption}
+\item[{{\bf Menu\+Screen}}]{menu, }
+\item[{string}]{text, }
+\item[{{\bf Entry\+Type}}]{type, }
+\item[{{\bf Game\+Screen}}]{screen}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a40e2d2dace3740ba578131a4180bd92e}
+
+
+Constructs a new menu entry with the specified text. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_acbeac93d88cbbfc432a13ddf2df75cb2}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Menu\+Entry.\+Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_acbeac93d88cbbfc432a13ddf2df75cb2}
+
+
+Draws the menu entry. This can be overridden to customize the appearance. 
+
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a9a5ef264087c9129167f26db314b5d90}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Get\+Height@{Get\+Height}}
+\index{Get\+Height@{Get\+Height}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Get\+Height}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Menu\+Entry.\+Get\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a9a5ef264087c9129167f26db314b5d90}
+
+
+Queries how much space this menu entry requires. 
+
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a918a4f3de7cf3d489058753a5eb8ceeb}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Get\+Width@{Get\+Width}}
+\index{Get\+Width@{Get\+Width}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Get\+Width}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Menu\+Entry.\+Get\+Width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a918a4f3de7cf3d489058753a5eb8ceeb}
+
+
+Queries how wide the entry is, used for centering on the screen. 
+
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a6086e708e7f61a9eff6668bd0b447848}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Menu\+Entry.\+Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a6086e708e7f61a9eff6668bd0b447848}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a56b8d46bfc976955d2096ac07a21e9d9}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!is\+Cancel\+Item@{is\+Cancel\+Item}}
+\index{is\+Cancel\+Item@{is\+Cancel\+Item}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{is\+Cancel\+Item}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Menu\+Entry.\+is\+Cancel\+Item (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a56b8d46bfc976955d2096ac07a21e9d9}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a70cbdda44b14de2642095f5cf13d99db}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Is\+Exit\+Item@{Is\+Exit\+Item}}
+\index{Is\+Exit\+Item@{Is\+Exit\+Item}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Is\+Exit\+Item}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Menu\+Entry.\+Is\+Exit\+Item (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_a70cbdda44b14de2642095f5cf13d99db}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_abf04b41d1bd19d63c0600d8918ec8f97}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Is\+Selectable@{Is\+Selectable}}
+\index{Is\+Selectable@{Is\+Selectable}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Is\+Selectable}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Menu\+Entry.\+Is\+Selectable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_abf04b41d1bd19d63c0600d8918ec8f97}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_aa68874f80c8ead99a3ac265724be7796}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Menu\+Entry.\+Update (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Selected, }
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_menu_entry_aa68874f80c8ead99a3ac265724be7796}
+
+
+Updates the menu entry. 
+
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a7f6ac993a7eab9463451725d77433cbc}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Alpha@{Alpha}}
+\index{Alpha@{Alpha}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Alpha}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Menu\+Entry.\+Alpha\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_menu_entry_a7f6ac993a7eab9463451725d77433cbc}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a2f1edd60412c1051d8038fa3a2bbfff4}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Position@{Position}}
+\index{Position@{Position}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+xna.\+Menu\+Entry.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_menu_entry_a2f1edd60412c1051d8038fa3a2bbfff4}
+
+
+Gets or sets the position at which to draw this menu entry. 
+
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a83543c01ecdf4bd04bde3f98b1a44977}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Screen@{Screen}}
+\index{Screen@{Screen}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Screen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Screen} gearit.\+xna.\+Menu\+Entry.\+Screen\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_menu_entry_a83543c01ecdf4bd04bde3f98b1a44977}
+\hypertarget{classgearit_1_1xna_1_1_menu_entry_a4c9cc29aa9d4312a5349ed2cf1639655}{\index{gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}!Text@{Text}}
+\index{Text@{Text}!gearit\+::xna\+::\+Menu\+Entry@{gearit\+::xna\+::\+Menu\+Entry}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+xna.\+Menu\+Entry.\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_menu_entry_a4c9cc29aa9d4312a5349ed2cf1639655}
+
+
+Gets or sets the text of this menu entry. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_menu_entry_8cs}{Menu\+Entry.\+cs}\end{DoxyCompactItemize}

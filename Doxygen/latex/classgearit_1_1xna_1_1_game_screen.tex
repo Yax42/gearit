@@ -1,0 +1,259 @@
+\hypertarget{classgearit_1_1xna_1_1_game_screen}{\section{gearit.\+xna.\+Game\+Screen Class Reference}
+\label{classgearit_1_1xna_1_1_game_screen}\index{gearit.\+xna.\+Game\+Screen@{gearit.\+xna.\+Game\+Screen}}
+}
+
+
+A screen is a single layer that has update and draw logic, and which can be combined with other layers to build up a complex menu system. For instance the main menu, the options menu, the \char`\"{}are you sure you
+want to quit\char`\"{} message box, and the main game itself are all implemented as screens.  
+
+
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor}{gearit.\+src.\+editor.\+map.\+Map\+Editor}, \hyperlink{classgearit_1_1src_1_1editor_1_1robot_1_1_robot_editor}{gearit.\+src.\+editor.\+robot.\+Robot\+Editor}, \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game}{gearit.\+src.\+game.\+Gearit\+Game}, \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_life_manager}{gearit.\+src.\+Genetic\+Algorithm.\+Life\+Manager}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_play}{gearit.\+src.\+gui.\+Menu\+Play}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_quit}{gearit.\+src.\+gui.\+Menu\+Quit}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_options_menu_1_1_options_menu}{gearit.\+src.\+G\+U\+I.\+Options\+Menu.\+Options\+Menu}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1sample_1_1_sample_game_screen}{gearit.\+src.\+G\+U\+I.\+sample.\+Sample\+Game\+Screen}, \hyperlink{classgearit_1_1src_1_1_master_client}{gearit.\+src.\+Master\+Client}, \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game}{gearit.\+src.\+Network.\+Network\+Client\+Game}, \hyperlink{classgearit_1_1xna_1_1_background_screen}{gearit.\+xna.\+Background\+Screen}, \hyperlink{classgearit_1_1xna_1_1_full_screen}{gearit.\+xna.\+Full\+Screen}, \hyperlink{classgearit_1_1xna_1_1_logo_screen}{gearit.\+xna.\+Logo\+Screen}, \hyperlink{classgearit_1_1xna_1_1_menu_screen}{gearit.\+xna.\+Menu\+Screen}, \hyperlink{classgearit_1_1xna_1_1_message_box_screen}{gearit.\+xna.\+Message\+Box\+Screen}, \hyperlink{classgearit_1_1xna_1_1_physics_game_screen}{gearit.\+xna.\+Physics\+Game\+Screen}, \hyperlink{classgearit_1_1xna_1_1_resolution_changer}{gearit.\+xna.\+Resolution\+Changer}, \hyperlink{class_g_u_i2_1_1_main_menu}{G\+U\+I2.\+Main\+Menu}, and \hyperlink{class_g_u_i_1_1_screen_main_menu}{G\+U\+I.\+Screen\+Main\+Menu}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_game_screen_a14b40b29f80b5c520766afa5aaa96c4c}{Game\+Screen} ()
+\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_game_screen_a5d51da08229da3cb5c561550df7a6c8c}{Unload\+Content} ()
+\begin{DoxyCompactList}\small\item\em Unload content for the screen. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}{Handle\+Input} (\hyperlink{classgearit_1_1xna_1_1_input_helper}{Input\+Helper} input, Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_game_screen_ac0a09358bf75830432169413f4d1ae36}{Exit\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Tells the screen to go away. Unlike \hyperlink{classgearit_1_1xna_1_1_screen_manager_a0980799f0c3f3667e118674fbfea1e6e}{Screen\+Manager.\+Remove\+Screen}, which instantly kills the screen, this method respects the transition timings and will give the screen a chance to gradually transition off. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_ab44dcd600c5f92f0de16bd20b2aba32f}{Visible\+Menu} = false
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_a9650c912126ccbc4dfbe86f2b460cbad}{is\+\_\+initialized} = false
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_aced91217f1d3f0d720acf8e90b91fdbb}{Has\+Cursor}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_ad906b952f79403c4d9ee69cbfcba2a80}{Has\+Virtual\+Stick}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_aed379623ce9eda3c3e28daf2ff75cb3e}{Is\+Popup}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Normally when one screen is brought up over the top of another, the first screen will transition off to make room for the new one. This property indicates whether the screen is only a small popup, in which case screens underneath it do not need to bother transitioning off. \end{DoxyCompactList}\item 
+Time\+Span \hyperlink{classgearit_1_1xna_1_1_game_screen_afb57a139ac73624a198bf8c4e7222024}{Transition\+On\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates how long the screen takes to transition on when it is activated. \end{DoxyCompactList}\item 
+Time\+Span \hyperlink{classgearit_1_1xna_1_1_game_screen_af44db4f893dc3ddfb5bc1db19cef96d2}{Transition\+Off\+Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates how long the screen takes to transition off when it is deactivated. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1xna_1_1_game_screen_a768dba0b54380da831c21705866043a4}{Transition\+Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the current position of the screen transition, ranging from zero (fully active, no transition) to one (transitioned fully off to nothing). \end{DoxyCompactList}\item 
+int \hyperlink{classgearit_1_1xna_1_1_game_screen_ab052309db69c10959303c43c59381aa6}{Draw\+Priority}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1xna_1_1_game_screen_a5fe8bffc9a9e5d36e77e3ebadd9e8685}{Transition\+Alpha}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the current alpha of the screen transition, ranging from 1 (fully active, no transition) to 0 (transitioned fully off to nothing). \end{DoxyCompactList}\item 
+\hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9e}{Screen\+State} \hyperlink{classgearit_1_1xna_1_1_game_screen_a2bdf13bb100f4e09a7797d85570b80e7}{Screen\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the current screen transition state. \end{DoxyCompactList}\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_a30f6d7ee7a46daca6d597f55573663ee}{Is\+Exiting}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em There are two possible reasons why a screen might be transitioning off. It could be temporarily going away to make room for another screen that is on top of it, or it could be going away for good. This property indicates whether the screen is exiting for real\+: if set, the screen will automatically remove itself as soon as the transition finishes. \end{DoxyCompactList}\item 
+bool \hyperlink{classgearit_1_1xna_1_1_game_screen_a433e9751856e988dc59573d0dd2bc9a3}{Is\+Active}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Checks whether this screen is active and can respond to user input. \end{DoxyCompactList}\item 
+\hyperlink{classgearit_1_1xna_1_1_screen_manager}{Screen\+Manager} \hyperlink{classgearit_1_1xna_1_1_game_screen_abdb61d4604bd77d49cb338acdc1c266c}{Screen\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the manager that this screen belongs to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A screen is a single layer that has update and draw logic, and which can be combined with other layers to build up a complex menu system. For instance the main menu, the options menu, the \char`\"{}are you sure you
+want to quit\char`\"{} message box, and the main game itself are all implemented as screens. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a14b40b29f80b5c520766afa5aaa96c4c}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Game\+Screen@{Game\+Screen}}
+\index{Game\+Screen@{Game\+Screen}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Game\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Game\+Screen.\+Game\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_game_screen_a14b40b29f80b5c520766afa5aaa96c4c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Game\+Screen.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1editor_1_1robot_1_1_robot_editor_a7b34a8e4444147a0bda959772fd8c473}{gearit.\+src.\+editor.\+robot.\+Robot\+Editor}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_play_a5d930bebee9e40d7a74a6427bb028fc5}{gearit.\+src.\+gui.\+Menu\+Play}, \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a7ef13b676ea43fa6bed07daef39e175d}{gearit.\+xna.\+Physics\+Game\+Screen}, \hyperlink{classgearit_1_1xna_1_1_menu_screen_ae97daa22f51bce0a1a8de63da28eace1}{gearit.\+xna.\+Menu\+Screen}, \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_life_manager_a8e78827f7b586865b1be910330ce64fb}{gearit.\+src.\+Genetic\+Algorithm.\+Life\+Manager}, \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ac02670b337e9893d7ee9401f40eca86d}{gearit.\+src.\+editor.\+map.\+Map\+Editor}, \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a136538e789edbf72b06f0c6715fb8cdc}{gearit.\+src.\+Network.\+Network\+Client\+Game}, \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a8a184898f8f48c32f5c811721d86e2de}{gearit.\+src.\+game.\+Gearit\+Game}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_ac2af62fb0c1992fc25f774bb5f2b0aa5}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_ac2af62fb0c1992fc25f774bb5f2b0aa5}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_options_menu_1_1_options_menu_a8e6bb40613b1eb1ce6cf7e45cbf8ea6e}{gearit.\+src.\+G\+U\+I.\+Options\+Menu.\+Options\+Menu}, \hyperlink{class_g_u_i2_1_1_main_menu_a35a4f3fa03bb60327c3822458d532ea2}{G\+U\+I2.\+Main\+Menu}, \hyperlink{classgearit_1_1xna_1_1_background_screen_a87cfc05b4a8f699679624378844cc4d8}{gearit.\+xna.\+Background\+Screen}, \hyperlink{classgearit_1_1src_1_1_master_client_aacf652e5fc85eb5a6ad1c244299839e7}{gearit.\+src.\+Master\+Client}, \hyperlink{classgearit_1_1xna_1_1_logo_screen_af64f0e89eac852758372d386497bb9ad}{gearit.\+xna.\+Logo\+Screen}, \hyperlink{classgearit_1_1xna_1_1_message_box_screen_a1d15b10577b7c510f59e5a4d28967ad7}{gearit.\+xna.\+Message\+Box\+Screen}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1sample_1_1_sample_game_screen_a2432be4591a7e41cfa002d59b3fe5c10}{gearit.\+src.\+G\+U\+I.\+sample.\+Sample\+Game\+Screen}, \hyperlink{class_g_u_i_1_1_screen_main_menu_a31f0a47c73d0807cedb2688bcdc39d9e}{G\+U\+I.\+Screen\+Main\+Menu}, and \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_quit_af9e42d48df24405334155b3c4f4cccf6}{gearit.\+src.\+gui.\+Menu\+Quit}.
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_ac0a09358bf75830432169413f4d1ae36}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Exit\+Screen@{Exit\+Screen}}
+\index{Exit\+Screen@{Exit\+Screen}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Exit\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Game\+Screen.\+Exit\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_game_screen_ac0a09358bf75830432169413f4d1ae36}
+
+
+Tells the screen to go away. Unlike \hyperlink{classgearit_1_1xna_1_1_screen_manager_a0980799f0c3f3667e118674fbfea1e6e}{Screen\+Manager.\+Remove\+Screen}, which instantly kills the screen, this method respects the transition timings and will give the screen a chance to gradually transition off. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Handle\+Input@{Handle\+Input}}
+\index{Handle\+Input@{Handle\+Input}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Handle\+Input}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Game\+Screen.\+Handle\+Input (
+\begin{DoxyParamCaption}
+\item[{{\bf Input\+Helper}}]{input, }
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_game_screen_acbe1128afbf42535ad33ce7423b2e959}
+
+
+Allows the screen to handle user input. Unlike Update, this method is only called when the screen is active, and not when some other screen has taken the focus. 
+
+
+
+Reimplemented in \hyperlink{classgearit_1_1xna_1_1_menu_screen_a996a8adf13061ec92b181f26100fa295}{gearit.\+xna.\+Menu\+Screen}, \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a2ef66f8d93dc4e4d6eec880fe308e0b5}{gearit.\+xna.\+Physics\+Game\+Screen}, \hyperlink{classgearit_1_1xna_1_1_message_box_screen_aa8514f4828a6e738de6494e7c18b544c}{gearit.\+xna.\+Message\+Box\+Screen}, and \hyperlink{classgearit_1_1xna_1_1_logo_screen_a915bae9fc8d3fc247b189da675ddf8d2}{gearit.\+xna.\+Logo\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Game\+Screen.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_play_af910914479191ff3c5df9a9371a508dd}{gearit.\+src.\+gui.\+Menu\+Play}, \hyperlink{classgearit_1_1src_1_1editor_1_1robot_1_1_robot_editor_ad1a5b0cb964d9cb01ad724c6e0311f5d}{gearit.\+src.\+editor.\+robot.\+Robot\+Editor}, \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_a93ad16e2d78f73d7ad7d783f23481430}{gearit.\+src.\+editor.\+map.\+Map\+Editor}, \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a930f927ef386a875c4f7fa73de649bcd}{gearit.\+src.\+Network.\+Network\+Client\+Game}, \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_life_manager_a8973893d4b7c74d260fa39ba835f6d46}{gearit.\+src.\+Genetic\+Algorithm.\+Life\+Manager}, \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a594a34785135e198e7fdc4e7280d5508}{gearit.\+src.\+game.\+Gearit\+Game}, \hyperlink{classgearit_1_1xna_1_1_menu_screen_ad7337ad9f9fb8864843a29d2d1292493}{gearit.\+xna.\+Menu\+Screen}, \hyperlink{classgearit_1_1src_1_1_master_client_a1d52e930af747db31f62490e393b0424}{gearit.\+src.\+Master\+Client}, \hyperlink{class_g_u_i2_1_1_main_menu_a28913f4d61b2f7eb011b7287c77a1ca0}{G\+U\+I2.\+Main\+Menu}, \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a902ae9fff35a62621f5de9def0acc805}{gearit.\+xna.\+Physics\+Game\+Screen}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_a0a781d330c2b3022a97ac461598f6565}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_a0a781d330c2b3022a97ac461598f6565}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1sample_1_1_sample_game_screen_a95b25f2b02912ca9420a1eaeaabddaf3}{gearit.\+src.\+G\+U\+I.\+sample.\+Sample\+Game\+Screen}, \hyperlink{classgearit_1_1xna_1_1_message_box_screen_a3ce168733ccf3e542313a2294068d4d9}{gearit.\+xna.\+Message\+Box\+Screen}, \hyperlink{classgearit_1_1xna_1_1_background_screen_afca396e9c0fe48afc5cbd1653be9730c}{gearit.\+xna.\+Background\+Screen}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_options_menu_1_1_options_menu_a8bdb740cd60c8f74d95216dc5a479f0c}{gearit.\+src.\+G\+U\+I.\+Options\+Menu.\+Options\+Menu}, \hyperlink{classgearit_1_1xna_1_1_main_options_a65a90215dd29a6e47596da53fa9941ed}{gearit.\+xna.\+Main\+Options}, \hyperlink{classgearit_1_1xna_1_1_logo_screen_a646c1ee1c9bfcd56b2a2bef091478cab}{gearit.\+xna.\+Logo\+Screen}, \hyperlink{class_g_u_i_1_1_screen_main_menu_a5cc42d5546fac2f75cd1e4a0fb34456a}{G\+U\+I.\+Screen\+Main\+Menu}, and \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_quit_a0c1770399b83c061ee5fcfd4f0c0c249}{gearit.\+src.\+gui.\+Menu\+Quit}.
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a5d51da08229da3cb5c561550df7a6c8c}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Unload\+Content@{Unload\+Content}}
+\index{Unload\+Content@{Unload\+Content}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Unload\+Content}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Game\+Screen.\+Unload\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_game_screen_a5d51da08229da3cb5c561550df7a6c8c}
+
+
+Unload content for the screen. 
+
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1_master_client_a0a6b7f07531ee7241e92d7dcad434802}{gearit.\+src.\+Master\+Client}, and \hyperlink{classgearit_1_1xna_1_1_logo_screen_a4a55ee7caac07a487e50c0c6cb387c91}{gearit.\+xna.\+Logo\+Screen}.
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+xna.\+Game\+Screen.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_play_a81c6b64878420e9905deec6038b1804f}{gearit.\+src.\+gui.\+Menu\+Play}, \hyperlink{classgearit_1_1xna_1_1_menu_screen_a78aa31f7ab98c7ece516891a3bb2ead5}{gearit.\+xna.\+Menu\+Screen}, \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_ad022fd48695248828a0e756c3d3c929a}{gearit.\+src.\+Network.\+Network\+Client\+Game}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_af1cdc3976c81d502a657db91d8e54221}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1editor_1_1robot_1_1_robot_editor_aeabcb08f49a3ef48d61f3856baf7e7b6}{gearit.\+src.\+editor.\+robot.\+Robot\+Editor}, \hyperlink{classgearit_1_1src_1_1_genetic_algorithm_1_1_life_manager_a1a8735b1652c814b152ca39c47821953}{gearit.\+src.\+Genetic\+Algorithm.\+Life\+Manager}, \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_options_af1cdc3976c81d502a657db91d8e54221}{gearit.\+src.\+gui.\+Menu\+Options}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1_options_menu_1_1_options_menu_ae6bd9317204c0153c60aa3e99c431d26}{gearit.\+src.\+G\+U\+I.\+Options\+Menu.\+Options\+Menu}, \hyperlink{classgearit_1_1src_1_1editor_1_1map_1_1_map_editor_ab14c09fac3adbf63f3e1c953805bca7c}{gearit.\+src.\+editor.\+map.\+Map\+Editor}, \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a3ff28ebe6aaf734eaaf28126a976024f}{gearit.\+src.\+game.\+Gearit\+Game}, \hyperlink{class_g_u_i2_1_1_main_menu_a9a4fee48c5ab27b5c18dfa5760f42d27}{G\+U\+I2.\+Main\+Menu}, \hyperlink{classgearit_1_1xna_1_1_physics_game_screen_a2a1148ee32c0ae8649eac17c55ad2190}{gearit.\+xna.\+Physics\+Game\+Screen}, \hyperlink{classgearit_1_1src_1_1_master_client_a5082036770cb8de251ab339bc68fb75d}{gearit.\+src.\+Master\+Client}, \hyperlink{classgearit_1_1xna_1_1_background_screen_adfee70eb27a5f151f6c5014fdd493e93}{gearit.\+xna.\+Background\+Screen}, \hyperlink{classgearit_1_1xna_1_1_logo_screen_a7bd2562d2159104f939f45fbc8c9d841}{gearit.\+xna.\+Logo\+Screen}, \hyperlink{classgearit_1_1src_1_1_g_u_i_1_1sample_1_1_sample_game_screen_a6a5bac478ba8abebb10242504f11727c}{gearit.\+src.\+G\+U\+I.\+sample.\+Sample\+Game\+Screen}, \hyperlink{classgearit_1_1xna_1_1_resolution_changer_af7c95fad5897414551ed2c70b566765f}{gearit.\+xna.\+Resolution\+Changer}, \hyperlink{class_g_u_i_1_1_screen_main_menu_ac1b887c2b0ec2c9855b7f3f1bd2ad0bf}{G\+U\+I.\+Screen\+Main\+Menu}, \hyperlink{classgearit_1_1xna_1_1_full_screen_a52bb342c2e169744d20764f9df5a68c8}{gearit.\+xna.\+Full\+Screen}, and \hyperlink{classgearit_1_1src_1_1gui_1_1_menu_quit_a07991e7df76bb3932034457b9c29380b}{gearit.\+src.\+gui.\+Menu\+Quit}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a9650c912126ccbc4dfbe86f2b460cbad}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!is\+\_\+initialized@{is\+\_\+initialized}}
+\index{is\+\_\+initialized@{is\+\_\+initialized}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{is\+\_\+initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+is\+\_\+initialized = false}}\label{classgearit_1_1xna_1_1_game_screen_a9650c912126ccbc4dfbe86f2b460cbad}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_ab44dcd600c5f92f0de16bd20b2aba32f}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Visible\+Menu@{Visible\+Menu}}
+\index{Visible\+Menu@{Visible\+Menu}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Visible\+Menu}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Visible\+Menu = false}}\label{classgearit_1_1xna_1_1_game_screen_ab44dcd600c5f92f0de16bd20b2aba32f}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_ab052309db69c10959303c43c59381aa6}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Draw\+Priority@{Draw\+Priority}}
+\index{Draw\+Priority@{Draw\+Priority}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Draw\+Priority}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Game\+Screen.\+Draw\+Priority\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_game_screen_ab052309db69c10959303c43c59381aa6}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_aced91217f1d3f0d720acf8e90b91fdbb}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Has\+Cursor@{Has\+Cursor}}
+\index{Has\+Cursor@{Has\+Cursor}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Has\+Cursor}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Has\+Cursor\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_game_screen_aced91217f1d3f0d720acf8e90b91fdbb}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_ad906b952f79403c4d9ee69cbfcba2a80}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Has\+Virtual\+Stick@{Has\+Virtual\+Stick}}
+\index{Has\+Virtual\+Stick@{Has\+Virtual\+Stick}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Has\+Virtual\+Stick}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Has\+Virtual\+Stick\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_game_screen_ad906b952f79403c4d9ee69cbfcba2a80}
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a433e9751856e988dc59573d0dd2bc9a3}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Is\+Active@{Is\+Active}}
+\index{Is\+Active@{Is\+Active}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Is\+Active\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_game_screen_a433e9751856e988dc59573d0dd2bc9a3}
+
+
+Checks whether this screen is active and can respond to user input. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a30f6d7ee7a46daca6d597f55573663ee}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Is\+Exiting@{Is\+Exiting}}
+\index{Is\+Exiting@{Is\+Exiting}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Is\+Exiting}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Is\+Exiting\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_game_screen_a30f6d7ee7a46daca6d597f55573663ee}
+
+
+There are two possible reasons why a screen might be transitioning off. It could be temporarily going away to make room for another screen that is on top of it, or it could be going away for good. This property indicates whether the screen is exiting for real\+: if set, the screen will automatically remove itself as soon as the transition finishes. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_aed379623ce9eda3c3e28daf2ff75cb3e}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Is\+Popup@{Is\+Popup}}
+\index{Is\+Popup@{Is\+Popup}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Is\+Popup}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Game\+Screen.\+Is\+Popup\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{classgearit_1_1xna_1_1_game_screen_aed379623ce9eda3c3e28daf2ff75cb3e}
+
+
+Normally when one screen is brought up over the top of another, the first screen will transition off to make room for the new one. This property indicates whether the screen is only a small popup, in which case screens underneath it do not need to bother transitioning off. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_abdb61d4604bd77d49cb338acdc1c266c}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Screen\+Manager@{Screen\+Manager}}
+\index{Screen\+Manager@{Screen\+Manager}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Screen\+Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Screen\+Manager} gearit.\+xna.\+Game\+Screen.\+Screen\+Manager\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_game_screen_abdb61d4604bd77d49cb338acdc1c266c}
+
+
+Gets the manager that this screen belongs to. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a2bdf13bb100f4e09a7797d85570b80e7}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Screen\+State@{Screen\+State}}
+\index{Screen\+State@{Screen\+State}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Screen\+State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Screen\+State} gearit.\+xna.\+Game\+Screen.\+Screen\+State\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{classgearit_1_1xna_1_1_game_screen_a2bdf13bb100f4e09a7797d85570b80e7}
+
+
+Gets the current screen transition state. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a5fe8bffc9a9e5d36e77e3ebadd9e8685}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Transition\+Alpha@{Transition\+Alpha}}
+\index{Transition\+Alpha@{Transition\+Alpha}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Transition\+Alpha}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Game\+Screen.\+Transition\+Alpha\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_game_screen_a5fe8bffc9a9e5d36e77e3ebadd9e8685}
+
+
+Gets the current alpha of the screen transition, ranging from 1 (fully active, no transition) to 0 (transitioned fully off to nothing). 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_af44db4f893dc3ddfb5bc1db19cef96d2}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Transition\+Off\+Time@{Transition\+Off\+Time}}
+\index{Transition\+Off\+Time@{Transition\+Off\+Time}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Transition\+Off\+Time}]{\setlength{\rightskip}{0pt plus 5cm}Time\+Span gearit.\+xna.\+Game\+Screen.\+Transition\+Off\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{classgearit_1_1xna_1_1_game_screen_af44db4f893dc3ddfb5bc1db19cef96d2}
+
+
+Indicates how long the screen takes to transition off when it is deactivated. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_afb57a139ac73624a198bf8c4e7222024}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Transition\+On\+Time@{Transition\+On\+Time}}
+\index{Transition\+On\+Time@{Transition\+On\+Time}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Transition\+On\+Time}]{\setlength{\rightskip}{0pt plus 5cm}Time\+Span gearit.\+xna.\+Game\+Screen.\+Transition\+On\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{classgearit_1_1xna_1_1_game_screen_afb57a139ac73624a198bf8c4e7222024}
+
+
+Indicates how long the screen takes to transition on when it is activated. 
+
+\hypertarget{classgearit_1_1xna_1_1_game_screen_a768dba0b54380da831c21705866043a4}{\index{gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}!Transition\+Position@{Transition\+Position}}
+\index{Transition\+Position@{Transition\+Position}!gearit\+::xna\+::\+Game\+Screen@{gearit\+::xna\+::\+Game\+Screen}}
+\subsubsection[{Transition\+Position}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+xna.\+Game\+Screen.\+Transition\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}}\label{classgearit_1_1xna_1_1_game_screen_a768dba0b54380da831c21705866043a4}
+
+
+Gets the current position of the screen transition, ranging from zero (fully active, no transition) to one (transitioned fully off to nothing). 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_game_screen_8cs}{Game\+Screen.\+cs}\end{DoxyCompactItemize}

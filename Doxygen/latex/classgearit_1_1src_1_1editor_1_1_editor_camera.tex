@@ -1,0 +1,197 @@
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera}{\section{gearit.\+src.\+editor.\+Editor\+Camera Class Reference}
+\label{classgearit_1_1src_1_1editor_1_1_editor_camera}\index{gearit.\+src.\+editor.\+Editor\+Camera@{gearit.\+src.\+editor.\+Editor\+Camera}}
+}
+
+
+Inherits \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_afcc9ca983a1414e3b01e99e1bfc10cc2}{Editor\+Camera} (Graphics\+Device graphics)
+\begin{DoxyCompactList}\small\item\em The constructor for the Camera2\+D class. \end{DoxyCompactList}\item 
+Matrix \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a9cb0705a909e33866641570d3e253fc2}{view} ()
+\item 
+Matrix \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_ae70a760b033216c996d0c96f66e8f6c1}{projection} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_afd95edbd7c7b77fdbf5b04c1c9cddfb8}{zoom\+In} ()
+\begin{DoxyCompactList}\small\item\em The current zoom \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_aae75fd1e6510a740596d069cceb20cff}{zoom\+Out} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a79dadedfe10340c5d9d6d44d40450d91}{move} (Vector2 amount)
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a279e6bbfe86cba526880364104d69a3f}{rotate} (float amount)
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a044cfdf432b0f11c51bfbed9a32b3cd2}{reset} ()
+\begin{DoxyCompactList}\small\item\em Resets the camera to default values. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a46b7a87110c20b40c68b0b468d666dac}{update} ()
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a4946a20fe1fe894e4b0f9bf200b7faf1}{center} ()
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a4451d09612304490115d8ac50ec8ac79}{Convert\+Screen\+To\+World} (Vector2 location)
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a84ffacf12cf90fd76f883aa843feeeff}{Convert\+World\+To\+Screen} (Vector2 location)
+\item 
+void \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a57a152a668bd8c2b40f4cae448265b52}{input} (bool can\+Move=true)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Matrix \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_aa6707ae235d5de27a6124371892da70e}{View}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a8c16884dbf241d27507a523d3a09aeea}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current position of the camera. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a215303d1d3853e0e9f154474e7345804}{Rotation}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current rotation of the camera in radians. \end{DoxyCompactList}\item 
+float \hyperlink{classgearit_1_1src_1_1editor_1_1_editor_camera_a1bff1180b0422813073c351e6ab4d68a}{Zoom}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_afcc9ca983a1414e3b01e99e1bfc10cc2}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Editor\+Camera@{Editor\+Camera}}
+\index{Editor\+Camera@{Editor\+Camera}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Editor\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+editor.\+Editor\+Camera.\+Editor\+Camera (
+\begin{DoxyParamCaption}
+\item[{Graphics\+Device}]{graphics}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_afcc9ca983a1414e3b01e99e1bfc10cc2}
+
+
+The constructor for the Camera2\+D class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graphics} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a4946a20fe1fe894e4b0f9bf200b7faf1}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!center@{center}}
+\index{center@{center}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+editor.\+Editor\+Camera.\+center (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a4946a20fe1fe894e4b0f9bf200b7faf1}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a4451d09612304490115d8ac50ec8ac79}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Convert\+Screen\+To\+World@{Convert\+Screen\+To\+World}}
+\index{Convert\+Screen\+To\+World@{Convert\+Screen\+To\+World}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Convert\+Screen\+To\+World}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+editor.\+Editor\+Camera.\+Convert\+Screen\+To\+World (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{location}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a4451d09612304490115d8ac50ec8ac79}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a84ffacf12cf90fd76f883aa843feeeff}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Convert\+World\+To\+Screen@{Convert\+World\+To\+Screen}}
+\index{Convert\+World\+To\+Screen@{Convert\+World\+To\+Screen}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Convert\+World\+To\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+editor.\+Editor\+Camera.\+Convert\+World\+To\+Screen (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{location}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a84ffacf12cf90fd76f883aa843feeeff}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a57a152a668bd8c2b40f4cae448265b52}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!input@{input}}
+\index{input@{input}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{input}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+input (
+\begin{DoxyParamCaption}
+\item[{bool}]{can\+Move = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a57a152a668bd8c2b40f4cae448265b52}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a79dadedfe10340c5d9d6d44d40450d91}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!move@{move}}
+\index{move@{move}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{move}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+move (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{amount}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a79dadedfe10340c5d9d6d44d40450d91}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_ae70a760b033216c996d0c96f66e8f6c1}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!projection@{projection}}
+\index{projection@{projection}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{projection}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+src.\+editor.\+Editor\+Camera.\+projection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_ae70a760b033216c996d0c96f66e8f6c1}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera_a4006986840ec011d607151d57a31ebe0}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a044cfdf432b0f11c51bfbed9a32b3cd2}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!reset@{reset}}
+\index{reset@{reset}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a044cfdf432b0f11c51bfbed9a32b3cd2}
+
+
+Resets the camera to default values. 
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a279e6bbfe86cba526880364104d69a3f}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!rotate@{rotate}}
+\index{rotate@{rotate}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{rotate}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+rotate (
+\begin{DoxyParamCaption}
+\item[{float}]{amount}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a279e6bbfe86cba526880364104d69a3f}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a46b7a87110c20b40c68b0b468d666dac}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!update@{update}}
+\index{update@{update}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a46b7a87110c20b40c68b0b468d666dac}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a9cb0705a909e33866641570d3e253fc2}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!view@{view}}
+\index{view@{view}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{view}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+src.\+editor.\+Editor\+Camera.\+view (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a9cb0705a909e33866641570d3e253fc2}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1utility_1_1_i_camera_aa350a390451ceceb99e8a36b5077f4f0}{gearit.\+src.\+utility.\+I\+Camera}.
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_afd95edbd7c7b77fdbf5b04c1c9cddfb8}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!zoom\+In@{zoom\+In}}
+\index{zoom\+In@{zoom\+In}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{zoom\+In}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+zoom\+In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_afd95edbd7c7b77fdbf5b04c1c9cddfb8}
+
+
+The current zoom 
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_aae75fd1e6510a740596d069cceb20cff}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!zoom\+Out@{zoom\+Out}}
+\index{zoom\+Out@{zoom\+Out}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{zoom\+Out}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+editor.\+Editor\+Camera.\+zoom\+Out (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_aae75fd1e6510a740596d069cceb20cff}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a8c16884dbf241d27507a523d3a09aeea}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Position@{Position}}
+\index{Position@{Position}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+editor.\+Editor\+Camera.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a8c16884dbf241d27507a523d3a09aeea}
+
+
+The current position of the camera. 
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a215303d1d3853e0e9f154474e7345804}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Rotation@{Rotation}}
+\index{Rotation@{Rotation}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Rotation}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+editor.\+Editor\+Camera.\+Rotation\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a215303d1d3853e0e9f154474e7345804}
+
+
+The current rotation of the camera in radians. 
+
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_aa6707ae235d5de27a6124371892da70e}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!View@{View}}
+\index{View@{View}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{View}]{\setlength{\rightskip}{0pt plus 5cm}Matrix gearit.\+src.\+editor.\+Editor\+Camera.\+View\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_aa6707ae235d5de27a6124371892da70e}
+\hypertarget{classgearit_1_1src_1_1editor_1_1_editor_camera_a1bff1180b0422813073c351e6ab4d68a}{\index{gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}!Zoom@{Zoom}}
+\index{Zoom@{Zoom}!gearit\+::src\+::editor\+::\+Editor\+Camera@{gearit\+::src\+::editor\+::\+Editor\+Camera}}
+\subsubsection[{Zoom}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+editor.\+Editor\+Camera.\+Zoom\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1editor_1_1_editor_camera_a1bff1180b0422813073c351e6ab4d68a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+Editor/\hyperlink{_editor_camera_8cs}{Editor\+Camera.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,273 @@
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item}{\section{gearit.\+src.\+utility.\+Menu.\+Menu\+Item Class Reference}
+\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item}\index{gearit.\+src.\+utility.\+Menu.\+Menu\+Item@{gearit.\+src.\+utility.\+Menu.\+Menu\+Item}}
+}
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_input_menu_item}{gearit.\+src.\+utility.\+Menu.\+Input\+Menu\+Item}, \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_sprite_menu_item}{gearit.\+src.\+utility.\+Menu.\+Sprite\+Menu\+Item}, and \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_text_menu_item}{gearit.\+src.\+utility.\+Menu.\+Text\+Menu\+Item}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a326609ea034555884144fc07d06f1ab5}{Menu\+Item} (\hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_overlay}{Menu\+Overlay} menu, Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae2a8172ef48a64fbb99dfca22e9995ab}{padding}, \hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a3ca3e98c7e2f44227e0fd6263822c56a}{Item\+Menu\+Layout} layout, \hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a4312fcb06a1685782d1246bfeefdbd3b}{Item\+Menu\+Alignement} alignement, float scale)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af3f72f5b26c24237f48426a7d36aa156}{input\+Handler} ()
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a87fd36a85d656aecdf82335e7ef9c270}{has\+Flag} (\hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a4312fcb06a1685782d1246bfeefdbd3b}{Item\+Menu\+Alignement} alignement, \hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a4312fcb06a1685782d1246bfeefdbd3b}{Item\+Menu\+Alignement} flag)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa9a32ba195bcfbb60f9bb1c455f1c3b9}{refresh} (Vector2 pos, Vector2 size)
+\item 
+void \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8065a3a6d468eee69ae73b0f5e244477}{add\+Focus} (int id, Color bg\+\_\+focus, Color bg\+\_\+pressed)
+\item 
+virtual void \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5a44f7b864cf66ae93fbe41cc5c282e0}{draw} (\hyperlink{classgearit_1_1src_1_1_draw_game}{Draw\+Game} drawer)
+\item 
+Rectangle \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad13d3664da18594bd7e5871e0f615c5a}{get\+Rectangle} ()
+\item 
+abstract Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af771dcbd2bcb959fefb8d45abe0e3ee6}{get\+Rsrc\+Size} ()
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2b99799b72df0bf35563e02b21743c73}{get\+Size} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_overlay}{Menu\+Overlay} \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af2f460de9056b10393354881be6ded3c}{\+\_\+menu}
+\item 
+float \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a56e8046746f04bc4c559b151f886de37}{\+\_\+scale}
+\item 
+\hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a3ca3e98c7e2f44227e0fd6263822c56a}{Item\+Menu\+Layout} \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac4ea1d5e5d6269990f687290255303b8}{\+\_\+layout}
+\item 
+\hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a4312fcb06a1685782d1246bfeefdbd3b}{Item\+Menu\+Alignement} \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae8396883492689cb00b73b45d427c847}{\+\_\+alignement}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a996d11a5c090384cb356d224e6f19c93}{\+\_\+padding}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e5b388efca569d70cc274a4d78fa213}{\+\_\+visible} = true
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad55b72b1742231c4541d4ad632689065}{\+\_\+focusable} = false
+\item 
+Color \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7282503b4506054fca4eeb5a202cf289}{\+\_\+bg\+\_\+focus}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af73d1993f72e14ff070d455769831ec6}{\+\_\+focused} = false
+\item 
+\hyperlink{classgearit_1_1src_1_1utility_1_1_rectangle_overlay}{Rectangle\+Overlay} \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a71e5bf457c8a2d49674dee7b5cd71e59}{\+\_\+rectangle\+\_\+bg}
+\item 
+int \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afad7e072fb6c80057558d345eb233381}{\+\_\+id} = 0
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7837039c11a0f38c0dc8d6dd1a41e54b}{\+\_\+pressed} = false
+\item 
+Color \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2275659d5c38d5f849b64467748967ea}{\+\_\+bg\+\_\+pressed}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ab9617b9845139dbcf458fea6cc6097c0}{\+\_\+pos}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5730c4f2542c3979359ac701422ac777}{\+\_\+pos\+\_\+rsrc}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac9d7be4007b2fa5f3b6082b5684efeff}{\+\_\+size}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7b3c939578f17eb11e7f9f23f3fd313c}{Focused}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afec028afb6d9b0d0dca3a1d62f442563}{Focusable}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2ce89af2432ac50488b91b636ea795ff}{Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0b1ae460dbbca57a2a1e495e669f1fd4}{Visible}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a6f78a5709a4db971a28393d6b8699311}{Pressed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+virtual string \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa85359603e23596560e828eaebabe677}{Display}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a766860ea1184bb0db8e6e4ebee299213}{Position}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0721e914b418080bf9088c04f05cce47}{Size}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Vector2 \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae2a8172ef48a64fbb99dfca22e9995ab}{padding}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2a617e408d37dac3f329177668692e29}{Scale}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hyperlink{namespacegearit_1_1src_1_1utility_1_1_menu_a3ca3e98c7e2f44227e0fd6263822c56a}{Item\+Menu\+Layout} \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e9fa2c89d4cd9622fc8a02f2cc45b86}{Layout}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a326609ea034555884144fc07d06f1ab5}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Menu\+Item@{Menu\+Item}}
+\index{Menu\+Item@{Menu\+Item}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Menu\+Item}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Menu\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf Menu\+Overlay}}]{menu, }
+\item[{Vector2}]{padding, }
+\item[{{\bf Item\+Menu\+Layout}}]{layout, }
+\item[{{\bf Item\+Menu\+Alignement}}]{alignement, }
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a326609ea034555884144fc07d06f1ab5}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8065a3a6d468eee69ae73b0f5e244477}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!add\+Focus@{add\+Focus}}
+\index{add\+Focus@{add\+Focus}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{add\+Focus}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+add\+Focus (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{Color}]{bg\+\_\+focus, }
+\item[{Color}]{bg\+\_\+pressed}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8065a3a6d468eee69ae73b0f5e244477}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5a44f7b864cf66ae93fbe41cc5c282e0}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!draw@{draw}}
+\index{draw@{draw}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+draw (
+\begin{DoxyParamCaption}
+\item[{{\bf Draw\+Game}}]{drawer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5a44f7b864cf66ae93fbe41cc5c282e0}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_input_menu_item_a1f92434580e2820a2b8953671ca1ba0e}{gearit.\+src.\+utility.\+Menu.\+Input\+Menu\+Item}, \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_text_menu_item_a700f5c274206c131cb194ba98df47eb0}{gearit.\+src.\+utility.\+Menu.\+Text\+Menu\+Item}, and \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_sprite_menu_item_a40c8c19036ed62dcb3d63f00b8a0967b}{gearit.\+src.\+utility.\+Menu.\+Sprite\+Menu\+Item}.
+
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad13d3664da18594bd7e5871e0f615c5a}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!get\+Rectangle@{get\+Rectangle}}
+\index{get\+Rectangle@{get\+Rectangle}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{get\+Rectangle}]{\setlength{\rightskip}{0pt plus 5cm}Rectangle gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+get\+Rectangle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad13d3664da18594bd7e5871e0f615c5a}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af771dcbd2bcb959fefb8d45abe0e3ee6}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!get\+Rsrc\+Size@{get\+Rsrc\+Size}}
+\index{get\+Rsrc\+Size@{get\+Rsrc\+Size}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{get\+Rsrc\+Size}]{\setlength{\rightskip}{0pt plus 5cm}abstract Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+get\+Rsrc\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af771dcbd2bcb959fefb8d45abe0e3ee6}
+
+
+Implemented in \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_input_menu_item_af3b6d354cb490ff74b5fd1517ba19f0b}{gearit.\+src.\+utility.\+Menu.\+Input\+Menu\+Item}, \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_text_menu_item_abb0196ade5cd9cc7e9d099df40777012}{gearit.\+src.\+utility.\+Menu.\+Text\+Menu\+Item}, and \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_sprite_menu_item_af402dd57d83d64a66a0f859b1eee9c2d}{gearit.\+src.\+utility.\+Menu.\+Sprite\+Menu\+Item}.
+
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2b99799b72df0bf35563e02b21743c73}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2b99799b72df0bf35563e02b21743c73}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a87fd36a85d656aecdf82335e7ef9c270}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!has\+Flag@{has\+Flag}}
+\index{has\+Flag@{has\+Flag}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{has\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+has\+Flag (
+\begin{DoxyParamCaption}
+\item[{{\bf Item\+Menu\+Alignement}}]{alignement, }
+\item[{{\bf Item\+Menu\+Alignement}}]{flag}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a87fd36a85d656aecdf82335e7ef9c270}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af3f72f5b26c24237f48426a7d36aa156}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!input\+Handler@{input\+Handler}}
+\index{input\+Handler@{input\+Handler}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{input\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+input\+Handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af3f72f5b26c24237f48426a7d36aa156}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_input_menu_item_a9bfb226dde0ead28d15b168e095e4a0e}{gearit.\+src.\+utility.\+Menu.\+Input\+Menu\+Item}.
+
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa9a32ba195bcfbb60f9bb1c455f1c3b9}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!refresh@{refresh}}
+\index{refresh@{refresh}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{refresh}]{\setlength{\rightskip}{0pt plus 5cm}virtual void gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+refresh (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{Vector2}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa9a32ba195bcfbb60f9bb1c455f1c3b9}
+
+
+Reimplemented in \hyperlink{classgearit_1_1src_1_1utility_1_1_menu_1_1_input_menu_item_a8971f0c240729bc1d79c92b5424981df}{gearit.\+src.\+utility.\+Menu.\+Input\+Menu\+Item}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae8396883492689cb00b73b45d427c847}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+alignement@{\+\_\+alignement}}
+\index{\+\_\+alignement@{\+\_\+alignement}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+alignement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Item\+Menu\+Alignement} gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+alignement\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae8396883492689cb00b73b45d427c847}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7282503b4506054fca4eeb5a202cf289}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+bg\+\_\+focus@{\+\_\+bg\+\_\+focus}}
+\index{\+\_\+bg\+\_\+focus@{\+\_\+bg\+\_\+focus}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+bg\+\_\+focus}]{\setlength{\rightskip}{0pt plus 5cm}Color gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+bg\+\_\+focus\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7282503b4506054fca4eeb5a202cf289}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2275659d5c38d5f849b64467748967ea}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+bg\+\_\+pressed@{\+\_\+bg\+\_\+pressed}}
+\index{\+\_\+bg\+\_\+pressed@{\+\_\+bg\+\_\+pressed}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+bg\+\_\+pressed}]{\setlength{\rightskip}{0pt plus 5cm}Color gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+bg\+\_\+pressed\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2275659d5c38d5f849b64467748967ea}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad55b72b1742231c4541d4ad632689065}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+focusable@{\+\_\+focusable}}
+\index{\+\_\+focusable@{\+\_\+focusable}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+focusable}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+focusable = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ad55b72b1742231c4541d4ad632689065}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af73d1993f72e14ff070d455769831ec6}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+focused@{\+\_\+focused}}
+\index{\+\_\+focused@{\+\_\+focused}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+focused}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+focused = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af73d1993f72e14ff070d455769831ec6}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afad7e072fb6c80057558d345eb233381}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+id@{\+\_\+id}}
+\index{\+\_\+id@{\+\_\+id}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+id = 0\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afad7e072fb6c80057558d345eb233381}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac4ea1d5e5d6269990f687290255303b8}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+layout@{\+\_\+layout}}
+\index{\+\_\+layout@{\+\_\+layout}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+layout}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Item\+Menu\+Layout} gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+layout\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac4ea1d5e5d6269990f687290255303b8}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af2f460de9056b10393354881be6ded3c}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+menu@{\+\_\+menu}}
+\index{\+\_\+menu@{\+\_\+menu}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Menu\+Overlay} gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+menu\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_af2f460de9056b10393354881be6ded3c}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a996d11a5c090384cb356d224e6f19c93}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+padding@{\+\_\+padding}}
+\index{\+\_\+padding@{\+\_\+padding}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+padding}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+padding\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a996d11a5c090384cb356d224e6f19c93}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ab9617b9845139dbcf458fea6cc6097c0}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+pos@{\+\_\+pos}}
+\index{\+\_\+pos@{\+\_\+pos}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+pos\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ab9617b9845139dbcf458fea6cc6097c0}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5730c4f2542c3979359ac701422ac777}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+pos\+\_\+rsrc@{\+\_\+pos\+\_\+rsrc}}
+\index{\+\_\+pos\+\_\+rsrc@{\+\_\+pos\+\_\+rsrc}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+pos\+\_\+rsrc}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+pos\+\_\+rsrc\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a5730c4f2542c3979359ac701422ac777}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7837039c11a0f38c0dc8d6dd1a41e54b}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+pressed@{\+\_\+pressed}}
+\index{\+\_\+pressed@{\+\_\+pressed}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+pressed}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+pressed = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7837039c11a0f38c0dc8d6dd1a41e54b}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a71e5bf457c8a2d49674dee7b5cd71e59}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+rectangle\+\_\+bg@{\+\_\+rectangle\+\_\+bg}}
+\index{\+\_\+rectangle\+\_\+bg@{\+\_\+rectangle\+\_\+bg}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+rectangle\+\_\+bg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle\+Overlay} gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+rectangle\+\_\+bg\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a71e5bf457c8a2d49674dee7b5cd71e59}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a56e8046746f04bc4c559b151f886de37}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+scale@{\+\_\+scale}}
+\index{\+\_\+scale@{\+\_\+scale}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+scale}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+scale\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a56e8046746f04bc4c559b151f886de37}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac9d7be4007b2fa5f3b6082b5684efeff}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+size@{\+\_\+size}}
+\index{\+\_\+size@{\+\_\+size}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ac9d7be4007b2fa5f3b6082b5684efeff}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e5b388efca569d70cc274a4d78fa213}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!\+\_\+visible@{\+\_\+visible}}
+\index{\+\_\+visible@{\+\_\+visible}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{\+\_\+visible}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+\_\+visible = true\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e5b388efca569d70cc274a4d78fa213}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa85359603e23596560e828eaebabe677}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Display@{Display}}
+\index{Display@{Display}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Display}]{\setlength{\rightskip}{0pt plus 5cm}virtual string gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Display\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_aa85359603e23596560e828eaebabe677}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afec028afb6d9b0d0dca3a1d62f442563}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Focusable@{Focusable}}
+\index{Focusable@{Focusable}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Focusable}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Focusable\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_afec028afb6d9b0d0dca3a1d62f442563}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7b3c939578f17eb11e7f9f23f3fd313c}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Focused@{Focused}}
+\index{Focused@{Focused}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Focused}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Focused\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a7b3c939578f17eb11e7f9f23f3fd313c}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2ce89af2432ac50488b91b636ea795ff}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Id@{Id}}
+\index{Id@{Id}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2ce89af2432ac50488b91b636ea795ff}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e9fa2c89d4cd9622fc8a02f2cc45b86}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Layout@{Layout}}
+\index{Layout@{Layout}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Layout}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Item\+Menu\+Layout} gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Layout\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a8e9fa2c89d4cd9622fc8a02f2cc45b86}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae2a8172ef48a64fbb99dfca22e9995ab}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!padding@{padding}}
+\index{padding@{padding}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{padding}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+padding\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_ae2a8172ef48a64fbb99dfca22e9995ab}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a766860ea1184bb0db8e6e4ebee299213}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Position@{Position}}
+\index{Position@{Position}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Position}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Position\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a766860ea1184bb0db8e6e4ebee299213}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a6f78a5709a4db971a28393d6b8699311}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Pressed@{Pressed}}
+\index{Pressed@{Pressed}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Pressed}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Pressed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a6f78a5709a4db971a28393d6b8699311}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2a617e408d37dac3f329177668692e29}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Scale@{Scale}}
+\index{Scale@{Scale}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Scale}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Scale\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a2a617e408d37dac3f329177668692e29}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0721e914b418080bf9088c04f05cce47}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Size@{Size}}
+\index{Size@{Size}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Size}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Size\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0721e914b418080bf9088c04f05cce47}
+\hypertarget{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0b1ae460dbbca57a2a1e495e669f1fd4}{\index{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}!Visible@{Visible}}
+\index{Visible@{Visible}!gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item@{gearit\+::src\+::utility\+::\+Menu\+::\+Menu\+Item}}
+\subsubsection[{Visible}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+utility.\+Menu.\+Menu\+Item.\+Visible\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1utility_1_1_menu_1_1_menu_item_a0b1ae460dbbca57a2a1e495e669f1fd4}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/utility/\+Menu/\hyperlink{_menu_item_8cs}{Menu\+Item.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,176 @@
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game}{\section{gearit.\+src.\+Network.\+Network\+Server\+Game Class Reference}
+\label{classgearit_1_1src_1_1_network_1_1_network_server_game}\index{gearit.\+src.\+Network.\+Network\+Server\+Game@{gearit.\+src.\+Network.\+Network\+Server\+Game}}
+}
+
+
+Inherits \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a7b9fbbea65c50c0c91d36c5d2047c00d}{Message} (string msg, int duration)
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_ae872be804fd061e8baa9ebd56bae7523}{Network\+Server\+Game} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a5bcf03626dd9b0d38778a2331178e856}{Load\+Content} ()
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_aad6f29484d1dffc5d7725c9d92cff2a0}{Get\+World} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a98d38a328eb944e3d3ab6c6c00198283}{add\+Robot} (\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} robot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a9c5574e4b139d58e24188d58700d9107}{Set\+Map} (\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} map)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a490afeccf8aabc8ca8e3d2a30b517741}{clear\+Robot} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a02b8f50022b923592f4d80844b7c1be1}{Add\+Robot} (\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} robot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a6e3f1dfd4e7356b7b1a934c0726eca78}{Update} (float delta)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a08d55ede8967e6b115dc7fcb788ebd18}{Finish} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_aafa57969ed5133c12f0c4a778742095e}{Exit} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a1a0fe5e87e19a277f56eaef291a202ba}{Events} = new byte\mbox{[}0\mbox{]}
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_in_game_packet_manager}{In\+Game\+Packet\+Manager} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_aeb268b573555ad9ea17d6f07b7fd39db}{Packet\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_aabf25bab89aabaed2160401c816ba19e}{Map}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a78b64e30a05320751528ae1ca2cbf4cf}{Main\+Robot\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} $>$ \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a5fe67a60f0804da174020fbad53a77f8}{Robots}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a0f0619a67ccbe1f398a681fb8f10887c}{Frame\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server_game_a86301a5c4b97fd7306a5c59e777e0a8d}{Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_ae872be804fd061e8baa9ebd56bae7523}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Network\+Server\+Game@{Network\+Server\+Game}}
+\index{Network\+Server\+Game@{Network\+Server\+Game}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Network\+Server\+Game}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Network.\+Network\+Server\+Game.\+Network\+Server\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_ae872be804fd061e8baa9ebd56bae7523}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a98d38a328eb944e3d3ab6c6c00198283}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!add\+Robot@{add\+Robot}}
+\index{add\+Robot@{add\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{add\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+add\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot}}]{robot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a98d38a328eb944e3d3ab6c6c00198283}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a02b8f50022b923592f4d80844b7c1be1}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Add\+Robot@{Add\+Robot}}
+\index{Add\+Robot@{Add\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Add\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Add\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot}}]{robot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a02b8f50022b923592f4d80844b7c1be1}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a490afeccf8aabc8ca8e3d2a30b517741}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!clear\+Robot@{clear\+Robot}}
+\index{clear\+Robot@{clear\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{clear\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+clear\+Robot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a490afeccf8aabc8ca8e3d2a30b517741}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_aafa57969ed5133c12f0c4a778742095e}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Exit@{Exit}}
+\index{Exit@{Exit}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_aafa57969ed5133c12f0c4a778742095e}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a08d55ede8967e6b115dc7fcb788ebd18}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Finish@{Finish}}
+\index{Finish@{Finish}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Finish}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Finish (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a08d55ede8967e6b115dc7fcb788ebd18}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_a35e963e32c08963b780a481251e6cdf9}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_aad6f29484d1dffc5d7725c9d92cff2a0}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Get\+World@{Get\+World}}
+\index{Get\+World@{Get\+World}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Get\+World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+Network.\+Network\+Server\+Game.\+Get\+World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_aad6f29484d1dffc5d7725c9d92cff2a0}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a5bcf03626dd9b0d38778a2331178e856}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a5bcf03626dd9b0d38778a2331178e856}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a7b9fbbea65c50c0c91d36c5d2047c00d}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Message@{Message}}
+\index{Message@{Message}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Message (
+\begin{DoxyParamCaption}
+\item[{string}]{msg, }
+\item[{int}]{duration}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a7b9fbbea65c50c0c91d36c5d2047c00d}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_abbaff2685bf9235fb6a0b7bfadf9df46}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a9c5574e4b139d58e24188d58700d9107}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Set\+Map@{Set\+Map}}
+\index{Set\+Map@{Set\+Map}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Set\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Set\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Map}}]{map}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a9c5574e4b139d58e24188d58700d9107}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a6e3f1dfd4e7356b7b1a934c0726eca78}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Update@{Update}}
+\index{Update@{Update}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Server\+Game.\+Update (
+\begin{DoxyParamCaption}
+\item[{float}]{delta}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a6e3f1dfd4e7356b7b1a934c0726eca78}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a1a0fe5e87e19a277f56eaef291a202ba}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Events@{Events}}
+\index{Events@{Events}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+Network\+Server\+Game.\+Events = new byte\mbox{[}0\mbox{]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a1a0fe5e87e19a277f56eaef291a202ba}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_aeb268b573555ad9ea17d6f07b7fd39db}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Packet\+Manager@{Packet\+Manager}}
+\index{Packet\+Manager@{Packet\+Manager}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Packet\+Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf In\+Game\+Packet\+Manager} gearit.\+src.\+Network.\+Network\+Server\+Game.\+Packet\+Manager}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_aeb268b573555ad9ea17d6f07b7fd39db}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a0f0619a67ccbe1f398a681fb8f10887c}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Frame\+Count@{Frame\+Count}}
+\index{Frame\+Count@{Frame\+Count}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Frame\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+Network\+Server\+Game.\+Frame\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a0f0619a67ccbe1f398a681fb8f10887c}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a78b64e30a05320751528ae1ca2cbf4cf}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Main\+Robot\+Id@{Main\+Robot\+Id}}
+\index{Main\+Robot\+Id@{Main\+Robot\+Id}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Main\+Robot\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+Network\+Server\+Game.\+Main\+Robot\+Id\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a78b64e30a05320751528ae1ca2cbf4cf}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_aabf25bab89aabaed2160401c816ba19e}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Map@{Map}}
+\index{Map@{Map}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map} gearit.\+src.\+Network.\+Network\+Server\+Game.\+Map\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_aabf25bab89aabaed2160401c816ba19e}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a5fe67a60f0804da174020fbad53a77f8}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Robots@{Robots}}
+\index{Robots@{Robots}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Robots}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Robot}$>$ gearit.\+src.\+Network.\+Network\+Server\+Game.\+Robots\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a5fe67a60f0804da174020fbad53a77f8}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_server_game_a86301a5c4b97fd7306a5c59e777e0a8d}{\index{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}!Time@{Time}}
+\index{Time@{Time}!gearit\+::src\+::\+Network\+::\+Network\+Server\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Server\+Game}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+Network.\+Network\+Server\+Game.\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_server_game_a86301a5c4b97fd7306a5c59e777e0a8d}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/game/\hyperlink{_network_server_game_8cs}{Network\+Server\+Game.\+cs}\end{DoxyCompactItemize}

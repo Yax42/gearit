@@ -1,0 +1,183 @@
+\hypertarget{namespace_farseer_physics_1_1_collision}{\section{Package Farseer\+Physics.\+Collision}
+\label{namespace_farseer_physics_1_1_collision}\index{Farseer\+Physics.\+Collision@{Farseer\+Physics.\+Collision}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+package \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}
+\begin{DoxyCompactList}\small\item\em An axis aligned bounding box. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_clip_vertex}{Clip\+Vertex}
+\begin{DoxyCompactList}\small\item\em Used for computing contact manifolds. \end{DoxyCompactList}\item 
+class {\bfseries Collision}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespace_farseer_physics_1_1_collision}{Collision} methods \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_contact_feature}{Contact\+Feature}
+\begin{DoxyCompactList}\small\item\em The features that intersect to form the contact point This must be 4 bytes or less. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_contact_i_d}{Contact\+I\+D}
+\begin{DoxyCompactList}\small\item\em Contact ids to facilitate warm starting. \end{DoxyCompactList}\item 
+class {\bfseries Distance}
+\begin{DoxyCompactList}\small\item\em The Gilbert–\+Johnson–\+Keerthi distance algorithm that provides the distance between shapes. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_distance_input}{Distance\+Input}
+\begin{DoxyCompactList}\small\item\em Input for Distance.\+Compute\+Distance(). You have to option to use the shape radii in the computation. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_distance_output}{Distance\+Output}
+\begin{DoxyCompactList}\small\item\em Output for Distance.\+Compute\+Distance(). \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_distance_proxy}{Distance\+Proxy}
+\begin{DoxyCompactList}\small\item\em A distance proxy is used by the G\+J\+K algorithm. It encapsulates any shape. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_3_01_t_01_4}{Dynamic\+Tree$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A dynamic tree arranges data in a binary tree to accelerate queries such as volume queries and ray casts. Leafs are proxies with an \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B}. In the tree we expand the proxy \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} by Settings.\+b2\+\_\+fat\+A\+A\+B\+B\+Factor so that the proxy \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} is bigger than the client object. This allows the client object to move by small amounts without triggering a tree update. \end{DoxyCompactList}\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_dynamic_tree_broad_phase}{Dynamic\+Tree\+Broad\+Phase}
+\begin{DoxyCompactList}\small\item\em The broad-\/phase is used for computing pairs and performing volume queries and ray casts. This broad-\/phase does not persist pairs. Instead, this reports potentially new pairs. It is up to the client to consume the new pairs and to track subsequent overlap. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_e_p_axis}{E\+P\+Axis}
+\begin{DoxyCompactList}\small\item\em This structure is used to keep track of the best separating axis. \end{DoxyCompactList}\item 
+interface \hyperlink{interface_farseer_physics_1_1_collision_1_1_i_broad_phase}{I\+Broad\+Phase}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold}{Manifold}
+\begin{DoxyCompactList}\small\item\em A manifold for two touching convex \hyperlink{namespace_farseer_physics_1_1_collision_1_1_shapes}{Shapes}. Box2\+D supports multiple types of contact\+: \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_manifold_point}{Manifold\+Point}
+\begin{DoxyCompactList}\small\item\em A manifold point is a contact point belonging to a contact manifold. It holds details related to the geometry and dynamics of the contact points. The local point usage depends on the manifold type\+: -\/\+Shape\+Type.\+Circles\+: the local center of circle\+B -\/\+Separation\+Function.\+Face\+A\+: the local center of cirlce\+B or the clip point of polygon\+B -\/\+Separation\+Function.\+Face\+B\+: the clip point of polygon\+A This structure is stored across time steps, so we keep it small. Note\+: the impulses are used for internal caching and may not provide reliable contact forces, especially for high speed collisions. \end{DoxyCompactList}\item 
+struct {\bfseries Pair}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input}
+\begin{DoxyCompactList}\small\item\em Ray-\/cast input data. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Ray\+Cast\+Output}
+\begin{DoxyCompactList}\small\item\em Ray-\/cast output data. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_reference_face}{Reference\+Face}
+\begin{DoxyCompactList}\small\item\em Reference face used for clipping \end{DoxyCompactList}\item 
+class {\bfseries Separation\+Function}
+\item 
+struct {\bfseries Simplex}
+\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_simplex_cache}{Simplex\+Cache}
+\begin{DoxyCompactList}\small\item\em Used to warm start Compute\+Distance. Set count to zero on first call. \end{DoxyCompactList}\item 
+struct {\bfseries Simplex\+Vertex}
+\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_temp_polygon}{Temp\+Polygon}
+\begin{DoxyCompactList}\small\item\em This holds polygon B expressed in frame A. \end{DoxyCompactList}\item 
+class {\bfseries Time\+Of\+Impact}
+\item 
+class \hyperlink{class_farseer_physics_1_1_collision_1_1_t_o_i_input}{T\+O\+I\+Input}
+\begin{DoxyCompactList}\small\item\em Input parameters for Calculate\+Time\+Of\+Impact \end{DoxyCompactList}\item 
+struct \hyperlink{struct_farseer_physics_1_1_collision_1_1_t_o_i_output}{T\+O\+I\+Output}
+\item 
+class {\bfseries Tree\+Node$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em A node in the dynamic tree. The client does not interact with this directly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafae}{Manifold\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea0b746483cd6f7830702edd6ee7d8d4b9}{Manifold\+Type.\+Circles}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaeaf43c8682b4637a32c3fd76348733a5b0}{Manifold\+Type.\+Face\+A}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea9d0245173cf584f064c34d2be4718f0d}{Manifold\+Type.\+Face\+B}
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42}{Point\+State} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42abbb93ef26e3c101ff11cdd21cab08a94}{Point\+State.\+Null}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42aec211f7c20af43e742bf2570c3cb84f9}{Point\+State.\+Add}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a5a7dacb6e9b5ba37e22f825429355174}{Point\+State.\+Persist}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a1063e38cb53d94d386f21227fcd84717}{Point\+State.\+Remove}
+ \}
+\begin{DoxyCompactList}\small\item\em This is used for determining the state of contact points. \end{DoxyCompactList}\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9}{E\+P\+Axis\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a88183b946cc5f0e8c96b2e66e1c74a7e}{E\+P\+Axis\+Type.\+Unknown}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a2a187552a4c67d367110e85ea0087a4d}{E\+P\+Axis\+Type.\+Edge\+A}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a0a2d24d621ca67652605108f4d4eac97}{E\+P\+Axis\+Type.\+Edge\+B}
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8}{T\+O\+I\+Output\+State} \{ \\*
+\hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a88183b946cc5f0e8c96b2e66e1c74a7e}{T\+O\+I\+Output\+State.\+Unknown}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8ad7c8c85bf79bbe1b7188497c32c3b0ca}{T\+O\+I\+Output\+State.\+Failed}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5f1b91d5ebf354ef9c15b0671c0e8b18}{T\+O\+I\+Output\+State.\+Overlapped}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5b32faae4c7bae1011dc7ab43caa1529}{T\+O\+I\+Output\+State.\+Touching}, 
+\\*
+\hyperlink{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8aa718c9e839947a5b30fd87b5d1da6f8d}{T\+O\+I\+Output\+State.\+Seperated}
+ \}
+\item 
+enum \hyperlink{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4d}{Separation\+Function\+Type} \{ \hyperlink{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da75dd5f1160a3f02b6fae89c54361a1b3}{Separation\+Function\+Type.\+Points}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4daf43c8682b4637a32c3fd76348733a5b0}{Separation\+Function\+Type.\+Face\+A}, 
+\hyperlink{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da9d0245173cf584f064c34d2be4718f0d}{Separation\+Function\+Type.\+Face\+B}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9}{\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!E\+P\+Axis\+Type@{E\+P\+Axis\+Type}}
+\index{E\+P\+Axis\+Type@{E\+P\+Axis\+Type}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}
+\subsubsection[{E\+P\+Axis\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+E\+P\+Axis\+Type}}}\label{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Unknown@{Unknown}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Unknown@{Unknown}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a88183b946cc5f0e8c96b2e66e1c74a7e}
+}]\index{Edge\+A@{Edge\+A}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Edge\+A@{Edge\+A}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a2a187552a4c67d367110e85ea0087a4d}{Edge\+A}\label{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a2a187552a4c67d367110e85ea0087a4d}
+}]\index{Edge\+B@{Edge\+B}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Edge\+B@{Edge\+B}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a0a2d24d621ca67652605108f4d4eac97}{Edge\+B}\label{namespace_farseer_physics_1_1_collision_a8c0daff3dfe362c5f50bb4f69ebb8fe9a0a2d24d621ca67652605108f4d4eac97}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafae}{\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Manifold\+Type@{Manifold\+Type}}
+\index{Manifold\+Type@{Manifold\+Type}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}
+\subsubsection[{Manifold\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+Manifold\+Type}}}\label{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafae}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Circles@{Circles}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Circles@{Circles}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea0b746483cd6f7830702edd6ee7d8d4b9}{Circles}\label{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea0b746483cd6f7830702edd6ee7d8d4b9}
+}]\index{Face\+A@{Face\+A}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Face\+A@{Face\+A}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaeaf43c8682b4637a32c3fd76348733a5b0}{Face\+A}\label{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaeaf43c8682b4637a32c3fd76348733a5b0}
+}]\index{Face\+B@{Face\+B}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Face\+B@{Face\+B}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea9d0245173cf584f064c34d2be4718f0d}{Face\+B}\label{namespace_farseer_physics_1_1_collision_a7020490145ac65404675bdce1ebeafaea9d0245173cf584f064c34d2be4718f0d}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42}{\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Point\+State@{Point\+State}}
+\index{Point\+State@{Point\+State}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}
+\subsubsection[{Point\+State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+Point\+State}}}\label{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42}
+
+
+This is used for determining the state of contact points. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Null@{Null}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Null@{Null}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42abbb93ef26e3c101ff11cdd21cab08a94}{Null}\label{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42abbb93ef26e3c101ff11cdd21cab08a94}
+}]Point does not exist \index{Add@{Add}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Add@{Add}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42aec211f7c20af43e742bf2570c3cb84f9}{Add}\label{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42aec211f7c20af43e742bf2570c3cb84f9}
+}]Point was added in the update \index{Persist@{Persist}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Persist@{Persist}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a5a7dacb6e9b5ba37e22f825429355174}{Persist}\label{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a5a7dacb6e9b5ba37e22f825429355174}
+}]Point persisted across the update \index{Remove@{Remove}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Remove@{Remove}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a1063e38cb53d94d386f21227fcd84717}{Remove}\label{namespace_farseer_physics_1_1_collision_a223f39caed05fa155633a0f519117a42a1063e38cb53d94d386f21227fcd84717}
+}]Point was removed in the update \end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4d}{\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Separation\+Function\+Type@{Separation\+Function\+Type}}
+\index{Separation\+Function\+Type@{Separation\+Function\+Type}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}
+\subsubsection[{Separation\+Function\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+Separation\+Function\+Type}}}\label{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4d}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Points@{Points}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Points@{Points}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da75dd5f1160a3f02b6fae89c54361a1b3}{Points}\label{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da75dd5f1160a3f02b6fae89c54361a1b3}
+}]\index{Face\+A@{Face\+A}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Face\+A@{Face\+A}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4daf43c8682b4637a32c3fd76348733a5b0}{Face\+A}\label{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4daf43c8682b4637a32c3fd76348733a5b0}
+}]\index{Face\+B@{Face\+B}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Face\+B@{Face\+B}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da9d0245173cf584f064c34d2be4718f0d}{Face\+B}\label{namespace_farseer_physics_1_1_collision_a4dcfee22f64b726ac420dfb04897ea4da9d0245173cf584f064c34d2be4718f0d}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8}{\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!T\+O\+I\+Output\+State@{T\+O\+I\+Output\+State}}
+\index{T\+O\+I\+Output\+State@{T\+O\+I\+Output\+State}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}
+\subsubsection[{T\+O\+I\+Output\+State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Farseer\+Physics.\+Collision.\+T\+O\+I\+Output\+State}}}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Unknown@{Unknown}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Unknown@{Unknown}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a88183b946cc5f0e8c96b2e66e1c74a7e}{Unknown}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a88183b946cc5f0e8c96b2e66e1c74a7e}
+}]\index{Failed@{Failed}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Failed@{Failed}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8ad7c8c85bf79bbe1b7188497c32c3b0ca}{Failed}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8ad7c8c85bf79bbe1b7188497c32c3b0ca}
+}]\index{Overlapped@{Overlapped}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Overlapped@{Overlapped}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5f1b91d5ebf354ef9c15b0671c0e8b18}{Overlapped}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5f1b91d5ebf354ef9c15b0671c0e8b18}
+}]\index{Touching@{Touching}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Touching@{Touching}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5b32faae4c7bae1011dc7ab43caa1529}{Touching}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8a5b32faae4c7bae1011dc7ab43caa1529}
+}]\index{Seperated@{Seperated}!Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}}\index{Farseer\+Physics\+::\+Collision@{Farseer\+Physics\+::\+Collision}!Seperated@{Seperated}}\item[{\em 
+\hypertarget{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8aa718c9e839947a5b30fd87b5d1da6f8d}{Seperated}\label{namespace_farseer_physics_1_1_collision_a5de703d53ee92998e8d95e1ee51613d8aa718c9e839947a5b30fd87b5d1da6f8d}
+}]\end{description}
+\end{Desc}

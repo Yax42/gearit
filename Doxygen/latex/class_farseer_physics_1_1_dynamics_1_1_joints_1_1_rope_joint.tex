@@ -1,0 +1,158 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint}}
+}
+
+
+A rope joint enforces a maximum distance between two points on two bodies. It has no other effect. It can be used on ropes that are made up of several connected bodies, and if there is a need to support a heavy body. This joint is used for stabiliation of heavy objects on soft constraint joints.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ab2bc2aa68616b32bdf97da3da41d24c9}{Rope\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor\+A, Vector2 anchor\+B, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}{Rope\+Joint}. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a74aa0f9ba87f866ac03a176743f7398a}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a4d03626df0cd9e34c9129efce2215884}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a8f5c84a045c5a3e48fe46c0a949c61f5}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ad40a4d81d4f0ed393fd4dbd0e90cf683}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override sealed Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a49ea5fcddd32174e4170ce8346ca8ff0}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override sealed Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a6575449f9b5d1775d3e23b8251e1c1cd}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a59a02f46e4bc67c7d640c0c3c4d2667b}{Max\+Length}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get or set the maximum length of the rope. By default, it is the distance between the two anchor points. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_1_1_joints_a31a093d39ac5f01671837f083d915a35}{Limit\+State} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a185d4fe67134b08e33113cf5f321d4ba}{State}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the state of the joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A rope joint enforces a maximum distance between two points on two bodies. It has no other effect. It can be used on ropes that are made up of several connected bodies, and if there is a need to support a heavy body. This joint is used for stabiliation of heavy objects on soft constraint joints. 
+
+Warning\+: if you attempt to change the maximum length during the simulation you will get some non-\/physical behavior. Use the \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_distance_joint}{Distance\+Joint} instead if you want to dynamically control the length. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ab2bc2aa68616b32bdf97da3da41d24c9}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Rope\+Joint@{Rope\+Joint}}
+\index{Rope\+Joint@{Rope\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Rope\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Rope\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor\+A, }
+\item[{Vector2}]{anchor\+B, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ab2bc2aa68616b32bdf97da3da41d24c9}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint}{Rope\+Joint}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+{\em anchor\+A} & The anchor on the first body\\
+\hline
+{\em anchor\+B} & The anchor on the second body\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a74aa0f9ba87f866ac03a176743f7398a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a74aa0f9ba87f866ac03a176743f7398a}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a4d03626df0cd9e34c9129efce2215884}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a4d03626df0cd9e34c9129efce2215884}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a8f5c84a045c5a3e48fe46c0a949c61f5}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a8f5c84a045c5a3e48fe46c0a949c61f5}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ad40a4d81d4f0ed393fd4dbd0e90cf683}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_ad40a4d81d4f0ed393fd4dbd0e90cf683}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a59a02f46e4bc67c7d640c0c3c4d2667b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!Max\+Length@{Max\+Length}}
+\index{Max\+Length@{Max\+Length}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{Max\+Length}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+Max\+Length\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a59a02f46e4bc67c7d640c0c3c4d2667b}
+
+
+Get or set the maximum length of the rope. By default, it is the distance between the two anchor points. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a185d4fe67134b08e33113cf5f321d4ba}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!State@{State}}
+\index{State@{State}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{State}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Limit\+State} Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+State\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a185d4fe67134b08e33113cf5f321d4ba}
+
+
+Gets the state of the joint. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a49ea5fcddd32174e4170ce8346ca8ff0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override sealed Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a49ea5fcddd32174e4170ce8346ca8ff0}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a6575449f9b5d1775d3e23b8251e1c1cd}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Rope\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override sealed Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Rope\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_rope_joint_a6575449f9b5d1775d3e23b8251e1c1cd}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_rope_joint_8cs}{Rope\+Joint.\+cs}\end{DoxyCompactItemize}

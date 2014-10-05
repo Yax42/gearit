@@ -1,0 +1,128 @@
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep}{\section{Farseer\+Physics.\+Common.\+Sweep Struct Reference}
+\label{struct_farseer_physics_1_1_common_1_1_sweep}\index{Farseer\+Physics.\+Common.\+Sweep@{Farseer\+Physics.\+Common.\+Sweep}}
+}
+
+
+This describes the motion of a body/shape for T\+O\+I computation. Shapes are defined with respect to the body origin, which may no coincide with the center of mass. However, to support dynamics we must interpolate the center of mass position.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a0ed4ddcfd0398f7d0c74ff692d9b431f}{Get\+Transform} (out \hyperlink{struct_farseer_physics_1_1_common_1_1_transform}{Transform} xfb, float beta)
+\begin{DoxyCompactList}\small\item\em Get the interpolated transform at a specific time. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a7693bdf7a0615769d35aeb91492c7cc2}{Advance} (float alpha)
+\begin{DoxyCompactList}\small\item\em Advance the sweep forward, yielding a new initial state. \end{DoxyCompactList}\item 
+void \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a43654ebfe3ba9b7067a63743774184a6}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em Normalize the angles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a71d00d22b7fc56184b00c92e4f3baa4b}{A}
+\begin{DoxyCompactList}\small\item\em World angles \end{DoxyCompactList}\item 
+float \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a8ef1361d8782e8334bb9a59b2db99130}{A0}
+\item 
+float \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a979d09b917c1b7be76852cc5328fe009}{Alpha0}
+\begin{DoxyCompactList}\small\item\em Fraction of the current time step in the range \mbox{[}0,1\mbox{]} c0 and a0 are the positions at alpha0. \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_a7caadbea6902042f9101cbd9801be4f6}{C}
+\begin{DoxyCompactList}\small\item\em Center world positions \end{DoxyCompactList}\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_ad87be96d9955ee6c1b096820218d5abe}{C0}
+\item 
+Vector2 \hyperlink{struct_farseer_physics_1_1_common_1_1_sweep_aee5495c8f6ce3ded48b6e0b812dac58b}{Local\+Center}
+\begin{DoxyCompactList}\small\item\em Local center of mass position \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This describes the motion of a body/shape for T\+O\+I computation. Shapes are defined with respect to the body origin, which may no coincide with the center of mass. However, to support dynamics we must interpolate the center of mass position. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a7693bdf7a0615769d35aeb91492c7cc2}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!Advance@{Advance}}
+\index{Advance@{Advance}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{Advance}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Sweep.\+Advance (
+\begin{DoxyParamCaption}
+\item[{float}]{alpha}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a7693bdf7a0615769d35aeb91492c7cc2}
+
+
+Advance the sweep forward, yielding a new initial state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & new initial time..\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a0ed4ddcfd0398f7d0c74ff692d9b431f}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!Get\+Transform@{Get\+Transform}}
+\index{Get\+Transform@{Get\+Transform}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{Get\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Sweep.\+Get\+Transform (
+\begin{DoxyParamCaption}
+\item[{out {\bf Transform}}]{xfb, }
+\item[{float}]{beta}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a0ed4ddcfd0398f7d0c74ff692d9b431f}
+
+
+Get the interpolated transform at a specific time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xfb} & The transform.\\
+\hline
+{\em beta} & beta is a factor in \mbox{[}0,1\mbox{]}, where 0 indicates alpha0.\\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a43654ebfe3ba9b7067a63743774184a6}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Common.\+Sweep.\+Normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a43654ebfe3ba9b7067a63743774184a6}
+
+
+Normalize the angles. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a71d00d22b7fc56184b00c92e4f3baa4b}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!A@{A}}
+\index{A@{A}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{A}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Sweep.\+A}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a71d00d22b7fc56184b00c92e4f3baa4b}
+
+
+World angles 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a8ef1361d8782e8334bb9a59b2db99130}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!A0@{A0}}
+\index{A0@{A0}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{A0}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Sweep.\+A0}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a8ef1361d8782e8334bb9a59b2db99130}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a979d09b917c1b7be76852cc5328fe009}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!Alpha0@{Alpha0}}
+\index{Alpha0@{Alpha0}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{Alpha0}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Sweep.\+Alpha0}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a979d09b917c1b7be76852cc5328fe009}
+
+
+Fraction of the current time step in the range \mbox{[}0,1\mbox{]} c0 and a0 are the positions at alpha0. 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_a7caadbea6902042f9101cbd9801be4f6}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!C@{C}}
+\index{C@{C}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{C}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Sweep.\+C}}\label{struct_farseer_physics_1_1_common_1_1_sweep_a7caadbea6902042f9101cbd9801be4f6}
+
+
+Center world positions 
+
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_ad87be96d9955ee6c1b096820218d5abe}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!C0@{C0}}
+\index{C0@{C0}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{C0}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Sweep.\+C0}}\label{struct_farseer_physics_1_1_common_1_1_sweep_ad87be96d9955ee6c1b096820218d5abe}
+\hypertarget{struct_farseer_physics_1_1_common_1_1_sweep_aee5495c8f6ce3ded48b6e0b812dac58b}{\index{Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}!Local\+Center@{Local\+Center}}
+\index{Local\+Center@{Local\+Center}!Farseer\+Physics\+::\+Common\+::\+Sweep@{Farseer\+Physics\+::\+Common\+::\+Sweep}}
+\subsubsection[{Local\+Center}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Common.\+Sweep.\+Local\+Center}}\label{struct_farseer_physics_1_1_common_1_1_sweep_aee5495c8f6ce3ded48b6e0b812dac58b}
+
+
+Local center of mass position 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\hyperlink{_math_8cs}{Math.\+cs}\end{DoxyCompactItemize}

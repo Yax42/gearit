@@ -1,0 +1,134 @@
+\hypertarget{namespacegearit_1_1xna}{\section{Package gearit.\+xna}
+\label{namespacegearit_1_1xna}\index{gearit.\+xna@{gearit.\+xna}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_background_screen}{Background\+Screen}
+\begin{DoxyCompactList}\small\item\em The background screen sits behind all the other menu screens. It draws a background image that remains fixed in place regardless of whatever transitions the screens on top of it may be doing. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_camera2_d}{Camera2\+D}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_frame_rate_counter}{Frame\+Rate\+Counter}
+\begin{DoxyCompactList}\small\item\em Displays the F\+P\+S \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen}
+\begin{DoxyCompactList}\small\item\em A screen is a single layer that has update and draw logic, and which can be combined with other layers to build up a complex menu system. For instance the main menu, the options menu, the \char`\"{}are you sure you
+want to quit\char`\"{} message box, and the main game itself are all implemented as screens. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen}{I\+Demo\+Screen}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_input_helper}{Input\+Helper}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_line_batch}{Line\+Batch}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_logo_screen}{Logo\+Screen}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_main_options}{Main\+Options}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_menu_button}{Menu\+Button}
+\begin{DoxyCompactList}\small\item\em Helper class represents a single entry in a \hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen}. By default this just draws the entry text string, but it can be customized to display menu entries in different ways. This also provides an event that will be raised when the menu entry is selected. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_menu_entry}{Menu\+Entry}
+\begin{DoxyCompactList}\small\item\em Helper class represents a single entry in a \hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen}. By default this just draws the entry text string, but it can be customized to display menu entries in different ways. This also provides an event that will be raised when the menu entry is selected. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_menu_screen}{Menu\+Screen}
+\begin{DoxyCompactList}\small\item\em Base class for screens that contain a menu of options. The user can move up and down to select an entry, or cancel to back out of the screen. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_message_box_screen}{Message\+Box\+Screen}
+\begin{DoxyCompactList}\small\item\em A popup message box screen, used to display \char`\"{}are you sure?\char`\"{} confirmation messages. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_physics_game_screen}{Physics\+Game\+Screen}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_resolution_changer}{Resolution\+Changer}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_screen_manager}{Screen\+Manager}
+\begin{DoxyCompactList}\small\item\em The screen manager is a component which manages one or more \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} instances. It maintains a stack of screens, calls their Update and Draw methods at the appropriate times, and automatically routes input to the topmost active screen. \end{DoxyCompactList}\item 
+class \hyperlink{classgearit_1_1xna_1_1_sound_manager}{Sound\+Manager}
+\item 
+struct \hyperlink{structgearit_1_1xna_1_1_sprite}{Sprite}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_sprite_fonts}{Sprite\+Fonts}
+\item 
+class \hyperlink{classgearit_1_1xna_1_1_video_option}{Video\+Option}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9e}{Screen\+State} \{ \hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9eada75f3f095c9aef3184de03832b831c8}{Screen\+State.\+Transition\+On}, 
+\hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea4d3d769b812b6faa6b76e1a8abaece2d}{Screen\+State.\+Active}, 
+\hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ead5585781c02f0dff7531081980ecbfce}{Screen\+State.\+Transition\+Off}, 
+\hyperlink{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea7acdf85c69cc3c5305456a293524386e}{Screen\+State.\+Hidden}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum describes the screen transition state. \end{DoxyCompactList}\item 
+enum \hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57b}{Mouse\+Buttons} \{ \\*
+\hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba2a81c1ce439d7652d7a61d55229c8043}{Mouse\+Buttons.\+Left\+Button}, 
+\hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57baa196f1ff95059e191270f3bb6ab4a266}{Mouse\+Buttons.\+Middle\+Button}, 
+\hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba7e264b46aade8e083656f1f0897220f3}{Mouse\+Buttons.\+Right\+Button}, 
+\hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba0661d54759215c0d1a549e9efb534deb}{Mouse\+Buttons.\+Extra\+Button1}, 
+\\*
+\hyperlink{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba34f1ffec6b891cfa18296241c7b53434}{Mouse\+Buttons.\+Extra\+Button2}
+ \}
+\begin{DoxyCompactList}\small\item\em an enum of all available mouse buttons. \end{DoxyCompactList}\item 
+enum \hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023}{Entry\+Type} \{ \hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a2fc3359e12b2a9104121dcf04246f6a0}{Entry\+Type.\+Screen}, 
+\hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a04b2e4188d4ef8051e4699da8af01335}{Entry\+Type.\+Separator}, 
+\hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023aea4788705e6873b424c65e91c2846b19}{Entry\+Type.\+Cancel}, 
+\hyperlink{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023ab8f05aa46b670aa779f6bba28fe12012}{Entry\+Type.\+Exit\+Item}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023}{\index{gearit\+::xna@{gearit\+::xna}!Entry\+Type@{Entry\+Type}}
+\index{Entry\+Type@{Entry\+Type}!gearit\+::xna@{gearit\+::xna}}
+\subsubsection[{Entry\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf gearit.\+xna.\+Entry\+Type}}}\label{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Screen@{Screen}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Screen@{Screen}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a2fc3359e12b2a9104121dcf04246f6a0}{Screen}\label{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a2fc3359e12b2a9104121dcf04246f6a0}
+}]\index{Separator@{Separator}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Separator@{Separator}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a04b2e4188d4ef8051e4699da8af01335}{Separator}\label{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023a04b2e4188d4ef8051e4699da8af01335}
+}]\index{Cancel@{Cancel}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Cancel@{Cancel}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023aea4788705e6873b424c65e91c2846b19}{Cancel}\label{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023aea4788705e6873b424c65e91c2846b19}
+}]\index{Exit\+Item@{Exit\+Item}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Exit\+Item@{Exit\+Item}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023ab8f05aa46b670aa779f6bba28fe12012}{Exit\+Item}\label{namespacegearit_1_1xna_abf541ce7c750f327a7606b3c4fbce023ab8f05aa46b670aa779f6bba28fe12012}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57b}{\index{gearit\+::xna@{gearit\+::xna}!Mouse\+Buttons@{Mouse\+Buttons}}
+\index{Mouse\+Buttons@{Mouse\+Buttons}!gearit\+::xna@{gearit\+::xna}}
+\subsubsection[{Mouse\+Buttons}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf gearit.\+xna.\+Mouse\+Buttons}}}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57b}
+
+
+an enum of all available mouse buttons. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Left\+Button@{Left\+Button}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Left\+Button@{Left\+Button}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba2a81c1ce439d7652d7a61d55229c8043}{Left\+Button}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba2a81c1ce439d7652d7a61d55229c8043}
+}]\index{Middle\+Button@{Middle\+Button}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Middle\+Button@{Middle\+Button}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57baa196f1ff95059e191270f3bb6ab4a266}{Middle\+Button}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57baa196f1ff95059e191270f3bb6ab4a266}
+}]\index{Right\+Button@{Right\+Button}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Right\+Button@{Right\+Button}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba7e264b46aade8e083656f1f0897220f3}{Right\+Button}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba7e264b46aade8e083656f1f0897220f3}
+}]\index{Extra\+Button1@{Extra\+Button1}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Extra\+Button1@{Extra\+Button1}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba0661d54759215c0d1a549e9efb534deb}{Extra\+Button1}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba0661d54759215c0d1a549e9efb534deb}
+}]\index{Extra\+Button2@{Extra\+Button2}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Extra\+Button2@{Extra\+Button2}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba34f1ffec6b891cfa18296241c7b53434}{Extra\+Button2}\label{namespacegearit_1_1xna_a41534985797a7c3fd3cad9ed9543d57ba34f1ffec6b891cfa18296241c7b53434}
+}]\end{description}
+\end{Desc}
+\hypertarget{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9e}{\index{gearit\+::xna@{gearit\+::xna}!Screen\+State@{Screen\+State}}
+\index{Screen\+State@{Screen\+State}!gearit\+::xna@{gearit\+::xna}}
+\subsubsection[{Screen\+State}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf gearit.\+xna.\+Screen\+State}}}\label{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9e}
+
+
+Enum describes the screen transition state. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Transition\+On@{Transition\+On}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Transition\+On@{Transition\+On}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9eada75f3f095c9aef3184de03832b831c8}{Transition\+On}\label{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9eada75f3f095c9aef3184de03832b831c8}
+}]\index{Active@{Active}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Active@{Active}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea4d3d769b812b6faa6b76e1a8abaece2d}{Active}\label{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea4d3d769b812b6faa6b76e1a8abaece2d}
+}]\index{Transition\+Off@{Transition\+Off}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Transition\+Off@{Transition\+Off}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ead5585781c02f0dff7531081980ecbfce}{Transition\+Off}\label{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ead5585781c02f0dff7531081980ecbfce}
+}]\index{Hidden@{Hidden}!gearit\+::xna@{gearit\+::xna}}\index{gearit\+::xna@{gearit\+::xna}!Hidden@{Hidden}}\item[{\em 
+\hypertarget{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea7acdf85c69cc3c5305456a293524386e}{Hidden}\label{namespacegearit_1_1xna_a31b84963a73312899ecc8b0684c41d9ea7acdf85c69cc3c5305456a293524386e}
+}]\end{description}
+\end{Desc}

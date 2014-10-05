@@ -1,0 +1,363 @@
+\hypertarget{classgearit_1_1xna_1_1_screen_manager}{\section{gearit.\+xna.\+Screen\+Manager Class Reference}
+\label{classgearit_1_1xna_1_1_screen_manager}\index{gearit.\+xna.\+Screen\+Manager@{gearit.\+xna.\+Screen\+Manager}}
+}
+
+
+The screen manager is a component which manages one or more \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} instances. It maintains a stack of screens, calls their Update and Draw methods at the appropriate times, and automatically routes input to the topmost active screen.  
+
+
+
+
+Inherits Drawable\+Game\+Component.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_screen_manager_ac1fd569881c25ef2d9eaf40b1ffa8f07}{Screen\+Manager} (Game game)
+\begin{DoxyCompactList}\small\item\em Constructs a new screen manager component. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a5a9f3ded28a5f0bdaca3aa09d8c9774b}{fps\+Unlock} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_adc5ecd7724d23bece79885e8c3059f46}{fps\+Lock} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a61cb620b3504877a93ed0520507e8589}{Message} (string msg, int duration=2000)
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a33b1139214640e1f29cd486f750ea2bb}{Set\+Resolution\+Screen} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Set Resolution \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a4ad3fd303cbf1a9bc0c18fd3f3e173b0}{active\+Full\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Active \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a543e8ed40869732963b2ec49c344aedb}{deactiv\+Full\+Screen} ()
+\begin{DoxyCompactList}\small\item\em Desactive \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_aeb9ea57c5a60810983210ea753a8d665}{begin\+Drawing} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_ae0cc1e7caebdd50f39152f33eae7afa2}{stop\+Drawing} ()
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a517b714d143b94e8af31de0f9338eee6}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Initializes the screen manager component. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a1c8af9d5ba89dda8aaae47a1698d3ebd}{Count\+F\+P\+S} (Game\+Time game\+Time)
+\item 
+int \hyperlink{classgearit_1_1xna_1_1_screen_manager_a7aa87268625ff053f43d0b9ff97a4df2}{get\+F\+P\+S} ()
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a99d48169653cd17816c95dc252a51c87}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows each screen to run logic. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a8176e4011d5f9278f70390a9e3d7fa1e}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Tells each screen to draw itself. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_ab5935512a264bdcce8aadd1c7abc2555}{Update\+Priority} ()
+\begin{DoxyCompactList}\small\item\em Sort the list by Draw priority \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_ad61814c406661bd00ded5eb2c84dc201}{Exit} ()
+\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a0f553f48287922f728fe785d50c9c427}{Add\+Screen} (\hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} screen)
+\begin{DoxyCompactList}\small\item\em Adds a new screen to the screen manager. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a0980799f0c3f3667e118674fbfea1e6e}{Remove\+Screen} (\hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} screen)
+\begin{DoxyCompactList}\small\item\em Removes a screen from the screen manager. You should normally use \hyperlink{classgearit_1_1xna_1_1_game_screen_ac0a09358bf75830432169413f4d1ae36}{Game\+Screen.\+Exit\+Screen} instead of calling this directly, so the screen can gradually transition off rather than just being instantly removed. \end{DoxyCompactList}\item 
+\hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen}\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1xna_1_1_screen_manager_ac27fbfb2051b797d886e65d4d5a2d722}{Get\+Screens} ()
+\begin{DoxyCompactList}\small\item\em Expose an array holding all the screens. We return a copy rather than the real master list, because screens should only ever be added or removed using the Add\+Screen and Remove\+Screen methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classgearit_1_1xna_1_1_screen_manager_af6bbd1b66b28ccafc90b86c0bc1828f9}{fps\+Is\+Locked}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classgearit_1_1xna_1_1_screen_manager_acae716d8c020785cf4691893dc0ed8b6}{B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S} = 60
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a91a1529e82ec4e5d4f45e3ac067a0e78}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load your graphics content. \end{DoxyCompactList}\item 
+override void \hyperlink{classgearit_1_1xna_1_1_screen_manager_a0890524258c2c8951a42d1e02079c8ec}{Unload\+Content} ()
+\begin{DoxyCompactList}\small\item\em Unload your graphics content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Graphics\+Device\+Manager \hyperlink{classgearit_1_1xna_1_1_screen_manager_af28162340e4c887907fccaf3c72ac340}{\+\_\+graphics}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1xna_1_1_screen_manager_a439d024922ddd9906d16ed783167a4b5}{Width}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Return Width \end{DoxyCompactList}\item 
+int \hyperlink{classgearit_1_1xna_1_1_screen_manager_a382f8868d97c4a821d1cdee2d30c4937}{Height}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Return Height \end{DoxyCompactList}\item 
+bool \hyperlink{classgearit_1_1xna_1_1_screen_manager_a341ec68256be52aeccb85fdaf2569fa6}{Is\+Full\+Screen}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Return \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode \end{DoxyCompactList}\item 
+Sprite\+Batch \hyperlink{classgearit_1_1xna_1_1_screen_manager_a64b3624f376229ed4c61df9cfa9b0e52}{Sprite\+Batch}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A default Sprite\+Batch shared by all the screens. This saves each screen having to bother creating their own local instance. \end{DoxyCompactList}\item 
+\hyperlink{classgearit_1_1xna_1_1_line_batch}{Line\+Batch} \hyperlink{classgearit_1_1xna_1_1_screen_manager_a1dd57d5058a07a9af6e619250d442ce2}{Line\+Batch}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Content\+Manager \hyperlink{classgearit_1_1xna_1_1_screen_manager_ae7549a2962bc3ac38e9fb9bada36dd96}{Content}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1xna_1_1_sprite_fonts}{Sprite\+Fonts} \hyperlink{classgearit_1_1xna_1_1_screen_manager_ab09910d193f633cde8668f431482dd93}{Fonts}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1utility_1_1_asset_creator}{Asset\+Creator} \hyperlink{classgearit_1_1xna_1_1_screen_manager_acaba5204f0760a8b79dfa76767606916}{Assets}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The screen manager is a component which manages one or more \hyperlink{classgearit_1_1xna_1_1_game_screen}{Game\+Screen} instances. It maintains a stack of screens, calls their Update and Draw methods at the appropriate times, and automatically routes input to the topmost active screen. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ac1fd569881c25ef2d9eaf40b1ffa8f07}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Screen\+Manager@{Screen\+Manager}}
+\index{Screen\+Manager@{Screen\+Manager}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Screen\+Manager}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+xna.\+Screen\+Manager.\+Screen\+Manager (
+\begin{DoxyParamCaption}
+\item[{Game}]{game}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_ac1fd569881c25ef2d9eaf40b1ffa8f07}
+
+
+Constructs a new screen manager component. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a4ad3fd303cbf1a9bc0c18fd3f3e173b0}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!active\+Full\+Screen@{active\+Full\+Screen}}
+\index{active\+Full\+Screen@{active\+Full\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{active\+Full\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+active\+Full\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a4ad3fd303cbf1a9bc0c18fd3f3e173b0}
+
+
+Active \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a0f553f48287922f728fe785d50c9c427}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Add\+Screen@{Add\+Screen}}
+\index{Add\+Screen@{Add\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Add\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Add\+Screen (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+Screen}}]{screen}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a0f553f48287922f728fe785d50c9c427}
+
+
+Adds a new screen to the screen manager. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_aeb9ea57c5a60810983210ea753a8d665}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!begin\+Drawing@{begin\+Drawing}}
+\index{begin\+Drawing@{begin\+Drawing}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{begin\+Drawing}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+begin\+Drawing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_aeb9ea57c5a60810983210ea753a8d665}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a1c8af9d5ba89dda8aaae47a1698d3ebd}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Count\+F\+P\+S@{Count\+F\+P\+S}}
+\index{Count\+F\+P\+S@{Count\+F\+P\+S}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Count\+F\+P\+S}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Count\+F\+P\+S (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a1c8af9d5ba89dda8aaae47a1698d3ebd}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a543e8ed40869732963b2ec49c344aedb}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!deactiv\+Full\+Screen@{deactiv\+Full\+Screen}}
+\index{deactiv\+Full\+Screen@{deactiv\+Full\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{deactiv\+Full\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+deactiv\+Full\+Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a543e8ed40869732963b2ec49c344aedb}
+
+
+Desactive \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a8176e4011d5f9278f70390a9e3d7fa1e}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Screen\+Manager.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a8176e4011d5f9278f70390a9e3d7fa1e}
+
+
+Tells each screen to draw itself. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ad61814c406661bd00ded5eb2c84dc201}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Exit@{Exit}}
+\index{Exit@{Exit}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_ad61814c406661bd00ded5eb2c84dc201}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_adc5ecd7724d23bece79885e8c3059f46}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!fps\+Lock@{fps\+Lock}}
+\index{fps\+Lock@{fps\+Lock}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{fps\+Lock}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+fps\+Lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_adc5ecd7724d23bece79885e8c3059f46}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a5a9f3ded28a5f0bdaca3aa09d8c9774b}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!fps\+Unlock@{fps\+Unlock}}
+\index{fps\+Unlock@{fps\+Unlock}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{fps\+Unlock}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+fps\+Unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a5a9f3ded28a5f0bdaca3aa09d8c9774b}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a7aa87268625ff053f43d0b9ff97a4df2}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!get\+F\+P\+S@{get\+F\+P\+S}}
+\index{get\+F\+P\+S@{get\+F\+P\+S}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{get\+F\+P\+S}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Screen\+Manager.\+get\+F\+P\+S (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a7aa87268625ff053f43d0b9ff97a4df2}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ac27fbfb2051b797d886e65d4d5a2d722}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Get\+Screens@{Get\+Screens}}
+\index{Get\+Screens@{Get\+Screens}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Get\+Screens}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Game\+Screen} \mbox{[}$\,$\mbox{]} gearit.\+xna.\+Screen\+Manager.\+Get\+Screens (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_ac27fbfb2051b797d886e65d4d5a2d722}
+
+
+Expose an array holding all the screens. We return a copy rather than the real master list, because screens should only ever be added or removed using the Add\+Screen and Remove\+Screen methods. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a517b714d143b94e8af31de0f9338eee6}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Screen\+Manager.\+Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a517b714d143b94e8af31de0f9338eee6}
+
+
+Initializes the screen manager component. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a91a1529e82ec4e5d4f45e3ac067a0e78}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Screen\+Manager.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_screen_manager_a91a1529e82ec4e5d4f45e3ac067a0e78}
+
+
+Load your graphics content. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a61cb620b3504877a93ed0520507e8589}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Message@{Message}}
+\index{Message@{Message}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Message (
+\begin{DoxyParamCaption}
+\item[{string}]{msg, }
+\item[{int}]{duration = {\ttfamily 2000}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a61cb620b3504877a93ed0520507e8589}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a0980799f0c3f3667e118674fbfea1e6e}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Remove\+Screen@{Remove\+Screen}}
+\index{Remove\+Screen@{Remove\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Remove\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Remove\+Screen (
+\begin{DoxyParamCaption}
+\item[{{\bf Game\+Screen}}]{screen}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a0980799f0c3f3667e118674fbfea1e6e}
+
+
+Removes a screen from the screen manager. You should normally use \hyperlink{classgearit_1_1xna_1_1_game_screen_ac0a09358bf75830432169413f4d1ae36}{Game\+Screen.\+Exit\+Screen} instead of calling this directly, so the screen can gradually transition off rather than just being instantly removed. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a33b1139214640e1f29cd486f750ea2bb}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Set\+Resolution\+Screen@{Set\+Resolution\+Screen}}
+\index{Set\+Resolution\+Screen@{Set\+Resolution\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Set\+Resolution\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Set\+Resolution\+Screen (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a33b1139214640e1f29cd486f750ea2bb}
+
+
+Set Resolution 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ae0cc1e7caebdd50f39152f33eae7afa2}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!stop\+Drawing@{stop\+Drawing}}
+\index{stop\+Drawing@{stop\+Drawing}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{stop\+Drawing}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+stop\+Drawing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_ae0cc1e7caebdd50f39152f33eae7afa2}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a0890524258c2c8951a42d1e02079c8ec}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Unload\+Content@{Unload\+Content}}
+\index{Unload\+Content@{Unload\+Content}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Unload\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Screen\+Manager.\+Unload\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1xna_1_1_screen_manager_a0890524258c2c8951a42d1e02079c8ec}
+
+
+Unload your graphics content. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a99d48169653cd17816c95dc252a51c87}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Update@{Update}}
+\index{Update@{Update}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+xna.\+Screen\+Manager.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_a99d48169653cd17816c95dc252a51c87}
+
+
+Allows each screen to run logic. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ab5935512a264bdcce8aadd1c7abc2555}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Update\+Priority@{Update\+Priority}}
+\index{Update\+Priority@{Update\+Priority}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Update\+Priority}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+xna.\+Screen\+Manager.\+Update\+Priority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1xna_1_1_screen_manager_ab5935512a264bdcce8aadd1c7abc2555}
+
+
+Sort the list by Draw priority 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_acae716d8c020785cf4691893dc0ed8b6}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S@{B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S}}
+\index{B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S@{B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Screen\+Manager.\+B\+L\+O\+C\+K\+E\+D\+\_\+\+F\+P\+S = 60\hspace{0.3cm}{\ttfamily [static]}}}\label{classgearit_1_1xna_1_1_screen_manager_acae716d8c020785cf4691893dc0ed8b6}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_af6bbd1b66b28ccafc90b86c0bc1828f9}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!fps\+Is\+Locked@{fps\+Is\+Locked}}
+\index{fps\+Is\+Locked@{fps\+Is\+Locked}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{fps\+Is\+Locked}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Screen\+Manager.\+fps\+Is\+Locked}}\label{classgearit_1_1xna_1_1_screen_manager_af6bbd1b66b28ccafc90b86c0bc1828f9}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_af28162340e4c887907fccaf3c72ac340}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!\+\_\+graphics@{\+\_\+graphics}}
+\index{\+\_\+graphics@{\+\_\+graphics}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{\+\_\+graphics}]{\setlength{\rightskip}{0pt plus 5cm}Graphics\+Device\+Manager gearit.\+xna.\+Screen\+Manager.\+\_\+graphics\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1xna_1_1_screen_manager_af28162340e4c887907fccaf3c72ac340}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_acaba5204f0760a8b79dfa76767606916}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Assets@{Assets}}
+\index{Assets@{Assets}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Assets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Asset\+Creator} gearit.\+xna.\+Screen\+Manager.\+Assets\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_acaba5204f0760a8b79dfa76767606916}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ae7549a2962bc3ac38e9fb9bada36dd96}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Content@{Content}}
+\index{Content@{Content}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Content}]{\setlength{\rightskip}{0pt plus 5cm}Content\+Manager gearit.\+xna.\+Screen\+Manager.\+Content\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_ae7549a2962bc3ac38e9fb9bada36dd96}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_ab09910d193f633cde8668f431482dd93}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Fonts@{Fonts}}
+\index{Fonts@{Fonts}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Fonts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sprite\+Fonts} gearit.\+xna.\+Screen\+Manager.\+Fonts\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_ab09910d193f633cde8668f431482dd93}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a382f8868d97c4a821d1cdee2d30c4937}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Height@{Height}}
+\index{Height@{Height}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Height}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Screen\+Manager.\+Height\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_a382f8868d97c4a821d1cdee2d30c4937}
+
+
+Return Height 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a341ec68256be52aeccb85fdaf2569fa6}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Is\+Full\+Screen@{Is\+Full\+Screen}}
+\index{Is\+Full\+Screen@{Is\+Full\+Screen}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Is\+Full\+Screen}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+xna.\+Screen\+Manager.\+Is\+Full\+Screen\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_a341ec68256be52aeccb85fdaf2569fa6}
+
+
+Return \hyperlink{classgearit_1_1xna_1_1_full_screen}{Full\+Screen} mode 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a1dd57d5058a07a9af6e619250d442ce2}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Line\+Batch@{Line\+Batch}}
+\index{Line\+Batch@{Line\+Batch}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Line\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line\+Batch} gearit.\+xna.\+Screen\+Manager.\+Line\+Batch\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_a1dd57d5058a07a9af6e619250d442ce2}
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a64b3624f376229ed4c61df9cfa9b0e52}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Sprite\+Batch@{Sprite\+Batch}}
+\index{Sprite\+Batch@{Sprite\+Batch}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Sprite\+Batch}]{\setlength{\rightskip}{0pt plus 5cm}Sprite\+Batch gearit.\+xna.\+Screen\+Manager.\+Sprite\+Batch\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_a64b3624f376229ed4c61df9cfa9b0e52}
+
+
+A default Sprite\+Batch shared by all the screens. This saves each screen having to bother creating their own local instance. 
+
+\hypertarget{classgearit_1_1xna_1_1_screen_manager_a439d024922ddd9906d16ed783167a4b5}{\index{gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}!Width@{Width}}
+\index{Width@{Width}!gearit\+::xna\+::\+Screen\+Manager@{gearit\+::xna\+::\+Screen\+Manager}}
+\subsubsection[{Width}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+xna.\+Screen\+Manager.\+Width\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1xna_1_1_screen_manager_a439d024922ddd9906d16ed783167a4b5}
+
+
+Return Width 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/xna/\+Screen\+Manager/\hyperlink{_screen_manager_8cs}{Screen\+Manager.\+cs}\end{DoxyCompactItemize}

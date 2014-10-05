@@ -1,0 +1,211 @@
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game}{\section{gearit.\+src.\+game.\+Gearit\+Game Class Reference}
+\label{classgearit_1_1src_1_1game_1_1_gearit_game}\index{gearit.\+src.\+game.\+Gearit\+Game@{gearit.\+src.\+game.\+Gearit\+Game}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}, \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen}{gearit.\+xna.\+I\+Demo\+Screen}, and \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a852044dce585ab78357c008df09358af}{Gearit\+Game} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a28b0c521c4aabebf1ffd371584b5d9cb}{Message} (string msg, int duration)
+\item 
+string \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a4047d54db7ed3d548f063f8314958186}{Get\+Title} ()
+\item 
+string \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_aa2b58b45dd7111e2b5a3d0c4fcdaab29}{Get\+Details} ()
+\item 
+override void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a594a34785135e198e7fdc4e7280d5508}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a12bb37005bb4ee22fb58e975c4c2b10d}{get\+World} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_aba6ce1a8471336e5b674101c81345243}{set\+Map} (\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} map)
+\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_acb77b34645e1a3edafb0bdb6329a5d33}{clear\+Robot} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a7899ec712a4d177319c5295f09257cea}{add\+Robot} (\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} robot)
+\item 
+override void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a3ff28ebe6aaf734eaaf28126a976024f}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a2ac6b373bb1f8648be88104c33e582fc}{Finish} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_aa5a9a1d5fb16f121ab612737ab55fbec}{Exit} ()
+\item 
+override void \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a8a184898f8f48c32f5c811721d86e2de}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a4ea1a35c155c76c392c47947a9e134d4}{Map}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} $>$ \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_ae1f52eb753ca8ce42306b0a2d2a99411}{Robots}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a71d5ca6ce46f28b63a76d15336639c9a}{Frame\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a2af3127045fd9a572c6666356c34510a}{Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1game_1_1_gearit_game_a053395a387ed8c732cabea5d34680bbb}{Main\+Robot\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a852044dce585ab78357c008df09358af}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Gearit\+Game@{Gearit\+Game}}
+\index{Gearit\+Game@{Gearit\+Game}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Gearit\+Game}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+game.\+Gearit\+Game.\+Gearit\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a852044dce585ab78357c008df09358af}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a7899ec712a4d177319c5295f09257cea}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!add\+Robot@{add\+Robot}}
+\index{add\+Robot@{add\+Robot}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{add\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+add\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot}}]{robot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a7899ec712a4d177319c5295f09257cea}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_acb77b34645e1a3edafb0bdb6329a5d33}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!clear\+Robot@{clear\+Robot}}
+\index{clear\+Robot@{clear\+Robot}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{clear\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+clear\+Robot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_acb77b34645e1a3edafb0bdb6329a5d33}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a8a184898f8f48c32f5c811721d86e2de}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+game.\+Gearit\+Game.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a8a184898f8f48c32f5c811721d86e2de}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_aa5a9a1d5fb16f121ab612737ab55fbec}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Exit@{Exit}}
+\index{Exit@{Exit}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_aa5a9a1d5fb16f121ab612737ab55fbec}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a2ac6b373bb1f8648be88104c33e582fc}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Finish@{Finish}}
+\index{Finish@{Finish}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Finish}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+Finish (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a2ac6b373bb1f8648be88104c33e582fc}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_a35e963e32c08963b780a481251e6cdf9}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_aa2b58b45dd7111e2b5a3d0c4fcdaab29}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Get\+Details@{Get\+Details}}
+\index{Get\+Details@{Get\+Details}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Get\+Details}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+game.\+Gearit\+Game.\+Get\+Details (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_aa2b58b45dd7111e2b5a3d0c4fcdaab29}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_ab5a70d6cb4d68bd5f0be6865cca566fb}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a4047d54db7ed3d548f063f8314958186}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Get\+Title@{Get\+Title}}
+\index{Get\+Title@{Get\+Title}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Get\+Title}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+game.\+Gearit\+Game.\+Get\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a4047d54db7ed3d548f063f8314958186}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_a4e3bc273ec13c0a0d673b3c5c8aef788}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a12bb37005bb4ee22fb58e975c4c2b10d}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!get\+World@{get\+World}}
+\index{get\+World@{get\+World}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{get\+World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+game.\+Gearit\+Game.\+get\+World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a12bb37005bb4ee22fb58e975c4c2b10d}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a594a34785135e198e7fdc4e7280d5508}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+game.\+Gearit\+Game.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a594a34785135e198e7fdc4e7280d5508}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a28b0c521c4aabebf1ffd371584b5d9cb}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Message@{Message}}
+\index{Message@{Message}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+Message (
+\begin{DoxyParamCaption}
+\item[{string}]{msg, }
+\item[{int}]{duration}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a28b0c521c4aabebf1ffd371584b5d9cb}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_abbaff2685bf9235fb6a0b7bfadf9df46}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_aba6ce1a8471336e5b674101c81345243}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!set\+Map@{set\+Map}}
+\index{set\+Map@{set\+Map}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{set\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+game.\+Gearit\+Game.\+set\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Map}}]{map}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_aba6ce1a8471336e5b674101c81345243}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a3ff28ebe6aaf734eaaf28126a976024f}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Update@{Update}}
+\index{Update@{Update}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+game.\+Gearit\+Game.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a3ff28ebe6aaf734eaaf28126a976024f}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a71d5ca6ce46f28b63a76d15336639c9a}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Frame\+Count@{Frame\+Count}}
+\index{Frame\+Count@{Frame\+Count}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Frame\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+game.\+Gearit\+Game.\+Frame\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a71d5ca6ce46f28b63a76d15336639c9a}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a053395a387ed8c732cabea5d34680bbb}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Main\+Robot\+Id@{Main\+Robot\+Id}}
+\index{Main\+Robot\+Id@{Main\+Robot\+Id}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Main\+Robot\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+game.\+Gearit\+Game.\+Main\+Robot\+Id\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a053395a387ed8c732cabea5d34680bbb}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a4ea1a35c155c76c392c47947a9e134d4}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Map@{Map}}
+\index{Map@{Map}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map} gearit.\+src.\+game.\+Gearit\+Game.\+Map\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a4ea1a35c155c76c392c47947a9e134d4}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_ae1f52eb753ca8ce42306b0a2d2a99411}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Robots@{Robots}}
+\index{Robots@{Robots}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Robots}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Robot}$>$ gearit.\+src.\+game.\+Gearit\+Game.\+Robots\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_ae1f52eb753ca8ce42306b0a2d2a99411}
+\hypertarget{classgearit_1_1src_1_1game_1_1_gearit_game_a2af3127045fd9a572c6666356c34510a}{\index{gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}!Time@{Time}}
+\index{Time@{Time}!gearit\+::src\+::game\+::\+Gearit\+Game@{gearit\+::src\+::game\+::\+Gearit\+Game}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+game.\+Gearit\+Game.\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1game_1_1_gearit_game_a2af3127045fd9a572c6666356c34510a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/game/\hyperlink{_gearit_game_8cs}{Gearit\+Game.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network}{\section{gearit.\+src.\+Network.\+I\+Network Class Reference}
+\label{classgearit_1_1src_1_1_network_1_1_i_network}\index{gearit.\+src.\+Network.\+I\+Network@{gearit.\+src.\+Network.\+I\+Network}}
+}
+
+
+Inherited by \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client}{gearit.\+src.\+Network.\+Network\+Client}, and \hyperlink{classgearit_1_1src_1_1_network_1_1_network_server}{gearit.\+src.\+Network.\+Network\+Server}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a07a9db03d351717ff5e40458b147fbc6}{Clean\+Requests} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a11a53f0b7fb75b7e0661319c245745bf}{Send\+Requests} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a916413379181b54854fbbe23887fcd7b}{Push\+Request} (byte\mbox{[}$\,$\mbox{]} data, int user\+Id=0)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a8c4e1b77735f208840d328627bc8db25}{Push\+Request\+Transform} (byte\mbox{[}$\,$\mbox{]} data)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a32c2866c65eb362b0c51486ce07c3bba}{Apply\+Requests} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Net\+Incoming\+Message $>$ \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a05731bbb209111cf1873385a14f0ad11}{Requests} = new List$<$Net\+Incoming\+Message$>$()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_aa21279e8b3dd11f57990fcbd55762d50}{I\+Network} (Net\+Peer peer, int number\+Of\+Peers, \hyperlink{classgearit_1_1src_1_1_network_1_1_in_game_packet_manager}{In\+Game\+Packet\+Manager} packet\+Manager)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_adffd41e505f0994a61dd4fab407ec99c}{Manage\+Request} (Net\+Incoming\+Message msg, int idx)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_aaf2febc377ba887d11ae36e463079173}{Reset\+To\+Sends} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+byte\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_ac0cf652f6985830b26baf854695e0c70}{Transform\+To\+Send}
+\item 
+byte\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a0bf75c09a1063835b64d71234ec4d561}{To\+Send}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a6ce9ade4d86ad87f625827b3fb7c8af4}{Port}
+\item 
+string \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a0b2fb008d89858f27d4a0b021f67e7cb}{Host}
+\item 
+Net\+Incoming\+Message\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_af6eabe64a0c59d32dad0d1429fa7e496}{Youngest\+Requests}
+\item 
+Net\+Peer \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a017bd37723ae961b836fac8aa683e16f}{Peer}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_add94d6cdc0a0538d9909ea412101a63d}{Number\+Of\+Peers}
+\item 
+bool \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_a78f0d5f94a141c1592e81542460b5020}{Is\+Server} = false
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+abstract byte\mbox{[}$\,$\mbox{]} \hyperlink{classgearit_1_1src_1_1_network_1_1_i_network_ac156421a0022dc689e5a53a38927326a}{Events}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_aa21279e8b3dd11f57990fcbd55762d50}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!I\+Network@{I\+Network}}
+\index{I\+Network@{I\+Network}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{I\+Network}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Network.\+I\+Network.\+I\+Network (
+\begin{DoxyParamCaption}
+\item[{Net\+Peer}]{peer, }
+\item[{int}]{number\+Of\+Peers, }
+\item[{{\bf In\+Game\+Packet\+Manager}}]{packet\+Manager}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_aa21279e8b3dd11f57990fcbd55762d50}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a32c2866c65eb362b0c51486ce07c3bba}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Apply\+Requests@{Apply\+Requests}}
+\index{Apply\+Requests@{Apply\+Requests}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Apply\+Requests}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Apply\+Requests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a32c2866c65eb362b0c51486ce07c3bba}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a07a9db03d351717ff5e40458b147fbc6}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Clean\+Requests@{Clean\+Requests}}
+\index{Clean\+Requests@{Clean\+Requests}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Clean\+Requests}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Clean\+Requests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a07a9db03d351717ff5e40458b147fbc6}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_adffd41e505f0994a61dd4fab407ec99c}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Manage\+Request@{Manage\+Request}}
+\index{Manage\+Request@{Manage\+Request}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Manage\+Request}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Manage\+Request (
+\begin{DoxyParamCaption}
+\item[{Net\+Incoming\+Message}]{msg, }
+\item[{int}]{idx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_adffd41e505f0994a61dd4fab407ec99c}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a916413379181b54854fbbe23887fcd7b}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Push\+Request@{Push\+Request}}
+\index{Push\+Request@{Push\+Request}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Push\+Request}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Push\+Request (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{user\+Id = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a916413379181b54854fbbe23887fcd7b}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a8c4e1b77735f208840d328627bc8db25}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Push\+Request\+Transform@{Push\+Request\+Transform}}
+\index{Push\+Request\+Transform@{Push\+Request\+Transform}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Push\+Request\+Transform}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Push\+Request\+Transform (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a8c4e1b77735f208840d328627bc8db25}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_aaf2febc377ba887d11ae36e463079173}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Reset\+To\+Sends@{Reset\+To\+Sends}}
+\index{Reset\+To\+Sends@{Reset\+To\+Sends}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Reset\+To\+Sends}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Reset\+To\+Sends (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_aaf2febc377ba887d11ae36e463079173}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a11a53f0b7fb75b7e0661319c245745bf}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Send\+Requests@{Send\+Requests}}
+\index{Send\+Requests@{Send\+Requests}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Send\+Requests}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+I\+Network.\+Send\+Requests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a11a53f0b7fb75b7e0661319c245745bf}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a0b2fb008d89858f27d4a0b021f67e7cb}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Host@{Host}}
+\index{Host@{Host}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Host}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+Network.\+I\+Network.\+Host\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a0b2fb008d89858f27d4a0b021f67e7cb}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a78f0d5f94a141c1592e81542460b5020}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Is\+Server@{Is\+Server}}
+\index{Is\+Server@{Is\+Server}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Is\+Server}]{\setlength{\rightskip}{0pt plus 5cm}bool gearit.\+src.\+Network.\+I\+Network.\+Is\+Server = false\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a78f0d5f94a141c1592e81542460b5020}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_add94d6cdc0a0538d9909ea412101a63d}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Number\+Of\+Peers@{Number\+Of\+Peers}}
+\index{Number\+Of\+Peers@{Number\+Of\+Peers}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Number\+Of\+Peers}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+I\+Network.\+Number\+Of\+Peers\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_add94d6cdc0a0538d9909ea412101a63d}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a017bd37723ae961b836fac8aa683e16f}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Peer@{Peer}}
+\index{Peer@{Peer}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Peer}]{\setlength{\rightskip}{0pt plus 5cm}Net\+Peer gearit.\+src.\+Network.\+I\+Network.\+Peer\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a017bd37723ae961b836fac8aa683e16f}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a6ce9ade4d86ad87f625827b3fb7c8af4}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Port@{Port}}
+\index{Port@{Port}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Port}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+I\+Network.\+Port\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a6ce9ade4d86ad87f625827b3fb7c8af4}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a05731bbb209111cf1873385a14f0ad11}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Requests@{Requests}}
+\index{Requests@{Requests}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Requests}]{\setlength{\rightskip}{0pt plus 5cm}List$<$Net\+Incoming\+Message$>$ gearit.\+src.\+Network.\+I\+Network.\+Requests = new List$<$Net\+Incoming\+Message$>$()}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a05731bbb209111cf1873385a14f0ad11}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_a0bf75c09a1063835b64d71234ec4d561}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!To\+Send@{To\+Send}}
+\index{To\+Send@{To\+Send}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{To\+Send}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+I\+Network.\+To\+Send\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_a0bf75c09a1063835b64d71234ec4d561}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_ac0cf652f6985830b26baf854695e0c70}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Transform\+To\+Send@{Transform\+To\+Send}}
+\index{Transform\+To\+Send@{Transform\+To\+Send}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Transform\+To\+Send}]{\setlength{\rightskip}{0pt plus 5cm}byte \mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+I\+Network.\+Transform\+To\+Send\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_ac0cf652f6985830b26baf854695e0c70}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_af6eabe64a0c59d32dad0d1429fa7e496}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Youngest\+Requests@{Youngest\+Requests}}
+\index{Youngest\+Requests@{Youngest\+Requests}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Youngest\+Requests}]{\setlength{\rightskip}{0pt plus 5cm}Net\+Incoming\+Message \mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+I\+Network.\+Youngest\+Requests\hspace{0.3cm}{\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_af6eabe64a0c59d32dad0d1429fa7e496}
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_i_network_ac156421a0022dc689e5a53a38927326a}{\index{gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}!Events@{Events}}
+\index{Events@{Events}!gearit\+::src\+::\+Network\+::\+I\+Network@{gearit\+::src\+::\+Network\+::\+I\+Network}}
+\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}abstract byte \mbox{[}$\,$\mbox{]} gearit.\+src.\+Network.\+I\+Network.\+Events\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}, {\ttfamily [protected]}}}\label{classgearit_1_1src_1_1_network_1_1_i_network_ac156421a0022dc689e5a53a38927326a}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/\+Network/\hyperlink{_i_network_8cs}{I\+Network.\+cs}\end{DoxyCompactItemize}

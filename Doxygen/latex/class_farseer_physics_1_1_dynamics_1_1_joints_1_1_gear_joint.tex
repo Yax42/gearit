@@ -1,0 +1,149 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint}}
+}
+
+
+A gear joint is used to connect two joints together. Either joint can be a revolute or prismatic joint. You specify a gear ratio to bind the motions together\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}coordinate1 + ratio $\ast$ coordinate2 = ant\mbox{]}\mbox{]}$>$ The ratio can be negative or positive. If one joint is a revolute joint and the other joint is a prismatic joint, then the ratio will have units of length or units of 1/length.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a7949ee1aa25d492908f972225774ad4e}{Gear\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} joint\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} joint\+B, float ratio=1f)
+\begin{DoxyCompactList}\small\item\em Requires two existing revolute or prismatic joints (any combination will work). The provided joints must attach a dynamic body to a static body. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a0bc5fda4f33a81ab1598d56a5d7dcabf}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a2b2c491c28382b3c53445e5990e23e61}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a21997d36203f1c04571c160fdaa82912}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a13b1330229a1749cc4f90f391d6f6c6f}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a42f723255b91a5aed105f55ad688e59a}{Ratio}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The gear ratio. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a5b378a26f47bed9789329263178fbe40}{Joint\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The first revolute/prismatic joint attached to the gear joint. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Joint} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_aab93ee869773d8b4ad51d4e121b8ad83}{Joint\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The second revolute/prismatic joint attached to the gear joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A gear joint is used to connect two joints together. Either joint can be a revolute or prismatic joint. You specify a gear ratio to bind the motions together\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}coordinate1 + ratio $\ast$ coordinate2 = ant\mbox{]}\mbox{]}$>$ The ratio can be negative or positive. If one joint is a revolute joint and the other joint is a prismatic joint, then the ratio will have units of length or units of 1/length. 
+
+Warning\+: You have to manually destroy the gear joint if joint\+A or joint\+B is destroyed. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a7949ee1aa25d492908f972225774ad4e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Gear\+Joint@{Gear\+Joint}}
+\index{Gear\+Joint@{Gear\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Gear\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Gear\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{{\bf Joint}}]{joint\+A, }
+\item[{{\bf Joint}}]{joint\+B, }
+\item[{float}]{ratio = {\ttfamily 1f}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a7949ee1aa25d492908f972225774ad4e}
+
+
+Requires two existing revolute or prismatic joints (any combination will work). The provided joints must attach a dynamic body to a static body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joint\+A} & The first joint.\\
+\hline
+{\em joint\+B} & The second joint.\\
+\hline
+{\em ratio} & The ratio.\\
+\hline
+{\em body\+A} & The first body\\
+\hline
+{\em body\+B} & The second body\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a0bc5fda4f33a81ab1598d56a5d7dcabf}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a0bc5fda4f33a81ab1598d56a5d7dcabf}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a2b2c491c28382b3c53445e5990e23e61}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a2b2c491c28382b3c53445e5990e23e61}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a5b378a26f47bed9789329263178fbe40}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Joint\+A@{Joint\+A}}
+\index{Joint\+A@{Joint\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Joint\+A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint} Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Joint\+A\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a5b378a26f47bed9789329263178fbe40}
+
+
+The first revolute/prismatic joint attached to the gear joint. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_aab93ee869773d8b4ad51d4e121b8ad83}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Joint\+B@{Joint\+B}}
+\index{Joint\+B@{Joint\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Joint\+B}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Joint} Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Joint\+B\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_aab93ee869773d8b4ad51d4e121b8ad83}
+
+
+The second revolute/prismatic joint attached to the gear joint. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a42f723255b91a5aed105f55ad688e59a}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!Ratio@{Ratio}}
+\index{Ratio@{Ratio}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+Ratio\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a42f723255b91a5aed105f55ad688e59a}
+
+
+The gear ratio. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a21997d36203f1c04571c160fdaa82912}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a21997d36203f1c04571c160fdaa82912}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a13b1330229a1749cc4f90f391d6f6c6f}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Gear\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Gear\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_gear_joint_a13b1330229a1749cc4f90f391d6f6c6f}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_gear_joint_8cs}{Gear\+Joint.\+cs}\end{DoxyCompactItemize}

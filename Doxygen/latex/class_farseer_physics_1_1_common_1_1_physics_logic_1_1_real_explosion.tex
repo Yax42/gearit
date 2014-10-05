@@ -1,0 +1,118 @@
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion}{\section{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion Class Reference}
+\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion}\index{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion@{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion}}
+}
+
+
+Creates a realistic explosion based on raycasting. Objects in the open will be affected, but objects behind static bodies will not. A body that is half in cover, half in the open will get half the force applied to the end in the open.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_physics_logic}{Farseer\+Physics.\+Common.\+Physics\+Logic.\+Physics\+Logic}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a171e231be2e86a44579213b6973b2336}{Real\+Explosion} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} world)
+\item 
+Dictionary$<$ \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture}, Vector2 $>$ \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a68484317a2e1cd6e8453b46f57593d76}{Activate} (Vector2 pos, float radius, float max\+Force)
+\begin{DoxyCompactList}\small\item\em Activate the explosion at the specified position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a2db8678751dd2a110631adfba410add4}{Edge\+Ratio} = 1.\+0f / 40.\+0f
+\begin{DoxyCompactList}\small\item\em Ratio of arc length to angle from edges to first ray tested. Defaults to 1/40. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a17428ac2efbb1b34985a8b2bd8453da8}{Ignore\+When\+Inside\+Shape} = false
+\begin{DoxyCompactList}\small\item\em Ignore Explosion if it happens inside a shape. Default value is false. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a8fa507ae446fa078565c2a2abedd863c}{Max\+Angle} = Math\+Helper.\+Pi / 15
+\begin{DoxyCompactList}\small\item\em Max angle between rays (used when segment is large). Defaults to 15 degrees \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_ab24c79aade56953ea56d3001750f0d50}{Max\+Shapes} = 100
+\begin{DoxyCompactList}\small\item\em Maximum number of shapes involved in the explosion. Defaults to 100 \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a826a15fb3f9d58191a2d5f0b54f3e15c}{Min\+Rays} = 5
+\begin{DoxyCompactList}\small\item\em How many rays per shape/body/segment. Defaults to 5 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Creates a realistic explosion based on raycasting. Objects in the open will be affected, but objects behind static bodies will not. A body that is half in cover, half in the open will get half the force applied to the end in the open. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a171e231be2e86a44579213b6973b2336}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Real\+Explosion@{Real\+Explosion}}
+\index{Real\+Explosion@{Real\+Explosion}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Real\+Explosion}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Real\+Explosion (
+\begin{DoxyParamCaption}
+\item[{{\bf World}}]{world}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a171e231be2e86a44579213b6973b2336}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a68484317a2e1cd6e8453b46f57593d76}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Activate@{Activate}}
+\index{Activate@{Activate}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Activate}]{\setlength{\rightskip}{0pt plus 5cm}Dictionary$<${\bf Fixture}, Vector2$>$ Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Activate (
+\begin{DoxyParamCaption}
+\item[{Vector2}]{pos, }
+\item[{float}]{radius, }
+\item[{float}]{max\+Force}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a68484317a2e1cd6e8453b46f57593d76}
+
+
+Activate the explosion at the specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position where the explosion happens \\
+\hline
+{\em radius} & The explosion radius \\
+\hline
+{\em max\+Force} & The explosion force at the explosion point (then is inversely proportional to the square of the distance)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of bodies and the amount of force that was applied to them.
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a2db8678751dd2a110631adfba410add4}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Edge\+Ratio@{Edge\+Ratio}}
+\index{Edge\+Ratio@{Edge\+Ratio}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Edge\+Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Edge\+Ratio = 1.\+0f / 40.\+0f}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a2db8678751dd2a110631adfba410add4}
+
+
+Ratio of arc length to angle from edges to first ray tested. Defaults to 1/40. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a17428ac2efbb1b34985a8b2bd8453da8}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Ignore\+When\+Inside\+Shape@{Ignore\+When\+Inside\+Shape}}
+\index{Ignore\+When\+Inside\+Shape@{Ignore\+When\+Inside\+Shape}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Ignore\+When\+Inside\+Shape}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Ignore\+When\+Inside\+Shape = false}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a17428ac2efbb1b34985a8b2bd8453da8}
+
+
+Ignore Explosion if it happens inside a shape. Default value is false. 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a8fa507ae446fa078565c2a2abedd863c}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Max\+Angle@{Max\+Angle}}
+\index{Max\+Angle@{Max\+Angle}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Max\+Angle}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Max\+Angle = Math\+Helper.\+Pi / 15}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a8fa507ae446fa078565c2a2abedd863c}
+
+
+Max angle between rays (used when segment is large). Defaults to 15 degrees 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_ab24c79aade56953ea56d3001750f0d50}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Max\+Shapes@{Max\+Shapes}}
+\index{Max\+Shapes@{Max\+Shapes}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Max\+Shapes}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Max\+Shapes = 100}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_ab24c79aade56953ea56d3001750f0d50}
+
+
+Maximum number of shapes involved in the explosion. Defaults to 100 
+
+\hypertarget{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a826a15fb3f9d58191a2d5f0b54f3e15c}{\index{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}!Min\+Rays@{Min\+Rays}}
+\index{Min\+Rays@{Min\+Rays}!Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion@{Farseer\+Physics\+::\+Common\+::\+Physics\+Logic\+::\+Real\+Explosion}}
+\subsubsection[{Min\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Common.\+Physics\+Logic.\+Real\+Explosion.\+Min\+Rays = 5}}\label{class_farseer_physics_1_1_common_1_1_physics_logic_1_1_real_explosion_a826a15fb3f9d58191a2d5f0b54f3e15c}
+
+
+How many rays per shape/body/segment. Defaults to 5 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Common/\+Physics\+Logic/\hyperlink{_real_explosion_8cs}{Real\+Explosion.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,225 @@
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game}{\section{gearit.\+src.\+Network.\+Network\+Client\+Game Class Reference}
+\label{classgearit_1_1src_1_1_network_1_1_network_client_game}\index{gearit.\+src.\+Network.\+Network\+Client\+Game@{gearit.\+src.\+Network.\+Network\+Client\+Game}}
+}
+
+
+Inherits \hyperlink{classgearit_1_1xna_1_1_game_screen}{gearit.\+xna.\+Game\+Screen}, \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen}{gearit.\+xna.\+I\+Demo\+Screen}, and \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a5e0e8cef1b5eaa6eba7f566e0a493069}{Network\+Client\+Game} ()
+\item 
+string \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a07ca780da205534ef15932ab1d587c59}{Get\+Title} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a0f80b106b64980833b69e18aceec3fc4}{Message} (string msg, int duration)
+\item 
+string \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a9fe7eef74a95b4cb08708f53e416134e}{Get\+Details} ()
+\item 
+override void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a930f927ef386a875c4f7fa73de649bcd}{Load\+Content} ()
+\begin{DoxyCompactList}\small\item\em Load graphics content for the screen. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_world}{World} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_afeb5a9c9dc33182a02329b363bf604be}{get\+World} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_ad6b00d6715607942780ee05f5457e369}{set\+Map} (\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} map)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a4fab5f34a6e3db723f2b850e851f4c57}{clear\+Robot} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_af59e1c8ac6f4e1d0f9a6d27fe305b56f}{add\+Robot} (\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} robot)
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_ae84ef7b0cb725f7a43daee35a1bde2c1}{set\+Main\+Robot} (int v)
+\item 
+override void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_ad022fd48695248828a0e756c3d3c929a}{Update} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. \end{DoxyCompactList}\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_af133b638d157f12773a6f99505189143}{Finish} ()
+\item 
+void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_ab7b422daf5c2838dc0f8684de6df5346}{Exit} ()
+\item 
+override void \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a136538e789edbf72b06f0c6715fb8cdc}{Draw} (Game\+Time game\+Time)
+\begin{DoxyCompactList}\small\item\em This is called when the screen should draw itself. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgearit_1_1src_1_1map_1_1_map}{Map} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a639aac62df9dabbfaf520818d5993f07}{Map}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} $>$ \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a983ce191370a8a6c17af5de5efeb23ac}{Robots}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\hyperlink{classgearit_1_1src_1_1robot_1_1_robot}{Robot} \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a9a4c5981b88db35f5c2b8fd51dc8cbae}{Main\+Robot}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_af731a5a4f8858cdb8bd883517f66b3ba}{Main\+Robot\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a17d4e2d447ad8d5e224d4bedb584b034}{Frame\+Count}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+float \hyperlink{classgearit_1_1src_1_1_network_1_1_network_client_game_a39a693a8202d3383a564251e102b2e39}{Time}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a5e0e8cef1b5eaa6eba7f566e0a493069}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Network\+Client\+Game@{Network\+Client\+Game}}
+\index{Network\+Client\+Game@{Network\+Client\+Game}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Network\+Client\+Game}]{\setlength{\rightskip}{0pt plus 5cm}gearit.\+src.\+Network.\+Network\+Client\+Game.\+Network\+Client\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a5e0e8cef1b5eaa6eba7f566e0a493069}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_af59e1c8ac6f4e1d0f9a6d27fe305b56f}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!add\+Robot@{add\+Robot}}
+\index{add\+Robot@{add\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{add\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+add\+Robot (
+\begin{DoxyParamCaption}
+\item[{{\bf Robot}}]{robot}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_af59e1c8ac6f4e1d0f9a6d27fe305b56f}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a4fab5f34a6e3db723f2b850e851f4c57}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!clear\+Robot@{clear\+Robot}}
+\index{clear\+Robot@{clear\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{clear\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+clear\+Robot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a4fab5f34a6e3db723f2b850e851f4c57}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a136538e789edbf72b06f0c6715fb8cdc}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Draw@{Draw}}
+\index{Draw@{Draw}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Draw (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a136538e789edbf72b06f0c6715fb8cdc}
+
+
+This is called when the screen should draw itself. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a9f284010229016b5564519484775a9ec}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_ab7b422daf5c2838dc0f8684de6df5346}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Exit@{Exit}}
+\index{Exit@{Exit}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Exit}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_ab7b422daf5c2838dc0f8684de6df5346}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_af133b638d157f12773a6f99505189143}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Finish@{Finish}}
+\index{Finish@{Finish}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Finish}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Finish (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_af133b638d157f12773a6f99505189143}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_a35e963e32c08963b780a481251e6cdf9}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a9fe7eef74a95b4cb08708f53e416134e}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Get\+Details@{Get\+Details}}
+\index{Get\+Details@{Get\+Details}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Get\+Details}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+Network.\+Network\+Client\+Game.\+Get\+Details (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a9fe7eef74a95b4cb08708f53e416134e}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_ab5a70d6cb4d68bd5f0be6865cca566fb}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a07ca780da205534ef15932ab1d587c59}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Get\+Title@{Get\+Title}}
+\index{Get\+Title@{Get\+Title}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Get\+Title}]{\setlength{\rightskip}{0pt plus 5cm}string gearit.\+src.\+Network.\+Network\+Client\+Game.\+Get\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a07ca780da205534ef15932ab1d587c59}
+
+
+Implements \hyperlink{interfacegearit_1_1xna_1_1_i_demo_screen_a4e3bc273ec13c0a0d673b3c5c8aef788}{gearit.\+xna.\+I\+Demo\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_afeb5a9c9dc33182a02329b363bf604be}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!get\+World@{get\+World}}
+\index{get\+World@{get\+World}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{get\+World}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} gearit.\+src.\+Network.\+Network\+Client\+Game.\+get\+World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_afeb5a9c9dc33182a02329b363bf604be}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a930f927ef386a875c4f7fa73de649bcd}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Load\+Content@{Load\+Content}}
+\index{Load\+Content@{Load\+Content}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Load\+Content}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Load\+Content (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a930f927ef386a875c4f7fa73de649bcd}
+
+
+Load graphics content for the screen. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a7b4299ca1406c8d4ffcd2e479e83bef5}{gearit.\+xna.\+Game\+Screen}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a0f80b106b64980833b69e18aceec3fc4}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Message@{Message}}
+\index{Message@{Message}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Message (
+\begin{DoxyParamCaption}
+\item[{string}]{msg, }
+\item[{int}]{duration}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a0f80b106b64980833b69e18aceec3fc4}
+
+
+Implements \hyperlink{interfacegearit_1_1src_1_1game_1_1_i_gearit_game_abbaff2685bf9235fb6a0b7bfadf9df46}{gearit.\+src.\+game.\+I\+Gearit\+Game}.
+
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_ae84ef7b0cb725f7a43daee35a1bde2c1}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!set\+Main\+Robot@{set\+Main\+Robot}}
+\index{set\+Main\+Robot@{set\+Main\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{set\+Main\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+set\+Main\+Robot (
+\begin{DoxyParamCaption}
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_ae84ef7b0cb725f7a43daee35a1bde2c1}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_ad6b00d6715607942780ee05f5457e369}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!set\+Map@{set\+Map}}
+\index{set\+Map@{set\+Map}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{set\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void gearit.\+src.\+Network.\+Network\+Client\+Game.\+set\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf Map}}]{map}
+\end{DoxyParamCaption}
+)}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_ad6b00d6715607942780ee05f5457e369}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_ad022fd48695248828a0e756c3d3c929a}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Update@{Update}}
+\index{Update@{Update}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}override void gearit.\+src.\+Network.\+Network\+Client\+Game.\+Update (
+\begin{DoxyParamCaption}
+\item[{Game\+Time}]{game\+Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_ad022fd48695248828a0e756c3d3c929a}
+
+
+Allows the screen to run logic, such as updating the transition position. Unlike Handle\+Input, this method is called regardless of whether the screen is active, hidden, or in the middle of a transition. 
+
+
+
+Reimplemented from \hyperlink{classgearit_1_1xna_1_1_game_screen_a6bb803502dfbd62b275c2a21d182f88e}{gearit.\+xna.\+Game\+Screen}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a17d4e2d447ad8d5e224d4bedb584b034}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Frame\+Count@{Frame\+Count}}
+\index{Frame\+Count@{Frame\+Count}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Frame\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+Network\+Client\+Game.\+Frame\+Count\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a17d4e2d447ad8d5e224d4bedb584b034}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a9a4c5981b88db35f5c2b8fd51dc8cbae}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Main\+Robot@{Main\+Robot}}
+\index{Main\+Robot@{Main\+Robot}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Main\+Robot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Robot} gearit.\+src.\+Network.\+Network\+Client\+Game.\+Main\+Robot\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a9a4c5981b88db35f5c2b8fd51dc8cbae}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_af731a5a4f8858cdb8bd883517f66b3ba}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Main\+Robot\+Id@{Main\+Robot\+Id}}
+\index{Main\+Robot\+Id@{Main\+Robot\+Id}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Main\+Robot\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int gearit.\+src.\+Network.\+Network\+Client\+Game.\+Main\+Robot\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_af731a5a4f8858cdb8bd883517f66b3ba}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a639aac62df9dabbfaf520818d5993f07}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Map@{Map}}
+\index{Map@{Map}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Map} gearit.\+src.\+Network.\+Network\+Client\+Game.\+Map\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a639aac62df9dabbfaf520818d5993f07}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a983ce191370a8a6c17af5de5efeb23ac}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Robots@{Robots}}
+\index{Robots@{Robots}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Robots}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Robot}$>$ gearit.\+src.\+Network.\+Network\+Client\+Game.\+Robots\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a983ce191370a8a6c17af5de5efeb23ac}
+\hypertarget{classgearit_1_1src_1_1_network_1_1_network_client_game_a39a693a8202d3383a564251e102b2e39}{\index{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}!Time@{Time}}
+\index{Time@{Time}!gearit\+::src\+::\+Network\+::\+Network\+Client\+Game@{gearit\+::src\+::\+Network\+::\+Network\+Client\+Game}}
+\subsubsection[{Time}]{\setlength{\rightskip}{0pt plus 5cm}float gearit.\+src.\+Network.\+Network\+Client\+Game.\+Time\hspace{0.3cm}{\ttfamily [get]}}}\label{classgearit_1_1src_1_1_network_1_1_network_client_game_a39a693a8202d3383a564251e102b2e39}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/game/\hyperlink{_network_client_game_8cs}{Network\+Client\+Game.\+cs}\end{DoxyCompactItemize}

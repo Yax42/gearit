@@ -1,0 +1,346 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture}{\section{Farseer\+Physics.\+Dynamics.\+Fixture Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_fixture}\index{Farseer\+Physics.\+Dynamics.\+Fixture@{Farseer\+Physics.\+Dynamics.\+Fixture}}
+}
+
+
+A fixture is used to attach a Shape to a body for collision detection. A fixture inherits its transform from its parent. Fixtures hold additional non-\/geometric data such as friction, collision filters, etc. Fixtures are created via \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{Body.\+Create\+Fixture}. Warning\+: You cannot reuse fixtures.  
+
+
+
+
+Inherits I\+Disposable.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a503ddd7c6db63912b44d88579d8a48a3}{Dispose} ()
+\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a002c1d3988267e9edfcd28fb16a0901d}{Restore\+Collision\+With} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture)
+\begin{DoxyCompactList}\small\item\em Restores collisions between this fixture and the provided fixture. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a6c80e0b2b9f2490172b1adbe6a8cd706}{Ignore\+Collision\+With} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture)
+\begin{DoxyCompactList}\small\item\em Ignores collisions between this fixture and the provided fixture. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a1be2685f96f188f5d15ecfe7541c2aef}{Is\+Fixture\+Ignored} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} fixture)
+\begin{DoxyCompactList}\small\item\em Determines whether collisions are ignored between this fixture and the provided fixture. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_ad4456263506cbb3f4b9acd5361b6e3f8}{Test\+Point} (ref Vector2 point)
+\begin{DoxyCompactList}\small\item\em Test a point for containment in this fixture. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a55ee279289716f535d88fcf27a686d02}{Ray\+Cast} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_output}{Ray\+Cast\+Output} output, ref \hyperlink{struct_farseer_physics_1_1_collision_1_1_ray_cast_input}{Ray\+Cast\+Input} input, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Cast a ray against this Shape. \end{DoxyCompactList}\item 
+void \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a388f0e98b873fb937cf82ff174b714d4}{Get\+A\+A\+B\+B} (out \hyperlink{struct_farseer_physics_1_1_collision_1_1_a_a_b_b}{A\+A\+B\+B} aabb, int child\+Index)
+\begin{DoxyCompactList}\small\item\em Get the fixture's A\+A\+B\+B. This A\+A\+B\+B may be enlarge and/or stale. If you need a more accurate A\+A\+B\+B, compute it using the Shape and the body transform. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture}{Fixture} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a9abfec3ae0bd8aa8219780162c4688be}{Clone\+Onto} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body)
+\begin{DoxyCompactList}\small\item\em Clones the fixture and attached shape onto the specified body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_farseer_physics_1_1_dynamics_1_1_fixture_proxy}{Fixture\+Proxy}\mbox{[}$\,$\mbox{]} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a68821503e6334e4745612402cb1960b0}{Proxies}
+\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_af09519aed0c0b3b56239f9ec681ada54}{Proxy\+Count}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ec39ce7297a4ad7672d2956cd2eb6bf}{Ignore\+C\+C\+D\+With}
+\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a035ecfe770afb57ab9c71fa4f491201b}{After\+Collision\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a6f2233efd9a1c67f26e33c4973e35efe}{After\+Collision}
+\begin{DoxyCompactList}\small\item\em Fires after two shapes has collided and are solved. This gives you a chance to get the impact force. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a14ac50ab47cb11796f6a624587b36cca}{Before\+Collision\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a9e73f7e383d0941bcc9ef7fc1bf0ea92}{Before\+Collision}
+\begin{DoxyCompactList}\small\item\em Fires when two fixtures are close to each other. Due to how the broadphase works, this can be quite inaccurate as shapes are approximated using A\+A\+B\+Bs. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a7ec118e60eba61920ca0e4252b5b766d}{On\+Collision\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a2410f992b5c7b8ac41fa19018d1ff0b3}{On\+Collision}
+\begin{DoxyCompactList}\small\item\em Fires when two shapes collide and a contact is created between them. Note that the first fixture argument is always the fixture that the delegate is subscribed to. \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_ade34460148f9d799a829e85e0631fc69}{On\+Separation\+Event\+Handler} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_aed367fab43f4d3de4b31a9c6c70fe906}{On\+Separation}
+\begin{DoxyCompactList}\small\item\em Fires when two shapes separate and a contact is removed between them. Note\+: This can in some cases be called multiple times, as a fixture can have multiple contacts. Note The first fixture argument is always the fixture that the delegate is subscribed to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+short \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a693bdde88d589d83e26586bdce516045}{Collision\+Group}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Defaults to 0 \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a77d1606d127b819b88bc0c4866763cea}{Collides\+With}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Defaults to Category.\+All \end{DoxyCompactList}\item 
+\hyperlink{namespace_farseer_physics_1_1_dynamics_a411fb391cb862402e877a2d3d4e11bef}{Category} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_ad8cb71ed3a90a2ddd9051fe6a293a226}{Collision\+Categories}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The collision categories this fixture is a part of. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_collision_1_1_shapes_1_1_shape}{Shape} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a239b0bdb90528f2d0ca84eedaa10b76d}{Shape}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the child Shape. You can modify the child Shape, however you should not change the number of vertices because this will crash some collision caching mechanisms. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a0b2dd53a07ff30b9f550ded721c9efe0}{Is\+Sensor}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets a value indicating whether this fixture is a sensor. \end{DoxyCompactList}\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a7dd9737c232708f439c50903ec704fac}{Body}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the parent body of this fixture. This is null if the fixture is not attached. \end{DoxyCompactList}\item 
+object \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a165ac7953eecfa0c338b17c87cbb4376}{User\+Data}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the user data. Use this to store your application specific data. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ac947b185b86374f7ecb2924ba3963e}{Friction}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the coefficient of friction. This will {\itshape not} change the friction of existing contacts. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_ac74572f8c152aee3b0bd1bc9b7d3795d}{Restitution}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Set the coefficient of restitution. This will not change the restitution of existing contacts. \end{DoxyCompactList}\item 
+int \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a0af0240198acd437e8e17b01b1908bcc}{Fixture\+Id}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets a unique I\+D for this fixture. \end{DoxyCompactList}\item 
+bool \hyperlink{class_farseer_physics_1_1_dynamics_1_1_fixture_a1e49dfdb61c069c2837981ce8ebf77dc}{Is\+Disposed}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A fixture is used to attach a Shape to a body for collision detection. A fixture inherits its transform from its parent. Fixtures hold additional non-\/geometric data such as friction, collision filters, etc. Fixtures are created via \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body_af7fe516c55d961070fdde4f3b280e771}{Body.\+Create\+Fixture}. Warning\+: You cannot reuse fixtures. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a9abfec3ae0bd8aa8219780162c4688be}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Clone\+Onto@{Clone\+Onto}}
+\index{Clone\+Onto@{Clone\+Onto}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Clone\+Onto}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture} Farseer\+Physics.\+Dynamics.\+Fixture.\+Clone\+Onto (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a9abfec3ae0bd8aa8219780162c4688be}
+
+
+Clones the fixture and attached shape onto the specified body. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The body you wish to clone the fixture onto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cloned fixture.
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a503ddd7c6db63912b44d88579d8a48a3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Dispose}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Fixture.\+Dispose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a503ddd7c6db63912b44d88579d8a48a3}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a388f0e98b873fb937cf82ff174b714d4}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Get\+A\+A\+B\+B@{Get\+A\+A\+B\+B}}
+\index{Get\+A\+A\+B\+B@{Get\+A\+A\+B\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Get\+A\+A\+B\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Fixture.\+Get\+A\+A\+B\+B (
+\begin{DoxyParamCaption}
+\item[{out {\bf A\+A\+B\+B}}]{aabb, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a388f0e98b873fb937cf82ff174b714d4}
+
+
+Get the fixture's A\+A\+B\+B. This A\+A\+B\+B may be enlarge and/or stale. If you need a more accurate A\+A\+B\+B, compute it using the Shape and the body transform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & The aabb.\\
+\hline
+{\em child\+Index} & Index of the child.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a6c80e0b2b9f2490172b1adbe6a8cd706}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Ignore\+Collision\+With@{Ignore\+Collision\+With}}
+\index{Ignore\+Collision\+With@{Ignore\+Collision\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Ignore\+Collision\+With}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Fixture.\+Ignore\+Collision\+With (
+\begin{DoxyParamCaption}
+\item[{{\bf Fixture}}]{fixture}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a6c80e0b2b9f2490172b1adbe6a8cd706}
+
+
+Ignores collisions between this fixture and the provided fixture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixture} & The fixture.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a1be2685f96f188f5d15ecfe7541c2aef}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Is\+Fixture\+Ignored@{Is\+Fixture\+Ignored}}
+\index{Is\+Fixture\+Ignored@{Is\+Fixture\+Ignored}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Is\+Fixture\+Ignored}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Fixture.\+Is\+Fixture\+Ignored (
+\begin{DoxyParamCaption}
+\item[{{\bf Fixture}}]{fixture}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a1be2685f96f188f5d15ecfe7541c2aef}
+
+
+Determines whether collisions are ignored between this fixture and the provided fixture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixture} & The fixture.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the fixture is ignored; otherwise, {\ttfamily false}. 
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a55ee279289716f535d88fcf27a686d02}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Ray\+Cast}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Fixture.\+Ray\+Cast (
+\begin{DoxyParamCaption}
+\item[{out {\bf Ray\+Cast\+Output}}]{output, }
+\item[{ref {\bf Ray\+Cast\+Input}}]{input, }
+\item[{int}]{child\+Index}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a55ee279289716f535d88fcf27a686d02}
+
+
+Cast a ray against this Shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & The ray-\/cast results.\\
+\hline
+{\em input} & The ray-\/cast input parameters.\\
+\hline
+{\em child\+Index} & Index of the child.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a002c1d3988267e9edfcd28fb16a0901d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Restore\+Collision\+With@{Restore\+Collision\+With}}
+\index{Restore\+Collision\+With@{Restore\+Collision\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Restore\+Collision\+With}]{\setlength{\rightskip}{0pt plus 5cm}void Farseer\+Physics.\+Dynamics.\+Fixture.\+Restore\+Collision\+With (
+\begin{DoxyParamCaption}
+\item[{{\bf Fixture}}]{fixture}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a002c1d3988267e9edfcd28fb16a0901d}
+
+
+Restores collisions between this fixture and the provided fixture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fixture} & The fixture.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_ad4456263506cbb3f4b9acd5361b6e3f8}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Test\+Point@{Test\+Point}}
+\index{Test\+Point@{Test\+Point}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Test\+Point}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Fixture.\+Test\+Point (
+\begin{DoxyParamCaption}
+\item[{ref Vector2}]{point}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_ad4456263506cbb3f4b9acd5361b6e3f8}
+
+
+Test a point for containment in this fixture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & A point in world coordinates.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a6f2233efd9a1c67f26e33c4973e35efe}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!After\+Collision@{After\+Collision}}
+\index{After\+Collision@{After\+Collision}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{After\+Collision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf After\+Collision\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Fixture.\+After\+Collision}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a6f2233efd9a1c67f26e33c4973e35efe}
+
+
+Fires after two shapes has collided and are solved. This gives you a chance to get the impact force. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a9e73f7e383d0941bcc9ef7fc1bf0ea92}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Before\+Collision@{Before\+Collision}}
+\index{Before\+Collision@{Before\+Collision}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Before\+Collision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Before\+Collision\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Fixture.\+Before\+Collision}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a9e73f7e383d0941bcc9ef7fc1bf0ea92}
+
+
+Fires when two fixtures are close to each other. Due to how the broadphase works, this can be quite inaccurate as shapes are approximated using A\+A\+B\+Bs. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ec39ce7297a4ad7672d2956cd2eb6bf}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Ignore\+C\+C\+D\+With@{Ignore\+C\+C\+D\+With}}
+\index{Ignore\+C\+C\+D\+With@{Ignore\+C\+C\+D\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Ignore\+C\+C\+D\+With}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Fixture.\+Ignore\+C\+C\+D\+With}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ec39ce7297a4ad7672d2956cd2eb6bf}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a2410f992b5c7b8ac41fa19018d1ff0b3}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!On\+Collision@{On\+Collision}}
+\index{On\+Collision@{On\+Collision}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{On\+Collision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf On\+Collision\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Fixture.\+On\+Collision}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a2410f992b5c7b8ac41fa19018d1ff0b3}
+
+
+Fires when two shapes collide and a contact is created between them. Note that the first fixture argument is always the fixture that the delegate is subscribed to. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_aed367fab43f4d3de4b31a9c6c70fe906}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!On\+Separation@{On\+Separation}}
+\index{On\+Separation@{On\+Separation}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{On\+Separation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf On\+Separation\+Event\+Handler} Farseer\+Physics.\+Dynamics.\+Fixture.\+On\+Separation}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_aed367fab43f4d3de4b31a9c6c70fe906}
+
+
+Fires when two shapes separate and a contact is removed between them. Note\+: This can in some cases be called multiple times, as a fixture can have multiple contacts. Note The first fixture argument is always the fixture that the delegate is subscribed to. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a68821503e6334e4745612402cb1960b0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Proxies@{Proxies}}
+\index{Proxies@{Proxies}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Proxies}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fixture\+Proxy} \mbox{[}$\,$\mbox{]} Farseer\+Physics.\+Dynamics.\+Fixture.\+Proxies}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a68821503e6334e4745612402cb1960b0}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_af09519aed0c0b3b56239f9ec681ada54}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Proxy\+Count@{Proxy\+Count}}
+\index{Proxy\+Count@{Proxy\+Count}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Proxy\+Count}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Fixture.\+Proxy\+Count}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_af09519aed0c0b3b56239f9ec681ada54}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a7dd9737c232708f439c50903ec704fac}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Body@{Body}}
+\index{Body@{Body}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Body}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Body} Farseer\+Physics.\+Dynamics.\+Fixture.\+Body\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a7dd9737c232708f439c50903ec704fac}
+
+
+Get the parent body of this fixture. This is null if the fixture is not attached. 
+
+The body.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a77d1606d127b819b88bc0c4866763cea}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Collides\+With@{Collides\+With}}
+\index{Collides\+With@{Collides\+With}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Collides\+With}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Fixture.\+Collides\+With\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a77d1606d127b819b88bc0c4866763cea}
+
+
+Defaults to Category.\+All 
+
+The collision mask bits. This states the categories that this fixture would accept for collision. Use Settings.\+Use\+F\+P\+E\+Collision\+Categories to change the behavior. \hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_ad8cb71ed3a90a2ddd9051fe6a293a226}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Collision\+Categories@{Collision\+Categories}}
+\index{Collision\+Categories@{Collision\+Categories}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Collision\+Categories}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Category} Farseer\+Physics.\+Dynamics.\+Fixture.\+Collision\+Categories\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_ad8cb71ed3a90a2ddd9051fe6a293a226}
+
+
+The collision categories this fixture is a part of. 
+
+If Settings.\+Use\+F\+P\+E\+Collision\+Categories is set to false\+: Defaults to Category.\+Cat1
+
+If Settings.\+Use\+F\+P\+E\+Collision\+Categories is set to true\+: Defaults to Category.\+All \hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a693bdde88d589d83e26586bdce516045}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Collision\+Group@{Collision\+Group}}
+\index{Collision\+Group@{Collision\+Group}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Collision\+Group}]{\setlength{\rightskip}{0pt plus 5cm}short Farseer\+Physics.\+Dynamics.\+Fixture.\+Collision\+Group\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a693bdde88d589d83e26586bdce516045}
+
+
+Defaults to 0 
+
+If Settings.\+Use\+F\+P\+E\+Collision\+Categories is set to false\+: \hyperlink{namespace_farseer_physics_1_1_collision}{Collision} groups allow a certain group of objects to never collide (negative) or always collide (positive). Zero means no collision group. Non-\/zero group filtering always wins against the mask bits.
+
+If Settings.\+Use\+F\+P\+E\+Collision\+Categories is set to true\+: If 2 fixtures are in the same collision group, they will not collide. \hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a0af0240198acd437e8e17b01b1908bcc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Fixture\+Id@{Fixture\+Id}}
+\index{Fixture\+Id@{Fixture\+Id}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Fixture\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int Farseer\+Physics.\+Dynamics.\+Fixture.\+Fixture\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a0af0240198acd437e8e17b01b1908bcc}
+
+
+Gets a unique I\+D for this fixture. 
+
+The fixture id.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ac947b185b86374f7ecb2924ba3963e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Friction@{Friction}}
+\index{Friction@{Friction}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Friction}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Fixture.\+Friction\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a2ac947b185b86374f7ecb2924ba3963e}
+
+
+Set the coefficient of friction. This will {\itshape not} change the friction of existing contacts. 
+
+The friction.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a1e49dfdb61c069c2837981ce8ebf77dc}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Is\+Disposed@{Is\+Disposed}}
+\index{Is\+Disposed@{Is\+Disposed}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Is\+Disposed}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Fixture.\+Is\+Disposed\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a1e49dfdb61c069c2837981ce8ebf77dc}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a0b2dd53a07ff30b9f550ded721c9efe0}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Is\+Sensor@{Is\+Sensor}}
+\index{Is\+Sensor@{Is\+Sensor}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Is\+Sensor}]{\setlength{\rightskip}{0pt plus 5cm}bool Farseer\+Physics.\+Dynamics.\+Fixture.\+Is\+Sensor\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a0b2dd53a07ff30b9f550ded721c9efe0}
+
+
+Gets or sets a value indicating whether this fixture is a sensor. 
+
+{\ttfamily true} if this instance is a sensor; otherwise, {\ttfamily false}.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_ac74572f8c152aee3b0bd1bc9b7d3795d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Restitution@{Restitution}}
+\index{Restitution@{Restitution}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Restitution}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Fixture.\+Restitution\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_ac74572f8c152aee3b0bd1bc9b7d3795d}
+
+
+Set the coefficient of restitution. This will not change the restitution of existing contacts. 
+
+The restitution.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a239b0bdb90528f2d0ca84eedaa10b76d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!Shape@{Shape}}
+\index{Shape@{Shape}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{Shape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shape} Farseer\+Physics.\+Dynamics.\+Fixture.\+Shape\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a239b0bdb90528f2d0ca84eedaa10b76d}
+
+
+Get the child Shape. You can modify the child Shape, however you should not change the number of vertices because this will crash some collision caching mechanisms. 
+
+The shape.\hypertarget{class_farseer_physics_1_1_dynamics_1_1_fixture_a165ac7953eecfa0c338b17c87cbb4376}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}!User\+Data@{User\+Data}}
+\index{User\+Data@{User\+Data}!Farseer\+Physics\+::\+Dynamics\+::\+Fixture@{Farseer\+Physics\+::\+Dynamics\+::\+Fixture}}
+\subsubsection[{User\+Data}]{\setlength{\rightskip}{0pt plus 5cm}object Farseer\+Physics.\+Dynamics.\+Fixture.\+User\+Data\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_fixture_a165ac7953eecfa0c338b17c87cbb4376}
+
+
+Set the user data. Use this to store your application specific data. 
+
+The user data.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\hyperlink{_fixture_8cs}{Fixture.\+cs}\end{DoxyCompactItemize}

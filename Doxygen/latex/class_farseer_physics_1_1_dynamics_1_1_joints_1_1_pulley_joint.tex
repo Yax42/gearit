@@ -1,0 +1,202 @@
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}{\section{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint Class Reference}
+\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}\index{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint@{Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint}}
+}
+
+
+The pulley joint is connected to two bodies and two fixed world points. The pulley supports a ratio such that\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}length1 + ratio $\ast$ length2 $<$= constant\mbox{]}\mbox{]}$>$ Yes, the force transmitted is scaled by the ratio.  
+
+
+
+
+Inherits \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6206b117febaeb6c577e201decf29d3e}{Pulley\+Joint} (\hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+A, \hyperlink{class_farseer_physics_1_1_dynamics_1_1_body}{Body} body\+B, Vector2 anchor\+A, Vector2 anchor\+B, Vector2 world\+Anchor\+A, Vector2 world\+Anchor\+B, float ratio, bool use\+World\+Coordinates=false)
+\begin{DoxyCompactList}\small\item\em Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}{Pulley\+Joint}. \end{DoxyCompactList}\item 
+override Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8448102d0e2e2f9c4d58c6d10aaadbba}{Get\+Reaction\+Force} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction force on body at the joint anchor in Newtons. \end{DoxyCompactList}\item 
+override float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a5b434934bbbddf36c29ca47a699e1315}{Get\+Reaction\+Torque} (float inv\+Dt)
+\begin{DoxyCompactList}\small\item\em Get the reaction torque on the body at the joint anchor in N$\ast$m. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a754646f65deae936ba468a53a1e7082d}{Local\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+A \end{DoxyCompactList}\item 
+Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a28580e4a0b597102a53a49caa729c84b}{Local\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The local anchor point on Body\+B \end{DoxyCompactList}\item 
+override sealed Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_aad8899d20a60f26ddcf1a2e1a632f443}{World\+Anchor\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the first world anchor. \end{DoxyCompactList}\item 
+override sealed Vector2 \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a32814d563ad29e17e1d517a223467d4d}{World\+Anchor\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the second world anchor. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8854194aa4a8fb4fda4b4a13d9fafdea}{Length\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current length of the segment attached to body1. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a58357c7837c4a0bf66fd971902be9cd7}{Length\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the current length of the segment attached to body2. \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a42a77c5661b363600fa0eeb553c1abc9}{Current\+Length\+A}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current length between the anchor point on Body\+A and World\+Anchor\+A \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_ad710876f9f9f55ca5a130d79f75feb33}{Current\+Length\+B}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current length between the anchor point on Body\+B and World\+Anchor\+B \end{DoxyCompactList}\item 
+float \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6bf66b70cf50c30c23ada2d790c07f5b}{Ratio}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Get the pulley ratio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The pulley joint is connected to two bodies and two fixed world points. The pulley supports a ratio such that\+: $<$!\mbox{[}C\+D\+A\+T\+A\mbox{[}length1 + ratio $\ast$ length2 $<$= constant\mbox{]}\mbox{]}$>$ Yes, the force transmitted is scaled by the ratio. 
+
+Warning\+: the pulley joint can get a bit squirrelly by itself. They often work better when combined with prismatic joints. You should also cover the the anchor points with static shapes to prevent one side from going to zero length. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6206b117febaeb6c577e201decf29d3e}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Pulley\+Joint@{Pulley\+Joint}}
+\index{Pulley\+Joint@{Pulley\+Joint}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Pulley\+Joint}]{\setlength{\rightskip}{0pt plus 5cm}Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Pulley\+Joint (
+\begin{DoxyParamCaption}
+\item[{{\bf Body}}]{body\+A, }
+\item[{{\bf Body}}]{body\+B, }
+\item[{Vector2}]{anchor\+A, }
+\item[{Vector2}]{anchor\+B, }
+\item[{Vector2}]{world\+Anchor\+A, }
+\item[{Vector2}]{world\+Anchor\+B, }
+\item[{float}]{ratio, }
+\item[{bool}]{use\+World\+Coordinates = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6206b117febaeb6c577e201decf29d3e}
+
+
+Constructor for \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint}{Pulley\+Joint}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body\+A} & The first body.\\
+\hline
+{\em body\+B} & The second body.\\
+\hline
+{\em anchor\+A} & The anchor on the first body.\\
+\hline
+{\em anchor\+B} & The anchor on the second body.\\
+\hline
+{\em world\+Anchor\+A} & The world anchor for the first body.\\
+\hline
+{\em world\+Anchor\+B} & The world anchor for the second body.\\
+\hline
+{\em ratio} & The ratio.\\
+\hline
+{\em use\+World\+Coordinates} & Set to true if you are using world coordinates as anchors.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8448102d0e2e2f9c4d58c6d10aaadbba}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Get\+Reaction\+Force@{Get\+Reaction\+Force}}
+\index{Get\+Reaction\+Force@{Get\+Reaction\+Force}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Get\+Reaction\+Force}]{\setlength{\rightskip}{0pt plus 5cm}override Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Get\+Reaction\+Force (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8448102d0e2e2f9c4d58c6d10aaadbba}
+
+
+Get the reaction force on body at the joint anchor in Newtons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_aa9468be64f5c857ee67eb0a7337e3f58}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a5b434934bbbddf36c29ca47a699e1315}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Get\+Reaction\+Torque@{Get\+Reaction\+Torque}}
+\index{Get\+Reaction\+Torque@{Get\+Reaction\+Torque}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Get\+Reaction\+Torque}]{\setlength{\rightskip}{0pt plus 5cm}override float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Get\+Reaction\+Torque (
+\begin{DoxyParamCaption}
+\item[{float}]{inv\+Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a5b434934bbbddf36c29ca47a699e1315}
+
+
+Get the reaction torque on the body at the joint anchor in N$\ast$m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Dt} & The inverse delta time.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_joint_a21899d3bdf15c22ef4dc288ed2082cbc}{Farseer\+Physics.\+Dynamics.\+Joints.\+Joint}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a42a77c5661b363600fa0eeb553c1abc9}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Current\+Length\+A@{Current\+Length\+A}}
+\index{Current\+Length\+A@{Current\+Length\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Current\+Length\+A}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Current\+Length\+A\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a42a77c5661b363600fa0eeb553c1abc9}
+
+
+The current length between the anchor point on Body\+A and World\+Anchor\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_ad710876f9f9f55ca5a130d79f75feb33}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Current\+Length\+B@{Current\+Length\+B}}
+\index{Current\+Length\+B@{Current\+Length\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Current\+Length\+B}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Current\+Length\+B\hspace{0.3cm}{\ttfamily [get]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_ad710876f9f9f55ca5a130d79f75feb33}
+
+
+The current length between the anchor point on Body\+B and World\+Anchor\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8854194aa4a8fb4fda4b4a13d9fafdea}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Length\+A@{Length\+A}}
+\index{Length\+A@{Length\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Length\+A}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Length\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a8854194aa4a8fb4fda4b4a13d9fafdea}
+
+
+Get the current length of the segment attached to body1. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a58357c7837c4a0bf66fd971902be9cd7}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Length\+B@{Length\+B}}
+\index{Length\+B@{Length\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Length\+B}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Length\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a58357c7837c4a0bf66fd971902be9cd7}
+
+
+Get the current length of the segment attached to body2. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a754646f65deae936ba468a53a1e7082d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Local\+Anchor\+A@{Local\+Anchor\+A}}
+\index{Local\+Anchor\+A@{Local\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Local\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Local\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a754646f65deae936ba468a53a1e7082d}
+
+
+The local anchor point on Body\+A 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a28580e4a0b597102a53a49caa729c84b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Local\+Anchor\+B@{Local\+Anchor\+B}}
+\index{Local\+Anchor\+B@{Local\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Local\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Local\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a28580e4a0b597102a53a49caa729c84b}
+
+
+The local anchor point on Body\+B 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6bf66b70cf50c30c23ada2d790c07f5b}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!Ratio@{Ratio}}
+\index{Ratio@{Ratio}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{Ratio}]{\setlength{\rightskip}{0pt plus 5cm}float Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+Ratio\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a6bf66b70cf50c30c23ada2d790c07f5b}
+
+
+Get the pulley ratio. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_aad8899d20a60f26ddcf1a2e1a632f443}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!World\+Anchor\+A@{World\+Anchor\+A}}
+\index{World\+Anchor\+A@{World\+Anchor\+A}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{World\+Anchor\+A}]{\setlength{\rightskip}{0pt plus 5cm}override sealed Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+World\+Anchor\+A\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_aad8899d20a60f26ddcf1a2e1a632f443}
+
+
+Get the first world anchor. 
+
+\hypertarget{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a32814d563ad29e17e1d517a223467d4d}{\index{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}!World\+Anchor\+B@{World\+Anchor\+B}}
+\index{World\+Anchor\+B@{World\+Anchor\+B}!Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint@{Farseer\+Physics\+::\+Dynamics\+::\+Joints\+::\+Pulley\+Joint}}
+\subsubsection[{World\+Anchor\+B}]{\setlength{\rightskip}{0pt plus 5cm}override sealed Vector2 Farseer\+Physics.\+Dynamics.\+Joints.\+Pulley\+Joint.\+World\+Anchor\+B\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}}\label{class_farseer_physics_1_1_dynamics_1_1_joints_1_1_pulley_joint_a32814d563ad29e17e1d517a223467d4d}
+
+
+Get the second world anchor. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gearit/gearit/src/farseer 3.\+5/\+Dynamics/\+Joints/\hyperlink{_pulley_joint_8cs}{Pulley\+Joint.\+cs}\end{DoxyCompactItemize}
