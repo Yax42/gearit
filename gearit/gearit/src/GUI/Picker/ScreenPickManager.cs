@@ -58,6 +58,7 @@ namespace gearit.src.GUI.Picker
 		{
 			base.LoadContent();
 			State = 0;
+			MenuPickItem.Result = null;
 
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;

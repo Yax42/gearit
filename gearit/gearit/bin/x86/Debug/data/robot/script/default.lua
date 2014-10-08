@@ -26,7 +26,6 @@ end
 
 
 if Input:pressed(K_Right) then
-
 	spot8.Motor = 0.1
 elseif Input:pressed(K_Left) then
 
