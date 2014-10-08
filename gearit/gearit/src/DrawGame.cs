@@ -78,21 +78,17 @@ namespace gearit.src
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
 		}
 
+		public void BeginPrimitive(ICamera camera, Matrix proj)
+		{
+			Matrix view = camera.view();
+			_primitiveBatch.Begin(ref proj, ref view);
+		}
+
 		public void BeginPrimitive(ICamera camera)
 		{
-            // C'est à cause de ça que c'est pas aligné. Faut trouver un moyen d'envoyer camera.projection() et camera.view() a _primitiveBatch(ref x, ref x)
-			/*
-			Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_device.Viewport.Width),
-											 ConvertUnits.ToSimUnits(_device.Viewport.Height), 0f, 0f,
-											 1f);
-			Vector2 screen_center = new Vector2(_device.Viewport.Width / 2f,
-												_device.Viewport.Height / 2f);
-			Matrix view = Matrix.CreateTranslation(new Vector3((ConvertUnits.ToSimUnits(Vector2.Zero) -
-			ConvertUnits.ToSimUnits(screen_center)), 0f)) * Matrix.CreateTranslation(new Vector3(ConvertUnits.ToSimUnits(screen_center), 0f));
-			*/
 			Matrix view = camera.view();
-			Matrix projection = camera.projection();
-			_primitiveBatch.Begin(ref projection, ref view);
+			Matrix proj = camera.projection();
+			_primitiveBatch.Begin(ref proj, ref view);
 		}
 
 		public void End()

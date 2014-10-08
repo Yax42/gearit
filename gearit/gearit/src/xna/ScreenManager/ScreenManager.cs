@@ -20,6 +20,8 @@ namespace gearit.xna
 	{
 		static public int BLOCKED_FPS = 60;
         // Be safe boys !
+
+		public static ScreenManager Instance { get; private set; }
         private Mutex mutex;
 
 		private AssetCreator _assetCreator;
@@ -58,6 +60,7 @@ namespace gearit.xna
 		public ScreenManager(Game game)
 			: base(game)
 		{
+			Instance = this;
             // When drawing in other threads
             mutex = new Mutex();
 			// we must set EnabledGestures before we can query for them, but
@@ -243,6 +246,7 @@ namespace gearit.xna
 			{
 				screen.UnloadContent();
 			}
+			_screens.Clear();
 		}
 
         public void CountFPS(GameTime gameTime)
@@ -358,25 +362,46 @@ namespace gearit.xna
 				screen.LoadContent();
 
 			_screens.Add(screen);
-			UpdatePriority();
+			//UpdatePriority();
 		}
 
-		/// <summary>
-		/// Removes a screen from the screen manager. You should normally
-		/// use GameScreen.ExitScreen instead of calling this directly, so
-		/// the screen can gradually transition off rather than just being
-		/// instantly removed.
-		/// </summary>
+		public void RemoveLast()
+		{
+			_screens.RemoveAt(_screens.Count - 1);
+		}
+
+		public void ReplaceLast(GameScreen screen)
+		{
+			RemoveLast();
+			AddScreen(screen);
+		}
+
+		public bool MenuVisible
+		{
+			get
+			{
+				return _screens[_screens.Count - 1].VisibleMenu;
+			}
+		}
+
+		public bool IsEmpty()
+		{
+			return _screens.Count == 0;
+		}
+
 		public void RemoveScreen(GameScreen screen)
 		{
 			// If we have a graphics device, tell the screen to unload content.
-			if (_isInitialized)
+			int target = _screens.IndexOf(screen);
+			for (int i = _screens.Count - 1; i <= target; i++)
 			{
-				screen.UnloadContent();
+				if (_isInitialized)
+				{
+					_screens[i].UnloadContent();
+				}
+				_screensTemp.Remove(_screens[i]);
+				_screens.RemoveAt(i);
 			}
-
-			_screens.Remove(screen);
-			_screensTemp.Remove(screen);
 		}
 
 		/// <summary>

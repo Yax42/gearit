@@ -17,7 +17,7 @@ namespace gearit.src.editor
 	{
 		private const float _minZoom = 0.02f;
 		private const float _maxZoom = 20f;
-		private static GraphicsDevice _graphics;
+		private Viewport _viewport;
 
 		private Matrix _batchView;
 
@@ -38,32 +38,31 @@ namespace gearit.src.editor
 		/// The constructor for the Camera2D class.
 		/// </summary>
 		/// <param name="graphics"></param>
-		public EditorCamera(GraphicsDevice graphics)
+		public EditorCamera(Viewport vp)
 		{
-			_minPosition = new Vector2(-1000f, -1000f);
-			_maxPosition = new Vector2(1000f, 1000f);
+			_viewport = vp;
+			_minPosition = new Vector2(-10000f, -10000f);
+			_maxPosition = new Vector2(10000f, 10000f);
 
-			_graphics = graphics;
-			_projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(_graphics.Viewport.Width),
-															 ConvertUnits.ToSimUnits(_graphics.Viewport.Height), 0f, 0f,
-															 1f);
+
+			_projection = Matrix.CreateOrthographicOffCenter(
+				ConvertUnits.ToSimUnits(_viewport.X),
+				ConvertUnits.ToSimUnits(_viewport.Width + _viewport.X),
+				ConvertUnits.ToSimUnits(_viewport.Height + _viewport.Y),
+				ConvertUnits.ToSimUnits(_viewport.Y),
+				0f, 1f);
+
 			_view = Matrix.Identity;
 			_batchView = Matrix.Identity;
 
-			_translateCenter = new Vector2(ConvertUnits.ToSimUnits(_graphics.Viewport.Width / 2f),
-										   ConvertUnits.ToSimUnits(_graphics.Viewport.Height / 2f));
+			_translateCenter = new Vector2(ConvertUnits.ToSimUnits(_viewport.Width / 2f),
+											ConvertUnits.ToSimUnits(_viewport.Height / 2f));
 
 			reset();
 		}
 
-
-		public Matrix View
-		{
-			get { return _batchView; }
-		}
-
 		public Matrix view()
-	{
+		{
 			return _view;
 		}
 
@@ -163,7 +162,6 @@ namespace gearit.src.editor
 
 		public void update()
 		{
-
 			Matrix matRotation = Matrix.CreateRotationZ(_currentRotation);
 			Matrix matZoom = Matrix.CreateScale(_currentZoom);
 			Vector3 translateCenter = new Vector3(_translateCenter, 0f);
@@ -187,11 +185,11 @@ namespace gearit.src.editor
 			return (_translateCenter);
 		}
 
-		public Vector2 ConvertScreenToWorld(Vector2 location)
+		/*public Vector2 ConvertScreenToWorld(Vector2 location)
 		{
 			Vector3 t = new Vector3(location, 0);
 
-			t = _graphics.Viewport.Unproject(t, _projection, _view, Matrix.Identity);
+			t = _viewport.Unproject(t, _projection, _view, Matrix.Identity);
 
 			return new Vector2(t.X, t.Y);
 		}
@@ -200,10 +198,11 @@ namespace gearit.src.editor
 		{
 			Vector3 t = new Vector3(location, 0);
 
-			t = _graphics.Viewport.Project(t, _projection, _view, Matrix.Identity);
+			t = _viewport.Project(t, _projection, _view, Matrix.Identity);
 
 			return new Vector2(t.X, t.Y);
 		}
+		*/
 
 		public void input(bool canMove = true)
 		{

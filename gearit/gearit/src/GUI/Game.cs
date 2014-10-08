@@ -220,6 +220,14 @@ namespace SquidXNA
 			itemMenuButtonStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 			itemMenuButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
+			ControlStyle itemPickButtonStyle = new ControlStyle();
+			itemPickButtonStyle.TextAlign = Alignment.BottomCenter;
+			itemPickButtonStyle.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
+			itemPickButtonStyle.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
+			itemPickButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 0.2f, 1f);
+			itemPickButtonStyle.Checked.BackColor = ColorInt.RGBA(1f, 0.1f, 0.1f, 1f);
+			itemPickButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
+
 			ControlStyle eventPanelStyle = new ControlStyle();
 			eventPanelStyle.TextAlign = Alignment.MiddleCenter;
 			eventPanelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
@@ -261,6 +269,7 @@ namespace SquidXNA
 			skin.Styles.Add("label", labelStyle);
 			skin.Styles.Add("mainMenu", mainMenuStyle);
 			skin.Styles.Add("itemMainMenu", itemMainMenuStyle);
+			skin.Styles.Add("itemPickButton", itemPickButtonStyle);
 			skin.Styles.Add("menu", menuStyle);
 			skin.Styles.Add("itemMenu", itemMenuStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);

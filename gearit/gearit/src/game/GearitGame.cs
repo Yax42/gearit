@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using gearit.xna;
 using gearit.src.utility;
 using FarseerPhysics.Dynamics;
@@ -10,15 +8,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using gearit.src.editor;
 using System.Diagnostics;
-using FarseerPhysics.Dynamics.Joints;
-using gearit.src.output;
 using GUI;
 using FarseerPhysics.DebugViews;
-using FarseerPhysics;
 using gearit.src.robot;
 using gearit.src.script;
-using System.Threading;
 using gearit.src.editor.robot;
+using System.IO;
 
 namespace gearit.src.game
 {
@@ -33,6 +28,8 @@ namespace gearit.src.game
 		private Map _Map;
 		public Map Map { get { return _Map; } }
 
+		private string RobotPath;
+		private string MapPath;
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 
@@ -52,8 +49,14 @@ namespace gearit.src.game
 
 		#region IDemoScreen Members
 
-		public GearitGame()
+		public GearitGame() : this("data/robot/default.gir", "data/map/default.gim")
 		{
+		}
+
+		public GearitGame(string robotPath, string mapPath)
+		{
+			RobotPath = robotPath;
+			MapPath = mapPath;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
@@ -94,15 +97,16 @@ namespace gearit.src.game
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
+			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
 			addRobot(robot);
 			Debug.Assert(Robots != null);
-			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
+			_Map = (Map)Serializer.DeserializeItem(MapPath);
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("map/script/default"));
+			
+			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile(Directory.GetParent(MapPath) + "/script/default"));
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;

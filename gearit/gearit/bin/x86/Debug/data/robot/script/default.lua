@@ -15,10 +15,10 @@ end
 
 if Input:pressed(K_Q) then
 	spot6.Motor = -0.1
-	spot7.Motor = 0.1
+	spot7.Motor = 0.09
 elseif Input:pressed(K_E) then
 	spot6.Motor = 0.1
-	spot7.Motor = -0.1
+	spot7.Motor = -0.09
 else
 	spot7.Frozen = true
 	spot6.Frozen = true

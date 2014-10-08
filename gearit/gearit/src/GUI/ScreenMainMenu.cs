@@ -12,7 +12,18 @@ namespace GUI
 {
 	class ScreenMainMenu : GameScreen
 	{
-		public static bool GoBack = false;
+		private static bool _GoBack = false;
+		public static bool GoBack
+		{
+			get
+			{
+				return _GoBack;
+			}
+			set
+			{
+				_GoBack = value;
+			}
+		}
 		private Squid.Desktop _background;
 		private MainMenu _menu;
 
@@ -27,6 +38,7 @@ namespace GUI
 			base.LoadContent();
 
 			_menu = new GUI.MainMenu(ScreenManager);
+			VisibleMenu = true;
 
 			// Mouse Cursor bug fix
 			//_background = new Squid.Desktop();
@@ -45,6 +57,7 @@ namespace GUI
 			}
 
 			_menu.Update();
+			_menu.Visible = ScreenManager.MenuVisible;
 		}
 
 		public override void Draw(GameTime gameTime)

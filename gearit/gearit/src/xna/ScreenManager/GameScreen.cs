@@ -12,6 +12,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using gearit.src.utility;
+using System.Collections.Generic;
 
 namespace gearit.xna
 {
@@ -38,6 +39,7 @@ namespace gearit.xna
 		private bool _otherScreenHasFocus;
 		public bool VisibleMenu = false;
         public bool is_initialized = false;
+		public List<GameScreen> PrevScreens = null;
 		
 		public GameScreen()
 		{

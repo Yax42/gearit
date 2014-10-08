@@ -133,7 +133,7 @@ namespace gearit.src.editor.robot
 			ScreenManager.Game.ResetElapsedTime();
 
 			// Initialize camera controls
-			_camera = new EditorCamera(ScreenManager.GraphicsDevice);
+			_camera = new EditorCamera(ScreenManager.GraphicsDevice.Viewport);
 			_camera.Position = new Vector2(-500f, -100f);
 			//_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 

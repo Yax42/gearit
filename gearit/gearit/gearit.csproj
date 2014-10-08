@@ -143,9 +143,12 @@
     <Compile Include="src\GeneticAlgorithm\Individual.cs" />
     <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
     <Compile Include="src\GUI\MenuOptions.cs" />
+    <Compile Include="src\GUI\Picker\MenuPickItem.cs" />
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />
+    <Compile Include="src\GUI\Picker\ScreenPickItem.cs" />
+    <Compile Include="src\GUI\Picker\ScreenPickManager.cs" />
     <Compile Include="src\Network\INetwork.cs" />
     <Compile Include="src\Network\InGamePacket.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />
@@ -373,6 +376,7 @@
     <Compile Include="src\Network\InGameServer.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
+    <Compile Include="src\utility\FileManager.cs" />
     <Compile Include="src\utility\ICamera.cs" />
     <Compile Include="src\utility\Input.cs" />
     <Compile Include="src\utility\Menu\InputMenuItem.cs" />

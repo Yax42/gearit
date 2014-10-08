@@ -66,8 +66,11 @@ namespace gearit.src.script
 
 		public void stop()
 		{
-			_ok = false;
-			base.Close();
+			if (_ok)
+			{
+				_ok = false;
+				base.Close();
+			}
 		}
 	}
 }

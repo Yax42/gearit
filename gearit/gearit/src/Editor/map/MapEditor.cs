@@ -129,7 +129,7 @@ namespace gearit.src.editor.map
 			SerializerHelper.World = _world;
 			_map = new Map(_world);
 			ScreenManager.Game.ResetElapsedTime();
-			_camera = new EditorCamera(ScreenManager.GraphicsDevice);
+			_camera = new EditorCamera(ScreenManager.GraphicsDevice.Viewport);
 			_camera.Position = new Vector2(0, 0);
 			_world.Gravity = new Vector2(0f, 0f);
 			HasVirtualStick = true;

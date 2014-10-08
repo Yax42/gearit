@@ -14,6 +14,7 @@ using gearit.src.gui;
 using gearit.src.GeneticAlgorithm;
 using gearit.src.Network;
 using gearit.src.GUI.OptionsMenu;
+using gearit.src.GUI.Picker;
 
 namespace GUI
 {
@@ -29,7 +30,6 @@ namespace GUI
 
 		// Gui
 		private ListBox menu_listbox;
-		private GameScreen current_screen = null;
 
 		// List of item menu
 		private MyGame _Gearit;
@@ -46,6 +46,7 @@ namespace GUI
 		private MasterClient _masterClient;
 		private MenuPlay _play;
 		private MenuQuit _quit;
+		private ScreenPickManager _soloGame;
 
 		public MainMenu(ScreenManager ScreenManager)
 		{
@@ -85,6 +86,7 @@ namespace GUI
 			_masterClient = new MasterClient();
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
+			_soloGame = new ScreenPickManager(_game);
 
 			// Add ItemMenu
 			addMenuItem(_play, _play.GetTitle());
@@ -103,26 +105,24 @@ namespace GUI
 			addMenuItem(_networkGame, "Network Game");
 			addMenuItem(_bruteRobot, "Brute Game");
 			addMenuItem(_masterClient, _masterClient.GetTitle());
+			addMenuItem(_soloGame, "Solo");
 
 			// ToRemove - Popup robot editor
-			menu_listbox.Items[0].Click(0);
+			//menu_listbox.Items[0].Click(0);
 
 			#endregion
 		}
 
 		public void goBack()
 		{
-			if (current_screen == null)
+			if (_ScreenManager.IsEmpty())
 			{
 				_ScreenManager.Exit();
 				return;
 			}
-			
-			_ScreenManager.RemoveScreen(current_screen);
-			current_screen = null;
+			_ScreenManager.RemoveLast();
 			menu_listbox.SelectedItem.Selected = false;
-
-			Visible = true;
+			//Visible = true;
 		}
 
 		public void addMenuItem(GameScreen screen, string title)
@@ -137,16 +137,7 @@ namespace GUI
 			// Callback
 			item.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				if (current_screen == screen)
-					return;
-
-				if (current_screen != null)
-					_ScreenManager.RemoveScreen(current_screen);
-
 				_ScreenManager.AddScreen(screen);
-				current_screen = screen;
-
-				Visible = current_screen.VisibleMenu;
 			};
 		}
 	}
