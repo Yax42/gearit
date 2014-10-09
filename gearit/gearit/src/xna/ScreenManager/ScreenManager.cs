@@ -349,6 +349,18 @@ namespace gearit.xna
 			Game.Exit();
 		}
 
+		public void BackToMainMenu()
+		{
+			while (_screens.Count > 1)
+				RemoveLast();
+		}
+
+		public void ResetTo(GameScreen screen)
+		{
+			BackToMainMenu();
+			AddScreen(screen);
+		}
+
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>

@@ -57,13 +57,10 @@ namespace gearit.src.GUI
 		//private DrawGame DrawGame;
 
 
-		public static MenuPickItem Instance { set; get; }
-
 		public MenuPickItem(ScreenManager screenManager, bool isMap)
 		{
 			IsMap = IsMap;
 
-			Instance = this;
 			ScreenManager = screenManager;
 			int x;
 			int y;

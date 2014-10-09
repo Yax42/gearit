@@ -12,6 +12,7 @@ namespace gearit.src.GUI.Picker
 		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
 		private bool IsMap;
+		private MenuPickItem Menu;
 
 		//Action
 		public static ScreenPickItem Instance { set; get; }
@@ -42,7 +43,7 @@ namespace gearit.src.GUI.Picker
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			new MenuPickItem(ScreenManager, IsMap);
+			Menu = new MenuPickItem(ScreenManager, IsMap);
 
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;
@@ -52,7 +53,7 @@ namespace gearit.src.GUI.Picker
 
 		public override void Update(GameTime gameTime)
 		{
-			MenuPickItem.Instance.Update();
+			Menu.Update();
 			base.Update(gameTime);
 		}
 
@@ -64,7 +65,7 @@ namespace gearit.src.GUI.Picker
 
 			//_draw_game.End();
 			base.Draw(gameTime);
-			MenuPickItem.Instance.Draw();
+			Menu.Draw();
 
 			// Ces deux lignes sont etrangement necessaire, sinon la gui du MenuPickMap ne s'affiche pas
 			DrawGame.Begin();

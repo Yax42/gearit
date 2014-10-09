@@ -364,6 +364,14 @@ namespace gearit.src.robot
 
 		public bool Shown { get { return ((Piece)BodyA).Shown && ((Piece)BodyB).Shown; } }
 		#region Draw
+		public void draw(DrawGame game)
+		{
+			DrawDebug(game, WorldAnchorA);
+			DrawAnchorDebug(game, WorldAnchorA);
+			DrawAnchorDebug(game, WorldAnchorB);
+			//DrawLimits(game);
+		}
+
 		public void drawDebug(DrawGame game)
 		{
 			DrawDebug(game, WorldAnchorA);

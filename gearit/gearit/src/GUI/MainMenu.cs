@@ -137,7 +137,7 @@ namespace GUI
 			// Callback
 			item.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				_ScreenManager.AddScreen(screen);
+				_ScreenManager.ResetTo(screen);
 			};
 		}
 	}

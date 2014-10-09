@@ -434,7 +434,7 @@ namespace gearit.src.robot
 				dg.draw(_pieces[i], _pieces[i].ColorValue);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
-				_spots[i].drawDebug(dg);
+				_spots[i].draw(dg);
 		}
 		#endregion
 
