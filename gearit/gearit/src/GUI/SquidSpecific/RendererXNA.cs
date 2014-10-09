@@ -173,7 +173,11 @@ namespace SquidXNA
 				return;
 
 			SpriteFont f = Fonts[font];
-			Batch.DrawString(f, text, new Vector2(x, y), ColorFromtInt32(color));
+            Batch.End();
+			Batch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Sampler, null, Rasterizer);
+            Batch.DrawString(f, text, new Vector2(x, y), ColorFromtInt32(color));
+            Batch.End();
+			Batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Sampler, null, Rasterizer);
 		}
 
 		public void DrawTexture(int texture, int x, int y, int w, int h, Squid.Rectangle rect, int color)
