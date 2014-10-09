@@ -14,6 +14,7 @@ using FarseerPhysics.DebugViews;
 using gearit.src.robot;
 
 namespace gearit.src
+
 {
 	public class DrawGame
 	{
