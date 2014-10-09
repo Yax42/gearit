@@ -116,6 +116,7 @@ namespace gearit.src.editor.robot
 		{
 			return @"data/" + name + ".lua";
 		}
+
 		public static string Regex
 		{
 			get

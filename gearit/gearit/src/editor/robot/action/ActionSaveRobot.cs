@@ -15,6 +15,7 @@ namespace gearit.src.editor.robot.action
 	class ActionSaveRobot : IAction
 	{
 		static public bool MustExit = false;
+		static public bool JustSaved = false;
 
 		public void init() { }
 
@@ -30,9 +31,13 @@ namespace gearit.src.editor.robot.action
 		public bool run()
 		{
 			Debug.Assert(RobotEditor.Instance.NamePath != "");
-			RobotEditor.Instance.Robot.Name = RobotEditor.Instance.NamePath;
-			string actualName = "robot/" + RobotEditor.Instance.NamePath + ".gir";
-			if (!Serializer.SerializeItem(actualName, RobotEditor.Instance.Robot))
+			JustSaved = true;
+			return SaveRobot(RobotEditor.Instance.ActualPath);
+		}
+
+		public static bool SaveRobot(string name)
+		{
+			if (!Serializer.SerializeItem(name, RobotEditor.Instance.Robot))
 				RobotEditor.Instance.resetNamePath();
 			else if (MustExit)
 			{
@@ -40,10 +45,9 @@ namespace gearit.src.editor.robot.action
 				ScreenMainMenu.GoBack = true;
 			}
 
-
 			#region Lua
 
-			var filename = LuaManager.LuaFile("robot/script/" + RobotEditor.Instance.Robot.Name);
+			string filename = FileManager.PathToScriptPath(name);
 
 			// Read the file as one string.
 			try

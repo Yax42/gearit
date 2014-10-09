@@ -63,5 +63,27 @@ namespace gearit.src.utility
 				Console.WriteLine(excpt.Message);
 			}
 		}
+
+		public static string PathToScriptPath(string path)
+		{
+#if true
+			return Path.GetDirectoryName(path) + "/script/" + Path.GetFileNameWithoutExtension(path) + ".lua";
+#else
+			string[] decomposed = path.Split("/".ToCharArray());
+			string res = "";
+			for (int i = 0; i < decomposed.Count() - 1; i++)
+			{
+				res += decomposed[i] + "/";
+			}
+			res += "script/";
+			string[] nameDecomposed = decomposed.Last().Split(".".ToCharArray());
+			for (int i = 0; i < nameDecomposed.Count() - 1; i++)
+			{
+				res += nameDecomposed[i] + ".";
+			}
+			res += "lua";
+			return res;
+#endif
+		}
 	}
 }

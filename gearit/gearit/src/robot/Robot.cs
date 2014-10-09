@@ -165,6 +165,13 @@ namespace gearit.src.robot
 						TriggersData[trigger.Id] = true;
 				}
 			}
+			Update();
+		}
+
+		public void Update()
+		{
+			if (Extracted)
+				return;
 			foreach (RevoluteSpot s in Spots)
 				s.ProcessAutoFreeze();
 			if (_script != null)

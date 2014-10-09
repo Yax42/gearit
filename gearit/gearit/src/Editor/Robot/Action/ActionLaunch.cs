@@ -5,12 +5,32 @@ using System.Text;
 using gearit.src.utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics;
+using gearit.src.robot;
+using System.Diagnostics;
 
 namespace gearit.src.editor.robot.action
 {
 	class ActionLaunch : IAction
 	{
-		public void init() { }
+		static public bool Running = false;
+		static private World SimulationWorld = null;
+		static public Robot Robot;
+		public void init()
+		{
+			if (SimulationWorld == null)
+				SimulationWorld = new World(new Vector2(0, 9.8f));
+			if (RobotEditor.Instance.NamePath != "")
+			{
+				new ActionSaveRobot().run();
+				SerializerHelper.World = SimulationWorld;
+				Robot = (Robot)Serializer.DeserializeItem(RobotEditor.Instance.ActualPath);
+				Debug.Assert(Robot != null);
+				Running = (Robot != null);
+				Robot.Heart.IsStatic = true;
+				Robot.InitScript();
+			}
+		}
 
 		//feature non fonctionnelle yet
 		public bool shortcut()
@@ -20,8 +40,18 @@ namespace gearit.src.editor.robot.action
 
 		public bool run()
 		{
-			//robot.getWorld().Gravity = new Vector2(0f, 9.8f);
-			return (false);
+			if (!Running || Input.Exit)
+			{
+				if (Robot != null)
+					Robot.ExtractFromWorld();
+				SimulationWorld.Clear();
+				Robot = null;
+				Running = false;
+				return false;
+			}
+			Robot.Update();
+			SimulationWorld.Step(1/30f);
+			return true;
 		}
 
 		public void revert() { }

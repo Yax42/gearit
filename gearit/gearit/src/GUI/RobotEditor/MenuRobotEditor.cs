@@ -849,10 +849,11 @@ namespace gearit.src.GUI
 
 		public bool hasFocus()
 		{
+			if (ActionLaunch.Running)
+				return false;
 			if (_has_focus)
 				return (true);
 			//else return false;
-
 			int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
 
 
