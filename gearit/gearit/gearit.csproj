@@ -412,8 +412,8 @@
     <Compile Include="src\xna\Menu\VideoOption.cs" />
     <Compile Include="src\xna\ScreenManager\BackgroundScreen.cs" />
     <Compile Include="src\xna\ScreenManager\Camera2D.cs" />
-    <Compile Include="src\xna\ScreenManager\FrameRateCounter.cs" />
-    <Compile Include="src\xna\ScreenManager\GameScreen.cs" />
+    <Compile Include="src\GUI\Tools\FrameRateCounter.cs" />
+    <Compile Include="src\GUI\GameScreen.cs" />
     <Compile Include="src\xna\ScreenManager\IDemoScreen.cs" />
     <Compile Include="src\xna\ScreenManager\InputHelper.cs" />
     <Compile Include="src\xna\ScreenManager\LogoScreen.cs" />
@@ -422,7 +422,7 @@
     <Compile Include="src\xna\ScreenManager\MenuScreen.cs" />
     <Compile Include="src\xna\ScreenManager\MessageBoxScreen.cs" />
     <Compile Include="src\xna\ScreenManager\PhysicsGameScreen.cs" />
-    <Compile Include="src\xna\ScreenManager\ScreenManager.cs" />
+    <Compile Include="src\GUI\ScreenManager.cs" />
     <Compile Include="src\xna\ScreenManager\SpriteFonts.cs" />
     <Compile Include="src\xna\Sound\SoundManager.cs" />
     <Compile Include="zzz_gearit_help.cs" />
