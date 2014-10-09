@@ -90,19 +90,15 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle messageStyle = new ControlStyle();
 			messageStyle.TextAlign = Alignment.MiddleCenter;
-            messageStyle.BackColor = 0;
 			messageStyle.Font = "Arial14";
 
 			ControlStyle textStyle = new ControlStyle();
 			textStyle.TextPadding = new Margin(8, 0, 8, 0);
 			textStyle.TextAlign = Alignment.MiddleLeft;
-            textStyle.BackColor = 0;
 
 			ControlStyle textStyleB = new ControlStyle();
 			textStyleB.TextPadding = new Margin(8, 0, 8, 0);
 			textStyleB.TextAlign = Alignment.MiddleLeft;
-            textStyleB.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
-            textStyleB.BackColor = 0;
 
 			ControlStyle itemStyle = new ControlStyle(baseStyle);
 			itemStyle.TextPadding = new Margin(8, 0, 8, 0);
@@ -122,13 +118,9 @@ namespace gearit.src.GUI.Tools
 			inputStyle.Focused.Texture = "input_focused.dds";
 			inputStyle.TextPadding = new Margin(4);
 			inputStyle.Tiling = TextureMode.Grid;
-			inputStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1);
 
 			ControlStyle messageBoxStyle = new ControlStyle();
-			//messageBoxStyle.Focused.Texture = "input_focused.dds";
 			messageBoxStyle.TextPadding = new Margin(4);
-			messageBoxStyle.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
-			messageBoxStyle.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
 			messageBoxStyle.TextAlign = Alignment.TopLeft;
 
 
@@ -211,59 +203,28 @@ namespace gearit.src.GUI.Tools
 			ControlStyle labelStyle = new ControlStyle();
 			labelStyle.TextPadding = new Margin(8, 0, 8, 0);
 			labelStyle.TextAlign = Alignment.MiddleLeft;
-			labelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			labelStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.1f);
-			labelStyle.Default.BackColor = 0;
 
 			ControlStyle mainMenuStyle = new ControlStyle();
-			mainMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			mainMenuStyle.BackColor = ColorInt.RGBA(0, 0, 0, 0.6f);
 
 			ControlStyle itemMainMenuStyle = new ControlStyle();
 			itemMainMenuStyle.TextAlign = Alignment.MiddleCenter;
-			itemMainMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			itemMainMenuStyle.BackColor = ColorInt.RGBA(1, 1, 1, 0.02f);
-			itemMainMenuStyle.Default.BackColor = 0;
-			itemMainMenuStyle.Selected.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
-			itemMainMenuStyle.SelectedHot.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
 
 			ControlStyle menuStyle = new ControlStyle();
-			menuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			menuStyle.BackColor = ColorInt.RGBA(0, 0, 0, 0.528f);
 
 			ControlStyle itemMenuStyle = new ControlStyle();
-			itemMenuStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			itemMenuStyle.Default.BackColor = 0;
 
 			ControlStyle itemMenuTitleStyle = new ControlStyle();
-			itemMenuTitleStyle.BackColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			itemMenuTitleStyle.TextColor = ColorInt.RGBA(0f, 0f, 0f, 1);
 			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
 			ControlStyle itemMenuButtonStyle = new ControlStyle();
 			itemMenuButtonStyle.TextAlign = Alignment.MiddleCenter;
-			itemMenuButtonStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			itemMenuButtonStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-			itemMenuButtonStyle.Default.BackColor = ColorInt.RGBA(1, 1, 1, 0.04f);
-			itemMenuButtonStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
-			itemMenuButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
 			ControlStyle itemPickButtonStyle = new ControlStyle();
 			itemPickButtonStyle.TextAlign = Alignment.BottomCenter;
-			itemPickButtonStyle.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
-			itemPickButtonStyle.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
-			itemPickButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 0.2f, 1f);
-			itemPickButtonStyle.Checked.BackColor = ColorInt.RGBA(1f, 0.1f, 0.1f, 1f);
-			itemPickButtonStyle.CheckedHot.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
 
 			ControlStyle eventPanelStyle = new ControlStyle();
 			eventPanelStyle.TextAlign = Alignment.MiddleCenter;
-			eventPanelStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			eventPanelStyle.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-			eventPanelStyle.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-			eventPanelStyle.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
-			eventPanelStyle.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
 			ControlStyle treeNodeTextStyle = new ControlStyle();
 			treeNodeTextStyle.TextAlign = Alignment.MiddleCenter;
@@ -271,9 +232,6 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle addEventButtonStyle = new ControlStyle();
 			addEventButtonStyle.TextAlign = Alignment.MiddleCenter;
-			addEventButtonStyle.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			addEventButtonStyle.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
-			addEventButtonStyle.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 
 			skin.Styles.Add("message", messageStyle);
 			skin.Styles.Add("textwhite", textStyle);
@@ -307,7 +265,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
 			skin.Styles.Add("addEventButton", addEventButtonStyle);
 
-#endregion
+			#endregion
 
 			GuiHost.SetSkin(skin);
 		}
@@ -317,6 +275,80 @@ namespace gearit.src.GUI.Tools
 			ThemeInfo info = Themes[theme];
 
 			Skin skin = GuiHost.GetSkin();
+			ControlStyleCollection styles = skin.Styles;
+			ControlStyle style;
+
+            styles["message"].BackColor = 0;
+
+			style = styles["addEventButton"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
+
+			style = styles["textwhite"];
+            style.BackColor = 0;
+            style.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
+
+			style = styles["textblack"];
+            style.BackColor = 0;
+            style.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
+
+            styles["textbox"].Focused.Tint = ColorInt.RGBA(1, 1, 1, 1);
+
+			style = styles["messagebox"];
+			style.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
+			style.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
+
+			style = styles["label"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(1, 1, 1, 0.1f);
+			style.Default.BackColor = 0;
+
+			style = styles["mainMenu"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(0, 0, 0, 0.6f);
+
+			style = styles["itemMainMenu"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(1, 1, 1, 0.02f);
+			style.Default.BackColor = 0;
+			style.Selected.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+			style.SelectedHot.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+
+			style = styles["menu"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(0, 0, 0, 0.528f);
+
+			style = styles["itemMenuTitle"];
+			style.BackColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.TextColor = ColorInt.RGBA(0f, 0f, 0f, 1);
+
+			style = styles["itemMenuButton"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			style.Default.BackColor = ColorInt.RGBA(1, 1, 1, 0.04f);
+			style.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+			style.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+
+			style = styles["itemPickButton"];
+			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
+			style.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 0.2f, 1f);
+			style.Checked.BackColor = ColorInt.RGBA(1f, 0.1f, 0.1f, 1f);
+			style.CheckedHot.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
+
+			style = styles["eventPanel"];
+			style.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			style.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+			style.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+
+			styles["treeNodeText"].BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.0f);
+
+			style = styles["addEventButton"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 		}
 	}
 }

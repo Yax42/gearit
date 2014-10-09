@@ -42,20 +42,11 @@ namespace SquidXNA
 			InputManager input = new InputManager(this);
 			Components.Add(input);
 
-
-			#region styles
-
-
-			#endregion
-
-
 			ScreenManager.Content.RootDirectory = "Content";
 			Theme.init();
-
+			Theme.setTheme("Red");
 			base.Initialize();
-
 			ScreenManager.AddScreen(new ScreenMainMenu());
-
 
             // To remove
             NetworkServer.Start(25552);
