@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.GUI.Picker
 {
-	class ScreenPickItem : GameScreen, IDemoScreen
+	abstract class AScreenPickItem : GameScreen, IDemoScreen
 	{
 		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
@@ -15,8 +15,6 @@ namespace gearit.src.GUI.Picker
 		private MenuPickItem Menu;
 
 		//Action
-		public static ScreenPickItem Instance { set; get; }
-
 		#region IDemoScreen Members
 
 		public string GetTitle()
@@ -31,20 +29,19 @@ namespace gearit.src.GUI.Picker
 
 		#endregion
 
-		public ScreenPickItem(bool isMap)
+		public AScreenPickItem(bool isMap) : base(true)
 		{
 			IsMap = isMap;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			Instance = this;
 		}
 
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			Menu = new MenuPickItem(ScreenManager, IsMap);
 
+			Menu = new MenuPickItem(ScreenManager, IsMap);
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;
 

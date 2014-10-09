@@ -17,7 +17,7 @@ namespace gearit.xna
 		private TimeSpan _duration;
 		private Texture2D _farseerLogoTexture;
 
-		public LogoScreen(TimeSpan duration)
+		public LogoScreen(TimeSpan duration) : base(false)
 		{
 			_duration = duration;
 			TransitionOffTime = TimeSpan.FromSeconds(2.0);

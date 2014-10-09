@@ -147,8 +147,10 @@
     <Compile Include="src\GUI\MenuQuit.cs" />
     <Compile Include="src\GUI\MenuPlay.cs" />
     <Compile Include="src\game\Score.cs" />
-    <Compile Include="src\GUI\Picker\ScreenPickItem.cs" />
+    <Compile Include="src\GUI\Picker\AScreenPickItem.cs" />
     <Compile Include="src\GUI\Picker\ScreenPickManager.cs" />
+    <Compile Include="src\GUI\Picker\ScreenPickMap.cs" />
+    <Compile Include="src\GUI\Picker\ScreenPickRobot.cs" />
     <Compile Include="src\Network\INetwork.cs" />
     <Compile Include="src\Network\InGamePacket.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />

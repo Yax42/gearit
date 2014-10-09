@@ -40,9 +40,11 @@ namespace gearit.xna
 		public bool VisibleMenu = false;
         public bool is_initialized = false;
 		public List<GameScreen> PrevScreens = null;
+		private bool ToResetAfterUnload;
 		
-		public GameScreen()
+		public GameScreen(bool toResetAfterUnload)
 		{
+			ToResetAfterUnload = toResetAfterUnload;
 			DrawPriority = 0;
 			ScreenState = ScreenState.TransitionOn;
 			TransitionPosition = 1;
@@ -137,11 +139,18 @@ namespace gearit.xna
             is_initialized = true;
 		}
 
+		public virtual void QuickLoadContent()
+		{
+		}
+
 		/// <summary>
 		/// Unload content for the screen.
 		/// </summary>
 		public virtual void UnloadContent()
 		{
+			if (ToResetAfterUnload)
+				is_initialized = false;
+			QuickLoadContent();
 		}
 
 		/// <summary>

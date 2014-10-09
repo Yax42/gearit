@@ -29,7 +29,7 @@ namespace gearit.xna
 
 		#endregion
 
-		public ResolutionChanger(int width, int height)
+		public ResolutionChanger(int width, int height) : base(false)
 		{
 			_width = width;
 			_height = height;

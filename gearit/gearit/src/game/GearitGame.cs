@@ -53,15 +53,13 @@ namespace gearit.src.game
 		{
 		}
 
-		public GearitGame(string robotPath, string mapPath)
+		public GearitGame(string robotPath, string mapPath) : base(true)
 		{
 			RobotPath = robotPath;
 			MapPath = mapPath;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
 		}
 
 		public void Message(string msg, int duration)
@@ -83,6 +81,8 @@ namespace gearit.src.game
 
 		public override void LoadContent()
 		{
+			_Robots = new List<Robot>();
+			_world = new World(new Vector2(0, 9.8f));
 			base.LoadContent();
 			_exiting = false;
 			_pause = false;

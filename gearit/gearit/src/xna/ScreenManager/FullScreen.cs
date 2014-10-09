@@ -14,6 +14,9 @@ namespace gearit.xna
 	{
 		#region IDemoScreen Members
 
+		public FullScreen() : base(false)
+		{}
+
 		public string GetTitle()
 		{
 			return "FullScreen";

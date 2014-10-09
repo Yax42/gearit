@@ -80,7 +80,7 @@ namespace gearit.src.editor.robot
 
 		private int _time = 0;
 
-		public RobotEditor()
+		public RobotEditor() : base(false)
 		{
 			Serializer.init();
 			ActionFactory.init();
@@ -149,6 +149,11 @@ namespace gearit.src.editor.robot
 			Robot = new Robot(_world, true);
 
 			selectHeart();
+		}
+
+		public override void QuickLoadContent()
+		{
+			MenuRobotEditor.Instance.setFocus(false);
 		}
 
 		public void selectHeart()

@@ -370,7 +370,7 @@ namespace gearit.xna
 			screen.IsExiting = false;
 
 			// If we have a graphics device, tell the screen to load content.
-			if (_isInitialized)// && !screen.is_initialized)
+			if (_isInitialized && !screen.is_initialized)
 				screen.LoadContent();
 
 			_screens.Add(screen);
@@ -379,6 +379,7 @@ namespace gearit.xna
 
 		public void RemoveLast()
 		{
+			_screens[_screens.Count - 1].UnloadContent();
 			_screens.RemoveAt(_screens.Count - 1);
 		}
 
@@ -407,7 +408,7 @@ namespace gearit.xna
 			int target = _screens.IndexOf(screen);
 			for (int i = _screens.Count - 1; i <= target; i++)
 			{
-				if (_isInitialized)
+				if (_isInitialized && _screens[i].is_initialized)
 				{
 					_screens[i].UnloadContent();
 				}

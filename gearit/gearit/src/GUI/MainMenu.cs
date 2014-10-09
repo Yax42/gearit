@@ -37,9 +37,6 @@ namespace GUI
 		private GladiatoRobot _gladiator;
 		private SpiderBot _spiderBot;
 		private SoundManager _sound;
-		private RobotEditor _robot_editor;
-		private MapEditor _map_editor;
-		private OptionsMenu _Options;
 		private GearitGame _game;
 		private NetworkClientGame _networkGame;
 		private LifeManager _geneticAlorithm;
@@ -77,28 +74,33 @@ namespace GUI
 			_bruteRobot = new BruteRobot();
 			_spiderBot = new SpiderBot();
 			_gladiator = new GladiatoRobot();
-			_robot_editor = new RobotEditor();
-			_map_editor = new MapEditor();
 			_geneticAlorithm = new LifeManager();
 			_game = new GearitGame();
 			_networkGame = new NetworkClientGame();
-			_Options = new OptionsMenu(_ScreenManager);
 			_masterClient = new MasterClient();
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
 			_soloGame = new ScreenPickManager(_game);
 
+			#region StaticInstance
+			new MapEditor();
+			new RobotEditor();
+			new OptionsMenu(_ScreenManager);
+			new ScreenPickRobot();
+			new ScreenPickMap();
+			#endregion
+
 			// Add ItemMenu
 			addMenuItem(_play, _play.GetTitle());
-			addMenuItem(_robot_editor, _robot_editor.GetTitle());
-			addMenuItem(_map_editor, _map_editor.GetTitle());
-			addMenuItem(_Options, _Options.GetTitle());
+			addMenuItem(RobotEditor.Instance, RobotEditor.Instance.GetTitle());
+			addMenuItem(MapEditor.Instance, MapEditor.Instance.GetTitle());
+			addMenuItem(OptionsMenu.Instance , OptionsMenu.Instance.GetTitle());
 			addMenuItem(_quit, _quit.GetTitle());
 
 			//SEPARATOR
-			addMenuItem(_Options, "");
+			addMenuSeparator();
 			addMenuItem(_geneticAlorithm, _geneticAlorithm.GetTitle());
-			addMenuItem(_Options, "");
+			addMenuSeparator();
 			//
 
 			addMenuItem(_game, "Default Game");
@@ -123,6 +125,16 @@ namespace GUI
 			_ScreenManager.RemoveLast();
 			menu_listbox.SelectedItem.Selected = false;
 			//Visible = true;
+		}
+
+		public void addMenuSeparator()
+		{
+			ListBoxItem item = new ListBoxItem();
+			item.Text = "";
+			item.BBCodeEnabled = true;
+			item.Size = new Squid.Point(MENU_WIDTH, 42);
+			item.Style = "itemMainMenu";
+			menu_listbox.Items.Add(item);
 		}
 
 		public void addMenuItem(GameScreen screen, string title)

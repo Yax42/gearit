@@ -28,7 +28,7 @@ namespace GUI
 		private MainMenu _menu;
 
 
-		public ScreenMainMenu()
+		public ScreenMainMenu() : base(false)
 		{
 			DrawPriority = 999;
 		}

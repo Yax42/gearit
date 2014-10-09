@@ -39,7 +39,7 @@ namespace gearit.xna
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public MenuScreen(string menuTitle)
+		public MenuScreen(string menuTitle) : base(false)
 		{
 			_menuTitle = menuTitle;
 

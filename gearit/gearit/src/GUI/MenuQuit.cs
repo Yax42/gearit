@@ -21,6 +21,11 @@ namespace gearit.src.gui
 
 	class MenuQuit : GameScreen, IDemoScreen
 	{
+
+		public MenuQuit() : base(true)
+		{
+		}
+
 		public override void LoadContent()
 		{
 			base.LoadContent();

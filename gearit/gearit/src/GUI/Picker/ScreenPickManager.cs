@@ -20,7 +20,6 @@ namespace gearit.src.GUI.Picker
 		private int State;
 
 		//Action
-		public static ScreenPickManager Instance { set; get; }
 
 		#region IDemoScreen Members
 
@@ -44,26 +43,24 @@ namespace gearit.src.GUI.Picker
 		{
 		}
 
-		public ScreenPickManager(GameScreen nextScreen)
+		public ScreenPickManager(GameScreen nextScreen) : base(true)
 		{
 			NextScreen = nextScreen;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			Instance = this;
 		}
 
 
 		public override void LoadContent()
 		{
 			base.LoadContent();
+			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			State = 0;
 			MenuPickItem.Result = null;
 
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;
-
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -71,7 +68,7 @@ namespace gearit.src.GUI.Picker
 			switch (State)
 			{
 				case 0:
-					ScreenManager.AddScreen(new ScreenPickItem(true));
+					ScreenManager.AddScreen(ScreenPickMap.Instance);
 					State++;
 					break;
 				case 1:
@@ -83,7 +80,7 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 2:
-					ScreenManager.ReplaceLast(new ScreenPickItem(false));
+					ScreenManager.ReplaceLast(ScreenPickRobot.Instance);
 					State++;
 					break;
 				case 3:
@@ -94,8 +91,7 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 4:
-					ScreenManager.RemoveLast();
-					ScreenManager.ReplaceLast(new GearitGame(RobotPath, MapPath));
+					ScreenManager.ResetTo(new GearitGame(RobotPath, MapPath));
 					State++;
 					break;
 				case 5:

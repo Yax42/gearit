@@ -26,7 +26,7 @@ namespace gearit.xna
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public BackgroundScreen()
+		public BackgroundScreen() : base(false)
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.5);
 			TransitionOffTime = TimeSpan.FromSeconds(0.5);

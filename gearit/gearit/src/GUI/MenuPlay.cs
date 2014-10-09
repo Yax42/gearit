@@ -60,6 +60,10 @@ namespace gearit.src.gui
             public int port;
         }
 
+		public MenuPlay() : base(false)
+		{
+		}
+
         public void th_authenticate()
         {
             try

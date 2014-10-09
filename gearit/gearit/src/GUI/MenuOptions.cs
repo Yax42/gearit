@@ -37,6 +37,9 @@ namespace gearit.src.gui
         private FrameRateCounter frc = null;
         DropDownList combo = new DropDownList();
 
+		public MenuOptions() : base(false)
+		{
+		}
 
         public override void LoadContent()
         {

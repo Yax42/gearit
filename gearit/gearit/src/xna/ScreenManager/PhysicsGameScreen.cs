@@ -22,7 +22,7 @@ namespace gearit.xna
 		private FixedMouseJoint _fixedMouseJoint;
 		private Body _userAgent;
 
-		protected PhysicsGameScreen()
+		protected PhysicsGameScreen() : base(true)
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);

@@ -17,7 +17,7 @@ namespace gearit.xna
 		private string _message;
 		private Vector2 _textPosition;
 
-		public MessageBoxScreen(string message)
+		public MessageBoxScreen(string message) : base(false)
 		{
 			_message = message;
 

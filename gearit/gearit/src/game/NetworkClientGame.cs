@@ -69,14 +69,11 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame()
+		public NetworkClientGame() : base(true)
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
-			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
-			PacketManager = new InGamePacketManager(this);
 		}
 
 		public string GetTitle()
@@ -99,6 +96,11 @@ namespace gearit.src.Network
 		public override void LoadContent()
 		{
 			base.LoadContent();
+
+			_Robots = new List<Robot>();
+			_world = new World(new Vector2(0, 9.8f));
+			PacketManager = new InGamePacketManager(this);
+
 			_exiting = false;
 
 			_FrameCount = 0;

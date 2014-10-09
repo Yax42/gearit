@@ -29,7 +29,7 @@ namespace gearit.src.GUI.sample
 
 		#endregion
 
-		public SampleGameScreen()
+		public SampleGameScreen() : base(false)
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);

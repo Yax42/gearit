@@ -79,7 +79,7 @@ namespace gearit.src.GeneticAlgorithm
 		public Camera2D Camera;
 		public DrawGame DrawGame;
 
-		public LifeManager()
+		public LifeManager() : base(true)
 		{
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);

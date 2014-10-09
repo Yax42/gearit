@@ -12,6 +12,8 @@ namespace gearit.src.GUI.OptionsMenu
 {
 	class OptionsMenu : GameScreen, IDemoScreen
 	{
+		public static OptionsMenu Instance { get; private set; }
+
 		ScreenManager _screen;
 		Desktop _desktop;
 		Panel _dialog_co;
@@ -25,8 +27,9 @@ namespace gearit.src.GUI.OptionsMenu
 		const int DIALOG_WIDTH = 400;
 		const int TAB_WIDTH = 156;
 
-		public OptionsMenu(ScreenManager screen)
+		public OptionsMenu(ScreenManager screen) : base(false)
 		{
+			Instance = this;
 			_screen = screen;
 		}
 

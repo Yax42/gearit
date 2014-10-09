@@ -40,7 +40,7 @@ namespace GUI2
 
 		#endregion
 
-		public MainMenu(ScreenManager screenManager)
+		public MainMenu(ScreenManager screenManager) : base(false)
 		{
 
 			_screenManager = screenManager;

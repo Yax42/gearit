@@ -95,7 +95,7 @@ namespace gearit.src.editor.map
 
 		#endregion
 
-		public MapEditor()
+		public MapEditor() : base(false)
 		{
 			ActionFactory.init();
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
@@ -138,6 +138,11 @@ namespace gearit.src.editor.map
 			// TMP
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+		}
+
+		public override void QuickLoadContent()
+		{
+			MenuMapEditor.Instance.setFocus(false);
 		}
 
 		public override void Update(GameTime gameTime)
