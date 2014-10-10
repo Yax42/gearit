@@ -408,14 +408,21 @@ namespace gearit.src.editor.robot
 		private int SaveCount = 0;
 		public void DrawStatics()
 		{
+			const int cycle = 80;
 			DrawGame.Begin();
 			if (ActionSaveRobot.JustSaved)
 			{
 				SaveCount++;
-				int delta = SaveCount % 80;
-				int ray = 5 + (delta > 40 ? 80 - delta : delta);
-				DrawGame.DrawCircle(new Vector2(MenuRobotEditor.MENU_WIDTH + 20, 20), ray / 3, Color.LightGreen, true);
-				if (SaveCount >= 200)
+				for (int i = SaveCount; i >= 0 && i >= SaveCount - 5; i--)
+				{
+					int intDelta = i % cycle;
+					intDelta = 1 + (intDelta > cycle / 2 ? cycle - intDelta : intDelta);
+					float delta = intDelta / (cycle * 1f);
+					float ray = 1 + delta * delta * delta * 15;
+					Vector2 deltaPos = new Vector2((float)Math.Cos(i * 10 * Math.PI / cycle), (float)Math.Sin(i * 10 * Math.PI / cycle)) * 15f * delta;
+					DrawGame.DrawCircle(new Vector2(MenuRobotEditor.MENU_WIDTH + 20, 20) + deltaPos, ray, Color.LightGreen, true);
+				}
+				if (SaveCount >= cycle)
 				{
 					SaveCount = 0;
 					ActionSaveRobot.JustSaved = false;

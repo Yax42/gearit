@@ -17,7 +17,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool run()
 		{
-			MenuRobotEditor.Instance.saveasRobot(true);
+			//MenuRobotEditor.Instance.saveasRobot(true);
 			return false;
 		}
 		public void revert() { }
