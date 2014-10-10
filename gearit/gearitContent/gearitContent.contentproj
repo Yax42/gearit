@@ -41,7 +41,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Nuclex.Fonts.Content.TrueTypeImporter">
-      <HintPath>..\..\..\..\Desktop\xna-4.0-x86\Nuclex.Fonts.Content.TrueTypeImporter.dll</HintPath>
+      <HintPath>.\Nuclex.Fonts.Content.TrueTypeImporter.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
