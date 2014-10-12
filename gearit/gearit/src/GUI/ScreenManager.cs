@@ -7,6 +7,7 @@ using System.Threading;
 using System;
 using Squid;
 using gearit.src.GUI;
+using gearit.src;
 
 namespace gearit.xna
 {
@@ -27,6 +28,7 @@ namespace gearit.xna
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
 		public GraphicsDeviceManager _graphics {get; set;}
+        private BasicEffect _basicEffect;
 
 		private bool _isInitialized;
 		private LineBatch _lineBatch;
@@ -234,6 +236,15 @@ namespace gearit.xna
 			{
 				screen.LoadContent();
 			}
+
+            // Because XNA sucks
+            _basicEffect = new BasicEffect(GraphicsDevice);
+            _basicEffect.VertexColorEnabled = true;
+            _basicEffect.TextureEnabled = false;
+            _basicEffect.Projection = Matrix.CreateOrthographicOffCenter
+               (0, GraphicsDevice.Viewport.Width,     // left, right
+                GraphicsDevice.Viewport.Height, 0,    // bottom, top
+                0, 1); 
 		}
 
 		/// <summary>
@@ -327,6 +338,20 @@ namespace gearit.xna
 
 			_desktop.Draw();
 			ChatBox.getDesktop().Draw();
+
+
+            /*
+            VertexPositionColor[] verts = new VertexPositionColor[6];
+            verts[0] = new VertexPositionColor(new Vector3(100, 100, 0), Color.White);
+            verts[1] = new VertexPositionColor(new Vector3(110, 100, 0), Color.White);
+            verts[2] = new VertexPositionColor(new Vector3(150, 130, 0), Color.White);
+            verts[3] = new VertexPositionColor(new Vector3(150, 130, 0), Color.White);
+            verts[4] = new VertexPositionColor(new Vector3(140, 130, 0), Color.White);
+            verts[5] = new VertexPositionColor(new Vector3(100, 100, 0), Color.White);
+
+            _basicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
+            GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 2);
+             */
 
             stopDrawing();
 		}
