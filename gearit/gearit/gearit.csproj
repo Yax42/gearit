@@ -141,6 +141,8 @@
     <Compile Include="src\GeneticAlgorithm\Genome\SoftwareGenome.cs" />
     <Compile Include="src\GeneticAlgorithm\Individual.cs" />
     <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
+    <Compile Include="src\GUI\Editors\ConditionModifierBox.cs" />
+    <Compile Include="src\GUI\Editors\ConditionNode.cs" />
     <Compile Include="src\GUI\Menus\MenuOptions.cs" />
     <Compile Include="src\GUI\Picker\MenuPickItem.cs" />
     <Compile Include="src\GUI\Menus\MenuQuit.cs" />

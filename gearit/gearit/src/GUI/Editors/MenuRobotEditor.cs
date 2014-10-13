@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using gearit.src.output;
 using gearit.src.editor.robot;
 using System.IO;
+using gearit.src.GUI.Editors;
 
 namespace gearit.src.GUI
 {
@@ -117,6 +118,7 @@ namespace gearit.src.GUI
 		public MenuRobotEditor(ScreenManager ScreenManager)
 		{
 			Instance = this;
+			new ConditionModifierBox();
 
 			#region main
 
