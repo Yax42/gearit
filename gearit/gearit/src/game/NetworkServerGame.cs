@@ -82,9 +82,9 @@ namespace gearit.src.Network
 			SerializerHelper.World = _world;
 
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			_world.Step(0f);
+			_world.Step(1/30f);
 			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
-			_world.Step(0f);
+			_world.Step(1/30f);
 
 			Debug.Assert(Robots != null);
 			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
@@ -138,6 +138,8 @@ namespace gearit.src.Network
 
 			_world.Step(delta * 2);
 
+			foreach (Robot r in Robots)
+				r.Update();
 			foreach (Robot r in Robots)
 			{
 				//NetworkServer.Instance.PushRequestTransform(PacketManager.RobotTransform(r));
