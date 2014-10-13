@@ -15,7 +15,7 @@ namespace gearit.src.script.api.game
     /// <summary>
     /// Lua API for object Chunk (polygon, circle)
     /// </summary>
-	public class GameChunkApi : GameObjectApi
+	class GameChunkApi : GameObjectApi
 	{
 		public MapChunk __Chunk;
 

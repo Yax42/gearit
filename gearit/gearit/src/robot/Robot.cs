@@ -20,10 +20,11 @@ using gearit.src.script;
 using gearit.src.game;
 using gearit.src.editor.robot;
 using System.IO;
+using gearit.src.Network;
 
 namespace gearit.src.robot
 {
-	public class SleepingPack
+	class SleepingPack
 	{
 		public SleepingPack()
 		{
@@ -37,7 +38,7 @@ namespace gearit.src.robot
     /// The Robot is the class of the actual character the player will create and play with.
     /// </summary>
 	[Serializable()]
-	public class Robot : ISerializable
+	class Robot : ISerializable
 	{
 		private List<Piece> _pieces;
 		public List<Piece> Pieces
@@ -530,16 +531,16 @@ namespace gearit.src.robot
 			return (res);
 		}
 
-		public void InitScript()
+		public void InitScript(NetworkClientGame game = null)
 		{
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile("robot/script/" + Name));
+				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile("robot/script/" + Name), true, game);
 		}
 
 		public void InitScript(string script)
 		{
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, script, false);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, script, false, null);
 		}
 
 		public void StopScript()

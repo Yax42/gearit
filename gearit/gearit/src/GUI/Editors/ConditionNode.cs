@@ -131,7 +131,7 @@ namespace gearit.src.GUI.Editors
 		}
 	}
 
-	public class Action
+	class Action
 	{
 		public RevoluteSpot Spot;
 		public float Value;

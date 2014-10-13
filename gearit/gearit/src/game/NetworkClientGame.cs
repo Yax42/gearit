@@ -24,7 +24,7 @@ namespace gearit.src.Network
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool __exiting;
-		private NetworkClient NetworkClient;
+		public NetworkClient NetworkClient { get; private set; }
 
 		private bool _exiting
 		{
@@ -44,7 +44,7 @@ namespace gearit.src.Network
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 		private Robot EnnemyRobot;
-		private InGamePacketManager PacketManager;
+		public InGamePacketManager PacketManager { get; private set; }
 
 		public Robot MainRobot { get { return Robots[MainRobotId]; } }
 		public int MainRobotId
@@ -156,6 +156,7 @@ namespace gearit.src.Network
 		public void addRobot(Robot robot)
 		{
 			Robots.Add(robot);
+			_world.Step(0);
 			robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 
@@ -163,7 +164,7 @@ namespace gearit.src.Network
 		{
 			MainRobotId = v;
 			_camera.TrackingBody = MainRobot.Heart;
-			MainRobot.InitScript();
+			MainRobot.InitScript(this);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -181,8 +182,8 @@ namespace gearit.src.Network
 			_world.Step(0);
 
 
-			for (int i = 0; i < MainRobot.Spots.Count; i++)
-				NetworkClient.PushRequest(PacketManager.MotorForce(i));
+			//for (int i = 0; i < MainRobot.Spots.Count; i++)
+			//	NetworkClient.PushRequest(PacketManager.MotorForce(i));
 			NetworkClient.SendRequests();
 
 			NetworkClient.ApplyRequests();

@@ -7,7 +7,7 @@ using gearit.src.robot;
 
 namespace gearit.src.game
 {
-	public interface IGearitGame
+	interface IGearitGame
 	{
 		float Time { get; }
 		int FrameCount { get; }

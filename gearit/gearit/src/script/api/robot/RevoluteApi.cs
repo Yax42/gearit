@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.script
 {
-	public class RevoluteApi
+	class RevoluteApi
 	{
 		internal RevoluteSpot _spot;
 
@@ -32,6 +32,8 @@ namespace gearit.src.script
 				else if (value < -1)
 					value = -1;
 				_spot.Force = value;
+				if (RobotLuaScript.IsNetwork)
+					RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, value));
 			}
 		}
 
@@ -40,7 +42,12 @@ namespace gearit.src.script
 		public bool Frozen
 		{
 			get { return _spot.Frozen; }
-			set { _spot.Frozen = value; }
+			set
+			{
+				_spot.Frozen = value;
+				if (RobotLuaScript.IsNetwork)
+					RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, value));
+			}
 		}
 
 		public bool HitMax
@@ -55,6 +62,8 @@ namespace gearit.src.script
 
 		public void AddLimitsCycle(int count)
 		{
+			if (RobotLuaScript.IsNetwork)
+				RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, count));
 			_spot.AddLimitsCycle(count);
 		}
 

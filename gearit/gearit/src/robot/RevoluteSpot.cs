@@ -19,7 +19,7 @@ namespace gearit.src.robot
     /// <summary>
     /// Every Pieces of are linked to each other with a RevoluteSpot
     /// </summary>
-	public class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
+	class RevoluteSpot : RevoluteJoint, ISpot, ISerializable
 	{
 		private static float _spotSize = 0.05f;
 
@@ -27,9 +27,10 @@ namespace gearit.src.robot
 		static private Texture2D _tex;
 		private Joint _joint;
 		private CommonSpot _common;
-		private Robot Robot;
+		public Robot Robot { get; private set; }
 		public Joint Joint { get { return _joint; } }
 		public float VirtualLimitBegin;
+		public int Id { get { return Robot.Spots.LastIndexOf(this); } }
 
 		public RevoluteSpot(Robot robot, Piece p1, Piece p2) :
 			this(robot, p1, p2, Vector2.Zero, Vector2.Zero)

@@ -18,7 +18,7 @@ namespace gearit.src.robot
     /// Heart is the main Piece of Robot
     /// </summary>
 	[Serializable()]
-	public class Heart : Piece, ISerializable
+	class Heart : Piece, ISerializable
 	{
         private float MIN_SIZE_AREA = 3f;
         private float MAX_SIZE_AREA = 20f;

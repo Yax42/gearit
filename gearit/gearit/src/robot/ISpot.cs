@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace gearit.src.robot
 {
-	public interface ISpot : ISerializable
+	interface ISpot : ISerializable
 	{
 		Joint Joint { get; }
 

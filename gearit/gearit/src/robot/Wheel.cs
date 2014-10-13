@@ -15,7 +15,7 @@ namespace gearit.src.robot
     /// Wheel is one of the three kind of Piece
     /// </summary>
 	[Serializable()]
-	public class Wheel : Piece, ISerializable
+	class Wheel : Piece, ISerializable
 	{
         float SIZE_MIN = 0.1f;
         float SIZE_MAX = 20;

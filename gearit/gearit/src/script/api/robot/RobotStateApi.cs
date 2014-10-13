@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace gearit.src.script
 {
-	public class RobotStateApi
+	class RobotStateApi
 	{
 		private Robot _robot;
 		public RobotStateApi(Robot robot)

@@ -16,7 +16,7 @@ namespace gearit.src.robot
     /// <summary>
     /// Rod is one of the three kind of Piece
     /// </summary>
-	public class Rod : Piece, ISerializable
+	class Rod : Piece, ISerializable
 	{
         float SIZE_MIN = 0.1f;
         float SIZE_MAX = 20;

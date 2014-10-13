@@ -90,11 +90,22 @@ namespace gearit.src.Network
 			public Sweep Sweep;
 		}
 
-		private struct Packet_MotorForce // size 8
+
+		public enum MotorType
+		{
+			Frozen,
+			Force,
+			AddLimit,
+		};
+
+		private struct Packet_Motor // size 8
 		{
 			public byte RobotId;
 			public ushort MotorId;
+			public byte Type;
 			public float Force;
+			public bool Frozen;
+			public short NbCycle;
 		}
 
 		private struct Packet_Message
@@ -254,17 +265,45 @@ namespace gearit.src.Network
 			return PacketToRawData(res, CommandId.ObjectTransform);
 		}
 
-
 		public byte[] MotorForce(int motorId)
 		{
 			Robot r = Game.Robots[Game.MainRobotId];
 			Debug.Assert(motorId < r.Spots.Count);
-			Packet_MotorForce res = new Packet_MotorForce();
+			Packet_Motor res = new Packet_Motor();
+			res.Type = (byte)MotorType.Force;
 			res.MotorId = (ushort)motorId;
 			res.Force = r.Spots[motorId].Force;
 			res.RobotId = (byte)Game.MainRobotId;
 			return PacketToRawData(res, CommandId.MotorForce);
 		}
+
+		public byte[] Motor(RevoluteSpot spot, float force)
+		{
+			return Motor(spot, MotorType.Force, false, 0, force);
+		}
+
+		public byte[] Motor(RevoluteSpot spot, int cycle)
+		{
+			return Motor(spot, MotorType.AddLimit, false, cycle, 0);
+		}
+
+		public byte[] Motor(RevoluteSpot spot, bool frozen)
+		{
+			return Motor(spot, MotorType.Frozen, frozen, 0, 0);
+		}
+
+		public byte[] Motor(RevoluteSpot spot, MotorType type, bool frozen, int cycle, float force)
+		{
+			Packet_Motor res = new Packet_Motor();
+			res.MotorId = (ushort) spot.Id;
+			res.Frozen = frozen;
+			res.Force = force;
+			res.Type = (byte)type;
+			res.NbCycle = (short)cycle;
+			res.RobotId = (byte)Game.MainRobotId;
+			return PacketToRawData(res, CommandId.MotorForce);
+		}
+
 #endregion
 
 //----------------------------------------------------------------------------
@@ -293,7 +332,7 @@ namespace gearit.src.Network
 					ApplyPacket(RawDataToPacket<Packet_GameCommand>());
 					break;
 				case (byte)CommandId.MotorForce:
-					ApplyPacket(RawDataToPacket<Packet_MotorForce>());
+					ApplyPacket(RawDataToPacket<Packet_Motor>());
 					break;
 				case (byte)CommandId.RobotCommand:
 					ApplyPacket(RawDataToPacket<Packet_RobotCommand>());
@@ -437,7 +476,7 @@ namespace gearit.src.Network
 		}
 
 
-		private void ApplyPacket(Packet_MotorForce packet)
+		private void ApplyPacket(Packet_Motor packet)
 		{
 			Debug.Assert(Game.Robots.Count > packet.RobotId);
 			if (Game.Robots.Count > packet.RobotId)
@@ -447,7 +486,18 @@ namespace gearit.src.Network
 				Debug.Assert(!r.Extracted);
 				if (!r.Extracted && r.Spots.Count > packet.MotorId)
 				{
-					r.Spots[packet.MotorId].Force = packet.Force;
+					switch (packet.Type)
+					{
+						case (byte) MotorType.Force:
+							r.Spots[packet.MotorId].Force = packet.Force;
+							break;
+						case (byte) MotorType.Frozen:
+							r.Spots[packet.MotorId].Frozen = packet.Frozen;
+							break;
+						case (byte) MotorType.AddLimit:
+							r.Spots[packet.MotorId].AddLimitsCycle(packet.NbCycle);
+							break;
+					}
 				}
 			}
 		}

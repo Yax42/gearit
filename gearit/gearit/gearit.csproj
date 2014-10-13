@@ -321,7 +321,6 @@
     <Compile Include="src\GUI\sample\SampleMenu.cs" />
     <Compile Include="src\map\Artefact.cs" />
     <Compile Include="src\map\Trigger.cs" />
-    <Compile Include="src\Network\MasterClient.cs" />
     <Compile Include="src\Network\MenuMasterClient.cs" />
     <Compile Include="src\GUI\Tools\MessageBoxSave.cs" />
     <Compile Include="src\GUI\Tools\MessageBoxLoad.cs" />
@@ -374,10 +373,8 @@
     <Compile Include="src\robot\Rod.cs" />
     <Compile Include="src\script\GameLuaScript.cs" />
     <Compile Include="src\script\LuaScript.cs" />
-    <Compile Include="src\Network\InGameClient.cs" />
     <Compile Include="src\server\Ftpclient.cs" />
     <Compile Include="src\server\FtpState.cs" />
-    <Compile Include="src\Network\InGameServer.cs" />
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\FileManager.cs" />

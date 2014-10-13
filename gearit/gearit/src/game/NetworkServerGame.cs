@@ -104,9 +104,9 @@ namespace gearit.src.Network
 
 		public void addRobot(Robot robot)
 		{
-
 			robot.Id = Robots.Count;
 			Robots.Add(robot);
+			_world.Step(0f);
 			robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 

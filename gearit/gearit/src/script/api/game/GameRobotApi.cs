@@ -15,7 +15,7 @@ namespace gearit.src.script.api.game
     /// <summary>
     /// Lua api for Robot in a game
     /// </summary>
-	public class GameRobotApi : GameObjectApi
+	class GameRobotApi : GameObjectApi
 	{
 		public Robot __Robot;
 		private Dictionary<string, Score.VictoryState> _stateDictionnary;
