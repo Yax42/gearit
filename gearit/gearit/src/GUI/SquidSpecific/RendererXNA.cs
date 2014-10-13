@@ -73,6 +73,7 @@ namespace SquidXNA
 
 			FontTypes.Add(Squid.Font.Default, new FontDetail ("Arial10", 8, true));
 			FontTypes.Add("Arial14", new FontDetail ("Arial14", 14, true));
+			FontTypes.Add("Title", new FontDetail ("Title", 20, false));
 
 			KeyboardLayout = GetKeyboardLayout(0);
 			KeyStates = new byte[0x100];

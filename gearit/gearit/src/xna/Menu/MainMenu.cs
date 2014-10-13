@@ -6,6 +6,7 @@ using gearit.src.editor.map;
 using gearit.src.game;
 using gearit.xna;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GUI2
 {
@@ -99,6 +100,7 @@ namespace GUI2
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+
 		}
 	}
 }
