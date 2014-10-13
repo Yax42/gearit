@@ -43,12 +43,12 @@ namespace GUI
 		private MyGame _Gearit;
 		private BruteRobot _bruteRobot;
 		private GladiatoRobot _gladiator;
+
 		private SpiderBot _spiderBot;
 		private SoundManager _sound;
 		private GearitGame _game;
 		private NetworkClientGame _networkGame;
 		private LifeManager _geneticAlorithm;
-		private MasterClient _masterClient;
 		private MenuPlay _play;
 		private MenuQuit _quit;
 		private ScreenPickManager _soloGame;
@@ -104,7 +104,6 @@ namespace GUI
 			_geneticAlorithm = new LifeManager();
 			_game = new GearitGame();
 			_networkGame = new NetworkClientGame();
-			_masterClient = new MasterClient();
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
 			_soloGame = new ScreenPickManager(_game);
@@ -133,7 +132,6 @@ namespace GUI
 			addMenuItem(_game, "Default Game");
 			addMenuItem(_networkGame, "Network Game");
 			addMenuItem(_bruteRobot, "Brute Game");
-			addMenuItem(_masterClient, _masterClient.GetTitle());
 			addMenuItem(_soloGame, "Solo");
 
 			// ToRemove - Popup robot editor
