@@ -35,6 +35,7 @@ namespace gearit.src.GUI
 			combo.Listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
 			combo.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
 			combo.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
+			combo.DropdownSize = new Point(200, 200);
 
 			// list of files in robot folder
 			DirectoryInfo d = new DirectoryInfo(folder);
