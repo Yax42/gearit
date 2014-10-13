@@ -15,6 +15,8 @@ using gearit.src.GeneticAlgorithm;
 using gearit.src.Network;
 using gearit.src.GUI.OptionsMenu;
 using gearit.src.GUI.Picker;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace GUI
 {
@@ -26,9 +28,15 @@ namespace GUI
 		private ScreenManager _ScreenManager;
 		
 		// Properties
-		static public int MENU_WIDTH = 200;
+		static public int MENU_WIDTH = 300;
+		static public int MENU_LIST_WIDTH = 200;
+		static public int HEIGHT_TITLE = 35;
 
 		// Gui
+		private Panel main_menu;
+		private Panel list_container;
+		private TextBox tb_title;
+		private Desktop dk_listbox;
 		private ListBox menu_listbox;
 
 		// List of item menu
@@ -54,21 +62,40 @@ namespace GUI
 			Position = new Squid.Point(0, 0);
 			Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
 
-			// MainMenu
+			// MainMenu Container
+			main_menu = new Panel();
+			main_menu.Position = new Squid.Point(0, 0);
+			main_menu.Size = new Squid.Point(MENU_WIDTH, _ScreenManager.Height);
+			main_menu.Style = "mainMenu";
+			main_menu.Parent = this;
+
+			// MainMenu List Container
+			list_container = new Panel();
+			list_container.Position = new Squid.Point(MENU_WIDTH - MENU_LIST_WIDTH, 0);
+			list_container.Size = new Squid.Point(MENU_LIST_WIDTH, (int)(_ScreenManager.Height / 1.5f));
+			list_container.Style = "mainMenuListContainer";
+			main_menu.Content.Controls.Add(list_container);
+
+			// Private desktop
+			dk_listbox = new Desktop();
+			dk_listbox.Position = list_container.Position;
+			dk_listbox.Size = list_container.Size;
+
+			// MainMenu List
 			menu_listbox = new ListBox();
-			menu_listbox.Position = new Point(0, 0);
-			menu_listbox.Size = new Point(MENU_WIDTH, _ScreenManager.Height);
-			menu_listbox.Scrollbar.Size = new Squid.Point(14, 10);
-			menu_listbox.Scrollbar.Slider.Style = "vscrollTrack";
-			menu_listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
-			menu_listbox.Scrollbar.ButtonUp.Style = "vscrollUp";
-			menu_listbox.Scrollbar.ButtonUp.Size = new Squid.Point(10, 20);
-			menu_listbox.Scrollbar.ButtonDown.Style = "vscrollUp";
-			menu_listbox.Scrollbar.ButtonDown.Size = new Squid.Point(10, 20);
-			menu_listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
-			menu_listbox.Multiselect = false;
-			menu_listbox.Parent = this;
-			menu_listbox.Style = "mainMenu";
+			menu_listbox.Position = new Squid.Point(0, HEIGHT_TITLE * 2);
+			menu_listbox.Size = new Squid.Point(MENU_LIST_WIDTH, list_container.Size.y - HEIGHT_TITLE * 2);
+			menu_listbox.Style = "mainMenuList";
+			menu_listbox.Parent = dk_listbox;
+
+			// Title
+			tb_title = new TextBox();
+			tb_title.Position = new Squid.Point(0, 0);
+			tb_title.Size = new Squid.Point(MENU_LIST_WIDTH, HEIGHT_TITLE);
+			tb_title.Style = "titleMainMenu";
+			tb_title.Text = "GEARIT";
+			tb_title.Parent = dk_listbox;
+
 
 			_Gearit = new MyGame();
 			_bruteRobot = new BruteRobot();
@@ -151,6 +178,53 @@ namespace GUI
 			{
 				_ScreenManager.ResetTo(screen);
 			};
+		}
+
+		protected override void DrawCustom()
+		{
+			base.DrawCustom();
+
+			// Draw  stripe
+            ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
+			drawStripes(8, 0, (int) (MainMenu.MENU_WIDTH * 1.5f), HEIGHT_TITLE, Color.White);
+		}
+
+		private int BASE_STRIP_WIDTH = 7;
+		private int BASE_STRIP_HEIGHT = 35;
+		private int BASE_STRIP_SPACE = 35;
+		private int drawStripes(int x, int y, int width, int height, Color color)
+		{
+			BASE_STRIP_HEIGHT = height;
+			BASE_STRIP_SPACE = BASE_STRIP_HEIGHT;
+			BASE_STRIP_WIDTH = (int) (BASE_STRIP_HEIGHT * 0.2f);
+			return (drawStripes(x, y, (width - (BASE_STRIP_SPACE - BASE_STRIP_WIDTH))/ (BASE_STRIP_WIDTH * 2 + 2), color));
+		}
+
+		private int drawStripes(int x, int y, int number, Color color)
+		{
+            VertexPositionColor[] verts = new VertexPositionColor[number * 6];
+
+			int pos = 0;
+			for (int i = 0; i < number; ++i)
+			{
+				verts[pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				verts[pos + 5] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				x += BASE_STRIP_WIDTH;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				y += BASE_STRIP_HEIGHT;
+				x += BASE_STRIP_SPACE;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				x -= BASE_STRIP_WIDTH;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				y -= BASE_STRIP_HEIGHT;
+				x = x - BASE_STRIP_SPACE + (int) (BASE_STRIP_WIDTH * 2 + 2);
+				pos += 2;
+			}
+
+            ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, number * 2);
+
+			return (number);
 		}
 	}
 }

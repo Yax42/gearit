@@ -76,18 +76,6 @@ namespace gearit.src.GUI.Tools
 
 			#region skinfix
 
-			ControlStyle baseStyle = new ControlStyle();
-			baseStyle.Tiling = TextureMode.Grid;
-			baseStyle.Grid = new Margin(3);
-			baseStyle.Texture = "button_hot.dds";
-			baseStyle.Default.Texture = "button_default.dds";
-			baseStyle.Pressed.Texture = "button_down.dds";
-			baseStyle.SelectedPressed.Texture = "button_down.dds";
-			baseStyle.Focused.Texture = "button_down.dds";
-			baseStyle.SelectedFocused.Texture = "button_down.dds";
-			baseStyle.Selected.Texture = "button_down.dds";
-			baseStyle.SelectedHot.Texture = "button_down.dds";
-
 			ControlStyle messageStyle = new ControlStyle();
 			messageStyle.TextAlign = Alignment.MiddleCenter;
 			messageStyle.Font = "Arial14";
@@ -100,24 +88,21 @@ namespace gearit.src.GUI.Tools
 			textStyleB.TextPadding = new Margin(8, 0, 8, 0);
 			textStyleB.TextAlign = Alignment.MiddleLeft;
 
-			ControlStyle itemStyle = new ControlStyle(baseStyle);
+			ControlStyle itemStyle = new ControlStyle();
 			itemStyle.TextPadding = new Margin(8, 0, 8, 0);
 			itemStyle.TextAlign = Alignment.MiddleLeft;
 
-			ControlStyle buttonStyle = new ControlStyle(baseStyle);
+			ControlStyle buttonStyle = new ControlStyle();
 			buttonStyle.TextPadding = new Margin(0);
 			buttonStyle.TextAlign = Alignment.MiddleCenter;
 
-			ControlStyle tooltipStyle = new ControlStyle(buttonStyle);
+			ControlStyle tooltipStyle = new ControlStyle();
 			tooltipStyle.TextPadding = new Margin(8);
 			tooltipStyle.TextAlign = Alignment.TopLeft;
 
 			ControlStyle inputStyle = new ControlStyle();
-			inputStyle.Texture = "input_default.dds";
-			inputStyle.Hot.Texture = "input_focused.dds";
-			inputStyle.Focused.Texture = "input_focused.dds";
 			inputStyle.TextPadding = new Margin(4);
-			inputStyle.Tiling = TextureMode.Grid;
+			//inputStyle.Tiling = TextureMode.Grid;
 
 			ControlStyle messageBoxStyle = new ControlStyle();
 			messageBoxStyle.TextPadding = new Margin(4);
@@ -127,74 +112,41 @@ namespace gearit.src.GUI.Tools
 			ControlStyle windowStyle = new ControlStyle();
 			windowStyle.Tiling = TextureMode.Grid;
 			windowStyle.Grid = new Margin(9);
-			windowStyle.Texture = "window.dds";
 
 			ControlStyle frameStyle = new ControlStyle();
 			frameStyle.Tiling = TextureMode.Grid;
 			frameStyle.Grid = new Margin(4);
-			frameStyle.Texture = "frame.dds";
 			frameStyle.TextPadding = new Margin(8);
 
 			ControlStyle vscrollTrackStyle = new ControlStyle();
 			vscrollTrackStyle.Tiling = TextureMode.Grid;
 			vscrollTrackStyle.Grid = new Margin(3);
-			vscrollTrackStyle.Texture = "vscroll_track.dds";
 
 			ControlStyle vscrollButtonStyle = new ControlStyle();
 			vscrollButtonStyle.Tiling = TextureMode.Grid;
 			vscrollButtonStyle.Grid = new Margin(3);
-			vscrollButtonStyle.Texture = "vscroll_button.dds";
-			vscrollButtonStyle.Hot.Texture = "vscroll_button_hot.dds";
-			vscrollButtonStyle.Pressed.Texture = "vscroll_button_down.dds";
 
 			ControlStyle vscrollUp = new ControlStyle();
-			vscrollUp.Default.Texture = "vscrollUp_default.dds";
-			vscrollUp.Hot.Texture = "vscrollUp_hot.dds";
-			vscrollUp.Pressed.Texture = "vscrollUp_down.dds";
-			vscrollUp.Focused.Texture = "vscrollUp_hot.dds";
 
 			ControlStyle hscrollTrackStyle = new ControlStyle();
 			hscrollTrackStyle.Tiling = TextureMode.Grid;
 			hscrollTrackStyle.Grid = new Margin(3);
-			hscrollTrackStyle.Texture = "hscroll_track.dds";
 
 			ControlStyle hscrollButtonStyle = new ControlStyle();
 			hscrollButtonStyle.Tiling = TextureMode.Grid;
 			hscrollButtonStyle.Grid = new Margin(3);
-			hscrollButtonStyle.Texture = "hscroll_button.dds";
-			hscrollButtonStyle.Hot.Texture = "hscroll_button_hot.dds";
-			hscrollButtonStyle.Pressed.Texture = "hscroll_button_down.dds";
 
 			ControlStyle hscrollUp = new ControlStyle();
-			hscrollUp.Default.Texture = "hscrollUp_default.dds";
-			hscrollUp.Hot.Texture = "hscrollUp_hot.dds";
-			hscrollUp.Pressed.Texture = "hscrollUp_down.dds";
-			hscrollUp.Focused.Texture = "hscrollUp_hot.dds";
 
 			ControlStyle checkButtonStyle = new ControlStyle();
-			checkButtonStyle.Default.Texture = "checkbox_default.dds";
-			checkButtonStyle.Hot.Texture = "checkbox_hot.dds";
-			checkButtonStyle.Pressed.Texture = "checkbox_down.dds";
-			checkButtonStyle.Checked.Texture = "checkbox_checked.dds";
-			checkButtonStyle.CheckedFocused.Texture = "checkbox_checked_hot.dds";
-			checkButtonStyle.CheckedHot.Texture = "checkbox_checked_hot.dds";
-			checkButtonStyle.CheckedPressed.Texture = "checkbox_down.dds";
 			checkButtonStyle.Default.TextPadding = new Margin(15);
 
 			ControlStyle comboLabelStyle = new ControlStyle();
 			comboLabelStyle.TextPadding = new Margin(10, 0, 0, 0);
-			comboLabelStyle.Default.Texture = "combo_default.dds";
-			comboLabelStyle.Hot.Texture = "combo_hot.dds";
-			comboLabelStyle.Pressed.Texture = "combo_down.dds";
-			comboLabelStyle.Focused.Texture = "combo_hot.dds";
 			comboLabelStyle.Tiling = TextureMode.Grid;
 			comboLabelStyle.Grid = new Margin(3, 0, 0, 0);
 
 			ControlStyle comboButtonStyle = new ControlStyle();
-			comboButtonStyle.Default.Texture = "combo_button_default.dds";
-			comboButtonStyle.Hot.Texture = "combo_button_hot.dds";
-			comboButtonStyle.Pressed.Texture = "combo_button_down.dds";
-			comboButtonStyle.Focused.Texture = "combo_button_hot.dds";
 
 			ControlStyle multilineStyle = new ControlStyle();
 			multilineStyle.TextAlign = Alignment.TopLeft;
@@ -205,6 +157,11 @@ namespace gearit.src.GUI.Tools
 			labelStyle.TextAlign = Alignment.MiddleLeft;
 
 			ControlStyle mainMenuStyle = new ControlStyle();
+			ControlStyle mainMenuListContainerStyle = new ControlStyle();
+			ControlStyle mainMenuListStyle = new ControlStyle();
+			mainMenuListStyle.TextAlign = Alignment.MiddleCenter;
+			ControlStyle titleMainMenuStyle = new ControlStyle();
+			titleMainMenuStyle.Font = "Title";
 
 			ControlStyle itemMainMenuStyle = new ControlStyle();
 			itemMainMenuStyle.TextAlign = Alignment.MiddleCenter;
@@ -255,6 +212,9 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("tooltip", tooltipStyle);
 			skin.Styles.Add("label", labelStyle);
 			skin.Styles.Add("mainMenu", mainMenuStyle);
+			skin.Styles.Add("mainMenuList", mainMenuListStyle);
+			skin.Styles.Add("mainMenuListContainer", mainMenuListContainerStyle);
+			skin.Styles.Add("titleMainMenu", titleMainMenuStyle);
 			skin.Styles.Add("itemMainMenu", itemMainMenuStyle);
 			skin.Styles.Add("itemPickButton", itemPickButtonStyle);
 			skin.Styles.Add("menu", menuStyle);
@@ -293,7 +253,10 @@ namespace gearit.src.GUI.Tools
             style.BackColor = 0;
             style.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
 
-            styles["textbox"].Focused.Tint = ColorInt.RGBA(1, 1, 1, 1);
+            style = styles["textbox"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = ColorInt.RGBA(1, 1, 1, 0.2f);
+			style.Default.BackColor = ColorInt.RGBA(1, 1, 1, 0.15f);
 
 			style = styles["messagebox"];
 			style.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
@@ -305,15 +268,22 @@ namespace gearit.src.GUI.Tools
 			style.Default.BackColor = 0;
 
 			style = styles["mainMenu"];
+			style.BackColor = toInt(info.Primitive);
+
+			style = styles["mainMenuListContainer"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = ColorInt.RGBA(0, 0, 0, 0.6f);
+			style.BackColor = toInt(info.Grayie);
+
+			style = styles["mainMenuList"];
+
+			style = styles["titleMainMenu"];
+			style.TextColor = toInt(info.Primitive);
+			style.TextAlign = Alignment.MiddleCenter;
 
 			style = styles["itemMainMenu"];
-			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = ColorInt.RGBA(1, 1, 1, 0.02f);
+			style.TextColor = toInt(Color.White);
 			style.Default.BackColor = 0;
-			style.Selected.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
-			style.SelectedHot.BackColor = ColorInt.RGBA(1, 1, 1, 0.05f);
+			style.Default.TextColor = toInt(info.Primitive);
 
 			style = styles["menu"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
@@ -349,6 +319,11 @@ namespace gearit.src.GUI.Tools
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
 			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
+		}
+
+		static public int toInt(Color color)
+		{
+			return (ColorInt.RGBA(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f, color.A / 255.0f));
 		}
 	}
 }

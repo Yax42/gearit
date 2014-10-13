@@ -8,6 +8,10 @@ using System;
 using Squid;
 using gearit.src.GUI;
 using gearit.src;
+using gearit.src.editor.map;
+using gearit.src.editor.robot;
+using gearit.src.GUI.OptionsMenu;
+using gearit.src.GUI.Picker;
 
 namespace gearit.xna
 {
@@ -28,7 +32,7 @@ namespace gearit.xna
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
 		public GraphicsDeviceManager _graphics {get; set;}
-        private BasicEffect _basicEffect;
+        public BasicEffect BasicEffect;
 
 		private bool _isInitialized;
 		private LineBatch _lineBatch;
@@ -82,6 +86,15 @@ namespace gearit.xna
             _graphics.SynchronizeWithVerticalRetrace = false;
 			//game.Components.Add(new FrameRateCounter(this));
 			fpsLock();
+
+			#region StaticInstance
+			new MapEditor();
+			new RobotEditor();
+			new OptionsMenu(this);
+			new ScreenPickRobot();
+			new ScreenPickMap();
+			#endregion
+
 		}
 
         public void fpsUnlock()
@@ -238,10 +251,10 @@ namespace gearit.xna
 			}
 
             // Because XNA sucks
-            _basicEffect = new BasicEffect(GraphicsDevice);
-            _basicEffect.VertexColorEnabled = true;
-            _basicEffect.TextureEnabled = false;
-            _basicEffect.Projection = Matrix.CreateOrthographicOffCenter
+            BasicEffect = new BasicEffect(GraphicsDevice);
+            BasicEffect.VertexColorEnabled = true;
+            BasicEffect.TextureEnabled = false;
+            BasicEffect.Projection = Matrix.CreateOrthographicOffCenter
                (0, GraphicsDevice.Viewport.Width,     // left, right
                 GraphicsDevice.Viewport.Height, 0,    // bottom, top
                 0, 1); 
@@ -338,20 +351,6 @@ namespace gearit.xna
 
 			_desktop.Draw();
 			ChatBox.getDesktop().Draw();
-
-
-            /*
-            VertexPositionColor[] verts = new VertexPositionColor[6];
-            verts[0] = new VertexPositionColor(new Vector3(100, 100, 0), Color.White);
-            verts[1] = new VertexPositionColor(new Vector3(110, 100, 0), Color.White);
-            verts[2] = new VertexPositionColor(new Vector3(150, 130, 0), Color.White);
-            verts[3] = new VertexPositionColor(new Vector3(150, 130, 0), Color.White);
-            verts[4] = new VertexPositionColor(new Vector3(140, 130, 0), Color.White);
-            verts[5] = new VertexPositionColor(new Vector3(100, 100, 0), Color.White);
-
-            _basicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
-            GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 2);
-             */
 
             stopDrawing();
 		}
