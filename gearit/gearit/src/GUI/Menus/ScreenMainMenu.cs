@@ -99,12 +99,10 @@ namespace GUI
 
 			// Title
 			tb_title = new Label();
-			tb_title.Position = new Squid.Point(0, HEIGHT_TITLE + 2);
+			tb_title.Position = new Squid.Point(0, HEIGHT_TITLE + 7);
 			tb_title.Size = new Squid.Point(MENU_LIST_WIDTH, HEIGHT_TITLE);
-			tb_title.Text = "GEARIT";
 			tb_title.Style = "titleMainMenu";
 			tb_title.Parent = dk_listbox;
-
 
 			_Gearit = new MyGame();
 			_game = new GearitGame();
@@ -125,10 +123,7 @@ namespace GUI
 
 			addMenuSeparator();
 
-			addMenuItem(_quit, _quit.GetTitle());
-
-			// ToRemove - Popup robot editor
-			//menu_listbox.Items[0].Click(0);
+			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
 			#endregion
 		}
@@ -153,22 +148,94 @@ namespace GUI
 
 			_dk_main_menu.Draw();
 
-			// Draw  stripe title
-            ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
-			drawStripes(8, HEIGHT_TITLE, (int) (ScreenMainMenu.MENU_WIDTH * 1.5f), HEIGHT_TITLE, STRIPE_COLOR);
-			Color color;
+			drawTitleStrip();
 
+			Color color;
+			tb_title.Text = "GEARIT";
 			// Draw stripe listview
 			for (int i = 0; i < menu_listbox.Items.Count; ++i)
 			{
 				ListBoxItem item = menu_listbox.Items[i];
 				if (item.Text == "")
 					continue;
-				color = (item.State > ControlState.Default) ? Theme.CurrentTheme.Primitive: STRIPE_COLOR;
+				if (item.State > ControlState.Default)
+				{
+					tb_title.Text = item.Text;
+					color = Theme.CurrentTheme.Primitive;
+				}
+				else
+					color = STRIPE_COLOR;
 				drawStripes(item.Location.x + 8, item.Location.y + 6, item.Size.x - 8, 25, color);
 			}
 
 			dk_listbox.Draw();
+		}
+
+		public void drawTitleStrip()
+		{
+			// Setup graphics
+			RasterizerState _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
+			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, _rasterizerState);
+            ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
+
+			setBaseStrip(HEIGHT_TITLE);
+			int x = MENU_WIDTH - MENU_LIST_WIDTH - BASE_STRIP_WIDTH / 2 - ((BASE_STRIP_WIDTH * 2 + 1) * 5) - 2;
+			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, HEIGHT_TITLE, MENU_WIDTH - MENU_LIST_WIDTH, HEIGHT_TITLE);
+			drawStripes(x, HEIGHT_TITLE - 1, 6, STRIPE_COLOR);
+			x += ((BASE_STRIP_WIDTH * 2 + 1) * 3) + BASE_STRIP_WIDTH;
+			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
+			drawStripes(x, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, Theme.CurrentTheme.Grayie);
+			int nb = drawStripes(x + 1, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, Theme.CurrentTheme.Grayie);
+			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(MENU_WIDTH - MENU_LIST_WIDTH, HEIGHT_TITLE, MENU_LIST_WIDTH, HEIGHT_TITLE);
+			drawStripes(x + 1, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, STRIPE_COLOR);
+			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
+			x += nb * (BASE_STRIP_WIDTH * 2 + 1);
+			drawStripes(x, HEIGHT_TITLE - 1, 8, Theme.CurrentTheme.Primitive);
+
+			ScreenManager.Instance.SpriteBatch.End();
+		}
+
+		public void setBaseStrip(int height)
+		{
+			BASE_STRIP_HEIGHT = height;
+			BASE_STRIP_SPACE = BASE_STRIP_HEIGHT;
+			BASE_STRIP_WIDTH = (int) (BASE_STRIP_HEIGHT * 0.2);
+		}
+
+		private int BASE_STRIP_WIDTH = 7;
+		private int BASE_STRIP_HEIGHT = 35;
+		private int BASE_STRIP_SPACE = 35;
+		private int drawStripes(int x, int y, int width, int height, Color color)
+		{
+			setBaseStrip(height);
+			return (drawStripes(x, y, (width - (BASE_STRIP_SPACE - BASE_STRIP_WIDTH))/ (BASE_STRIP_WIDTH * 2 + 1), color));
+		}
+
+		private int drawStripes(int x, int y, int number, Color color)
+		{
+            VertexPositionColor[] verts = new VertexPositionColor[number * 6];
+
+			int pos = 0;
+			for (int i = 0; i < number; ++i)
+			{
+				verts[pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				verts[pos + 5] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				x += BASE_STRIP_WIDTH;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				y += BASE_STRIP_HEIGHT;
+				x += BASE_STRIP_SPACE;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				x -= BASE_STRIP_WIDTH;
+				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
+				y -= BASE_STRIP_HEIGHT;
+				x = x - BASE_STRIP_SPACE + (int) (BASE_STRIP_WIDTH * 2 + 1);
+				pos += 2;
+			}
+
+            ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, number * 2);
+
+			return (number);
 		}
 
 		public void goBack()
@@ -206,44 +273,6 @@ namespace GUI
 			{
 				ScreenManager.ResetTo(screen);
 			};
-		}
-
-		private int BASE_STRIP_WIDTH = 7;
-		private int BASE_STRIP_HEIGHT = 35;
-		private int BASE_STRIP_SPACE = 35;
-		private int drawStripes(int x, int y, int width, int height, Color color)
-		{
-			BASE_STRIP_HEIGHT = height;
-			BASE_STRIP_SPACE = BASE_STRIP_HEIGHT;
-			BASE_STRIP_WIDTH = (int) (BASE_STRIP_HEIGHT * 0.2f);
-			return (drawStripes(x, y, (width - (BASE_STRIP_SPACE - BASE_STRIP_WIDTH))/ (BASE_STRIP_WIDTH * 2 + 2), color));
-		}
-
-		private int drawStripes(int x, int y, int number, Color color)
-		{
-            VertexPositionColor[] verts = new VertexPositionColor[number * 6];
-
-			int pos = 0;
-			for (int i = 0; i < number; ++i)
-			{
-				verts[pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				verts[pos + 5] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				x += BASE_STRIP_WIDTH;
-				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				y += BASE_STRIP_HEIGHT;
-				x += BASE_STRIP_SPACE;
-				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				x -= BASE_STRIP_WIDTH;
-				verts[++pos] = new VertexPositionColor(new Vector3(x, y, 0), color);
-				y -= BASE_STRIP_HEIGHT;
-				x = x - BASE_STRIP_SPACE + (int) (BASE_STRIP_WIDTH * 2 + 2);
-				pos += 2;
-			}
-
-            ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, number * 2);
-
-			return (number);
 		}
 	}
 }

@@ -71,8 +71,8 @@ namespace SquidXNA
 			BlankTexture = new Texture2D(Game.GraphicsDevice, 1, 1);
 			BlankTexture.SetData<Color>(new Color[] { new Color(255, 255, 255, 255) });
 
-			FontTypes.Add(Squid.Font.Default, new FontDetail ("Arial10", 8, true));
-			FontTypes.Add("Arial14", new FontDetail ("Arial14", 14, true));
+			FontTypes.Add(Squid.Font.Default, new FontDetail ("Normal", 8, true));
+			FontTypes.Add("SubTitle", new FontDetail ("Subtitle", 14, true));
 			FontTypes.Add("Title", new FontDetail ("Title", 20, false));
 
 			KeyboardLayout = GetKeyboardLayout(0);
@@ -137,7 +137,7 @@ namespace SquidXNA
 
 			FontDetail type = FontTypes[name];
 
-			SpriteFont font = Game.Content.Load<SpriteFont>("GUI/" + type.Name);
+			SpriteFont font = Game.Content.Load<SpriteFont>("GUI/Fonts/" + type.Name);
 			FontIndex++;
 
 			FontLookup.Add(name, FontIndex);

@@ -99,7 +99,7 @@ namespace gearit.src.editor.robot
 
 		public string GetTitle()
 		{
-			return "Robot Editor";
+			return "Robot";
 		}
 
 		public string GetDetails()

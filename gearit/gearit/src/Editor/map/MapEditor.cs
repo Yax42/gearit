@@ -85,7 +85,7 @@ namespace gearit.src.editor.map
 
 		public string GetTitle()
 		{
-			return "Map Editor";
+			return "Map";
 		}
 
 		public string GetDetails()
