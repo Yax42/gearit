@@ -21,6 +21,7 @@ using gearit.src.game;
 using gearit.src.editor.robot;
 using System.IO;
 using gearit.src.Network;
+using gearit.src.utility;
 
 namespace gearit.src.robot
 {
@@ -38,7 +39,7 @@ namespace gearit.src.robot
     /// The Robot is the class of the actual character the player will create and play with.
     /// </summary>
 	[Serializable()]
-	class Robot : ISerializable
+	class Robot : GI_File, ISerializable
 	{
 		private List<Piece> _pieces;
 		public List<Piece> Pieces
@@ -96,7 +97,7 @@ namespace gearit.src.robot
 
 		public bool IsInEditor = false;
 
-		public Robot(World world, bool isInEditor = false)
+		public Robot(World world, bool isInEditor = false) : base("data/robot/NewRobot.gir")
 		{
 			IsInEditor = isInEditor;
 			_world = world;
@@ -117,7 +118,7 @@ namespace gearit.src.robot
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
-			Name = Path.GetFileNameWithoutExtension(SerializerHelper.CurrentPath);// (string)info.GetValue("Name", typeof(string));
+			FullPath = SerializerHelper.CurrentPath;
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
 			this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
 			//foreach (Piece p in _pieces)
@@ -534,7 +535,7 @@ namespace gearit.src.robot
 		public void InitScript(NetworkClientGame game = null)
 		{
 			if (_script == null)
-				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaManager.LuaFile("robot/script/" + Name), true, game);
+				_script = new RobotLuaScript(GetSpotApi(), _Api, LuaFullPath, true, game);
 		}
 
 		public void InitScript(string script)
@@ -555,7 +556,7 @@ namespace gearit.src.robot
 		public int revCount() { return (_revoluteCounter++); }
 
 		// Filename for robot & lua
-		public string Name { get; set; }
+		public string Name { get { return FileNameWithoutExtension; } set { FileNameWithoutExtension = value; } }
 
 		public bool IsValid()
 		{

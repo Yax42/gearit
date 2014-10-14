@@ -39,10 +39,14 @@ namespace gearit.src.editor.robot.action
 		{
 			if (!Serializer.SerializeItem(name, RobotEditor.Instance.Robot))
 				RobotEditor.Instance.resetNamePath();
-			else if (MustExit)
+			else
 			{
-				MustExit = false;
-				ScreenMainMenu.GoBack = true;
+				RobotEditor.Instance.Robot.FullPath = name;
+				if (MustExit)
+				{
+					MustExit = false;
+					ScreenMainMenu.GoBack = true;
+				}
 			}
 
 			#region Lua

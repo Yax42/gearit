@@ -29,7 +29,7 @@ namespace gearit.src.editor.map.action
 		{
 			Debug.Assert(MapEditor.Instance.NamePath != "");
 			MapEditor.Instance.Map.Name = MapEditor.Instance.NamePath;
-			if (!Serializer.SerializeItem("map/" + MapEditor.Instance.NamePath + ".gim", MapEditor.Instance.Map))
+			if (!Serializer.SerializeItem(MapEditor.Instance.NamePath, MapEditor.Instance.Map))
 				MapEditor.Instance.resetNamePath();
 			else if (MustExit)
 			{

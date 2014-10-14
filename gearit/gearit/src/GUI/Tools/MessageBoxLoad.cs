@@ -66,7 +66,7 @@ namespace gearit.src.GUI
 			_msg.GetControl(DialogResult.OK.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
 			{
 				_msg.Close();
-				cbLoad(combo.SelectedItem.Text);
+				cbLoad(folder + combo.SelectedItem.Text + extension);
 			};
 			_cbCancel = delegate()
 			{

@@ -125,7 +125,7 @@ namespace gearit.src.Network
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("map/script/default"));
+			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
 
 			NetworkClient = new NetworkClient(PacketManager);
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);

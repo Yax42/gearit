@@ -169,7 +169,7 @@ namespace gearit.src.GUI
 			*/
 			label_name = new Label();
 			lb = label_name;
-			lb.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
+			updateButtonRobotName();
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
@@ -785,9 +785,9 @@ namespace gearit.src.GUI
 			RobotEditor.Instance.doAction(ActionTypes.LOAD_ROBOT);
 		}
 
-		public void updateButtonMapName()
+		public void updateButtonRobotName()
 		{
-			label_name.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
+			label_name.Text = "~ " + RobotEditor.Instance.Robot.Name + " ~";
 		}
 		//-----------------------------------------------------------
 

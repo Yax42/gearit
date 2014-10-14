@@ -377,6 +377,7 @@
     <Compile Include="src\test\GearIt.cs" />
     <Compile Include="src\test\GladiatoRobot.cs" />
     <Compile Include="src\utility\FileManager.cs" />
+    <Compile Include="src\utility\GI_File.cs" />
     <Compile Include="src\utility\ICamera.cs" />
     <Compile Include="src\utility\Input.cs" />
     <Compile Include="src\utility\Menu\InputMenuItem.cs" />
