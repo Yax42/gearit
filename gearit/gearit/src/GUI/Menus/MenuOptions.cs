@@ -48,8 +48,8 @@ namespace gearit.src.gui
             frc = new FrameRateCounter(ScreenManager);
             VisibleMenu = true;
             _desktop = new Desktop();
-            _desktop.Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
-            _desktop.Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
+            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
+            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
 
            
             combo.Size = new Squid.Point(158, 100 / 2);
@@ -71,7 +71,7 @@ namespace gearit.src.gui
             combo.Parent = _desktop;
             combo.Opened += delegate(Control sender, SquidEventArgs args)
             {
-                combo.Dropdown.Position = new Squid.Point(combo.Dropdown.Position.x - MainMenu.MENU_WIDTH, combo.Dropdown.Position.y);
+                combo.Dropdown.Position = new Squid.Point(combo.Dropdown.Position.x - ScreenMainMenu.MENU_WIDTH, combo.Dropdown.Position.y);
             };
 
             Console.WriteLine("One one one");

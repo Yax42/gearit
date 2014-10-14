@@ -335,7 +335,6 @@
     <Compile Include="src\editor\robot\action\ActionUndo.cs" />
     <Compile Include="src\GUI\SquidSpecific\InputManager.cs" />
     <Compile Include="src\GUI\SquidSpecific\RendererXNA.cs" />
-    <Compile Include="src\GUI\Menus\MainMenu.cs" />
     <Compile Include="src\GUI\Game.cs" />
     <Compile Include="src\GUI\Menus\ScreenMainMenu.cs" />
     <Compile Include="src\map\CircleChunk.cs" />

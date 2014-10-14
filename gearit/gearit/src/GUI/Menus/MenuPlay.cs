@@ -194,12 +194,12 @@ namespace gearit.src.gui
             VisibleMenu = true;
 
             _desktop = new Desktop();
-            _desktop.Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
-            _desktop.Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
+            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
+            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
 
             dialog_co = new Panel();
             dialog_co.Position = new Squid.Point(ScreenManager.Width / 2 - DIALOG_WIDTH, ScreenManager.Height / 4);
-            dialog_co.Size = new Squid.Point((ScreenManager.Width - MainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 24);
+            dialog_co.Size = new Squid.Point((ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 24);
             dialog_co.Parent = _desktop;
             dialog_co.Style = "menu";
 
@@ -290,9 +290,9 @@ namespace gearit.src.gui
             olv.Columns.Add(new ListView.Column { Text = "Name", Aspect = "Name", Width = 120, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "Players", Aspect = "Players", Width = 120, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "Ping", Aspect = "Ping", Width = 120, MinWidth = 48 });
-            olv.Columns[0].Width = (ScreenManager.Width - MainMenu.MENU_WIDTH) / 3;
-            olv.Columns[1].Width = (ScreenManager.Width - MainMenu.MENU_WIDTH) / 3;
-            olv.Columns[2].Width = (ScreenManager.Width - MainMenu.MENU_WIDTH) / 3;
+            olv.Columns[0].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 3;
+            olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 3;
+            olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 3;
             olv.FullRowSelect = true;
             olv.Parent = tabInternet;
             olv.Style = "button";

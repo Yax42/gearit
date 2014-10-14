@@ -126,7 +126,7 @@ namespace gearit.src.GUI
 
 			_ScreenManager = ScreenManager;
 
-			padding_x = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			padding_x = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
 			// RobotEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
@@ -856,7 +856,7 @@ namespace gearit.src.GUI
 			if (_has_focus)
 				return (true);
 			//else return false;
-			int padding = RobotEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			int padding = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
 
 			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&

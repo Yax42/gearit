@@ -66,7 +66,7 @@ namespace gearit.src.editor.map
 
 			_ScreenManager = ScreenManager;
 
-			padding_x = MapEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			padding_x = MapEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
@@ -428,7 +428,7 @@ namespace gearit.src.editor.map
 			if (_has_focus)
 				return (true);
 
-			int padding = MapEditor.Instance.VisibleMenu ? MainMenu.MENU_WIDTH : 0;
+			int padding = MapEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
 			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
 				background.Position.x + background.Size.x + padding >= Input.position().X &&

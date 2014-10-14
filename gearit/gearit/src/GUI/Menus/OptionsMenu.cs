@@ -42,12 +42,12 @@ namespace gearit.src.GUI.OptionsMenu
 			VisibleMenu = true;
 
 			_desktop = new Desktop();
-			_desktop.Position = new Squid.Point(MainMenu.MENU_WIDTH, 0);
-			_desktop.Size = new Squid.Point(ScreenManager.Width - MainMenu.MENU_WIDTH, ScreenManager.Height);
+			_desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
+			_desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
 
 			_dialog_co = new Panel();
 			_dialog_co.Position = new Squid.Point(ScreenManager.Width / 2 - DIALOG_WIDTH, ScreenManager.Height / 4);
-			_dialog_co.Size = new Squid.Point((ScreenManager.Width - MainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 120);
+			_dialog_co.Size = new Squid.Point((ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 120);
 			_dialog_co.Parent = _desktop;
 			_dialog_co.Style = "menu";
 
@@ -186,7 +186,7 @@ namespace gearit.src.GUI.OptionsMenu
 			dropBox.Listbox.Style = "frame";
             dropBox.Opened += delegate(Control sender, SquidEventArgs args)
             {
-                dropBox.Dropdown.Position = new Squid.Point(dropBox.Dropdown.Position.x - MainMenu.MENU_WIDTH, dropBox.Dropdown.Position.y);
+                dropBox.Dropdown.Position = new Squid.Point(dropBox.Dropdown.Position.x - ScreenMainMenu.MENU_WIDTH, dropBox.Dropdown.Position.y);
             };
 
 			dropBox.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
