@@ -238,14 +238,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\Fonts\Normal.spritefont">
-      <Name>Normal</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>NuclexSpriteFontDescriptionProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="GUI\Cursors\Arrow.png">
       <Name>Arrow</Name>
       <Importer>TextureImporter</Importer>
@@ -293,16 +285,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\Fonts\Subtitle.spritefont">
-      <Name>Subtitle</Name>
+    <Compile Include="GUI\Fonts\Normal.spritefont">
+      <Name>Normal</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>NuclexSpriteFontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\Fonts\Title.spritefont">
-      <SubType>Designer</SubType>
       <Name>Title</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>NuclexSpriteFontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GUI\Fonts\Subtitle.spritefont">
+      <Name>Subtitle</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>NuclexSpriteFontDescriptionProcessor</Processor>
     </Compile>
