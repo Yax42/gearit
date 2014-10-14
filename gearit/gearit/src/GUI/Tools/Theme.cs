@@ -281,7 +281,7 @@ namespace gearit.src.GUI.Tools
 			style.TextAlign = Alignment.MiddleCenter;
 
 			style = styles["itemMainMenu"];
-			style.TextColor = toInt(Color.White);
+			style.TextColor = 0;
 			style.Default.BackColor = 0;
 			style.Default.TextColor = toInt(info.Primitive);
 

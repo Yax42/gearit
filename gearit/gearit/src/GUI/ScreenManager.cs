@@ -339,7 +339,7 @@ namespace gearit.xna
             beginDrawing();
 
 			// Remove if problem with Squid
-			GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Gray);
+			GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.White);
 
 			foreach (GameScreen screen in _screens)
 			{
