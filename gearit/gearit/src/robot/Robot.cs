@@ -553,6 +553,11 @@ namespace gearit.src.robot
 			}
 		}
 
+		override public void Save()
+		{
+			Serializer.SerializeItem(FullPath, this);
+		}
+
 		public int revCount() { return (_revoluteCounter++); }
 
 		// Filename for robot & lua

@@ -28,7 +28,6 @@ namespace gearit.src.editor.map.action
 		public bool run()
 		{
 			Debug.Assert(MapEditor.Instance.NamePath != "");
-			MapEditor.Instance.Map.Name = MapEditor.Instance.NamePath;
 			if (!Serializer.SerializeItem(MapEditor.Instance.NamePath, MapEditor.Instance.Map))
 				MapEditor.Instance.resetNamePath();
 			else if (MustExit)

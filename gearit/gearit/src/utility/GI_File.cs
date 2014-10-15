@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using gearit.src.editor;
+using System.Runtime.Serialization;
 
 namespace gearit.src.utility
 {
-	class GI_File
+	abstract class GI_File
 	{
 		public string RelativePath = "";
 		public string FileNameWithoutExtension = "";
@@ -35,6 +37,9 @@ namespace gearit.src.utility
 			}
 		}
 
+		public GI_File()
+		{}
+
 		public GI_File(string path, string name, string ext)
 		{
 			RelativePath = path;
@@ -47,6 +52,6 @@ namespace gearit.src.utility
 			FullPath = fullPath;
 		}
 
-		public GI_File() { }
+		abstract public void Save();
 	}
 }

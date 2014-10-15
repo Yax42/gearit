@@ -58,6 +58,11 @@ namespace gearit.src.map
 		}
 		//--------- END SERIALISATION
 
+		override public void Save()
+		{
+			Serializer.SerializeItem(FullPath, this);
+		}
+
 		public Trigger GetTrigger(Vector2 p)
 		{
 			foreach (Trigger i in Triggers)

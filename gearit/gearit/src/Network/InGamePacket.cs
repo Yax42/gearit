@@ -11,6 +11,8 @@ using Lidgren.Network;
 using gearit.src.editor.map;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Common;
+using System.IO;
+using gearit.src.utility;
 
 namespace gearit.src.Network
 {
@@ -78,6 +80,7 @@ namespace gearit.src.Network
 		{
 			public byte Type;
 			public ushort Size;
+			public byte RobotId;
 		}
 
 		private struct Packet_RobotCommand // size 2
@@ -276,10 +279,9 @@ namespace gearit.src.Network
 			return PacketToRawData(res, CommandId.ObjectTransform);
 		}
 
-
-		public byte[] Robot(Robot r)
+		public byte[] FileToBytes(GI_File f)
 		{
-			return null;// PacketToRawData(res, CommandId.MotorForce);
+			return File.ReadAllBytes(f.FullPath);	
 		}
 
 		public byte[] MotorForce(int motorId)

@@ -112,6 +112,7 @@ namespace gearit.src.Network
 
                             if (status == NetConnectionStatus.Connected)
                             {
+								AddPeer(msg.SenderConnection);
                                 OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
                                 foreach (NetConnection conn in Peer.Connections)
                                 {
@@ -136,17 +137,11 @@ namespace gearit.src.Network
 
 		public void Server_ManageRequest(NetIncomingMessage msg)
 		{
-			int i;
-			for (i = 0; i < Peer.Connections.Count; i++)
-				if (Peer.Connections[i] == msg.SenderConnection)
-					break;
-			Debug.Assert(i < Peer.Connections.Count);
-			ManageRequest(msg, i);
-
-			int id = 0;
-			if (Peer.Connections[0] == msg.SenderConnection)
-				id = 1;
-			PushRequest(msg.Data, id);
+			ManageRequest(msg);
+			Peer peer = GetPeer(msg);
+			foreach (Peer p in Peers)
+				;// if (p != peer)
+				//	PushRequest(msg.Data, p);
 		}
 
 		protected override byte[] Events
@@ -159,6 +154,10 @@ namespace gearit.src.Network
 			{
 				Game.Events = new byte[0];
 			}
+		}
+
+		private void SendMap()
+		{
 		}
 
 #if false

@@ -87,10 +87,13 @@ namespace gearit.src.Network
                     break;
                 case NetIncomingMessageType.StatusChanged:
                     NetConnectionStatus status = (NetConnectionStatus)im.ReadByte();
-                    if (status == NetConnectionStatus.Connected)
-                        State = EState.Connected;
-                    else
-                        State = EState.Disconnected;
+					if (status == NetConnectionStatus.Connected)
+					{
+						State = EState.Connected;
+						AddPeer(im.SenderConnection);
+					}
+					else
+						State = EState.Disconnected;
                     OutputManager.LogNetwork("CLIENT - Status Changed: " + status + " (" + im.ReadString() + ")");
                     break;
                 case NetIncomingMessageType.Data:
@@ -106,7 +109,7 @@ namespace gearit.src.Network
 
 		public void Client_ManageRequest(NetIncomingMessage msg)
 		{
-			ManageRequest(msg, 0);
+			ManageRequest(msg);
 		}
 
 		protected override byte[] Events { get { return new byte[0]; } set { } }

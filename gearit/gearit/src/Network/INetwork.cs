@@ -11,18 +11,32 @@ namespace gearit.src.Network
     /// <summary>
     /// Abstract class Network for server and client
     /// </summary>
+	class Peer
+	{
+		public int					Id;
+		public byte[]				ToSend;
+		public NetIncomingMessage	YoungestRequest;
+		public NetConnection		Connect;
+		public Peer(int id, NetConnection co)
+		{
+			Id = id;
+			ToSend = BitConverter.GetBytes(0);
+			YoungestRequest = null;
+			co.Tag = this;
+			Connect = co;
+		}
+	}
+
 	abstract class INetwork
 	{
 		protected byte[] TransformToSend;
-		protected byte[][] ToSend;
 		protected int Port;
 		protected string Host;
 
 		public List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
 		private InGamePacketManager PacketManager;
-		protected NetIncomingMessage[] YoungestRequests;
 		protected NetPeer Peer;
-		protected int NumberOfPeers;
+		protected List<Peer> Peers;
 
 		protected bool IsServer = false;
 		private int FrameCount;
@@ -31,11 +45,37 @@ namespace gearit.src.Network
 		{
 			Peer = peer;
 			PacketManager = packetManager;
-			NumberOfPeers = numberOfPeers;
-			ToSend = new byte[NumberOfPeers][];
-			YoungestRequests = new NetIncomingMessage[NumberOfPeers];
+			Peers = new List<Peer>();
 			CleanRequests();
 			FrameCount = 0;
+		}
+		
+		public int FirstUnusedId
+		{
+			get
+			{
+				bool done = false;
+				int res = 0;
+				while (!done)
+				{
+					done = true;
+					foreach (Peer p in Peers)
+					{
+						if (p.Id == res)
+						{
+							done = false;
+							res++;
+							break;
+						}
+					}
+				}
+				return res;
+			}
+		}
+
+		public void AddPeer(NetConnection p)
+		{
+			Peers.Add(new Peer(FirstUnusedId, p));
 		}
 
 		public void CleanRequests()
@@ -43,53 +83,45 @@ namespace gearit.src.Network
 			foreach (NetIncomingMessage request in Requests)
 				Peer.Recycle(request);
 			Requests.Clear();
-			for (int i = 0; i < NumberOfPeers; i++)
-				YoungestRequests[i] = null;
+			foreach (Peer p in Peers)
+				p.YoungestRequest = null;
 		}
 
-		protected void ManageRequest(NetIncomingMessage msg, int idx)
+		protected void ManageRequest(NetIncomingMessage msg)
 		{
+			Peer p = GetPeer(msg);
 			Requests.Add(msg);
-			if (YoungestRequests[idx] == null ||
-				BitConverter.ToInt32(YoungestRequests[idx].Data, 0) < BitConverter.ToInt32(msg.Data, 0))
-				YoungestRequests[idx] = msg;
+			if (p.YoungestRequest == null ||
+				BitConverter.ToInt32(p.YoungestRequest.Data, 0) < BitConverter.ToInt32(msg.Data, 0))
+				p.YoungestRequest = msg;
 		}
 
-		private int UserId(NetIncomingMessage request)
+		public Peer GetPeer(NetIncomingMessage request)
 		{
-			for (int i = 0; i < NumberOfPeers; i++)
-			{
-				if (Peer.Connections[i] == request.SenderConnection)
-					return i;
-			}
-			Debug.Assert(false);
-			return (0);
+			return ((Peer)request.SenderConnection.Tag);
 		}
 
 		private bool IsYoungest(NetIncomingMessage request)
 		{
-			return request == YoungestRequests[UserId(request)];
+			return request == GetPeer(request).YoungestRequest;
 		}
 
 		protected abstract byte[] Events { get; set; }
 
 		public void SendRequests()
 		{
-			for (int i = 0; i < NumberOfPeers; i++)
+			foreach (Peer p in Peers)
 			{
-				if (i >= Peer.Connections.Count)
-					continue;
-				
-				PushRequest(Events, i);
+				PushRequest(Events, p);
 				if (TransformToSend.Count() > 0)
 				{
-					PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), i);
-					PushRequest(TransformToSend, i);
+					PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), p);
+					PushRequest(TransformToSend, p);
 				}
-				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), i);
+				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), p);
 				NetOutgoingMessage om = Peer.CreateMessage();
-				om.Write(ToSend[i]);
-				Peer.SendMessage(om, Peer.Connections[i], NetDeliveryMethod.Unreliable, 0);
+				om.Write(p.ToSend);
+				Peer.SendMessage(om, p.Connect, NetDeliveryMethod.Unreliable, 0);
 			}
 			FrameCount++;
 			ResetToSends();
@@ -99,10 +131,8 @@ namespace gearit.src.Network
 		{
 			TransformToSend = new byte[0];
 			Events = null;
-			for (int i = 0; i < NumberOfPeers; i++)
-			{
-				ToSend[i] = FrameCountByte;
-			}
+			foreach (Peer p in Peers)
+				p.ToSend = FrameCountByte;
 		}
 
 		protected byte[] FrameCountByte
@@ -121,9 +151,11 @@ namespace gearit.src.Network
 			byte[] res = FrameCountByte;
 		}
 
-		public void PushRequest(byte[] data, int userId = 0)
+		public void PushRequest(byte[] data, Peer p = null)
 		{
-			ToSend[userId] = ToSend[userId].Concat(data).ToArray();
+			if (p == null)
+				p = Peers.First();
+			p.ToSend = p.ToSend.Concat(data).ToArray();
 		}
 
 		public void PushRequestTransform(byte[] data)
