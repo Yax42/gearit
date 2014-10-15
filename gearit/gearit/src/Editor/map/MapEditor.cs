@@ -109,8 +109,6 @@ namespace gearit.src.editor.map
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			new MenuMapEditor(ScreenManager);
-			NamePath = "";
 
 			if (_world == null)
 				_world = new World(Vector2.Zero);
@@ -138,6 +136,9 @@ namespace gearit.src.editor.map
 			// TMP
 			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+
+			new MenuMapEditor(ScreenManager);
+			NamePath = "";
 		}
 
 		public override void QuickLoadContent()
@@ -213,17 +214,16 @@ namespace gearit.src.editor.map
 		//---------------------------NAME----------------------------------------
 
 		private string _prevName = "";
-		private string _namePath = "";
 		public string NamePath
 		{
 			get
 			{
-				return _namePath;
+				return _map.FullPath;
 			}
 			set
 			{
-				_prevName = _namePath;
-				_namePath = value;
+				_prevName = _map.FullPath;
+				_map.FullPath = value;
 				MenuMapEditor.Instance.updateButtonMapName();
 			}
 		}

@@ -25,7 +25,7 @@ namespace gearit.src.editor.map.action
 		public bool run()
 		{
 			Debug.Assert(MapEditor.Instance.NamePath != "");
-			Map map = (Map)Serializer.DeserializeItem("map/" + MapEditor.Instance.NamePath + ".gim");
+			Map map = (Map)Serializer.DeserializeItem(MapEditor.Instance.NamePath);
 			if (map == null)
 				MapEditor.Instance.resetNamePath();
 			else

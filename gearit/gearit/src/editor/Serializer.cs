@@ -31,13 +31,11 @@ namespace gearit.src.editor
 		/// </summary>
 		/// <param name="filename">The file to store the object.</param>
 		/// <param name="obj">The object to serialize.</param>
-		public static bool SerializeItem(string filename, ISerializable obj)
+		public static bool SerializeItem(string path, ISerializable obj)
 		{
 			try
 			{
-				if (!filename.StartsWith(_path))
-					filename = _path + filename;
-				FileStream s = new FileStream(filename, FileMode.Create);
+				FileStream s = new FileStream(path, FileMode.Create);
 				_formatter.Serialize(s, obj);
 				s.Close();
 				//OutputManager.LogInfo("Saving - success", filename);
@@ -45,7 +43,7 @@ namespace gearit.src.editor
 			}
 			catch (IOException e)
 			{
-				OutputManager.LogError("Saving - fail", filename);
+				OutputManager.LogError("Saving - fail", path);
 				return false;
 			}
 		}
@@ -59,8 +57,8 @@ namespace gearit.src.editor
 		{
 			try
 			{
-				if (!filename.StartsWith(_path))
-					filename = _path + filename;
+				//if (!filename.StartsWith(_path))
+				//	filename = _path + filename;
 				FileStream s = new FileStream(filename, FileMode.Open);
 				SerializerHelper.CurrentPath = filename;
 				ISerializable obj = (ISerializable)_formatter.Deserialize(s);

@@ -114,11 +114,6 @@ namespace gearit.src.editor.robot
 		{
 			base.LoadContent();
 
-			// Menu
-			new MenuRobotEditor(ScreenManager);
-
-			ActionChooseSet.IsWheel = false;
-
 			// Action
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
@@ -139,7 +134,6 @@ namespace gearit.src.editor.robot
 			_camera.Position = new Vector2(-500f, -100f);
 			//_screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f, ScreenManager.GraphicsDevice.Viewport.Height / 2f);
 
-			NamePath = "";
 			_world.Gravity = new Vector2(0f, 0f);
 			HasCursor = true;
 			HasVirtualStick = true;
@@ -151,6 +145,10 @@ namespace gearit.src.editor.robot
 			Robot = new Robot(_world, true);
 
 			selectHeart();
+
+			// Menu
+			new MenuRobotEditor(ScreenManager);
+			ActionChooseSet.IsWheel = false;
 		}
 
 		public override void QuickLoadContent()
@@ -308,25 +306,24 @@ namespace gearit.src.editor.robot
 		}
 
 		private string _prevName = "";
-		private string _namePath = "";
 		public string NamePath
 		{
 			get
 			{
-				return _namePath;
+				return Robot.FullPath;
 			}
 			set
 			{
-				_prevName = _namePath;
-				_namePath = value;
-				MenuRobotEditor.Instance.updateButtonMapName();
+				_prevName = Robot.FullPath;
+				Robot.FullPath = value;
+				MenuRobotEditor.Instance.updateButtonRobotName();
 			}
 		}
-		public string ActualPath { get { return "data/robot/" + NamePath + ".gir"; } }
+		public string ActualPath { get { return Robot.FullPath; } }
 
 		public void resetNamePath()
 		{
-			_namePath = _prevName;
+			Robot.FullPath = _prevName;
 			_prevName = "";
 		}
 

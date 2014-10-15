@@ -81,17 +81,17 @@ namespace gearit.src.Network
 			//clearRobot();
 			SerializerHelper.World = _world;
 
-			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
 			_world.Step(1/30f);
-			addRobot((Robot)Serializer.DeserializeItem("robot/default.gir"));
+			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
 			_world.Step(1/30f);
 
 			Debug.Assert(Robots != null);
-			_Map = (Map)Serializer.DeserializeItem("map/default.gim");
+			_Map = (Map)Serializer.DeserializeItem("data/map/default.gim");
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 
-			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile("map/script/default"));
+			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;

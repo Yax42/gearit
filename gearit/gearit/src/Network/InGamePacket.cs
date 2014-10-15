@@ -68,6 +68,18 @@ namespace gearit.src.Network
 			public float FloatData;
 		}
 
+		public enum FileType
+		{
+			Robot,
+			Map,
+		};
+
+		private struct Packet_File
+		{
+			public byte Type;
+			public ushort Size;
+		}
+
 		private struct Packet_RobotCommand // size 2
 		{
 			public byte RobotId;
@@ -89,7 +101,6 @@ namespace gearit.src.Network
 			public ushort Id;
 			public Sweep Sweep;
 		}
-
 
 		public enum MotorType
 		{
@@ -263,6 +274,12 @@ namespace gearit.src.Network
 			res.Id = (ushort) id;
 			res.Sweep = b.Sweep;
 			return PacketToRawData(res, CommandId.ObjectTransform);
+		}
+
+
+		public byte[] Robot(Robot r)
+		{
+			return null;// PacketToRawData(res, CommandId.MotorForce);
 		}
 
 		public byte[] MotorForce(int motorId)

@@ -10,6 +10,7 @@ using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using gearit.src.editor.map;
+using gearit.src.utility;
 
 namespace gearit.src.map
 {
@@ -17,7 +18,7 @@ namespace gearit.src.map
 	/// Map contains every information of map that will be played on
     /// </summary>
 	[Serializable()]
-	public class Map : ISerializable
+	class Map : GI_File, ISerializable
 	{
 		private string _name;
 		public List<MapChunk> Chunks;
@@ -45,6 +46,7 @@ namespace gearit.src.map
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
 			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
+			FullPath = SerializerHelper.CurrentPath;
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

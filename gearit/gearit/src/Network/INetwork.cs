@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Lidgren.Network;
 using System.Diagnostics;
+using gearit.src.robot;
 
 namespace gearit.src.Network
 {
@@ -90,6 +91,7 @@ namespace gearit.src.Network
 				om.Write(ToSend[i]);
 				Peer.SendMessage(om, Peer.Connections[i], NetDeliveryMethod.Unreliable, 0);
 			}
+			FrameCount++;
 			ResetToSends();
 		}
 
@@ -99,10 +101,24 @@ namespace gearit.src.Network
 			Events = null;
 			for (int i = 0; i < NumberOfPeers; i++)
 			{
-				ToSend[i] = BitConverter.GetBytes(FrameCount++);
-				if (BitConverter.IsLittleEndian)
-					Array.Reverse(ToSend[i]);
+				ToSend[i] = FrameCountByte;
 			}
+		}
+
+		protected byte[] FrameCountByte
+		{
+			get
+			{
+				byte[] res = BitConverter.GetBytes(FrameCount);
+				if (BitConverter.IsLittleEndian)
+					Array.Reverse(res);
+				return res;
+			}
+		}
+
+		public void Send(Robot r)
+		{
+			byte[] res = FrameCountByte;
 		}
 
 		public void PushRequest(byte[] data, int userId = 0)

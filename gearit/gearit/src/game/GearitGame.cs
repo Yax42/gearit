@@ -105,7 +105,7 @@ namespace gearit.src.game
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, LuaManager.LuaFile(Directory.GetParent(MapPath) + "/script/default"));
+			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
