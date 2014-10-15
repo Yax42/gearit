@@ -90,6 +90,7 @@ namespace gearit.src.GUI
 			{
 				ChatBox.Toggle();
 			};
+			Toggle();
 		}
 
 		static public void Update()

@@ -174,6 +174,10 @@ namespace gearit.src.GUI.Tools
 			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
+			ControlStyle itemMenuSubtitleStyle = new ControlStyle();
+			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
+			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
+
 			ControlStyle itemMenuButtonStyle = new ControlStyle();
 			itemMenuButtonStyle.TextAlign = Alignment.MiddleCenter;
 
@@ -220,6 +224,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("menu", menuStyle);
 			skin.Styles.Add("itemMenu", itemMenuStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
+			skin.Styles.Add("itemMenuSubtitle", itemMenuSubtitleStyle);
 			skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
 			skin.Styles.Add("eventPanel", eventPanelStyle);
 			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
@@ -287,11 +292,15 @@ namespace gearit.src.GUI.Tools
 
 			style = styles["menu"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = ColorInt.RGBA(0, 0, 0, 0.528f);
+			style.BackColor = removeAlpha(toInt(info.Grayie), 100);
 
 			style = styles["itemMenuTitle"];
-			style.BackColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.TextColor = ColorInt.RGBA(0f, 0f, 0f, 1);
+			style.BackColor = toInt(info.Primitive);
+			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
+
+			style = styles["itemMenuSubtitle"];
+			style.BackColor = removeAlpha(toInt(info.Primitive), 150);
+			style.TextColor = toInt(info.Primitive);
 
 			style = styles["itemMenuButton"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
@@ -321,9 +330,14 @@ namespace gearit.src.GUI.Tools
 			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 		}
 
+		static public int removeAlpha(int color, int alpha)
+		{
+			return (color - ColorInt.FromArgb(alpha, 0, 0, 0));
+		}
+
 		static public int toInt(Color color)
 		{
-			return (ColorInt.RGBA(color.R / 255.0f, color.G / 255.0f, color.B / 255.0f, color.A / 255.0f));
+			return (ColorInt.FromArgb(color.A, color.R, color.G, color.B));
 		}
 	}
 }

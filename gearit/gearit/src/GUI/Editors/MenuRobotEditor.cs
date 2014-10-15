@@ -44,6 +44,7 @@ namespace gearit.src.GUI
 		// Tools
 		private ListBox lb_jointure;
 		private Button rb_revolute = new Button();
+		private Label label_title;
 		private Label label_name;
 		private Label label_weight;
 		private Label label_force;
@@ -128,12 +129,12 @@ namespace gearit.src.GUI
 
 			padding_x = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
-			// RobotEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
-			Position = new Squid.Point(padding_x, 0);
+			int padding_y = 152;
+			Position = new Squid.Point(padding_x, padding_y);
 
 			// Full width to get the cursor propagation
-			Size = new Squid.Point(ScreenManager.Width - padding_x, ScreenManager.Height);
+			Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height - padding_y);
 
 			int y = 0;
 
@@ -167,12 +168,22 @@ namespace gearit.src.GUI
 
 			y += lb.Size.y + PADDING;
 			*/
+			label_title = new Label();
+			lb = label_title;
+			lb.Text = "ROBOT EDITOR";
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuTitle";
+			lb.Parent = this;
+
+			y += lb.Size.y + PADDING;
+
 			label_name = new Label();
 			lb = label_name;
 			lb.Text = "~ " + RobotEditor.Instance.NamePath + " ~";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = this;
 
 			y += lb.Size.y + PADDING;
@@ -181,7 +192,7 @@ namespace gearit.src.GUI
 			lb = label_weight;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = this;
 
 			y += lb.Size.y + PADDING;
@@ -190,7 +201,7 @@ namespace gearit.src.GUI
 			lb = label_force;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = this;
 
 			y += lb.Size.y + PADDING;
@@ -268,11 +279,11 @@ namespace gearit.src.GUI
 
 			// Piece section
 			lb = new Label();
-			lb.Text = "Piece data";
+			lb.Text = "PIECE DATA";
 			lb.TextColor = 255;
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = this;
 
 			y += lb.Size.y + PADDING;
@@ -395,7 +406,7 @@ namespace gearit.src.GUI
 			lb.Text = "Spot data";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubTitle";
 			lb.Parent = spot_container;
 
 			y += lb.Size.y + PADDING;
@@ -627,7 +638,7 @@ namespace gearit.src.GUI
 			lb = new Label();
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = this;
 			y += ITEM_HEIGHT / 2 + PADDING;
 
@@ -908,8 +919,8 @@ namespace gearit.src.GUI
 				piece_weight.Text = piece.Weight.ToString();
 			}
 
-			label_weight.Text = "Weight " + RobotEditor.Instance.Robot.Weight.ToString();
-			label_force.Text = "Force " + RobotEditor.Instance.Robot.MaxForce.ToString();
+			label_weight.Text = "WEIGHT " + RobotEditor.Instance.Robot.Weight.ToString();
+			label_force.Text = "FORCE " + RobotEditor.Instance.Robot.MaxForce.ToString();
 			piece_size.Text = piece.getSize().ToString();
 			piece_x.Text = piece.Position.X.ToString();
 			piece_y.Text = piece.Position.Y.ToString();

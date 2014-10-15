@@ -125,6 +125,8 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
+			menu_listbox.Items[1].Click(0);
+
 			#endregion
 		}
 

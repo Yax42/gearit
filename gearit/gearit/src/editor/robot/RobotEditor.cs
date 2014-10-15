@@ -91,6 +91,7 @@ namespace gearit.src.editor.robot
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			_world = null;
+			VisibleMenu = true;
 		}
 
 		public static RobotEditor Instance { set; get; }
