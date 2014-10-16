@@ -259,5 +259,15 @@ namespace gearit.src.editor.map
 			base.Draw(gameTime);
 			MenuMapEditor.Instance.Draw();
 		}
+
+		public override void positionChanged(int x, int y)
+		{
+			MenuMapEditor.Instance.positionChanged(x, y);
+		}
+
+		public override int getMenuWidth()
+		{
+			return (MenuMapEditor.Instance.getMenuWidth());
+		}
 	}
 }

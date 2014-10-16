@@ -91,7 +91,7 @@ namespace gearit.src.editor.robot
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
 			_world = null;
-			VisibleMenu = true;
+			VisibleMenu = false;
 		}
 
 		public static RobotEditor Instance { set; get; }
@@ -149,6 +149,16 @@ namespace gearit.src.editor.robot
 			// Menu
 			new MenuRobotEditor(ScreenManager);
 			ActionChooseSet.IsWheel = false;
+		}
+
+		public override void positionChanged(int x, int y)
+		{
+			MenuRobotEditor.Instance.positionChanged(x, y);
+		}
+
+		public override int getMenuWidth()
+		{
+			return (MenuRobotEditor.Instance.getMenuWidth());
 		}
 
 		public override void QuickLoadContent()

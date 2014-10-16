@@ -54,6 +54,14 @@ namespace gearit.xna
 			HasVirtualStick = false;
 		}
 
+		public virtual void positionChanged(int x, int y)
+		{}
+
+		public virtual int getMenuWidth()
+		{
+			return (0);
+		}
+
 		public bool HasCursor { get; set; }
 
 		public bool HasVirtualStick { get; set; }

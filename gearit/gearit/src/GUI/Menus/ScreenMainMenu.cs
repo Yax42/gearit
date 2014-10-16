@@ -31,12 +31,27 @@ namespace GUI
 			set{_GoBack = value; }
 		}
 
+		public enum Animation
+		{
+			Chillout,
+			ShowMainMenu,
+			HideMainMenu,
+			ToggleMenu,
+			ShowMenu
+		}	
+
 		// Properties
 		static public int MENU_WIDTH = 300;
 		static public int MENU_LIST_WIDTH = 200;
 		static public int HEIGHT_TITLE = 35;
+		static public int DELAY_ANIMATION = 200;
+		static public int RESERVED_HEIGHT = HEIGHT_TITLE * 2;
 
 		// Gui
+		public int AnimationElapsedTime = 0;
+		public Animation CurrentAnimation = Animation.Chillout;
+		private GameScreen _current_screen = null;
+		private GameScreen _old_screen = null;
 		private Color STRIPE_COLOR = Color.White;
 		private Desktop _dk_main_menu;
 		private Control main_menu;
@@ -125,7 +140,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			menu_listbox.Items[1].Click(0);
+			//menu_listbox.Items[1].Click(0);
 
 			#endregion
 		}
@@ -137,11 +152,29 @@ namespace GUI
 			_dk_main_menu.Update();
 			dk_listbox.Update();
 
-			if (GoBack)
+			if (Input.Exit)
 			{
-				GoBack = false;
-				goBack();
+				if (CurrentAnimation == Animation.HideMainMenu || CurrentAnimation == Animation.ShowMainMenu)
+				{
+					CurrentAnimation = CurrentAnimation == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+					AnimationElapsedTime = DELAY_ANIMATION - AnimationElapsedTime;
+				}
+				else
+					CurrentAnimation = VisibleMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+				dk_listbox.Enabled = false;
 			}
+
+			// Animate
+			if (CurrentAnimation != Animation.Chillout)
+				manageAnimation(gameTime);
+		}
+
+		public override void positionChanged(int x, int y)
+		{
+			base.positionChanged(x, y);
+
+			_dk_main_menu.Position = new Squid.Point(x, y);
+			dk_listbox.Position = new Squid.Point(x + MENU_WIDTH - MENU_LIST_WIDTH, 0);
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -160,7 +193,7 @@ namespace GUI
 				ListBoxItem item = menu_listbox.Items[i];
 				if (item.Text == "")
 					continue;
-				if (item.State > ControlState.Default)
+				if (item.State > ControlState.Default && item.State != ControlState.Disabled)
 				{
 					tb_title.Text = item.Text;
 					color = Theme.CurrentTheme.Primitive;
@@ -273,8 +306,83 @@ namespace GUI
 			// Callback
 			item.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				ScreenManager.ResetTo(screen);
+				_old_screen = _current_screen;
+				_current_screen = screen;
+				ScreenManager.AddScreen(screen);
+
+				if (_old_screen != null)
+					CurrentAnimation = Animation.ToggleMenu;
+				else
+					CurrentAnimation = Animation.ShowMenu;
 			};
+		}
+
+		public override int getMenuWidth()
+		{
+			return MENU_WIDTH;
+		}
+
+		public void manageAnimation(GameTime gameTime)
+		{
+			AnimationElapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+
+			if (CurrentAnimation == Animation.HideMainMenu)
+			{
+				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * MENU_WIDTH;
+				positionChanged((int)-posx, 0);
+
+				if (AnimationElapsedTime >= DELAY_ANIMATION)
+				{
+					VisibleMenu = false;
+					positionChanged(-MENU_WIDTH, 0);
+				}
+			}
+			else if (CurrentAnimation == Animation.ShowMainMenu)
+			{
+				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * MENU_WIDTH;
+				positionChanged((int)posx - MENU_WIDTH, 0);
+
+				if (AnimationElapsedTime >= DELAY_ANIMATION)
+				{
+					positionChanged(0, 0);
+					VisibleMenu = true;
+					dk_listbox.Enabled = true;
+				}
+			}
+			else if (CurrentAnimation == Animation.ShowMenu)
+			{
+				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * _current_screen.getMenuWidth();
+				_current_screen.positionChanged(MENU_WIDTH - _current_screen.getMenuWidth() + (int) posx, HEIGHT_TITLE * 2);
+
+				if (AnimationElapsedTime >= DELAY_ANIMATION)
+				{
+					_current_screen.positionChanged(MENU_WIDTH, HEIGHT_TITLE * 2);
+					_current_screen.VisibleMenu = true;
+				}
+			}
+			else if (CurrentAnimation == Animation.ToggleMenu)
+			{
+				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * _old_screen.getMenuWidth();
+				_old_screen.positionChanged(MENU_WIDTH - (int) posx, HEIGHT_TITLE * 2);
+
+				if (AnimationElapsedTime >= DELAY_ANIMATION)
+				{
+					AnimationElapsedTime = 0;
+					CurrentAnimation = Animation.ShowMenu;
+					_old_screen.VisibleMenu = false;
+					ScreenManager.Instance.RemoveScreen(_old_screen);
+				}
+			}
+
+			if ((CurrentAnimation == Animation.ShowMainMenu || CurrentAnimation == Animation.HideMainMenu) && _current_screen != null)
+				_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
+
+
+			if (AnimationElapsedTime >= DELAY_ANIMATION)
+			{
+				CurrentAnimation = Animation.Chillout;
+				AnimationElapsedTime = 0;
+			}
 		}
 	}
 }

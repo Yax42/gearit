@@ -13,7 +13,7 @@ namespace gearit.src.editor.robot.action
 	{
 		public void init() { }
 
-		public bool shortcut() { return Input.Exit; }
+		public bool shortcut() { return false; }
 
 		public bool run()
 		{

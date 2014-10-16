@@ -70,10 +70,11 @@ namespace gearit.src.editor.map
 
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
-			Position = new Squid.Point(padding_x, 0);
+			int padding_y = ScreenMainMenu.RESERVED_HEIGHT;
+			Position = new Squid.Point(padding_x, padding_y);
 
 			// Full width to get the cursor propagation
-			Size = new Squid.Point(ScreenManager.Width - padding_x, ScreenManager.Height);
+			Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height - padding_y);
 
 			int y = 0;
 
@@ -82,8 +83,8 @@ namespace gearit.src.editor.map
 			// Background
 			background.Parent = this;
 			background.Style = "menu";
-			background.Position = new Point(0, y);
-			background.Size = new Point(MENU_WIDTH, _ScreenManager.Height);
+			background.Position = new Point(0, 0);
+			background.Size = new Point(MENU_WIDTH, Size.y);
 
 			// Drop callback
 			AllowDrop = true;
@@ -252,7 +253,7 @@ namespace gearit.src.editor.map
 
 			//-----------------------------------------------
 
-			y = ScreenManager.Height - ITEM_HEIGHT;
+			y = Size.y - ITEM_HEIGHT;
 
 			Help_btn = new Button();
 			btn = Help_btn;
@@ -322,20 +323,6 @@ namespace gearit.src.editor.map
 		public void Update()
 		{
 			base.Update();
-			if (Input.Exit)
-			{
-				if (_messageBoxLoad != null)
-				{
-					_messageBoxLoad.cancel();
-					_messageBoxLoad = null;
-				}
-				if (_messageBoxSave != null)
-				{
-					_messageBoxSave.cancel();
-					_messageBoxSave = null;
-				}
-			}
-
 			tb_id.Text = (string) MapEditor.Instance.SelectChunk.StringId;
 			pos_x.Text = (string) MapEditor.Instance.SelectChunk.Position.X.ToString();
 			pos_y.Text = (string) MapEditor.Instance.SelectChunk.Position.Y.ToString();
@@ -455,6 +442,16 @@ namespace gearit.src.editor.map
 		public void setFocus(bool focus)
 		{
 			_has_focus = focus;
+		}
+
+		public void positionChanged(int x, int y)
+		{
+			Position = new Point(x, y);
+		}
+
+		public int getMenuWidth()
+		{
+			return (Size.x);
 		}
 	}
 }

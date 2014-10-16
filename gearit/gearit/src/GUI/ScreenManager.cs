@@ -398,7 +398,7 @@ namespace gearit.xna
 				screen.LoadContent();
 
 			_screens.Add(screen);
-			//UpdatePriority();
+			UpdatePriority();
 		}
 
 		public void RemoveLast()

@@ -130,7 +130,7 @@ namespace gearit.src.GUI
 			padding_x = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
 			//ShowCursor = true;
-			int padding_y = 152;
+			int padding_y = ScreenMainMenu.RESERVED_HEIGHT;
 			Position = new Squid.Point(padding_x, padding_y);
 
 			// Full width to get the cursor propagation
@@ -897,20 +897,6 @@ namespace gearit.src.GUI
 
 		public void Update(Piece piece, ISpot spot)
 		{
-			if (Input.Exit)
-			{
-				if (_messageBoxLoad != null)
-				{
-					_messageBoxLoad.cancel();
-					_messageBoxLoad = null;
-				}
-				if (_messageBoxSave != null)
-				{
-					_messageBoxSave.cancel();
-					_messageBoxSave = null;
-				}
-			}
-
 			Piece = piece;
 			Spot = spot;
 
@@ -969,6 +955,16 @@ namespace gearit.src.GUI
 				piece_rotation_container.Visible = true;
 				piece_rotation.Text = ((Rod)piece).Rotation.ToString();
 			}
+		}
+
+		public void positionChanged(int x, int y)
+		{
+			Position = new Point(x, y);
+		}
+
+		public int getMenuWidth()
+		{
+			return (Size.x);
 		}
 	}
 }

@@ -289,6 +289,7 @@ namespace gearit.src.GUI.Tools
 			style.TextColor = 0;
 			style.Default.BackColor = 0;
 			style.Default.TextColor = toInt(info.Primitive);
+			style.Disabled.TextColor = toInt(info.Primitive);
 
 			style = styles["menu"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
