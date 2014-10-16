@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using System.Runtime.InteropServices;
 using gearit.src.game;
 using System.Diagnostics;
 using gearit.src.robot;
 using Lidgren.Network;
-using gearit.src.editor.map;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Common;
 using System.IO;
@@ -518,6 +515,7 @@ namespace gearit.src.Network
 		{
 			byte[] data = new byte[size];
 			Array.Copy(Data, Idx, data, 0, size);
+			Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));
 			File.WriteAllBytes(path, data);
 			return (GI_File) Serializer.DeserializeItem(path);
 		}
