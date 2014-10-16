@@ -30,10 +30,10 @@ namespace gearit.src.script
 		}
 
 		public static bool IsServer { get { return Instance.ServerGame != null; } }
-		public static InGamePacketManager PacketManager { get { return Instance.ServerGame.PacketManager; } }
+		public static PacketManager PacketManager { get { return Instance.ServerGame.PacketManager; } }
 		public static void PushEvent(byte[] data)
 		{
-			Instance.ServerGame.Events.Concat(data);
+			Instance.ServerGame.Events = Instance.ServerGame.Events.Concat(data).ToArray();
 		}
 
 	}

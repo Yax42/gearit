@@ -13,17 +13,20 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Common;
 using System.IO;
 using gearit.src.utility;
+using gearit.src.map;
+using gearit.src.editor;
 
 namespace gearit.src.Network
 {
-	class InGamePacketManager
+	class PacketManager
 	{
 		#region enum
 		public enum GameCommand
 		{
+			Go,
 			End,
 			Pause,
-			UnPause,
+			Unpause,
 		};
 		public enum ERobotCommand
 		{
@@ -51,6 +54,7 @@ namespace gearit.src.Network
 			EndOfPacket,
 			BeginTransform,
 			ChunkCommand,
+			File,
 		};
 		#endregion
 
@@ -79,7 +83,7 @@ namespace gearit.src.Network
 		private struct Packet_File
 		{
 			public byte Type;
-			public ushort Size;
+			public int Size;
 			public byte RobotId;
 		}
 
@@ -163,11 +167,12 @@ namespace gearit.src.Network
 #region Attributes
 
 		private IGearitGame Game;
+		public INetwork Network;
 		private int Idx;
 		public byte[] Data;
 #endregion
 
-		public InGamePacketManager(IGearitGame game)
+		public PacketManager(IGearitGame game)
 		{
 			Game = game;
 		}
@@ -192,41 +197,17 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
-#if false
-		private struct Packet_SpotTransform
-		{
-			public byte RobotId;
-			public ushort SpotId;
-			public float Angle;
-		}
-		private void ApplyPacket(Packet_SpotTransform packet)
-		{
-			Debug.Assert(Game.Robots.Count > packet.RobotId);
-			if (Game.Robots.Count <= packet.RobotId)
-				return;
-			Robot r = Game.Robots[packet.RobotId];
-			Debug.Assert(!r.Extracted);
-			if (r.Extracted)
-				return;
-			Debug.Assert(r.Spots.Count > packet.SpotId);
-			if (r.Spots.Count <= packet.SpotId)
-				return;
-			r.Spots[packet.SpotId].JointAngle = packet.Angle;
-		}
-		public byte[] SpotTransform(int idRobot, int idSpot)
-		{
-			Packet_SpotTransform res = new Packet_SpotTransform();
-			res.RobotId = (byte) idRobot;
-			res.SpotId = (ushort) idSpot;
-			res.Angle = Game.Robots[idRobot].Spots[idSpot].JointAngle;
-			return PacketToRawData(res, CommandId.ObjectTransform);
-		}
-#endif
-
-
 		public byte[] RobotTransform(int idRobot)
 		{
 			return RobotTransform(Game.Robots[idRobot]);
+		}
+
+		public byte[] GameCommandToBytes(GameCommand cmd)
+		{
+			byte[] res = new byte[2];
+			res[0] = (byte) (CommandId.GameCommand);
+			res[1] = (byte)(cmd);
+			return res;
 		}
 
 		public byte[] CreatePacket(CommandId cmd)
@@ -323,17 +304,51 @@ namespace gearit.src.Network
 			return PacketToRawData(res, CommandId.MotorForce);
 		}
 
+		public byte[] Map(Map m, int robotId)
+		{
+			Packet_File res = new Packet_File();
+			res.RobotId = (byte) robotId;
+			res.Type = (byte)FileType.Map;
+			byte[] file = FileToBytes(m);
+			res.Size = file.Count();
+			byte[] byteRes = PacketToRawData(res, CommandId.File);
+			return byteRes.Concat(file).ToArray();
+		}
+
+		public byte[] Robot(Robot r)
+		{
+			Packet_File res = new Packet_File();
+			res.RobotId = (byte)r.Id;
+			res.Type = (byte)FileType.Robot;
+			byte[] file = FileToBytes(r);
+			res.Size = file.Count();
+			byte[] byteRes = PacketToRawData(res, CommandId.File);
+			return byteRes.Concat(file).ToArray();
+		}
 #endregion
 
 //----------------------------------------------------------------------------
 
 #region ApplyPacket
 
+		public bool ApplyBruteRequest(NetIncomingMessage request)
+		{
+			Idx = 4;
+			Data = request.Data;
+			if (BitConverter.ToInt32(Data, 0) == -1)
+			{
+				ApplyNextPacket();
+				return true;
+			}
+			return false;
+		}
+
 		public void ApplyRequest(NetIncomingMessage request, bool proceedTransform)
 		{
 			Idx = 4;
 			Data = request.Data;
-			while (ApplyNextPacket(proceedTransform)) ;
+			while (ApplyNextPacket(proceedTransform))
+				;
 		}
 
 		public bool ApplyNextPacket(bool proceedTransform = false)
@@ -370,6 +385,9 @@ namespace gearit.src.Network
 					return false;
 				case (byte)CommandId.Message:
 					ApplyPacket(RawDataToPacket<Packet_Message>());
+					break;
+				case (byte)CommandId.File:
+					ApplyPacket(RawDataToPacket<Packet_File>());
 					break;
 				default:
 					return false;
@@ -420,17 +438,19 @@ namespace gearit.src.Network
 					break;
 				case (byte) GameCommand.Pause:
 					break;
-				case (byte) GameCommand.UnPause:
+				case (byte) GameCommand.Unpause:
+					break;
+				case (byte) GameCommand.Go:
+					Game.Go();
 					break;
 			}
 		}
 
 		private void ApplyPacket(Packet_RobotCommand packet)
 		{
-			Debug.Assert(Game.Robots.Count > packet.RobotId);
-			if (Game.Robots.Count <= packet.RobotId)
+			Robot r = Game.RobotFromId(packet.RobotId);
+			if (r == null)
 				return;
-			Robot r = Game.Robots[packet.RobotId];
 			Debug.Assert(!r.Extracted);
 			if (r.Extracted)
 				return;
@@ -457,9 +477,9 @@ namespace gearit.src.Network
 			Body b = null;
 			if (packet.Type == (byte) TransformType.Robot)
 			{
-				if (Game.Robots.Count > packet.RobotId)
+				Robot r = Game.RobotFromId(packet.RobotId);
+				if (r != null)
 				{
-					Robot r = Game.Robots[packet.RobotId];
 					Debug.Assert(!r.Extracted);
 					if (!r.Extracted)
 					{
@@ -476,9 +496,9 @@ namespace gearit.src.Network
 			}
 			else if (packet.Type == (byte) TransformType.Piece)
 			{
-				if (Game.Robots.Count > packet.RobotId)
+				Robot r = Game.RobotFromId(packet.RobotId);
+				if (r != null)
 				{
-					Robot r = Game.Robots[packet.RobotId];
 					Debug.Assert(!r.Extracted);
 					if (!r.Extracted && r.Pieces.Count > packet.Id)
 					{
@@ -494,13 +514,44 @@ namespace gearit.src.Network
 			}
 		}
 
+		private GI_File LoadFile(string path, int size)
+		{
+			byte[] data = new byte[size];
+			Array.Copy(Data, Idx, data, 0, size);
+			File.WriteAllBytes(path, data);
+			return (GI_File) Serializer.DeserializeItem(path);
+		}
+
+		private void ApplyPacket(Packet_File packet)
+		{
+			if (packet.Type == (byte) FileType.Map)
+			{
+				Game.Robots[0].Id = packet.RobotId;
+				Game.MainRobotId = packet.RobotId;
+				string path = Network.Path + "map.gim";
+				Game.Map = (Map)LoadFile(path, packet.Size);
+				Network.BruteSend(null, Robot(Game.RobotFromId(Game.MainRobotId)));
+			}
+			else
+			{
+				string path = Network.Path + "robot_" + packet.RobotId + ".gim";
+				SerializerHelper.World = Game.World;
+				Robot r = (Robot) LoadFile(path, packet.Size);
+				r.Id = packet.RobotId;
+				Game.AddRobot(r);
+				if (Network.GetType() == typeof(NetworkServer))
+				{
+					((NetworkServer)Network).Server_BruteSpreadRobot(r.Id);
+					Network.BruteSend(Network.PeerFromId(packet.RobotId), GameCommandToBytes(GameCommand.Go));
+				}
+			}
+		}
 
 		private void ApplyPacket(Packet_Motor packet)
 		{
-			Debug.Assert(Game.Robots.Count > packet.RobotId);
-			if (Game.Robots.Count > packet.RobotId)
+			Robot r = Game.RobotFromId(packet.RobotId);
+			if (r != null)
 			{
-				Robot r = Game.Robots[packet.RobotId];
 				Debug.Assert(r.Spots.Count > packet.MotorId);
 				Debug.Assert(!r.Extracted);
 				if (!r.Extracted && r.Spots.Count > packet.MotorId)
@@ -520,7 +571,6 @@ namespace gearit.src.Network
 				}
 			}
 		}
-
 #endregion
 	}
 }

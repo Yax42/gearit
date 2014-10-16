@@ -155,7 +155,7 @@
     <Compile Include="src\GUI\Tools\Theme.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Network\INetwork.cs" />
-    <Compile Include="src\Network\InGamePacket.cs" />
+    <Compile Include="src\Network\PacketManager.cs" />
     <Compile Include="src\Network\NetworkServer.cs" />
     <Compile Include="src\Network\NetworkClient.cs" />
     <Compile Include="src\game\NetworkClientGame.cs" />

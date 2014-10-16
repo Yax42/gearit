@@ -20,11 +20,12 @@ namespace gearit.src.Network
 {
 	class NetworkClientGame : GameScreen, IDemoScreen, IGearitGame
 	{
-		private World _world;
+		public World World { get; private set; }
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool __exiting;
 		public NetworkClient NetworkClient { get; private set; }
+		private Status Status;
 
 		private bool _exiting
 		{
@@ -38,15 +39,14 @@ namespace gearit.src.Network
 			}
 		}
 
-		private Map _Map;
-		public Map Map { get { return _Map; } }
+		public Map Map { get; set; }
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
 		private Robot EnnemyRobot;
-		public InGamePacketManager PacketManager { get; private set; }
+		public PacketManager PacketManager { get; private set; }
 
-		public Robot MainRobot { get { return Robots[MainRobotId]; } }
+		public Robot MainRobot { get { return RobotFromId(MainRobotId); } }
 		public int MainRobotId
 		{
 			get;
@@ -98,8 +98,8 @@ namespace gearit.src.Network
 			base.LoadContent();
 
 			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
-			PacketManager = new InGamePacketManager(this);
+			World = new World(new Vector2(0, 9.8f));
+			PacketManager = new PacketManager(this);
 
 			_exiting = false;
 
@@ -107,43 +107,42 @@ namespace gearit.src.Network
 			_Time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
-			_world.Clear();
-			_world.Gravity = new Vector2(0f, 9.8f);
+			World.Clear();
+			World.Gravity = new Vector2(0f, 9.8f);
 
 			//clearRobot();
-			SerializerHelper.World = _world;
-
-			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
-			_world.Step(1/30f);
-			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
-			_world.Step(1/30f);
-			setMainRobot(0);
+			SerializerHelper.World = World;
+			Robot r = (Robot)Serializer.DeserializeItem("data/robot/default.gir");
+			AddRobot(r);
+			r.Id = 0;
+			MainRobotId = 0;
+			_camera.TrackingBody = r.Heart;
+			r.InitScript(this);
 
 			Debug.Assert(Robots != null);
-			_Map = (Map)Serializer.DeserializeItem("data/map/default.gim");
-			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
-
 			NetworkClient = new NetworkClient(PacketManager);
+			PacketManager.Network = NetworkClient;
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
 			//NetworkClient.Connect("81.249.189.167", 25552);
 			NetworkClient.Connect("127.0.0.1", 25552);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
+
+			Status = Status.Init;
 		}
 
 		public World getWorld()
 		{
-			return (_world);
+			return (World);
 		}
 
 		public void setMap(Map map)
 		{
-			_Map = map;
+			Map = map;
 		}
 
 		public void clearRobot()
@@ -153,18 +152,12 @@ namespace gearit.src.Network
 			Robots.Clear();
 		}
 
-		public void addRobot(Robot robot)
+		public void AddRobot(Robot robot)
 		{
 			Robots.Add(robot);
-			_world.Step(0);
-			robot.move(new Vector2(Robots.Count * 30, -20));
-		}
-
-		public void setMainRobot(int v)
-		{
-			MainRobotId = v;
-			_camera.TrackingBody = MainRobot.Heart;
-			MainRobot.InitScript(this);
+			World.Step(0);
+			World.Step(1/30f);
+			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 
 		public override void Update(GameTime gameTime)
@@ -173,13 +166,16 @@ namespace gearit.src.Network
 				return ;
 			if (NetworkClient.Requests.Count == 0)
 				return ;
+			if (Status == Status.Init)
+				NetworkClient.ApplyBruteRequests();
+
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
 			//float delta = 2 / 30f; // Static delta time for now, yea bitch!
 			_Time += delta;
 			HandleInput();
 
-			_world.Step(0);
+			World.Step(0);
 
 
 			//for (int i = 0; i < MainRobot.Spots.Count; i++)
@@ -199,6 +195,7 @@ namespace gearit.src.Network
 
 		public void Finish()
 		{
+			Status = Status.Finish;
 			_exiting = true;
 		}
 
@@ -206,7 +203,6 @@ namespace gearit.src.Network
 		{
 			clearRobot();
 			ScreenMainMenu.GoBack = true;
-			_gameMaster.stop();
 		}
 
 		private void HandleInput()
@@ -221,6 +217,8 @@ namespace gearit.src.Network
 
 		public override void Draw(GameTime gameTime)
 		{
+			if (Status != Status.Run)
+				return;
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
 			_drawGame.Begin(_camera);
 
@@ -230,6 +228,16 @@ namespace gearit.src.Network
 			_drawGame.End();
 
 			base.Draw(gameTime);
+		}
+
+		public Robot RobotFromId(int id)
+		{
+			return Robot.RobotFromId(Robots, id);
+		}
+
+		public void Go()
+		{
+			Status = Status.Run;
 		}
 	}
 }

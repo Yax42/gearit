@@ -40,13 +40,13 @@ namespace gearit.src.script.api.game
 			return (false);
 		}
 
-		private void PushEvent(InGamePacketManager.EChunkCommand cmd, bool data)
+		private void PushEvent(PacketManager.EChunkCommand cmd, bool data)
 		{
 			if (GameLuaScript.IsServer)
 				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
 		}
 
-		private void PushEvent(InGamePacketManager.EChunkCommand cmd, float data)
+		private void PushEvent(PacketManager.EChunkCommand cmd, float data)
 		{
 			if (GameLuaScript.IsServer)
 				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
@@ -57,7 +57,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.IsStatic; }
 			set
 			{
-				PushEvent(InGamePacketManager.EChunkCommand.Static, value);
+				PushEvent(PacketManager.EChunkCommand.Static, value);
 				__Chunk.IsStatic = value;
 			}
 		}
@@ -67,7 +67,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.Mass; }
             set
 			{
-				PushEvent(InGamePacketManager.EChunkCommand.Mass, value);
+				PushEvent(PacketManager.EChunkCommand.Mass, value);
 				__Chunk.Mass = value;
 			}
 		}
@@ -77,7 +77,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.IgnoreGravity; }
             set
 			{
-				PushEvent(InGamePacketManager.EChunkCommand.IgnoreGravity, value);
+				PushEvent(PacketManager.EChunkCommand.IgnoreGravity, value);
 				__Chunk.IgnoreGravity = value;
 			}
 		}
@@ -87,7 +87,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.GravityScale; }
             set
 			{
-				PushEvent(InGamePacketManager.EChunkCommand.Gravity, value);
+				PushEvent(PacketManager.EChunkCommand.Gravity, value);
 				__Chunk.GravityScale = value;
 			}
 		}
@@ -97,7 +97,7 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.Friction; }
             set
 			{
-				PushEvent(InGamePacketManager.EChunkCommand.Friction, value);
+				PushEvent(PacketManager.EChunkCommand.Friction, value);
 				 __Chunk.Friction = value;
 			}
 		}
