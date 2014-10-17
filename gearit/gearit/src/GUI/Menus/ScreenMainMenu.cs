@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using gearit.xna;
@@ -40,6 +39,17 @@ namespace GUI
 			ShowMenu
 		}	
 
+		public class AnimInfo
+		{
+			public Animation type;
+			public int elapsedTime;
+
+			public AnimInfo(Animation atype)
+			{
+				type = atype;
+			}
+		}
+
 		// Properties
 		static public int MENU_WIDTH = 300;
 		static public int MENU_LIST_WIDTH = 200;
@@ -48,8 +58,7 @@ namespace GUI
 		static public int RESERVED_HEIGHT = HEIGHT_TITLE * 2;
 
 		// Gui
-		public int AnimationElapsedTime = 0;
-		public Animation CurrentAnimation = Animation.Chillout;
+		private List<AnimInfo> _animations = new List<AnimInfo>();
 		private GameScreen _current_screen = null;
 		private GameScreen _old_screen = null;
 		private Color STRIPE_COLOR = Color.White;
@@ -154,19 +163,19 @@ namespace GUI
 
 			if (Input.Exit)
 			{
-				if (CurrentAnimation == Animation.HideMainMenu || CurrentAnimation == Animation.ShowMainMenu)
-				{
-					CurrentAnimation = CurrentAnimation == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
-					AnimationElapsedTime = DELAY_ANIMATION - AnimationElapsedTime;
-				}
+				AnimInfo anim = _animations.Find(delegate(AnimInfo search) { return (search.type == Animation.ShowMainMenu || search.type == Animation.HideMainMenu); });
+				if (anim == null)
+					_animations.Add(new AnimInfo(VisibleMenu ? Animation.HideMainMenu : Animation.ShowMainMenu));
 				else
-					CurrentAnimation = VisibleMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+				{
+					anim.elapsedTime = DELAY_ANIMATION - anim.elapsedTime;
+					anim.type = anim.type == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+				}
 				dk_listbox.Enabled = false;
 			}
 
 			// Animate
-			if (CurrentAnimation != Animation.Chillout)
-				manageAnimation(gameTime);
+			manageAnimation(gameTime);
 		}
 
 		public override void positionChanged(int x, int y)
@@ -309,80 +318,82 @@ namespace GUI
 				_old_screen = _current_screen;
 				_current_screen = screen;
 				ScreenManager.AddScreen(screen);
+				_current_screen.positionChanged(-_current_screen.getMenuSize().x, 0);
 
 				if (_old_screen != null)
-					CurrentAnimation = Animation.ToggleMenu;
+					_animations.Add(new AnimInfo(Animation.ToggleMenu));
 				else
-					CurrentAnimation = Animation.ShowMenu;
+					_animations.Add(new AnimInfo(Animation.ShowMenu));
 			};
 		}
 
-		public override int getMenuWidth()
+		public override Squid.Point getMenuSize()
 		{
-			return MENU_WIDTH;
+			return (new Squid.Point(MENU_WIDTH, ScreenManager.Height));
 		}
 
 		public void manageAnimation(GameTime gameTime)
 		{
-			AnimationElapsedTime += gameTime.ElapsedGameTime.Milliseconds;
-
-			if (CurrentAnimation == Animation.HideMainMenu)
+			foreach (AnimInfo anim in _animations)
 			{
-				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * MENU_WIDTH;
-				positionChanged((int)-posx, 0);
+				anim.elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
 
-				if (AnimationElapsedTime >= DELAY_ANIMATION)
+				if (anim.type == Animation.HideMainMenu)
 				{
-					VisibleMenu = false;
-					positionChanged(-MENU_WIDTH, 0);
-				}
-			}
-			else if (CurrentAnimation == Animation.ShowMainMenu)
-			{
-				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * MENU_WIDTH;
-				positionChanged((int)posx - MENU_WIDTH, 0);
+					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * MENU_WIDTH;
+					positionChanged((int)-posx, 0);
 
-				if (AnimationElapsedTime >= DELAY_ANIMATION)
+					if (anim.elapsedTime >= DELAY_ANIMATION)
+					{
+						VisibleMenu = false;
+						positionChanged(-MENU_WIDTH, 0);
+					}
+				}
+				else if (anim.type == Animation.ShowMainMenu)
 				{
-					positionChanged(0, 0);
-					VisibleMenu = true;
-					dk_listbox.Enabled = true;
-				}
-			}
-			else if (CurrentAnimation == Animation.ShowMenu)
-			{
-				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * _current_screen.getMenuWidth();
-				_current_screen.positionChanged(MENU_WIDTH - _current_screen.getMenuWidth() + (int) posx, HEIGHT_TITLE * 2);
+					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * MENU_WIDTH;
+					positionChanged((int)posx - MENU_WIDTH, 0);
 
-				if (AnimationElapsedTime >= DELAY_ANIMATION)
+					if (anim.elapsedTime >= DELAY_ANIMATION)
+					{
+						positionChanged(0, 0);
+						VisibleMenu = true;
+						dk_listbox.Enabled = true;
+					}
+				}
+				else if (anim.type  == Animation.ShowMenu)
 				{
-					_current_screen.positionChanged(MENU_WIDTH, HEIGHT_TITLE * 2);
-					_current_screen.VisibleMenu = true;
-				}
-			}
-			else if (CurrentAnimation == Animation.ToggleMenu)
-			{
-				float posx = (float)AnimationElapsedTime / DELAY_ANIMATION * _old_screen.getMenuWidth();
-				_old_screen.positionChanged(MENU_WIDTH - (int) posx, HEIGHT_TITLE * 2);
+					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * _current_screen.getMenuSize().x;
+					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - _current_screen.getMenuSize().x + (int)posx, HEIGHT_TITLE * 2);
 
-				if (AnimationElapsedTime >= DELAY_ANIMATION)
+					if (anim.elapsedTime >= DELAY_ANIMATION)
+					{
+						_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
+						_current_screen.VisibleMenu = true;
+					}
+				}
+				else if (anim.type == Animation.ToggleMenu)
 				{
-					AnimationElapsedTime = 0;
-					CurrentAnimation = Animation.ShowMenu;
-					_old_screen.VisibleMenu = false;
-					ScreenManager.Instance.RemoveScreen(_old_screen);
+					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * _old_screen.getMenuSize().x;
+					_old_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - (int)posx, HEIGHT_TITLE * 2);
+
+					if (anim.elapsedTime >= DELAY_ANIMATION)
+					{
+						anim.elapsedTime = 0;
+						anim.type = Animation.ShowMenu;
+						_old_screen.VisibleMenu = false;
+						ScreenManager.Instance.RemoveScreen(_old_screen);
+					}
 				}
+
+				if ((anim.type == Animation.ShowMainMenu || anim.type == Animation.HideMainMenu) && _current_screen != null && _animations.Find(delegate(AnimInfo search) { return search.type == Animation.ShowMenu || search.type == Animation.ToggleMenu; }) == null)
+					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
+
+				if (anim.elapsedTime >= DELAY_ANIMATION)
+					anim.type = Animation.Chillout;
 			}
 
-			if ((CurrentAnimation == Animation.ShowMainMenu || CurrentAnimation == Animation.HideMainMenu) && _current_screen != null)
-				_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
-
-
-			if (AnimationElapsedTime >= DELAY_ANIMATION)
-			{
-				CurrentAnimation = Animation.Chillout;
-				AnimationElapsedTime = 0;
-			}
+			_animations.RemoveAll(delegate(AnimInfo anim) { return anim.type == Animation.Chillout; });
 		}
 	}
 }

@@ -156,9 +156,9 @@ namespace gearit.src.editor.robot
 			MenuRobotEditor.Instance.positionChanged(x, y);
 		}
 
-		public override int getMenuWidth()
+		public override Squid.Point getMenuSize()
 		{
-			return (MenuRobotEditor.Instance.getMenuWidth());
+			return (MenuRobotEditor.Instance.getMenuSize());
 		}
 
 		public override void QuickLoadContent()

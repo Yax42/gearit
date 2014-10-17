@@ -57,9 +57,9 @@ namespace gearit.xna
 		public virtual void positionChanged(int x, int y)
 		{}
 
-		public virtual int getMenuWidth()
+		public virtual Squid.Point getMenuSize()
 		{
-			return (0);
+			return (new Squid.Point(0, 0));
 		}
 
 		public bool HasCursor { get; set; }

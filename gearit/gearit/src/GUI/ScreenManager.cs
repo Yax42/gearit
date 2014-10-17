@@ -428,8 +428,10 @@ namespace gearit.xna
 
 		public void RemoveScreen(GameScreen screen)
 		{
+			_screens.Remove(screen);
+			_screensTemp.Remove(screen);
 			// If we have a graphics device, tell the screen to unload content.
-			int target = _screens.IndexOf(screen);
+			/*int target = _screens.IndexOf(screen);
 			for (int i = _screens.Count - 1; i <= target; i++)
 			{
 				if (_isInitialized && _screens[i].is_initialized)
@@ -438,7 +440,7 @@ namespace gearit.xna
 				}
 				_screensTemp.Remove(_screens[i]);
 				_screens.RemoveAt(i);
-			}
+			}*/
 		}
 
 		/// <summary>

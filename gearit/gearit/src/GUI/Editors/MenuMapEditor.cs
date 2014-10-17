@@ -449,9 +449,9 @@ namespace gearit.src.editor.map
 			Position = new Point(x, y);
 		}
 
-		public int getMenuWidth()
+		public Point getMenuSize()
 		{
-			return (Size.x);
+			return (Size);
 		}
 	}
 }

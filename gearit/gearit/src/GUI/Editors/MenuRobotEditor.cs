@@ -962,9 +962,9 @@ namespace gearit.src.GUI
 			Position = new Point(x, y);
 		}
 
-		public int getMenuWidth()
+		public Point getMenuSize()
 		{
-			return (Size.x);
+			return (Size);
 		}
 	}
 }
