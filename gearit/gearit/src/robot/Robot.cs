@@ -41,6 +41,14 @@ namespace gearit.src.robot
 	[Serializable()]
 	class Robot : GI_File, ISerializable
 	{
+		static public Robot RobotFromId(List<Robot> robots, int id)
+		{
+			foreach (Robot r in robots)
+				if (r.Id == id)
+					return r;
+			return null;
+		}
+
 		private List<Piece> _pieces;
 		public List<Piece> Pieces
 		{

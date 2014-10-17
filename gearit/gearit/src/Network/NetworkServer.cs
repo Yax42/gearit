@@ -22,6 +22,7 @@ namespace gearit.src.Network
         private Thread serverThread;
         private bool _server_launched;
 		private NetworkServerGame Game;
+		override public string Path { get {return "data/net/server/";} }
 
 
 		private NetworkServer(NetworkServerGame game, NetPeerConfiguration config, int port)
@@ -112,7 +113,8 @@ namespace gearit.src.Network
 
                             if (status == NetConnectionStatus.Connected)
                             {
-								AddPeer(msg.SenderConnection);
+								Peer p = AddPeer(msg.SenderConnection);
+								Server_BruteSend(p);
                                 OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
                                 foreach (NetConnection conn in Peer.Connections)
                                 {
@@ -155,11 +157,23 @@ namespace gearit.src.Network
 				Game.Events = new byte[0];
 			}
 		}
-
-		private void SendMap()
+		
+		private void Server_BruteSend(Peer target)
 		{
+			BruteSend(target, PacketManager.Map(Game.Map, target.Id));
+			foreach (Peer p in Peers)
+				if (p != target)
+					BruteSend(target, PacketManager.Robot(Game.RobotFromId(p.Id)));
+			BruteSend(target, PacketManager.GameCommandToBytes(PacketManager.GameCommand.Go));
 		}
 
+		public void Server_BruteSpreadRobot(int id)
+		{
+			Robot r = Game.RobotFromId(id);
+			foreach (Peer p in Peers)
+				if (id != p.Id)
+					BruteSend(p, PacketManager.Robot(r));
+		}
 #if false
         public void oldSend(string text) // deprecated
         {

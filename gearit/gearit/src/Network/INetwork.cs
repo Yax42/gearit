@@ -34,14 +34,15 @@ namespace gearit.src.Network
 		protected string Host;
 
 		public List<NetIncomingMessage> Requests = new List<NetIncomingMessage>();
-		private InGamePacketManager PacketManager;
+		protected PacketManager PacketManager;
 		protected NetPeer Peer;
 		protected List<Peer> Peers;
 
+		abstract public string Path { get; }
 		protected bool IsServer = false;
 		private int FrameCount;
 
-		protected INetwork(NetPeer peer, int numberOfPeers, InGamePacketManager packetManager)
+		protected INetwork(NetPeer peer, int numberOfPeers, PacketManager packetManager)
 		{
 			Peer = peer;
 			PacketManager = packetManager;
@@ -50,6 +51,14 @@ namespace gearit.src.Network
 			FrameCount = 0;
 		}
 		
+		public Peer PeerFromId(int id)
+		{
+			foreach (Peer p in Peers)
+				if (p.Id == id)
+					return p;
+			return null;
+		}
+
 		public int FirstUnusedId
 		{
 			get
@@ -73,9 +82,11 @@ namespace gearit.src.Network
 			}
 		}
 
-		public void AddPeer(NetConnection p)
+		public Peer AddPeer(NetConnection co)
 		{
-			Peers.Add(new Peer(FirstUnusedId, p));
+			Peer p = new Peer(FirstUnusedId, co);
+			Peers.Add(p);
+			return p;
 		}
 
 		public void CleanRequests()
@@ -115,10 +126,10 @@ namespace gearit.src.Network
 				PushRequest(Events, p);
 				if (TransformToSend.Count() > 0)
 				{
-					PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.BeginTransform), p);
+					PushRequest(PacketManager.CreatePacket(PacketManager.CommandId.BeginTransform), p);
 					PushRequest(TransformToSend, p);
 				}
-				PushRequest(PacketManager.CreatePacket(InGamePacketManager.CommandId.EndOfPacket), p);
+				PushRequest(PacketManager.CreatePacket(PacketManager.CommandId.EndOfPacket), p);
 				NetOutgoingMessage om = Peer.CreateMessage();
 				om.Write(p.ToSend);
 				Peer.SendMessage(om, p.Connect, NetDeliveryMethod.Unreliable, 0);
@@ -165,9 +176,26 @@ namespace gearit.src.Network
 
 		public void ApplyRequests()
 		{
+			ApplyBruteRequests();
 			foreach (NetIncomingMessage request in Requests)
 				PacketManager.ApplyRequest(request, IsYoungest(request));
 			CleanRequests();
+		}
+
+		public void BruteSend(Peer p, byte[] dataPart2)
+		{
+			if (p == null)
+				p = Peers.First();
+			byte[] data = BitConverter.GetBytes(-1);
+			data = data.Concat(dataPart2).ToArray();
+			NetOutgoingMessage om = Peer.CreateMessage();
+			om.Write(data);
+			Peer.SendMessage(om, p.Connect, NetDeliveryMethod.ReliableOrdered, 0);
+		}
+
+		public void ApplyBruteRequests()
+		{
+			Requests.RemoveAll(request => PacketManager.ApplyBruteRequest(request));
 		}
 	}
 }

@@ -20,8 +20,8 @@ namespace gearit.src.GeneticAlgorithm
 		private GameLuaScript _GameMaster;
 		private bool _exiting;
 
-		private Map _Map;
-		public Map Map { get { return _Map; } }
+		public Map Map { get; set; }
+		public World World { get { return LifeManager.World; } }
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
@@ -34,12 +34,12 @@ namespace gearit.src.GeneticAlgorithm
 		private float _Time = 0;
 		public float Time { get { return _Time; } }
 
-		public int MainRobotId { get { return 0; } }
+		public int MainRobotId { get { return 0; } set { } }
 
 		public GeneticGame()
 		{
 			_Robots = new List<Robot>();
-			_Map = null;
+			Map = null;
 		}
 
 		public void Message(string msg, int duration)
@@ -48,9 +48,9 @@ namespace gearit.src.GeneticAlgorithm
 
 		public void SetMap(string mapPath)
 		{
-			if (_Map != null)
-				_Map.ExtractFromWorld();
-			_Map = (Map)Serializer.DeserializeItem(mapPath);
+			if (Map != null)
+				Map.ExtractFromWorld();
+			Map = (Map)Serializer.DeserializeItem(mapPath);
 			Debug.Assert(Map != null);
 		}
 
@@ -125,6 +125,22 @@ namespace gearit.src.GeneticAlgorithm
 
 		public void Exit()
 		{
+		}
+
+		public Robot RobotFromId(int id)
+		{
+			return Robot.RobotFromId(Robots, id);
+		}
+
+		public void Go()
+		{}
+
+		public void AddRobot(Robot robot)
+		{
+			Robots.Add(robot);
+			World.Step(0);
+			World.Step(1/30f);
+			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 	}
 }

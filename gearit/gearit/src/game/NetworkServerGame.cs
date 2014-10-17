@@ -18,7 +18,7 @@ namespace gearit.src.Network
 {
 	class NetworkServerGame : IGearitGame
 	{
-		private World _world;
+		public World World { get; private set; }
 		private GameLuaScript _gameMaster;
 		public byte[] Events =  new byte[0];
 
@@ -35,8 +35,7 @@ namespace gearit.src.Network
 			}
 		}
 
-		private Map _Map;
-		public Map Map { get { return _Map; } }
+		public Map Map { get; set; }
 
 		public int MainRobotId
 		{
@@ -45,11 +44,15 @@ namespace gearit.src.Network
 				Debug.Assert(false);
 				return 0;
 			}
+			set
+			{
+				Debug.Assert(false);
+			}
 		}
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-		public InGamePacketManager PacketManager;
+		public PacketManager PacketManager;
 
 		// Action
 		private int _FrameCount = 0;
@@ -65,8 +68,8 @@ namespace gearit.src.Network
 		public NetworkServerGame()
 		{
 			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
-			PacketManager = new InGamePacketManager(this);
+			World = new World(new Vector2(0, 9.8f));
+			PacketManager = new PacketManager(this);
 		}
 
 		public void LoadContent()
@@ -75,44 +78,29 @@ namespace gearit.src.Network
 
 			_FrameCount = 0;
 			_Time = 0;
-			_world.Clear();
-			_world.Gravity = new Vector2(0f, 9.8f);
+			World.Clear();
+			World.Gravity = new Vector2(0f, 9.8f);
 
 			//clearRobot();
-			SerializerHelper.World = _world;
-
-			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
-			_world.Step(1/30f);
-			addRobot((Robot)Serializer.DeserializeItem("data/robot/default.gir"));
-			_world.Step(1/30f);
-
+			SerializerHelper.World = World;
+			PacketManager.Network = NetworkServer.Instance;
 			Debug.Assert(Robots != null);
-			_Map = (Map)Serializer.DeserializeItem("data/map/default.gim");
+			Map = (Map)Serializer.DeserializeItem("data/map/default.gim");
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 
-			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
+			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
 		}
 
-		public World GetWorld()
+		public void AddRobot(Robot robot)
 		{
-			return (_world);
-		}
-
-		public void addRobot(Robot robot)
-		{
-			robot.Id = Robots.Count;
 			Robots.Add(robot);
-			_world.Step(0f);
-			robot.move(new Vector2(Robots.Count * 30, -20));
-		}
-
-		public void SetMap(Map map)
-		{
-			_Map = map;
+			World.Step(0);
+			World.Step(1/30f);
+			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 
 		public void clearRobot()
@@ -122,13 +110,6 @@ namespace gearit.src.Network
 			Robots.Clear();
 		}
 
-		public void AddRobot(Robot robot)
-		{
-			//Robot robot = (Robot)Serializer.DeserializeItem("robot/default.gir");
-			Robots.Add(robot);
-			_world.Step(1/30f);
-		}
-
 		public void Update(float delta)
 		{
 			//float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (2f / 30f));
@@ -136,7 +117,7 @@ namespace gearit.src.Network
 			_Time += delta;
 			NetworkServer.Instance.ApplyRequests();
 
-			_world.Step(delta * 2);
+			World.Step(delta * 2);
 
 			foreach (Robot r in Robots)
 				r.Update();
@@ -167,10 +148,18 @@ namespace gearit.src.Network
 			//_exiting = true;
 		}
 
+		public Robot RobotFromId(int id)
+		{
+			return Robot.RobotFromId(Robots, id);
+		}
+
 		public void Exit()
 		{
 			clearRobot();
 			_gameMaster.stop();
 		}
+
+		public void Go()
+		{}
 	}
 }

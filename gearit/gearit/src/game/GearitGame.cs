@@ -19,14 +19,13 @@ namespace gearit.src.game
 {
 	class GearitGame : GameScreen, IDemoScreen, IGearitGame
 	{
-		private World _world;
+		public World World {get; private set; }
 		private Camera2D _camera;
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
 		private bool _pause;
 
-		private Map _Map;
-		public Map Map { get { return _Map; } }
+		public Map Map { get; set; }
 
 		private string RobotPath;
 		private string MapPath;
@@ -82,7 +81,7 @@ namespace gearit.src.game
 		public override void LoadContent()
 		{
 			_Robots = new List<Robot>();
-			_world = new World(new Vector2(0, 9.8f));
+			World = new World(new Vector2(0, 9.8f));
 			base.LoadContent();
 			_exiting = false;
 			_pause = false;
@@ -91,21 +90,21 @@ namespace gearit.src.game
 			_Time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
-			_world.Clear();
-			_world.Gravity = new Vector2(0f, 9.8f);
+			World.Clear();
+			World.Gravity = new Vector2(0f, 9.8f);
 
 			//clearRobot();
-			SerializerHelper.World = _world;
+			SerializerHelper.World = World;
 
 			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
 			addRobot(robot);
 			Debug.Assert(Robots != null);
-			_Map = (Map)Serializer.DeserializeItem(MapPath);
+			Map = (Map)Serializer.DeserializeItem(MapPath);
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-			_gameMaster = new GameLuaScript(this, _Map.LuaFullPath);
+			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
@@ -113,12 +112,12 @@ namespace gearit.src.game
 
 		public World getWorld()
 		{
-			return (_world);
+			return (World);
 		}
 
 		public void setMap(Map map)
 		{
-			_Map = map;
+			Map = map;
 		}
 
 		public void clearRobot()
@@ -128,12 +127,12 @@ namespace gearit.src.game
 			Robots.Clear();
 		}
 
-		public int MainRobotId { get { return 0; } }
+		public int MainRobotId { get { return 0; } set { } }
 
 		public void addRobot(Robot robot)
 		{
 			Robots.Add(robot);
-			_world.Step(0);
+			World.Step(0);
 			if (Robots.Count == 1)
 				_camera.TrackingBody = robot.Heart;
 			robot.InitScript();
@@ -150,7 +149,7 @@ namespace gearit.src.game
 			_Time += delta;
 			//Input.update();
 
-			_world.Step(delta);
+			World.Step(delta);
 
 			foreach (Robot r in Robots)
 				r.Update(Map);
@@ -196,7 +195,22 @@ namespace gearit.src.game
 			_drawGame.End();
 
 			base.Draw(gameTime);
+		}
 
+		public Robot RobotFromId(int id)
+		{
+			return Robot.RobotFromId(Robots, id);
+		}
+
+		public void Go()
+		{}
+
+		public void AddRobot(Robot robot)
+		{
+			Robots.Add(robot);
+			World.Step(0);
+			World.Step(1/30f);
+			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 	}
 }
