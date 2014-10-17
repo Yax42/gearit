@@ -21,6 +21,8 @@ namespace gearit.src.GUI
 			Scissor = false;
 			Padding = new Margin(7);
 
+			Style = "panel";
+
 			TitleLabel = new Label();
 			TitleLabel.Size = new Point(100, 55);
 			TitleLabel.Dock = DockStyle.Top;

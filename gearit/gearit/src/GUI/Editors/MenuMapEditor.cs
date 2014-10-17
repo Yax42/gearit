@@ -74,7 +74,7 @@ namespace gearit.src.editor.map
 			Position = new Squid.Point(padding_x, padding_y);
 
 			// Full width to get the cursor propagation
-			Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height - padding_y);
+			Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height - padding_y);
 
 			int y = 0;
 
@@ -451,7 +451,7 @@ namespace gearit.src.editor.map
 
 		public Point getMenuSize()
 		{
-			return (Size);
+			return (new Squid.Point(MENU_WIDTH, Size.y));
 		}
 	}
 }

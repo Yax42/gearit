@@ -194,6 +194,8 @@ namespace gearit.src.GUI.Tools
 			ControlStyle addEventButtonStyle = new ControlStyle();
 			addEventButtonStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle panelStyle = new ControlStyle();
+
 			skin.Styles.Add("message", messageStyle);
 			skin.Styles.Add("textwhite", textStyle);
 			skin.Styles.Add("textblack", textStyleB);
@@ -229,6 +231,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("eventPanel", eventPanelStyle);
 			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
 			skin.Styles.Add("addEventButton", addEventButtonStyle);
+			skin.Styles.Add("panel", panelStyle);
 
 			#endregion
 
@@ -329,6 +332,19 @@ namespace gearit.src.GUI.Tools
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
 			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
+
+			style = styles["button"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = toInt(info.PrimitiveDark);
+			style.Default.BackColor = toInt(info.Primitive);
+
+			style = styles["frame"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = toInt(info.Primitive);
+
+			style = styles["panel"];
+			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.BackColor = toInt(info.Grayie);
 		}
 
 		static public int removeAlpha(int color, int alpha)

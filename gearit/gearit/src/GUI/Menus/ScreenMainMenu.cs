@@ -58,6 +58,8 @@ namespace GUI
 		static public int RESERVED_HEIGHT = HEIGHT_TITLE * 2;
 
 		// Gui
+		private SamplerState _sampler;
+		private RasterizerState _rasterizer;
 		private List<AnimInfo> _animations = new List<AnimInfo>();
 		private GameScreen _current_screen = null;
 		private GameScreen _old_screen = null;
@@ -66,6 +68,7 @@ namespace GUI
 		private Control main_menu;
 		private Control list_container;
 		private Label tb_title;
+		private string str_title = "";
 		private Desktop dk_listbox;
 		private ListBox menu_listbox;
 
@@ -121,13 +124,6 @@ namespace GUI
 			menu_listbox.Style = "mainMenuList";
 			menu_listbox.Parent = dk_listbox;
 
-			// Title
-			tb_title = new Label();
-			tb_title.Position = new Squid.Point(0, HEIGHT_TITLE + 7);
-			tb_title.Size = new Squid.Point(MENU_LIST_WIDTH, HEIGHT_TITLE);
-			tb_title.Style = "titleMainMenu";
-			tb_title.Parent = dk_listbox;
-
 			_Gearit = new MyGame();
 			_game = new GearitGame();
 			_networkGame = new NetworkClientGame();
@@ -150,6 +146,10 @@ namespace GUI
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
 			//menu_listbox.Items[1].Click(0);
+
+			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
+			_sampler = new SamplerState();
+			_sampler.Filter = TextureFilter.Anisotropic;
 
 			#endregion
 		}
@@ -192,10 +192,12 @@ namespace GUI
 
 			_dk_main_menu.Draw();
 
-			drawTitleStrip();
+			// Setup graphics
+			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, _sampler, null, _rasterizer);
+            ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
 
 			Color color;
-			tb_title.Text = "GEARIT";
+			str_title = "GEARIT";
 			// Draw stripe listview
 			for (int i = 0; i < menu_listbox.Items.Count; ++i)
 			{
@@ -204,26 +206,30 @@ namespace GUI
 					continue;
 				if (item.State > ControlState.Default && item.State != ControlState.Disabled)
 				{
-					tb_title.Text = item.Text;
+					str_title = item.Text;
 					color = Theme.CurrentTheme.Primitive;
 				}
 				else
 					color = STRIPE_COLOR;
 				drawStripes(item.Location.x + 8, item.Location.y + 6, item.Size.x - 8, 25, color);
 			}
+			ScreenManager.Instance.SpriteBatch.End();
 
 			dk_listbox.Draw();
+
+			drawHeader();
 		}
 
-		public void drawTitleStrip()
+		public void drawHeader()
 		{
-			// Setup graphics
-			RasterizerState _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
-			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, null, null, _rasterizerState);
+			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, _sampler, null, _rasterizer);
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
+			int padding_x = 0;
 
+			if (_dk_main_menu.Position.x < 0)
+				padding_x = (-_dk_main_menu.Position.x / 3);
 			setBaseStrip(HEIGHT_TITLE);
-			int x = MENU_WIDTH - MENU_LIST_WIDTH - BASE_STRIP_WIDTH / 2 - ((BASE_STRIP_WIDTH * 2 + 1) * 5) - 2;
+			int x = MENU_WIDTH - MENU_LIST_WIDTH - BASE_STRIP_WIDTH / 2 - ((BASE_STRIP_WIDTH * 2 + 1) * 5) - 2 - padding_x;
 			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, HEIGHT_TITLE, MENU_WIDTH - MENU_LIST_WIDTH, HEIGHT_TITLE);
 			drawStripes(x, HEIGHT_TITLE - 1, 6, STRIPE_COLOR);
 			x += ((BASE_STRIP_WIDTH * 2 + 1) * 3) + BASE_STRIP_WIDTH;
@@ -236,6 +242,12 @@ namespace GUI
 			x += nb * (BASE_STRIP_WIDTH * 2 + 1);
 			drawStripes(x, HEIGHT_TITLE - 1, 8, Theme.CurrentTheme.Primitive);
 
+
+			ScreenManager.Instance.SpriteBatch.End();
+
+			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null);
+			Squid.Point str_size = SpriteFonts.GetTextSize(str_title, ScreenManager.Fonts.TitleFont);
+			ScreenManager.Instance.SpriteBatch.DrawString(ScreenManager.Fonts.TitleFont, str_title, new Vector2(MENU_WIDTH - MENU_LIST_WIDTH + MENU_LIST_WIDTH / 2 - str_size.x / 2 - padding_x, HEIGHT_TITLE + 2), Theme.CurrentTheme.Primitive);
 			ScreenManager.Instance.SpriteBatch.End();
 		}
 
