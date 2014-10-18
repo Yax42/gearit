@@ -38,7 +38,7 @@ namespace gearit.src.editor.map
 
 		private ScreenManager _ScreenManager;
 		//private ListBox menu_listbox = new ListBox();
-		private Control background = new Control();
+		private Panel background = new Panel();
 		private Button rb_wall = new Button();
 		private Button rb_ball = new Button();
 		private Button Help_btn;
@@ -71,10 +71,10 @@ namespace gearit.src.editor.map
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
 			int padding_y = ScreenMainMenu.RESERVED_HEIGHT;
-			Position = new Squid.Point(padding_x, padding_y);
+			Position = new Squid.Point(0, 0);
 
 			// Full width to get the cursor propagation
-			Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height - padding_y);
+			Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);
 
 			int y = 0;
 
@@ -84,7 +84,7 @@ namespace gearit.src.editor.map
 			background.Parent = this;
 			background.Style = "menu";
 			background.Position = new Point(0, 0);
-			background.Size = new Point(MENU_WIDTH, Size.y);
+			background.Size = new Point(MENU_WIDTH, ScreenManager.Instance.Height);
 
 			// Drop callback
 			AllowDrop = true;
@@ -118,7 +118,7 @@ namespace gearit.src.editor.map
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
-			lb.Parent = this;
+			background.Content.Controls.Add(lb);
 
 			y += lb.Size.y + PADDING;
 
@@ -146,7 +146,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
 			btn.Tag = BType.Ball;
 			btn.MouseDrag += dragPiece;
@@ -156,7 +156,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
 			btn.Tag = BType.Wall;
 			btn.MouseDrag += dragPiece;
@@ -168,7 +168,7 @@ namespace gearit.src.editor.map
 			y += ITEM_HEIGHT + PADDING;
 
 			lb = new Label();
-			lb.Parent = this;
+			background.Content.Controls.Add(lb);
 			lb.Text = "Id";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
@@ -176,7 +176,7 @@ namespace gearit.src.editor.map
 			tb_id = new TextBox();
 			tb_id.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			tb_id.Position = new Squid.Point(MENU_WIDTH / 2, y);
-			tb_id.Parent = this;
+			background.Content.Controls.Add(lb);
 			tb_id.TextChanged += delegate(Control snd)
 			{
 				MapEditor.Instance.SelectChunk.StringId = tb_id.Text;
@@ -185,7 +185,7 @@ namespace gearit.src.editor.map
 			y += ITEM_HEIGHT + PADDING;
 
 			lb = new Label();
-			lb.Parent = this;
+			background.Content.Controls.Add(lb);
 			lb.Text = "Pos X";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
@@ -193,7 +193,7 @@ namespace gearit.src.editor.map
 			pos_x = new TextBox();
 			pos_x.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			pos_x.Position = new Squid.Point(MENU_WIDTH / 2, y);
-			pos_x.Parent = this;
+			background.Content.Controls.Add(pos_x);
 			pos_x.TextChanged += delegate(Control snd)
 			{
 				float res;
@@ -204,7 +204,7 @@ namespace gearit.src.editor.map
 			y += ITEM_HEIGHT + PADDING;
 
 			lb = new Label();
-			lb.Parent = this;
+			background.Content.Controls.Add(lb);
 			lb.Text = "Pos Y";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
@@ -212,7 +212,7 @@ namespace gearit.src.editor.map
 			pos_y = new TextBox();
 			pos_y.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			pos_y.Position = new Squid.Point(MENU_WIDTH / 2, y);
-			pos_y.Parent = this;
+			background.Content.Controls.Add(pos_y);
 			pos_y.TextChanged += delegate(Control snd)
 			{
 				float res;
@@ -261,7 +261,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				swapHelp();
@@ -275,7 +275,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.Tooltip = "(ctrl+D)";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
@@ -287,7 +287,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.Tooltip = "(ctrl+S)";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
@@ -299,7 +299,7 @@ namespace gearit.src.editor.map
 			btn.Style = "itemMenuButton";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
-			btn.Parent = this;
+			background.Content.Controls.Add(btn);
 			btn.Tooltip = "(ctrl+shift+S)";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
@@ -312,7 +312,7 @@ namespace gearit.src.editor.map
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
-			lb.Parent = this;
+			background.Content.Controls.Add(lb);
 			y += ITEM_HEIGHT / 2 + PADDING;
 
 			#endregion
@@ -446,7 +446,7 @@ namespace gearit.src.editor.map
 
 		public void positionChanged(int x, int y)
 		{
-			Position = new Point(x, y);
+			background.Position = new Point(x, y);
 		}
 
 		public Point getMenuSize()

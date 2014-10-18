@@ -145,7 +145,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			//menu_listbox.Items[1].Click(0);
+			menu_listbox.Items[1].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
@@ -310,6 +310,7 @@ namespace GUI
 		{
 			ListBoxItem item = new ListBoxItem();
 			item.Text = "";
+			item.Style = "panel";
 			item.BBCodeEnabled = true;
 			item.Size = new Squid.Point(MENU_WIDTH, 24);
 			menu_listbox.Items.Add(item);

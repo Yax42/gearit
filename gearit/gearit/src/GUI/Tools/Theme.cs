@@ -307,11 +307,11 @@ namespace gearit.src.GUI.Tools
 			style.TextColor = toInt(info.Primitive);
 
 			style = styles["itemMenuButton"];
-			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-			style.Default.BackColor = ColorInt.RGBA(1, 1, 1, 0.04f);
-			style.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
-			style.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = toInt(info.Light);
+			style.Default.BackColor = toInt(info.Primitive);
+			style.Checked.BackColor = toInt(info.Primitive);
+			style.CheckedHot.BackColor = toInt(info.Light);
 
 			style = styles["itemPickButton"];
 			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
