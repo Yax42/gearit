@@ -224,30 +224,28 @@ namespace GUI
 		{
 			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, _sampler, null, _rasterizer);
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
-			int padding_x = 0;
 
+			int padding_title = 0;
+			int padding_stripe = 0;
 			if (_dk_main_menu.Position.x < 0)
-				padding_x = (-_dk_main_menu.Position.x / 3);
+			{
+				padding_stripe = (-(int)(_dk_main_menu.Position.x / 1.4f));
+				padding_title = (-(int)(_dk_main_menu.Position.x / 3));
+			}
 			setBaseStrip(HEIGHT_TITLE);
-			int x = MENU_WIDTH - MENU_LIST_WIDTH - BASE_STRIP_WIDTH / 2 - ((BASE_STRIP_WIDTH * 2 + 1) * 5) - 2 - padding_x;
-			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, HEIGHT_TITLE, MENU_WIDTH - MENU_LIST_WIDTH, HEIGHT_TITLE);
-			drawStripes(x, HEIGHT_TITLE - 1, 6, STRIPE_COLOR);
-			x += ((BASE_STRIP_WIDTH * 2 + 1) * 3) + BASE_STRIP_WIDTH;
+			int x = MENU_WIDTH - MENU_LIST_WIDTH - BASE_STRIP_WIDTH / 2 - ((BASE_STRIP_WIDTH * 2 + 1) * 5) - 9 - padding_stripe;
+			int nb = drawStripes(x, HEIGHT_TITLE - 1, (int) (MENU_WIDTH * 1.4f), BASE_STRIP_HEIGHT, Theme.CurrentTheme.Grayie);
+			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, HEIGHT_TITLE - 1, _dk_main_menu.Position.x + _dk_main_menu.Size.x, HEIGHT_TITLE);
+			drawStripes(x, HEIGHT_TITLE - 1, MENU_WIDTH + BASE_STRIP_SPACE, BASE_STRIP_HEIGHT, STRIPE_COLOR);
+			x += ((BASE_STRIP_WIDTH * 2 + 1) * nb);
 			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
-			drawStripes(x, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, Theme.CurrentTheme.Grayie);
-			int nb = drawStripes(x + 1, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, Theme.CurrentTheme.Grayie);
-			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(MENU_WIDTH - MENU_LIST_WIDTH, HEIGHT_TITLE, MENU_LIST_WIDTH, HEIGHT_TITLE);
-			drawStripes(x + 1, HEIGHT_TITLE - 1, (int) (MENU_LIST_WIDTH * 1.7f), HEIGHT_TITLE, STRIPE_COLOR);
-			ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
-			x += nb * (BASE_STRIP_WIDTH * 2 + 1);
-			drawStripes(x, HEIGHT_TITLE - 1, 8, Theme.CurrentTheme.Primitive);
-
+			drawStripes(x, HEIGHT_TITLE - 1, (int) (MENU_WIDTH * 0.4f), BASE_STRIP_HEIGHT, Theme.CurrentTheme.Primitive);
 
 			ScreenManager.Instance.SpriteBatch.End();
 
-			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null);
+			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null);
 			Squid.Point str_size = SpriteFonts.GetTextSize(str_title, ScreenManager.Fonts.TitleFont);
-			ScreenManager.Instance.SpriteBatch.DrawString(ScreenManager.Fonts.TitleFont, str_title, new Vector2(MENU_WIDTH - MENU_LIST_WIDTH + MENU_LIST_WIDTH / 2 - str_size.x / 2 - padding_x, HEIGHT_TITLE + 2), Theme.CurrentTheme.Primitive);
+			ScreenManager.Instance.SpriteBatch.DrawString(ScreenManager.Fonts.TitleFont, str_title, new Vector2(MENU_WIDTH - MENU_LIST_WIDTH + MENU_LIST_WIDTH / 2 - str_size.x / 2 - padding_title, HEIGHT_TITLE + 2), Theme.CurrentTheme.Primitive);
 			ScreenManager.Instance.SpriteBatch.End();
 		}
 
