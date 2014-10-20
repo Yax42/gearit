@@ -145,7 +145,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			menu_listbox.Items[1].Click(0);
+			//menu_listbox.Items[1].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
@@ -171,7 +171,7 @@ namespace GUI
 					anim.elapsedTime = DELAY_ANIMATION - anim.elapsedTime;
 					anim.type = anim.type == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
 				}
-				dk_listbox.Enabled = false;
+				//dk_listbox.Enabled = false;
 			}
 
 			// Animate
@@ -314,6 +314,8 @@ namespace GUI
 			menu_listbox.Items.Add(item);
 		}
 
+		int nb_item = 0;
+		int current_item_id = 0;
 		public void addMenuItem(GameScreen screen, string title)
 		{
 			ListBoxItem item = new ListBoxItem();
@@ -322,15 +324,24 @@ namespace GUI
 			item.Size = new Squid.Point(MENU_WIDTH, 42);
 			item.Style = "itemMainMenu";
 			menu_listbox.Items.Add(item);
+			int item_id = nb_item++;
 
 			// Callback
 			item.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
+				AnimInfo info = _animations.Find(delegate(AnimInfo search) { return search.type == Animation.ShowMenu || search.type == Animation.ToggleMenu; });
+				if (screen == _current_screen || info != null)
+				{
+					if (info != null && screen != _current_screen)
+						menu_listbox.Items[current_item_id].Click(0);
+					return;
+				}
+
+				current_item_id = item_id;
 				_old_screen = _current_screen;
 				_current_screen = screen;
 				ScreenManager.AddScreen(screen);
 				_current_screen.positionChanged(-_current_screen.getMenuSize().x, 0);
-
 				if (_old_screen != null)
 					_animations.Add(new AnimInfo(Animation.ToggleMenu));
 				else
