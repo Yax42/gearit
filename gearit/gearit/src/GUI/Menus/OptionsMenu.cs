@@ -7,6 +7,7 @@ using Squid;
 using GUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using gearit.src.utility;
 
 namespace gearit.src.GUI.OptionsMenu
 {
@@ -16,22 +17,27 @@ namespace gearit.src.GUI.OptionsMenu
 
 		ScreenManager _screen;
 		Desktop _desktop;
-		Panel _dialog_co;
+		//Panel _dialog_co;
 		DropDownList _resolution;
 		DropDownList _fullscreen;
 		DropDownList _volume;
 		Button _save_btn;
         DropDownList _showFps;
         FrameRateCounter _frc = null;
+        Panel _background = new Panel();
 
 		const int DIALOG_WIDTH = 400;
 		const int TAB_WIDTH = 156;
+        static public int MENU_WIDTH = 220;
+        static public int ITEM_HEIGHT = 30;
+        static public int PADDING = 2;
 
 		public OptionsMenu(ScreenManager screen) : base(false)
 		{
 			Instance = this;
 			_screen = screen;
 		}
+
 
 		public override void LoadContent()
 		{
@@ -42,29 +48,22 @@ namespace gearit.src.GUI.OptionsMenu
 			VisibleMenu = true;
 
 			_desktop = new Desktop();
-			_desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
-			_desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
+            _desktop.Position = new Squid.Point(0, 0);
+            _desktop.Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);
 
-			_dialog_co = new Panel();
-			_dialog_co.Position = new Squid.Point(ScreenManager.Width / 2 - DIALOG_WIDTH, ScreenManager.Height / 4);
-			_dialog_co.Size = new Squid.Point((ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 2, DIALOG_WIDTH / 2 + 120);
-			_dialog_co.Parent = _desktop;
-			_dialog_co.Style = "menu";
-
-			Label TitleLabel = new Label();
-			TitleLabel.Size = new Squid.Point(100, 45);
-			TitleLabel.Dock = DockStyle.Top;
-			TitleLabel.Text = "OPTIONS";
-			TitleLabel.Style = "itemMenuTitle";
-			TitleLabel.TextAlign = Alignment.MiddleLeft;
-			TitleLabel.Margin = new Margin(0, 0, 0, -1);
-			_dialog_co.Content.Controls.Add(TitleLabel);
+            _background.Parent = _desktop;
+            _background.Style = "menu";
+            _background.Position = new Squid.Point(0, 0);
+            _background.Size = new Squid.Point(MENU_WIDTH, (ITEM_HEIGHT + PADDING) * 11);
 
 			ListBoxItem item = null;
 
+            //Video
+            addLabel(0, 0, MENU_WIDTH, ITEM_HEIGHT, "VIDEO", "itemMenuTitle");
+
 			// Resolution Option
-			addLabel(0, 70, (int)((float)_dialog_co.Size.x / 2.5), 34, "Resolution");
-			_resolution = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 70);
+			addLabel(0, 1, MENU_WIDTH, ITEM_HEIGHT, "RESOLUTION", "itemMenuSubtitle");
+            _resolution = initDropBox(0, 2, MENU_WIDTH, ITEM_HEIGHT);
 			int resolCpt = 0;
 			foreach (DisplayMode mode in GraphicsAdapter.DefaultAdapter.SupportedDisplayModes)
 			{
@@ -76,8 +75,8 @@ namespace gearit.src.GUI.OptionsMenu
 			}
 
 			// Fullscreen option
-			addLabel(0, 120, (int)((float)_dialog_co.Size.x / 2.5), 34, "Fullscreen");
-			_fullscreen = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 120);
+			addLabel(0, 3, MENU_WIDTH, ITEM_HEIGHT, "FULLSCREEN", "itemMenuSubtitle");
+			_fullscreen = initDropBox(0, 4, MENU_WIDTH, ITEM_HEIGHT);
 			item = addListBoxItem(_fullscreen, "Yes");
 			if (_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
@@ -85,9 +84,20 @@ namespace gearit.src.GUI.OptionsMenu
 			if (!_screen.IsFullScreen)
 				_fullscreen.SelectedItem = item;
 
+
+            // Volume control
+            addLabel(0, 5, MENU_WIDTH, ITEM_HEIGHT, "VOLUME", "itemMenuTitle");
+			_volume = initDropBox(0, 6, MENU_WIDTH, ITEM_HEIGHT);
+			for (int i = 1; i <= 10; i++)
+				item = addListBoxItem(_volume, i.ToString());
+			_volume.SelectedItem = item;
+
+            //Other
+            addLabel(0, 7, MENU_WIDTH, ITEM_HEIGHT, "OTHER", "itemMenuTitle");
+
             // Show fps
-            addLabel(0, 220, (int)((float)_dialog_co.Size.x / 2.5), 34, "Show fps");
-            _showFps = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 220);
+            addLabel(0, 8, MENU_WIDTH, ITEM_HEIGHT, "SHOW FPS", "itemMenuSubtitle");
+            _showFps = initDropBox(0, 9, MENU_WIDTH, ITEM_HEIGHT);
             item = addListBoxItem(_showFps, "Yes");
             if (ScreenManager.Game.Components.Contains(_frc))
                 _showFps.SelectedItem = item;
@@ -95,19 +105,13 @@ namespace gearit.src.GUI.OptionsMenu
             if (!ScreenManager.Game.Components.Contains(_frc))
                 _showFps.SelectedItem = item;
 
-            // Volume control
-                addLabel(0, 170, (int)((float)_dialog_co.Size.x / 2.5), 34, "Volume");
-			_volume = initDropBox(158, 34, _dialog_co.Size.x / 2 - 16, 170);
-			for (int i = 1; i <= 10; i++)
-				item = addListBoxItem(_volume, i.ToString());
-			_volume.SelectedItem = item;
-
 			// Save button
 			_save_btn = new Button();
-			_save_btn.Size = new Squid.Point(124, 34);
-			_save_btn.Position = new Squid.Point(_dialog_co.Size.x - 124 - 8,_dialog_co.Size.y - 34 - 8);
-			_save_btn.Text = "Save";
-			_dialog_co.Content.Controls.Add(_save_btn);
+			_save_btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+            _save_btn.Position = new Squid.Point(0, (ITEM_HEIGHT + PADDING) * 10);
+			_save_btn.Text = "SAVE";
+            _save_btn.Style = "itemMenuButton";
+			_background.Content.Controls.Add(_save_btn);
 
 			_save_btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
@@ -138,6 +142,9 @@ namespace gearit.src.GUI.OptionsMenu
                     ScreenManager.Game.Components.Remove(_frc);
 
 				// Apply volume level
+
+
+                
 			};
 		}
 
@@ -153,14 +160,15 @@ namespace gearit.src.GUI.OptionsMenu
 			_desktop.Draw();
 		}
 
-		private void addLabel(int posX, int posY, int sizeX, int sizeY, string label)
+		private void addLabel(int posX, int idY, int sizeX, int sizeY, string label, string style)
 		{
 			Label lb = new Label();
-			lb.Position = new Squid.Point(posX, posY);
+			lb.Position = new Squid.Point(posX, (ITEM_HEIGHT + PADDING) * idY);
 			lb.Size = new Squid.Point(sizeX, sizeY);
-			lb.TextAlign = Alignment.MiddleRight;
+			//lb.TextAlign = Alignment.MiddleRight;
 			lb.Text = label;
-			_dialog_co.Content.Controls.Add(lb);
+            lb.Style = style;
+			_background.Content.Controls.Add(lb);
 		}
 
 		private ListBoxItem addListBoxItem(DropDownList list, string name, string tag = "")
@@ -175,18 +183,18 @@ namespace gearit.src.GUI.OptionsMenu
 			return (item);
 		}
 
-		private DropDownList initDropBox(int sizeX, int sizeY, int posX, int posY)
+		private DropDownList initDropBox(int posX, int idY, int sizeX, int sizeY)
 		{
 			DropDownList dropBox = new DropDownList();
 			dropBox.Size = new Squid.Point(sizeX, sizeY);
-			dropBox.Position = new Squid.Point(posX, posY);
+			dropBox.Position = new Squid.Point(posX, (ITEM_HEIGHT + PADDING) * idY);
 			dropBox.Label.Style = "comboLabel";
 			dropBox.Button.Style = "comboButton";
 			dropBox.Listbox.Margin = new Margin(0, 0, 0, 0);
 			dropBox.Listbox.Style = "frame";
             dropBox.Opened += delegate(Control sender, SquidEventArgs args)
             {
-                dropBox.Dropdown.Position = new Squid.Point(dropBox.Dropdown.Position.x - ScreenMainMenu.MENU_WIDTH, dropBox.Dropdown.Position.y);
+                dropBox.Dropdown.Position = new Squid.Point(dropBox.Dropdown.Position.x /*- ScreenMainMenu.MENU_WIDTH*/, dropBox.Dropdown.Position.y);
             };
 
 			dropBox.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
@@ -200,10 +208,25 @@ namespace gearit.src.GUI.OptionsMenu
 			dropBox.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
 			dropBox.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
 
-			_dialog_co.Content.Controls.Add(dropBox);
+			_background.Content.Controls.Add(dropBox);
 			dropBox.Focus();
 			return (dropBox);
 		}
+
+        override public void positionChanged(int x, int y)
+        {
+            _background.Position = new Squid.Point(x, y);
+        }
+
+        override public Squid.Point getMenuSize()
+        {
+            return (_background.Size);
+        }
+
+        override public Squid.Point getMenuPosition()
+        {
+            return (_background.Position);
+        }
 
 		public string GetTitle()
 		{
