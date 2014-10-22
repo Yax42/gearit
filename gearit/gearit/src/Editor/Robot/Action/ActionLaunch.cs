@@ -14,12 +14,20 @@ namespace gearit.src.editor.robot.action
 	class ActionLaunch : IAction
 	{
 		static public bool Running = false;
-		static private World SimulationWorld = null;
+		static public World SimulationWorld = null;
 		static public Robot Robot;
-		public void init()
+
+		public static void ResetWorld()
 		{
 			if (SimulationWorld == null)
 				SimulationWorld = new World(new Vector2(0, 9.8f));
+			else
+				SimulationWorld.Clear();
+		}
+
+		public void init()
+		{
+			ResetWorld();
 			if (RobotEditor.Instance.NamePath != "")
 			{
 				new ActionSaveRobot().run();

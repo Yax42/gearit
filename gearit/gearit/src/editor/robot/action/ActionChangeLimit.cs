@@ -45,7 +45,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlShift(false, false) && (Input.justPressed(Keys.Q)));
+			return (Input.CtrlShift(true, true) && (Input.justPressed(Keys.Q)));
 		}
 
 		private float Angle
