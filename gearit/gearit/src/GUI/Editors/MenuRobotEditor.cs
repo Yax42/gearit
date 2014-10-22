@@ -331,7 +331,7 @@ namespace gearit.src.GUI
 			piece_size.Text = "8";
 			piece_size.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			piece_size.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
-			piece_size.Style = "textbox";
+			piece_size.Style = "menuTextbox";
 			background.Content.Controls.Add(lb);
 			piece_size.Mode = TextBoxMode.Numeric;
 			piece_size.Enabled = false;
@@ -349,7 +349,7 @@ namespace gearit.src.GUI
 			piece_x.Text = "15";
 			piece_x.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
 			piece_x.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
-			piece_x.Style = "textbox";
+			piece_x.Style = "menuTextbox";
 			piece_x.Enabled = false;
 			background.Content.Controls.Add(lb);
 
@@ -363,7 +363,7 @@ namespace gearit.src.GUI
 			piece_y.Text = "81";
 			piece_y.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
 			piece_y.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
-			piece_y.Style = "textbox";
+			piece_y.Style = "menuTextbox";
 			piece_y.Enabled = false;
 			background.Content.Controls.Add(piece_y);
 
@@ -423,7 +423,7 @@ namespace gearit.src.GUI
 			spot_name.Text = "spotNumber";
 			spot_name.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			spot_name.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
-			spot_name.Style = "textbox";
+			spot_name.Style = "menuTextbox";
 			spot_name.Parent = spot_container;
 			spot_name.TextChanged += delegate(Control snd)
 			{
@@ -444,7 +444,7 @@ namespace gearit.src.GUI
 			spot_force.Text = "8";
 			spot_force.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			spot_force.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
-			spot_force.Style = "textbox";
+			spot_force.Style = "menuTextbox";
 			spot_force.Parent = spot_container;
 			spot_force.Mode = TextBoxMode.Numeric;
 			spot_force.TextChanged += delegate(Control snd)
@@ -473,7 +473,7 @@ namespace gearit.src.GUI
 			spot_distance.Text = "8.23";
 			spot_distance.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			spot_distance.Position = new Squid.Point(lb.Size.x + 8, PADDING + 1);
-			spot_distance.Style = "textbox";
+			spot_distance.Style = "menuTextbox";
 			spot_distance.Parent = spot_distance_container;
 			spot_distance.Enabled = false;
 
@@ -866,18 +866,15 @@ namespace gearit.src.GUI
 				return false;
 			if (_has_focus)
 				return (true);
-			//else return false;
-			int padding = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
-
-			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
-				background.Position.x + background.Size.x + padding >= Input.position().X &&
+			bool menu_has_focus = background.Position.x <= Input.position().X &&
+				background.Position.x + background.Size.x >= Input.position().X &&
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;
 
 			bool script_has_focus = _panelScript.Visible && 
-				_panelScript.Position.x + padding <= Input.position().X &&
-				_panelScript.Position.x + _panelScript.Size.x + padding >= Input.position().X &&
+				_panelScript.Position.x <= Input.position().X &&
+				_panelScript.Position.x + _panelScript.Size.x >= Input.position().X &&
 				_panelScript.Position.y <= Input.position().Y &&
 				_panelScript.Position.y + _panelScript.Size.y >= Input.position().Y;
 
@@ -964,7 +961,12 @@ namespace gearit.src.GUI
 
 		public Point getMenuSize()
 		{
-			return (new Squid.Point(MENU_WIDTH, Size.y));
+			return (background.Size);
+		}
+
+		public Point getMenuPosition()
+		{
+			return (background.Position);
 		}
 	}
 }

@@ -84,7 +84,6 @@ namespace gearit.src.editor.map
 			background.Parent = this;
 			background.Style = "menu";
 			background.Position = new Point(0, 0);
-			background.Size = new Point(MENU_WIDTH, ScreenManager.Instance.Height);
 
 			// Drop callback
 			AllowDrop = true;
@@ -170,10 +169,12 @@ namespace gearit.src.editor.map
 			lb = new Label();
 			background.Content.Controls.Add(lb);
 			lb.Text = "Id";
+			lb.Style = "itemMenu";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 
 			tb_id = new TextBox();
+			tb_id.Style = "menuTextbox";
 			tb_id.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			tb_id.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			background.Content.Controls.Add(lb);
@@ -187,11 +188,13 @@ namespace gearit.src.editor.map
 			lb = new Label();
 			background.Content.Controls.Add(lb);
 			lb.Text = "Pos X";
+			lb.Style = "itemMenu";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 
 			pos_x = new TextBox();
 			pos_x.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
+			pos_x.Style = "menuTextbox";
 			pos_x.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			background.Content.Controls.Add(pos_x);
 			pos_x.TextChanged += delegate(Control snd)
@@ -206,10 +209,12 @@ namespace gearit.src.editor.map
 			lb = new Label();
 			background.Content.Controls.Add(lb);
 			lb.Text = "Pos Y";
+			lb.Style = "itemMenu";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 
 			pos_y = new TextBox();
+			pos_y.Style = "menuTextbox";
 			pos_y.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			pos_y.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			background.Content.Controls.Add(pos_y);
@@ -253,7 +258,7 @@ namespace gearit.src.editor.map
 
 			//-----------------------------------------------
 
-			y = Size.y - ITEM_HEIGHT;
+			y += ITEM_HEIGHT * 3 + PADDING;
 
 			Help_btn = new Button();
 			btn = Help_btn;
@@ -267,7 +272,7 @@ namespace gearit.src.editor.map
 				swapHelp();
 			};
 
-			y -= btn.Size.y + PADDING;
+			y += btn.Size.y + PADDING;
 
 			// Load
 			btn = new Button();
@@ -306,18 +311,14 @@ namespace gearit.src.editor.map
 				saveasMap();
 			};
 
-			y -= btn.Size.y / 2+ PADDING;
+			y += btn.Size.y;
 
-			lb = new Label();
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
-			background.Content.Controls.Add(lb);
-			y += ITEM_HEIGHT / 2 + PADDING;
 
 			#endregion
 
 			#endregion
+
+			background.Size = new Point(MENU_WIDTH, y);
 		}
 
 		public void Update()
@@ -451,7 +452,12 @@ namespace gearit.src.editor.map
 
 		public Point getMenuSize()
 		{
-			return (new Squid.Point(MENU_WIDTH, Size.y));
+			return (background.Size);
+		}
+
+		public Squid.Point getMenuPosition()
+		{
+			return (background.Position);
 		}
 	}
 }

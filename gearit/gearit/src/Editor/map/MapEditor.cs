@@ -265,6 +265,11 @@ namespace gearit.src.editor.map
 			MenuMapEditor.Instance.positionChanged(x, y);
 		}
 
+		public override Squid.Point getMenuPosition()
+		{
+			return (MenuMapEditor.Instance.getMenuPosition());
+		}
+
 		public override Squid.Point getMenuSize()
 		{
 			return (MenuMapEditor.Instance.getMenuSize());

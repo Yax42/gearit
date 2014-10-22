@@ -145,7 +145,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			//menu_listbox.Items[1].Click(0);
+			menu_listbox.Items[2].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
@@ -189,6 +189,19 @@ namespace GUI
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+
+            ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
+			// Draw menu border
+			Squid.Point menu_size = _current_screen.getMenuSize();
+			if (_current_screen != null && menu_size.x != 0)
+			{
+				Squid.Point menu_pos = _current_screen.getMenuPosition();
+				VertexPositionColor[] verts = new VertexPositionColor[3];
+				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y, 0), Theme.CurrentTheme.Grayie);
+				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y, 0), Theme.CurrentTheme.Grayie);
+				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4, 0), Theme.CurrentTheme.Grayie);
+				ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
+			}
 
 			_dk_main_menu.Draw();
 
@@ -386,18 +399,18 @@ namespace GUI
 				else if (anim.type  == Animation.ShowMenu)
 				{
 					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * _current_screen.getMenuSize().x;
-					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - _current_screen.getMenuSize().x + (int)posx, HEIGHT_TITLE * 2);
+					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - _current_screen.getMenuSize().x + (int)posx + 1, HEIGHT_TITLE * 2 + 1);
 
 					if (anim.elapsedTime >= DELAY_ANIMATION)
 					{
-						_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
+						_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x + 1, HEIGHT_TITLE * 2 + 1);
 						_current_screen.VisibleMenu = true;
 					}
 				}
 				else if (anim.type == Animation.ToggleMenu)
 				{
 					float posx = (float)anim.elapsedTime / DELAY_ANIMATION * _old_screen.getMenuSize().x;
-					_old_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - (int)posx, HEIGHT_TITLE * 2);
+					_old_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x - (int)posx + 1, HEIGHT_TITLE * 2 + 1);
 
 					if (anim.elapsedTime >= DELAY_ANIMATION)
 					{
@@ -409,7 +422,7 @@ namespace GUI
 				}
 
 				if ((anim.type == Animation.ShowMainMenu || anim.type == Animation.HideMainMenu) && _current_screen != null && _animations.Find(delegate(AnimInfo search) { return search.type == Animation.ShowMenu || search.type == Animation.ToggleMenu; }) == null)
-					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x, HEIGHT_TITLE * 2);
+					_current_screen.positionChanged(dk_listbox.Position.x + dk_listbox.Size.x + 1, HEIGHT_TITLE * 2 + 1);
 
 				if (anim.elapsedTime >= DELAY_ANIMATION)
 					anim.type = Animation.Chillout;
