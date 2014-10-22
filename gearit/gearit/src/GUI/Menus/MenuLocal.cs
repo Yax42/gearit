@@ -72,6 +72,8 @@ namespace gearit.src.gui
 				config.EnableMessageType(NetIncomingMessageType.DiscoveryResponse);
 				NetClient client = new NetClient(config);
 				client.Start();
+				Console.WriteLine(">>> " + NetUtility.GetBroadcastAddress().ToString());
+				
 				client.DiscoverLocalPeers(INetwork.SERVER_PORT);
 
 				models.Clear();
@@ -103,7 +105,7 @@ namespace gearit.src.gui
 								entry.id = id_host++;
 								entry.Time = time;
 								entry.Map = map;
-								entry.Ping = 0;
+								entry.Ping = (int)inc.ReceiveTime;
 								models.Add(entry);
 								olv.SetObjects(models);
 								ScreenManager.stopDrawing();
