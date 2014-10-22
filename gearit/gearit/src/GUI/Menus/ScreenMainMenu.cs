@@ -145,7 +145,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			menu_listbox.Items[2].Click(0);
+			menu_listbox.Items[1].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
@@ -197,9 +197,9 @@ namespace GUI
 			{
 				Squid.Point menu_pos = _current_screen.getMenuPosition();
 				VertexPositionColor[] verts = new VertexPositionColor[3];
-				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y, 0), Theme.CurrentTheme.Grayie);
-				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y, 0), Theme.CurrentTheme.Grayie);
-				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4, 0), Theme.CurrentTheme.Grayie);
+				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
+				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
+				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4 - 0.5f, 0), Theme.CurrentTheme.Grayie);
 				ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
 			}
 

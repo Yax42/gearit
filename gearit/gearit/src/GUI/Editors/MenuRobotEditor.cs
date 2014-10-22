@@ -144,7 +144,7 @@ namespace gearit.src.GUI
 			background.Parent = this;
 			background.Style = "menu";
 			background.Position = new Point(0, 0);
-			background.Size = new Point(MENU_WIDTH, ScreenManager.Instance.Height);
+			background.Size = new Point(MENU_WIDTH, Size.y);
 
 			// Drop callback
 			AllowDrop = true;
@@ -398,12 +398,11 @@ namespace gearit.src.GUI
 			spot_container = new Frame();
 			background.Content.Controls.Add(spot_container);
 			spot_container.Position = new Squid.Point(0, y);
-			spot_container.Size = new Squid.Point(Size.x, Size.y - y);
 
 			y = 0;
 
 			lb = new Label();
-			lb.Text = "Spot data";
+			lb.Text = "SPOT DATA";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuSubTitle";
@@ -476,6 +475,10 @@ namespace gearit.src.GUI
 			spot_distance.Style = "menuTextbox";
 			spot_distance.Parent = spot_distance_container;
 			spot_distance.Enabled = false;
+
+			y += ITEM_HEIGHT;
+
+			spot_container.Size = new Squid.Point(Size.x, y);
 
 			#endregion
 
@@ -553,7 +556,7 @@ namespace gearit.src.GUI
 			*/
 
 			//-----------------------------------------------
-			y = ScreenManager.Height - ITEM_HEIGHT - ScreenMainMenu.RESERVED_HEIGHT;
+			y = spot_container.Position.y + spot_container.Size.y;
 
 			Help_btn = new Button();
 			btn = Help_btn;
@@ -580,7 +583,7 @@ namespace gearit.src.GUI
 				RobotEditor.Instance.doAction(ActionTypes.EXIT);
 			};
 
-			y -= btn.Size.y + PADDING;
+			y += btn.Size.y + PADDING;
 
 			// Load
 			btn = new Button();
@@ -619,7 +622,7 @@ namespace gearit.src.GUI
 				saveasRobot();
 			};
 
-			y -= btn.Size.y + PADDING;
+			y += btn.Size.y + PADDING;
 
 			btn = new Button();
 			btn.Text = "Edit script";
@@ -633,14 +636,14 @@ namespace gearit.src.GUI
 				_panelScript.Visible = !_panelScript.Visible;
 			};
 
-			y -= btn.Size.y / 2+ PADDING;
+			y += btn.Size.y / 2+ PADDING;
 
 			lb = new Label();
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT / 2);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuSubtitle";
 			background.Content.Controls.Add(btn);
-			y += ITEM_HEIGHT / 2 + PADDING;
+			y += ITEM_HEIGHT / 2;
 
 			// Title
 			/*
@@ -653,6 +656,8 @@ namespace gearit.src.GUI
 			*/
 
 			#endregion
+
+			background.Size = new Point(MENU_WIDTH, y);
 
 			#region script_editor
 

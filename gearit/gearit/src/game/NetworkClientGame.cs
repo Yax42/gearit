@@ -127,7 +127,7 @@ namespace gearit.src.Network
 			PacketManager.Network = NetworkClient;
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
 			//NetworkClient.Connect("81.249.189.167", 25552);
-			NetworkClient.Connect("127.0.0.1", 25552);
+			NetworkClient.Connect("10.41.177.41", 25552);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;
