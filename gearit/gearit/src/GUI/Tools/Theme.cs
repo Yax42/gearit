@@ -171,6 +171,9 @@ namespace gearit.src.GUI.Tools
 			ControlStyle itemMenuStyle = new ControlStyle();
 			itemMenuStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle itemListStyle = new ControlStyle();
+			itemListStyle.TextAlign = Alignment.MiddleCenter;
+
 			ControlStyle itemMenuTitleStyle = new ControlStyle();
 			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
@@ -226,6 +229,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("itemPickButton", itemPickButtonStyle);
 			skin.Styles.Add("menu", menuStyle);
 			skin.Styles.Add("itemMenu", itemMenuStyle);
+			skin.Styles.Add("itemList", itemListStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
 			skin.Styles.Add("itemMenuSubtitle", itemMenuSubtitleStyle);
 			skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
@@ -301,6 +305,12 @@ namespace gearit.src.GUI.Tools
 
 			style = styles["itemMenu"];
 			style.TextColor = toInt(info.Weird);
+
+			style = styles["itemList"];
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = toInt(info.Light);
+			style.Default.TextColor = toInt(info.Primitive);
+			style.Default.BackColor = 0;
 
 			style = styles["itemMenuTitle"];
 			style.BackColor = toInt(info.Primitive);

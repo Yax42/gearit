@@ -49,7 +49,7 @@ namespace SquidXNA
 			ScreenManager.AddScreen(new ScreenMainMenu());
 
             // To remove
-            NetworkServer.Start(25552);
+            NetworkServer.Start(INetwork.SERVER_PORT);
 		}
 
 		protected override void Update(GameTime gameTime)

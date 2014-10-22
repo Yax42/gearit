@@ -26,8 +26,8 @@ namespace gearit.src.Network
         private Thread clientThread;
 		override public string Path { get {return "data/net/client/";} }
 
-		public NetworkClient(PacketManager packetManager)
-			: base(new NetClient(new NetPeerConfiguration("gearit")), 1, packetManager)
+		public NetworkClient(NetPeerConfiguration config, PacketManager packetManager)
+			: base(new NetClient(config), 1, packetManager)
 		{
 			ResetToSends();
 		}
