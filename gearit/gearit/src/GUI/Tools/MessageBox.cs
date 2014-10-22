@@ -41,10 +41,10 @@ namespace gearit.src.GUI
 
 			MessageLabel = new Label();
 			MessageLabel.Dock = DockStyle.Top;
-			MessageLabel.Margin = new Margin(16, 12, 0, 0);
+			MessageLabel.Margin = new Margin(16, 12, 16, 12);
 			MessageLabel.TextWrap = true;
 			MessageLabel.Text = message;
-			MessageLabel.Style = "";
+			MessageLabel.Style = "frame";
 			Controls.Add(MessageLabel);
 		}
 

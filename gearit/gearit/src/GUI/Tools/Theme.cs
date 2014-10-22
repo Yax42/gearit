@@ -12,6 +12,7 @@ namespace gearit.src.GUI.Tools
 		public class ThemeInfo
 		{
 			public Color Primitive;
+			public Color PrimitiveLight;
 			public Color PrimitiveDark;
 			public Color Blackie;
 			public Color Dark;
@@ -31,6 +32,7 @@ namespace gearit.src.GUI.Tools
 			ThemeInfo info = new ThemeInfo();
 			info.Primitive = new Color(159, 23, 27, 255);
 			info.PrimitiveDark = new Color(73, 31, 35, 255);
+			info.PrimitiveLight = new Color(205, 144, 142, 255);
 			info.Blackie = new Color(0, 0, 0, 255);
 			info.Dark = new Color(73, 35, 33, 255);
 			info.DarkLight = new Color(95, 61, 49, 255);
@@ -43,6 +45,7 @@ namespace gearit.src.GUI.Tools
 			info = new ThemeInfo();
 			info.Primitive = new Color(77, 173, 172, 255);
 			info.PrimitiveDark = new Color(10, 57, 53, 255);
+			info.PrimitiveLight = new Color(205, 144, 142, 255);
 			info.Blackie = new Color(1, 1, 1, 255);
 			info.Dark = new Color(32, 51, 55, 255);
 			info.DarkLight = new Color(52, 97, 104, 255);
@@ -345,6 +348,15 @@ namespace gearit.src.GUI.Tools
 			style = styles["panel"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = toInt(info.Grayie);
+
+			style = styles["item"];
+			//style.BackColor = toInt(info.PrimitiveLight);
+			//style.Default.BackColor = toInt(info.Primitive);
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = toInt(info.Light);
+			style.Default.BackColor = toInt(info.Primitive);
+			style.Checked.BackColor = toInt(info.Primitive);
+			style.CheckedHot.BackColor = toInt(info.Light);
 		}
 
 		static public int removeAlpha(int color, int alpha)
