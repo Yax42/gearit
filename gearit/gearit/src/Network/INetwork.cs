@@ -29,6 +29,8 @@ namespace gearit.src.Network
 
 	abstract class INetwork
 	{
+		public static int SERVER_PORT = 25552;
+
 		protected byte[] TransformToSend;
 		protected int Port;
 		protected string Host;

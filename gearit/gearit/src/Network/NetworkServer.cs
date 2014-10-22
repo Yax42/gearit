@@ -19,6 +19,7 @@ namespace gearit.src.Network
     {
 		public static NetworkServer Instance { get; private set; }
         public string _buffer;
+        public string Name = "Test server";
         private Thread serverThread;
         private bool _server_launched;
 		private NetworkServerGame Game;
@@ -39,6 +40,7 @@ namespace gearit.src.Network
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
+			config.EnableMessageType(NetIncomingMessageType.DiscoveryRequest);
 			Instance = new NetworkServer(new NetworkServerGame(), config, port);
 			Instance.PrivateStart();
 		}
@@ -93,6 +95,14 @@ namespace gearit.src.Network
 					toRecycle = true;
                     switch (msg.MessageType)
                     {
+						case NetIncomingMessageType.DiscoveryRequest:
+							NetOutgoingMessage response = Peer.CreateMessage();
+							response.Write(Name);
+							response.Write(Game.Robots.Count);
+							response.Write(Game.Map.Name);
+							response.Write(Game.Time);
+							Peer.SendDiscoveryResponse(response, msg.SenderEndPoint);
+							break;
                         case NetIncomingMessageType.ConnectionApproval:
                             NetIncomingMessage hail = msg.SenderConnection.RemoteHailMessage;
                             Console.WriteLine(hail.ReadString());

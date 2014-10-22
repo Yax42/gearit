@@ -107,7 +107,7 @@ namespace GUI
 			// MainMenu List Container
 			list_container = new Control();
 			list_container.Position = new Squid.Point(MENU_WIDTH - MENU_LIST_WIDTH, 0);
-			list_container.Size = new Squid.Point(MENU_LIST_WIDTH, (int)(ScreenManager.Height / 1.5f));
+			list_container.Size = new Squid.Point(MENU_LIST_WIDTH, (int)(ScreenManager.Height / 1.45f));
 			list_container.Style = "mainMenuListContainer";
 			list_container.Parent = _dk_main_menu;
 
@@ -145,7 +145,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			menu_listbox.Items[1].Click(0);
+			menu_listbox.Items[0].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
