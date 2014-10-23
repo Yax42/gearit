@@ -18,6 +18,7 @@ using gearit.src.editor.map;
 using gearit.src.editor.robot;
 using gearit.src.GUI.OptionsMenu;
 using gearit.src.GUI.Tools;
+using gearit.src.xna.Sound;
 
 namespace GUI
 {
@@ -71,6 +72,10 @@ namespace GUI
 		private string str_title = "";
 		private Desktop dk_listbox;
 		private ListBox menu_listbox;
+
+        // For the sound
+		private ListBoxItem prev_item;
+		private ListBoxItem inside_item;
 
 		// List of item menu
 		private MyGame _Gearit;
@@ -211,6 +216,8 @@ namespace GUI
 
 			Color color;
 			str_title = "GEARIT";
+			int nbSelected = 0;
+			bool play_me = false;
 			// Draw stripe listview
 			for (int i = 0; i < menu_listbox.Items.Count; ++i)
 			{
@@ -219,6 +226,12 @@ namespace GUI
 					continue;
 				if (item.State > ControlState.Default && item.State != ControlState.Disabled)
 				{
+					if (inside_item != item && prev_item != item)
+					{
+						play_me = true;
+						prev_item = item;
+						nbSelected++;
+					}
 					str_title = item.Text;
 					color = Theme.CurrentTheme.Primitive;
 				}
@@ -228,6 +241,8 @@ namespace GUI
 			}
 			ScreenManager.Instance.SpriteBatch.End();
 
+			if (play_me == true && nbSelected == 1)
+				AudioManager.Instance.PlaySound("hover");
 			dk_listbox.Draw();
 
 			drawHeader();
@@ -343,6 +358,8 @@ namespace GUI
 			item.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				AnimInfo info = _animations.Find(delegate(AnimInfo search) { return search.type == Animation.ShowMenu || search.type == Animation.ToggleMenu; });
+				inside_item = menu_listbox.Items[current_item_id];
+				AudioManager.Instance.PlaySound("click");
 				if (screen == _current_screen || info != null)
 				{
 					if (info != null && screen != _current_screen)

@@ -6,6 +6,7 @@ using gearit.src.server;
 using gearit.src.Network;
 using gearit.xna;
 using gearit.src.GUI.Tools;
+using gearit.src.xna.Sound;
 
 namespace SquidXNA
 {
@@ -15,6 +16,7 @@ namespace SquidXNA
 	public class Game : Microsoft.Xna.Framework.Game
 	{
 		public gearit.xna.ScreenManager ScreenManager;
+		public AudioManager AudioManager;
 
 		public Game()
 		{
@@ -48,6 +50,7 @@ namespace SquidXNA
 			base.Initialize();
 			ScreenManager.AddScreen(new ScreenMainMenu());
 
+			AudioManager = new AudioManager(ScreenManager);
             // To remove
             NetworkServer.Start(INetwork.SERVER_PORT);
 		}
