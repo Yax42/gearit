@@ -427,6 +427,7 @@
     <Compile Include="src\xna\ScreenManager\PhysicsGameScreen.cs" />
     <Compile Include="src\GUI\ScreenManager.cs" />
     <Compile Include="src\GUI\Tools\SpriteFonts.cs" />
+    <Compile Include="src\xna\Sound\AudioManager.cs" />
     <Compile Include="src\xna\Sound\SoundManager.cs" />
     <Compile Include="zzz_gearit_help.cs" />
   </ItemGroup>
