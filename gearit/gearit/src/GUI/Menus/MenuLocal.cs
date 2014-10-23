@@ -26,6 +26,7 @@ using gearit.src.output;
 using gearit.src.Network;
 using System.Diagnostics;
 using Lidgren.Network;
+using gearit.src.GUI.Picker;
 
 namespace gearit.src.gui
 {
@@ -194,7 +195,11 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-                    //NetworkClient.Connect(((MyData)args.Model).host, ((MyData)args.Model).port, null);
+					ScreenManager.Instance.AddScreen(new ScreenPickManager(this));
+					ScreenPickManager.Callback += delegate()
+					{
+						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
+					};
                 };
 
                 return cell;

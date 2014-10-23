@@ -19,6 +19,8 @@ namespace gearit.src.GUI.Picker
 		private GameScreen NextScreen;
 		private int State;
 
+		static public Action Callback = null;
+
 		//Action
 
 		#region IDemoScreen Members
@@ -80,7 +82,8 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 2:
-					ScreenManager.ReplaceLast(ScreenPickRobot.Instance);
+					ScreenManager.RemoveScreen(ScreenPickMap.Instance);
+					ScreenManager.AddScreen(ScreenPickRobot.Instance);
 					State++;
 					break;
 				case 3:
@@ -91,11 +94,13 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 4:
-					ScreenManager.ResetTo(new GearitGame(RobotPath, MapPath));
+					ScreenManager.Instance.RemoveScreen(ScreenPickRobot.Instance);
+					if (Callback != null)
+						Callback();
 					State++;
 					break;
 				case 5:
-					Debug.Assert(false);
+					ScreenManager.Instance.RemoveScreen(this);
 					break;
 			}
 			
