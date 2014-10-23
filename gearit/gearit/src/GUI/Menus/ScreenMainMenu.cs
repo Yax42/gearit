@@ -126,7 +126,7 @@ namespace GUI
 
 			_Gearit = new MyGame();
 			_game = new GearitGame();
-			_networkGame = new NetworkClientGame();
+			_networkGame = new NetworkClientGame("bob", "data/robot/default.gir", "127.0.0.1");
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
 			_soloGame = new ScreenPickManager(_game);

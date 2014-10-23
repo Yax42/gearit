@@ -27,6 +27,10 @@ namespace gearit.src.Network
 		public NetworkClient NetworkClient { get; private set; }
 		private Status Status;
 
+		private string NameRobot;
+		private string NameMap;
+		private string IpServer;
+
 		private bool _exiting
 		{
 			get
@@ -69,8 +73,11 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame() : base(true)
+		public NetworkClientGame(string map, string robot, string ip) : base(true)
 		{
+			IpServer = ip;
+			NameMap = map;
+			NameRobot = robot;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
@@ -101,6 +108,7 @@ namespace gearit.src.Network
 			World = new World(new Vector2(0, 9.8f));
 			PacketManager = new PacketManager(this);
 
+			DrawPriority = 9999;
 			_exiting = false;
 
 			_FrameCount = 0;
@@ -112,7 +120,7 @@ namespace gearit.src.Network
 
 			//clearRobot();
 			SerializerHelper.World = World;
-			Robot r = (Robot)Serializer.DeserializeItem("data/robot/default.gir");
+			Robot r = (Robot)Serializer.DeserializeItem(NameRobot);
 			AddRobot(r);
 			r.Id = 0;
 			MainRobotId = 0;
@@ -128,7 +136,7 @@ namespace gearit.src.Network
 			PacketManager.Network = NetworkClient;
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
 			//NetworkClient.Connect("81.249.189.167", 25552);
-			NetworkClient.Connect("127.0.0.1", INetwork.SERVER_PORT);
+			NetworkClient.Connect(IpServer, INetwork.SERVER_PORT);
 
 			// I have no idea what this is.
 			//HasVirtualStick = true;

@@ -31,6 +31,7 @@ namespace gearit.src.GUI.Picker
 
 		public AScreenPickItem(bool isMap) : base(true)
 		{
+			DrawPriority = 9999;
 			IsMap = isMap;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
