@@ -48,9 +48,9 @@ namespace SquidXNA
 			Theme.init();
 			Theme.setTheme("Red");
 			base.Initialize();
+			AudioManager = new AudioManager(ScreenManager);
 			ScreenManager.AddScreen(new ScreenMainMenu());
 
-			AudioManager = new AudioManager(ScreenManager);
             // To remove
             NetworkServer.Start(INetwork.SERVER_PORT);
 		}
