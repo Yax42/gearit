@@ -22,6 +22,7 @@ using gearit.src.editor.robot;
 using System.IO;
 using gearit.src.Network;
 using gearit.src.utility;
+using gearit.src.editor.robot.action;
 
 namespace gearit.src.robot
 {
@@ -432,7 +433,13 @@ namespace gearit.src.robot
 		public void drawDebug(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
+			{
+				if (IsInEditor
+				&& RobotEditor.Instance.CurrentAction == ActionTypes.CHANGE_ROD_LIMIT
+				&& ActionChangeRodLimit.P2 == _pieces[i])
+					continue;
 				dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i].Shown ? 128 : 32);
+			}
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].drawDebug(dg);
 		}
@@ -501,7 +508,7 @@ namespace gearit.src.robot
 			}
 			foreach (Piece i in _pieces)
 			{
-				i.Destroy(_world);
+				i.Destroy();
 			}
 		}
 

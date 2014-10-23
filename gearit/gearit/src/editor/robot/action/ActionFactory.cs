@@ -25,6 +25,7 @@ namespace gearit.src.editor.robot.action
 		MOVE_ROBOT,
 		LOAD_ROBOT,
 		SAVE_ROBOT,
+		CHANGE_ROD_LIMIT,
 		CHANGE_LIMIT,
 		SWAP_LIMIT,
 		LIMIT_FROZEN,
@@ -95,6 +96,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.MOVE_ROBOT) return new ActionMoveRobot();
 			if (action == ActionTypes.SAVE_ROBOT) return new ActionSaveRobot();
 			if (action == ActionTypes.LOAD_ROBOT) return new ActionLoadRobot();
+			if (action == ActionTypes.CHANGE_ROD_LIMIT) return new ActionChangeRodLimit();
 			if (action == ActionTypes.CHANGE_LIMIT) return new ActionChangeLimit();
 			if (action == ActionTypes.SWAP_LIMIT) return new ActionSwapLimit();
 			if (action == ActionTypes.LIMIT_FROZEN) return new ActionFreezeSpot();

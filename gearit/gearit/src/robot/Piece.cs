@@ -392,9 +392,14 @@ namespace gearit.src.robot
 			return true;
 		}
 
-		public void Destroy(World world)
+		public void DeepDestroy()
 		{
-			world.RemoveBody(this);
+			_robot.remove(this);
+		}
+
+		public void Destroy()
+		{
+			_world.RemoveBody(this);
 			_robot = null;
 			//_fix.Destroy();
 		}

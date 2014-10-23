@@ -119,7 +119,7 @@ namespace gearit.src.GUI
 		public MenuRobotEditor(ScreenManager ScreenManager)
 		{
 			Instance = this;
-			new ConditionModifierBox();
+			//new ConditionModifierBox(;
 
 			#region main
 
