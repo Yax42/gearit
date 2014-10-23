@@ -1,1 +1,1 @@
-data/C:\Users\DANEEL\Documents\GitHub\gearit\gearit\gearit\bin\x86\Debug\data\map/script/default.lua
+data\map/script/default.lua

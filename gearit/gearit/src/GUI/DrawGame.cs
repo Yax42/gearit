@@ -38,14 +38,10 @@ namespace gearit.src
 			_staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
 			Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);
 			_staticView = Matrix.CreateTranslation( -translateCenter) * Matrix.CreateTranslation(translateCenter);
-
 			_batch = new SpriteBatch(device);
 			_asset = new AssetCreator(device);
 			_device = device;
-
 			_primitiveBatch = new PrimitiveBatch(_device, 1000);
-
-
 			// set up a new basic effect, and enable vertex colors.
 			_basicEffect = new BasicEffect(device);
 			_basicEffect.VertexColorEnabled = true;
@@ -67,6 +63,15 @@ namespace gearit.src
 			_basicEffect.View = camera.view();
 			_basicEffect.CurrentTechnique.Passes[0].Apply();
 		}
+
+        public void drawBackground(Texture2D _b, ICamera camera, Effect _effect)
+        {
+            _effect.Parameters["ViewportSize"].SetValue(new Vector2(_device.Viewport.Width, _device.Viewport.Height));
+            _effect.Parameters["ScrollMatrix"].SetValue(camera.GetScrollMatrix(new Vector2(_b.Width, _b.Height)));
+            _batch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null, _effect);
+            _batch.Draw(_b, _device.Viewport.Bounds, _device.Viewport.Bounds, Color.White);
+            _batch.End();
+        }
 
 		public void Begin()
 		{

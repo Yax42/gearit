@@ -8,16 +8,12 @@ namespace gearit.xna
 {
 	public class Camera2D : ICamera
 	{
-		private const float _minZoom = 0.02f;
-		private const float _maxZoom = 20f;
+		private const float _minZoom = 0.01f;
+		private const float _maxZoom = 15f;
 		private static GraphicsDevice _graphics;
-
 		private Matrix _batchView;
-
 		private Vector2 _currentPosition;
-
 		private float _currentRotation;
-
 		private float _currentZoom;
 		private Vector2 _maxPosition;
 		private float _maxRotation;
@@ -31,6 +27,7 @@ namespace gearit.xna
 		private Body _trackingBody;
 		private Vector2 _translateCenter;
 		private Matrix _view;
+        public Vector2 _origin;
 
 		/// <summary>
 		/// The constructor for the Camera2D class.
@@ -77,6 +74,14 @@ namespace gearit.xna
 		{
 			return (SimProjection);
 		}
+
+        public Matrix GetScrollMatrix(Vector2 textureSize)
+        {
+            return Matrix.CreateTranslation(new Vector3(-_origin / textureSize, 0.0f)) *
+                   Matrix.CreateScale(1f / Zoom) * Matrix.CreateRotationZ(Rotation) *
+                   Matrix.CreateTranslation(new Vector3(_origin / textureSize, 0.0f)) *
+                   Matrix.CreateTranslation(new Vector3(Position / textureSize, 0.0f));
+        }
 
 		/// <summary>
 		/// The current position of the camera.

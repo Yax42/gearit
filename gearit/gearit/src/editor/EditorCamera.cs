@@ -18,13 +18,9 @@ namespace gearit.src.editor
 		private const float _minZoom = 0.02f;
 		private const float _maxZoom = 20f;
 		private Viewport _viewport;
-
 		private Matrix _batchView;
-
 		private Vector2 _currentPosition;
-
 		private float _currentRotation;
-
 		private float _currentZoom;
 		private Vector2 _maxPosition;
 		private float _maxRotation;
@@ -33,6 +29,7 @@ namespace gearit.src.editor
 		private Matrix _projection;
 		private Vector2 _translateCenter;
 		private Matrix _view;
+        public Vector2 _origin;
 
 		/// <summary>
 		/// The constructor for the Camera2D class.
@@ -60,6 +57,14 @@ namespace gearit.src.editor
 
 			reset();
 		}
+
+        public Matrix GetScrollMatrix(Vector2 textureSize)
+        {
+            return Matrix.CreateTranslation(new Vector3(-_origin / textureSize, 0.0f)) *
+                   Matrix.CreateScale(1f / Zoom) * Matrix.CreateRotationZ(Rotation) *
+                   Matrix.CreateTranslation(new Vector3(_origin / textureSize, 0.0f)) *
+                   Matrix.CreateTranslation(new Vector3(Position / textureSize, 0.0f));
+        }
 
 		public Matrix view()
 		{

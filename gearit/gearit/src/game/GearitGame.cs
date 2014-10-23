@@ -14,6 +14,7 @@ using gearit.src.robot;
 using gearit.src.script;
 using gearit.src.editor.robot;
 using System.IO;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace gearit.src.game
 {
@@ -24,27 +25,21 @@ namespace gearit.src.game
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
 		private bool _pause;
-
 		public Map Map { get; set; }
-
 		private string RobotPath;
 		private string MapPath;
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
-
 		private DrawGame _drawGame;
-
-		// Graphic
 		private RectangleOverlay _background;
-
 		private DebugViewXNA _debug;
-
-		// Action
 		private int _FrameCount = 0;
 		public int FrameCount { get { return _FrameCount; } }
-
 		private float _Time = 0;
 		public float Time { get { return _Time; } }
+        private Texture2D _back;
+        private Effect _effect;
+
 
 		#region IDemoScreen Members
 
@@ -85,29 +80,22 @@ namespace gearit.src.game
 			base.LoadContent();
 			_exiting = false;
 			_pause = false;
-
 			_FrameCount = 0;
 			_Time = 0;
 			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);
-
-			//clearRobot();
 			SerializerHelper.World = World;
-
 			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
 			addRobot(robot);
 			Debug.Assert(Robots != null);
 			Map = (Map)Serializer.DeserializeItem(MapPath);
 			Debug.Assert(Map != null);
-			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
-
 			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
-
-			// I have no idea what this is.
-			//HasVirtualStick = true;
+            _back = ScreenManager.Content.Load<Texture2D>("background");
+            _effect = ScreenManager.Content.Load<Effect>("infinite");
 		}
 
 		public World getWorld()
@@ -187,13 +175,12 @@ namespace gearit.src.game
 		public override void Draw(GameTime gameTime)
 		{
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
+            _drawGame.drawBackground(_back, _camera, _effect); 
 			_drawGame.Begin(_camera);
-
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
 			Map.DrawDebug(_drawGame, true);
 			_drawGame.End();
-
 			base.Draw(gameTime);
 		}
 

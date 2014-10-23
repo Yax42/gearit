@@ -10,6 +10,8 @@ namespace gearit.src.utility
 	{
 		Matrix view();
 		Matrix projection();
+        Matrix GetScrollMatrix(Vector2 textureSize);
+
 	/*
 		Vector2 Position { get; set; }
 		float Zoom { get; set; }
