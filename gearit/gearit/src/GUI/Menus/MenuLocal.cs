@@ -195,11 +195,12 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-					ScreenManager.Instance.AddScreen(new ScreenPickManager(this));
-					ScreenPickManager.Callback += delegate()
+					ScreenPickManager screen = new ScreenPickManager(this, false, true,
+					delegate()
 					{
 						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
-					};
+					});
+					ScreenManager.Instance.AddScreen(screen);
                 };
 
                 return cell;

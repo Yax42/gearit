@@ -129,7 +129,12 @@ namespace GUI
 			_networkGame = new NetworkClientGame("bob", "data/robot/default.gir", "127.0.0.1");
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
-			_soloGame = new ScreenPickManager(_game);
+			_soloGame = new ScreenPickManager(_game, true, true,
+				delegate()
+				{
+					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
+				});
+
 
 			// Add ItemMenu
 			addMenuItem(_play, _play.GetTitle().ToUpper());

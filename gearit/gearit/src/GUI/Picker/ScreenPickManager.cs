@@ -16,13 +16,15 @@ namespace gearit.src.GUI.Picker
 		static public string RobotPath { get; private set; }
 		static public string MapPath { get; private set; }
 		static public bool Exit = false;
+		public bool IsPickRobot;
+		public bool IsPickMap;
 
 		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
 		private GameScreen NextScreen;
 		private int State;
 
-		static public Action Callback = null;
+		public Action Callback = null;
 
 		//Action
 
@@ -48,8 +50,11 @@ namespace gearit.src.GUI.Picker
 		{
 		}
 
-		public ScreenPickManager(GameScreen nextScreen) : base(true)
+		public ScreenPickManager(GameScreen nextScreen, bool isPickMap, bool isPickRobot, Action callback) : base(true)
 		{
+			IsPickMap = isPickMap;
+			IsPickRobot = isPickRobot;
+			Callback = callback;
 			NextScreen = nextScreen;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
@@ -75,8 +80,13 @@ namespace gearit.src.GUI.Picker
 			switch (State)
 			{
 				case 0:
-					ScreenManager.AddScreen(ScreenPickMap.Instance);
-					State++;
+					if (IsPickMap)
+					{
+						ScreenManager.AddScreen(ScreenPickMap.Instance);
+						State++;
+					}
+					else
+						State = 2;
 					break;
 				case 1:
 					if (MenuPickItem.Result != null)
@@ -87,9 +97,15 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 2:
-					ScreenManager.RemoveScreen(ScreenPickMap.Instance);
-					ScreenManager.AddScreen(ScreenPickRobot.Instance);
-					State++;
+					if (IsPickMap)
+						ScreenManager.RemoveScreen(ScreenPickMap.Instance);
+					if (IsPickRobot)
+					{
+						ScreenManager.AddScreen(ScreenPickRobot.Instance);
+						State++;
+					}
+					else
+						State = 4;
 					break;
 				case 3:
 					if (MenuPickItem.Result != null)
@@ -99,7 +115,8 @@ namespace gearit.src.GUI.Picker
 					}
 					break;
 				case 4:
-					ScreenManager.Instance.RemoveScreen(ScreenPickRobot.Instance);
+					if (IsPickRobot)
+						ScreenManager.Instance.RemoveScreen(ScreenPickRobot.Instance);
 					if (Callback != null)
 						Callback();
 					State++;
