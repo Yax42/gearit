@@ -207,7 +207,7 @@ namespace gearit.src.gui
 
 			// Test
 			MyData entry = new MyData();
-			entry.Name = "tarace";
+			entry.Name = "Test server";
 			entry.Players = "42";
 			entry.Host = "127.0.0.1";
 			entry.port = 4448;

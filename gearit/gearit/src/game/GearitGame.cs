@@ -157,6 +157,7 @@ namespace gearit.src.game
 		{
 			clearRobot();
 			ScreenMainMenu.GoBack = true;
+			ScreenManager.Instance.RemoveScreen(this);
 			_gameMaster.stop();
 		}
 
