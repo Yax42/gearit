@@ -62,6 +62,11 @@ namespace gearit.xna
 			return (new Squid.Point(0, 0));
 		}
 
+		public virtual void unload()
+		{
+
+		}
+
 		public virtual Squid.Point getMenuPosition()
 		{
 			return (new Squid.Point(0, 0));

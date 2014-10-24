@@ -428,6 +428,7 @@ namespace gearit.xna
 
 		public void RemoveScreen(GameScreen screen)
 		{
+			screen.unload();
 			_screens.Remove(screen);
 			_screensTemp.Remove(screen);
 			// If we have a graphics device, tell the screen to unload content.
