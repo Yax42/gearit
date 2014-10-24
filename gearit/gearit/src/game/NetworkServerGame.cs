@@ -100,6 +100,14 @@ namespace gearit.src.Network
 			Robots.Add(robot);
 			World.Step(0);
 			World.Step(1/30f);
+			_gameMaster.RobotConnect(robot);
+			//robot.move(new Vector2(Robots.Count * 30, -20));
+		}
+
+		public void RemoveRobot(Robot robot)
+		{
+			Robots.Remove(robot);
+			_gameMaster.RobotDisconnect(robot);
 			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 

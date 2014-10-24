@@ -16,7 +16,8 @@ namespace gearit.src.script
 		private LuaFunction _loadedScript;
 		private LuaFunction _frameCountScript;
 		private bool _ok;
-		private string FileName;
+		protected string FileName;
+		protected bool IsFile;
 
         /// <summary>
         /// Lua implementation of lua library to manage script
@@ -24,27 +25,48 @@ namespace gearit.src.script
 		public LuaScript(string text, bool isFile = true)
 		{
 			FileName = text;
+			IsFile = isFile;
 			_ok = true;
 			try
 			{
 				if (isFile)
 				{
-					_loadedScript = LoadFile(text);
-					//OutputManager.LogInfo("Lua - script correctly loaded: " + text);
+					_loadedScript = LoadFile(FileName);
 				}
 				else
 				{
 					_loadedScript = LoadString(text, String.Empty);
 				}
-				DoString("FrameCount = 0\n");
 
+				DoString("FrameCount = 0\n");
 				_frameCountScript = LoadString("FrameCount = FrameCount + 1", String.Empty);
 			}
 			catch (Exception ex)
 			{
 				OutputManager.LogError("Lua script (" + FileName + ") - " + ex.Message);
 				_ok = false;
-				File.WriteAllText("test.lua", text);
+				//File.WriteAllText("test.lua", text);
+			}
+		}
+
+		protected void Load()
+		{
+			if (IsFile)
+			{
+				string initPath = Path.ChangeExtension(FileName, ".init.lua");
+				try
+				{
+					if (File.Exists(initPath))
+					{
+						var initFile = LoadFile(initPath);
+						if (initFile != null)
+							initFile.Call();
+					}
+				}
+				catch (Exception ex)
+				{
+					OutputManager.LogWarning("Lua script (" + initPath + ") - " + ex.Message);
+				}
 			}
 		}
 

@@ -2,6 +2,9 @@
 using gearit.src.script.api.game;
 using gearit.src.editor.map;
 using System.Collections.Generic;
+using gearit.src.robot;
+using LuaInterface;
+using System;
 
 namespace gearit.src.script
 {
@@ -11,19 +14,24 @@ namespace gearit.src.script
 	class GameApi
 	{
 		private IGearitGame _game;
-		private GameRobotApi[] _robots;
+		private List<GameRobotApi> _robotsList;
+		private GameRobotApi[] _robotsArray;
 		private GameArtefactApi[] _arts;
 		private List<GameChunkApi> _chunks;
+		private Action<int> CallBackRobot;
 
-		public GameApi(IGearitGame game)
+		public GameApi(IGearitGame game, Action<int> action)
 		{
+			CallBackRobot = action;
 			_game = game;
-			_robots = new GameRobotApi[game.Robots.Count];
+			_robotsList = new List<GameRobotApi>();
 			for (int i = 0; i < game.Robots.Count; i++ )
 			{
-				_robots[i] = new GameRobotApi(game.Robots[i]);
-				GameLuaScript.Instance["Robot_" + i] = _robots[i];
+				_robotsList.Add(new GameRobotApi(game.Robots[i]));
+				//GameLuaScript.Instance["Robot_" + i] = _robots[i];
 			}
+			_robotsArray = _robotsList.ToArray();
+			RobotCount = game.Robots.Count;
 
 			_arts = new GameArtefactApi[game.Map.Artefacts.Count];
 			for (int i = 0; i < game.Map.Artefacts.Count; i++ )
@@ -40,6 +48,21 @@ namespace gearit.src.script
 					_chunks.Add(api);
 					GameLuaScript.Instance["Object_" + c.StringId] = api;
 				}
+		}
+
+		public void AddRobot(Robot r)
+		{
+			_robotsList.Add(new GameRobotApi(r));
+			_robotsArray = _robotsList.ToArray();
+			RobotCount++;
+			CallBackRobot(RobotCount - 1);
+		}
+
+		public void RemoveRobot(Robot r)
+		{
+			_robotsList.RemoveAll(rApi => rApi.__Robot == r);
+			_robotsArray = _robotsList.ToArray();
+			RobotCount--;
 		}
 
 		public float Time
@@ -60,15 +83,13 @@ namespace gearit.src.script
 
 		public int RobotCount
 		{
-			get
-			{
-				return _game.Robots.Count;
-			}
+			get;
+			private set;
 		}
 
 		public GameRobotApi Robot(int i)
 		{
-			return _robots[i];
+			return _robotsArray[i];
 		}
 
 		public GameArtefactApi Art(int i)

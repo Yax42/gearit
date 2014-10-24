@@ -37,6 +37,7 @@ namespace gearit.src.script
 				OutputManager.LogError("Lua exception: " + ex.Message);
 				throw (ex);
 			}
+			Load();
 		}
 	}
 }
