@@ -211,7 +211,7 @@ namespace gearit.src.Network
 		public void Exit()
 		{
 			clearRobot();
-			ScreenMainMenu.GoBack = true;
+			ScreenManager.Instance.RemoveScreen(this);
 		}
 
 		private void HandleInput()
