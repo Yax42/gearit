@@ -266,10 +266,9 @@ namespace gearit.xna
 		protected override void UnloadContent()
 		{
 			// Tell each of the screens to unload their content.
-			foreach (GameScreen screen in _screens)
-			{
-				screen.UnloadContent();
-			}
+			_screensTemp.Clear();
+			while (_screens.Count > 0)
+				RemoveScreen(_screens[0]);
 			_screens.Clear();
 		}
 
