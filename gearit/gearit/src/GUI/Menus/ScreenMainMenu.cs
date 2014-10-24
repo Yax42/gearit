@@ -24,13 +24,6 @@ namespace GUI
 {
 	class ScreenMainMenu : GameScreen
 	{
-		private static bool _GoBack = false;
-		public static bool GoBack
-		{
-			get { return _GoBack; }
-			set{_GoBack = value; }
-		}
-
 		public enum Animation
 		{
 			Chillout,
@@ -58,6 +51,7 @@ namespace GUI
 		static public int DELAY_ANIMATION = 200;
 		static public int RESERVED_HEIGHT = HEIGHT_TITLE * 2;
 
+		static public ScreenMainMenu Instance { get; private set; }
 		// Gui
 		private SamplerState _sampler;
 		private RasterizerState _rasterizer;
@@ -88,6 +82,7 @@ namespace GUI
 		public ScreenMainMenu() : base(false)
 		{
 			DrawPriority = 999;
+			Instance = this;
 		}
 
 		public override void LoadContent()
@@ -159,6 +154,23 @@ namespace GUI
 			#endregion
 		}
 
+		public bool CatchExit = true;
+		public bool CatchExitLock
+		{
+			get
+			{
+				return CatchExit;
+			}
+			set
+			{
+				CatchExit = value;
+				if (CatchExit)
+					ChangeAnim(Animation.ShowMainMenu);
+				else
+					ChangeAnim(Animation.HideMainMenu);
+			}
+		}
+
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
@@ -166,21 +178,41 @@ namespace GUI
 			_dk_main_menu.Update();
 			dk_listbox.Update();
 
-			if (Input.Exit)
+			if (CatchExit)
 			{
-				AnimInfo anim = _animations.Find(delegate(AnimInfo search) { return (search.type == Animation.ShowMainMenu || search.type == Animation.HideMainMenu); });
-				if (anim == null)
-					_animations.Add(new AnimInfo(VisibleMenu ? Animation.HideMainMenu : Animation.ShowMainMenu));
-				else
+				if (Input.Exit)
 				{
-					anim.elapsedTime = DELAY_ANIMATION - anim.elapsedTime;
-					anim.type = anim.type == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+					AnimInfo anim = _animations.Find(delegate(AnimInfo search) { return (search.type == Animation.ShowMainMenu || search.type == Animation.HideMainMenu); });
+					if (anim == null)
+						_animations.Add(new AnimInfo(VisibleMenu ? Animation.HideMainMenu : Animation.ShowMainMenu));
+					else
+					{
+						anim.elapsedTime = DELAY_ANIMATION - anim.elapsedTime;
+						anim.type = anim.type == Animation.ShowMainMenu ? Animation.HideMainMenu : Animation.ShowMainMenu;
+					}
+					//dk_listbox.Enabled = false;
 				}
-				//dk_listbox.Enabled = false;
 			}
 
 			// Animate
 			manageAnimation(gameTime);
+		}
+
+		void ChangeAnim(Animation animation)
+		{
+			AnimInfo anim = _animations.Find(delegate(AnimInfo search) { return (search.type == Animation.ShowMainMenu || search.type == Animation.HideMainMenu); });
+			if (anim == null)
+				_animations.Add(new AnimInfo(animation));
+			else if (anim.type != animation)
+			{
+				anim.elapsedTime = DELAY_ANIMATION - anim.elapsedTime;
+				anim.type = animation;
+			}
+		}
+
+		public void NoSelect()
+		{
+			menu_listbox.SelectedItem = null;
 		}
 
 		public override void positionChanged(int x, int y)
@@ -318,18 +350,6 @@ namespace GUI
             ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, number * 2);
 
 			return (number);
-		}
-
-		public void goBack()
-		{
-			if (ScreenManager.IsEmpty())
-			{
-				ScreenManager.Exit();
-				return;
-			}
-			ScreenManager.RemoveLast();
-			menu_listbox.SelectedItem.Selected = false;
-			//Visible = true;
 		}
 
 		public void addMenuSeparator()

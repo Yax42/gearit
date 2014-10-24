@@ -87,7 +87,7 @@ namespace gearit.src.editor.map
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}
 
-		public override void unload()
+		public override void UnloadContent()
 		{
 			if (current_menu != null)
 				ScreenManager.Instance.RemoveScreen(current_menu);

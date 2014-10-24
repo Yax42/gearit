@@ -6,6 +6,8 @@ using gearit.xna;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using gearit.src.game;
+using gearit.src.utility;
+using GUI;
 
 namespace gearit.src.GUI.Picker
 {
@@ -13,6 +15,7 @@ namespace gearit.src.GUI.Picker
 	{
 		static public string RobotPath { get; private set; }
 		static public string MapPath { get; private set; }
+		static public bool Exit = false;
 
 		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
@@ -63,6 +66,8 @@ namespace gearit.src.GUI.Picker
 
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;
+			Exit = false;
+			ScreenMainMenu.Instance.CatchExitLock = false;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -103,10 +108,23 @@ namespace gearit.src.GUI.Picker
 					ScreenManager.Instance.RemoveScreen(this);
 					break;
 			}
-			
+
+			if (Exit || Input.Exit)
+			{
+				ScreenManager.Instance.RemoveScreen(this);
+				ScreenManager.Instance.RemoveScreen(ScreenPickRobot.Instance);
+				ScreenManager.RemoveScreen(ScreenPickMap.Instance);
+			}
+
 			base.Update(gameTime);
 		}
 
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+
+			ScreenMainMenu.Instance.CatchExitLock = true;
+		}
 
 		public override void Draw(GameTime gameTime)
 		{

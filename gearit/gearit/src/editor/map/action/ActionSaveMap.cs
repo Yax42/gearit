@@ -33,7 +33,7 @@ namespace gearit.src.editor.map.action
 			else if (MustExit)
 			{
 				MustExit = false;
-				ScreenMainMenu.GoBack = true;
+				//ScreenMainMenu.GoBack = true;
 			}
 			return false;
 		}

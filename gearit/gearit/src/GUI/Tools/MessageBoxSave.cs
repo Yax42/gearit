@@ -38,7 +38,7 @@ namespace gearit.src.GUI
 				_msg.GetControl(DialogResult.No.ToString()).MouseClick += delegate(Control sender, MouseEventArgs args)
 				{
 					_msg.Close();
-					ScreenMainMenu.GoBack = true;
+					//ScreenMainMenu.GoBack = true;
 				};
 			}
 			else

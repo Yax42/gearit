@@ -103,7 +103,7 @@ namespace gearit.src.GUI.sample
 			btn.Tag = BType.Ball;
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-					ScreenMainMenu.GoBack = true;
+					//ScreenMainMenu.GoBack = true;
 			};
 
 			btn = rb_wall;

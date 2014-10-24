@@ -12,7 +12,7 @@ namespace gearit.src.editor.map.action
 	{
 		public void init() { }
 
-		public bool shortcut() { return Input.Exit; }
+		public bool shortcut() { return false; }// Input.Exit; }
 
 		public bool run()
 		{

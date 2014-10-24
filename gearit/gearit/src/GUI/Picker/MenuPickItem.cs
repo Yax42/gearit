@@ -12,6 +12,7 @@ using gearit.src.editor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.robot;
+using gearit.src.GUI.Picker;
 
 namespace gearit.src.GUI
 {
@@ -88,7 +89,7 @@ namespace gearit.src.GUI
 			btn.Cursor = Cursors.Move;
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				exit();
+				ScreenPickManager.Exit = true;
 			};
 
 			Camera = new EditorCamera(new Viewport(0, 0, MI_WIDTH, MI_HEIGHT));
@@ -145,16 +146,6 @@ namespace gearit.src.GUI
 			base.Update();
 			//Camera.input();
 			//Camera.update();
-			if (Input.Exit)
-			{
-				exit();
-			}
-		}
-
-		private void exit()
-		{
-			ScreenManager.RemoveLast();
-			ScreenMainMenu.GoBack = true;
 		}
 
 		public bool hasFocus()

@@ -373,18 +373,6 @@ namespace gearit.xna
 			Game.Exit();
 		}
 
-		public void BackToMainMenu()
-		{
-			while (_screens.Count > 1)
-				RemoveLast();
-		}
-
-		public void ResetTo(GameScreen screen)
-		{
-			BackToMainMenu();
-			AddScreen(screen);
-		}
-
 		/// <summary>
 		/// Adds a new screen to the screen manager.
 		/// </summary>
@@ -396,21 +384,11 @@ namespace gearit.xna
 			// If we have a graphics device, tell the screen to load content.
 			if (_isInitialized && !screen.is_initialized)
 				screen.LoadContent();
+			else
+				screen.QuickLoadContent();
 
 			_screens.Add(screen);
 			UpdatePriority();
-		}
-
-		public void RemoveLast()
-		{
-			_screens[_screens.Count - 1].UnloadContent();
-			_screens.RemoveAt(_screens.Count - 1);
-		}
-
-		public void ReplaceLast(GameScreen screen)
-		{
-			RemoveLast();
-			AddScreen(screen);
 		}
 
 		public bool MenuVisible
@@ -428,9 +406,12 @@ namespace gearit.xna
 
 		public void RemoveScreen(GameScreen screen)
 		{
-			screen.unload();
-			_screens.Remove(screen);
-			_screensTemp.Remove(screen);
+			if (_screens.Contains(screen))
+			{
+				screen.UnloadContent();
+				_screens.Remove(screen);
+				_screensTemp.Remove(screen);
+			}
 			// If we have a graphics device, tell the screen to unload content.
 			/*int target = _screens.IndexOf(screen);
 			for (int i = _screens.Count - 1; i <= target; i++)

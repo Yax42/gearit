@@ -45,7 +45,7 @@ namespace gearit.src.editor.robot.action
 				if (MustExit)
 				{
 					MustExit = false;
-					ScreenMainMenu.GoBack = true;
+					//ScreenMainMenu.GoBack = true;
 				}
 			}
 

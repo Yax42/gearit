@@ -16,6 +16,7 @@ namespace gearit.src.editor.robot.action
 		static public bool Running = false;
 		static public World SimulationWorld = null;
 		static public Robot Robot;
+		private bool FirstFrame;
 
 		public static void ResetWorld()
 		{
@@ -37,7 +38,11 @@ namespace gearit.src.editor.robot.action
 				Running = (Robot != null);
 				Robot.Heart.IsStatic = true;
 				Robot.InitScript();
+				FirstFrame = true;
+
 			}
+			else
+				Running = false;
 		}
 
 		//feature non fonctionnelle yet
@@ -49,7 +54,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool run()
 		{
-			if (!Running || Input.Exit)
+			if (!Running || (shortcut() && !FirstFrame))
 			{
 				if (Robot != null)
 					Robot.ExtractFromWorld();
@@ -60,6 +65,7 @@ namespace gearit.src.editor.robot.action
 			}
 			Robot.Update();
 			SimulationWorld.Step(1/30f);
+			FirstFrame = false;
 			return true;
 		}
 

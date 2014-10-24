@@ -768,7 +768,10 @@ namespace gearit.src.GUI
 		public void saveasRobot(bool mustExit = false)
 		{
 			if (mustExit && RobotEditor.Instance.IsEmpty())
-				ScreenMainMenu.GoBack = true;
+			{
+				ScreenManager.Instance.RemoveScreen(RobotEditor.Instance);
+				//ScreenMainMenu.GoBack = true;
+			}
 			else
 			{
 				setFocus(true);
