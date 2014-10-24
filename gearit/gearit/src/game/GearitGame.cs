@@ -96,6 +96,7 @@ namespace gearit.src.game
 			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
+			DrawPriority = 99999;
 		}
 
 		public World getWorld()
