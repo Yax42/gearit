@@ -51,7 +51,7 @@ namespace gearit.src.GUI
 
 			// Background
 			background.Parent = _container_chat;
-			background.Style = "menu";
+			background.Style = "msgbox";
 			background.Dock = DockStyle.Fill;
 			background.Opacity = 500000f;
 

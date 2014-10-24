@@ -168,6 +168,8 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle menuStyle = new ControlStyle();
 
+			ControlStyle msgboxStyle = new ControlStyle();
+
 			ControlStyle itemMenuStyle = new ControlStyle();
 			itemMenuStyle.TextAlign = Alignment.MiddleCenter;
 
@@ -237,6 +239,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
 			skin.Styles.Add("addEventButton", addEventButtonStyle);
 			skin.Styles.Add("panel", panelStyle);
+			skin.Styles.Add("msgbox", msgboxStyle);
 
 			#endregion
 
@@ -302,6 +305,10 @@ namespace gearit.src.GUI.Tools
 			style = styles["menu"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = toInt(info.Grayie);
+
+			style = styles["msgbox"];
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = toInt(info.Dark);
 
 			style = styles["itemMenu"];
 			style.TextColor = toInt(info.Weird);
