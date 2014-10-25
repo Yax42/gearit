@@ -3,3 +3,4 @@ if team then
 else
 	LastRobot:MoveTo(Art_3)
 end
+team = not team

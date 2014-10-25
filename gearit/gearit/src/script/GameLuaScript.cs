@@ -28,7 +28,7 @@ namespace gearit.src.script
 			LuaFunction robotConnectedScript;
 			try
 			{
-				robotConnectedScript = LoadFile(FileName);
+				robotConnectedScript = LoadFile(robotConnectedPath);
 			}
 			catch (Exception ex)
 			{
