@@ -24,10 +24,10 @@ namespace gearit.src.editor.map
     /// </summary>
 	class MapEditor : GameScreen, IDemoScreen
 	{
-		private World _world;
-		private Map _map;
+		public World World { get; private set; }
+		public Map Map { get; private set; }
 		private EditorCamera _camera;
-		private DrawGame _draw_game;
+		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
 		private MapChunk _dummyChunk;
 		private Trigger _dummyTrigger;
@@ -78,9 +78,6 @@ namespace gearit.src.editor.map
 				return _selectedChunk == _dummyChunk;
 		}
 
-		public Map Map { get { return _map; } }
-		public World World { get { return _world; } }
-
 		#region IDemoScreen Members
 
 		public string GetTitle()
@@ -100,7 +97,7 @@ namespace gearit.src.editor.map
 			ActionFactory.init();
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
-			_world = null;
+			World = null;
 			HasCursor = true;
 			Instance = this;
 		}
@@ -110,11 +107,11 @@ namespace gearit.src.editor.map
 		{
 			base.LoadContent();
 
-			if (_world == null)
-				_world = new World(Vector2.Zero);
+			if (World == null)
+				World = new World(Vector2.Zero);
 			else
-				_world.Clear();
-			_dummyChunk = new PolygonChunk(_world, false, Vector2.Zero);
+				World.Clear();
+			_dummyChunk = new PolygonChunk(World, false, Vector2.Zero);
 			_dummyTrigger = new Trigger(Vector2.Zero);
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
@@ -124,17 +121,17 @@ namespace gearit.src.editor.map
 			SelectTrigger = null;
 			ActionSwapEventMode.EventMode = false;
 
-			SerializerHelper.World = _world;
-			_map = new Map(_world);
+			SerializerHelper.World = World;
+			Map = new Map(World);
 			ScreenManager.Game.ResetElapsedTime();
 			_camera = new EditorCamera(ScreenManager.GraphicsDevice.Viewport);
 			_camera.Position = new Vector2(0, 0);
-			_world.Gravity = new Vector2(0f, 0f);
+			World.Gravity = new Vector2(0f, 0f);
 			HasVirtualStick = true;
 			SelectChunk = null;
 
 			// TMP
-			_draw_game = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 
 			new MenuMapEditor(ScreenManager);
@@ -150,7 +147,7 @@ namespace gearit.src.editor.map
 			_camera.update();
 			HandleInput();
 			MenuMapEditor.Instance.Update();
-			_world.Step(0f);
+			World.Step(0f);
 			base.Update(gameTime);
 		}
 
@@ -217,12 +214,12 @@ namespace gearit.src.editor.map
 		{
 			get
 			{
-				return _map.FullPath;
+				return Map.FullPath;
 			}
 			set
 			{
-				_prevName = _map.FullPath;
-				_map.FullPath = value;
+				_prevName = Map.FullPath;
+				Map.FullPath = value;
 				MenuMapEditor.Instance.updateButtonMapName();
 			}
 		}
@@ -235,11 +232,11 @@ namespace gearit.src.editor.map
 
 		public void resetMap(Map map)
 		{
-			if (_map != null)
-				_map.ExtractFromWorld();
+			if (Map != null)
+				Map.ExtractFromWorld();
 			_actionsLog.Clear();
 			_redoActionsLog.Clear();
-			_map = map;
+			Map = map;
 			SelectChunk = null;
 			SelectTrigger = null;
 		}
@@ -249,11 +246,11 @@ namespace gearit.src.editor.map
 		public void DrawStatics()
 		{
 			const int cycle = 80;
-			_draw_game.Begin();
+			DrawGame.Begin();
 			if (ActionSaveMap.JustSaved)
 			{
 				SaveCount++;
-				_draw_game.DrawSpirale(new Vector2(ScreenManager.Width - 20, ScreenManager.Height - 20),
+				DrawGame.DrawSpirale(new Vector2(ScreenManager.Width - 20, ScreenManager.Height - 20),
 							cycle, SaveCount, 5);
 				if (SaveCount >= cycle)
 				{
@@ -261,21 +258,23 @@ namespace gearit.src.editor.map
 					ActionSaveMap.JustSaved = false;
 				}
 			}
-			_draw_game.End();
+			DrawGame.End();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
+			base.Draw(gameTime);
 			if (ActionSwapEventMode.EventMode)
 				ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
-			_draw_game.Begin(_camera);
-			_draw_game.DrawGrille();
+			else
+				ScreenManager.GraphicsDevice.Clear(Color.LightGreen);
+			DrawGame.Begin(_camera);
+			DrawGame.DrawGrille(new Color(0, 0, 0, 0.1f));
 
-			_map.DrawDebug(_draw_game, ActionSwapEventMode.EventMode);
+			Map.DrawDebug(DrawGame, ActionSwapEventMode.EventMode);
 
-			_draw_game.End();
+			DrawGame.End();
 			DrawStatics();
-			base.Draw(gameTime);
 			MenuMapEditor.Instance.Draw();
 		}
 

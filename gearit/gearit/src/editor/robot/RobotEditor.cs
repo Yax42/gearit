@@ -464,12 +464,13 @@ namespace gearit.src.editor.robot
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+			ScreenManager.GraphicsDevice.Clear(new Color(1f, 0.7f, 0.3f, 1f));
 
 			//DrawGame.Begin(_camera);
 			//DrawGame.End();
 
 			DrawGame.BeginPrimitive(_camera);
-			DrawGame.DrawGrille();
+			DrawGame.DrawGrille(new Color(0, 0, 0, 0.1f));
 			//DrawRobotTexture();
 			DrawRobot();
 			DrawValues(_currentAction);

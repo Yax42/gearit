@@ -316,17 +316,15 @@ namespace gearit.src
 			}
 		}
 
-		public void DrawGrille()
+		public void DrawGrille(Color col)
 		{
-			DrawGrille(Vector2.Zero, 100, 3);
+			DrawGrille(Vector2.Zero, 100, 3, col);
 		}
 
-		public void DrawGrille(Vector2 center, int count, int size)
+		public void DrawGrille(Vector2 center, int count, int size, Color col)
 		{
 			Vector2 origin = center - new Vector2(count * size / 2);
 			int globalSize = count * size;
-			Color col = Color.Cyan;
-			col.A = 30;
 
 			for (int i = 1; i < count; i++)
 			{
