@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using gearit.src.gui;
 using gearit.src.GUI.Picker;
 using gearit.src.game;
+using gearit.src.Network;
 
 namespace gearit.src.editor.map
 {
@@ -92,6 +93,25 @@ namespace gearit.src.editor.map
 				delegate()
 				{
 					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
+				}));
+			};
+
+			y += btn.Size.y;
+			btn = new Button();
+			btn.Text = "RUN SERVER";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			background.Content.Controls.Add(btn);
+			btn.Cursor = Cursors.Move;
+			y += btn.Size.y;
+
+			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
+			{
+				changeSubmenu(new ScreenPickManager(true, false,
+				delegate()
+				{
+					NetworkServer.Start(INetwork.SERVER_PORT, ScreenPickManager.MapPath);
 				}));
 			};
 

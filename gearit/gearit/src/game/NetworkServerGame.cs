@@ -52,6 +52,7 @@ namespace gearit.src.Network
 
 		private List<Robot> _Robots;
 		public List<Robot> Robots { get { return _Robots; } }
+		private string MapPath;
 		public PacketManager PacketManager;
 
 		// Action
@@ -65,8 +66,9 @@ namespace gearit.src.Network
 		{
 		}
 
-		public NetworkServerGame()
+		public NetworkServerGame(string mapPath)
 		{
+			MapPath = mapPath;
 			_Robots = new List<Robot>();
 			World = new World(new Vector2(0, 9.8f));
 			PacketManager = new PacketManager(this);
@@ -85,7 +87,7 @@ namespace gearit.src.Network
 			SerializerHelper.World = World;
 			PacketManager.Network = NetworkServer.Instance;
 			Debug.Assert(Robots != null);
-			Map = (Map)Serializer.DeserializeItem("data/map/default.gim");
+			Map = (Map)Serializer.DeserializeItem(MapPath);
 			Debug.Assert(Map != null);
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 

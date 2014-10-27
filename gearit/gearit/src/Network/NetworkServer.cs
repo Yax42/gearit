@@ -17,11 +17,11 @@ namespace gearit.src.Network
     /// </summary>
     class NetworkServer : INetwork
     {
+		public static bool Running { get; private set; }
 		public static NetworkServer Instance { get; private set; }
         public string _buffer;
         public string Name = "Test server";
         private Thread serverThread;
-        private bool _server_launched;
 		private NetworkServerGame Game;
 		override public string Path { get {return "data/net/server/";} }
 
@@ -35,26 +35,27 @@ namespace gearit.src.Network
 			IsServer = true;
 		}
 
-       static public void Start(int port)
+       static public void Start(int port, string mapPath)
 		{
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
 			config.EnableMessageType(NetIncomingMessageType.DiscoveryRequest);
-			Instance = new NetworkServer(new NetworkServerGame(), config, port);
+			Instance = new NetworkServer(new NetworkServerGame(mapPath), config, port);
 			Instance.PrivateStart();
 		}
 
         private void PrivateStart()
         {
-            _server_launched = false;
+			Debug.Assert(!Running);
+			Running = false;
             try
             {
 				Peer.Start();
                 serverThread = new Thread(ServerMainLoop);
                 serverThread.Start();
                 OutputManager.LogMessage(serverThread.IsAlive.ToString());
-                _server_launched = true;
+                Running = true;
                 OutputManager.LogNetwork("(Server) Launched");
             }
             catch
@@ -65,11 +66,12 @@ namespace gearit.src.Network
 
         public void Stop()
         {
-            if (_server_launched)
+            if (Running)
             {
                 serverThread.Abort();
                 Peer.Shutdown("Requested by user");
             }
+			Running = false;
         }
 
         public void ServerMainLoop()

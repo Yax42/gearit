@@ -144,16 +144,12 @@ namespace gearit.src.Network
 			Status = Status.Init;
 		}
 
-		public World getWorld()
-		{
-			return (World);
-		}
-
 		public void clearRobot()
 		{
 			foreach (Robot r in Robots)
 				r.ExtractFromWorld();
 			Robots.Clear();
+			World.Clear();
 		}
 
 		public void AddRobot(Robot robot)
@@ -167,7 +163,11 @@ namespace gearit.src.Network
 		public override void Update(GameTime gameTime)
 		{
 			if (NetworkClient.State != NetworkClient.EState.Connected)
-				return ;
+			{
+				if (Status == Status.Run)
+					Exit();
+				return;
+			}
 			if (NetworkClient.Requests.Count == 0)
 				return ;
 			if (Status == Status.Init)
@@ -211,6 +211,8 @@ namespace gearit.src.Network
 
 		private void HandleInput()
 		{
+			if (Input.justPressed(Microsoft.Xna.Framework.Input.Keys.X))
+				NetworkServer.Instance.Stop();
 			if (Input.Exit)
 				_exiting = true;
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))

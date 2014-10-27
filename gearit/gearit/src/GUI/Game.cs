@@ -52,7 +52,6 @@ namespace SquidXNA
 			ScreenManager.AddScreen(new ScreenMainMenu());
 
             // To remove
-            NetworkServer.Start(INetwork.SERVER_PORT);
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -72,7 +71,8 @@ namespace SquidXNA
             base.OnExiting(sender, args);
 
             // Stop the threads
-            NetworkServer.Instance.Stop();
+			if (NetworkServer.Instance != null)
+				NetworkServer.Instance.Stop();
         }
 	}
 }
