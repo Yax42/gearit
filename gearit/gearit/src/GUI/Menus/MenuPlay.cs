@@ -12,6 +12,8 @@ using gearit.src.GUI;
 using gearit.src.editor.map;
 using Microsoft.Xna.Framework;
 using gearit.src.gui;
+using gearit.src.GUI.Picker;
+using gearit.src.game;
 
 namespace gearit.src.editor.map
 {
@@ -83,6 +85,16 @@ namespace gearit.src.editor.map
 			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
 			y += btn.Size.y;
+
+			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
+			{
+				changeSubmenu(new ScreenPickManager(true, true,
+				delegate()
+				{
+					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
+				}));
+			};
+
 
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}

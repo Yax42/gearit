@@ -195,7 +195,7 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-					ScreenPickManager screen = new ScreenPickManager(this, false, true,
+					ScreenPickManager screen = new ScreenPickManager(false, true,
 					delegate()
 					{
 						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));

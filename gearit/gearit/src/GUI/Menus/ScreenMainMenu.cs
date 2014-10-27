@@ -77,7 +77,6 @@ namespace GUI
 		private NetworkClientGame _networkGame;
 		private MenuPlay _play;
 		private MenuQuit _quit;
-		private ScreenPickManager _soloGame;
 
 		public ScreenMainMenu() : base(false)
 		{
@@ -125,26 +124,20 @@ namespace GUI
 			menu_listbox.Parent = dk_listbox;
 
 			_Gearit = new MyGame();
-			_game = new GearitGame();
-			_networkGame = new NetworkClientGame("bob", "data/robot/default.gir", "127.0.0.1");
+			//_game = new GearitGame();
+			//_networkGame = new NetworkClientGame("bob", "data/robot/default.gir", "127.0.0.1");
 			_play = new MenuPlay();
 			_quit = new MenuQuit();
-			_soloGame = new ScreenPickManager(_game, true, true,
-				delegate()
-				{
-					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
-				});
-
 
 			// Add ItemMenu
 			addMenuItem(_play, _play.GetTitle().ToUpper());
 			addMenuItem(RobotEditor.Instance, RobotEditor.Instance.GetTitle().ToUpper());
 			addMenuItem(MapEditor.Instance, MapEditor.Instance.GetTitle().ToUpper());
 			addMenuItem(OptionsMenu.Instance , OptionsMenu.Instance.GetTitle().ToUpper());
-			addMenuSeparator();
-			addMenuItem(_game, "DEFAULT GAME");
-			addMenuItem(_networkGame, "NETWORK GAME");
-			addMenuItem(_soloGame, "SOLO");
+			//addMenuSeparator();
+			//addMenuItem(_game, "DEFAULT GAME");
+			//addMenuItem(_networkGame, "NETWORK GAME");
+			//addMenuItem(_soloGame, "SOLO");
 
 			addMenuSeparator();
 

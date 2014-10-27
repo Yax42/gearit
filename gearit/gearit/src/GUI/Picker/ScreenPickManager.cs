@@ -21,7 +21,6 @@ namespace gearit.src.GUI.Picker
 
 		private DrawGame DrawGame;
 		private const int PropertiesMenuSize = 40;
-		private GameScreen NextScreen;
 		private int State;
 
 		public Action Callback = null;
@@ -50,12 +49,11 @@ namespace gearit.src.GUI.Picker
 		{
 		}
 
-		public ScreenPickManager(GameScreen nextScreen, bool isPickMap, bool isPickRobot, Action callback) : base(true)
+		public ScreenPickManager(bool isPickMap, bool isPickRobot, Action callback) : base(true)
 		{
 			IsPickMap = isPickMap;
 			IsPickRobot = isPickRobot;
 			Callback = callback;
-			NextScreen = nextScreen;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
 			HasCursor = true;
