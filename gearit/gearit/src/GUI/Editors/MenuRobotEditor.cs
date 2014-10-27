@@ -784,7 +784,7 @@ namespace gearit.src.GUI
 			setFocus(false);
 			if (name == "")
 				return;
-			RobotEditor.Instance.NamePath = name;
+			RobotEditor.Instance.NamePath = "data/robot/" + name + ".gir";
 			if (mustExit)
 				ActionSaveRobot.MustExit = true;
 			RobotEditor.Instance.doAction(ActionTypes.SAVE_ROBOT);
@@ -875,7 +875,7 @@ namespace gearit.src.GUI
 			if (_has_focus)
 				return (true);
 
-			bool menu_has_focus = background.Position.x <= Input.position().X &&
+			bool menu_has_focus = //background.Position.x <= Input.position().X &&
 				background.Position.x + background.Size.x >= Input.position().X &&
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;

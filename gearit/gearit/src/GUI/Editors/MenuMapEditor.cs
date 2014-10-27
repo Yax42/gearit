@@ -360,7 +360,7 @@ namespace gearit.src.editor.map
 				return;
 			if (mustExit)
 				ActionSaveMap.MustExit = true;
-			MapEditor.Instance.NamePath = name;
+			MapEditor.Instance.NamePath = "data/map/" + name + ".gim";
 			MapEditor.Instance.doAction(ActionTypes.SAVE);
 		}
 
@@ -418,8 +418,9 @@ namespace gearit.src.editor.map
 
 			int padding = MapEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
-			bool menu_has_focus = background.Position.x + padding <= Input.position().X &&
-				background.Position.x + background.Size.x + padding >= Input.position().X &&
+			bool menu_has_focus = //background.Position.x + padding <= Input.position().X &&
+				background.Position.x + background.Size.x >= Input.position().X &&
+				background.Position.x + background.Size.x >= Input.position().X &&
 				background.Position.y <= Input.position().Y &&
 				background.Position.y + background.Size.y >= Input.position().Y;
 
