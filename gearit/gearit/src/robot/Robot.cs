@@ -181,8 +181,6 @@ namespace gearit.src.robot
 
 		public void Update()
 		{
-			if (Extracted)
-				return;
 			foreach (RevoluteSpot s in Spots)
 				s.ProcessAutoFreeze();
 			if (_script != null)

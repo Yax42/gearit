@@ -56,12 +56,9 @@ namespace gearit.src.script
 				string initPath = Path.ChangeExtension(FileName, ".init.lua");
 				try
 				{
-					if (File.Exists(initPath))
-					{
-						var initFile = LoadFile(initPath);
-						if (initFile != null)
-							initFile.Call();
-					}
+					var initFile = LoadFile(initPath);
+					if (initFile != null)
+						initFile.Call();
 				}
 				catch (Exception ex)
 				{

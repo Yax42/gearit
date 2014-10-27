@@ -128,7 +128,7 @@ namespace gearit.src.Network
 			World.Step(delta * 2);
 
 			foreach (Robot r in Robots)
-				r.Update();
+				r.Update(Map);
 			foreach (Robot r in Robots)
 			{
 				//NetworkServer.Instance.PushRequestTransform(PacketManager.RobotTransform(r));
