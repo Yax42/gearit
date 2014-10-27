@@ -131,7 +131,7 @@ namespace gearit.src.editor.map
 			SelectChunk = null;
 
 			// TMP
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = DrawGame.Instance;
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 
 			new MenuMapEditor(ScreenManager);

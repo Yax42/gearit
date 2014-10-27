@@ -63,7 +63,7 @@ namespace gearit.src.GUI.Picker
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = DrawGame.Instance;
 			State = 0;
 			MenuPickItem.Result = null;
 

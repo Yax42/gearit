@@ -33,7 +33,14 @@ namespace gearit.src
 		private Matrix _staticView;
 		private PrimitiveBatch _primitiveBatch;
 
-		public DrawGame(GraphicsDevice device)
+		static public DrawGame Instance { get; private set; }
+
+		static public void Init()
+		{
+			Instance = new DrawGame(ScreenManager.Instance.GraphicsDevice);
+		}
+
+		private DrawGame(GraphicsDevice device)
 		{
 			_staticProj = Matrix.CreateOrthographicOffCenter(0f, device.Viewport.Width, device.Viewport.Height, 0f, 0f, 1f);
 			Vector3 translateCenter = new Vector3(device.Viewport.Width / 2f, device.Viewport.Height / 2f, 0);

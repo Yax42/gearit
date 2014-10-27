@@ -109,7 +109,7 @@ namespace gearit.src.GeneticAlgorithm
 
 
 			ScreenManager.Game.ResetElapsedTime();
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = DrawGame.Instance;
 			Camera = new Camera2D(ScreenManager.GraphicsDevice);
 
 			RawDna.CycleNumber = NumberOfTests;

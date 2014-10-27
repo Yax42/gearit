@@ -57,7 +57,7 @@ namespace gearit.src.utility
 		public override void LoadContent()
 		{
 			base.LoadContent();
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			_drawGame = DrawGame.Instance;
 			World.Gravity = new Vector2(0f, 9.8f);
 
 			_debug = new DebugViewXNA(World);

@@ -31,6 +31,7 @@ namespace gearit.src.GUI.Picker
 
 		public AScreenPickItem(bool isMap) : base(true)
 		{
+			DrawGame = DrawGame.Instance;
 			DrawPriority = 9999;
 			IsMap = isMap;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
@@ -45,8 +46,6 @@ namespace gearit.src.GUI.Picker
 			Menu = new MenuPickItem(ScreenManager, IsMap);
 			ScreenManager.Game.ResetElapsedTime();
 			HasVirtualStick = true;
-
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -58,7 +57,6 @@ namespace gearit.src.GUI.Picker
 
 		public override void Draw(GameTime gameTime)
 		{
-			//ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
 			//_draw_game.Begin(_camera);
 
 			//_draw_game.End();

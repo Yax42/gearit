@@ -82,7 +82,7 @@ namespace gearit.src.game
 			_pause = false;
 			_FrameCount = 0;
 			_Time = 0;
-			_drawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			_drawGame = DrawGame.Instance;
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);

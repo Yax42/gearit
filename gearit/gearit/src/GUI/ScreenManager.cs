@@ -12,6 +12,7 @@ using gearit.src.editor.map;
 using gearit.src.editor.robot;
 using gearit.src.GUI.OptionsMenu;
 using gearit.src.GUI.Picker;
+using System.Diagnostics;
 
 namespace gearit.xna
 {
@@ -87,13 +88,6 @@ namespace gearit.xna
 			//game.Components.Add(new FrameRateCounter(this));
 			fpsLock();
 
-			#region StaticInstance
-			new MapEditor();
-			new RobotEditor();
-			new OptionsMenu(this);
-			new ScreenPickRobot();
-			new ScreenPickMap();
-			#endregion
 
 		}
 
@@ -239,6 +233,15 @@ namespace gearit.xna
 		/// </summary>
 		protected override void LoadContent()
 		{
+			Debug.Assert(!_isInitialized);
+			#region StaticInstance
+			DrawGame.Init();
+			new MapEditor();
+			new RobotEditor();
+			new OptionsMenu(this);
+			new ScreenPickRobot();
+			new ScreenPickMap();
+			#endregion
 			_spriteBatch = new SpriteBatch(GraphicsDevice);
 			_lineBatch = new LineBatch(GraphicsDevice);
 			_assetCreator = new AssetCreator(GraphicsDevice);

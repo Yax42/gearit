@@ -141,7 +141,7 @@ namespace gearit.src.editor.robot
 			SerializerHelper.World = _world;
 
 			// Robot
-			DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
+			DrawGame = DrawGame.Instance;
 			Robot = new Robot(_world, true);
 
 			selectHeart();

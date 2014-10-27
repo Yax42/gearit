@@ -336,9 +336,8 @@ namespace gearit.src.GUI.Tools
 
 			style = styles["itemPickButton"];
 			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
-			style.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
-			style.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 0.2f, 1f);
-			style.Checked.BackColor = ColorInt.RGBA(1f, 0.1f, 0.1f, 1f);
+			style.BackColor = toInt(info.Light);
+			style.Default.BackColor = toInt(info.Primitive);
 			style.CheckedHot.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
 
 			style = styles["eventPanel"];

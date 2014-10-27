@@ -62,13 +62,14 @@ namespace gearit.src.GUI
 		{
 			IsMap = IsMap;
 
+			Style = "";
 			ScreenManager = screenManager;
 			int x;
 			int y;
 
 			#region init
 
-			padding_x = 0;
+			padding_x = 400;
 
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
@@ -93,7 +94,6 @@ namespace gearit.src.GUI
 			};
 
 			Camera = new EditorCamera(new Viewport(0, 0, MI_WIDTH, MI_HEIGHT));
-			//DrawGame = new DrawGame(ScreenManager.GraphicsDevice);
 			/****/
 			if (isMap)
 				GenerateItems("data/map/", ".gim");
@@ -133,7 +133,7 @@ namespace gearit.src.GUI
 				};
 
 				x += MI_WIDTH + MI_SEPARATOR;
-				if (x + MI_WIDTH > ScreenManager.Width)
+				if (x + MI_WIDTH > Size.x)
 				{
 					x = 0;
 					y += MI_HEIGHT + MI_SEPARATOR;
@@ -166,8 +166,6 @@ namespace gearit.src.GUI
 
 			for (int i = 0; i < Files.Count(); i++)
 			{
-
-
 				DrawGame.BeginPrimitive(Camera,
 					Matrix.CreateOrthographic(100, 100, 0, 1));
 					/*Matrix.CreateOrthographicOffCenter(
