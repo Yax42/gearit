@@ -13,6 +13,7 @@ namespace gearit.src.editor.map.action
 	class ActionSaveMap : IAction
 	{
 		static public bool MustExit = false;
+		static public bool JustSaved = false;
 
 		public void init() { }
 
@@ -35,6 +36,7 @@ namespace gearit.src.editor.map.action
 				MustExit = false;
 				//ScreenMainMenu.GoBack = true;
 			}
+			JustSaved = true;
 			return false;
 		}
 

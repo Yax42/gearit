@@ -138,7 +138,6 @@ namespace gearit.src.editor.map
 			Rectangle rec = new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
 
 			new MenuMapEditor(ScreenManager);
-			NamePath = "";
 		}
 
 		public override void QuickLoadContent()
@@ -246,6 +245,25 @@ namespace gearit.src.editor.map
 		}
 		//-----------------------------------------------------------------------
 
+		private int SaveCount = 0;
+		public void DrawStatics()
+		{
+			const int cycle = 80;
+			_draw_game.Begin();
+			if (ActionSaveMap.JustSaved)
+			{
+				SaveCount++;
+				_draw_game.DrawSpirale(new Vector2(ScreenManager.Width - 20, ScreenManager.Height - 20),
+							cycle, SaveCount, 5);
+				if (SaveCount >= cycle)
+				{
+					SaveCount = 0;
+					ActionSaveMap.JustSaved = false;
+				}
+			}
+			_draw_game.End();
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			if (ActionSwapEventMode.EventMode)
@@ -256,6 +274,7 @@ namespace gearit.src.editor.map
 			_map.DrawDebug(_draw_game, ActionSwapEventMode.EventMode);
 
 			_draw_game.End();
+			DrawStatics();
 			base.Draw(gameTime);
 			MenuMapEditor.Instance.Draw();
 		}

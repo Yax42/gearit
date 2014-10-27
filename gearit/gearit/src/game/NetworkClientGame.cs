@@ -149,11 +149,6 @@ namespace gearit.src.Network
 			return (World);
 		}
 
-		public void setMap(Map map)
-		{
-			Map = map;
-		}
-
 		public void clearRobot()
 		{
 			foreach (Robot r in Robots)

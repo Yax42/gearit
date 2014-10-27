@@ -426,15 +426,8 @@ namespace gearit.src.editor.robot
 			if (ActionSaveRobot.JustSaved)
 			{
 				SaveCount++;
-				for (int i = SaveCount; i >= 0 && i >= SaveCount - 5; i--)
-				{
-					int intDelta = i % cycle;
-					intDelta = 1 + (intDelta > cycle / 2 ? cycle - intDelta : intDelta);
-					float delta = intDelta / (cycle * 1f);
-					float ray = 1 + delta * delta * delta * 15;
-					Vector2 deltaPos = new Vector2((float)Math.Cos(i * 10 * Math.PI / cycle), (float)Math.Sin(i * 10 * Math.PI / cycle)) * 15f * delta;
-					DrawGame.DrawCircle(new Vector2(MenuRobotEditor.MENU_WIDTH + 20, 20) + deltaPos, ray, Color.LightGreen, true);
-				}
+				DrawGame.DrawSpirale(new Vector2(ScreenManager.Width - 20, ScreenManager.Height - 20),
+							cycle, SaveCount, 5);
 				if (SaveCount >= cycle)
 				{
 					SaveCount = 0;

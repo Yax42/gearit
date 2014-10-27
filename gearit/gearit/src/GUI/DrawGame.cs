@@ -368,6 +368,20 @@ namespace gearit.src
 			paintPolygon(vers, 0, _circleSegments, color);
 		}
 
+		public void DrawSpirale(Vector2 pos, int total, int id, int size)
+		{
+			for (int i = id; i >= 0 && i >= id - size; i--)
+			{
+				int intDelta = i % total;
+				intDelta = 1 + (intDelta > total / 2 ? total - intDelta : intDelta);
+				float delta = intDelta / (total / 2f);
+				float ray = 1 + delta * delta * 3;
+				Color col = new Color(new Vector4(0f, delta, 0f, 1f));
+				Vector2 deltaPos = new Vector2((float)Math.Cos(i * 10 * Math.PI / total), (float)Math.Sin(i * 10 * Math.PI / total)) * 10f * delta;
+				DrawCircle(pos + deltaPos, ray, col, true);
+			}
+		}
+
 		public void drawString(SpriteFont font, string text, Vector2 pos, Color col, float rotation = 0f, float scale = 0f, SpriteEffects effects = SpriteEffects.None, float depth = 0f)
 		{
 			_batch.DrawString(font, text, pos, col, rotation, Vector2.Zero, scale, effects, depth);
