@@ -100,17 +100,6 @@ namespace gearit.src.editor.map
 			// Auto select menu tools
 			Label lb;
 
-			// Title
-			/*
-			Label lb = new Label();
-			lb.Text = "Pieces";
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuTitle";
-			lb.Parent = this;
-
-			y += lb.Size.y + PADDING;
-			*/
 			label_name = new Label();
 			lb = label_name;
 			//lb.Text = "~ " + MapEditor.Instance.NamePath + " ~";
@@ -172,12 +161,13 @@ namespace gearit.src.editor.map
 			lb.Style = "itemMenu";
 			lb.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
+			background.Content.Controls.Add(lb);
 
 			tb_id = new TextBox();
 			tb_id.Style = "menuTextbox";
 			tb_id.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING * 4, ITEM_HEIGHT);
 			tb_id.Position = new Squid.Point(MENU_WIDTH / 2, y);
-			background.Content.Controls.Add(lb);
+			background.Content.Controls.Add(tb_id);
 			tb_id.TextChanged += delegate(Control snd)
 			{
 				MapEditor.Instance.SelectChunk.StringId = tb_id.Text;

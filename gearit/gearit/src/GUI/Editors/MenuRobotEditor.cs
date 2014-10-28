@@ -300,8 +300,8 @@ namespace gearit.src.GUI
 			piece_weight.Text = "45";
 			piece_weight.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
 			piece_weight.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
-			piece_weight.Style = "textbox";
-			background.Content.Controls.Add(lb);
+			piece_weight.Style = "menuTextbox";
+			background.Content.Controls.Add(piece_weight);
 			//piece_weight.Enabled = false;
 
 			piece_weight.Mode = TextBoxMode.Numeric;
@@ -335,6 +335,7 @@ namespace gearit.src.GUI
 			background.Content.Controls.Add(lb);
 			piece_size.Mode = TextBoxMode.Numeric;
 			piece_size.Enabled = false;
+			background.Content.Controls.Add(piece_size);
 
 			y += ITEM_HEIGHT;
 			
