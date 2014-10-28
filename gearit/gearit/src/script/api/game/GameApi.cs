@@ -97,8 +97,15 @@ namespace gearit.src.script
 			return _arts[i];
 		}
 
+		public GameChunkApi Object(int i)
+		{
+			return _chunks[i];
+		}
+
 		public GameChunkApi Object(string name)
 		{
+			if (!name.StartsWith("Object_"))
+				name = "Object_" + name;
 			return _chunks.Find(x => x.__Chunk.StringId == name);
 		}
 

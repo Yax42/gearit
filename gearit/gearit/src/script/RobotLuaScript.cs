@@ -11,6 +11,7 @@ using gearit.src.output;
 using gearit.src.editor.robot;
 using System.Diagnostics;
 using gearit.src.Network;
+using gearit.src.script.api.game;
 
 namespace gearit.src.script
 {
@@ -26,6 +27,7 @@ namespace gearit.src.script
 			for (int i = 0; i < api.Count; i++)
 				this[api[i].Name()] = api[i];
 			this["Input"] = new InputApi();
+			this["Math"] = new MathApi();
 			this["Robot"] = robotApi;
 			try
 			{

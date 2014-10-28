@@ -125,6 +125,12 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public override Vector2 Speed
+		{
+			get { return __Robot.Heart.LinearVelocity; }
+			set { __Robot.Heart.LinearVelocity = value; }
+		}
+
 		public void Reset()
 		{
 			Body b = __Robot.Heart;

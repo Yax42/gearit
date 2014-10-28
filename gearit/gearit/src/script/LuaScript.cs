@@ -49,25 +49,30 @@ namespace gearit.src.script
 			}
 		}
 
-		protected void Load()
+		protected LuaFunction LoadScript(string path)
 		{
 			if (IsFile)
 			{
-				string initPath = Path.ChangeExtension(FileName, ".init.lua");
 				try
 				{
-					var initFile = LoadFile(initPath);
-					if (initFile != null)
-						initFile.Call();
+					return LoadFile(path);
 				}
 				catch (Exception ex)
 				{
-					OutputManager.LogWarning("Lua script (" + initPath + ") - " + ex.Message);
+					OutputManager.LogWarning("Lua script (" + path + ") - " + ex.Message);
 				}
 			}
+			return null;
 		}
 
-		public void run()
+		protected void Load()
+		{
+			var initFile = LoadScript(Path.ChangeExtension(FileName, ".init.lua"));
+			if (initFile != null)
+				initFile.Call();
+		}
+
+		public virtual void run()
 		{
 			if (!_ok)
 				return;

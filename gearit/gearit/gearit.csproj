@@ -127,6 +127,7 @@
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
     <Compile Include="src\editor\robot\action\ActionChangeRodLimit.cs" />
+    <Compile Include="src\editor\robot\action\ActionNewRobot.cs" />
     <Compile Include="src\GUI\DrawGame.cs" />
     <Compile Include="src\editor\robot\action\ActionChangeValues.cs" />
     <Compile Include="src\editor\robot\action\ActionFreezeSpot.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />
     <Compile Include="src\script\api\game\GameRobotApi.cs" />
     <Compile Include="src\script\api\game\GameObjectApi.cs" />
+    <Compile Include="src\script\api\MathApi.cs" />
     <Compile Include="src\script\api\robot\RobotStateApi.cs" />
     <Compile Include="src\editor\map\action\ActionChangeType.cs" />
     <Compile Include="src\editor\map\action\ActionCreateBall.cs" />

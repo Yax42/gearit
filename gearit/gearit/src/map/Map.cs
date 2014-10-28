@@ -28,7 +28,7 @@ namespace gearit.src.map
 		[NonSerialized]
 		private World _world;
 
-		public Map(World world) : base("data/map/NewMap.gir")
+		public Map(World world) : base("data/map/NewMap.gim")
 		{
 			_world = world;
 			Chunks = new List<MapChunk>();

@@ -43,13 +43,13 @@ namespace gearit.src.script.api.game
 		private void PushEvent(PacketManager.EChunkCommand cmd, bool data)
 		{
 			if (GameLuaScript.IsServer)
-				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data));
 		}
 
 		private void PushEvent(PacketManager.EChunkCommand cmd, float data)
 		{
 			if (GameLuaScript.IsServer)
-				GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data);
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.ChunkCommand(cmd, GameLuaScript.Instance.ServerGame.Map.Chunks.IndexOf(__Chunk) , data));
 		}
 
 		public bool Static
@@ -106,6 +106,12 @@ namespace gearit.src.script.api.game
 		{
 			get { return __Chunk.Position; }
             set { __Chunk.Position = value; }
+		}
+
+		public override Vector2 Speed
+		{
+			get { return __Chunk.LinearVelocity; }
+			set { __Chunk.LinearVelocity = value; }
 		}
 
 		public void Reset()

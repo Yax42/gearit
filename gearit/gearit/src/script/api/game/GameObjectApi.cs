@@ -14,6 +14,8 @@ namespace gearit.src.script.api.game
 	{
 		abstract public Vector2 Position { get; set; }
 
+		abstract public Vector2 Speed { get; set; }
+
 		public float Distance(GameObjectApi other)
 		{
 			return (Position - other.Position).Length();
@@ -22,6 +24,14 @@ namespace gearit.src.script.api.game
 		public void MoveTo(GameObjectApi other)
 		{
 			Position = other.Position;
+		}
+
+		public Vector2 Direction(GameObjectApi other, float mul = 1)
+		{
+			Vector2 res = other.Position - Position;
+			if (res != Vector2.Zero)
+				res.Normalize();
+			return res * mul;
 		}
 	}
 }

@@ -36,5 +36,11 @@ namespace gearit.src.script.api.game
 				_Artefact.Position = value;
 			}
 		}
+
+		public override Vector2 Speed
+		{
+			get { return Vector2.Zero; }
+			set { }
+		}
 	}
 }

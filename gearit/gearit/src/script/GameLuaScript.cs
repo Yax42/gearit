@@ -20,21 +20,13 @@ namespace gearit.src.script
 
 		public NetworkServerGame ServerGame { private set; get; }
 		private GameApi GameApi;
+		private LuaFunction RobotScript;
 
 		public GameLuaScript(IGearitGame game, string path)
 			: base(path)
 		{
-			string robotConnectedPath = Path.ChangeExtension(FileName, ".robot.lua");
-			LuaFunction robotConnectedScript;
-			try
-			{
-				robotConnectedScript = LoadFile(robotConnectedPath);
-			}
-			catch (Exception ex)
-			{
-				OutputManager.LogWarning("Lua script (" + robotConnectedPath + ") - " + ex.Message);
-				robotConnectedScript = null;
-			}
+			LuaFunction robotConnectedScript = LoadScript(Path.ChangeExtension(FileName, ".robot.init.lua"));
+			RobotScript = LoadScript(Path.ChangeExtension(FileName, ".robot.lua"));
 
 			Instance = this;
 			if (game.GetType() == typeof(NetworkServerGame))
@@ -44,16 +36,37 @@ namespace gearit.src.script
 			GameApi = new GameApi(game,
 				delegate(int lastRobot)
 				{
+					DoString("Robot = Game:Robot(" + lastRobot + " )");
 					if (robotConnectedScript != null)
 					{
-						DoString("LastRobot = Game:Robot(" + lastRobot + " )");
 						robotConnectedScript.Call();
 					}
 				}
 			);
 			this["Game"] = GameApi;
 			this["G"] = GameApi;
+			this["Math"] = new MathApi();
 			Load();
+		}
+
+		public override void run()
+		{
+			try
+			{
+				if (RobotScript != null)
+				{
+					for (int i = 0; i < GameApi.RobotCount; i++)
+					{
+						DoString("Robot = Game:Robot(" + i + " )");
+						RobotScript.Call();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				OutputManager.LogError("Lua script (" + Path.ChangeExtension(FileName, ".robot.lua") + ") - " + ex.Message);
+			}
+			base.run();
 		}
 
 		public void RobotConnect(Robot r)
