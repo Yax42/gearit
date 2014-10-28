@@ -84,16 +84,25 @@ namespace gearit.src.game
 			_Time = 0;
 			_drawGame = DrawGame.Instance;
 			_camera = new Camera2D(ScreenManager.GraphicsDevice);
+
+		#region World
+
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);
 			SerializerHelper.World = World;
-			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
-			addRobot(robot);
-			Debug.Assert(Robots != null);
+
 			Map = (Map)Serializer.DeserializeItem(MapPath);
 			Debug.Assert(Map != null);
 			ScreenManager.Game.ResetElapsedTime();
+
 			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
+
+			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
+			Debug.Assert(Robots != null);
+			AddRobot(robot);
+
+		#endregion
+
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
 			DrawPriority = 99999;
@@ -117,16 +126,6 @@ namespace gearit.src.game
 		}
 
 		public int MainRobotId { get { return 0; } set { } }
-
-		public void addRobot(Robot robot)
-		{
-			Robots.Add(robot);
-			World.Step(0);
-			if (Robots.Count == 1)
-				_camera.TrackingBody = robot.Heart;
-			robot.InitScript();
-			robot.move(new Vector2(0, -20));
-		}
 
 		public override void Update(GameTime gameTime)
 		{
@@ -199,7 +198,10 @@ namespace gearit.src.game
 			Robots.Add(robot);
 			World.Step(0);
 			World.Step(1/30f);
-			//robot.move(new Vector2(Robots.Count * 30, -20));
+			if (Robots.Count == 1)
+				_camera.TrackingBody = robot.Heart;
+			robot.InitScript();
+			_gameMaster.RobotConnect(robot);
 		}
 	}
 }

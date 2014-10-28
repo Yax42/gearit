@@ -134,7 +134,6 @@ namespace gearit.src.script.api.game
 		public void Reset()
 		{
 			Body b = __Robot.Heart;
-			b.Rotation = 0;
 			b.LinearVelocity = Vector2.Zero;
 			b.AngularVelocity = 0;
 		}
