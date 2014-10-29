@@ -67,6 +67,16 @@ namespace gearit.src.script
 			_spot.AddLimitsCycle(count);
 		}
 
+		public bool FreeWheel
+		{
+			get { return _spot.FreeWheel; }
+			set
+			{
+				_spot.FreeWheel = value;
+				if (RobotLuaScript.IsNetwork)
+					;// RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, value));
+			}
+		}
 
 #if false //Ces fontionnalités me paraissent dangereuses à être modifiable en temps réel
 		public float MaxAngle

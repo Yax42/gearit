@@ -11,3 +11,6 @@ else
 	spot0.Motor = 0
 	spot2.Motor = 0
 end
+
+spot0.FreeWheel = Input:pressed(K_Space)
+spot2.FreeWheel = Input:pressed(K_Space)

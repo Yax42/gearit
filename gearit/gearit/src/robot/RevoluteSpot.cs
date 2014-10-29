@@ -139,6 +139,21 @@ namespace gearit.src.robot
 			_Frozen = true;
 		}
 
+		private bool _FreeWheel = true;
+		public bool FreeWheel
+		{
+			get
+			{
+				return _FreeWheel;
+			}
+			set
+			{
+				_FreeWheel = value;
+				if (!Frozen)
+					MotorEnabled = !value;
+			}
+		}
+
 		private float _MaxAngle;
 		public float MaxAngle
 		{
@@ -215,7 +230,7 @@ namespace gearit.src.robot
 					LowerLimit = MinAngle;
 					LimitEnabled = _SpotLimitEnabled;
 					AutoFreezeState = LimitState.Inactive;
-					MotorEnabled = true;
+					MotorEnabled = !FreeWheel;
 				}
 			}
 		}
