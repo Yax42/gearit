@@ -15,6 +15,7 @@ using gearit.src.output;
 using gearit.src.editor.robot;
 using System.IO;
 using gearit.src.GUI.Editors;
+using System.Diagnostics;
 
 namespace gearit.src.GUI
 {
@@ -626,10 +627,22 @@ namespace gearit.src.GUI
 			y += btn.Size.y + PADDING;
 
 			btn = new Button();
-			btn.Text = "Edit script";
+			btn.Text = "Edit Script";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
+			background.Content.Controls.Add(btn);
+			btn.Tooltip = "Script Edition";
+			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
+			{
+				Process.Start(RobotEditor.Instance.Robot.LuaFullPath);
+			};
+
+			btn = new Button();
+			btn.Text = "Script Editor";
+			btn.Style = "itemMenuButton";
+			btn.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			background.Content.Controls.Add(btn);
 			btn.Tooltip = "Toggle the script editor";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
