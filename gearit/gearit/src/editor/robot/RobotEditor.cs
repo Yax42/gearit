@@ -253,9 +253,9 @@ namespace gearit.src.editor.robot
 
 		private void HandleInput()
 		{
-			if (Input.justPressed(Keys.X))
+			if (Input.justPressed(Keys.Z))
 				LockAxis.Origin = Input.SimMousePos;
-			LockAxis.Active = Input.pressed(Keys.X) && _currentAction.Type() != ActionTypes.SET_AXIS;
+			LockAxis.Active = Input.pressed(Keys.Z) && _currentAction.Type() != ActionTypes.SET_AXIS;
 			if (_currentAction.Type() == ActionTypes.NONE)
 			{
 				if (MenuRobotEditor.Instance.hasFocus())
@@ -406,15 +406,15 @@ namespace gearit.src.editor.robot
 
 		private void DrawMarks()
 		{
-			Color col = Color.White;
-			col.A = 176;
-			DrawGame.DrawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
-							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
-							col);
-			col = Color.Red;
+			Color col = Color.Red;
 			col.A = 160;
 			DrawGame.DrawLine(LockAxis.Origin - 1000 * LockAxis.Dir,
 							LockAxis.Origin + 1000 * LockAxis.Dir,
+							col);
+			col = Color.White;
+			col.A = 176;
+			DrawGame.DrawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
+							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
 							col);
 		}
 

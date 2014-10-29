@@ -25,7 +25,7 @@ namespace gearit.src.editor.robot.action
 				|| Input.CtrlShift(false, true))
 				&& Input.justPressed(Keys.F))
 				|| (Input.CtrlShift(false, true)
-				&& Input.justPressed(Keys.X));
+				&& Input.justPressed(Keys.Z));
 		}
 
 		public bool run()

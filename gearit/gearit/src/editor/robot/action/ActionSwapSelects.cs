@@ -18,7 +18,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			return (Input.justPressed(Keys.C));
+			return (Input.justPressed(Keys.X));
 		}
 
 		public bool run()

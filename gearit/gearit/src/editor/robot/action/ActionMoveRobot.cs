@@ -22,6 +22,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
+			return false;
 			return (Input.CtrlShift(false, false) && (Input.justPressed(Keys.C)));
 		}
 
