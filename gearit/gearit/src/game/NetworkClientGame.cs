@@ -15,6 +15,7 @@ using gearit.src.editor.robot;
 using gearit.src.game;
 using System.Threading;
 using Lidgren.Network;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace gearit.src.Network
 {
@@ -30,6 +31,8 @@ namespace gearit.src.Network
 		private string NameRobot;
 		private string NameMap;
 		private string IpServer;
+        private Texture2D _back;
+        private Effect _effect;
 
 		private bool _exiting
 		{
@@ -137,10 +140,8 @@ namespace gearit.src.Network
 			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
 			//NetworkClient.Connect("81.249.189.167", 25552);
 			NetworkClient.Connect(IpServer, INetwork.SERVER_PORT);
-
-			// I have no idea what this is.
-			//HasVirtualStick = true;
-
+            _back = ScreenManager.Content.Load<Texture2D>("background");
+            _effect = ScreenManager.Content.Load<Effect>("infinite");
 			Status = Status.Init;
 		}
 
@@ -211,8 +212,10 @@ namespace gearit.src.Network
 
 		private void HandleInput()
 		{
+            /*
 			if (Input.justPressed(Microsoft.Xna.Framework.Input.Keys.X))
 				NetworkServer.Instance.Stop();
+             * */
 			if (Input.Exit)
 				_exiting = true;
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
@@ -226,8 +229,8 @@ namespace gearit.src.Network
 			if (Status != Status.Run)
 				return;
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
+            _drawGame.drawBackground(_back, _camera, _effect);
 			_drawGame.Begin(_camera);
-
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
 			Map.DrawDebug(_drawGame, true);
