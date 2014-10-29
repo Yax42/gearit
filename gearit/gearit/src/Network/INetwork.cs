@@ -166,6 +166,8 @@ namespace gearit.src.Network
 
 		public void PushRequest(byte[] data, Peer p = null)
 		{
+            if (Peers.Count == 0)
+                return;
 			if (p == null)
 				p = Peers.First();
 			p.ToSend = p.ToSend.Concat(data).ToArray();
