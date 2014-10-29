@@ -139,7 +139,7 @@ namespace gearit.src.robot
 			_Frozen = true;
 		}
 
-		private bool _FreeWheel = true;
+		private bool _FreeWheel = false;
 		public bool FreeWheel
 		{
 			get
