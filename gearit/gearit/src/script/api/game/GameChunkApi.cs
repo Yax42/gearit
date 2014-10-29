@@ -82,6 +82,15 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public bool IsBullet
+		{
+			get { return __Chunk.IsBullet; }
+            set
+			{
+				__Chunk.IsBullet = value;
+			}
+		}
+
 		public float Gravity
 		{
 			get { return __Chunk.GravityScale; }
