@@ -39,8 +39,6 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
-			if (RobotEditor.Instance.Select1.GetType() == typeof(Heart))
-				return false;
 			return (Input.CtrlShift(false, false)
 				&& Input.justPressed(MouseKeys.RIGHT));
 		}

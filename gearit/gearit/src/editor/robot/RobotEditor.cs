@@ -407,12 +407,12 @@ namespace gearit.src.editor.robot
 		private void DrawMarks()
 		{
 			Color col = Color.White;
-			col.A = 76;
+			col.A = 176;
 			DrawGame.DrawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
 							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
 							col);
-			col = Color.Orange;
-			col.A = 76;
+			col = Color.Red;
+			col.A = 160;
 			DrawGame.DrawLine(LockAxis.Origin - 1000 * LockAxis.Dir,
 							LockAxis.Origin + 1000 * LockAxis.Dir,
 							col);
