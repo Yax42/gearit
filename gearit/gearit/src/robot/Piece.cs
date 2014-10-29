@@ -79,7 +79,6 @@ namespace gearit.src.robot
 			//SleepTime = 0f;
 			//Torque = 0f;
 			Rotation = 0f;
-			Mass = 0;
 		}
 
 		//
@@ -178,7 +177,7 @@ namespace gearit.src.robot
 			DidAct = false;
 		}
 
-		private float _weight = 1;
+		private float _weight = 10;
 		public virtual float Weight
 		{
 			set

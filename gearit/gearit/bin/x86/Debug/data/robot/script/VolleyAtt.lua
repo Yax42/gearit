@@ -24,14 +24,33 @@ else
 	spot13.Motor = 0.2
 	spot14.Motor = -0.2
 end
-	
+
+if Input:pressed(K_LeftShift) then
+	force = 1
+else
+	force = 0.2
+end
+
 if Input:pressed(K_A) then
-	spot2.Motor = -1
-	spot3.Motor = -1	
+	spot2.Motor = -force
+	spot3.Motor = -force
+	spot5.Motor = -force
+	spot4.Motor = -force
 elseif Input:pressed(K_D) then
-	spot2.Motor = 1
-	spot3.Motor = 1
+	spot2.Motor = force
+	spot3.Motor = force
+	spot5.Motor = force
+	spot4.Motor = force
 else
 	spot2.Motor = 0
 	spot3.Motor = 0
+	spot5.Motor = 0
+	spot4.Motor = 0
 end
+
+spot2.Frozen = Input:pressed(K_Space)
+spot3.Frozen = Input:pressed(K_Space)
+spot5.Frozen = Input:pressed(K_Space)
+spot4.Frozen = Input:pressed(K_Space)
+
+
