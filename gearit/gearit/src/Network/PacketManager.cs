@@ -462,9 +462,10 @@ namespace gearit.src.Network
 					r.ExtractFromWorld();
 					break;
 				case (byte) ERobotCommand.Teleport:
-					Vector2 deltaPos = packet.Position - r.Position;
-					foreach (Piece p in r.Pieces)
-						p.Position += deltaPos;
+					r.Position = packet.Position;
+					//Vector2 deltaPos = packet.Position - r.Position;
+					//foreach (Piece p in r.Pieces)
+					//	p.Position += deltaPos;
 					break;
 			}
 		}
