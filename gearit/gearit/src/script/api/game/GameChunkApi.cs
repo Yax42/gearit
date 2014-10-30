@@ -33,22 +33,9 @@ namespace gearit.src.script.api.game
 
 		public bool IsTouching(GameChunkApi chunkapi)
 		{
-            Manifold m = new Manifold();
-            Transform tp;
-            Transform tc;
-            if (__Chunk.FixtureList[0].Shape.ShapeType == FarseerPhysics.Collision.Shapes.ShapeType.Circle &&
-                chunkapi.__Chunk.FixtureList[0].Shape.ShapeType == FarseerPhysics.Collision.Shapes.ShapeType.Polygon)
-            {
-                __Chunk.GetTransform(out tc);
-                chunkapi.__Chunk.GetTransform(out tp);
-                Collision.CollidePolygonAndCircle(ref m, (FarseerPhysics.Collision.Shapes.PolygonShape) chunkapi.__Chunk.FixtureList[0].Shape,
-                    ref tp,(FarseerPhysics.Collision.Shapes.CircleShape)  __Chunk.FixtureList[0].Shape, ref tc);
-                return (m.PointCount > 0);
-            }
-
 			for (ContactEdge c = __Chunk.ContactList; c != null;  c = c.Next)
 			{
-				if (c.Other == chunkapi.__Chunk)
+				if (c.Other == chunkapi.__Chunk && c.Contact.IsTouching)
 					return (true);
 			}
 
