@@ -111,6 +111,7 @@ namespace gearit.src.Network
 			Frozen,
 			Force,
 			AddLimit,
+			FreeWheel,
 		};
 
 		private struct Packet_Motor // size 8
@@ -119,7 +120,7 @@ namespace gearit.src.Network
 			public ushort MotorId;
 			public byte Type;
 			public float Force;
-			public bool Frozen;
+			public bool BoolVal;
 			public short NbCycle;
 		}
 
@@ -284,16 +285,16 @@ namespace gearit.src.Network
 			return Motor(spot, MotorType.AddLimit, false, cycle, 0);
 		}
 
-		public byte[] Motor(RevoluteSpot spot, bool frozen)
+		public byte[] Motor(RevoluteSpot spot, MotorType type, bool BoolVal)
 		{
-			return Motor(spot, MotorType.Frozen, frozen, 0, 0);
+			return Motor(spot, type, BoolVal, 0, 0);
 		}
 
-		public byte[] Motor(RevoluteSpot spot, MotorType type, bool frozen, int cycle, float force)
+		public byte[] Motor(RevoluteSpot spot, MotorType type, bool BoolVal, int cycle, float force)
 		{
 			Packet_Motor res = new Packet_Motor();
 			res.MotorId = (ushort) spot.Id;
-			res.Frozen = frozen;
+			res.BoolVal = BoolVal;
 			res.Force = force;
 			res.Type = (byte)type;
 			res.NbCycle = (short)cycle;
@@ -561,10 +562,13 @@ namespace gearit.src.Network
 							r.Spots[packet.MotorId].Force = packet.Force;
 							break;
 						case (byte) MotorType.Frozen:
-							r.Spots[packet.MotorId].Frozen = packet.Frozen;
+							r.Spots[packet.MotorId].Frozen = packet.BoolVal;
 							break;
 						case (byte) MotorType.AddLimit:
 							r.Spots[packet.MotorId].AddLimitsCycle(packet.NbCycle);
+							break;
+						case (byte) MotorType.FreeWheel:
+							r.Spots[packet.MotorId].FreeWheel = packet.BoolVal;
 							break;
 					}
 				}

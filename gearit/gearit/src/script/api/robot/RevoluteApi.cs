@@ -27,6 +27,8 @@ namespace gearit.src.script
 			get { return _spot.Force; }
 			set
 			{
+				if (_spot.Force == value)
+					return;
 				if (value > 1)
 					value = 1;
 				else if (value < -1)
@@ -44,9 +46,14 @@ namespace gearit.src.script
 			get { return _spot.Frozen; }
 			set
 			{
+				if (_spot.Frozen == value)
+					return;
 				_spot.Frozen = value;
 				if (RobotLuaScript.IsNetwork)
-					RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, value));
+				{
+					var packet = RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, Network.PacketManager.MotorType.Frozen, value);
+					RobotLuaScript.NetworkGame.NetworkClient.PushRequest(packet);
+				}
 			}
 		}
 
@@ -72,9 +79,14 @@ namespace gearit.src.script
 			get { return _spot.FreeWheel; }
 			set
 			{
+				if (_spot.FreeWheel == value)
+					return;
 				_spot.FreeWheel = value;
 				if (RobotLuaScript.IsNetwork)
-					;// RobotLuaScript.NetworkGame.NetworkClient.PushRequest(RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, value));
+				{
+					var packet = RobotLuaScript.NetworkGame.PacketManager.Motor(_spot, Network.PacketManager.MotorType.FreeWheel, value);
+					RobotLuaScript.NetworkGame.NetworkClient.PushRequest(packet);
+				}
 			}
 		}
 
