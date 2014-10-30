@@ -27,8 +27,6 @@ namespace gearit.src.script
 			get { return _spot.Force; }
 			set
 			{
-				if (_spot.Force == value)
-					return;
 				if (value > 1)
 					value = 1;
 				else if (value < -1)
