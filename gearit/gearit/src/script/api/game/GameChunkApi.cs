@@ -108,6 +108,18 @@ namespace gearit.src.script.api.game
             set { __Chunk.Position = value; }
 		}
 
+        public float PosX
+        {
+            get { return __Chunk.Position.X; }
+            set { __Chunk.Position = new Vector2(value, __Chunk.Position.Y); }
+        }
+
+        public float PosY
+        {
+            get { return __Chunk.Position.Y; }
+            set { __Chunk.Position = new Vector2(__Chunk.Position.X, value); }
+        }
+
 		public override Vector2 Speed
 		{
 			get { return __Chunk.LinearVelocity; }
