@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Input;
 using FarseerPhysics.Dynamics;
 using gearit.src.robot;
 using System.Diagnostics;
+using gearit.src.editor.map;
+using gearit.src.map;
 
 namespace gearit.src.editor.robot.action
 {
@@ -16,6 +18,7 @@ namespace gearit.src.editor.robot.action
 		static public bool Running = false;
 		static public World SimulationWorld = null;
 		static public Robot Robot;
+		private PolygonChunk Ground;
 		private bool FirstFrame;
 
 		public static void ResetWorld()
@@ -36,10 +39,17 @@ namespace gearit.src.editor.robot.action
 				Robot = (Robot)Serializer.DeserializeItem(RobotEditor.Instance.ActualPath);
 				Debug.Assert(Robot != null);
 				Running = (Robot != null);
-				Robot.Heart.IsStatic = true;
 				Robot.InitScript();
 				FirstFrame = true;
-
+				if (!Input.Ctrl)
+				{
+					Robot.Heart.IsStatic = true;
+				}
+				else
+				{
+					Ground = new PolygonChunk(SimulationWorld, false, new Vector2(-100, 20));
+					Ground.ShapeRectangle(200, 5);
+				}
 			}
 			else
 				Running = false;
@@ -48,8 +58,8 @@ namespace gearit.src.editor.robot.action
 		//feature non fonctionnelle yet
 		public bool shortcut()
 		{
-			return (Input.CtrlShift(false, false) && Input.justPressed(Keys.Enter))
-				|| (Input.CtrlShift(false, true) && Input.justPressed(Keys.Space));
+			return (!Input.Shift && Input.justPressed(Keys.Enter))
+				|| (Input.Shift && Input.justPressed(Keys.Space));
 		}
 
 		public bool run()

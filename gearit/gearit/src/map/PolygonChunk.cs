@@ -64,6 +64,13 @@ namespace gearit.src.map
 			return ((PolygonShape)FixtureList[0].Shape).Vertices[verticeId] + Position;
 		}
 
+		public void ShapeRectangle(float w, float h)
+		{
+			Vertices rectangleVertices = PolygonTools.CreateRectangle(w, h);
+			PolygonShape rectangleShape = new PolygonShape(rectangleVertices, 1f);
+			SetPolygon(rectangleShape);
+		}
+
 		public void SetPolygon(PolygonShape shape)
 		{
 			PolygonShape backupShape = (PolygonShape)FixtureList[0].Shape;
