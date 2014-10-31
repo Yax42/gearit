@@ -39,7 +39,7 @@ namespace gearit.src.script.api.game
 				{
 					for (ContactEdge c = b2.ContactList; c != null; c = c.Next)
 					{
-						if (c.Other == b)
+						if (c.Other == b && c.Contact.IsTouching)
 							return (true);
 					}
 				}
@@ -55,7 +55,7 @@ namespace gearit.src.script.api.game
 			{
 				for (ContactEdge c = chunkapi.__Chunk.ContactList; c != null; c = c.Next)
 				{
-					if (c.Other == b)
+					if (c.Other == b && c.Contact.IsTouching)
 						return (true);
 				}
 			}
