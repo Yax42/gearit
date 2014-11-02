@@ -84,6 +84,11 @@ namespace FarseerPhysics.Dynamics
         internal float _torque;
         internal World _world;
         internal Transform _xf; // the body origin transform
+		internal Transform Xf // #GEARIT
+		{
+			get { return _xf; }
+			set { _xf = value; }
+		}
         internal bool _island;
 
         public PhysicsLogicFilter PhysicsLogicFilter;
