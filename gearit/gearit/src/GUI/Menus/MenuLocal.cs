@@ -44,6 +44,7 @@ namespace gearit.src.gui
         bool refreshing = false;
         Button btn_refresh = new Button();
         TcpClient client;
+		ScreenPickManager picker;
 
         const int DIALOG_WIDTH = 400;
         const int TAB_WIDTH = 156;
@@ -195,12 +196,13 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-					ScreenPickManager screen = new ScreenPickManager(false, true,
+					picker = new ScreenPickManager(false, true,
 					delegate()
 					{
 						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
+						picker = null;
 					});
-					ScreenManager.Instance.AddScreen(screen);
+					ScreenManager.Instance.AddScreen(picker);
                 };
 
                 return cell;
@@ -216,6 +218,11 @@ namespace gearit.src.gui
 			entry.Ping = 123;
 			models.Add(entry);
 			olv.SetObjects(models);
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
 		}
 
         void btn_MouseClick(Control sender, MouseEventArgs args)
