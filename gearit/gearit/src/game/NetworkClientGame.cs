@@ -22,7 +22,7 @@ namespace gearit.src.Network
 	class NetworkClientGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		public World World { get; private set; }
-		private Camera2D _camera;
+		public Camera2D Camera { get; private set; }
 		private GameLuaScript _gameMaster;
 		private bool __exiting;
 		public NetworkClient NetworkClient { get; private set; }
@@ -117,7 +117,7 @@ namespace gearit.src.Network
 			_FrameCount = 0;
 			_Time = 0;
 			_drawGame = DrawGame.Instance;
-			_camera = new Camera2D(ScreenManager.GraphicsDevice);
+			Camera = new Camera2D(ScreenManager.GraphicsDevice);
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);
 
@@ -127,7 +127,7 @@ namespace gearit.src.Network
 			AddRobot(r);
 			r.Id = 0;
 			MainRobotId = 0;
-			_camera.TrackingBody = r.Heart;
+			Camera.TrackingBody = r.Heart;
 			r.InitScript(this);
 
 			Debug.Assert(Robots != null);
@@ -192,7 +192,7 @@ namespace gearit.src.Network
 			MainRobot.Update(Map);
 
 			//_gameMaster.run();
-			_camera.Update(gameTime);
+			Camera.Update(gameTime);
 			if (_exiting)
 				Exit();
 			_FrameCount++;
@@ -218,10 +218,7 @@ namespace gearit.src.Network
              * */
 			if (Input.Exit)
 				_exiting = true;
-			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-				_camera.zoomIn();
-			if (Input.justPressed(MouseKeys.WHEEL_UP))
-				_camera.zoomOut();
+			Camera.HandleInput();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -229,8 +226,8 @@ namespace gearit.src.Network
 			if (Status != Status.Run)
 				return;
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
-            _drawGame.drawBackground(_back, _camera, _effect);
-			_drawGame.Begin(_camera);
+            _drawGame.drawBackground(_back, Camera, _effect);
+			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
 			Map.DrawDebug(_drawGame, true);

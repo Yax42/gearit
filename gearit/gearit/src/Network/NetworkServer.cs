@@ -37,6 +37,9 @@ namespace gearit.src.Network
 
        static public void Start(int port, string mapPath)
 		{
+			//Debug.Assert(!Running);
+			if (Running)
+				Instance.Stop();
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
@@ -47,7 +50,6 @@ namespace gearit.src.Network
 
         private void PrivateStart()
         {
-			Debug.Assert(!Running);
 			Running = false;
             try
             {
@@ -184,7 +186,9 @@ namespace gearit.src.Network
 			Robot r = Game.RobotFromId(id);
 			foreach (Peer p in Peers)
 				if (id != p.Id)
+				{
 					BruteSend(p, PacketManager.Robot(r));
+				}
 		}
 #if false
         public void oldSend(string text) // deprecated

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using gearit.src.editor.map;
+using gearit.src.Network;
 
 namespace gearit.src.script.api.game
 {
@@ -105,6 +106,22 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public void DynamicCamera()
+		{
+			if (GameLuaScript.IsServer)
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, true, Vector2.Zero, 0), __Robot.Id);
+			else
+				GameLuaScript.Instance.Game.Camera.EnablePositionTracking = true;
+		}
+
+		public void StaticCamera(GameObjectApi o, float zoom)
+		{
+			if (GameLuaScript.IsServer)
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, true, o.Position, zoom), __Robot.Id);
+			else
+				GameLuaScript.Instance.Game.Camera.StaticCamera(o.Position, zoom);
+		}
+
 		public int State
 		{
 			get
@@ -134,7 +151,9 @@ namespace gearit.src.script.api.game
 			set
 			{
 				if (GameLuaScript.IsServer)
-					GameLuaScript.PacketManager.TeleportRobot(__Robot.Id, value);
+					NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.TeleportRobot(__Robot.Id, value));
+				else
+					GameLuaScript.Instance.Game.Camera.TeleportBody();
 				__Robot.Position = value;
 			}
 		}

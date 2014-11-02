@@ -19,6 +19,7 @@ namespace gearit.src.script
 		public static GameLuaScript Instance { private set; get; }
 
 		public NetworkServerGame ServerGame { private set; get; }
+		public IGearitGame Game { private set; get; }
 		private GameApi GameApi;
 		private LuaFunction RobotScript;
 
@@ -33,6 +34,7 @@ namespace gearit.src.script
 				ServerGame = (NetworkServerGame)game;
 			else
 				ServerGame = null;
+			Game = game;
 			GameApi = new GameApi(game,
 				delegate(int lastRobot)
 				{

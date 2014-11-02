@@ -31,6 +31,8 @@ namespace gearit.src.Network
 			Win,
 			Lose,
 			Teleport,
+			CameraDynamic,
+			CameraStatic,
 		};
 		public enum EChunkCommand
 		{
@@ -89,6 +91,7 @@ namespace gearit.src.Network
 			public byte RobotId;
 			public byte Command;
 			public Vector2 Position;
+			public float Float;
 		}
 
 		enum TransformType
@@ -193,6 +196,19 @@ namespace gearit.src.Network
 			packet.RobotId = (byte) id;
 			packet.Command = (byte)ERobotCommand.Teleport;
 			packet.Position = pos;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] Camera(int id, bool dynamic, Vector2 pos, float zoom)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			if (dynamic)
+				packet.Command = (byte)ERobotCommand.CameraDynamic;
+			else
+				packet.Command = (byte)ERobotCommand.CameraStatic;
+			packet.Position = pos;
+			packet.Float = zoom;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
@@ -466,6 +482,8 @@ namespace gearit.src.Network
 					break;
 				case (byte) ERobotCommand.Teleport:
 					r.Position = packet.Position;
+					if (r.Id == Game.MainRobotId && Game.Camera != null)
+						Game.Camera.TeleportBody();
 					//Vector2 deltaPos = packet.Position - r.Position;
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;

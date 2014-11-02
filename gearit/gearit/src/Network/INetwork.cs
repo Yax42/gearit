@@ -17,6 +17,7 @@ namespace gearit.src.Network
 		public byte[]				ToSend;
 		public NetIncomingMessage	YoungestRequest;
 		public NetConnection		Connect;
+		public Robot				Robot;
 		public Peer(int id, NetConnection co)
 		{
 			Id = id;
@@ -159,17 +160,19 @@ namespace gearit.src.Network
 			}
 		}
 
-		public void Send(Robot r)
+		public void PushRequest(byte[] data)
 		{
-			byte[] res = FrameCountByte;
+			foreach (Peer p in Peers)
+				PushRequest(data, p);
 		}
 
-		public void PushRequest(byte[] data, Peer p = null)
+		public void PushRequest(byte[] data, int id)
 		{
-            if (Peers.Count == 0)
-                return;
-			if (p == null)
-				p = Peers.First();
+			PushRequest(data, PeerFromId(id));
+		}
+
+		private void PushRequest(byte[] data, Peer p)
+		{
 			p.ToSend = p.ToSend.Concat(data).ToArray();
 		}
 

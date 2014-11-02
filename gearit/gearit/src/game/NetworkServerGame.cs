@@ -13,6 +13,7 @@ using System.Diagnostics;
 using gearit.src.editor.robot;
 using System.Threading;
 using gearit.src.editor.map;
+using gearit.xna;
 
 namespace gearit.src.Network
 {
@@ -21,6 +22,7 @@ namespace gearit.src.Network
 		public World World { get; private set; }
 		private GameLuaScript _gameMaster;
 		public byte[] Events =  new byte[0];
+		public Camera2D Camera { get { return null; } }
 
 		private bool __exiting;
 		private bool _exiting

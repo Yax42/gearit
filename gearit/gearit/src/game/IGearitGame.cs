@@ -5,6 +5,7 @@ using System.Text;
 using gearit.src.map;
 using gearit.src.robot;
 using FarseerPhysics.Dynamics;
+using gearit.xna;
 
 namespace gearit.src.game
 {
@@ -28,5 +29,6 @@ namespace gearit.src.game
 		int MainRobotId { get; set; }
 		World World { get; }
 		void AddRobot(Robot r);
+		Camera2D Camera { get; }
 	}
 }

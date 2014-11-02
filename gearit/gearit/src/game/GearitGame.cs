@@ -21,7 +21,7 @@ namespace gearit.src.game
 	class GearitGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		public World World {get; private set; }
-		private Camera2D _camera;
+		public Camera2D Camera { get; private set; }
 		private GameLuaScript _gameMaster;
 		private bool _exiting;
 		private bool _pause;
@@ -39,7 +39,6 @@ namespace gearit.src.game
 		public float Time { get { return _Time; } }
         private Texture2D _back;
         private Effect _effect;
-
 
 		#region IDemoScreen Members
 
@@ -83,7 +82,7 @@ namespace gearit.src.game
 			_FrameCount = 0;
 			_Time = 0;
 			_drawGame = DrawGame.Instance;
-			_camera = new Camera2D(ScreenManager.GraphicsDevice);
+			Camera = new Camera2D(ScreenManager.GraphicsDevice);
 
 		#region World
 
@@ -142,7 +141,7 @@ namespace gearit.src.game
 			foreach (Robot r in Robots)
 				r.Update(Map);
 			_gameMaster.run();
-			_camera.Update(gameTime);
+			Camera.Update(gameTime);
 			if (_exiting)
 				Exit();
 			_FrameCount++;
@@ -165,10 +164,7 @@ namespace gearit.src.game
 		{
 			if (Input.Exit)
 				_exiting = true;
-			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-				_camera.zoomIn();
-			if (Input.justPressed(MouseKeys.WHEEL_UP))
-				_camera.zoomOut();
+			Camera.HandleInput();
 			if (Input.justPressed(Keys.P))
 				_pause = !_pause;
 		}
@@ -176,8 +172,8 @@ namespace gearit.src.game
 		public override void Draw(GameTime gameTime)
 		{
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
-            _drawGame.drawBackground(_back, _camera, _effect); 
-			_drawGame.Begin(_camera);
+            _drawGame.drawBackground(_back, Camera, _effect); 
+			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
 			Map.DrawDebug(_drawGame, true);
@@ -199,7 +195,7 @@ namespace gearit.src.game
 			World.Step(0);
 			World.Step(1/30f);
 			if (Robots.Count == 1)
-				_camera.TrackingBody = robot.Heart;
+				Camera.TrackingBody = robot.Heart;
 			robot.InitScript();
 			_gameMaster.RobotConnect(robot);
 		}

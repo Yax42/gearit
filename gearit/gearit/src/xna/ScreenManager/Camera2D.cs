@@ -238,6 +238,15 @@ namespace gearit.xna
 			}
 		}
 
+		public void TeleportBody()
+		{
+			if (_positionTracking)
+			{
+				_targetPosition = _trackingBody.Position;
+				//_currentPosition = _targetPosition;
+			}
+		}
+
 		public void MoveCamera(Vector2 amount)
 		{
 			_currentPosition += amount;
@@ -375,10 +384,18 @@ namespace gearit.xna
 				rotDelta /= Math.Abs(rotDelta);
 			}
 
-			_currentPosition += 100f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			//_currentPosition += 100f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			_currentPosition += 700f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			_currentRotation += 80f * rotDelta * rotInertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			SetView();
+		}
+
+		public void StaticCamera(Vector2 Position, float zoom)
+		{
+			EnablePositionTracking = false;
+			_currentPosition = Position;
+			Zoom = zoom;
 		}
 
 		public Vector2 ConvertScreenToWorld(Vector2 location)
@@ -399,7 +416,7 @@ namespace gearit.xna
 			return new Vector2(t.X, t.Y);
 		}
 
-		public void input()
+		public void HandleInput()
 		{
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				zoomIn();

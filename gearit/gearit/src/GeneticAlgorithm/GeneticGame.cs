@@ -36,6 +36,8 @@ namespace gearit.src.GeneticAlgorithm
 
 		public int MainRobotId { get { return 0; } set { } }
 
+		public Camera2D Camera { get { return null; } }
+
 		public GeneticGame()
 		{
 			_Robots = new List<Robot>();
