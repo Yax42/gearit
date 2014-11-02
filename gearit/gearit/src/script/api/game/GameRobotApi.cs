@@ -65,14 +65,28 @@ namespace gearit.src.script.api.game
 
 
 		#region Score
-		public void IntScore(int score)
+		public int IntScore
 		{
-			__Robot.Score.IntScore = score;
+			get
+			{
+				return __Robot.Score.IntScore;
+			}
+			set
+			{
+				__Robot.Score.IntScore = value;
+			}
 		}
 
-		public void FloatScore(float score)
+		public float FloatScore
 		{
-			__Robot.Score.FloatScore = score;
+			get
+			{
+				return __Robot.Score.FloatScore;
+			}
+			set
+			{
+				__Robot.Score.FloatScore = value;
+			}
 		}
 
 		public void StateScore(string strState)

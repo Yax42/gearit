@@ -113,6 +113,7 @@ namespace gearit.src.editor.map
 
 		public override void UnloadContent()
 		{
+			ScreenPickManager.Exit = true;
 			if (current_menu != null)
 				ScreenManager.Instance.RemoveScreen(current_menu);
 		}
