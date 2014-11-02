@@ -117,7 +117,7 @@ namespace gearit.src.script.api.game
 		public void StaticCamera(GameObjectApi o, float zoom)
 		{
 			if (GameLuaScript.IsServer)
-				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, true, o.Position, zoom), __Robot.Id);
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, false, o.Position, zoom), __Robot.Id);
 			else
 				GameLuaScript.Instance.Game.Camera.StaticCamera(o.Position, zoom);
 		}

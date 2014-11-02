@@ -488,6 +488,12 @@ namespace gearit.src.Network
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;
 					break;
+				case (byte) ERobotCommand.CameraDynamic:
+					Game.Camera.EnablePositionTracking = true;
+					break;
+				case (byte) ERobotCommand.CameraStatic:
+					Game.Camera.StaticCamera(packet.Position, packet.Float);
+					break;
 			}
 		}
 

@@ -395,6 +395,7 @@ namespace gearit.xna
 		{
 			EnablePositionTracking = false;
 			_currentPosition = Position;
+			_targetPosition = _currentPosition;
 			Zoom = zoom;
 		}
 
