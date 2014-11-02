@@ -104,6 +104,7 @@ namespace gearit.src.Network
 			public byte RobotId;
 			public ushort Id;
 			public Sweep Sweep;
+			public Transform Xf;
 		}
 
 		public enum MotorType
@@ -255,6 +256,7 @@ namespace gearit.src.Network
 			res.RobotId = (byte) robotId;
 			res.Id = (ushort) id;
 			res.Sweep = b.Sweep;
+			res.Xf = b.Xf;
 			return PacketToRawData(res, CommandId.ObjectTransform);
 		}
 
@@ -510,6 +512,7 @@ namespace gearit.src.Network
 			if (b != null)
 			{
 				b.Sweep = packet.Sweep;
+				b.Xf = packet.Xf;
 			}
 		}
 
