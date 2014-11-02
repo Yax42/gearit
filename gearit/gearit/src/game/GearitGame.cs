@@ -75,6 +75,7 @@ namespace gearit.src.game
 
 		public override void LoadContent()
 		{
+			ScreenManager.IsIngame = true;
 			_Robots = new List<Robot>();
 			World = new World(new Vector2(0, 9.8f));
 			base.LoadContent();
@@ -155,6 +156,7 @@ namespace gearit.src.game
 
 		public void Exit()
 		{
+			ScreenManager.IsIngame = false;
 			clearRobot();
 			//ScreenMainMenu.GoBack = true;
 			ScreenManager.Instance.RemoveScreen(this);

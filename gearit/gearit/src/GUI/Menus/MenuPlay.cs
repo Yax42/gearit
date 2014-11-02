@@ -144,12 +144,16 @@ namespace gearit.src.editor.map
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+			if (ScreenManager.IsIngame)
+				return;
             dk_play.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+			if (ScreenManager.IsIngame)
+				return;
             dk_play.Draw();
 		}
 

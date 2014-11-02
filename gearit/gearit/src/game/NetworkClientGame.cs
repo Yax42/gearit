@@ -108,6 +108,7 @@ namespace gearit.src.Network
 
 		public override void LoadContent()
 		{
+			ScreenManager.IsIngame = true;
 			base.LoadContent();
 
 			_Robots = new List<Robot>();
@@ -245,6 +246,7 @@ namespace gearit.src.Network
 
 		public void Exit()
 		{
+			ScreenManager.IsIngame = false;
 			clearRobot();
 			ScreenManager.Instance.RemoveScreen(this);
 		}

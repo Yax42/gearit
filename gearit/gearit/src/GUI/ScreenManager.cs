@@ -25,6 +25,7 @@ namespace gearit.xna
 	public class ScreenManager : DrawableGameComponent
 	{
 		static public int BLOCKED_FPS = 60;
+		static public bool IsIngame = false;
         // Be safe boys !
 
 		public static ScreenManager Instance { get; private set; }
