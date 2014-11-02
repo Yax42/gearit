@@ -208,6 +208,7 @@ namespace gearit.src.gui
                 return cell;
             };
 
+			olv.SetObjects(models);
 			btn_refresh.Click(0);
 		}
 
