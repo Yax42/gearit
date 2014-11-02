@@ -70,7 +70,7 @@ namespace gearit.src.GUI
 
 			#region init
 
-			padding_x = ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH;
+			padding_x = ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH + PADDING * 2;
 
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;
