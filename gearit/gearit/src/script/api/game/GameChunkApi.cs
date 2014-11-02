@@ -103,6 +103,15 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public float Restitution
+		{
+			get { return __Chunk.Restitution; }
+            set
+			{
+				 __Chunk.Restitution = value;
+			}
+		}
+
 		public float Friction
 		{
 			get { return __Chunk.Friction; }
