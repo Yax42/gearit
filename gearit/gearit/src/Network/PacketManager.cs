@@ -33,6 +33,7 @@ namespace gearit.src.Network
 			Teleport,
 			CameraDynamic,
 			CameraStatic,
+			Score,
 		};
 		public enum EChunkCommand
 		{
@@ -92,6 +93,7 @@ namespace gearit.src.Network
 			public byte Command;
 			public Vector2 Position;
 			public float Float;
+			public int Int;
 		}
 
 		enum TransformType
@@ -209,6 +211,16 @@ namespace gearit.src.Network
 				packet.Command = (byte)ERobotCommand.CameraStatic;
 			packet.Position = pos;
 			packet.Float = zoom;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] Score(Robot r)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) r.Id;
+			packet.Command = (byte) ERobotCommand.Score;
+			packet.Float = r.Score.FloatScore;
+			packet.Int = r.Score.IntScore;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
@@ -493,6 +505,10 @@ namespace gearit.src.Network
 					break;
 				case (byte) ERobotCommand.CameraStatic:
 					Game.Camera.StaticCamera(packet.Position, packet.Float);
+					break;
+				case (byte) ERobotCommand.Score:
+					r.Score.IntScore = packet.Int;
+					r.Score.FloatScore = packet.Float;
 					break;
 			}
 		}

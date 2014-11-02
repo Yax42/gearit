@@ -122,6 +122,11 @@ namespace gearit.src.Network
 
 		protected abstract byte[] Events { get; set; }
 
+		public void PushEvent(byte[] data)
+		{
+			Events = Events.Concat(data).ToArray();
+		}
+
 		public void SendRequests()
 		{
 			foreach (Peer p in Peers)

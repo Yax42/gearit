@@ -168,7 +168,10 @@ namespace gearit.src.Network
 			}
 			set
 			{
-				Game.Events = new byte[0];
+				if (value == null)
+					Game.Events = new byte[0];
+				else
+					Game.Events = value;
 			}
 		}
 		

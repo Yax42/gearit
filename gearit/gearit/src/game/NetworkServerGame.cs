@@ -138,6 +138,8 @@ namespace gearit.src.Network
 				//NetworkServer.Instance.PushRequestTransform(PacketManager.RobotTransform(r));
 				for (int i = 0; i < r.Pieces.Count; i++) // i = 1 parce qu'on veut ignorer le coeur
 					NetworkServer.Instance.PushRequestTransform(PacketManager.RobotPieceTransform(r, i));
+				if (FrameCount % 60 == 0)
+					NetworkServer.Instance.PushEvent(PacketManager.Score(r));
 			}
 			for (int i = 0; i < Map.Chunks.Count; i++)
 			{
