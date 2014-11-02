@@ -162,10 +162,6 @@ namespace GUI
 			set
 			{
 				CatchExit = value;
-				if (CatchExit)
-					ChangeAnim(Animation.ShowMainMenu);
-				else
-					ChangeAnim(Animation.HideMainMenu);
 			}
 		}
 

@@ -89,11 +89,7 @@ namespace gearit.src.editor.map
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
-				changeSubmenu(new ScreenPickManager(true, true,
-				delegate()
-				{
-					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
-				}));
+				changeSubmenu(new MenuSolo());
 			};
 
 			y += btn.Size.y;
@@ -108,11 +104,7 @@ namespace gearit.src.editor.map
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
-				changeSubmenu(new ScreenPickManager(true, false,
-				delegate()
-				{
-					NetworkServer.Start(INetwork.SERVER_PORT, ScreenPickManager.MapPath);
-				}));
+				changeSubmenu(new MenuRunServer());
 			};
 
 
@@ -127,6 +119,7 @@ namespace gearit.src.editor.map
 
 		public void changeSubmenu(GameScreen submenu)
 		{
+			ScreenPickManager.Exit = true;
 			if (current_menu != null)
 				ScreenManager.Instance.RemoveScreen(current_menu);
 			current_menu = submenu;

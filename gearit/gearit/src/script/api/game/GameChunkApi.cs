@@ -9,6 +9,8 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using System.Runtime.CompilerServices;
 using gearit.src.Network;
+using FarseerPhysics.Collision;
+using FarseerPhysics.Common;
 
 namespace gearit.src.script.api.game
 {
@@ -33,7 +35,7 @@ namespace gearit.src.script.api.game
 		{
 			for (ContactEdge c = __Chunk.ContactList; c != null;  c = c.Next)
 			{
-				if (c.Other == chunkapi.__Chunk)
+				if (c.Other == chunkapi.__Chunk && c.Contact.IsTouching)
 					return (true);
 			}
 
@@ -82,6 +84,15 @@ namespace gearit.src.script.api.game
 			}
 		}
 
+		public bool IsBullet
+		{
+			get { return __Chunk.IsBullet; }
+            set
+			{
+				__Chunk.IsBullet = value;
+			}
+		}
+
 		public float Gravity
 		{
 			get { return __Chunk.GravityScale; }
@@ -89,6 +100,15 @@ namespace gearit.src.script.api.game
 			{
 				PushEvent(PacketManager.EChunkCommand.Gravity, value);
 				__Chunk.GravityScale = value;
+			}
+		}
+
+		public float Restitution
+		{
+			get { return __Chunk.Restitution; }
+            set
+			{
+				 __Chunk.Restitution = value;
 			}
 		}
 
@@ -107,6 +127,18 @@ namespace gearit.src.script.api.game
 			get { return __Chunk.Position; }
             set { __Chunk.Position = value; }
 		}
+
+        public float PosX
+        {
+            get { return __Chunk.Position.X; }
+            set { __Chunk.Position = new Vector2(value, __Chunk.Position.Y); }
+        }
+
+        public float PosY
+        {
+            get { return __Chunk.Position.Y; }
+            set { __Chunk.Position = new Vector2(__Chunk.Position.X, value); }
+        }
 
 		public override Vector2 Speed
 		{

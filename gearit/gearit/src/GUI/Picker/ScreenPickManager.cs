@@ -128,8 +128,9 @@ namespace gearit.src.GUI.Picker
 			{
 				ScreenManager.Instance.RemoveScreen(this);
 				ScreenManager.Instance.RemoveScreen(ScreenPickRobot.Instance);
-				ScreenManager.RemoveScreen(ScreenPickMap.Instance);
+				ScreenManager.Instance.RemoveScreen(ScreenPickMap.Instance);
 			}
+
 
 			base.Update(gameTime);
 		}
