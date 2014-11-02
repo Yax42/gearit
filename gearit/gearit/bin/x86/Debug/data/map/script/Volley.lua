@@ -28,6 +28,6 @@ else
 end
 if Game:Robot(0):IsTouching(Object_right_ground) then
 	Game:Robot(0):MoveTo(Art_2)
-elseif Game:Robot(1):IsTouching(Object_right_ground) then
+elseif Game:Robot(1):IsTouching(Object_left_ground) then
 	Game:Robot(1):MoveTo(Art_3)
 end

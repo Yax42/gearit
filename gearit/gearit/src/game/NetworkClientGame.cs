@@ -16,6 +16,7 @@ using gearit.src.game;
 using System.Threading;
 using Lidgren.Network;
 using Microsoft.Xna.Framework.Graphics;
+using Squid;
 
 namespace gearit.src.Network
 {
@@ -33,6 +34,8 @@ namespace gearit.src.Network
 		private string IpServer;
         private Texture2D _back;
         private Effect _effect;
+
+		private Desktop _scoring = new Desktop();
 
 		private bool _exiting
 		{
@@ -105,6 +108,7 @@ namespace gearit.src.Network
 
 		public override void LoadContent()
 		{
+			ScreenManager.IsIngame = true;
 			base.LoadContent();
 
 			_Robots = new List<Robot>();
@@ -143,6 +147,42 @@ namespace gearit.src.Network
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
 			Status = Status.Init;
+
+			// Scoring
+			_scoring.Size = new Squid.Point(ScreenManager.Instance.Width, ScreenManager.Instance.Height);
+			_scoring.Position = new Squid.Point(0, 0);
+			Panel panel = new Panel();
+			panel.Parent = _scoring;
+			panel.Style = "scoring";
+			panel.Size = _scoring.Size * 0.6f;
+			panel.Position = _scoring.Size / 2 - panel.Size / 2;
+
+			olv.Position = new Squid.Point(0, 0);
+			olv.Dock = DockStyle.Fill;
+			panel.Content.Controls.Add(olv);
+            olv.Columns.Add(new ListView.Column { Text = "NAME", Aspect = "Name", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "ROBOT", Aspect = "Robot", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "SCORE", Aspect = "Score", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "PING", Aspect = "Ping", Width = 20, MinWidth = 400 });
+            olv.Columns[0].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[3].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.FullRowSelect = true;
+            olv.Style = "scoring";
+
+			olv.CreateCell = delegate(object sender, ListView.FormatCellEventArgs args)
+			{
+                string text = olv.GetAspectValue(args.Model, args.Column);
+                Button cell =  new Button
+                {
+                    Size = new Squid.Point(26, 26),
+                    Style = "itemScoring",
+                    Dock = DockStyle.Top,
+                    Text = text
+                };
+				return cell;
+			};
 		}
 
 		public void clearRobot()
@@ -206,6 +246,7 @@ namespace gearit.src.Network
 
 		public void Exit()
 		{
+			ScreenManager.IsIngame = false;
 			clearRobot();
 			ScreenManager.Instance.RemoveScreen(this);
 		}
@@ -233,7 +274,41 @@ namespace gearit.src.Network
 			Map.DrawDebug(_drawGame, true);
 			_drawGame.End();
 
+			drawScoring();
+
 			base.Draw(gameTime);
+		}
+
+        ListView olv = new ListView();
+        List<MyData> models = new List<MyData>();
+        public class MyData
+        {
+            public string Name;
+            public string Robot;
+            public float Score;
+            public int Ping;
+        }
+
+		private void drawScoring()
+		{
+			if (!Input.pressed(Microsoft.Xna.Framework.Input.Keys.Tab))
+				return;
+
+			models.Clear();
+			foreach (Robot r in Robots)
+			{
+				MyData entry = new MyData();
+				entry.Name = r.Name;
+				entry.Robot = r.Name;
+				entry.Score = r.Score.IntScore;
+				entry.Ping = 0;
+				models.Add(entry);
+				olv.SetObjects(models);
+			}
+
+			_scoring.Update();
+			_scoring.Draw();
+
 		}
 
 		public Robot RobotFromId(int id)

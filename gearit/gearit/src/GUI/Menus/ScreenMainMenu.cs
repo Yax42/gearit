@@ -167,6 +167,8 @@ namespace GUI
 
 		public override void Update(GameTime gameTime)
 		{
+			if (ScreenManager.IsIngame)
+				return;
 			base.Update(gameTime);
 
 			_dk_main_menu.Update();
@@ -219,6 +221,8 @@ namespace GUI
 
 		public override void Draw(GameTime gameTime)
 		{
+			if (ScreenManager.IsIngame)
+				return;
 			base.Draw(gameTime);
 
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
