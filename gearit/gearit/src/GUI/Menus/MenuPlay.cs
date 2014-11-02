@@ -107,7 +107,6 @@ namespace gearit.src.editor.map
 				changeSubmenu(new MenuRunServer());
 			};
 
-
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}
 

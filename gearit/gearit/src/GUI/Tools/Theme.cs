@@ -148,6 +148,10 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle comboButtonStyle = new ControlStyle();
 
+			ControlStyle scoringStyle = new ControlStyle();
+			ControlStyle itemScoringStyle = new ControlStyle();
+			itemScoringStyle.TextAlign = Alignment.MiddleCenter;
+
 			ControlStyle multilineStyle = new ControlStyle();
 			multilineStyle.TextAlign = Alignment.TopLeft;
 			multilineStyle.TextPadding = new Margin(8);
@@ -202,6 +206,8 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle panelStyle = new ControlStyle();
 
+			skin.Styles.Add("itemScoring", itemScoringStyle);
+			skin.Styles.Add("scoring", scoringStyle);
 			skin.Styles.Add("message", messageStyle);
 			skin.Styles.Add("textwhite", textStyle);
 			skin.Styles.Add("textblack", textStyleB);
@@ -365,6 +371,16 @@ namespace gearit.src.GUI.Tools
 			style = styles["panel"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = toInt(info.Grayie);
+
+			style = styles["itemScoring"];
+			style.Checked.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.CheckedHot.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.Default.BackColor = 0;
+
+			style = styles["scoring"];
+			style.Default.BackColor = removeAlpha(toInt(info.Primitive), 150);
 		}
 
 		static public int removeAlpha(int color, int alpha)
