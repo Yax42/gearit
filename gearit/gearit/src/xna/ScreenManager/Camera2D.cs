@@ -238,15 +238,6 @@ namespace gearit.xna
 			}
 		}
 
-		public void TeleportBody()
-		{
-			if (_positionTracking)
-			{
-				_targetPosition = _trackingBody.Position;
-				//_currentPosition = _targetPosition;
-			}
-		}
-
 		public void MoveCamera(Vector2 amount)
 		{
 			_currentPosition += amount;
@@ -301,8 +292,9 @@ namespace gearit.xna
 
 		public void Jump2Target()
 		{
+			if (_trackingBody != null && _positionTracking)
+				_targetPosition = _trackingBody.Position;
 			_currentPosition = _targetPosition;
-			_currentRotation = _targetRotation;
 
 			SetView();
 		}
@@ -385,7 +377,7 @@ namespace gearit.xna
 			}
 
 			//_currentPosition += 100f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
-			_currentPosition += 700f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
+			_currentPosition += 100f * delta * inertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			_currentRotation += 80f * rotDelta * rotInertia * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 			SetView();
@@ -419,6 +411,8 @@ namespace gearit.xna
 
 		public void HandleInput()
 		{
+			if (!EnablePositionTracking)
+				return;
 			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
 				zoomIn();
 			if (Input.justPressed(MouseKeys.WHEEL_UP))

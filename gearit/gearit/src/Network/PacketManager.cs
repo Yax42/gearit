@@ -495,7 +495,7 @@ namespace gearit.src.Network
 				case (byte) ERobotCommand.Teleport:
 					r.Position = packet.Position;
 					if (r.Id == Game.MainRobotId && Game.Camera != null)
-						Game.Camera.TeleportBody();
+						Game.Camera.Jump2Target();
 					//Vector2 deltaPos = packet.Position - r.Position;
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;
