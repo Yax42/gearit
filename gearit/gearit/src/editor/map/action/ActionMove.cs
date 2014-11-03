@@ -37,7 +37,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return Input.pressed(MouseKeys.RIGHT)
+			return Input.justPressed(MouseKeys.RIGHT)
 				&& Input.CtrlShift(false, false);
 		}
 
