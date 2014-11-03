@@ -246,8 +246,8 @@ namespace gearit.src.editor.robot
 			if (!action.canBeReverted)
 				return;
 			_actionsLog.Insert(0, action);
-				if (_actionsLog.Count > 200)
-			_actionsLog.RemoveAt(_actionsLog.Count - 1);
+			if (_actionsLog.Count > 200)
+				_actionsLog.RemoveAt(_actionsLog.Count - 1);
 			_redoActionsLog.Clear();
 		}
 
@@ -372,14 +372,6 @@ namespace gearit.src.editor.robot
 			}
 			else
 			{
-				if (MirrorSelect1 == MirrorSelect2)
-					MirrorSelect1.ColorValue = Color.Pink;
-				else
-				{
-					MirrorSelect2.ColorValue = Color.CadetBlue;
-					MirrorSelect1.ColorValue = Color.IndianRed;
-				}
-
 				if (_currentAction.Type() == ActionTypes.RESIZE_HEART)
 					Select1.ColorValue = Color.White;
 				else if (Select2 == Select1)
@@ -397,8 +389,6 @@ namespace gearit.src.editor.robot
 
 				if (Select1.isConnected(Select2))
 					Select1.getConnection(Select2).ColorValue = Color.Black;
-				MirrorSelect1.ColorValue = Color.DarkSeaGreen;
-				MirrorSelect2.ColorValue = Color.DarkSeaGreen;
 				Select2.ColorValue = Color.DarkSeaGreen;
 				Select1.ColorValue = Color.DarkSeaGreen;
 			}
@@ -472,7 +462,9 @@ namespace gearit.src.editor.robot
 			DrawGame.BeginPrimitive(_camera);
 			DrawGame.DrawGrille(new Color(0, 0, 0, 0.1f));
 			//DrawRobotTexture();
+			MirrorAxis.Active = Input.Alt;
 			DrawRobot();
+			MirrorAxis.Active = false;
 			DrawValues(_currentAction);
 			DrawValues(_mirrorAction);
 			DrawMarks();

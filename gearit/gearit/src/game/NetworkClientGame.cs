@@ -220,7 +220,7 @@ namespace gearit.src.Network
 			_Time += delta;
 			HandleInput();
 
-			World.Step(0);
+			World.Step(delta);
 
 
 			//for (int i = 0; i < MainRobot.Spots.Count; i++)

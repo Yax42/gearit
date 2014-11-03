@@ -22,7 +22,7 @@ namespace gearit.src.editor.map.action
 		{
 			if (ActionSwapEventMode.EventMode)
 				return false;
-			return Input.CtrlAltShift(false, false, false) &&
+			return Input.CtrlShift(false, false) &&
 				Input.justPressed(Keys.A);
 		}
 
@@ -33,10 +33,11 @@ namespace gearit.src.editor.map.action
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CHANGE_TYPE; }
+		public ActionTypes Type() { return ActionTypes.CHANGE_TYPE; }
 	}
 }

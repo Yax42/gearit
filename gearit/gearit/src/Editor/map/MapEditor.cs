@@ -32,12 +32,15 @@ namespace gearit.src.editor.map
 		private MapChunk _dummyChunk;
 		private Trigger _dummyTrigger;
 		private MapChunk _selectedChunk;
+		private MapChunk _selectedMirrorChunk;
 		private Trigger _selectedTrigger;
+		private Trigger _selectedMirrorTrigger;
 
 		//Action
 		private List<IAction> _actionsLog;
 		private List<IAction> _redoActionsLog;
 		private IAction _currentAction;
+		private IAction _mirrorAction;
 
 		public static MapEditor Instance { private set; get; }
 
@@ -45,12 +48,17 @@ namespace gearit.src.editor.map
 		{
 			get
 			{
-				return _selectedChunk;
+				if (MirrorAxis.Active)
+					return _selectedMirrorChunk;
+				else
+					return _selectedChunk;
 			}
 			set
 			{
 				if (value == null)
-					_selectedChunk = _dummyChunk;
+					value = _dummyChunk;
+				if (MirrorAxis.Active)
+					_selectedMirrorChunk = value;
 				else
 					_selectedChunk = value;
 			}
@@ -60,22 +68,28 @@ namespace gearit.src.editor.map
 		{
 			get
 			{
-				return _selectedTrigger;
+				if (MirrorAxis.Active)
+					return _selectedMirrorTrigger;
+				else
+					return _selectedTrigger;
 			}
 			set
 			{
 				if (value == null)
-					_selectedTrigger = _dummyTrigger;
+					value = _dummyTrigger;
+				if (MirrorAxis.Active)
+					_selectedMirrorTrigger = value;
 				else
 					_selectedTrigger = value;
 			}
 		}
+
 		public bool IsSelectDummy()
 		{
 			if (ActionSwapEventMode.EventMode)
-				return _selectedTrigger == _dummyTrigger;
+				return SelectTrigger == _dummyTrigger;
 			else
-				return _selectedChunk == _dummyChunk;
+				return SelectChunk == _dummyChunk;
 		}
 
 		#region IDemoScreen Members
@@ -116,9 +130,13 @@ namespace gearit.src.editor.map
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
 			_currentAction = ActionFactory.Dummy;
+			_mirrorAction = ActionFactory.create(ActionTypes.NONE);
 
-			SelectChunk = null;
-			SelectTrigger = null;
+			_selectedMirrorChunk = _dummyChunk;
+			_selectedChunk = _dummyChunk;
+			_selectedMirrorTrigger = _dummyTrigger;
+			_selectedTrigger = _dummyTrigger;
+
 			ActionSwapEventMode.EventMode = false;
 
 			SerializerHelper.World = World;
@@ -151,38 +169,61 @@ namespace gearit.src.editor.map
 			base.Update(gameTime);
 		}
 
-		public void doAction(ActionTypes action)
+		public void doAction(ActionTypes action = ActionTypes.NONE)
 		{
-			if (_currentAction.type() == ActionTypes.NONE)
+			if (_currentAction.Type() == ActionTypes.NONE)
 			{
-				_currentAction = ActionFactory.create(action);
+				if (action == ActionTypes.NONE)
+					_currentAction = ActionFactory.createFromShortcut();
+				else
+					_currentAction = ActionFactory.create(action);
 				if (IsSelectDummy() && _currentAction.actOnSelect())
 					_currentAction = ActionFactory.Dummy;
 				_currentAction.init();
+
+				if (Input.Alt && _currentAction.canBeMirrored)
+				{
+					MirrorAxis.Active = true;
+					_mirrorAction = ActionFactory.createFromShortcut();
+					if (_mirrorAction.Type() == _currentAction.Type())
+						_mirrorAction.init();
+					else
+						_mirrorAction = ActionFactory.Dummy;
+					MirrorAxis.Active = false;
+				}
 			}
+		}
+
+		private void PushRevertAction(IAction action)
+		{
+			if (!action.canBeReverted)
+				return;
+			_actionsLog.Insert(0, action);
+			if (_actionsLog.Count > 200)
+				_actionsLog.RemoveAt(_actionsLog.Count - 1);
+			_redoActionsLog.Clear();
 		}
 
 		private void HandleInput()
 		{
-			if (_currentAction.type() == ActionTypes.NONE)
+			if (Input.justPressed(Keys.Z))
+				LockAxis.Origin = Input.SimMousePos;
+			LockAxis.Active = Input.pressed(Keys.Z) && _currentAction.Type() != ActionTypes.SET_AXIS;
+			if (_currentAction.Type() == ActionTypes.NONE)
 			{
 				if (MenuMapEditor.Instance.hasFocus())
 					return;
-				_currentAction = ActionFactory.createFromShortcut();
-				if (_currentAction.actOnSelect() && IsSelectDummy())
-					_currentAction = ActionFactory.Dummy;
-				_currentAction.init();
+				doAction();
 			}
+			MirrorAxis.Active = true;
+			_mirrorAction.run();
+			MirrorAxis.Active = false;
 			if (_currentAction.run() == false)
 			{
-				if (_currentAction.canBeReverted())
-				{
-					_actionsLog.Insert(0, _currentAction);
-					if (_actionsLog.Count > 200)
-						_actionsLog.RemoveAt(_actionsLog.Count - 1);
-					_redoActionsLog.Clear();
-				}
+				PushRevertAction(_currentAction);
+				PushRevertAction(_mirrorAction);
 				_currentAction = ActionFactory.Dummy;
+				_mirrorAction = ActionFactory.Dummy;
 			}
 			_camera.input();
 		}
@@ -261,6 +302,20 @@ namespace gearit.src.editor.map
 			DrawGame.End();
 		}
 
+		private void DrawMarks()
+		{
+			Color col = Color.Red;
+			col.A = 230;
+			DrawGame.DrawLine(LockAxis.Origin - 1000 * LockAxis.Dir,
+							LockAxis.Origin + 1000 * LockAxis.Dir,
+							col);
+			col = Color.White;
+			col.A = 236;
+			DrawGame.DrawLine(MirrorAxis.Origin - 1000 * MirrorAxis.Dir,
+							MirrorAxis.Origin + 1000 * MirrorAxis.Dir,
+							col);
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
@@ -268,12 +323,14 @@ namespace gearit.src.editor.map
 				ScreenManager.GraphicsDevice.Clear(Color.LightSeaGreen);
 			else
 				ScreenManager.GraphicsDevice.Clear(Color.LightGreen);
-			DrawGame.Begin(_camera);
+			DrawGame.BeginPrimitive(_camera);
 			DrawGame.DrawGrille(new Color(0, 0, 0, 0.1f));
 
+			MirrorAxis.Active = Input.Alt;
 			Map.DrawDebug(DrawGame, ActionSwapEventMode.EventMode);
-
-			DrawGame.End();
+			MirrorAxis.Active = false;
+			DrawMarks();
+			DrawGame.EndPrimitive();
 			DrawStatics();
 			MenuMapEditor.Instance.Draw();
 		}

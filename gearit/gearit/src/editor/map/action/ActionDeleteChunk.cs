@@ -21,7 +21,7 @@ namespace gearit.src.editor.map.action
 			if (ActionSwapEventMode.EventMode)
 				return false;
 			return Input.justPressed(Keys.R)
-				&& Input.CtrlAltShift(false, false, false);
+				&& Input.CtrlShift(false, false);
 		}
 
 		public bool run()
@@ -35,10 +35,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Chunks.Add(_chunk);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.DELETE_CHUNK; }
+		public ActionTypes Type() { return ActionTypes.DELETE_CHUNK; }
 	}
 }

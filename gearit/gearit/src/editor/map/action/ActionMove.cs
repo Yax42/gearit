@@ -38,13 +38,13 @@ namespace gearit.src.editor.map.action
 		public bool shortcut()
 		{
 			return Input.pressed(MouseKeys.RIGHT)
-				&& Input.CtrlAltShift(false, false, false);
+				&& Input.CtrlShift(false, false);
 		}
 
 		public bool run()
 		{
 			if (!_didRevert)
-				_to = Input.SimMousePos;
+				_to = Input.VirtualSimMousePos;
 			if (_isChunk)
 				_chunk.Position = _to;
 			else
@@ -64,10 +64,11 @@ namespace gearit.src.editor.map.action
 				_trigger.Position = _from;
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.MOVE; }
+		public ActionTypes Type() { return ActionTypes.MOVE; }
 	}
 }

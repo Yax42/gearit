@@ -28,7 +28,7 @@ namespace gearit.src.editor.map.action
 		{
 			if (ActionSwapEventMode.EventMode)
 				return false;
-			return Input.CtrlAltShift(false, false, true) &&
+			return Input.CtrlShift(false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
 				MapEditor.Instance.SelectChunk.GetType() == typeof(CircleChunk);
 		}
@@ -37,7 +37,7 @@ namespace gearit.src.editor.map.action
 		{
 			if (!_didRevert)
 			{
-				_to = (_chunk.Position - Input.SimMousePos).Length();
+				_to = (_chunk.Position - Input.VirtualSimMousePos).Length();
 				if (_to == 0)
 					_to = 0.1f;
 			}
@@ -53,10 +53,11 @@ namespace gearit.src.editor.map.action
 			_chunk.Size = _from;
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.RESIZE_CIRCLE; }
+		public ActionTypes Type() { return ActionTypes.RESIZE_CIRCLE; }
 	}
 }
