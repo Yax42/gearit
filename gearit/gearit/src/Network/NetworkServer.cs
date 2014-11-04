@@ -193,22 +193,13 @@ namespace gearit.src.Network
 					BruteSend(p, PacketManager.Robot(r));
 				}
 		}
-#if false
-        public void oldSend(string text) // deprecated
-        {
-                NetOutgoingMessage om = Peer.CreateMessage();
-                om.Write(text);
-                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.Unreliable, 0);
-        }
 
-        public void oldSend(byte[] data, int id) // deprecated
-        {
-			if (id >= Peer.Connections.Count)
-				return;
-            NetOutgoingMessage om = Peer.CreateMessage();
-            om.Write(data);
-            Peer.SendMessage(om, Peer.Connections[id], NetDeliveryMethod.Unreliable, 0);
-        }
-#endif
+		public override void RemovePeer(Peer p)
+		{
+			PushEvent(PacketManager.RemoveRobot(p.Id));
+			Game.RemoveRobot(Game.RobotFromId(p.Id));
+			p.Connect.Disconnect("cya");
+			Peers.Remove(p);
+		}
 	}
 }

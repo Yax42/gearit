@@ -248,6 +248,7 @@ namespace gearit.src.Network
 		{
 			ScreenManager.IsIngame = false;
 			clearRobot();
+			NetworkClient.Disconnect();
 			ScreenManager.Instance.RemoveScreen(this);
 		}
 

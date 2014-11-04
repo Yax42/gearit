@@ -55,6 +55,7 @@ namespace gearit.src.Network
 			BeginTransform,
 			ChunkCommand,
 			File,
+			Disconnect,
 		};
 		#endregion
 
@@ -189,6 +190,14 @@ namespace gearit.src.Network
 			var packet = new Packet_RobotCommand();
 			packet.RobotId = (byte) id;
 			packet.Command = (byte) command;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] RemoveRobot(int id)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			packet.Command = (byte)ERobotCommand.Remove;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 

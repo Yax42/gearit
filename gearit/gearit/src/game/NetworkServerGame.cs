@@ -112,6 +112,7 @@ namespace gearit.src.Network
 		{
 			Robots.Remove(robot);
 			_gameMaster.RobotDisconnect(robot);
+			robot.ExtractFromWorld();
 			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 

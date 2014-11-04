@@ -68,8 +68,13 @@ namespace gearit.src.Network
         {
             if (State == EState.Connected)
             {
-                ((NetClient) Peer).Disconnect("Requested by user");
-                Peer.Shutdown("Bye");
+				byte[] data = new byte[5];
+				data[4] = (byte)PacketManager.CommandId.Disconnect;
+				NetOutgoingMessage om = Peer.CreateMessage();
+				om.Write(data);
+				Peer.SendMessage(om, Peers[0].Connect, NetDeliveryMethod.ReliableOrdered, 0);
+                //((NetClient) Peer).Disconnect("Requested by user");
+                //Peer.Shutdown("Bye");
             }
         }
 
@@ -115,45 +120,8 @@ namespace gearit.src.Network
 
 		protected override byte[] Events { get { return new byte[0]; } set { } }
 
-#if false
-        public void Send(string text)
+		public override void RemovePeer(Peer p)
 		{
-            if (State == EState.Connected)
-            {
-                NetOutgoingMessage om = Peer.CreateMessage();
-                om.Write(text);
-                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.ReliableOrdered, 0);
-            }
-        }
-
-        public void Send(byte[] data)
-		{
-            if (State == EState.Connected)
-            {
-                NetOutgoingMessage om = Peer.CreateMessage();
-                om.Write(data);
-                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.Unreliable, 0);
-            }
-        }
-
-		private Mutex PacketMutex = new Mutex();
-		public NetIncomingMessage Packet
-		{
-			get
-			{
-				PacketMutex.WaitOne();
-				var res = PacketsList.First();
-				PacketsList.RemoveAt(0);
-				PacketMutex.ReleaseMutex();
-				return res;
-			}
-			set
-			{
-				PacketMutex.WaitOne();
-				PacketsList.Add(value);
-				PacketMutex.ReleaseMutex();
-			}
 		}
-#endif
 	}
 }
