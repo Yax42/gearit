@@ -79,7 +79,7 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame(string map, string robot, string ip) : base(true)
+		public NetworkClientGame(string map, string robot, string ip) : base(true, true)
 		{
 			IpServer = ip;
 			NameMap = map;

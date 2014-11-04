@@ -46,7 +46,7 @@ namespace gearit.src.game
 		{
 		}
 
-		public GearitGame(string robotPath, string mapPath) : base(true)
+		public GearitGame(string robotPath, string mapPath) : base(true, true)
 		{
 			RobotPath = robotPath;
 			MapPath = mapPath;

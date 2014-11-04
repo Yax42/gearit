@@ -13,6 +13,7 @@ using gearit.src.editor.robot;
 using gearit.src.GUI.OptionsMenu;
 using gearit.src.GUI.Picker;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace gearit.xna
 {
@@ -26,15 +27,15 @@ namespace gearit.xna
 	{
 		static public int BLOCKED_FPS = 60;
 		static public bool IsIngame = false;
-        // Be safe boys !
+		// Be safe boys !
 
 		public static ScreenManager Instance { get; private set; }
-        private Mutex mutex;
+		private Mutex mutex;
 
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
 		public GraphicsDeviceManager _graphics {get; set;}
-        public BasicEffect BasicEffect;
+		public BasicEffect BasicEffect;
 
 		private bool _isInitialized;
 		private LineBatch _lineBatch;
@@ -44,9 +45,9 @@ namespace gearit.xna
 
 		private SpriteBatch _spriteBatch;
 
-        public bool fpsIsLocked;
+		public bool fpsIsLocked;
 
-        private TimeSpan _elapsedTime = TimeSpan.Zero;
+		private TimeSpan _elapsedTime = TimeSpan.Zero;
 		private int _frameCounter;
 		private int _frameRate;
 
@@ -69,8 +70,8 @@ namespace gearit.xna
 			: base(game)
 		{
 			Instance = this;
-            // When drawing in other threads
-            mutex = new Mutex();
+			// When drawing in other threads
+			mutex = new Mutex();
 			// we must set EnabledGestures before we can query for them, but
 			// we don't assume the game wants to read them.
 			_contentManager = game.Content;
@@ -85,28 +86,28 @@ namespace gearit.xna
 			_graphics.PreferredBackBufferHeight = 720;
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 			_graphics.IsFullScreen = false;
-            _graphics.SynchronizeWithVerticalRetrace = false;
+			_graphics.SynchronizeWithVerticalRetrace = false;
 			//game.Components.Add(new FrameRateCounter(this));
 			fpsLock();
 
 
 		}
 
-        public void fpsUnlock()
-        {
-            //débloquer les fps
-            this.fpsIsLocked = false;
+		public void fpsUnlock()
+		{
+			//débloquer les fps
+			this.fpsIsLocked = false;
 			Game.IsFixedTimeStep = false;
-            _graphics.ApplyChanges();
-        }
+			_graphics.ApplyChanges();
+		}
 
-        public void fpsLock()
-        {
-            this.fpsIsLocked = true;
+		public void fpsLock()
+		{
+			this.fpsIsLocked = true;
 			Game.TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 1000 / BLOCKED_FPS);
 			Game.IsFixedTimeStep = true;
-            _graphics.ApplyChanges();
-        }
+			_graphics.ApplyChanges();
+		}
 
 		public void Message(string msg, int duration = 2000)
 		{
@@ -197,15 +198,15 @@ namespace gearit.xna
 			get { return _assetCreator; }
 		}
 
-        public void beginDrawing()
-        {
-            mutex.WaitOne();
-        }
+		public void beginDrawing()
+		{
+			mutex.WaitOne();
+		}
 
-        public void stopDrawing()
-        {
-            mutex.ReleaseMutex();
-        }
+		public void stopDrawing()
+		{
+			mutex.ReleaseMutex();
+		}
 
 		/// <summary>
 		/// Initializes the screen manager component.
@@ -218,8 +219,8 @@ namespace gearit.xna
 			_isInitialized = true;
 
 			_desktop = new Desktop();
-            _desktop.Size = new Squid.Point(Width, Height);
-            _desktop.Position = new Squid.Point(0, 0);
+			_desktop.Size = new Squid.Point(Width, Height);
+			_desktop.Position = new Squid.Point(0, 0);
 			_label = new Label();
 			_label.Size = _desktop.Size - new Squid.Point(0, 100) ;
 			_label.Visible = false;
@@ -254,14 +255,14 @@ namespace gearit.xna
 				screen.LoadContent();
 			}
 
-            // Because XNA sucks
-            BasicEffect = new BasicEffect(GraphicsDevice);
-            BasicEffect.VertexColorEnabled = true;
-            BasicEffect.TextureEnabled = false;
-            BasicEffect.Projection = Matrix.CreateOrthographicOffCenter
-               (0, GraphicsDevice.Viewport.Width,     // left, right
-                GraphicsDevice.Viewport.Height, 0,    // bottom, top
-                0, 1); 
+			// Because XNA sucks
+			BasicEffect = new BasicEffect(GraphicsDevice);
+			BasicEffect.VertexColorEnabled = true;
+			BasicEffect.TextureEnabled = false;
+			BasicEffect.Projection = Matrix.CreateOrthographicOffCenter
+			   (0, GraphicsDevice.Viewport.Width,	 // left, right
+				GraphicsDevice.Viewport.Height, 0,	// bottom, top
+				0, 1); 
 		}
 
 		/// <summary>
@@ -276,21 +277,21 @@ namespace gearit.xna
 			_screens.Clear();
 		}
 
-        public void CountFPS(GameTime gameTime)
-        {
-            _elapsedTime += gameTime.ElapsedGameTime;
+		public void CountFPS(GameTime gameTime)
+		{
+			_elapsedTime += gameTime.ElapsedGameTime;
 
 			if (_elapsedTime <= TimeSpan.FromSeconds(1)) return;
 
 			_elapsedTime -= TimeSpan.FromSeconds(1);
 			_frameRate = _frameCounter;
 			_frameCounter = 0;
-        }
+		}
 
-        public int getFPS()
-        {
-            return (_frameRate);
-        }
+		public int getFPS()
+		{
+			return (_frameRate);
+		}
 
 
 		/// <summary>
@@ -298,9 +299,10 @@ namespace gearit.xna
 		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
-            CountFPS(gameTime);
+			CountFPS(gameTime);
+			UpdateFocus();
 
-            beginDrawing();
+			beginDrawing();
 
 			// Update input
 			Input.update();
@@ -319,7 +321,8 @@ namespace gearit.xna
 				GameScreen screen = _screensTemp[_screensTemp.Count - 1];
 
 				_screensTemp.RemoveAt(_screensTemp.Count - 1);
-				screen.Update(gameTime);
+				if (HasFocus || screen.UpdateOnUnfocus)
+					screen.Update(gameTime);
 			}
 
 			_ms_elapsed += gameTime.ElapsedGameTime.Milliseconds;
@@ -329,7 +332,7 @@ namespace gearit.xna
 
 			ChatBox.Update();
 
-            stopDrawing();
+			stopDrawing();
 		}
 
 		/// <summary>
@@ -337,9 +340,9 @@ namespace gearit.xna
 		/// </summary>
 		public override void Draw(GameTime gameTime)
 		{
-            _frameCounter++;
+			_frameCounter++;
 
-            beginDrawing();
+			beginDrawing();
 
 			// Remove if problem with Squid
 			GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.White);
@@ -355,7 +358,7 @@ namespace gearit.xna
 			_desktop.Draw();
 			ChatBox.getDesktop().Draw();
 
-            stopDrawing();
+			stopDrawing();
 		}
 
 		/// <summary>
@@ -437,5 +440,27 @@ namespace gearit.xna
 		{
 			return _screens.ToArray();
 		}
+
+		public static bool HasFocus { get; private set; }
+		private void UpdateFocus()
+		{
+			var activatedHandle = GetForegroundWindow();
+			if (activatedHandle == IntPtr.Zero)
+			{
+				HasFocus = false; // No window is currently activated
+			}
+			else
+			{
+				var procId = Process.GetCurrentProcess().Id;
+				int activeProcId;
+				GetWindowThreadProcessId(activatedHandle, out activeProcId);
+				HasFocus = (activeProcId == procId);
+			}
+		}
+		[DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+		private static extern IntPtr GetForegroundWindow();
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 	}
 }

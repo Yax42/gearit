@@ -2,6 +2,7 @@
 using gearit.src.editor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using gearit.xna;
 
 namespace gearit.src.utility
 {
@@ -156,13 +157,14 @@ namespace gearit.src.utility
 
 		static public bool pressed(MouseKeys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			if (key == MouseKeys.LEFT)
 				return (_mouse.LeftButton == ButtonState.Pressed);
 			if (key == MouseKeys.RIGHT)
 				return (_mouse.RightButton == ButtonState.Pressed);
 			if (key == MouseKeys.MIDDLE)
-			   return (_mouse.MiddleButton == ButtonState.Pressed);
-		return (false);
+				return (_mouse.MiddleButton == ButtonState.Pressed);
+			return (false);
 		}
 
 		static public bool released(MouseKeys key)
@@ -172,6 +174,7 @@ namespace gearit.src.utility
 
 		static public bool justPressed(MouseKeys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			if (key == MouseKeys.LEFT)
 				return (_mouse.LeftButton == ButtonState.Pressed && _old_mouse.LeftButton != ButtonState.Pressed);
 			if (key == MouseKeys.RIGHT)
@@ -187,6 +190,7 @@ namespace gearit.src.utility
 
 		static public bool justReleased(MouseKeys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			if (key == MouseKeys.LEFT)
 				return (_mouse.LeftButton != ButtonState.Pressed && _old_mouse.LeftButton == ButtonState.Pressed);
 			if (key == MouseKeys.RIGHT)
@@ -201,6 +205,7 @@ namespace gearit.src.utility
 /********************/
 		static public bool pressed(Keys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			return (_keyboard.IsKeyDown(key));
 		}
 
@@ -211,17 +216,21 @@ namespace gearit.src.utility
 
 		static public bool justPressed(Keys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			return (_keyboard.IsKeyDown(key) && !_old_keyboard.IsKeyDown(key));
 		}
 
 		static public bool justReleased(Keys key)
 		{
+			if (!ScreenManager.HasFocus) return false;
 			return (!_keyboard.IsKeyDown(key) && _old_keyboard.IsKeyDown(key));
 		}
 
 		static public List<Keys> getJustPressed()
 		{
 			List<Keys> keys = new List<Keys>();
+
+			if (!ScreenManager.HasFocus) return keys;
 
 			if (_keyboard != _old_keyboard)
 			{
@@ -248,6 +257,7 @@ namespace gearit.src.utility
 		static public List<Keys> getJustReleased()
 		{
 			List<Keys> keys = new List<Keys>();
+			if (!ScreenManager.HasFocus) return keys;
 
 			if (_keyboard != _old_keyboard)
 			{
