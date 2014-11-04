@@ -68,13 +68,16 @@ namespace gearit.src.Network
         {
             if (State == EState.Connected)
             {
+#if false
 				byte[] data = new byte[5];
 				data[4] = (byte)PacketManager.CommandId.Disconnect;
 				NetOutgoingMessage om = Peer.CreateMessage();
 				om.Write(data);
 				Peer.SendMessage(om, Peers[0].Connect, NetDeliveryMethod.ReliableOrdered, 0);
-                //((NetClient) Peer).Disconnect("Requested by user");
-                //Peer.Shutdown("Bye");
+#else
+                ((NetClient) Peer).Disconnect("Requested by user");
+                Peer.Shutdown("Bye");
+#endif
             }
         }
 

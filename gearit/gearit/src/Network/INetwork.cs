@@ -109,6 +109,14 @@ namespace gearit.src.Network
 				p.YoungestRequest = msg;
 		}
 
+		public bool IsSenderValid(NetIncomingMessage r)
+		{
+			foreach (Peer p in Peers)
+				if (p.Connect == r.SenderConnection)
+					return true;
+			return false;
+		}
+
 		public Peer GetPeer(NetIncomingMessage request)
 		{
 			return ((Peer)request.SenderConnection.Tag);
