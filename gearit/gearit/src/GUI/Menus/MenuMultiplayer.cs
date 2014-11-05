@@ -220,12 +220,14 @@ namespace gearit.src.gui
             tb_login.Position = new Squid.Point(dialog_co.Size.x / 2 - 16, 70);
             dialog_co.Content.Controls.Add(tb_login);
             tb_login.Focus();
+			tb_login.Style = "menuTextbox";
 
             Label lb = new Label();
             lb.Position = new Squid.Point(0, 70);
             lb.Size = new Squid.Point((int)((float)dialog_co.Size.x / 2.5), 34);
             lb.TextAlign = Alignment.MiddleRight;
             lb.Text = "Login";
+			lb.Style = "itemMenu";
             dialog_co.Content.Controls.Add(lb);
 
             lb = new Label();
@@ -233,10 +235,12 @@ namespace gearit.src.gui
             lb.Size = new Squid.Point((int) ((float) dialog_co.Size.x / 2.5), 34);
             lb.TextAlign = Alignment.MiddleRight;
             lb.Text = "Password";
+			lb.Style = "itemMenu";
             dialog_co.Content.Controls.Add(lb);
 
             tb_password = new TextBox();
             tb_password.Text = "test";
+			tb_password.Style = "menuTextbox";
             tb_password.Size = new Squid.Point(158, 34);
             tb_password.Position = new Squid.Point(dialog_co.Size.x / 2 - 16, 120);
             dialog_co.Content.Controls.Add(tb_password);
@@ -245,6 +249,7 @@ namespace gearit.src.gui
             btn_co.Size = new Squid.Point(124, 34);
             btn_co.Position = new Squid.Point(dialog_co.Size.x - 124 - 8, dialog_co.Size.y - 34 - 8);
             btn_co.Text = "Connexion";
+			btn_co.Style = "button";
             dialog_co.Content.Controls.Add(btn_co);
 
             lb_error = new Label();
@@ -252,6 +257,7 @@ namespace gearit.src.gui
             lb_error.Position = new Squid.Point(0, dialog_co.Size.y - 34 - 8);
             lb_error.TextAlign = Alignment.MiddleCenter;
             lb_error.TextColor = ColorInt.RGBA(.8f, .0f, .0f, 1);
+			lb_error.Style = "itemMenu";
             dialog_co.Content.Controls.Add(lb_error);
 
             btn_co.MouseClick += delegate(Control snd, MouseEventArgs e)

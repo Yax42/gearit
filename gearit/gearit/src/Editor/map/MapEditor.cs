@@ -141,6 +141,7 @@ namespace gearit.src.editor.map
 
 			SerializerHelper.World = World;
 			Map = new Map(World);
+			_prevName = Map.FullPath;
 			ScreenManager.Game.ResetElapsedTime();
 			_camera = new EditorCamera(ScreenManager.GraphicsDevice.Viewport);
 			_camera.Position = new Vector2(0, 0);
@@ -250,7 +251,7 @@ namespace gearit.src.editor.map
 
 		//---------------------------NAME----------------------------------------
 
-		private string _prevName = "";
+		private string _prevName;
 		public string NamePath
 		{
 			get

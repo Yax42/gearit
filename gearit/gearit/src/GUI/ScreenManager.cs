@@ -34,7 +34,7 @@ namespace gearit.xna
 
 		private AssetCreator _assetCreator;
 		private ContentManager _contentManager;
-		public GraphicsDeviceManager _graphics {get; set;}
+		public GraphicsDeviceManager Graphics {get; set;}
 		public BasicEffect BasicEffect;
 
 		private bool _isInitialized;
@@ -80,13 +80,13 @@ namespace gearit.xna
 			_screens = new List<GameScreen>();
 			_screensTemp = new List<GameScreen>();
 			_transitions = new List<RenderTarget2D>();
-			_graphics = new GraphicsDeviceManager(game);
-			_graphics.PreferMultiSampling = true;
-			_graphics.PreferredBackBufferWidth = 1280;
-			_graphics.PreferredBackBufferHeight = 720;
+			Graphics = new GraphicsDeviceManager(game);
+			Graphics.PreferMultiSampling = true;
+			Graphics.PreferredBackBufferWidth = 1280;
+			Graphics.PreferredBackBufferHeight = 720;
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
-			_graphics.IsFullScreen = false;
-			_graphics.SynchronizeWithVerticalRetrace = false;
+			Graphics.IsFullScreen = false;
+			Graphics.SynchronizeWithVerticalRetrace = false;
 			//game.Components.Add(new FrameRateCounter(this));
 			fpsLock();
 
@@ -98,7 +98,7 @@ namespace gearit.xna
 			//débloquer les fps
 			this.fpsIsLocked = false;
 			Game.IsFixedTimeStep = false;
-			_graphics.ApplyChanges();
+			Graphics.ApplyChanges();
 		}
 
 		public void fpsLock()
@@ -106,7 +106,7 @@ namespace gearit.xna
 			this.fpsIsLocked = true;
 			Game.TargetElapsedTime = new TimeSpan(0, 0, 0, 0, 1000 / BLOCKED_FPS);
 			Game.IsFixedTimeStep = true;
-			_graphics.ApplyChanges();
+			Graphics.ApplyChanges();
 		}
 
 		public void Message(string msg, int duration = 2000)
@@ -121,7 +121,7 @@ namespace gearit.xna
 		/// </summary>
 		public int Width
 		{
-			get { return _graphics.PreferredBackBufferWidth; }
+			get { return Graphics.PreferredBackBufferWidth; }
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace gearit.xna
 		/// </summary>
 		public int Height
 		{
-			get { return _graphics.PreferredBackBufferHeight; }
+			get { return Graphics.PreferredBackBufferHeight; }
 		}
 
 		/// <summary>
@@ -137,10 +137,10 @@ namespace gearit.xna
 		/// </summary>
 		public void SetResolutionScreen(int width, int height)
 		{
-			_graphics.PreferredBackBufferWidth = width;
-			_graphics.PreferredBackBufferHeight = height;
+			Graphics.PreferredBackBufferWidth = width;
+			Graphics.PreferredBackBufferHeight = height;
 			
-			_graphics.ApplyChanges();
+			Graphics.ApplyChanges();
 		}
 
 		/// <summary>
@@ -148,7 +148,7 @@ namespace gearit.xna
 		/// </summary>
 		public bool IsFullScreen
 		{
-			get { return _graphics.IsFullScreen; }
+			get { return Graphics.IsFullScreen; }
 		}
 
 		/// <summary>
@@ -156,8 +156,10 @@ namespace gearit.xna
 		/// </summary>
 		public void activeFullScreen()
 		{
-			_graphics.IsFullScreen = true;
-			_graphics.ApplyChanges();
+			if (Graphics.IsFullScreen)
+				return;
+			Graphics.IsFullScreen = true;
+			Graphics.ApplyChanges();
 		}
 
 		/// <summary>
@@ -165,8 +167,10 @@ namespace gearit.xna
 		/// </summary>
 		public void deactivFullScreen()
 		{
-			_graphics.IsFullScreen = false;
-			_graphics.ApplyChanges();
+			if (!Graphics.IsFullScreen)
+				return;
+			Graphics.IsFullScreen = false;
+			Graphics.ApplyChanges();
 		}
 
 		/// <summary>

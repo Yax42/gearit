@@ -17,13 +17,14 @@ namespace gearit.src.GUI
 		public MessageBoxSave(Desktop dk, String name, Action<String, bool> cbSave, Action<bool> setFocus, string objectName, bool isExiting = false)
 		{
 			if (isExiting)
-				_msg = MessageBox.Show(new Point(300, 160), "Save " + objectName + " before exiting?", "Name", MessageBoxButtons.YesNoCancel, dk);
+				_msg = MessageBox.Show(new Point(250, 160), "Save " + objectName + " before exiting?", "Name", MessageBoxButtons.YesNoCancel, dk);
 			else
-				_msg = MessageBox.Show(new Point(300, 160), "Save " + objectName, "Name", MessageBoxButtons.OKCancel, dk);
+				_msg = MessageBox.Show(new Point(250, 160), "Save " + objectName, null, MessageBoxButtons.OKCancel, dk);
 
 			_tb = new TextBox();
-			_tb.Size = new Squid.Point(158, 34);
-			_tb.Position = new Squid.Point(_msg.MessageLabel.Size.x + 16, 70);
+			_tb.Size = new Squid.Point(250 - 32, 34);
+			_tb.Position = new Squid.Point(16, 70);
+			_tb.Style = "menuTextbox";
 			_tb.Text = name;
 			_msg.Controls.Add(_tb);
 			_tb.Focus();
