@@ -183,6 +183,7 @@ namespace gearit.src.GUI.Tools
 			ControlStyle itemMainMenuStyle = new ControlStyle();
 			itemMainMenuStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle submenuStyle = new ControlStyle();
 			ControlStyle menuStyle = new ControlStyle();
 
 			ControlStyle msgboxStyle = new ControlStyle();
@@ -250,6 +251,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("titleMainMenu", titleMainMenuStyle);
 			skin.Styles.Add("itemMainMenu", itemMainMenuStyle);
 			skin.Styles.Add("itemPickButton", itemPickButtonStyle);
+			skin.Styles.Add("submenu", submenuStyle);
 			skin.Styles.Add("menu", menuStyle);
 			skin.Styles.Add("itemMenu", itemMenuStyle);
 			skin.Styles.Add("itemList", itemListStyle);
@@ -324,6 +326,16 @@ namespace gearit.src.GUI.Tools
 			style.Default.TextColor = toInt(info.Primitive);
 			style.Disabled.TextColor = toInt(info.Primitive);
 
+			style = styles["submenu"];
+			//style.TextColor = toInt(info.Primitive);
+			//style.BackColor = toInt(info.White);
+
+			style.Default.TextColor = toInt(info.White);
+			style.Default.BackColor = toInt(info.PrimitiveSuperLight);
+
+			//style.Checked.TextColor = toInt(info.White);
+			//style.Checked.BackColor = toInt(info.PrimitiveSuperLight);
+
 			style = styles["menu"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = toInt(info.Grayie);
@@ -372,8 +384,8 @@ namespace gearit.src.GUI.Tools
 			style.CheckedHot.BackColor = ColorInt.RGBA(0.4f, 0.1f, 0.1f, 1f);
 
 			style = styles["eventPanel"];
-			style.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
-			style.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.08f);
+			style.BackColor = ColorInt.RGBA(0.3f, 0.3f, 0.3f, 0.5f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 0.5f, 0.5f, 0.28f);
 			style.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 			style.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
@@ -381,9 +393,9 @@ namespace gearit.src.GUI.Tools
 			styles["treeNodeText"].BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.0f);
 
 			style = styles["addEventButton"];
-			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
-			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
+			style.TextColor = toInt(info.White);
+			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.35f);
+			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.3f);
 
 			style = styles["buttonList"];
 			style.TextColor = toInt(info.White);

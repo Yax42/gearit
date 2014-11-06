@@ -254,13 +254,13 @@ namespace gearit.src.GUI
 			btn.Cursor = Cursors.Move;
 			btn.Checked = false;
 			btn.Tooltip = "(A)";
-			y += btn.Size.y + 2; 
 
 			//Callback
 			rb_pieceChoice.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				swap_pieces();
 			};
+			y += btn.Size.y + PADDING; 
 
 			#endregion
 
@@ -277,7 +277,7 @@ namespace gearit.src.GUI
 			//y += lb.Size.y + PADDING;
 
 			// Piece jointure type
-			y += ITEM_HEIGHT + PADDING;
+			//y += ITEM_HEIGHT + PADDING;
 
 			#endregion
 
@@ -681,7 +681,7 @@ namespace gearit.src.GUI
 			#region script_editor
 
 			// Panel script editor
-			_panelScript.Style = "menu";
+			_panelScript.Style = "submenu";
 			_panelScript.Parent = this;
 
 			_panelScript.VScroll.Margin = new Margin(0, 8, 8, 8);

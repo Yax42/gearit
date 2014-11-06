@@ -64,8 +64,8 @@ namespace gearit.src.GUI
 			Content.Controls.Add(combo);
 			combo.Size = new Squid.Point(158, height / 2);
 			combo.Position = new Squid.Point(x, height / 2 - combo.Size.y / 2);
-			combo.Label.Style = "comboLabel";
-			combo.Button.Style = "comboButton";
+			combo.Label.Style = "button";
+			combo.Button.Style = "button";
 			combo.Listbox.Margin = new Margin(0, 0, 0, 0);
 			combo.Listbox.Style = "frame";
 			combo.Listbox.ClipFrame.Margin = new Margin(8, 8, 8, 8);
