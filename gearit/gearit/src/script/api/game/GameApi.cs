@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using gearit.src.robot;
 using LuaInterface;
 using System;
+using gearit.src.Network;
 
 namespace gearit.src.script
 {
@@ -117,6 +118,18 @@ namespace gearit.src.script
 		public void Message(string msg, int duration = 2000)
 		{
 			_game.Message(msg, duration);
+		}
+
+		public bool LockConnections
+		{
+			get { return NetworkServer.Instance.LockConnections; }
+			set { NetworkServer.Instance.LockConnections = value; }
+		}
+
+		public int MaxPlayers
+		{
+			get { return NetworkServer.Instance.MaxPlayers; }
+			set { NetworkServer.Instance.MaxPlayers = value; }
 		}
 	}
 }

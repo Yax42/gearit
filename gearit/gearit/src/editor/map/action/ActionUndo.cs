@@ -16,16 +16,17 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(true, false, false) && Input.justPressed(Keys.Z));
+			return (Input.CtrlShift(true, false) && Input.justPressed(Keys.Z));
 		}
 
 		public bool run() { return false; }
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.UNDO; }
+		public ActionTypes Type() { return ActionTypes.UNDO; }
 	}
 }

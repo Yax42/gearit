@@ -27,7 +27,7 @@ namespace gearit.src.editor.map.action
 				return false;
 			return (Input.justPressed(MouseKeys.LEFT)
 				|| Input.justPressed(MouseKeys.RIGHT))
-				&& Input.CtrlAltShift(false, true, false);
+				&& Input.CtrlShift(true, false);
 		}
 
 		public bool run()
@@ -41,11 +41,12 @@ namespace gearit.src.editor.map.action
 			_trigger.Id = _from;
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.SET_TRIGGER_ID; }
+		public ActionTypes Type() { return ActionTypes.SET_TRIGGER_ID; }
 	}
 }
 

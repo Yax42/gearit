@@ -29,6 +29,7 @@ namespace gearit.src.editor.map.action
 		DELETE_TRIGGER,
 		DELETE_ARTEFACT,
 		SET_TRIGGER_ID,
+		SET_AXIS,
 		COUNT,
 	}
 
@@ -93,6 +94,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.DELETE_TRIGGER) return new ActionDeleteTrigger();
 			if (action == ActionTypes.DELETE_ARTEFACT) return new ActionDeleteArtefact();
 			if (action == ActionTypes.SET_TRIGGER_ID) return new ActionSetTriggerId();
+			if (action == ActionTypes.SET_AXIS) return new ActionSetAxis();
 			return _dummy;
 		}
 	}

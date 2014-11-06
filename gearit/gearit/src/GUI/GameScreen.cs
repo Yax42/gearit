@@ -41,9 +41,11 @@ namespace gearit.xna
         public bool is_initialized = false;
 		public List<GameScreen> PrevScreens = null;
 		private bool ToResetAfterUnload;
-		
-		public GameScreen(bool toResetAfterUnload)
+		public bool UpdateOnUnfocus { get; private set; }
+
+		public GameScreen(bool toResetAfterUnload, bool updateOnUnfocus = false)
 		{
+			UpdateOnUnfocus = updateOnUnfocus;
 			ToResetAfterUnload = toResetAfterUnload;
 			DrawPriority = 0;
 			ScreenState = ScreenState.TransitionOn;

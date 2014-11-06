@@ -21,10 +21,11 @@ namespace gearit.src.editor.map.action
 		}
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.EXIT; }
+		public ActionTypes Type() { return ActionTypes.EXIT; }
 	}
 }

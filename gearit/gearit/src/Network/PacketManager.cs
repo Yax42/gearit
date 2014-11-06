@@ -55,6 +55,7 @@ namespace gearit.src.Network
 			BeginTransform,
 			ChunkCommand,
 			File,
+			Disconnect,
 		};
 		#endregion
 
@@ -189,6 +190,14 @@ namespace gearit.src.Network
 			var packet = new Packet_RobotCommand();
 			packet.RobotId = (byte) id;
 			packet.Command = (byte) command;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] RemoveRobot(int id)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			packet.Command = (byte)ERobotCommand.Remove;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
@@ -495,7 +504,7 @@ namespace gearit.src.Network
 				case (byte) ERobotCommand.Teleport:
 					r.Position = packet.Position;
 					if (r.Id == Game.MainRobotId && Game.Camera != null)
-						Game.Camera.TeleportBody();
+						Game.Camera.Jump2Target();
 					//Vector2 deltaPos = packet.Position - r.Position;
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;

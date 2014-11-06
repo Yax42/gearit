@@ -122,6 +122,14 @@ namespace gearit.src.script.api.game
 				GameLuaScript.Instance.Game.Camera.StaticCamera(o.Position, zoom);
 		}
 
+		public int Id
+		{
+			get
+			{
+				return __Robot.Id;
+			}
+		}
+
 		public int State
 		{
 			get
@@ -150,11 +158,11 @@ namespace gearit.src.script.api.game
 
 			set
 			{
+				__Robot.Position = value;
 				if (GameLuaScript.IsServer)
 					NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.TeleportRobot(__Robot.Id, value));
 				else
-					GameLuaScript.Instance.Game.Camera.TeleportBody();
-				__Robot.Position = value;
+					GameLuaScript.Instance.Game.Camera.Jump2Target();
 			}
 		}
 

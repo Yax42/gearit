@@ -8,12 +8,13 @@ namespace gearit.src.editor.map.action
 {
 	interface IAction
 	{
+		bool canBeMirrored { get; }
+		bool canBeReverted { get; }
 		void init();
 		bool shortcut();
 		bool run();
 		void revert();
-		bool canBeReverted();
 		bool actOnSelect();
-		ActionTypes type();
+		ActionTypes Type();
 	}
 }

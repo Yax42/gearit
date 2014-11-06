@@ -24,8 +24,8 @@ namespace gearit.src.editor.map.action
 			if (MapEditor.Instance.SelectTrigger == null)
 				return false;
 			return Input.justPressed(Keys.R)
-				&& Input.CtrlAltShift(false, false, false)
-				&& MapEditor.Instance.SelectTrigger.Contain(Input.SimMousePos);
+				&& Input.CtrlShift(false, false)
+				&& MapEditor.Instance.SelectTrigger.Contain(Input.VirtualSimMousePos);
 		}
 
 		public bool run()
@@ -39,10 +39,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Triggers.Add(_trigger);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.DELETE_TRIGGER; }
+		public ActionTypes Type() { return ActionTypes.DELETE_TRIGGER; }
 	}
 }

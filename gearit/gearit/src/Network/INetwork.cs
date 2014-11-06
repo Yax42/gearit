@@ -17,7 +17,6 @@ namespace gearit.src.Network
 		public byte[]				ToSend;
 		public NetIncomingMessage	YoungestRequest;
 		public NetConnection		Connect;
-		public Robot				Robot;
 		public Peer(int id, NetConnection co)
 		{
 			Id = id;
@@ -110,6 +109,14 @@ namespace gearit.src.Network
 				p.YoungestRequest = msg;
 		}
 
+		public bool IsSenderValid(NetIncomingMessage r)
+		{
+			foreach (Peer p in Peers)
+				if (p.Connect == r.SenderConnection)
+					return true;
+			return false;
+		}
+
 		public Peer GetPeer(NetIncomingMessage request)
 		{
 			return ((Peer)request.SenderConnection.Tag);
@@ -186,11 +193,21 @@ namespace gearit.src.Network
 			TransformToSend = TransformToSend.Concat(data).ToArray();
 		}
 
+		public abstract void RemovePeer(Peer p);
+
 		public void ApplyRequests()
 		{
 			ApplyBruteRequests();
 			foreach (NetIncomingMessage request in Requests)
-				PacketManager.ApplyRequest(request, IsYoungest(request));
+			{
+				if (request.Data.Count() >= 5 && request.Data[4] == (byte)PacketManager.CommandId.Disconnect)
+				{
+					RemovePeer(GetPeer(request));
+					break;
+				}
+				else
+					PacketManager.ApplyRequest(request, IsYoungest(request));
+			}
 			CleanRequests();
 		}
 

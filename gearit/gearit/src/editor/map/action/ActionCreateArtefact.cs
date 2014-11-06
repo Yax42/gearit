@@ -29,7 +29,7 @@ namespace gearit.src.editor.map.action
 					}
 				}
 			}
-			_Artefact = new Artefact(Input.SimMousePos, _id);
+			_Artefact = new Artefact(Input.VirtualSimMousePos, _id);
 		}
 
 		public bool shortcut()
@@ -37,7 +37,7 @@ namespace gearit.src.editor.map.action
 			if (!ActionSwapEventMode.EventMode)
 				return false;
 			return Input.justPressed(Keys.E)
-				&& Input.CtrlAltShift(false, false, false);
+				&& Input.CtrlShift(false, false);
 		}
 
 		public bool run()
@@ -51,10 +51,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Artefacts.Remove(_Artefact);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CREATE_ARTEFACT; }
+		public ActionTypes Type() { return ActionTypes.CREATE_ARTEFACT; }
 	}
 }

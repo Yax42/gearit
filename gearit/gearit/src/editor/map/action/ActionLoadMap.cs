@@ -17,7 +17,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			if (Input.CtrlAltShift(true, false, false) && (Input.justPressed(Keys.D)))
+			if (Input.CtrlShift(true, false) && (Input.justPressed(Keys.D)))
 				MenuMapEditor.Instance.loadMap();
 			return false;
 		}
@@ -35,10 +35,11 @@ namespace gearit.src.editor.map.action
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
 		
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.LOAD; }
+		public ActionTypes Type() { return ActionTypes.LOAD; }
 	}
 }

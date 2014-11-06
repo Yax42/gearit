@@ -79,7 +79,7 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame(string map, string robot, string ip) : base(true)
+		public NetworkClientGame(string map, string robot, string ip) : base(true, true)
 		{
 			IpServer = ip;
 			NameMap = map;
@@ -220,7 +220,7 @@ namespace gearit.src.Network
 			_Time += delta;
 			HandleInput();
 
-			World.Step(0);
+			World.Step(delta);
 
 
 			//for (int i = 0; i < MainRobot.Spots.Count; i++)
@@ -248,6 +248,7 @@ namespace gearit.src.Network
 		{
 			ScreenManager.IsIngame = false;
 			clearRobot();
+			NetworkClient.Disconnect();
 			ScreenManager.Instance.RemoveScreen(this);
 		}
 

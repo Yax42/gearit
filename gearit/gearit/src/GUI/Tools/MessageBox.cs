@@ -39,13 +39,16 @@ namespace gearit.src.GUI
 			ButtonFrame.Dock = DockStyle.Bottom;
 			Controls.Add(ButtonFrame);
 
-			MessageLabel = new Label();
-			MessageLabel.Dock = DockStyle.Top;
-			MessageLabel.Margin = new Margin(16, 12, 16, 12);
-			MessageLabel.TextWrap = true;
-			MessageLabel.Text = message;
-			MessageLabel.Style = "frame";
-			Controls.Add(MessageLabel);
+			if (message != null)
+			{
+				MessageLabel = new Label();
+				MessageLabel.Dock = DockStyle.Top;
+				MessageLabel.Margin = new Margin(16, 12, 16, 12);
+				MessageLabel.TextWrap = true;
+				MessageLabel.Text = message;
+				MessageLabel.Style = "frame";
+				Controls.Add(MessageLabel);
+			}
 		}
 
 		public static MessageBox Show(Point size, string title, string message, MessageBoxButtons buttons, Desktop target)
