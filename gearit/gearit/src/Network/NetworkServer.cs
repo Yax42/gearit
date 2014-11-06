@@ -24,6 +24,8 @@ namespace gearit.src.Network
         private Thread serverThread;
 		private NetworkServerGame Game;
 		override public string Path { get {return "data/net/server/";} }
+		public int MaxPlayers { get; set; }
+		public bool LockConnections { get; set; }
 
 
 		private NetworkServer(NetworkServerGame game, NetPeerConfiguration config, int port)
@@ -33,10 +35,15 @@ namespace gearit.src.Network
 			ResetToSends();
 			Port = port;
 			IsServer = true;
+			LockConnections = false;
+			MaxPlayers = -1;
 		}
 
        static public void Start(int port, string mapPath)
 		{
+			//Debug.Assert(!Running);
+			if (Running)
+				Instance.Stop();
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
@@ -47,7 +54,6 @@ namespace gearit.src.Network
 
         private void PrivateStart()
         {
-			Debug.Assert(!Running);
 			Running = false;
             try
             {
@@ -123,21 +129,31 @@ namespace gearit.src.Network
                             string reason = msg.ReadString();
                             OutputManager.LogMessage(NetUtility.ToHexString(msg.SenderConnection.RemoteUniqueIdentifier) + " " + status + ": " + reason);
 
-                            if (status == NetConnectionStatus.Connected)
-                            {
+							if (status == NetConnectionStatus.Connected
+								&& !LockConnections
+								&& (Peers.Count() < MaxPlayers || MaxPlayers < 0))
+							{
 								Peer p = AddPeer(msg.SenderConnection);
 								Server_BruteSend(p);
-                                OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
-                                foreach (NetConnection conn in Peer.Connections)
-                                {
-                                    string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " (" + conn.Status + ")";
-                                    OutputManager.LogNetwork(str);
-                                }
-                            }
+								OutputManager.LogNetwork("SERVER - Remote hail: " + msg.SenderConnection.RemoteHailMessage.ReadString());
+								foreach (NetConnection conn in Peer.Connections)
+								{
+									string str = NetUtility.ToHexString(conn.RemoteUniqueIdentifier) + " from " + conn.RemoteEndPoint.ToString() + " (" + conn.Status + ")";
+									OutputManager.LogNetwork(str);
+								}
+							}
+							else if (status == NetConnectionStatus.Disconnected)
+							{
+								if (IsSenderValid(msg))
+									RemovePeer(GetPeer(msg));
+							}
                             break;
                         case NetIncomingMessageType.Data:
-                            Server_ManageRequest(msg);
-							toRecycle = false;
+							if (IsSenderValid(msg))
+							{
+								Server_ManageRequest(msg);
+								toRecycle = false;
+							}
                             break;
                         default:
                             OutputManager.LogNetwork("SERVER - Unhandled type: " + msg.MessageType);
@@ -166,7 +182,10 @@ namespace gearit.src.Network
 			}
 			set
 			{
-				Game.Events = new byte[0];
+				if (value == null)
+					Game.Events = new byte[0];
+				else
+					Game.Events = value;
 			}
 		}
 		
@@ -184,24 +203,17 @@ namespace gearit.src.Network
 			Robot r = Game.RobotFromId(id);
 			foreach (Peer p in Peers)
 				if (id != p.Id)
+				{
 					BruteSend(p, PacketManager.Robot(r));
+				}
 		}
-#if false
-        public void oldSend(string text) // deprecated
-        {
-                NetOutgoingMessage om = Peer.CreateMessage();
-                om.Write(text);
-                Peer.SendMessage(om, Peer.Connections, NetDeliveryMethod.Unreliable, 0);
-        }
 
-        public void oldSend(byte[] data, int id) // deprecated
-        {
-			if (id >= Peer.Connections.Count)
-				return;
-            NetOutgoingMessage om = Peer.CreateMessage();
-            om.Write(data);
-            Peer.SendMessage(om, Peer.Connections[id], NetDeliveryMethod.Unreliable, 0);
-        }
-#endif
+		public override void RemovePeer(Peer p)
+		{
+			PushEvent(PacketManager.RemoveRobot(p.Id));
+			Game.RemoveRobot(Game.RobotFromId(p.Id));
+			p.Connect.Disconnect("cya");
+			Peers.Remove(p);
+		}
 	}
 }

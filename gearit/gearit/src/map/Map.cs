@@ -20,7 +20,6 @@ namespace gearit.src.map
 	[Serializable()]
 	class Map : GI_File, ISerializable
 	{
-		private string _name;
 		public List<MapChunk> Chunks;
 		public List<Artefact> Artefacts;
 		public List<Trigger> Triggers;
@@ -42,7 +41,6 @@ namespace gearit.src.map
 		public Map(SerializationInfo info, StreamingContext ctxt)
 		{
 			_world = SerializerHelper.World;
-			_name = (string)info.GetValue("Name", typeof(string));
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
 			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
@@ -54,7 +52,6 @@ namespace gearit.src.map
 			info.AddValue("Chunks", Chunks, typeof(List<MapChunk>));
 			info.AddValue("Artefacts", Artefacts, typeof(List<Artefact>));
 			info.AddValue("Triggers", Triggers, typeof(List<Trigger>));
-			info.AddValue("Name", _name, typeof(string));
 		}
 		//--------- END SERIALISATION
 
@@ -83,11 +80,7 @@ namespace gearit.src.map
 			return (null);
 		}
 
-		public string Name
-		{
-			get { return _name; }
-			set { _name = value; }
-		}
+		public string Name { get { return FileNameWithoutExtension; } set { FileNameWithoutExtension = value; } }
 
 		public void ExtractFromWorld()
 		{

@@ -14,7 +14,7 @@ namespace gearit.src.editor.map.action
 
 		public void init()
 		{
-			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.SimMousePos);
+			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.VirtualSimMousePos);
 			MapEditor.Instance.SelectChunk = _chunk;
 		}
 
@@ -23,7 +23,7 @@ namespace gearit.src.editor.map.action
 			if (ActionSwapEventMode.EventMode)
 				return false;
 			return Input.justPressed(Keys.W)
-				&& Input.CtrlAltShift(false, false, false);
+				&& Input.CtrlShift(false, false);
 		}
 
 		public bool run()
@@ -37,10 +37,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Chunks.Remove(_chunk);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.CREATE_WALL; }
+		public ActionTypes Type() { return ActionTypes.CREATE_WALL; }
 	}
 }

@@ -16,13 +16,14 @@ using gearit.src.game;
 using System.Threading;
 using Lidgren.Network;
 using Microsoft.Xna.Framework.Graphics;
+using Squid;
 
 namespace gearit.src.Network
 {
 	class NetworkClientGame : GameScreen, IDemoScreen, IGearitGame
 	{
 		public World World { get; private set; }
-		private Camera2D _camera;
+		public Camera2D Camera { get; private set; }
 		private GameLuaScript _gameMaster;
 		private bool __exiting;
 		public NetworkClient NetworkClient { get; private set; }
@@ -33,6 +34,8 @@ namespace gearit.src.Network
 		private string IpServer;
         private Texture2D _back;
         private Effect _effect;
+
+		private Desktop _scoring = new Desktop();
 
 		private bool _exiting
 		{
@@ -76,7 +79,7 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame(string map, string robot, string ip) : base(true)
+		public NetworkClientGame(string map, string robot, string ip) : base(true, true)
 		{
 			IpServer = ip;
 			NameMap = map;
@@ -105,6 +108,7 @@ namespace gearit.src.Network
 
 		public override void LoadContent()
 		{
+			ScreenManager.IsIngame = true;
 			base.LoadContent();
 
 			_Robots = new List<Robot>();
@@ -117,7 +121,7 @@ namespace gearit.src.Network
 			_FrameCount = 0;
 			_Time = 0;
 			_drawGame = DrawGame.Instance;
-			_camera = new Camera2D(ScreenManager.GraphicsDevice);
+			Camera = new Camera2D(ScreenManager.GraphicsDevice);
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);
 
@@ -127,7 +131,7 @@ namespace gearit.src.Network
 			AddRobot(r);
 			r.Id = 0;
 			MainRobotId = 0;
-			_camera.TrackingBody = r.Heart;
+			Camera.TrackingBody = r.Heart;
 			r.InitScript(this);
 
 			Debug.Assert(Robots != null);
@@ -143,6 +147,42 @@ namespace gearit.src.Network
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
 			Status = Status.Init;
+
+			// Scoring
+			_scoring.Size = new Squid.Point(ScreenManager.Instance.Width, ScreenManager.Instance.Height);
+			_scoring.Position = new Squid.Point(0, 0);
+			Panel panel = new Panel();
+			panel.Parent = _scoring;
+			panel.Style = "scoring";
+			panel.Size = _scoring.Size * 0.6f;
+			panel.Position = _scoring.Size / 2 - panel.Size / 2;
+
+			olv.Position = new Squid.Point(0, 0);
+			olv.Dock = DockStyle.Fill;
+			panel.Content.Controls.Add(olv);
+            olv.Columns.Add(new ListView.Column { Text = "NAME", Aspect = "Name", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "ROBOT", Aspect = "Robot", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "SCORE", Aspect = "Score", Width = 20, MinWidth = 400 });
+            olv.Columns.Add(new ListView.Column { Text = "PING", Aspect = "Ping", Width = 20, MinWidth = 400 });
+            olv.Columns[0].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[3].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.FullRowSelect = true;
+            olv.Style = "scoring";
+
+			olv.CreateCell = delegate(object sender, ListView.FormatCellEventArgs args)
+			{
+                string text = olv.GetAspectValue(args.Model, args.Column);
+                Button cell =  new Button
+                {
+                    Size = new Squid.Point(26, 26),
+                    Style = "itemScoring",
+                    Dock = DockStyle.Top,
+                    Text = text
+                };
+				return cell;
+			};
 		}
 
 		public void clearRobot()
@@ -180,7 +220,7 @@ namespace gearit.src.Network
 			_Time += delta;
 			HandleInput();
 
-			World.Step(0);
+			World.Step(delta);
 
 
 			//for (int i = 0; i < MainRobot.Spots.Count; i++)
@@ -192,7 +232,7 @@ namespace gearit.src.Network
 			MainRobot.Update(Map);
 
 			//_gameMaster.run();
-			_camera.Update(gameTime);
+			Camera.Update(gameTime);
 			if (_exiting)
 				Exit();
 			_FrameCount++;
@@ -206,7 +246,9 @@ namespace gearit.src.Network
 
 		public void Exit()
 		{
+			ScreenManager.IsIngame = false;
 			clearRobot();
+			NetworkClient.Disconnect();
 			ScreenManager.Instance.RemoveScreen(this);
 		}
 
@@ -218,10 +260,7 @@ namespace gearit.src.Network
              * */
 			if (Input.Exit)
 				_exiting = true;
-			if (Input.justPressed(MouseKeys.WHEEL_DOWN))
-				_camera.zoomIn();
-			if (Input.justPressed(MouseKeys.WHEEL_UP))
-				_camera.zoomOut();
+			Camera.HandleInput();
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -229,14 +268,48 @@ namespace gearit.src.Network
 			if (Status != Status.Run)
 				return;
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
-            _drawGame.drawBackground(_back, _camera, _effect);
-			_drawGame.Begin(_camera);
+            _drawGame.drawBackground(_back, Camera, _effect);
+			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
 			Map.DrawDebug(_drawGame, true);
 			_drawGame.End();
 
+			drawScoring();
+
 			base.Draw(gameTime);
+		}
+
+        ListView olv = new ListView();
+        List<MyData> models = new List<MyData>();
+        public class MyData
+        {
+            public string Name;
+            public string Robot;
+            public float Score;
+            public int Ping;
+        }
+
+		private void drawScoring()
+		{
+			if (!Input.pressed(Microsoft.Xna.Framework.Input.Keys.Tab))
+				return;
+
+			models.Clear();
+			foreach (Robot r in Robots)
+			{
+				MyData entry = new MyData();
+				entry.Name = r.Name;
+				entry.Robot = r.Name;
+				entry.Score = r.Score.IntScore;
+				entry.Ping = 0;
+				models.Add(entry);
+				olv.SetObjects(models);
+			}
+
+			_scoring.Update();
+			_scoring.Draw();
+
 		}
 
 		public Robot RobotFromId(int id)

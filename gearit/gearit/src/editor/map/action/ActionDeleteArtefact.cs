@@ -17,7 +17,7 @@ namespace gearit.src.editor.map.action
 		{
 			Artefact res = null;
 			float lowest = 10;
-			Vector2 pos = Input.SimMousePos;
+			Vector2 pos = Input.VirtualSimMousePos;
 			foreach (Artefact spawn in MapEditor.Instance.Map.Artefacts)
 			{
 				float distance = (spawn.Position - pos).LengthSquared();
@@ -38,7 +38,7 @@ namespace gearit.src.editor.map.action
 			if (!ActionSwapEventMode.EventMode)
 				return false;
 			return Input.justPressed(Keys.R)
-				&& Input.CtrlAltShift(false, false, false);
+				&& Input.CtrlShift(false, false);
 		}
 
 		public bool run()
@@ -53,10 +53,11 @@ namespace gearit.src.editor.map.action
 			MapEditor.Instance.Map.Artefacts.Add(_artefact);
 		}
 
-		public bool canBeReverted() { return _artefact != null; }
+		public bool canBeReverted { get { return _artefact != null; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.DELETE_ARTEFACT; }
+		public ActionTypes Type() { return ActionTypes.DELETE_ARTEFACT; }
 	}
 }

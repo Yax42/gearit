@@ -29,15 +29,15 @@ namespace gearit.src.editor.map.action
 			{
 				Debug.Assert(MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk));
 				_chunk = (PolygonChunk)MapEditor.Instance.SelectChunk;
-				_verticeId = _chunk.findVertice(Input.SimMousePos);
+				_verticeId = _chunk.findVertice(Input.VirtualSimMousePos);
 				_fromShape = (PolygonShape)_chunk.FixtureList[0].Shape;
 				_toShape = _fromShape;
-				_from = Input.SimMousePos;
+				_from = Input.VirtualSimMousePos;
 			}
 			else
 			{
 				_trigger = MapEditor.Instance.SelectTrigger;
-				_verticeId = _trigger.GetCloseCornerId(Input.SimMousePos);
+				_verticeId = _trigger.GetCloseCornerId(Input.VirtualSimMousePos);
 				_from = _trigger.Corner(_verticeId);
 			}
 			_didRevert = false;
@@ -46,7 +46,7 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return Input.CtrlAltShift(false, false, true) &&
+			return Input.CtrlShift(false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
 				!MapEditor.Instance.IsSelectDummy() &&
 				(ActionSwapEventMode.EventMode ||
@@ -57,9 +57,9 @@ namespace gearit.src.editor.map.action
 		{
 			if (!_didRevert)
 			{
-				_to = Input.SimMousePos;
+				_to = Input.VirtualSimMousePos;
 				if (_isChunk)
-					_verticeId = _chunk.findVertice(Input.SimMousePos);
+					_verticeId = _chunk.findVertice(Input.VirtualSimMousePos);
 			}
 			if (_isChunk)
 				_chunk.moveVertice(_to, _verticeId);
@@ -86,10 +86,11 @@ namespace gearit.src.editor.map.action
 				_trigger.MoveCorner(_from, _verticeId);
 		}
 
-		public bool canBeReverted() { return true; }
+		public bool canBeReverted { get { return true; } }
+		public bool canBeMirrored { get { return true; } }
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes type() { return ActionTypes.RESIZE_POLYGON; }
+		public ActionTypes Type() { return ActionTypes.RESIZE_POLYGON; }
 	}
 }

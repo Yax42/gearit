@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using gearit.src.robot;
 using gearit.src.GUI.Picker;
+using gearit.src.editor.map;
 
 namespace gearit.src.GUI
 {
@@ -69,7 +70,7 @@ namespace gearit.src.GUI
 
 			#region init
 
-			padding_x = 400;
+			padding_x = ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH + PADDING * 2;
 
 			// MapEditor.Instance.VisibleMenu = true;
 			//ShowCursor = true;

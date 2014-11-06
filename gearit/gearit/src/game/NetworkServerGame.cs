@@ -13,6 +13,7 @@ using System.Diagnostics;
 using gearit.src.editor.robot;
 using System.Threading;
 using gearit.src.editor.map;
+using gearit.xna;
 
 namespace gearit.src.Network
 {
@@ -21,6 +22,7 @@ namespace gearit.src.Network
 		public World World { get; private set; }
 		private GameLuaScript _gameMaster;
 		public byte[] Events =  new byte[0];
+		public Camera2D Camera { get { return null; } }
 
 		private bool __exiting;
 		private bool _exiting
@@ -110,6 +112,7 @@ namespace gearit.src.Network
 		{
 			Robots.Remove(robot);
 			_gameMaster.RobotDisconnect(robot);
+			robot.ExtractFromWorld();
 			//robot.move(new Vector2(Robots.Count * 30, -20));
 		}
 
@@ -136,6 +139,8 @@ namespace gearit.src.Network
 				//NetworkServer.Instance.PushRequestTransform(PacketManager.RobotTransform(r));
 				for (int i = 0; i < r.Pieces.Count; i++) // i = 1 parce qu'on veut ignorer le coeur
 					NetworkServer.Instance.PushRequestTransform(PacketManager.RobotPieceTransform(r, i));
+				if (FrameCount % 60 == 0)
+					NetworkServer.Instance.PushEvent(PacketManager.Score(r));
 			}
 			for (int i = 0; i < Map.Chunks.Count; i++)
 			{

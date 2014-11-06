@@ -17,17 +17,18 @@ namespace gearit.src.editor.map.action
 
 		public bool shortcut()
 		{
-			return (Input.CtrlAltShift(false, false, false) && Input.justPressed(Keys.Space));
+			return (Input.CtrlShift(false, false) && Input.justPressed(Keys.Space));
 		}
 
 		public bool run() { return false; }
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.SWAP_EVENT_MODE; }
+		public ActionTypes Type() { return ActionTypes.SWAP_EVENT_MODE; }
 	}
 }

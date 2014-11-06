@@ -10,6 +10,8 @@ namespace gearit.src.editor.map.action
 	{
 		public void init()
 		{
+			if (Input.Alt)
+				MirrorAxis.Active = true;
 			if (ActionSwapEventMode.EventMode)
 			{
 				MapEditor.Instance.SelectTrigger = MapEditor.Instance.Map.GetTrigger(Input.SimMousePos);
@@ -18,11 +20,13 @@ namespace gearit.src.editor.map.action
 			{
 				MapEditor.Instance.SelectChunk = MapEditor.Instance.Map.GetChunk(Input.SimMousePos);
 			}
+			if (Input.Alt)
+				MirrorAxis.Active = false;
 		}
 
 		public bool shortcut()
 		{
-			return Input.CtrlAltShift(false, false, false)
+			return Input.CtrlShift(false, false)
 				&& Input.justPressed(MouseKeys.LEFT);
 		}
 
@@ -30,10 +34,11 @@ namespace gearit.src.editor.map.action
 
 		public void revert() { }
 
-		public bool canBeReverted() { return false; }
+		public bool canBeReverted { get { return false; } }
+		public bool canBeMirrored { get { return false; } }
 
 		public bool actOnSelect() { return false; }
 
-		public ActionTypes type() { return ActionTypes.SELECT; }
+		public ActionTypes Type() { return ActionTypes.SELECT; }
 	}
 }

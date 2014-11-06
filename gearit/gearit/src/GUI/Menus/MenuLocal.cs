@@ -44,6 +44,7 @@ namespace gearit.src.gui
         bool refreshing = false;
         Button btn_refresh = new Button();
         TcpClient client;
+		ScreenPickManager picker;
 
         const int DIALOG_WIDTH = 400;
         const int TAB_WIDTH = 156;
@@ -131,8 +132,8 @@ namespace gearit.src.gui
             VisibleMenu = true;
 
             _desktop = new Desktop();
-            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
-            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
+            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH + 1, 0);
+            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH  - MenuPlay.MENU_WIDTH - 1, ScreenManager.Height);
 
 			btn_refresh.Parent = _desktop;
 			btn_refresh.Position = new Squid.Point(0, 0);
@@ -142,19 +143,21 @@ namespace gearit.src.gui
             btn_refresh.MouseClick += new MouseEvent(btn_MouseClick);
 
 			olv.Position = new Squid.Point(0, 100);
-			olv.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
+			olv.Dock = DockStyle.Fill;
+            olv.Columns.Add(new ListView.Column { Text = "", Aspect = "", Width = 0, MinWidth = 4 });
             olv.Columns.Add(new ListView.Column { Text = "NAME", Aspect = "Name", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "IP", Aspect = "Host", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "PLAYERS", Aspect = "Players", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "MAP", Aspect = "Map", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "TIME", Aspect = "Time", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "PING", Aspect = "Ping", Width = 20, MinWidth = 48 });
-            olv.Columns[0].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
-            olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
-            olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
-            olv.Columns[3].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
-            olv.Columns[4].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
-            olv.Columns[5].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 6;
+            olv.Columns[0].Width = (4);
+            olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[3].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[4].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[5].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[6].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.FullRowSelect = true;
             olv.Parent = _desktop;
             olv.Style = "itemList";
@@ -195,27 +198,25 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
-					ScreenPickManager screen = new ScreenPickManager(false, true,
+					picker = new ScreenPickManager(false, true,
 					delegate()
 					{
 						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
+						picker = null;
 					});
-					ScreenManager.Instance.AddScreen(screen);
+					ScreenManager.Instance.AddScreen(picker);
                 };
 
                 return cell;
             };
 
-			// Test
-			MyData entry = new MyData();
-			entry.Name = "Test server";
-			entry.Players = "42";
-			entry.Host = "127.0.0.1";
-			entry.port = 4448;
-			entry.id = 0;
-			entry.Ping = 123;
-			models.Add(entry);
 			olv.SetObjects(models);
+			btn_refresh.Click(0);
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
 		}
 
         void btn_MouseClick(Control sender, MouseEventArgs args)

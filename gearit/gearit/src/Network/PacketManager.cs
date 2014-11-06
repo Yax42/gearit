@@ -31,6 +31,9 @@ namespace gearit.src.Network
 			Win,
 			Lose,
 			Teleport,
+			CameraDynamic,
+			CameraStatic,
+			Score,
 		};
 		public enum EChunkCommand
 		{
@@ -52,6 +55,7 @@ namespace gearit.src.Network
 			BeginTransform,
 			ChunkCommand,
 			File,
+			Disconnect,
 		};
 		#endregion
 
@@ -89,6 +93,8 @@ namespace gearit.src.Network
 			public byte RobotId;
 			public byte Command;
 			public Vector2 Position;
+			public float Float;
+			public int Int;
 		}
 
 		enum TransformType
@@ -104,6 +110,7 @@ namespace gearit.src.Network
 			public byte RobotId;
 			public ushort Id;
 			public Sweep Sweep;
+			public Transform Xf;
 		}
 
 		public enum MotorType
@@ -111,6 +118,7 @@ namespace gearit.src.Network
 			Frozen,
 			Force,
 			AddLimit,
+			FreeWheel,
 		};
 
 		private struct Packet_Motor // size 8
@@ -119,7 +127,7 @@ namespace gearit.src.Network
 			public ushort MotorId;
 			public byte Type;
 			public float Force;
-			public bool Frozen;
+			public bool BoolVal;
 			public short NbCycle;
 		}
 
@@ -185,12 +193,43 @@ namespace gearit.src.Network
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
+		public byte[] RemoveRobot(int id)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			packet.Command = (byte)ERobotCommand.Remove;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
 		public byte[] TeleportRobot(int id, Vector2 pos)
 		{
 			var packet = new Packet_RobotCommand();
 			packet.RobotId = (byte) id;
 			packet.Command = (byte)ERobotCommand.Teleport;
 			packet.Position = pos;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] Camera(int id, bool dynamic, Vector2 pos, float zoom)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) id;
+			if (dynamic)
+				packet.Command = (byte)ERobotCommand.CameraDynamic;
+			else
+				packet.Command = (byte)ERobotCommand.CameraStatic;
+			packet.Position = pos;
+			packet.Float = zoom;
+			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] Score(Robot r)
+		{
+			var packet = new Packet_RobotCommand();
+			packet.RobotId = (byte) r.Id;
+			packet.Command = (byte) ERobotCommand.Score;
+			packet.Float = r.Score.FloatScore;
+			packet.Int = r.Score.IntScore;
 			return PacketToRawData(packet, CommandId.RobotCommand);
 		}
 
@@ -254,6 +293,7 @@ namespace gearit.src.Network
 			res.RobotId = (byte) robotId;
 			res.Id = (ushort) id;
 			res.Sweep = b.Sweep;
+			res.Xf = b.Xf;
 			return PacketToRawData(res, CommandId.ObjectTransform);
 		}
 
@@ -284,16 +324,16 @@ namespace gearit.src.Network
 			return Motor(spot, MotorType.AddLimit, false, cycle, 0);
 		}
 
-		public byte[] Motor(RevoluteSpot spot, bool frozen)
+		public byte[] Motor(RevoluteSpot spot, MotorType type, bool BoolVal)
 		{
-			return Motor(spot, MotorType.Frozen, frozen, 0, 0);
+			return Motor(spot, type, BoolVal, 0, 0);
 		}
 
-		public byte[] Motor(RevoluteSpot spot, MotorType type, bool frozen, int cycle, float force)
+		public byte[] Motor(RevoluteSpot spot, MotorType type, bool BoolVal, int cycle, float force)
 		{
 			Packet_Motor res = new Packet_Motor();
 			res.MotorId = (ushort) spot.Id;
-			res.Frozen = frozen;
+			res.BoolVal = BoolVal;
 			res.Force = force;
 			res.Type = (byte)type;
 			res.NbCycle = (short)cycle;
@@ -463,9 +503,21 @@ namespace gearit.src.Network
 					break;
 				case (byte) ERobotCommand.Teleport:
 					r.Position = packet.Position;
+					if (r.Id == Game.MainRobotId && Game.Camera != null)
+						Game.Camera.Jump2Target();
 					//Vector2 deltaPos = packet.Position - r.Position;
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;
+					break;
+				case (byte) ERobotCommand.CameraDynamic:
+					Game.Camera.EnablePositionTracking = true;
+					break;
+				case (byte) ERobotCommand.CameraStatic:
+					Game.Camera.StaticCamera(packet.Position, packet.Float);
+					break;
+				case (byte) ERobotCommand.Score:
+					r.Score.IntScore = packet.Int;
+					r.Score.FloatScore = packet.Float;
 					break;
 			}
 		}
@@ -509,6 +561,7 @@ namespace gearit.src.Network
 			if (b != null)
 			{
 				b.Sweep = packet.Sweep;
+				b.Xf = packet.Xf;
 			}
 		}
 
@@ -561,10 +614,13 @@ namespace gearit.src.Network
 							r.Spots[packet.MotorId].Force = packet.Force;
 							break;
 						case (byte) MotorType.Frozen:
-							r.Spots[packet.MotorId].Frozen = packet.Frozen;
+							r.Spots[packet.MotorId].Frozen = packet.BoolVal;
 							break;
 						case (byte) MotorType.AddLimit:
 							r.Spots[packet.MotorId].AddLimitsCycle(packet.NbCycle);
+							break;
+						case (byte) MotorType.FreeWheel:
+							r.Spots[packet.MotorId].FreeWheel = packet.BoolVal;
 							break;
 					}
 				}

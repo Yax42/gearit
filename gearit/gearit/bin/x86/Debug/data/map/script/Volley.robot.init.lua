@@ -4,3 +4,4 @@ elseif nb_player == 1 then
 	Robot:MoveTo(Art_3)
 end
 nb_player = nb_player + 1
+Robot:StaticCamera(Art_4, 0.2)

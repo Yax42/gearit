@@ -100,12 +100,20 @@ namespace gearit.src.editor.map
 			// Auto select menu tools
 			Label lb;
 
-			label_name = new Label();
-			lb = label_name;
-			//lb.Text = "~ " + MapEditor.Instance.NamePath + " ~";
+			lb = new Label();
+			lb.Text = "MAP EDITOR";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
 			lb.Style = "itemMenuTitle";
+			background.Content.Controls.Add(lb);
+			y += lb.Size.y + PADDING;
+
+			label_name = new Label();
+			lb = label_name;
+			lb.Text = "~ " + MapEditor.Instance.Map.Name + " ~";
+			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(0, y);
+			lb.Style = "itemMenuSubtitle";
 			background.Content.Controls.Add(lb);
 
 			y += lb.Size.y + PADDING;
@@ -382,7 +390,7 @@ namespace gearit.src.editor.map
 
 		public void updateButtonMapName()
 		{
-			label_name.Text = "~ " + MapEditor.Instance.NamePath + " ~";
+			label_name.Text = "~ " + MapEditor.Instance.Map.Name + " ~";
 		}
 
 		//--------------------------------------------------------------------

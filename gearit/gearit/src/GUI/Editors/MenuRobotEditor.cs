@@ -48,14 +48,15 @@ namespace gearit.src.GUI
 		private Label label_title;
 		private Label label_name;
 		private Label label_weight;
+		private TextBox _box_weight;
 		private Label label_force;
+		private TextBox _box_force;
 
 		// Piece & Spot
 		private ScreenManager _ScreenManager;
 		private ListBox menu_listbox = new ListBox();
 		private Panel background = new Panel();
-		private Button rb_rod = new Button();
-		private Button rb_wheel = new Button();
+		private Button rb_pieceChoice = new Button();
 		private Button Help_btn;
 		private Button Exit_btn;
 
@@ -69,9 +70,9 @@ namespace gearit.src.GUI
 		private TextBox piece_rotation = new TextBox();
 
 		private TextBox piece_weight = new TextBox();
-		private TextBox piece_size = new TextBox();
-		private TextBox piece_x = new TextBox();
-		private TextBox piece_y = new TextBox();
+		private TextBox _piece_size = new TextBox();
+		private TextBox _piece_x = new TextBox();
+		private TextBox _piece_y = new TextBox();
 		private TextBox helper = new TextBox();
 
 		// Script editor
@@ -108,12 +109,14 @@ namespace gearit.src.GUI
 		{
 			get
 			{
-				return rb_wheel.Checked;
+				return rb_pieceChoice.Text == "Wheel";
 			}
 			set
 			{
-				rb_wheel.Checked = value;
-				rb_rod.Checked = !value;
+				if (value)
+					rb_pieceChoice.Text = "Wheel";
+				else
+					rb_pieceChoice.Text = "Rod";
 			}
 		}
 
@@ -191,70 +194,70 @@ namespace gearit.src.GUI
 
 			label_weight = new Label();
 			lb = label_weight;
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuSubtitle";
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(8, y);
+			lb.Style = "itemMenu";
+			lb.Text = "Weight";
 			background.Content.Controls.Add(lb);
+
+			_box_weight = new TextBox();
+			_box_weight.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
+			_box_weight.Position = new Squid.Point(lb.Size.x + 8, y);
+			_box_weight.Style = "menuTextbox";
+			_box_weight.Enabled = false;
+			background.Content.Controls.Add(_box_weight);
 
 			y += lb.Size.y + PADDING;
 
 			label_force = new Label();
 			lb = label_force;
-			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuSubtitle";
+			lb.Size = new Squid.Point(70, ITEM_HEIGHT);
+			lb.Position = new Squid.Point(8, y);
+			lb.Style = "itemMenu";
+			lb.Text = "Force";
 			background.Content.Controls.Add(lb);
+
+			_box_force = new TextBox();
+			_box_force.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
+			_box_force.Position = new Squid.Point(lb.Size.x + 8, y);
+			_box_force.Style = "menuTextbox";
+			_box_force.Enabled = false;
+			background.Content.Controls.Add(_box_force);
 
 			y += lb.Size.y + PADDING;
 
 			#region piecedrop
 
+			int x = 0;
 			Button btn = new Button();
 			btn.Text = "Piece";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Size = new Squid.Point((int) (MENU_WIDTH / 2f), ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
 			btn.MouseDrag += dragPiece;
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "(W)";
 			btn.Checked = false;
-			y += btn.Size.y + PADDING;
+			x += btn.Size.x + PADDING;
+			//y += btn.Size.y + PADDING;
 
 			//// Circle and Pipe
 			// Circle
-			btn = rb_wheel;
-			btn.Text = "Circle";
+			btn = rb_pieceChoice;
+			btn.Text = "Rod";
 			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
+			btn.Size = new Squid.Point(MENU_WIDTH - x, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(x, y);
 			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
 			btn.Tooltip = "(A)";
-			btn.Checked = true;
-
-			btn = rb_rod;
-			btn.Text = "Pipe";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
-			background.Content.Controls.Add(btn);
-			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "(A)";
-
 			y += btn.Size.y + 2; 
 
 			//Callback
-			rb_wheel.MouseClick += delegate(Control snd, MouseEventArgs e)
+			rb_pieceChoice.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				if (!rb_wheel.Checked)
-					swap_pieces();
-			};
-
-			rb_rod.MouseClick += delegate(Control snd, MouseEventArgs e)
-			{
-				if (!rb_rod.Checked)
-					swap_pieces();
+				swap_pieces();
 			};
 
 			#endregion
@@ -329,14 +332,14 @@ namespace gearit.src.GUI
 			lb.Style = "itemMenu";
 			background.Content.Controls.Add(lb);
 
-			piece_size.Text = "8";
-			piece_size.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
-			piece_size.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
-			piece_size.Style = "menuTextbox";
+			_piece_size.Text = "8";
+			_piece_size.Size = new Squid.Point(124, ITEM_HEIGHT - PADDING * 3);
+			_piece_size.Position = new Squid.Point(lb.Size.x + 8, y + PADDING + 1);
+			_piece_size.Style = "menuTextbox";
 			background.Content.Controls.Add(lb);
-			piece_size.Mode = TextBoxMode.Numeric;
-			piece_size.Enabled = false;
-			background.Content.Controls.Add(piece_size);
+			_piece_size.Mode = TextBoxMode.Numeric;
+			_piece_size.Enabled = false;
+			background.Content.Controls.Add(_piece_size);
 
 			y += ITEM_HEIGHT;
 			
@@ -348,26 +351,26 @@ namespace gearit.src.GUI
 			lb.Style = "itemMenu";
 			background.Content.Controls.Add(lb);
 
-			piece_x.Text = "15";
-			piece_x.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
-			piece_x.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
-			piece_x.Style = "menuTextbox";
-			piece_x.Enabled = false;
-			background.Content.Controls.Add(lb);
+			_piece_x.Text = "15";
+			_piece_x.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
+			_piece_x.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
+			_piece_x.Style = "menuTextbox";
+			_piece_x.Enabled = false;
+			background.Content.Controls.Add(_piece_x);
 
 			lb = new Label();
 			lb.Text = "Y";
 			lb.Size = new Squid.Point(20, ITEM_HEIGHT);
-			lb.Position = new Squid.Point(piece_x.Position.x + piece_x.Size.x + PADDING * 3, y);
+			lb.Position = new Squid.Point(_piece_x.Position.x + _piece_x.Size.x + PADDING * 3, y);
 			lb.Style = "itemMenu";
 			background.Content.Controls.Add(lb);
 
-			piece_y.Text = "81";
-			piece_y.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
-			piece_y.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
-			piece_y.Style = "menuTextbox";
-			piece_y.Enabled = false;
-			background.Content.Controls.Add(piece_y);
+			_piece_y.Text = "81";
+			_piece_y.Size = new Squid.Point(67, ITEM_HEIGHT - PADDING * 3);
+			_piece_y.Position = new Squid.Point(lb.Position.x + lb.Size.x + PADDING, y + PADDING + 1);
+			_piece_y.Style = "menuTextbox";
+			_piece_y.Enabled = false;
+			background.Content.Controls.Add(_piece_y);
 
 			y += ITEM_HEIGHT + PADDING;
 
@@ -407,7 +410,7 @@ namespace gearit.src.GUI
 			lb.Text = "SPOT DATA";
 			lb.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			lb.Position = new Squid.Point(0, y);
-			lb.Style = "itemMenuSubTitle";
+			lb.Style = "itemMenuSubtitle";
 			lb.Parent = spot_container;
 
 			y += lb.Size.y + PADDING;
@@ -910,8 +913,7 @@ namespace gearit.src.GUI
 
 		public void swap_pieces()
 		{
-			rb_wheel.Checked = !rb_wheel.Checked;
-			rb_rod.Checked = !rb_rod.Checked;
+			IsWheel = !IsWheel;
 		}
 
 		public void Update(Piece piece, ISpot spot)
@@ -924,11 +926,11 @@ namespace gearit.src.GUI
 				piece_weight.Text = piece.Weight.ToString();
 			}
 
-			label_weight.Text = "WEIGHT " + RobotEditor.Instance.Robot.Weight.ToString();
-			label_force.Text = "FORCE " + RobotEditor.Instance.Robot.MaxForce.ToString();
-			piece_size.Text = piece.getSize().ToString();
-			piece_x.Text = piece.Position.X.ToString();
-			piece_y.Text = piece.Position.Y.ToString();
+			_box_weight.Text = RobotEditor.Instance.Robot.Weight.ToString();
+			_box_force.Text = RobotEditor.Instance.Robot.MaxForce.ToString();
+			_piece_size.Text = Math.Round(piece.getSize(), 2).ToString();
+			_piece_x.Text = Math.Round(piece.Position.X, 2).ToString();
+			_piece_y.Text = Math.Round(piece.Position.Y, 2).ToString();
 
 			updateRod(piece);
 			updateSpot(spot);

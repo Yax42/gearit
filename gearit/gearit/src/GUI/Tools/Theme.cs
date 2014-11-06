@@ -13,12 +13,16 @@ namespace gearit.src.GUI.Tools
 		{
 			public Color Primitive;
 			public Color PrimitiveDark;
+			public Color PrimitiveLight;
+			public Color PrimitiveHalfLight;
+			public Color PrimitiveSuperLight;
 			public Color Blackie;
 			public Color Dark;
 			public Color DarkLight;
 			public Color Light;
 			public Color Grayie;
 			public Color Weird;
+			public Color White;
 		};
 
 		static	public Dictionary<String, ThemeInfo> Themes = new Dictionary<string,ThemeInfo>();
@@ -30,13 +34,17 @@ namespace gearit.src.GUI.Tools
 			#region themes
 			ThemeInfo info = new ThemeInfo();
 			info.Primitive = new Color(159, 23, 27, 255);
-			info.PrimitiveDark = new Color(73, 31, 35, 255);
+			info.PrimitiveDark = new Color(123, 31, 35, 255);
+			info.PrimitiveLight = new Color(198, 134, 129, 255);
+			info.PrimitiveHalfLight = new Color(204, 159, 146, 255);
+			info.PrimitiveSuperLight = new Color(191, 56, 56, 255);
 			info.Blackie = new Color(0, 0, 0, 255);
 			info.Dark = new Color(73, 35, 33, 255);
 			info.DarkLight = new Color(95, 61, 49, 255);
-			info.Light = new Color(181, 126, 96, 255);
+			info.Light = new Color(207, 177, 158, 255);
 			info.Grayie = new Color(226, 212, 201, 255);
 			info.Weird = new Color(164, 80, 70, 255);
+			info.White = new Color(255, 255, 255, 255);
 			Themes.Add("Red", info);
 			CurrentTheme = info;
 
@@ -96,6 +104,10 @@ namespace gearit.src.GUI.Tools
 			buttonStyle.TextPadding = new Margin(0);
 			buttonStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle buttonListStyle = new ControlStyle();
+			buttonListStyle.TextPadding = new Margin(8, 0, 8, 0);
+			buttonListStyle.TextAlign = Alignment.MiddleLeft;
+
 			ControlStyle tooltipStyle = new ControlStyle();
 			tooltipStyle.TextPadding = new Margin(8);
 			tooltipStyle.TextAlign = Alignment.TopLeft;
@@ -148,6 +160,10 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle comboButtonStyle = new ControlStyle();
 
+			ControlStyle scoringStyle = new ControlStyle();
+			ControlStyle itemScoringStyle = new ControlStyle();
+			itemScoringStyle.TextAlign = Alignment.MiddleCenter;
+
 			ControlStyle multilineStyle = new ControlStyle();
 			multilineStyle.TextAlign = Alignment.TopLeft;
 			multilineStyle.TextPadding = new Margin(8);
@@ -176,6 +192,9 @@ namespace gearit.src.GUI.Tools
 			ControlStyle itemListStyle = new ControlStyle();
 			itemListStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle itemListFrameStyle = new ControlStyle();
+			itemListFrameStyle.TextAlign = Alignment.MiddleCenter;
+
 			ControlStyle itemMenuTitleStyle = new ControlStyle();
 			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
@@ -202,6 +221,8 @@ namespace gearit.src.GUI.Tools
 
 			ControlStyle panelStyle = new ControlStyle();
 
+			skin.Styles.Add("itemScoring", itemScoringStyle);
+			skin.Styles.Add("scoring", scoringStyle);
 			skin.Styles.Add("message", messageStyle);
 			skin.Styles.Add("textwhite", textStyle);
 			skin.Styles.Add("textblack", textStyleB);
@@ -209,6 +230,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("menuTextbox", inputStyle);
 			skin.Styles.Add("messagebox", messageBoxStyle);
 			skin.Styles.Add("button", buttonStyle);
+			skin.Styles.Add("buttonList", buttonListStyle);
 			skin.Styles.Add("window", windowStyle);
 			skin.Styles.Add("frame", frameStyle);
 			skin.Styles.Add("checkBox", checkButtonStyle);
@@ -232,6 +254,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("menu", menuStyle);
 			skin.Styles.Add("itemMenu", itemMenuStyle);
 			skin.Styles.Add("itemList", itemListStyle);
+			skin.Styles.Add("itemListFrame", itemListFrameStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
 			skin.Styles.Add("itemMenuSubtitle", itemMenuSubtitleStyle);
 			skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
@@ -270,9 +293,10 @@ namespace gearit.src.GUI.Tools
             style.TextColor = ColorInt.RGBA(0.0f, 0.0f, 0.0f, 1.0f);
 
             style = styles["menuTextbox"];
-			style.TextColor = toInt(info.Weird);
-			style.BackColor = removeAlpha(toInt(info.Weird), 100);
-			style.Default.BackColor = removeAlpha(toInt(info.Light), 150);
+			style.TextColor = toInt(info.Dark);
+			style.BackColor = toInt(info.PrimitiveHalfLight);
+			style.Default.BackColor = toInt(info.Light);// removeAlpha(toInt(info.Light), 150);
+			style.Default.TextColor = toInt(info.Weird);// removeAlpha(toInt(info.Light), 150);
 
 			style = styles["messagebox"];
 			style.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
@@ -313,23 +337,17 @@ namespace gearit.src.GUI.Tools
 			style = styles["itemMenu"];
 			style.TextColor = toInt(info.Weird);
 
-			style = styles["itemList"];
-			style.TextColor = toInt(info.Grayie);
-			style.BackColor = toInt(info.Light);
-			style.Default.TextColor = toInt(info.Primitive);
-			style.Default.BackColor = 0;
-
 			style = styles["itemMenuTitle"];
-			style.BackColor = toInt(info.Primitive);
-			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
+			style.BackColor = toInt(info.PrimitiveDark);
+			style.TextColor = toInt(info.White);
 
 			style = styles["itemMenuSubtitle"];
-			style.BackColor = removeAlpha(toInt(info.Primitive), 150);
+			style.BackColor = toInt(info.PrimitiveLight);
 			style.TextColor = toInt(info.Primitive);
 
 			style = styles["itemMenuButton"];
 			style.TextColor = toInt(info.Grayie);
-			style.BackColor = toInt(info.Light);
+			style.BackColor = toInt(info.PrimitiveSuperLight);
 			style.Default.BackColor = toInt(info.Primitive);
 			style.Checked.BackColor = toInt(info.Primitive);
 			style.CheckedHot.BackColor = toInt(info.Light);
@@ -354,17 +372,43 @@ namespace gearit.src.GUI.Tools
 			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
 
 			style = styles["button"];
-			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
-			style.BackColor = toInt(info.PrimitiveDark);
+			style.TextColor = toInt(info.White);
+			style.BackColor = toInt(info.PrimitiveSuperLight);
+			style.Default.BackColor = toInt(info.Primitive);
+			style.Checked.BackColor = toInt(info.Dark);
+
+			style = styles["buttonList"];
+			style.TextColor = toInt(info.White);
+			style.BackColor = toInt(info.PrimitiveSuperLight);
 			style.Default.BackColor = toInt(info.Primitive);
 
 			style = styles["frame"];
-			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
+			style.TextColor = toInt(info.White);
 			style.BackColor = toInt(info.Primitive);
 
 			style = styles["panel"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = toInt(info.Grayie);
+
+			style = styles["item"];
+			style.TextColor = toInt(info.White);
+			style.BackColor = toInt(info.Primitive);
+			style.Default.TextColor = toInt(info.White);
+			style.Default.BackColor = toInt(info.PrimitiveSuperLight);
+
+			style = styles["itemListFrame"];
+			style.Default.BackColor = toInt(info.PrimitiveSuperLight);
+			style.BackColor = toInt(info.PrimitiveSuperLight);
+
+			style = styles["itemScoring"];
+			style.Checked.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.CheckedHot.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = removeAlpha(toInt(info.Primitive), 10);
+			style.Default.BackColor = 0;
+
+			style = styles["scoring"];
+			style.Default.BackColor = toInt(info.PrimitiveLight);
 		}
 
 		static public int removeAlpha(int color, int alpha)
@@ -375,6 +419,22 @@ namespace gearit.src.GUI.Tools
 		static public int toInt(Color color)
 		{
 			return (ColorInt.FromArgb(color.A, color.R, color.G, color.B));
+		}
+
+		static public void InitComboBox(DropDownList combo)
+		{
+			combo.Label.Style = "buttonList";
+			combo.Button.Style = "";
+			combo.Listbox.Margin = new Margin(0, 0, 0, 0);
+			combo.Listbox.Style = "itemListFrame";
+			combo.Listbox.Scrollbar.Size = new Squid.Point(0, 0);
+			combo.Listbox.Scrollbar.ButtonUp.Style = "vscrollUp";
+			combo.Listbox.Scrollbar.ButtonUp.Size = new Squid.Point(0, 0);
+			combo.Listbox.Scrollbar.ButtonDown.Style = "vscrollUp";
+			combo.Listbox.Scrollbar.ButtonDown.Size = new Squid.Point(0, 0);
+			combo.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
+			combo.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
+			combo.DropdownSize = new Squid.Point(50, 200);
 		}
 	}
 }

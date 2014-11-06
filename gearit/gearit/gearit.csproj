@@ -126,6 +126,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\debug\DebugViewXNA.cs" />
     <Compile Include="src\debug\PrimitiveBatch.cs" />
+    <Compile Include="src\editor\map\action\ActionSetAxis.cs" />
     <Compile Include="src\editor\robot\action\ActionChangeRodLimit.cs" />
     <Compile Include="src\editor\robot\action\ActionNewRobot.cs" />
     <Compile Include="src\GUI\DrawGame.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
     <Compile Include="src\GUI\Editors\ConditionModifierBox.cs" />
     <Compile Include="src\GUI\Editors\ConditionNode.cs" />
+    <Compile Include="src\GUI\Menus\MenuRunServer.cs" />
+    <Compile Include="src\GUI\Menus\MenuSolo.cs" />
     <Compile Include="src\GUI\Menus\MenuLocal.cs" />
     <Compile Include="src\GUI\Menus\MenuPlay.cs" />
     <Compile Include="src\GUI\Menus\MenuOptions.cs" />

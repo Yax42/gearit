@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using gearit.src.editor.map;
+using gearit.src.Network;
 
 namespace gearit.src.script.api.game
 {
@@ -39,7 +40,7 @@ namespace gearit.src.script.api.game
 				{
 					for (ContactEdge c = b2.ContactList; c != null; c = c.Next)
 					{
-						if (c.Other == b)
+						if (c.Other == b && c.Contact.IsTouching)
 							return (true);
 					}
 				}
@@ -55,7 +56,7 @@ namespace gearit.src.script.api.game
 			{
 				for (ContactEdge c = chunkapi.__Chunk.ContactList; c != null; c = c.Next)
 				{
-					if (c.Other == b)
+					if (c.Other == b && c.Contact.IsTouching)
 						return (true);
 				}
 			}
@@ -65,14 +66,28 @@ namespace gearit.src.script.api.game
 
 
 		#region Score
-		public void IntScore(int score)
+		public int IntScore
 		{
-			__Robot.Score.IntScore = score;
+			get
+			{
+				return __Robot.Score.IntScore;
+			}
+			set
+			{
+				__Robot.Score.IntScore = value;
+			}
 		}
 
-		public void FloatScore(float score)
+		public float FloatScore
 		{
-			__Robot.Score.FloatScore = score;
+			get
+			{
+				return __Robot.Score.FloatScore;
+			}
+			set
+			{
+				__Robot.Score.FloatScore = value;
+			}
 		}
 
 		public void StateScore(string strState)
@@ -88,6 +103,30 @@ namespace gearit.src.script.api.game
 			get
 			{
 				return __Robot.LastTrigger;
+			}
+		}
+
+		public void DynamicCamera()
+		{
+			if (GameLuaScript.IsServer)
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, true, Vector2.Zero, 0), __Robot.Id);
+			else
+				GameLuaScript.Instance.Game.Camera.EnablePositionTracking = true;
+		}
+
+		public void StaticCamera(GameObjectApi o, float zoom)
+		{
+			if (GameLuaScript.IsServer)
+				NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.Camera(__Robot.Id, false, o.Position, zoom), __Robot.Id);
+			else
+				GameLuaScript.Instance.Game.Camera.StaticCamera(o.Position, zoom);
+		}
+
+		public int Id
+		{
+			get
+			{
+				return __Robot.Id;
 			}
 		}
 
@@ -119,9 +158,11 @@ namespace gearit.src.script.api.game
 
 			set
 			{
-				if (GameLuaScript.IsServer)
-					GameLuaScript.PacketManager.TeleportRobot(__Robot.Id, value);
 				__Robot.Position = value;
+				if (GameLuaScript.IsServer)
+					NetworkServer.Instance.PushRequest(GameLuaScript.PacketManager.TeleportRobot(__Robot.Id, value));
+				else
+					GameLuaScript.Instance.Game.Camera.Jump2Target();
 			}
 		}
 

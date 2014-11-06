@@ -109,6 +109,14 @@ namespace gearit.src.Network
 				p.YoungestRequest = msg;
 		}
 
+		public bool IsSenderValid(NetIncomingMessage r)
+		{
+			foreach (Peer p in Peers)
+				if (p.Connect == r.SenderConnection)
+					return true;
+			return false;
+		}
+
 		public Peer GetPeer(NetIncomingMessage request)
 		{
 			return ((Peer)request.SenderConnection.Tag);
@@ -120,6 +128,11 @@ namespace gearit.src.Network
 		}
 
 		protected abstract byte[] Events { get; set; }
+
+		public void PushEvent(byte[] data)
+		{
+			Events = Events.Concat(data).ToArray();
+		}
 
 		public void SendRequests()
 		{
@@ -159,17 +172,19 @@ namespace gearit.src.Network
 			}
 		}
 
-		public void Send(Robot r)
+		public void PushRequest(byte[] data)
 		{
-			byte[] res = FrameCountByte;
+			foreach (Peer p in Peers)
+				PushRequest(data, p);
 		}
 
-		public void PushRequest(byte[] data, Peer p = null)
+		public void PushRequest(byte[] data, int id)
 		{
-            if (Peers.Count == 0)
-                return;
-			if (p == null)
-				p = Peers.First();
+			PushRequest(data, PeerFromId(id));
+		}
+
+		private void PushRequest(byte[] data, Peer p)
+		{
 			p.ToSend = p.ToSend.Concat(data).ToArray();
 		}
 
@@ -178,11 +193,21 @@ namespace gearit.src.Network
 			TransformToSend = TransformToSend.Concat(data).ToArray();
 		}
 
+		public abstract void RemovePeer(Peer p);
+
 		public void ApplyRequests()
 		{
 			ApplyBruteRequests();
 			foreach (NetIncomingMessage request in Requests)
-				PacketManager.ApplyRequest(request, IsYoungest(request));
+			{
+				if (request.Data.Count() >= 5 && request.Data[4] == (byte)PacketManager.CommandId.Disconnect)
+				{
+					RemovePeer(GetPeer(request));
+					break;
+				}
+				else
+					PacketManager.ApplyRequest(request, IsYoungest(request));
+			}
 			CleanRequests();
 		}
 

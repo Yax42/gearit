@@ -89,11 +89,7 @@ namespace gearit.src.editor.map
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
-				changeSubmenu(new ScreenPickManager(true, true,
-				delegate()
-				{
-					ScreenManager.AddScreen(new GearitGame(ScreenPickManager.RobotPath, ScreenPickManager.MapPath));
-				}));
+				changeSubmenu(new MenuSolo());
 			};
 
 			y += btn.Size.y;
@@ -108,25 +104,22 @@ namespace gearit.src.editor.map
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
-				changeSubmenu(new ScreenPickManager(true, false,
-				delegate()
-				{
-					NetworkServer.Start(INetwork.SERVER_PORT, ScreenPickManager.MapPath);
-				}));
+				changeSubmenu(new MenuRunServer());
 			};
-
 
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}
 
 		public override void UnloadContent()
 		{
+			ScreenPickManager.Exit = true;
 			if (current_menu != null)
 				ScreenManager.Instance.RemoveScreen(current_menu);
 		}
 
 		public void changeSubmenu(GameScreen submenu)
 		{
+			ScreenPickManager.Exit = true;
 			if (current_menu != null)
 				ScreenManager.Instance.RemoveScreen(current_menu);
 			current_menu = submenu;
@@ -151,12 +144,16 @@ namespace gearit.src.editor.map
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+			if (ScreenManager.IsIngame)
+				return;
             dk_play.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+			if (ScreenManager.IsIngame)
+				return;
             dk_play.Draw();
 		}
 
