@@ -337,6 +337,14 @@ namespace gearit.src.GUI.Tools
 			style = styles["itemMenu"];
 			style.TextColor = toInt(info.Weird);
 
+			style = styles["itemList"];
+			style.Checked.TextColor = toInt(info.PrimitiveLight);
+			style.Checked.BackColor = toInt(info.PrimitiveDark);
+			style.TextColor = toInt(info.Primitive);
+			style.BackColor = toInt(info.PrimitiveLight);
+			style.Default.TextColor = toInt(info.Primitive);
+			style.Default.BackColor = 0;
+
 			style = styles["itemMenuTitle"];
 			style.BackColor = toInt(info.PrimitiveDark);
 			style.TextColor = toInt(info.White);
