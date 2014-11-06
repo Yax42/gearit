@@ -56,7 +56,7 @@ namespace gearit.src.editor.robot.action
 				if (Input.Shift)
 				{
 					float factor = 2f * (float) Math.PI / 16f;
-					int res = (int) (angle / factor - 0.5f);
+					int res = (int) (angle / factor);
 					return res * factor;
 				}
 				else

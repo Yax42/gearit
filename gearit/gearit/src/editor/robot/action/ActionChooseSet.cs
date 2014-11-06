@@ -25,13 +25,17 @@ namespace gearit.src.editor.robot.action
 
 		public void init()
 		{
-			IsWheel = !IsWheel;
+			if (Input.justPressed(Keys.A))
+				IsWheel = !IsWheel;
+			else if (Input.justPressed(Keys.G))
+				MenuRobotEditor.Instance.SwitchScriptVisibility();
 		}
 
 		public bool shortcut()
 		{
-			return (Input.CtrlShift(false, false)
-					&& (Input.justPressed(Keys.A)));
+			return Input.CtrlShift(false, false)
+					&& (Input.justPressed(Keys.A)
+					|| Input.justPressed(Keys.G));
 		}
 
 		public bool run()

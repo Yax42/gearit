@@ -107,7 +107,6 @@ namespace gearit.src.editor.robot
 				}
 
 				MenuRobotEditor.Instance.refreshScriptEditor();
-				MenuRobotEditor.Instance.PanelScript.Visible = true;
 			}
 		}
 

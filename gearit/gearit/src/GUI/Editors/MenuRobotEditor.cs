@@ -77,6 +77,7 @@ namespace gearit.src.GUI
 
 		// Script editor
 		private Panel _panelScript = new Panel();
+		private Button _btnScriptEditor;
 		public Panel PanelScript
 		{
 			get
@@ -643,7 +644,8 @@ namespace gearit.src.GUI
 				Process.Start(RobotEditor.Instance.Robot.LuaFullPath);
 			};
 
-			btn = new Button();
+			_btnScriptEditor = new Button();
+			btn = _btnScriptEditor;
 			btn.Text = "Script Editor";
 			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
@@ -652,7 +654,7 @@ namespace gearit.src.GUI
 			btn.Tooltip = "Toggle the script editor";
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				_panelScript.Visible = !_panelScript.Visible;
+				SwitchScriptVisibility();
 			};
 
 			y += btn.Size.y / 2+ PADDING;
@@ -698,13 +700,13 @@ namespace gearit.src.GUI
 
 			_panelScript.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
 			_panelScript.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
-
 			// Add event
 			btn_add_event.Parent = _panelScript;
 			btn_add_event.Size = new Point(_panelScript.Size.x, ITEM_HEIGHT);
 			btn_add_event.Position = new Point(0, 0);
 			btn_add_event.Text = "Add a new event";
 			btn_add_event.Style = "addEventButton";
+
 			btn_add_event.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				// Add new event
@@ -993,6 +995,12 @@ namespace gearit.src.GUI
 		public Point getMenuPosition()
 		{
 			return (background.Position);
+		}
+
+		public void SwitchScriptVisibility()
+		{
+			_panelScript.Visible = !_panelScript.Visible;
+			_btnScriptEditor.Checked = _panelScript.Visible;
 		}
 	}
 }
