@@ -101,8 +101,9 @@ namespace gearit.src.GUI.Tools
 			itemStyle.TextAlign = Alignment.MiddleLeft;
 
 			ControlStyle buttonStyle = new ControlStyle();
-			buttonStyle.TextPadding = new Margin(0);
 			buttonStyle.TextAlign = Alignment.MiddleCenter;
+
+			ControlStyle volumeStyle = new ControlStyle();
 
 			ControlStyle buttonListStyle = new ControlStyle();
 			buttonListStyle.TextPadding = new Margin(8, 0, 8, 0);
@@ -200,11 +201,8 @@ namespace gearit.src.GUI.Tools
 			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
 			ControlStyle itemMenuSubtitleStyle = new ControlStyle();
-			itemMenuTitleStyle.TextAlign = Alignment.MiddleCenter;
-			itemMenuTitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
-
-			ControlStyle itemMenuButtonStyle = new ControlStyle();
-			itemMenuButtonStyle.TextAlign = Alignment.MiddleCenter;
+			itemMenuSubtitleStyle.TextAlign = Alignment.MiddleLeft;
+			itemMenuSubtitleStyle.TextPadding = new Squid.Margin(8, 0, 0, 0);
 
 			ControlStyle itemPickButtonStyle = new ControlStyle();
 			itemPickButtonStyle.TextAlign = Alignment.BottomCenter;
@@ -230,6 +228,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("menuTextbox", inputStyle);
 			skin.Styles.Add("messagebox", messageBoxStyle);
 			skin.Styles.Add("button", buttonStyle);
+			skin.Styles.Add("volume", volumeStyle);
 			skin.Styles.Add("buttonList", buttonListStyle);
 			skin.Styles.Add("window", windowStyle);
 			skin.Styles.Add("frame", frameStyle);
@@ -257,7 +256,6 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("itemListFrame", itemListFrameStyle);
 			skin.Styles.Add("itemMenuTitle", itemMenuTitleStyle);
 			skin.Styles.Add("itemMenuSubtitle", itemMenuSubtitleStyle);
-			skin.Styles.Add("itemMenuButton", itemMenuButtonStyle);
 			skin.Styles.Add("eventPanel", eventPanelStyle);
 			skin.Styles.Add("treeNodeText", treeNodeTextStyle);
 			skin.Styles.Add("addEventButton", addEventButtonStyle);
@@ -353,12 +351,19 @@ namespace gearit.src.GUI.Tools
 			style.BackColor = toInt(info.PrimitiveLight);
 			style.TextColor = toInt(info.Primitive);
 
-			style = styles["itemMenuButton"];
-			style.TextColor = toInt(info.Grayie);
+			style = styles["button"];
+			style.TextColor = toInt(info.White);
 			style.BackColor = toInt(info.PrimitiveSuperLight);
 			style.Default.BackColor = toInt(info.Primitive);
-			style.Checked.BackColor = toInt(info.Primitive);
-			style.CheckedHot.BackColor = toInt(info.Light);
+			style.Checked.BackColor = toInt(info.PrimitiveSuperLight);
+			style.Checked.TextColor = toInt(info.White);
+			//style.CheckedHot.TextColor = toInt(info.PrimitiveDark);
+			//style.CheckedHot.BackColor = toInt(info.PrimitiveLight);
+
+			style = styles["volume"];
+			style.BackColor = toInt(info.PrimitiveSuperLight);
+			style.Default.BackColor = toInt(info.Primitive);
+			style.Checked.BackColor = removeAlpha(toInt(info.Primitive), 150);
 
 			style = styles["itemPickButton"];
 			style.TextColor = ColorInt.RGBA(1f, 1f, 1f, 1);
@@ -372,18 +377,13 @@ namespace gearit.src.GUI.Tools
 			style.Checked.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 			style.CheckedHot.BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.2f);
 
+
 			styles["treeNodeText"].BackColor = ColorInt.RGBA(0.5f, 0.5f, 1, 0.0f);
 
 			style = styles["addEventButton"];
 			style.TextColor = ColorInt.RGBA(.8f, .8f, .8f, 1);
 			style.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.15f);
 			style.Default.BackColor = ColorInt.RGBA(0.5f, 1, 0.5f, 0.1f);
-
-			style = styles["button"];
-			style.TextColor = toInt(info.White);
-			style.BackColor = toInt(info.PrimitiveSuperLight);
-			style.Default.BackColor = toInt(info.Primitive);
-			style.Checked.BackColor = toInt(info.Dark);
 
 			style = styles["buttonList"];
 			style.TextColor = toInt(info.White);

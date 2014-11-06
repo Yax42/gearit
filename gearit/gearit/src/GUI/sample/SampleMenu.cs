@@ -95,7 +95,7 @@ namespace gearit.src.GUI.sample
 			// Circle
 			btn = rb_ball;
 			btn.Text = "EXIT";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
@@ -108,7 +108,7 @@ namespace gearit.src.GUI.sample
 
 			btn = rb_wall;
 			btn.Text = "Wall";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
@@ -152,7 +152,7 @@ namespace gearit.src.GUI.sample
 			Help_btn = new Button();
 			btn = Help_btn;
 			btn.Text = "Help (F1)";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;

@@ -84,7 +84,7 @@ namespace gearit.src.GUI
 			y = ScreenManager.Height - ITEM_HEIGHT;
 			var btn = rb_exit;
 			btn.Text = "EXIT";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;

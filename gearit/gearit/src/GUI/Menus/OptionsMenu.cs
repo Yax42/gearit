@@ -83,7 +83,8 @@ namespace gearit.src.GUI.OptionsMenu
 			Button btn = _btnFullScreen;
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(lb.Position.x + lb.Size.x, (ITEM_HEIGHT + PADDING) * id);
-			if (ScreenManager.Instance.IsFullScreen)
+			btn.Checked = ScreenManager.Instance.IsFullScreen;
+			if (btn.Checked)
 				btn.Text = "Yes";
 			else
 				btn.Text = "No";
@@ -91,7 +92,8 @@ namespace gearit.src.GUI.OptionsMenu
 			_background.Content.Controls.Add(btn);
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				if (_btnFullScreen.Text == "No")
+				_btnFullScreen.Checked = !_btnFullScreen.Checked;
+				if (_btnFullScreen.Checked)
 					_btnFullScreen.Text = "Yes";
 				else
 					_btnFullScreen.Text = "No";
@@ -104,7 +106,8 @@ namespace gearit.src.GUI.OptionsMenu
 			btn = _btnShowFps;
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - PADDING, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(lb.Position.x + lb.Size.x, (ITEM_HEIGHT + PADDING) * id);
-            if (ScreenManager.Game.Components.Contains(_frc))
+			btn.Checked = ScreenManager.Game.Components.Contains(_frc);
+            if (btn.Checked)
 				btn.Text = "Yes";
 			else
 				btn.Text = "No";
@@ -112,7 +115,8 @@ namespace gearit.src.GUI.OptionsMenu
 			_background.Content.Controls.Add(btn);
 			btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
-				if (_btnShowFps.Text == "No")
+				_btnShowFps.Checked = !_btnShowFps.Checked;
+				if (_btnShowFps.Checked)
 					_btnShowFps.Text = "Yes";
 				else
 					_btnShowFps.Text = "No";
@@ -125,10 +129,11 @@ namespace gearit.src.GUI.OptionsMenu
 			_btnVolume = new Button[10];
 			for (int i = 0; i < 10; i++)
 			{
+				int yPadding = (i + 1) * ITEM_HEIGHT / 10;
 				btn = new Button();
-				btn.Size = new Squid.Point(VOLUME_WIDTH, ITEM_HEIGHT);
-				btn.Position = new Squid.Point(MENU_WIDTH - (11 - i) * (VOLUME_WIDTH + 1) - PADDING, (ITEM_HEIGHT + PADDING) * id);
-				btn.Style = "button";
+				btn.Size = new Squid.Point(VOLUME_WIDTH, yPadding);
+				btn.Position = new Squid.Point(MENU_WIDTH - (11 - i) * (VOLUME_WIDTH + 1) - PADDING, (ITEM_HEIGHT + PADDING) * id + ITEM_HEIGHT- yPadding);
+				btn.Style = "volume";
 				btn.Tag = i;
 				btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 				{
@@ -138,6 +143,19 @@ namespace gearit.src.GUI.OptionsMenu
 				};
 				_background.Content.Controls.Add(btn);
 				_btnVolume[i] = btn;
+
+				btn = new Button();
+				btn.Size = new Squid.Point(VOLUME_WIDTH + PADDING, ITEM_HEIGHT);
+				btn.Position = new Squid.Point(MENU_WIDTH - (11 - i) * (VOLUME_WIDTH + 1) - PADDING, (ITEM_HEIGHT + PADDING) * id);
+				btn.Style = "";
+				btn.Tag = i;
+				btn.MouseDown += delegate(Control snd, MouseEventArgs e)
+				{
+					_volume = (int) snd.Tag;
+					for (int j = 0; j < 10; j++)
+						_btnVolume[j].Checked = (j > _volume);
+				};
+				_background.Content.Controls.Add(btn);
 			}
 
 			// Save button
@@ -146,13 +164,13 @@ namespace gearit.src.GUI.OptionsMenu
 			_save_btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
             _save_btn.Position = new Squid.Point(0, (ITEM_HEIGHT + PADDING) * id);
 			_save_btn.Text = "SAVE";
-            _save_btn.Style = "itemMenuButton";
+            _save_btn.Style = "button";
 			_background.Content.Controls.Add(_save_btn);
 
 			_save_btn.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
 				// Apply fullscreen option
-				if (_btnFullScreen.Text == "Yes")
+				if (_btnFullScreen.Checked)
 					ScreenManager.Instance.activeFullScreen();
 				else
 					ScreenManager.Instance.deactivFullScreen();
@@ -167,7 +185,7 @@ namespace gearit.src.GUI.OptionsMenu
 				}
 
                 //Apply fps
-                if (_btnShowFps.Text == "Yes")
+                if (_btnShowFps.Checked)
                 {
                     if (!ScreenManager.Game.Components.Contains(_frc))
                     {

@@ -124,7 +124,7 @@ namespace gearit.src.editor.map
 			/*
 			btn = new Button();
 			btn.Text = "Object";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
@@ -139,7 +139,7 @@ namespace gearit.src.editor.map
 			// Circle
 			btn = rb_ball;
 			btn.Text = "Ball";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -149,7 +149,7 @@ namespace gearit.src.editor.map
 
 			btn = rb_wall;
 			btn.Text = "Wall";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			background.Content.Controls.Add(btn);
@@ -261,7 +261,7 @@ namespace gearit.src.editor.map
 			Help_btn = new Button();
 			btn = Help_btn;
 			btn.Text = "Help (F1)";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -275,7 +275,7 @@ namespace gearit.src.editor.map
 			// Load
 			btn = new Button();
 			btn.Text = "Load";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -287,7 +287,7 @@ namespace gearit.src.editor.map
 
 			btn = new Button();
 			btn.Text = "Save";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
 			background.Content.Controls.Add(btn);
@@ -299,7 +299,7 @@ namespace gearit.src.editor.map
 
 			btn = new Button();
 			btn.Text = "Save as";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
 			background.Content.Controls.Add(btn);

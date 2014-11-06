@@ -139,7 +139,7 @@ namespace gearit.src.gui
 			btn_refresh.Position = new Squid.Point(0, 0);
 			btn_refresh.Size = new Squid.Point(80, 30);
 			btn_refresh.Text = "REFRESH";
-			btn_refresh.Style = "itemMenuButton";
+			btn_refresh.Style = "button";
             btn_refresh.MouseClick += new MouseEvent(btn_MouseClick);
 
 			olv.Position = new Squid.Point(0, 100);

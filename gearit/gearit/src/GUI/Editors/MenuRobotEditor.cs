@@ -109,7 +109,7 @@ namespace gearit.src.GUI
 		{
 			get
 			{
-				return rb_pieceChoice.Text == "Wheel";
+				return rb_pieceChoice.Checked;
 			}
 			set
 			{
@@ -117,6 +117,7 @@ namespace gearit.src.GUI
 					rb_pieceChoice.Text = "Wheel";
 				else
 					rb_pieceChoice.Text = "Rod";
+				rb_pieceChoice.Checked = value;
 			}
 		}
 
@@ -231,7 +232,7 @@ namespace gearit.src.GUI
 			int x = 0;
 			Button btn = new Button();
 			btn.Text = "Piece";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point((int) (MENU_WIDTH / 2f), ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -246,11 +247,12 @@ namespace gearit.src.GUI
 			// Circle
 			btn = rb_pieceChoice;
 			btn.Text = "Rod";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH - x, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(x, y);
 			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
+			btn.Checked = false;
 			btn.Tooltip = "(A)";
 			y += btn.Size.y + 2; 
 
@@ -534,7 +536,7 @@ namespace gearit.src.GUI
 			// Link
 			btn = new Button();
 			btn.Text = "Link (Shift+W)";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			btn.Parent = this;
@@ -547,7 +549,7 @@ namespace gearit.src.GUI
 			// Remove
 			btn = new Button();
 			btn.Text = "Delete (R)";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2 + 1, y);
 			btn.Parent = this;
@@ -566,7 +568,7 @@ namespace gearit.src.GUI
 			Help_btn = new Button();
 			btn = Help_btn;
 			btn.Text = "Help (F1)";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(3 * MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 4 + 1, y);
 			background.Content.Controls.Add(btn);
@@ -579,7 +581,7 @@ namespace gearit.src.GUI
 			btn = Exit_btn;
 			btn.Text = "Exit";
 			btn.Tooltip = "Escape";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 4 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -593,7 +595,7 @@ namespace gearit.src.GUI
 			// Load
 			btn = new Button();
 			btn.Text = "Load";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -605,7 +607,7 @@ namespace gearit.src.GUI
 
 			btn = new Button();
 			btn.Text = "Save";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 3 + 1, y);
 			background.Content.Controls.Add(btn);
@@ -617,7 +619,7 @@ namespace gearit.src.GUI
 
 			btn = new Button();
 			btn.Text = "Save as";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 3 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH * 2 / 3 + 1, y);
 			background.Content.Controls.Add(btn);
@@ -631,7 +633,7 @@ namespace gearit.src.GUI
 
 			btn = new Button();
 			btn.Text = "Edit Script";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2 - 1, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -643,7 +645,7 @@ namespace gearit.src.GUI
 
 			btn = new Button();
 			btn.Text = "Script Editor";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH / 2, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(MENU_WIDTH / 2, y);
 			background.Content.Controls.Add(btn);

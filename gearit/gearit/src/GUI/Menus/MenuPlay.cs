@@ -51,7 +51,7 @@ namespace gearit.src.editor.map
 
 			Button btn = new Button();
 			btn.Text = "ONLINE";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -64,7 +64,7 @@ namespace gearit.src.editor.map
 
 			btn = new Button();
 			btn.Text = "LOCAL";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -80,7 +80,7 @@ namespace gearit.src.editor.map
 
 			btn = new Button();
 			btn.Text = "SOLO";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
@@ -95,7 +95,7 @@ namespace gearit.src.editor.map
 			y += btn.Size.y;
 			btn = new Button();
 			btn.Text = "RUN SERVER";
-			btn.Style = "itemMenuButton";
+			btn.Style = "button";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
