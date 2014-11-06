@@ -49,7 +49,7 @@ namespace gearit.xna
 		private int _frameCounter;
 		private int _frameRate;
 
-		private Desktop _desktop;
+		public Desktop _desktop;
 		private Label _label;
 		private int _ms_elapsed;
 		private int _duration;
@@ -262,6 +262,12 @@ namespace gearit.xna
                 GraphicsDevice.Viewport.Height, 0,    // bottom, top
                 0, 1); 
 		}
+
+        public void QuickLoadContent()
+        {
+            _desktop.Size = new Squid.Point(this.Width, this.Height);
+            ChatBox.QuickLoadContent();
+        }
 
 		/// <summary>
 		/// Unload your graphics content.

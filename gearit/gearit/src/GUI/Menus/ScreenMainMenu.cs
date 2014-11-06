@@ -152,6 +152,17 @@ namespace GUI
 			#endregion
 		}
 
+        public override void QuickLoadContent()
+        {
+            base.QuickLoadContent();
+            _dk_main_menu.Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
+            dk_listbox.Size = new Squid.Point(MENU_LIST_WIDTH, (int)(ScreenManager.Height / 1.45f));
+            _dk_main_menu.Update();
+            dk_listbox.Update();
+            _dk_main_menu.Draw();
+            dk_listbox.Draw();
+        }
+
 		public bool CatchExit = true;
 		public bool CatchExitLock
 		{

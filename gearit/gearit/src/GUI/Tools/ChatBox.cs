@@ -93,6 +93,13 @@ namespace gearit.src.GUI
 			Toggle();
 		}
 
+        static public void QuickLoadContent()
+        {
+            _chat_box.Size = new Squid.Point(Math.Min(Width, ScreenManager.Instance.Width), Height);
+            _chat_box.Position = new Point(ScreenManager.Instance.Width - Math.Min(Width, ScreenManager.Instance.Width) - 4, 4);
+            _chat_box.Update();
+        }
+
 		static public void Update()
 		{
 			_chat_box.Update();

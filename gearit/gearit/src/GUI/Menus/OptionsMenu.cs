@@ -38,7 +38,6 @@ namespace gearit.src.GUI.OptionsMenu
 			_screen = screen;
 		}
 
-
 		public override void LoadContent()
 		{
 			base.LoadContent();
@@ -143,10 +142,21 @@ namespace gearit.src.GUI.OptionsMenu
 
 				// Apply volume level
 
-
+                ScreenManager.Instance.QuickLoadContent();
+                GameScreen[] _screens = ScreenManager.GetScreens();
+                foreach (GameScreen screen in _screens)
+                {
+                    screen.QuickLoadContent();
+                }
                 
 			};
 		}
+
+        public override void QuickLoadContent()
+        {
+            base.QuickLoadContent();
+            _desktop.Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);
+        } 
 
 		public override void Update(GameTime gameTime)
 		{
@@ -207,7 +217,6 @@ namespace gearit.src.GUI.OptionsMenu
 			dropBox.Listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
 			dropBox.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
 			dropBox.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
-
 			_background.Content.Controls.Add(dropBox);
 			dropBox.Focus();
 			return (dropBox);

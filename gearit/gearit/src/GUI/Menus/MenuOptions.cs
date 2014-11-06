@@ -25,10 +25,12 @@ namespace gearit.src.gui
     {
         static private Desktop _desktop;
         static private ScreenManager _screen;
-        static private Control background = new Control();
+        //static private Control background = new Control();
+        private Panel background = new Panel();
         static private Button btn_save;
         static public int Width = 21;
         static public int Height = 20;
+        static public int MENU_WIDTH = 220;
         private ListBox lb_resolution;
         private ListBox lb_antialiasing;
         private CheckBox cb_fullScreen;
@@ -36,6 +38,7 @@ namespace gearit.src.gui
         private CheckBox cb_showFps;
         private FrameRateCounter frc = null;
         DropDownList combo = new DropDownList();
+        private int padding_x;
 
 		public MenuOptions() : base(false)
 		{
@@ -48,9 +51,26 @@ namespace gearit.src.gui
             frc = new FrameRateCounter(ScreenManager);
             VisibleMenu = true;
             _desktop = new Desktop();
-            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
+            /*_desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH, 0);
             _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH, ScreenManager.Height);
+            */
+            
+            padding_x = MapEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
+            // MapEditor.Instance.VisibleMenu = true;
+            //ShowCursor = true;
+            int padding_y = ScreenMainMenu.RESERVED_HEIGHT;
+            _desktop.Position = new Squid.Point(0, 0);
+
+            // Full width to get the cursor propagation
+            _desktop.Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);
+
+            int y = 0;
+
+            background.Parent = _desktop;
+            background.Style = "menu";
+            background.Position = new Squid.Point(0, 0);
+            background.Size = new Squid.Point(MENU_WIDTH, ScreenManager.Instance.Height);
            
             combo.Size = new Squid.Point(158, 100 / 2);
             combo.Position = new Squid.Point(200, 100 / 2 - combo.Size.y / 2);
@@ -68,6 +88,7 @@ namespace gearit.src.gui
             combo.Listbox.Scrollbar.Slider.Margin = new Margin(0, 2, 0, 2);
             combo.Listbox.Scrollbar.Slider.Style = "vscrollTrack";
             combo.Listbox.Scrollbar.Slider.Button.Style = "vscrollButton";
+            background.Content.Controls.Add(combo);
             combo.Parent = _desktop;
             combo.Opened += delegate(Control sender, SquidEventArgs args)
             {
@@ -173,7 +194,10 @@ namespace gearit.src.gui
             _desktop.Update();
         }
 
-
+        public void positionChanged(int x, int y)
+        {
+            background.Position = new Squid.Point(x, y);
+        }
 
         private void HandleInput()
         {
