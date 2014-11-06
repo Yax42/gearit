@@ -436,7 +436,7 @@ namespace gearit.src.robot
 				&& RobotEditor.Instance.CurrentAction == ActionTypes.CHANGE_ROD_LIMIT
 				&& ActionChangeRodLimit.P2 == _pieces[i])
 					continue;
-				dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i].Shown ? 128 : 32);
+				dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i].Shown ? 128 : 16);
 			}
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].drawDebug(dg);

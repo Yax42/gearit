@@ -12,6 +12,8 @@ namespace gearit.src.script.api.game
 		{
 		}
 
+		public float PI { get { return (float)Math.PI; } }
+
 		public Vector2 Mul(Vector2 a, float b)
 		{
 			return a * b;

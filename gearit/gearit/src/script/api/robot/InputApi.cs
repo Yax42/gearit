@@ -16,6 +16,26 @@ namespace gearit.src.script
 		{
 		}
 
+		public bool Pressed(int key)
+		{
+			return (Input.pressed((Keys)key));
+		}
+
+		public bool Released(int key)
+		{
+			return (Input.released((Keys)key));
+		}
+
+		public bool JustPressed(int key)
+		{
+			return (Input.justPressed((Keys)key));
+		}
+
+		public bool JustReleased(int key)
+		{
+			return (Input.justReleased((Keys)key));
+		}
+
 		public bool pressed(int key)
 		{
 			return (Input.pressed((Keys)key));
