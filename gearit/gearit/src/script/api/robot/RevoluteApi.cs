@@ -38,6 +38,24 @@ namespace gearit.src.script
 		}
 
 		public float Angle { get { return _spot.JointAngle; } }
+		public float Cycle
+		{
+			get
+			{
+				float a = 0.5f * _spot.JointAngle / (float)Math.PI;
+				float b =  a - (float) Math.Floor(a);
+				if (a < 0)
+					b -= 1;
+				return b;
+			}
+		}
+
+		public bool IsBetween(float min, float max)
+		{
+			float v = Cycle;
+			Console.Out.WriteLine(v);
+			return v >= min && v <= max;
+		}
 
 		public bool Frozen
 		{
