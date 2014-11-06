@@ -60,6 +60,7 @@ namespace gearit.src.editor.robot.action
 
 		public bool shortcut()
 		{
+			return false;
 			return Input.CtrlShift(false, false)
 				&& Input.justPressed(Keys.Q)
 				&& RobotEditor.Instance.Select2.GetType() == typeof(Rod);
