@@ -122,12 +122,12 @@ namespace gearit.src.robot
 
 		#region Serialization
 		public Robot(SerializationInfo info, StreamingContext ctxt)
+			: base(SerializerHelper.CurrentPath)
 		{
 			IsInEditor = SerializerHelper.IsNextRobotInEditor;
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
-			FullPath = SerializerHelper.CurrentPath;
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
 			this._pieces = (List<Piece>)info.GetValue("Pieces", typeof(List<Piece>));
 			//foreach (Piece p in _pieces)

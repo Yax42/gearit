@@ -38,13 +38,12 @@ namespace gearit.src.map
 		//
 		// SERIALISATION
 		//
-		public Map(SerializationInfo info, StreamingContext ctxt)
+		public Map(SerializationInfo info, StreamingContext ctxt)			: base(SerializerHelper.CurrentPath)
 		{
 			_world = SerializerHelper.World;
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
 			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
-			FullPath = SerializerHelper.CurrentPath;
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)

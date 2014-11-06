@@ -40,8 +40,11 @@ namespace gearit.src.editor.robot.action
 				if (p.GetType() == typeof(Rod))
 					((Rod)p).GenerateEnds();
 			}
+			return false;
+		}
 
-			// Lua
+		public static void LoadLua()
+		{
 			var filename = RobotEditor.Instance.Robot.LuaFullPath;
 			string lua = "";
 
@@ -68,8 +71,6 @@ namespace gearit.src.editor.robot.action
 			}
 			OutputManager.LogInfo("Lua - Generate script editor based on Lua", filename);
 			LuaManager.SetLua(lua);
-
-			return false;
 		}
 
 		public void revert() { }

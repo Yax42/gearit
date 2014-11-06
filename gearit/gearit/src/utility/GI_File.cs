@@ -8,8 +8,9 @@ using System.Runtime.Serialization;
 
 namespace gearit.src.utility
 {
-	abstract class GI_File
+	class GI_File
 	{
+		private DateTime LastTimeWritten;
 		public string RelativePath = "";
 		public string FileNameWithoutExtension = "";
 		public string Extension = "";
@@ -33,18 +34,36 @@ namespace gearit.src.utility
 					RelativePath = Path.GetDirectoryName(value);
 					FileNameWithoutExtension = Path.GetFileNameWithoutExtension(value);
 					Extension = Path.GetExtension(value);
+					ResetLastTimeModified();
 				}
 			}
 		}
 
-		public GI_File()
-		{}
+		public void ResetLastTimeModified()
+		{
+			LastTimeWritten = File.GetLastWriteTime(FullPath);
+		}
+
+		public bool HasBeenModified
+		{
+			get
+			{
+				var tmp = File.GetLastWriteTime(FullPath);
+				if (tmp.CompareTo(LastTimeWritten) > 0)
+				{
+					LastTimeWritten = tmp;
+					return true;
+				}
+				return false;
+			}
+		}
 
 		public GI_File(string path, string name, string ext)
 		{
 			RelativePath = path;
 			FileNameWithoutExtension = name;
 			Extension = ext;
+			ResetLastTimeModified();
 		}
 
 		public GI_File(string fullPath)
@@ -52,6 +71,8 @@ namespace gearit.src.utility
 			FullPath = fullPath;
 		}
 
-		abstract public void Save();
+		virtual public void Save()
+		{
+		}
 	}
 }

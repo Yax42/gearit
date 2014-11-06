@@ -142,13 +142,17 @@ namespace gearit.src.editor.robot
 
 			// Robot
 			DrawGame = DrawGame.Instance;
-			Robot = new Robot(_world, true);
+			_Robot = new Robot(_world, true);
 
 			selectHeart();
 
-			// Menu
+			// Menu : cette partie requiert le Robot d'etre charge
 			new MenuRobotEditor(ScreenManager);
 			ActionChooseSet.IsWheel = false;
+
+			// Cette partie requiert le Menu d'etre charge
+			ActionLoadRobot.LoadLua();
+			LuaScript = new GI_File(RobotEditor.Instance.Robot.LuaFullPath);
 		}
 
 		public override void positionChanged(int x, int y)
@@ -191,6 +195,8 @@ namespace gearit.src.editor.robot
 
 			// Permet d'update le robot sans le faire bouger (vu qu'il avance de zéro secondes dans le temps)
 			_world.Step(0f);
+			if (LuaScript.HasBeenModified)
+				ActionLoadRobot.LoadLua();
 
 			base.Update(gameTime);
 		}
@@ -346,7 +352,19 @@ namespace gearit.src.editor.robot
 		//-----------------------ROBOT-------------------------------------
 
 
-		public Robot Robot;
+		private Robot _Robot;
+		public Robot Robot
+		{
+			get
+			{
+				return _Robot;
+			}
+			set
+			{
+				_Robot = value;
+				LuaScript = new GI_File(RobotEditor.Instance.Robot.LuaFullPath);
+			}
+		}
 
 		public void resetRobot(Robot bot)
 		{
@@ -361,6 +379,8 @@ namespace gearit.src.editor.robot
 		public void deleteRobot()
 		{
 		}
+
+		private GI_File LuaScript;
 
 		//-----------------------------------------------------------------
 
