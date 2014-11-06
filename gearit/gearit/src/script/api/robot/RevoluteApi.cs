@@ -53,7 +53,6 @@ namespace gearit.src.script
 		public bool IsBetween(float min, float max)
 		{
 			float v = Cycle;
-			Console.Out.WriteLine(v);
 			return v >= min && v <= max;
 		}
 

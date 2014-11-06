@@ -53,28 +53,42 @@ end
 
 if Input:JustPressed(K_F) then
 	shelling = true
+	if inShell then
+		shellMin = 0
+		shellMax = 0.1
+	else
+		shellMin = 0.4
+		shellMax = 0.5
+	end
 end
 if shelling then
-	if not inShell then
-		if not spot7:isBetween(0.3, 0.4) then
+	ok = true
+	if inShell then
+		if not spot7:isBetween(0, 0.1) then		
 			spot7:AddLimitsCycle(1)
-			spot8:AddLimitsCycle(-1)
 			spot7.Motor = 0.1
+			ok = false
+		end
+		if not spot8:isBetween(-0.1, 0) then		
+			spot8:AddLimitsCycle(-1)
 			spot8.Motor = -0.1
-		else
-			shelling = false
-			inShell = true
+			ok = false
 		end
 	else
-		if not spot7:isBetween(0, 0.1) then
+			if not spot7:isBetween(0.5, 0.6) then		
 			spot7:AddLimitsCycle(1)
-			spot8:AddLimitsCycle(-1)
 			spot7.Motor = 0.1
-			spot8.Motor = -0.1
-		else
-			shelling = false
-			inShell = false
+			ok = false
 		end
+		if not spot8:isBetween(-0.6, -0.5) then		
+			spot8:AddLimitsCycle(-1)
+			spot8.Motor = -0.1
+			ok = false
+		end
+	end
+	if ok then
+		shelling = false
+		inShell = not inShell
 	end
 end
 
