@@ -132,8 +132,8 @@ namespace gearit.src.gui
             VisibleMenu = true;
 
             _desktop = new Desktop();
-            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH, 0);
-            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH  - MenuPlay.MENU_WIDTH, ScreenManager.Height);
+            _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH + 1, 0);
+            _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH  - MenuPlay.MENU_WIDTH - 1, ScreenManager.Height);
 
 			btn_refresh.Parent = _desktop;
 			btn_refresh.Position = new Squid.Point(0, 0);
@@ -144,18 +144,20 @@ namespace gearit.src.gui
 
 			olv.Position = new Squid.Point(0, 100);
 			olv.Dock = DockStyle.Fill;
+            olv.Columns.Add(new ListView.Column { Text = "", Aspect = "", Width = 0, MinWidth = 4 });
             olv.Columns.Add(new ListView.Column { Text = "NAME", Aspect = "Name", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "IP", Aspect = "Host", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "PLAYERS", Aspect = "Players", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "MAP", Aspect = "Map", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "TIME", Aspect = "Time", Width = 20, MinWidth = 48 });
             olv.Columns.Add(new ListView.Column { Text = "PING", Aspect = "Ping", Width = 20, MinWidth = 48 });
-            olv.Columns[0].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[0].Width = (4);
             olv.Columns[1].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.Columns[2].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.Columns[3].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.Columns[4].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.Columns[5].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
+            olv.Columns[6].Width = (ScreenManager.Width - ScreenMainMenu.MENU_WIDTH) / 8;
             olv.FullRowSelect = true;
             olv.Parent = _desktop;
             olv.Style = "itemList";
