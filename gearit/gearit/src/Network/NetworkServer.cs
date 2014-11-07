@@ -9,6 +9,7 @@ using gearit.src.output;
 using Lidgren.Network;
 using System.Diagnostics;
 using gearit.src.robot;
+using gearit.src.editor.map;
 
 namespace gearit.src.Network
 {
@@ -41,9 +42,10 @@ namespace gearit.src.Network
 
        static public void Start(int port, string mapPath)
 		{
-			//Debug.Assert(!Running);
+			Debug.Assert(!Running);
 			if (Running)
 				Instance.Stop();
+			MenuPlay.Instance.SetServerBtn(true);
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
             config.MaximumConnections = 100;
             config.Port = port;
@@ -77,6 +79,7 @@ namespace gearit.src.Network
                 serverThread.Abort();
                 Peer.Shutdown("Requested by user");
             }
+			MenuPlay.Instance.SetServerBtn(false);
 			Running = false;
         }
 

@@ -30,8 +30,11 @@ namespace gearit.src.editor.map
 		static public int PADDING_NODE = 24;
 		static public int HEIGHT_NODE = 50;
 
+		public static MenuPlay Instance { get; private set; }
+
 		private Desktop dk_play = new Desktop();
 		private Panel background = new Panel();
+		private Button _btnServer;
 
 		private ScreenManager _ScreenManager;
 
@@ -39,6 +42,7 @@ namespace gearit.src.editor.map
 
 		public MenuPlay() : base(false)
 		{
+			Instance = this;
 			dk_play.Position = new Squid.Point(0, 0);
 			dk_play.Size = new Squid.Point(ScreenManager.Instance.Width, ScreenManager.Instance.Height);
 
@@ -93,20 +97,27 @@ namespace gearit.src.editor.map
 			};
 
 			y += btn.Size.y;
-			btn = new Button();
-			btn.Text = "RUN SERVER";
-			btn.Style = "button";
+			_btnServer = new Button();
+			btn = _btnServer;
+			btn.Style = "buttonServer";
 			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
+			UpdateServerBtnText();
 			btn.Cursor = Cursors.Move;
 			y += btn.Size.y;
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
-				changeSubmenu(new MenuRunServer());
+				if (_btnServer.Checked)
+				{
+					NetworkServer.Instance.Stop();
+				}
+				else
+				{
+					changeSubmenu(new MenuRunServer());
+				}
 			};
-
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}
 
@@ -166,5 +177,19 @@ namespace gearit.src.editor.map
         {
             return "Play menu";
         }
+
+		public void UpdateServerBtnText()
+		{
+			if (_btnServer.Checked)
+				_btnServer.Text = "STOP SERVER";
+			else
+				_btnServer.Text = "RUN SERVER";
+		}
+
+		public void SetServerBtn(bool v)
+		{
+			_btnServer.Checked = v;
+			UpdateServerBtnText();
+		}
 	}
 }
