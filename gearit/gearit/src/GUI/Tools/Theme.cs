@@ -103,6 +103,9 @@ namespace gearit.src.GUI.Tools
 			ControlStyle buttonStyle = new ControlStyle();
 			buttonStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle buttonServerStyle = new ControlStyle();
+			buttonServerStyle.TextAlign = Alignment.MiddleCenter;
+
 			ControlStyle volumeStyle = new ControlStyle();
 
 			ControlStyle buttonListStyle = new ControlStyle();
@@ -229,6 +232,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("menuTextbox", inputStyle);
 			skin.Styles.Add("messagebox", messageBoxStyle);
 			skin.Styles.Add("button", buttonStyle);
+			skin.Styles.Add("buttonServer", buttonServerStyle);
 			skin.Styles.Add("volume", volumeStyle);
 			skin.Styles.Add("buttonList", buttonListStyle);
 			skin.Styles.Add("window", windowStyle);
@@ -371,6 +375,15 @@ namespace gearit.src.GUI.Tools
 			style.Checked.TextColor = toInt(info.White);
 			//style.CheckedHot.TextColor = toInt(info.PrimitiveDark);
 			//style.CheckedHot.BackColor = toInt(info.PrimitiveLight);
+
+			style = styles["buttonServer"];
+			style.TextColor = toInt(info.White);
+			style.BackColor = toInt(info.PrimitiveSuperLight);
+			style.Default.BackColor = toInt(info.Primitive);
+			style.Checked.BackColor = ColorInt.RGBA(0, 0.3f, 0, 1);
+			style.Checked.TextColor = toInt(info.White);
+			style.CheckedHot.TextColor = toInt(info.White);
+			style.CheckedHot.BackColor = ColorInt.RGBA(0.2f, 0.5f, 0, 1);
 
 			style = styles["volume"];
 			style.BackColor = toInt(info.PrimitiveSuperLight);
