@@ -139,10 +139,11 @@ namespace gearit.src.Network
 			ScreenManager.Game.ResetElapsedTime();
 
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
+			config.ConnectionTimeout = 2000;
+			config.ResendHandshakeInterval = 1;
+			config.MaximumHandshakeAttempts = 2;
 			NetworkClient = new NetworkClient(config, PacketManager);
 			PacketManager.Network = NetworkClient;
-			//NetworkClient.Connect("85.68.238.220", 25552, PacketManager);
-			//NetworkClient.Connect("81.249.189.167", 25552);
 			NetworkClient.Connect(IpServer, INetwork.SERVER_PORT);
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
@@ -206,6 +207,8 @@ namespace gearit.src.Network
 			if (NetworkClient.State != NetworkClient.EState.Connected)
 			{
 				if (Status == Status.Run)
+					Exit();
+				else if (NetworkClient.State == NetworkClient.EState.Disconnected)
 					Exit();
 				return;
 			}

@@ -85,11 +85,25 @@ namespace gearit.src.editor.map
 			btn.Position = new Squid.Point(0, y);
 			background.Content.Controls.Add(btn);
 			btn.Cursor = Cursors.Move;
-			y += btn.Size.y;
+			y += btn.Size.y + PADDING;
 
 			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
 			{
 				changeSubmenu(new MenuSolo());
+			};
+
+			btn = new Button();
+			btn.Text = "CONNECT IP";
+			btn.Style = "button";
+			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
+			btn.Position = new Squid.Point(0, y);
+			background.Content.Controls.Add(btn);
+			btn.Cursor = Cursors.Move;
+			y += btn.Size.y;
+
+			btn.MouseClick += delegate(Control snd, MouseEventArgs evt)
+			{
+				changeSubmenu(new MenuConnectIP());
 			};
 
 			y += btn.Size.y;

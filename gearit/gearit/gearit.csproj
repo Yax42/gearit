@@ -146,6 +146,7 @@
     <Compile Include="src\GeneticAlgorithm\LifeManager.cs" />
     <Compile Include="src\GUI\Editors\ConditionModifierBox.cs" />
     <Compile Include="src\GUI\Editors\ConditionNode.cs" />
+    <Compile Include="src\GUI\Menus\MenuConnectIP.cs" />
     <Compile Include="src\GUI\Menus\MenuRunServer.cs" />
     <Compile Include="src\GUI\Menus\MenuSolo.cs" />
     <Compile Include="src\GUI\Menus\MenuLocal.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="src\GUI\Picker\ScreenPickManager.cs" />
     <Compile Include="src\GUI\Picker\ScreenPickMap.cs" />
     <Compile Include="src\GUI\Picker\ScreenPickRobot.cs" />
+    <Compile Include="src\GUI\Tools\MessageBoxInput.cs" />
     <Compile Include="src\GUI\Tools\Theme.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Network\INetwork.cs" />
