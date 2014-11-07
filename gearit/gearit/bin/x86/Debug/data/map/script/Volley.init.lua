@@ -1,5 +1,3 @@
-nb_player = 0
-
 Object_Ball.Static = true
 Object_Ball.IsBullet = true
 Object_Ball.Restitution = 0.7
