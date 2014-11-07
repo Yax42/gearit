@@ -6,6 +6,7 @@ using Squid;
 using gearit.xna;
 using gearit.src.output;
 using gearit.src.utility;
+using Microsoft.Xna.Framework.Input;
 
 namespace gearit.src.GUI
 {
@@ -104,7 +105,8 @@ namespace gearit.src.GUI
 		{
 			_chat_box.Update();
 
-            if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F2))
+            if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F2)
+				|| Input.PadJustPressed(Buttons.Back))
             {
                 ChatBox.Toggle();
             }

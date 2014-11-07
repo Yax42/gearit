@@ -70,6 +70,7 @@ namespace gearit.xna
 			: base(game)
 		{
 			Instance = this;
+			Input.Init();
 			// When drawing in other threads
 			mutex = new Mutex();
 			// we must set EnabledGestures before we can query for them, but
@@ -315,7 +316,7 @@ namespace gearit.xna
 			beginDrawing();
 
 			// Update input
-			Input.update();
+			Input.Update();
 
 			// Make a copy of the master screen list, to avoid confusion if
 			// the process of updating one screen adds or removes others.

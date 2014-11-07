@@ -3,6 +3,7 @@ using gearit.src.editor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using gearit.xna;
+using System;
 
 namespace gearit.src.utility
 {
@@ -26,23 +27,43 @@ namespace gearit.src.utility
 		static private KeyboardState _keyboard;
 		static private KeyboardState _old_keyboard;
 
+		// Pad
+		public const int NumberOfPad = 4;
+		static private GamePadState[] _pad;
+		static private GamePadState[] _old_pad;
+
 		static private bool _usedExit = false;
 
-		static public void init()
+		static public void Init()
 		{
-			_keyboard = Keyboard.GetState();
-			_mouse = Mouse.GetState();
+			_pad = new  GamePadState[NumberOfPad];
+			_old_pad = new  GamePadState[NumberOfPad];
 			VirtualSimMousePos = Vector2.Zero;
-
+			UpdateStates();
+			_old_keyboard = Keyboard.GetState();
+			_old_mouse = Mouse.GetState();
+			for (int i = 0; i < NumberOfPad; i++)
+				_old_pad[i] = GamePad.GetState((PlayerIndex) i);
 		}
 
-		static public void update()
+		static private void UpdateStates()
+		{
+			_keyboard = Keyboard.GetState();
+			_mouse = Mouse.GetState();
+			for (int i = 0; i < NumberOfPad; i++)
+				_pad[i] = GamePad.GetState((PlayerIndex)i);
+		
+		}
+
+		static public void Update()
 		{
 			_usedExit = false;
+
 			_old_mouse = _mouse;
 			_old_keyboard = _keyboard;
-			_mouse = Mouse.GetState();
-			_keyboard = Keyboard.GetState();
+			for (int i = 0; i < NumberOfPad; i++)
+				_old_pad[i] = _pad[i];
+			UpdateStates();
 		}
 
 		static public bool Exit
@@ -97,10 +118,7 @@ namespace gearit.src.utility
 			return (new Vector2(_mouse.X - _old_mouse.X, _mouse.Y - _old_mouse.Y));
 		}
 
-		/*****************/
-		/* MOUSE ACTIONS */
-		/*****************/
-
+		#region Mouse
 		static public bool pressed(MouseKeys key)
 		{
 			if (!ScreenManager.HasFocus) return false;
@@ -145,10 +163,9 @@ namespace gearit.src.utility
 				return (_mouse.MiddleButton != ButtonState.Pressed && _old_mouse.MiddleButton == ButtonState.Pressed);
 			return (false);
 		}
+		#endregion
 
-		/********************/
-		/* KEYBOARD ACTIONS */
-		/********************/
+		#region Keyboard
 		static public bool pressed(Keys key)
 		{
 			if (!ScreenManager.HasFocus) return false;
@@ -227,6 +244,7 @@ namespace gearit.src.utility
 			return (keys);
 		}
 
+		#region CtrlAltShift
 		static public bool Alt
 		{
 			get
@@ -260,5 +278,65 @@ namespace gearit.src.utility
 		{
 			return (ctrl == Ctrl && shift == Shift);
 		}
+		#endregion
+		#endregion
+
+		#region GamePad
+		static private bool PadPressed(GamePadState state, Buttons button)
+		{
+			return state.IsButtonDown(button);
+		}
+
+		static public bool PadPressed(Buttons button, int id = 0)
+		{
+			if (!ScreenManager.HasFocus) return false;
+			return PadPressed(_pad[id], button);
+		}
+
+		static public bool PadReleased(Buttons button, int id = 0)
+		{
+			if (!ScreenManager.HasFocus) return true;
+			return (!PadPressed(button, id));
+		}
+
+		static public bool PadJustPressed(Buttons button, int id = 0)
+		{
+			if (!ScreenManager.HasFocus) return false;
+			return PadPressed(_pad[id], button) && !PadPressed(_old_pad[id], button);
+		}
+
+		static public bool PadJustReleased(Buttons button, int id = 0)
+		{
+			if (!ScreenManager.HasFocus) return false;
+			return !PadPressed(_pad[id], button) && PadPressed(_old_pad[id], button);
+		}
+
+		static public float PadTrigger(bool isLeft, int id = 0)
+		{
+			if (isLeft)
+				return _pad[id].Triggers.Left;
+			else
+				return _pad[id].Triggers.Right;
+		}
+
+		static public float PadAngle(bool isLeft, int id = 0)
+		{
+			Vector2 dir;
+			if (isLeft)
+				dir = _pad[id].ThumbSticks.Left;
+			else
+				dir = _pad[id].ThumbSticks.Right;
+			return (float) Math.Atan2(dir.X, dir.Y);
+		}
+
+		static public Vector2 PadStick(bool isLeft, int id = 0)
+		{
+			if (isLeft)
+				return _pad[id].ThumbSticks.Left;
+			else
+				return _pad[id].ThumbSticks.Right;
+		}
+
+		#endregion
 	}
 }

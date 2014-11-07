@@ -55,5 +55,45 @@ namespace gearit.src.script
 		{
 			return (Input.justReleased((Keys)key));
 		}
+
+		public bool PadPressed(int button, int id = 0)
+		{
+			return Input.PadPressed((Buttons)button, id);
+		}
+
+		public bool PadReleased(int button, int id = 0)
+		{
+			return Input.PadReleased((Buttons)button, id);
+		}
+
+		public bool PadJustPressed(int button, int id = 0)
+		{
+			return Input.PadJustPressed((Buttons)button, id);
+		}
+
+		public bool PadJustReleased(int button, int id = 0)
+		{
+			return Input.PadJustReleased((Buttons)button, id);
+		}
+
+		public float PadTrigger(bool isLeft, int id = 0)
+		{
+			return Input.PadTrigger(isLeft, id);
+		}
+
+		public float PadStick_X(bool isLeft, int id = 0)
+		{
+			return Input.PadStick(isLeft, id).X;
+		}
+
+		public float PadStick_Y(bool isLeft, int id = 0)
+		{
+			return Input.PadStick(isLeft, id).Y;
+		}
+
+		public float PadAngle(bool isLeft, int id = 0)
+		{
+			return Input.PadAngle(isLeft, id);
+		}
 	}
 }
