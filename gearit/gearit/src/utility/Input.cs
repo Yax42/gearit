@@ -17,7 +17,6 @@ namespace gearit.src.utility
 	static class Input
 	{
 		// Input for LUA
-		static Dictionary<Keys, string> _map_keys;
 
 		// Mouse
 		static private MouseState _old_mouse;
@@ -35,60 +34,6 @@ namespace gearit.src.utility
 			_mouse = Mouse.GetState();
 			VirtualSimMousePos = Vector2.Zero;
 
-			// MAPPING DICTONARY KEYBOARD
-			_map_keys = new Dictionary<Keys, string>();
-			_map_keys.Add(Keys.A, "a");
-			_map_keys.Add(Keys.B, "b");
-			_map_keys.Add(Keys.C, "c");
-			_map_keys.Add(Keys.D, "d");
-			_map_keys.Add(Keys.E, "e");
-			_map_keys.Add(Keys.F, "f");
-			_map_keys.Add(Keys.G, "g");
-			_map_keys.Add(Keys.H, "h");
-			_map_keys.Add(Keys.I, "i");
-			_map_keys.Add(Keys.J, "j");
-			_map_keys.Add(Keys.K, "k");
-			_map_keys.Add(Keys.L, "l");
-			_map_keys.Add(Keys.M, "m");
-			_map_keys.Add(Keys.N, "n");
-			_map_keys.Add(Keys.O, "o");
-			_map_keys.Add(Keys.P, "p");
-			_map_keys.Add(Keys.Q, "q");
-			_map_keys.Add(Keys.R, "r");
-			_map_keys.Add(Keys.S, "s");
-			_map_keys.Add(Keys.T, "t");
-			_map_keys.Add(Keys.U, "u");
-			_map_keys.Add(Keys.V, "v");
-			_map_keys.Add(Keys.W, "w");
-			_map_keys.Add(Keys.X, "x");
-			_map_keys.Add(Keys.Y, "y");
-			_map_keys.Add(Keys.Z, "z");
-			_map_keys.Add(Keys.NumPad0, "0");
-			_map_keys.Add(Keys.NumPad1, "1");
-			_map_keys.Add(Keys.NumPad2, "2");
-			_map_keys.Add(Keys.NumPad3, "3");
-			_map_keys.Add(Keys.NumPad4, "4");
-			_map_keys.Add(Keys.NumPad5, "5");
-			_map_keys.Add(Keys.NumPad6, "6");
-			_map_keys.Add(Keys.NumPad7, "7");
-			_map_keys.Add(Keys.NumPad8, "8");
-			_map_keys.Add(Keys.NumPad9, "9");
-			_map_keys.Add(Keys.D0, "0");
-			_map_keys.Add(Keys.D1, "1");
-			_map_keys.Add(Keys.D2, "2");
-			_map_keys.Add(Keys.D3, "3");
-			_map_keys.Add(Keys.D4, "4");
-			_map_keys.Add(Keys.D5, "5");
-			_map_keys.Add(Keys.D6, "6");
-			_map_keys.Add(Keys.D7, "7");
-			_map_keys.Add(Keys.D8, "8");
-			_map_keys.Add(Keys.D9, "9");
-			_map_keys.Add(Keys.OemComma, ",");
-			_map_keys.Add(Keys.Decimal, ",");
-			_map_keys.Add(Keys.OemPeriod, ",");
-
-			//_map_keys.Add(Keys.Space, " "); rajoute le si tu veux, je l'ai désactivé pour pas qu'on mette d'espaces dans les noms
-			// END MAPPING
 		}
 
 		static public void update()
@@ -104,6 +49,7 @@ namespace gearit.src.utility
 		{
 			get
 			{
+				//Microsoft.Xna.Framework.Input.GamePad.GetState
 				if (justPressed(Keys.Escape) && !_usedExit)
 				{
 					_usedExit = true;
@@ -138,9 +84,9 @@ namespace gearit.src.utility
 			return (_old_mouse != _mouse);
 		}
 
-/*******************/
-/* MOUSE POSITIONS */
-/*******************/
+		/*******************/
+		/* MOUSE POSITIONS */
+		/*******************/
 		static public Vector2 position()
 		{
 			return (new Vector2(_mouse.X, _mouse.Y));
@@ -151,9 +97,9 @@ namespace gearit.src.utility
 			return (new Vector2(_mouse.X - _old_mouse.X, _mouse.Y - _old_mouse.Y));
 		}
 
-/*****************/
-/* MOUSE ACTIONS */
-/*****************/
+		/*****************/
+		/* MOUSE ACTIONS */
+		/*****************/
 
 		static public bool pressed(MouseKeys key)
 		{
@@ -185,7 +131,7 @@ namespace gearit.src.utility
 				return (_mouse.ScrollWheelValue - _old_mouse.ScrollWheelValue < 0);
 			if (key == MouseKeys.WHEEL_DOWN)
 				return (_mouse.ScrollWheelValue - _old_mouse.ScrollWheelValue > 0);
-		return (false);
+			return (false);
 		}
 
 		static public bool justReleased(MouseKeys key)
@@ -200,9 +146,9 @@ namespace gearit.src.utility
 			return (false);
 		}
 
-/********************/
-/* KEYBOARD ACTIONS */
-/********************/
+		/********************/
+		/* KEYBOARD ACTIONS */
+		/********************/
 		static public bool pressed(Keys key)
 		{
 			if (!ScreenManager.HasFocus) return false;
@@ -281,14 +227,6 @@ namespace gearit.src.utility
 			return (keys);
 		}
 
-		static public string keyToString(Keys key)
-		{
-			if (_map_keys.ContainsKey(key))
-				return (_map_keys[key]);
-			else
-				return ("");
-		}
-
 		static public bool Alt
 		{
 			get
@@ -322,20 +260,5 @@ namespace gearit.src.utility
 		{
 			return (ctrl == Ctrl && shift == Shift);
 		}
-
-		/********************/
-		/* KEYBOARD ACTIONS */
-		/********************/
-
-	/*
-		static public bool getKeysAction(string key)
-		{
-			_keyboard = Keyboard.GetState();
-			if (_keyboard.IsKeyDown(_keys[key]))
-				return (true);
-			else
-				return (false);
-		}
-	*/
 	}
 }
