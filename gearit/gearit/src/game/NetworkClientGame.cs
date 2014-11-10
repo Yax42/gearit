@@ -129,7 +129,6 @@ namespace gearit.src.Network
 			SerializerHelper.World = World;
 			Robot r = (Robot)Serializer.DeserializeItem(NameRobot);
 			AddRobot(r);
-			r.Id = 0;
 			MainRobotId = 0;
 			Camera.TrackingBody = r.Heart;
 			r.InitScript(this);
@@ -271,7 +270,7 @@ namespace gearit.src.Network
 			if (Status != Status.Run)
 				return;
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
-            _drawGame.drawBackground(_back, Camera, _effect);
+            //_drawGame.drawBackground(_back, Camera, _effect); //mmh consomme trop de fps
 			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);

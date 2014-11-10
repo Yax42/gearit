@@ -38,7 +38,8 @@ namespace gearit.src.map
 		//
 		// SERIALISATION
 		//
-		public Map(SerializationInfo info, StreamingContext ctxt)			: base(SerializerHelper.CurrentPath)
+		public Map(SerializationInfo info, StreamingContext ctxt)
+			: base(SerializerHelper.CurrentPath)
 		{
 			_world = SerializerHelper.World;
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
