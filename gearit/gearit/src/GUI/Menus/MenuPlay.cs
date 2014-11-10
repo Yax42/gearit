@@ -136,6 +136,15 @@ namespace gearit.src.editor.map
 			background.Size = new Squid.Point(MENU_WIDTH, y);
 		}
 
+        public override void QuickLoadContent()
+        {
+            base.QuickLoadContent();
+            dk_play.Size = new Squid.Point(ScreenManager.Width, ScreenManager.Height);           
+            dk_play.Update();
+            dk_play.Draw();
+            
+        }
+
 		public override void UnloadContent()
 		{
 			ScreenPickManager.Exit = true;

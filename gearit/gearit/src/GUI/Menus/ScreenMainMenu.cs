@@ -156,11 +156,13 @@ namespace GUI
         {
             base.QuickLoadContent();
             _dk_main_menu.Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
+            main_menu.Size = new Squid.Point(MENU_WIDTH, ScreenManager.Height);
             dk_listbox.Size = new Squid.Point(MENU_LIST_WIDTH, (int)(ScreenManager.Height / 1.45f));
             _dk_main_menu.Update();
             dk_listbox.Update();
             _dk_main_menu.Draw();
             dk_listbox.Draw();
+
         }
 
 		public bool CatchExit = true;
@@ -239,6 +241,7 @@ namespace GUI
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
 			// Draw menu border
 			Squid.Point menu_size = _current_screen.getMenuSize();
+            ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
 			if (_current_screen != null && menu_size.x != 0)
 			{
 				Squid.Point menu_pos = _current_screen.getMenuPosition();
@@ -246,7 +249,9 @@ namespace GUI
 				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
 				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
 				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4 - 0.5f, 0), Theme.CurrentTheme.Grayie);
-				ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
+                Console.WriteLine("ScreenMainMenu menu_size :" + menu_size);
+                ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
+                Console.WriteLine("ScreenMainMenu menu_position : " + _current_screen.getMenuPosition());
 			}
 
 			_dk_main_menu.Draw();

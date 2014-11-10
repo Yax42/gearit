@@ -55,7 +55,7 @@ namespace gearit.src.GUI.OptionsMenu
             _background.Parent = _desktop;
             _background.Style = "menu";
             _background.Position = new Squid.Point(0, 0);
-            _background.Size = new Squid.Point(MENU_WIDTH, (ITEM_HEIGHT + PADDING) * 11);
+            _background.Size = new Squid.Point(MENU_WIDTH, (ITEM_HEIGHT + PADDING) * 7);
 
 			ListBoxItem item = null;
 
@@ -216,13 +216,17 @@ namespace gearit.src.GUI.OptionsMenu
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+            
 			_desktop.Update();
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
+            //Console.WriteLine("OptionMenu MenuPosition : " + getMenuPosition());
+            //Console.WriteLine("OptionMenu menuSize : " + getMenuSize());
 			_desktop.Draw();
+
 		}
 
 		private Label addLabel(int posX, int idY, int sizeX, int sizeY, string label, string style)

@@ -151,7 +151,7 @@
     <Compile Include="src\GUI\Menus\MenuSolo.cs" />
     <Compile Include="src\GUI\Menus\MenuLocal.cs" />
     <Compile Include="src\GUI\Menus\MenuPlay.cs" />
-    <Compile Include="src\GUI\Menus\MenuOptions.cs" />
+    <Compile Include="src\GUI\Menus\OptionsMenu.cs" />
     <Compile Include="src\GUI\Picker\MenuPickItem.cs" />
     <Compile Include="src\GUI\Menus\MenuQuit.cs" />
     <Compile Include="src\GUI\Menus\MenuMultiplayer.cs" />
@@ -169,7 +169,6 @@
     <Compile Include="src\Network\NetworkClient.cs" />
     <Compile Include="src\game\NetworkClientGame.cs" />
     <Compile Include="src\game\NetworkServerGame.cs" />
-    <Compile Include="src\GUI\Menus\OptionsMenu.cs" />
     <Compile Include="src\script\api\game\GameChunkApi.cs" />
     <Compile Include="src\script\api\game\GameApi.cs" />
     <Compile Include="src\script\api\game\GameArtefactApi.cs" />

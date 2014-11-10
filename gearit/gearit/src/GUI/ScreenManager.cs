@@ -10,10 +10,10 @@ using gearit.src.GUI;
 using gearit.src;
 using gearit.src.editor.map;
 using gearit.src.editor.robot;
-using gearit.src.GUI.OptionsMenu;
 using gearit.src.GUI.Picker;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using gearit.src.GUI.OptionsMenu;
 
 namespace gearit.xna
 {
@@ -273,6 +273,10 @@ namespace gearit.xna
         public void QuickLoadContent()
         {
             _desktop.Size = new Squid.Point(this.Width, this.Height);
+            BasicEffect.Projection = Matrix.CreateOrthographicOffCenter
+           (0, GraphicsDevice.Viewport.Width,	 // left, right
+            GraphicsDevice.Viewport.Height, 0,	// bottom, top
+            0, 1); 
             ChatBox.QuickLoadContent();
         }
 
