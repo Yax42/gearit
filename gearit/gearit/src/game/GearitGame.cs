@@ -174,7 +174,7 @@ namespace gearit.src.game
 		public override void Draw(GameTime gameTime)
 		{
 			ScreenManager.GraphicsDevice.Clear(Color.LightYellow);
-            _drawGame.drawBackground(_back, Camera, _effect); 
+            //_drawGame.drawBackground(_back, Camera, _effect); //mmh consomme trop de fps
 			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);

@@ -69,7 +69,7 @@ namespace gearit.src.robot
 		private int _revoluteCounter = 0;
 
 		[NonSerialized]
-		public static int _robotIdCounter = 1;
+		//public static int _robotIdCounter = 1;
 		private RobotLuaScript _script;
 		public int Id
 		{
@@ -110,7 +110,7 @@ namespace gearit.src.robot
 		{
 			IsInEditor = isInEditor;
 			_world = world;
-			Id = _robotIdCounter++;
+			Id = 0;
 			_pieces = new List<Piece>();
 			_spots = new List<RevoluteSpot>();
 			new Heart(this);
@@ -137,7 +137,7 @@ namespace gearit.src.robot
 			// foreach (RevoluteSpot s in _spots)
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
-			Id = _robotIdCounter++;
+			Id = 0;
 			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
