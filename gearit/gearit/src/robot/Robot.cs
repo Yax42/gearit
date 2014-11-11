@@ -124,6 +124,8 @@ namespace gearit.src.robot
 		public Robot(SerializationInfo info, StreamingContext ctxt)
 			: base(SerializerHelper.CurrentPath)
 		{
+			//int version = (int)info.GetValue("Version", typeof(int));
+
 			IsInEditor = SerializerHelper.IsNextRobotInEditor;
 			SerializerHelper.CurrentRobot = this;
 			SerializerHelper.Ptrmap.Clear();
@@ -146,6 +148,8 @@ namespace gearit.src.robot
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
+			info.AddValue("Version", 1.0f, typeof(int));
+
 			Heart.move(new Vector2());
 			//info.AddValue("Name", Name, typeof(string));
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));

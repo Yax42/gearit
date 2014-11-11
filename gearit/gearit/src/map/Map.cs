@@ -41,6 +41,8 @@ namespace gearit.src.map
 		public Map(SerializationInfo info, StreamingContext ctxt)
 			: base(SerializerHelper.CurrentPath)
 		{
+			//int version = (int)info.GetValue("Version", typeof(int));
+
 			_world = SerializerHelper.World;
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
@@ -49,6 +51,7 @@ namespace gearit.src.map
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
+			info.AddValue("Version", 1.0f, typeof(int));
 			info.AddValue("Chunks", Chunks, typeof(List<MapChunk>));
 			info.AddValue("Artefacts", Artefacts, typeof(List<Artefact>));
 			info.AddValue("Triggers", Triggers, typeof(List<Trigger>));

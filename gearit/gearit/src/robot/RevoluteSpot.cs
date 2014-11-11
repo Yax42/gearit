@@ -382,18 +382,21 @@ namespace gearit.src.robot
 		#region Draw
 		public void draw(DrawGame game)
 		{
-			DrawDebug(game, WorldAnchorA);
-			DrawAnchorDebug(game, WorldAnchorA);
-			DrawAnchorDebug(game, WorldAnchorB);
-			//DrawLimits(game);
+				DrawDebug(game, WorldAnchorA);
+				DrawAnchorDebug(game, WorldAnchorA);
+				DrawAnchorDebug(game, WorldAnchorB);
+				//DrawLimits(game);
 		}
 
 		public void drawDebug(DrawGame game)
 		{
-			DrawDebug(game, WorldAnchorA);
-			DrawAnchorDebug(game, WorldAnchorA);
-			DrawAnchorDebug(game, WorldAnchorB);
-			DrawLimits(game);
+			if (((Piece)BodyA).Shown && ((Piece)BodyB).Shown)
+			{
+				DrawDebug(game, WorldAnchorA);
+				DrawAnchorDebug(game, WorldAnchorA);
+				DrawAnchorDebug(game, WorldAnchorB);
+				DrawLimits(game);
+			}
 		}
 
 		private void DrawAnchorDebug(DrawGame game, Vector2 pos)
