@@ -14,7 +14,7 @@ namespace gearit.src.editor.map.action
 
 		public void init()
 		{
-			_chunk = new PolygonChunk(MapEditor.Instance.World, false, Input.VirtualSimMousePos);
+			_chunk = new PolygonChunk(MapEditor.Instance.Map, false, Input.VirtualSimMousePos);
 			MapEditor.Instance.SelectChunk = _chunk;
 		}
 

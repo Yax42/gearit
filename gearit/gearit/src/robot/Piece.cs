@@ -25,6 +25,7 @@ namespace gearit.src.robot
 	abstract class Piece : Body, ISerializable
 	{
 		internal const float MaxMass = 1000;
+		public Color Color;
 
 		internal Shape Shape
 		{
@@ -87,7 +88,7 @@ namespace gearit.src.robot
 		internal Piece(SerializationInfo info) :
 			base(SerializerHelper.World)
 		{
-			_robot = SerializerHelper.CurrentRobot;
+			_robot = SerializerHelper.Robot;
 			BodyType = BodyType.Dynamic;
 			ColorValue = Color.ForestGreen;
 			Shown = true;

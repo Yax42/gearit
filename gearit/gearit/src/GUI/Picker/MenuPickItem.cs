@@ -177,7 +177,7 @@ namespace gearit.src.GUI
 					0f, 1f));*/
 
 				if (Maps[i] != null)
-					Maps[i].DrawDebug(DrawGame);
+					;// Maps[i].DrawDebug(DrawGame);
 				DrawGame.End();
 
 				x += MI_WIDTH + MI_SEPARATOR;

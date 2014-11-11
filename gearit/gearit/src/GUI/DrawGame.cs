@@ -12,6 +12,7 @@ using FarseerPhysics.Collision.Shapes;
 using gearit.src.editor;
 using FarseerPhysics.DebugViews;
 using gearit.src.robot;
+using System.Diagnostics;
 
 namespace gearit.src
 
@@ -247,7 +248,8 @@ namespace gearit.src
 
 		public void draw(Body b, Color col, int a = 128)
 		{
-			col.A = (byte) a;
+			if (a > 0)
+				col.A = (byte) a;
 			Transform xf;
 			b.GetTransform(out xf);
 			foreach (Fixture f in b.FixtureList)
@@ -346,9 +348,10 @@ namespace gearit.src
 
 		}
 
-		public void drawPolygon(Vector2[] vertices, int from, int count, Color color)
+		public void drawPolygon(Vector2[] vertices, int from, int count, Color color, bool paint = true)
 		{
-			paintPolygon(vertices, from, count, color);
+			if (paint)
+				paintPolygon(vertices, from, count, color);
 			for (int i = from; i < count + from - 1; i++)
 				DrawLine(vertices[i], vertices[i + 1], color);
 			DrawLine(vertices[from + count - 1], vertices[from], color);
@@ -370,8 +373,7 @@ namespace gearit.src
 				//drawLine(v1, v2, color);
 				theta += increment;
 			}
-			drawPolygon(vers, 0, _circleSegments, color);
-			paintPolygon(vers, 0, _circleSegments, color);
+			drawPolygon(vers, 0, _circleSegments, color, paint);
 		}
 
 		public void DrawSpirale(Vector2 pos, int total, int id, int size)
@@ -386,6 +388,29 @@ namespace gearit.src
 				Vector2 deltaPos = new Vector2((float)Math.Cos(i * 10 * Math.PI / total), (float)Math.Sin(i * 10 * Math.PI / total)) * 10f * delta;
 				DrawCircle(pos + deltaPos, ray, col, true);
 			}
+		}
+
+		public static Color GenerateColor(Vector2 origin, Vector2 pos, float ray)
+		{
+			float delta = ((float) Math.PI) * 2f / 3f;
+			pos = origin - pos;
+			float angle = (float) (Math.Atan2(pos.X, pos.Y) + Math.PI);
+			Vector3 sol;
+			int i = (int)(angle / delta);
+			if (i == 3)
+				i = 2;
+			float ratio = (angle - delta * i) / delta;
+			float r = i == 0 ? ratio : i == 1 ? 1 - ratio : 0;
+			float g = i == 1 ? ratio : i == 2 ? 1 - ratio : 0;
+			float b = i == 2 ? ratio : i == 0 ? 1 - ratio : 0;
+			float factor = 1 - pos.Length() / ray;
+			sol = new Vector3(r, g, b) + Vector3.One * factor;
+			sol.X = sol.X > 1f ? 1f : sol.X < 0 ? 0 : sol.X;
+			sol.Y = sol.Y > 1f ? 1f : sol.Y < 0 ? 0 : sol.Y;
+			sol.Z = sol.Z > 1f ? 1f : sol.Z < 0 ? 0 : sol.Z;
+			Color res = new Color(sol);
+			res.A = 255;
+			return res;
 		}
 
 		public void drawString(SpriteFont font, string text, Vector2 pos, Color col, float rotation = 0f, float scale = 0f, SpriteEffects effects = SpriteEffects.None, float depth = 0f)

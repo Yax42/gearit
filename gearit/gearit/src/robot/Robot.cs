@@ -124,10 +124,10 @@ namespace gearit.src.robot
 		public Robot(SerializationInfo info, StreamingContext ctxt)
 			: base(SerializerHelper.CurrentPath)
 		{
-			//int version = (int)info.GetValue("Version", typeof(int));
+			Version = (float)info.GetValue("Version", typeof(float));
 
 			IsInEditor = SerializerHelper.IsNextRobotInEditor;
-			SerializerHelper.CurrentRobot = this;
+			SerializerHelper.Robot = this;
 			SerializerHelper.Ptrmap.Clear();
 			_world = SerializerHelper.World;
 			_revoluteCounter = (int)info.GetValue("RevCount", typeof(int));
@@ -148,7 +148,7 @@ namespace gearit.src.robot
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-			info.AddValue("Version", 1.0f, typeof(int));
+			info.AddValue("Version", GI_Data.Version, typeof(float));
 
 			Heart.move(new Vector2());
 			//info.AddValue("Name", Name, typeof(string));

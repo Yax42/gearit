@@ -7,6 +7,7 @@ using FarseerPhysics.Collision.Shapes;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Common;
 using gearit.src.robot;
+using gearit.src.map;
 
 namespace gearit.src.editor
 {
@@ -16,7 +17,8 @@ namespace gearit.src.editor
 	static class SerializerHelper
 	{
 		public static World World = null;
-		public static Robot CurrentRobot = null;
+		public static Robot Robot = null;
+		public static Map Map = null;
 		public static string CurrentPath;
 		public static Dictionary<int, Piece> Ptrmap = null;
 		private static bool _IsNextRobotInEditor = false;

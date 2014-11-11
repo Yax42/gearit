@@ -280,7 +280,7 @@ namespace gearit.src.GeneticAlgorithm
 					DrawGame.Begin(Camera);
 #if true
 					Game.Robot.drawDebug(DrawGame);
-					Game.Map.DrawDebug(DrawGame, true);
+					Game.Map.DrawDebug(DrawGame, true, true);
 #else
 					foreach (Body b in World.BodyList)
 						DrawGame.draw(b, Color.Pink);

@@ -19,8 +19,8 @@ namespace gearit.src.map
 	[Serializable()]
 	class CircleChunk : MapChunk, ISerializable
 	{
-		public CircleChunk(World world, bool isDynamic, Vector2 pos)
-			: base(world, isDynamic, pos)
+		public CircleChunk(Map map, bool isDynamic, Vector2 pos)
+			: base(map, isDynamic, pos)
 		{
 			FixtureFactory.AttachCircle(0.5f, 1f, this);
 		}

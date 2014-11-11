@@ -8,6 +8,7 @@ using FarseerPhysics.Factories;
 using FarseerPhysics.Common;
 using FarseerPhysics.Collision.Shapes;
 using System.Runtime.Serialization;
+using gearit.src.map;
 
 namespace gearit.src.editor.map
 {
@@ -15,9 +16,17 @@ namespace gearit.src.editor.map
     /// <summary>
 	/// A Map is physically composed of MapChunks, they inherit from the fpe Body class
     /// </summary>
-	public abstract class MapChunk : Body, ISerializable
+	abstract class MapChunk : Body, ISerializable
 	{
+		public Map Map { get; protected set; }
 		public string StringId { get; set; }
+		public Color Color = Color.Brown;
+
+		public MapChunk(Map map, bool isDynamic, Vector2 pos)
+			: this(map.World, isDynamic, pos)
+		{
+			Map = map;
+		}
 
 		public MapChunk(World world, bool isDynamic, Vector2 pos)
 			: base(world)
@@ -26,6 +35,7 @@ namespace gearit.src.editor.map
 			if (isDynamic)
 				BodyType = BodyType.Dynamic;
 			CollisionCategories = Category.Cat31;
+			Map = null;
 		}
 
 		internal MapChunk(World world)
@@ -39,6 +49,9 @@ namespace gearit.src.editor.map
 		{
 			StringId = (string)info.GetValue("StringId", typeof(string));
 			CollisionCategories = Category.Cat31;
+			Map = SerializerHelper.Map;
+			if (Map.Version > 1.0f)
+				Color = (Color)info.GetValue("Color", typeof(Color));
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
@@ -46,6 +59,7 @@ namespace gearit.src.editor.map
 		internal void serializeChunk(SerializationInfo info)
 		{
 			info.AddValue("StringId", StringId, typeof(string));
+			info.AddValue("Color", Color, typeof(Color));
 		}
 
 		public bool Contain(Vector2 p)

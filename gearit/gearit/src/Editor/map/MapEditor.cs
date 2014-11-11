@@ -125,7 +125,13 @@ namespace gearit.src.editor.map
 				World = new World(Vector2.Zero);
 			else
 				World.Clear();
-			_dummyChunk = new PolygonChunk(World, false, Vector2.Zero);
+
+			ActionSwapEventMode.EventMode = false;
+
+			SerializerHelper.World = World;
+			Map = new Map(World);
+
+			_dummyChunk = new PolygonChunk(Map, false, Vector2.Zero);
 			_dummyTrigger = new Trigger(Vector2.Zero);
 			_actionsLog = new List<IAction>();
 			_redoActionsLog = new List<IAction>();
@@ -137,10 +143,6 @@ namespace gearit.src.editor.map
 			_selectedMirrorTrigger = _dummyTrigger;
 			_selectedTrigger = _dummyTrigger;
 
-			ActionSwapEventMode.EventMode = false;
-
-			SerializerHelper.World = World;
-			Map = new Map(World);
 			_prevName = Map.FullPath;
 			ScreenManager.Game.ResetElapsedTime();
 			_camera = new EditorCamera(ScreenManager.GraphicsDevice.Viewport);
@@ -317,6 +319,17 @@ namespace gearit.src.editor.map
 							col);
 		}
 
+		private void DrawPickColor()
+		{
+			if (_currentAction.Type() == ActionTypes.PICK_COLOR)
+			{
+				var act = (ActionPickColor)_currentAction;
+				DrawGame.DrawCircle(act.Origin, 0.1f, Color.White, true);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, Color.Red);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, Color.Black);
+			}
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
@@ -328,9 +341,10 @@ namespace gearit.src.editor.map
 			DrawGame.DrawGrille(new Color(0, 0, 0, 0.1f));
 
 			MirrorAxis.Active = Input.Alt;
-			Map.DrawDebug(DrawGame, ActionSwapEventMode.EventMode);
+			Map.DrawDebug(DrawGame, Input.Shift || _currentAction.Type() == ActionTypes.PICK_COLOR, ActionSwapEventMode.EventMode);
 			MirrorAxis.Active = false;
 			DrawMarks();
+			DrawPickColor();
 			DrawGame.EndPrimitive();
 			DrawStatics();
 			MenuMapEditor.Instance.Draw();

@@ -249,9 +249,9 @@ namespace GUI
 				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
 				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
 				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4 - 0.5f, 0), Theme.CurrentTheme.Grayie);
-                Console.WriteLine("ScreenMainMenu menu_size :" + menu_size);
+                //Console.WriteLine("ScreenMainMenu menu_size :" + menu_size);
                 ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
-                Console.WriteLine("ScreenMainMenu menu_position : " + _current_screen.getMenuPosition());
+                //Console.WriteLine("ScreenMainMenu menu_position : " + _current_screen.getMenuPosition());
 			}
 
 			_dk_main_menu.Draw();

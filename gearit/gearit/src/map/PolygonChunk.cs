@@ -19,6 +19,12 @@ namespace gearit.src.map
     /// </summary>
 	class PolygonChunk : MapChunk, ISerializable
 	{
+		public PolygonChunk(Map map, bool isDynamic, Vector2 pos)
+			: this(map.World, isDynamic, pos)
+		{
+			Map = map;
+		}
+
 		public PolygonChunk(World world, bool isDynamic, Vector2 pos)
 			: base(world, isDynamic, pos)
 		{

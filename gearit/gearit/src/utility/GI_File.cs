@@ -10,6 +10,7 @@ namespace gearit.src.utility
 {
 	class GI_File
 	{
+		public float Version = GI_Data.Version;
 		private DateTime LastTimeWritten;
 		public string RelativePath = "";
 		public string FileNameWithoutExtension = "";

@@ -24,12 +24,11 @@ namespace gearit.src.map
 		public List<Artefact> Artefacts;
 		public List<Trigger> Triggers;
 
-		[NonSerialized]
-		private World _world;
+		public World World { get; private set; }
 
 		public Map(World world) : base("data/map/NewMap.gim")
 		{
-			_world = world;
+			World = world;
 			Chunks = new List<MapChunk>();
 			Artefacts = new List<Artefact>();
 			Triggers = new List<Trigger>();
@@ -41,9 +40,10 @@ namespace gearit.src.map
 		public Map(SerializationInfo info, StreamingContext ctxt)
 			: base(SerializerHelper.CurrentPath)
 		{
-			//int version = (int)info.GetValue("Version", typeof(int));
+			SerializerHelper.Map = this;
+			Version = (float)info.GetValue("Version", typeof(float));
 
-			_world = SerializerHelper.World;
+			World = SerializerHelper.World;
 			Chunks = (List<MapChunk>)info.GetValue("Chunks", typeof(List<MapChunk>));
 			Artefacts = (List<Artefact>)info.GetValue("Artefacts", typeof(List<Artefact>));
 			Triggers = (List<Trigger>)info.GetValue("Triggers", typeof(List<Trigger>));
@@ -51,7 +51,7 @@ namespace gearit.src.map
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
-			info.AddValue("Version", 1.0f, typeof(int));
+			info.AddValue("Version", GI_Data.Version, typeof(float));
 			info.AddValue("Chunks", Chunks, typeof(List<MapChunk>));
 			info.AddValue("Artefacts", Artefacts, typeof(List<Artefact>));
 			info.AddValue("Triggers", Triggers, typeof(List<Trigger>));
@@ -88,7 +88,7 @@ namespace gearit.src.map
 		public void ExtractFromWorld()
 		{
 			foreach (MapChunk i in Chunks)
-				_world.RemoveBody(i);
+				World.RemoveBody(i);
 		}
 
 		public void Draw(DrawGame dg)
@@ -105,17 +105,22 @@ namespace gearit.src.map
 			}
 		}
 
-		public void DrawDebug(DrawGame dg, bool printEvents = false)
+		public void DrawDebug(DrawGame dg, bool printColor, bool printEvents)
 		{
 			Color col;
 
 			foreach(MapChunk chunk in Chunks)
 			{
-                if (MapEditor.Instance.SelectChunk == chunk)
-					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
+				if (printColor)
+					col = chunk.Color;
 				else
-					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
-				dg.draw(chunk, col);
+				{
+					if (MapEditor.Instance.SelectChunk == chunk)
+						col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
+					else
+						col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
+				}
+				dg.draw(chunk, col, printColor ? -1 : 128);
 			}
 
 			if (printEvents)

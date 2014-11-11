@@ -30,6 +30,7 @@ namespace gearit.src.editor.map.action
 		DELETE_ARTEFACT,
 		SET_TRIGGER_ID,
 		SET_AXIS,
+		PICK_COLOR,
 		COUNT,
 	}
 
@@ -95,6 +96,7 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.DELETE_ARTEFACT) return new ActionDeleteArtefact();
 			if (action == ActionTypes.SET_TRIGGER_ID) return new ActionSetTriggerId();
 			if (action == ActionTypes.SET_AXIS) return new ActionSetAxis();
+			if (action == ActionTypes.PICK_COLOR) return new ActionPickColor();
 			return _dummy;
 		}
 	}

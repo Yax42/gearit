@@ -75,7 +75,7 @@ namespace gearit.src.robot
 			(Vector2)info.GetValue("AnchorA", typeof(Vector2)),
 			(Vector2)info.GetValue("AnchorB", typeof(Vector2)))
 		{
-			Robot = SerializerHelper.CurrentRobot;
+			Robot = SerializerHelper.Robot;
 			Name = (string)info.GetValue("Name", typeof(string));
 			SerializerHelper.World.AddJoint(this);
 			Enabled = true;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Squid;
 using gearit.src.robot;
+using gearit.xna;
 
 namespace gearit.src.GUI.Editors
 {
@@ -15,19 +16,20 @@ namespace gearit.src.GUI.Editors
 	}
 	public enum InputType
 	{
+		Pressed,
 		JustPressed,
 		Released,
 		JustReleased,
-		Pressed,
 	}
 
 	interface EventItem
 	{
-		Point Position { get; }
+		Point PositionOnSide { get; }
 	}
 
 	class Condition : EventItem
 	{
+		public EventTree EventTree;
 		public ConditionType Type;
 		public InputType InputType;
 		public string Value;
@@ -35,27 +37,37 @@ namespace gearit.src.GUI.Editors
 		public Button Button;
 		private bool IsFirst;
 
-		public Condition(bool v = true) : this(ConditionType.None, InputType.Pressed, v ? "True" : null)
+		public Condition(EventTree ctrl, bool v = true) : this(ctrl, ConditionType.None, InputType.Pressed, v ? "True" : null)
 		{}
 
-		public Condition(string str) : this(ConditionType.Other, InputType.Pressed, str)
+		public Condition(EventTree ctrl, string str) : this(ctrl, ConditionType.Other, InputType.Pressed, str) {}
+
+		public Condition(EventTree ctrl, InputType input, string key) : this(ctrl, ConditionType.Input, input, key)
 		{}
 
-		public Condition(InputType input, string key) : this(ConditionType.Input, input, key)
-		{}
-
-		public Point Position { get { return Button.Position; } }
-
-		private Condition(ConditionType type, InputType input, string str)
+		public Point PositionOnSide
 		{
+			get
+			{
+				return Button.Position + EventTree.Position + new Point(Button.Size.x, 0);
+			}
+		}
+
+		private Condition(EventTree ctrl, ConditionType type, InputType input, string str)
+		{
+			EventTree = ctrl;
 			Type = type;
 			InputType = input;
 			Value = str;
 			Next = null;
 			IsFirst = true;
 			Button  = new Button();
-			Button.AutoSize = AutoSize.HorizontalVertical;
-			Button.Parent = MenuRobotEditor.Instance;
+			Button.Position = ctrl.LastPosition;
+			Button.Size = new Point(0, EventTree.BTN_HEIGHT);
+			Button.AutoSize = AutoSize.Horizontal;
+			Button.Parent = ctrl;
+			Button.Style = "button";
+			Button.Text = "AAAAAAAAAAAAAAAAAa";
 			Button.MouseClick += delegate(Control sender, MouseEventArgs args)
 			{
 				ConditionModifierBox.Instance.Show(this);
@@ -139,30 +151,76 @@ namespace gearit.src.GUI.Editors
 
 	class EventNode
 	{
-		Condition Condition;
-		Action Action;
+		public Condition Condition;
+		public Action Action;
+
+		public EventNode(EventTree ctrl)
+		{
+			Condition = new Condition(ctrl, "LOLILOL");
+		}
 	}
 
-	class EventTree
+	class EventTree : Window
 	{
-		private List<EventNode> List;
+		public const int BTN_HEIGHT = 20;
+		public const int BTN_WIDTH = 100;
 
-		public EventTree()
+		private List<EventNode> List;
+		private Point AbsolutePos;
+		private Button AddButton;
+
+		public EventTree(Control parent)
 		{
-			/*
+			Visible = true;
+			Parent = parent;
 			List = new List<EventNode>();
+			Position = new Point(300, 300);
+
 			Button btn = new Button();
-			btn.Text = "Piece";
-			btn.Style = "itemMenuButton";
-			btn.Size = new Squid.Point(MENU_WIDTH, ITEM_HEIGHT);
-			btn.Position = new Squid.Point(0, y);
-			btn.Parent = this;
-			btn.MouseDrag += dragPiece;
+			btn.Style = "button";
+			btn.Text = "Add Condition";
+			btn.Size = new Squid.Point(BTN_WIDTH, BTN_HEIGHT);
+			//btn.AutoSize = Squid.AutoSize.Horizontal;
+			btn.Position = new Squid.Point(0, 0);
+			btn.Margin = new Squid.Margin(40);
 			btn.Cursor = Cursors.Move;
-			btn.Tooltip = "(W)";
 			btn.Checked = false;
-			y += btn.Size.y + PADDING;
-			*/
+			btn.Parent = this;
+			btn.MouseClick += delegate(Control sender, MouseEventArgs args)
+			{
+				AddNewCondition();
+			};
+			AddButton = btn;
+			UpdateSize();
 		}
+
+		public void UpdateSize()
+		{
+			int max = BTN_WIDTH;// SpriteFonts.GetTextSize(AddButton.Text).x;
+			foreach (EventNode e in List)
+			{
+				int tmp = SpriteFonts.GetTextSize(e.Condition.Button.Text).x;
+				if (tmp > max)
+					max = tmp;
+			}
+			max += 2;
+			Size = new Point(max, LastPosition.y + BTN_HEIGHT);
+		}
+
+		public void AddNewCondition()
+		{
+			List.Add(new EventNode(this));
+			AddButton.Position = LastPosition;
+			UpdateSize();
+		}
+
+		public Point LastPosition
+		{
+			get
+			{
+				return new Point(0, List.Count * BTN_HEIGHT);
+			}
+		}
+
 	}
 }

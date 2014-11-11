@@ -274,7 +274,7 @@ namespace gearit.src.Network
 			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
-			Map.DrawDebug(_drawGame, true);
+			Map.DrawDebug(_drawGame, true, true);
 			_drawGame.End();
 
 			drawScoring();
