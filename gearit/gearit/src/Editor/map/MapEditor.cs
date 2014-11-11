@@ -18,7 +18,6 @@ using FarseerPhysics.DebugViews;
 
 namespace gearit.src.editor.map
 {
-
     /// <summary>
     /// Handle the whole Map editor
     /// </summary>

@@ -36,6 +36,7 @@ namespace gearit.src.editor.robot.action
 		SET_AXIS,
 		CHANGE_VALUES,
 		SHOW_HELP,
+		PICK_COLOR,
 		EXIT,
 		COUNT
 	}
@@ -109,6 +110,7 @@ namespace gearit.src.editor.robot.action
 			if (action == ActionTypes.CHANGE_VALUES) return new ActionChangeValues();
 			if (action == ActionTypes.SHOW_HELP) return new ActionShowHelp();
 			if (action == ActionTypes.EXIT) return new ActionExit();
+			if (action == ActionTypes.PICK_COLOR) return new ActionPickColor();
 			return _dummy;
 		}
 	}

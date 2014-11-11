@@ -25,7 +25,6 @@ namespace gearit.src.robot
 	abstract class Piece : Body, ISerializable
 	{
 		internal const float MaxMass = 1000;
-		public Color Color;
 
 		internal Shape Shape
 		{
@@ -37,25 +36,25 @@ namespace gearit.src.robot
 		private Fixture _fix; //punaise |---
 		internal Texture2D _tex;
 		internal bool DidAct { get; set; }
-		internal Robot _robot;
+		public Robot Robot { get; internal set; }
 		internal float _size; //useless for the heart, but simpler for implementation
 		public bool Sleeping { get; set; }
 
 		internal Piece(Robot robot) :
 			base(robot.getWorld())
 		{
-			_robot = robot;
+			Robot = robot;
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.ForestGreen;
+			Color = Color.ForestGreen;
 			Init();
 		}
 
 		internal Piece(Robot robot, Shape shape) :
 			base(robot.getWorld())
 		{
-			_robot = robot;
+			Robot = robot;
 			if (SerializerHelper.World == null)
 				SerializerHelper.World = robot.getWorld();
 			BodyType = BodyType.Dynamic;
@@ -65,10 +64,10 @@ namespace gearit.src.robot
 
 		private void Init()
 		{
-			if (_robot.IsInEditor)
+			if (Robot.IsInEditor)
 				IsStatic = true;
-			ColorValue = Color.ForestGreen;
-			_robot.addPiece(this);
+			Color = Color.ForestGreen;
+			Robot.addPiece(this);
 			Shown = true;
 			Sleeping = false;
 
@@ -88,16 +87,18 @@ namespace gearit.src.robot
 		internal Piece(SerializationInfo info) :
 			base(SerializerHelper.World)
 		{
-			_robot = SerializerHelper.Robot;
+			Robot = SerializerHelper.Robot;
 			BodyType = BodyType.Dynamic;
-			ColorValue = Color.ForestGreen;
+			Color = Color.ForestGreen;
 			Shown = true;
 			int oldHashMap = (int)info.GetValue("HashCode", typeof(int));
 			SerializerHelper.Add(oldHashMap, this);
 			Rotation = (float)info.GetValue("Rotation", typeof(float));
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
-			if (_robot.IsInEditor)
+			if (Robot.IsInEditor)
 				IsStatic = true;
+			if (Robot.Version > 1.0f)
+				Color = (Color)info.GetValue("Color", typeof(Color));
 		}
 
 		abstract public void GetObjectData(SerializationInfo info, StreamingContext ctxt);
@@ -108,6 +109,7 @@ namespace gearit.src.robot
 			info.AddValue("Position", this.Position, typeof(Vector2));
 			info.AddValue("Weight", this.Weight, typeof(float));
 			info.AddValue("Rotation", Rotation, typeof(float));
+			info.AddValue("Color", Color, typeof(Color));
 		}
 
 		//--------- END SERIALISATION
@@ -124,7 +126,7 @@ namespace gearit.src.robot
 			if (_fix != null && _fix.Body != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
-			_fix.CollisionGroup = (short)(-1 -_robot.Id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
+			_fix.CollisionGroup = (short)(-1 -Robot.Id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
 		}
 
 		internal void initShapeAndFixture(Shape shape)
@@ -246,7 +248,7 @@ namespace gearit.src.robot
 		public void rotate(float angle, Piece comparator, bool dynamic = false, bool reset = false)
 		{
 			if (reset)
-				_robot.ResetAct();
+				Robot.ResetAct();
 			rotateDelta(angle - Rotation, comparator, dynamic);
 		}
 
@@ -287,7 +289,7 @@ namespace gearit.src.robot
 		virtual public void move(Vector2 pos, bool dynamic = false, bool reset = false)
 		{
 			if (reset)
-				_robot.ResetAct();
+				Robot.ResetAct();
 			if (DidAct)
 				return;
 			DidAct = true;
@@ -304,7 +306,7 @@ namespace gearit.src.robot
 		virtual public void resize(float size, bool reset = false)
 		{
 			if (reset)
-				_robot.ResetAct();
+				Robot.ResetAct();
 			if (_size == 0)
 				_size = size;
 			else
@@ -364,13 +366,13 @@ namespace gearit.src.robot
 			return (null);
 		}
 
-		public Color ColorValue { get; set; }
+		public Color Color = Color.DarkSeaGreen;
 		public bool Shown { get; set; }
 		abstract public float getSize();
 
 		public void draw(DrawGame dg)
 		{
-			dg.draw(this, ColorValue);
+			dg.draw(this, Color);
 			if (_tex != null)
 				dg.drawTexture(_tex, _tex.Bounds, Color.White);
 		}
@@ -389,13 +391,13 @@ namespace gearit.src.robot
 
 		public void DeepDestroy()
 		{
-			_robot.remove(this);
+			Robot.remove(this);
 		}
 
 		public void Destroy()
 		{
 			_world.RemoveBody(this);
-			_robot = null;
+			Robot = null;
 			//_fix.Destroy();
 		}
 

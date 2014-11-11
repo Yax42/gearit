@@ -382,7 +382,7 @@ namespace gearit.src.robot
 		#region Draw
 		public void draw(DrawGame game)
 		{
-				DrawDebug(game, WorldAnchorA);
+				//DrawDebug(game, WorldAnchorA);
 				DrawAnchorDebug(game, WorldAnchorA);
 				DrawAnchorDebug(game, WorldAnchorB);
 				//DrawLimits(game);

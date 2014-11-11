@@ -122,7 +122,7 @@ namespace gearit.src.robot
 
 		private void UpdateEnds(Piece comparator = null, bool dynamic = false)
 		{
-			Debug.Assert(_robot.IsInEditor);
+			Debug.Assert(Robot.IsInEditor);
 			rotate(endsAngle(), comparator, dynamic, true);
 			resize(endsSize(), true);
 			move(endsPosition(), dynamic, true);

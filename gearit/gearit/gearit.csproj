@@ -130,6 +130,7 @@
     <Compile Include="src\editor\map\action\ActionSetAxis.cs" />
     <Compile Include="src\editor\robot\action\ActionChangeRodLimit.cs" />
     <Compile Include="src\editor\robot\action\ActionNewRobot.cs" />
+    <Compile Include="src\editor\robot\action\ActionPickColor.cs" />
     <Compile Include="src\GUI\DrawGame.cs" />
     <Compile Include="src\editor\robot\action\ActionChangeValues.cs" />
     <Compile Include="src\editor\robot\action\ActionFreezeSpot.cs" />

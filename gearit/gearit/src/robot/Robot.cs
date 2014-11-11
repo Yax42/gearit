@@ -229,7 +229,7 @@ namespace gearit.src.robot
 		public void setColor(Color col)
 		{
 			foreach (Piece p in _pieces)
-				p.ColorValue = col;
+				p.Color = col;
 		}
 
 		public int FindFirstFreeSpotNameId()
@@ -434,13 +434,24 @@ namespace gearit.src.robot
 		#region Draw
 		public void drawDebug(DrawGame dg)
 		{
-			for (int i = 0; i < _pieces.Count; i++)
+			foreach (Piece p in _pieces)
 			{
 				if (IsInEditor
 				&& RobotEditor.Instance.CurrentAction == ActionTypes.CHANGE_ROD_LIMIT
-				&& ActionChangeRodLimit.P2 == _pieces[i])
+				&& ActionChangeRodLimit.P2 == p)
 					continue;
-				dg.draw(_pieces[i], _pieces[i].ColorValue, _pieces[i].Shown ? 128 : 16);
+				Color c = Color.DarkSeaGreen;
+				if (RobotEditor.Instance.Select1 == p
+						&& RobotEditor.Instance.CurrentAction == ActionTypes.RESIZE_HEART)
+					c = Color.White;
+				else if (RobotEditor.Instance.Select1 == p
+						&& RobotEditor.Instance.Select2 == p)
+					c = Color.Violet;
+				else if (RobotEditor.Instance.Select1 == p)
+					c = Color.Red;
+				else if (RobotEditor.Instance.Select2 == p)
+					c = Color.Blue;
+				dg.draw(p, c, p.Shown ? 128 : 16);
 			}
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].drawDebug(dg);
@@ -450,14 +461,14 @@ namespace gearit.src.robot
 		{
 			for (int i = 0; i < _pieces.Count; i++)
 				if (_pieces[i].Shown)
-					dg.drawTexture(_pieces[i], _pieces[i].ColorValue);
+					dg.drawTexture(_pieces[i], _pieces[i].Color);
 			// add else as in drawDebug()?
 		}
 
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-				dg.draw(_pieces[i], _pieces[i].ColorValue);
+				dg.draw(_pieces[i], _pieces[i].Color, -1);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].draw(dg);

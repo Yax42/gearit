@@ -390,16 +390,22 @@ namespace gearit.src.editor.robot
 			{
 				ActionLaunch.Robot.draw(DrawGame);
 			}
+			else if (Input.pressed(Keys.T))
+			{
+				Robot.draw(DrawGame);
+			}
 			else
 			{
+				Color c1 = Select1.Color;
+				Color c2 = Select2.Color;
 				if (_currentAction.Type() == ActionTypes.RESIZE_HEART)
-					Select1.ColorValue = Color.White;
+					Select1.Color = Color.White;
 				else if (Select2 == Select1)
-					Select2.ColorValue = Color.Violet;
+					Select2.Color = Color.Violet;
 				else
 				{
-					Select2.ColorValue = Color.Blue;
-					Select1.ColorValue = Color.Red;
+					Select2.Color = Color.Blue;
+					Select1.Color = Color.Red;
 				}
 				if (Select1.isConnected(Select2))
 					Select1.getConnection(Select2).ColorValue =
@@ -409,8 +415,8 @@ namespace gearit.src.editor.robot
 
 				if (Select1.isConnected(Select2))
 					Select1.getConnection(Select2).ColorValue = Color.Black;
-				Select2.ColorValue = Color.DarkSeaGreen;
-				Select1.ColorValue = Color.DarkSeaGreen;
+				Select2.Color = c2;
+				Select1.Color = c1;
 			}
 		}
 
@@ -471,6 +477,17 @@ namespace gearit.src.editor.robot
 			}
 		}
 
+		private void DrawPickColor()
+		{
+			if (_currentAction.Type() == ActionTypes.PICK_COLOR)
+			{
+				var act = (ActionPickColor)_currentAction;
+				DrawGame.DrawCircle(act.Origin, 0.1f, Color.White, true);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, Color.Red);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, Color.Black);
+			}
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
@@ -488,6 +505,7 @@ namespace gearit.src.editor.robot
 			DrawValues(_currentAction);
 			DrawValues(_mirrorAction);
 			DrawMarks();
+			DrawPickColor();
 			DrawGame.EndPrimitive();
 
 			DrawStatics();
