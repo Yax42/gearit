@@ -190,6 +190,7 @@ namespace gearit.src.GUI.Tools
 			ControlStyle menuStyle = new ControlStyle();
 
 			ControlStyle msgboxStyle = new ControlStyle();
+			ControlStyle chatBoxStyle = new ControlStyle();
 
 			ControlStyle itemMenuStyle = new ControlStyle();
 			itemMenuStyle.TextAlign = Alignment.MiddleCenter;
@@ -267,6 +268,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("addEventButton", addEventButtonStyle);
 			skin.Styles.Add("panel", panelStyle);
 			skin.Styles.Add("msgbox", msgboxStyle);
+			skin.Styles.Add("chatbox", chatBoxStyle);
 
 			#endregion
 
@@ -347,6 +349,10 @@ namespace gearit.src.GUI.Tools
 			style = styles["msgbox"];
 			style.TextColor = toInt(info.Grayie);
 			style.BackColor = toInt(info.Dark);
+
+			style = styles["chatbox"];
+			style.TextColor = toInt(info.Grayie);
+			style.BackColor = toInt(info.Blackie);
 
 			style = styles["itemMenu"];
 			style.TextColor = toInt(info.Weird);

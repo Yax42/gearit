@@ -232,7 +232,7 @@ namespace gearit.xna
 			_label.Parent = _desktop;
 			_label.Style = "message";
 
-			ChatBox.init(this);
+			ChatBox.Init();
 		}
 
 		/// <summary>

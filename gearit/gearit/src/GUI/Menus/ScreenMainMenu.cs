@@ -232,6 +232,14 @@ namespace GUI
 			dk_listbox.Position = new Squid.Point(x + MENU_WIDTH - MENU_LIST_WIDTH, 0);
 		}
 
+		public int PosX
+		{
+			get
+			{
+				return _dk_main_menu.Position.x + MENU_WIDTH;
+			}
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			if (ScreenManager.IsIngame)

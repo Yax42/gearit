@@ -7,6 +7,7 @@ using gearit.xna;
 using gearit.src.output;
 using gearit.src.utility;
 using Microsoft.Xna.Framework.Input;
+using GUI;
 
 namespace gearit.src.GUI
 {
@@ -17,7 +18,6 @@ namespace gearit.src.GUI
 	{
 		static private Desktop _chat_box;
 		static private Frame _container_chat = new Frame();
-		static private ScreenManager _screen;
 		static private Control background = new Control();
 		static public Frame ButtonFrame;
 		static ListBox listbox = new ListBox();
@@ -40,21 +40,36 @@ namespace gearit.src.GUI
 		static public int Height = 160;
 		static public int SIZE_ITEM = 22;
 
-		static public void init(ScreenManager screen)
+		static public void UpdateSize()
+		{
+			if (!ScreenManager.IsIngame)
+			{
+				Width = ScreenManager.Instance.Width - ScreenMainMenu.Instance.PosX;
+				_chat_box.Position = new Point(ScreenMainMenu.Instance.PosX, ScreenManager.Instance.Height - Height);
+			}
+			else
+			{
+				Width = ScreenManager.Instance.Width;
+				_chat_box.Position = new Point(0, ScreenManager.Instance.Height - Height);
+			}
+			_chat_box.Size = new Point(Width, Height);
+			btn_hide.Position = new Squid.Point(Width - 21, Height - 20);
+		}
+
+		static public void Init()
 		{
 			_chat_box = new Desktop();
-			_screen = screen;
-			_chat_box.Size = new Point(Width, Height);
-			_chat_box.Position = new Point(screen.Width - Width - 4, 4);
-
 			_container_chat.Parent = _chat_box;
 			_container_chat.Dock = DockStyle.Fill;
+			//Width = 10;// ScreenManager.Instance.Width;
+			_chat_box.Position = new Point(0, ScreenManager.Instance.Height - Height);
+			_chat_box.Size = new Point(Width, Height);
 
 			// Background
 			background.Parent = _container_chat;
-			background.Style = "msgbox";
+			background.Style = "chatbox";
 			background.Dock = DockStyle.Fill;
-			background.Opacity = 500000f;
+			background.Opacity = 0.9f;
 
 			listbox.Margin = new Squid.Margin(2);
 			listbox.Size = new Point(Width, Height);
@@ -83,9 +98,9 @@ namespace gearit.src.GUI
 
 			btn_hide = new Button();
 			btn_hide.Size = new Squid.Point(21, 20);
-			btn_hide.Position = new Squid.Point(Width - 21, 0);
 			btn_hide.Text = "-\n";
 			btn_hide.Parent = _chat_box;
+			btn_hide.Position = new Squid.Point(Width - 21, Height - 20);
 
 			btn_hide.MouseClick += delegate(Control snd, MouseEventArgs e)
 			{
@@ -103,6 +118,7 @@ namespace gearit.src.GUI
 
 		static public void Update()
 		{
+			UpdateSize();
 			_chat_box.Update();
 
             if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.F2)
@@ -121,6 +137,7 @@ namespace gearit.src.GUI
 				_container_chat.Visible = true;
             else
 				_container_chat.Visible = false;
+			btn_hide.Checked = _container_chat.Visible;
         }
 
 		private static void toggleInputMode()
@@ -164,7 +181,7 @@ namespace gearit.src.GUI
 
 		static public void addEntry(string text, Entry entry = Entry.Message, Boolean intercept = false)
 		{
-			_screen.beginDrawing();
+			ScreenManager.Instance.beginDrawing();
 
 			if (intercept && InterceptNewItem != null)
 			{
@@ -202,7 +219,7 @@ namespace gearit.src.GUI
 
 			listbox.Scrollbar.SetValue(1);
 
-			_screen.stopDrawing();
+			ScreenManager.Instance.stopDrawing();
 		}
 
 		static public void mergeEntry(string text)
