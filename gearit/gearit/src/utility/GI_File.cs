@@ -15,6 +15,8 @@ namespace gearit.src.utility
 		public string RelativePath = "";
 		public string FileNameWithoutExtension = "";
 		public string Extension = "";
+		public string Label = "";
+		public string Owner = "";
 		public string LuaFullPath { get { return RelativePath + "/script/" + FileNameWithoutExtension + ".lua"; } }
 		public string FullPath
 		{

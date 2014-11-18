@@ -33,6 +33,7 @@ namespace gearit.src.utility
 		static private GamePadState[] _old_pad;
 
 		static private bool _usedExit = false;
+		static private bool _usedEnter = false;
 
 		static public void Init()
 		{
@@ -58,6 +59,7 @@ namespace gearit.src.utility
 		static public void Update()
 		{
 			_usedExit = false;
+			_usedEnter = false;
 
 			_old_mouse = _mouse;
 			_old_keyboard = _keyboard;
@@ -66,12 +68,27 @@ namespace gearit.src.utility
 			UpdateStates();
 		}
 
+		static public bool Enter
+		{
+			get
+			{
+				//Microsoft.Xna.Framework.Input.GamePad.GetState
+				if (justReleased(Keys.Enter) && !_usedEnter)
+				{
+					_usedEnter = true;
+					return true;
+				}
+				else
+					return false;
+			}
+		}
+
 		static public bool Exit
 		{
 			get
 			{
 				//Microsoft.Xna.Framework.Input.GamePad.GetState
-				if (justPressed(Keys.Escape) && !_usedExit)
+				if (justReleased(Keys.Escape) && !_usedExit)
 				{
 					_usedExit = true;
 					return true;

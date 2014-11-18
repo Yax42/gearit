@@ -36,9 +36,6 @@ namespace gearit.src.gui
 
 	class MenuLocal : GameScreen, IDemoScreen
 	{
-        TextBox tb_login;
-        TextBox tb_password;
-        Panel list_server;
         Task taskMasterServer = null;
         Desktop _desktop;
         bool refreshing = false;
@@ -135,13 +132,6 @@ namespace gearit.src.gui
             _desktop.Position = new Squid.Point(ScreenMainMenu.MENU_WIDTH + MenuPlay.MENU_WIDTH + 1, 0);
             _desktop.Size = new Squid.Point(ScreenManager.Width - ScreenMainMenu.MENU_WIDTH  - MenuPlay.MENU_WIDTH - 1, ScreenManager.Height);
 
-			btn_refresh.Parent = _desktop;
-			btn_refresh.Position = new Squid.Point(0, 0);
-			btn_refresh.Size = new Squid.Point(80, 30);
-			btn_refresh.Text = "REFRESH";
-			btn_refresh.Style = "button";
-            btn_refresh.MouseClick += new MouseEvent(btn_MouseClick);
-
 			olv.Position = new Squid.Point(0, 100);
 			olv.Dock = DockStyle.Fill;
             olv.Columns.Add(new ListView.Column { Text = "", Aspect = "", Width = 0, MinWidth = 4 });
@@ -181,6 +171,38 @@ namespace gearit.src.gui
                         olv.Sort<MyData>((a, b) => a.Ping.CompareTo(b.Ping));
                 };
 
+
+			btn_refresh.Parent = _desktop;
+			btn_refresh.Position = new Squid.Point(0, _desktop.Size.y - 30);
+			btn_refresh.Size = new Squid.Point(80, 30);
+			btn_refresh.Text = "REFRESH";
+			btn_refresh.Style = "button";
+            btn_refresh.MouseClick += new MouseEvent(btn_MouseClick);
+			btn_refresh.Visible = false;
+
+
+            Label lb = new Label();
+            lb.TextAlign = Alignment.MiddleCenter;
+            lb.Text = "Login";
+			lb.Style = "itemMenuSubtitle";
+			lb.Parent = _desktop;
+            lb.Position = new Squid.Point(0, _desktop.Size.y - 30);
+            lb.Size = new Squid.Point(80, 30);
+
+            TextBox tb_login = new TextBox();
+            tb_login.Text = "test";
+            tb_login.Size = new Squid.Point(200, 30);
+			tb_login.Position = new Squid.Point(80, _desktop.Size.y - 30);
+			tb_login.Parent = _desktop;
+            //dialog_co.Content.Controls.Add(tb_login);
+            tb_login.Focus();
+			tb_login.Style = "menuTextbox";
+			tb_login.TextChanged += delegate(Control snd)
+			{
+				GI_Data.Pseudo = ((TextBox)snd).Text;
+			};
+
+
                 return header;
             };
 
@@ -201,7 +223,7 @@ namespace gearit.src.gui
 					picker = new ScreenPickManager(false, true,
 					delegate()
 					{
-						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
+						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.RobotPath, ((MyData) args.Model).Host));
 						picker = null;
 					});
 					ScreenManager.Instance.AddScreen(picker);

@@ -7,6 +7,7 @@ namespace gearit.src.utility
 {
 	class GI_Data
 	{
-		public const float Version = 1.1f;
+		public const float Version = 1.11f;
+		public static string Pseudo = "";
 	}
 }

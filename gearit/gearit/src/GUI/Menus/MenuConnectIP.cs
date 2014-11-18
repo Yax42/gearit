@@ -54,7 +54,7 @@ namespace gearit.src.gui
 			picker = new ScreenPickManager(false, true,
 					delegate()
 					{
-						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.MapPath, ScreenPickManager.RobotPath, ip));
+						ScreenManager.AddScreen(new NetworkClientGame(ScreenPickManager.RobotPath, ip));
 						picker = null;
 					});
 					ScreenManager.Instance.AddScreen(picker);

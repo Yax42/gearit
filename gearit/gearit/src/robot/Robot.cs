@@ -144,6 +144,12 @@ namespace gearit.src.robot
 			_script = null;
 			InitTriggerData();
 			_Api = new RobotStateApi(this);
+
+			if (Version >= 1.11f)
+			{
+				Label = (string)info.GetValue("Label", typeof(string));
+				Owner = (string)info.GetValue("Owner", typeof(string));
+			}
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
@@ -155,6 +161,8 @@ namespace gearit.src.robot
 			info.AddValue("RevCount", _revoluteCounter, typeof(int));
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
 			info.AddValue("Spots", _spots, typeof(List<RevoluteSpot>));
+			info.AddValue("Label", Label, typeof(string));
+			info.AddValue("Owner", Name, typeof(string));
 		}
 		#endregion
 

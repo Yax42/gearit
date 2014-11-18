@@ -30,7 +30,6 @@ namespace gearit.src.Network
 		private Status Status;
 
 		private string NameRobot;
-		private string NameMap;
 		private string IpServer;
         private Texture2D _back;
         private Effect _effect;
@@ -79,10 +78,9 @@ namespace gearit.src.Network
 
 		#region IDemoScreen Members
 
-		public NetworkClientGame(string map, string robot, string ip) : base(true, true)
+		public NetworkClientGame(string robot, string ip) : base(true, true)
 		{
 			IpServer = ip;
-			NameMap = map;
 			NameRobot = robot;
 			TransitionOnTime = TimeSpan.FromSeconds(0.75);
 			TransitionOffTime = TimeSpan.FromSeconds(0.75);
@@ -125,9 +123,20 @@ namespace gearit.src.Network
 			World.Clear();
 			World.Gravity = new Vector2(0f, 9.8f);
 
+            NetPeerConfiguration config = new NetPeerConfiguration("gearit");
+			config.ConnectionTimeout = 2000;
+			config.ResendHandshakeInterval = 1;
+			config.MaximumHandshakeAttempts = 2;
+			NetworkClient = new NetworkClient(config, PacketManager);
+			PacketManager.Network = NetworkClient;
+
 			//clearRobot();
 			SerializerHelper.World = World;
 			Robot r = (Robot)Serializer.DeserializeItem(NameRobot);
+			r.Label = r.Name;
+			r.Owner = GI_Data.Pseudo;
+			r.FullPath = NetworkClient.Path + "MyRobot.gir";
+			r.Save();
 			AddRobot(r);
 			MainRobotId = 0;
 			Camera.TrackingBody = r.Heart;
@@ -137,12 +146,6 @@ namespace gearit.src.Network
 			// Loading may take a while... so prevent the game from "catching up" once we finished loading
 			ScreenManager.Game.ResetElapsedTime();
 
-            NetPeerConfiguration config = new NetPeerConfiguration("gearit");
-			config.ConnectionTimeout = 2000;
-			config.ResendHandshakeInterval = 1;
-			config.MaximumHandshakeAttempts = 2;
-			NetworkClient = new NetworkClient(config, PacketManager);
-			PacketManager.Network = NetworkClient;
 			NetworkClient.Connect(IpServer, INetwork.SERVER_PORT);
             _back = ScreenManager.Content.Load<Texture2D>("background");
             _effect = ScreenManager.Content.Load<Effect>("infinite");
@@ -301,8 +304,8 @@ namespace gearit.src.Network
 			foreach (Robot r in Robots)
 			{
 				MyData entry = new MyData();
-				entry.Name = r.Name;
-				entry.Robot = r.Name;
+				entry.Name = r.Owner;
+				entry.Robot = r.Label;
 				entry.Score = r.Score.IntScore;
 				entry.Ping = 0;
 				models.Add(entry);
