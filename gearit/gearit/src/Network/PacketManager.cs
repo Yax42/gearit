@@ -12,6 +12,7 @@ using System.IO;
 using gearit.src.utility;
 using gearit.src.map;
 using gearit.src.editor;
+using gearit.src.GUI;
 
 namespace gearit.src.Network
 {
@@ -133,6 +134,7 @@ namespace gearit.src.Network
 
 		private struct Packet_Message
 		{
+			public byte Id;
 			public string msg;
 			public int duration;
 		}
@@ -231,6 +233,15 @@ namespace gearit.src.Network
 			packet.Float = r.Score.FloatScore;
 			packet.Int = r.Score.IntScore;
 			return PacketToRawData(packet, CommandId.RobotCommand);
+		}
+
+		public byte[] Message(string msg, int from, int duration = 0)
+		{
+			var packet = new Packet_Message();
+			packet.Id = (byte)from;
+			packet.msg = msg;
+			packet.duration = duration;
+			return PacketToRawData(packet, CommandId.Message);
 		}
 
 		public byte[] RobotTransform(int idRobot)
@@ -463,7 +474,16 @@ namespace gearit.src.Network
 
 		private void ApplyPacket(Packet_Message packet)
 		{
-			Game.Message(packet.msg, packet.duration);
+			if (packet.Id == -1)
+				Game.Message(packet.msg, packet.duration);
+			else
+			{
+				if (Network.GetType() == typeof(NetworkServer))
+					Network.BruteSpread(Message(packet.msg, packet.Id));
+				else
+					ChatBox.addEntry(Game.Robots[packet.Id].Owner + ": " + packet.msg);
+			}
+
 		}
 
 		private void ApplyPacket(Packet_GameCommand packet)

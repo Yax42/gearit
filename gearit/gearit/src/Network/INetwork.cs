@@ -222,6 +222,13 @@ namespace gearit.src.Network
 			Peer.SendMessage(om, p.Connect, NetDeliveryMethod.ReliableOrdered, 0);
 		}
 
+		public void BruteSpread(byte[] dataPart2, int id = -1)
+		{
+			foreach (Peer p in Peers)
+				if (p.Id != id)
+					BruteSend(p, dataPart2);
+		}
+
 		public void ApplyBruteRequests()
 		{
 			Requests.RemoveAll(request => PacketManager.ApplyBruteRequest(request));

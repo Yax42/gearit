@@ -66,6 +66,7 @@ namespace gearit.src.Network
 
 		public void Message(string msg, int duration)
 		{
+			NetworkServer.Instance.BruteSpread(PacketManager.Message(msg, -1, duration));
 		}
 
 		public NetworkServerGame(string mapPath)

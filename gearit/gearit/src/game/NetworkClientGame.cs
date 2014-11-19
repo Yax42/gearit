@@ -17,6 +17,7 @@ using System.Threading;
 using Lidgren.Network;
 using Microsoft.Xna.Framework.Graphics;
 using Squid;
+using gearit.src.GUI;
 
 namespace gearit.src.Network
 {
@@ -106,6 +107,7 @@ namespace gearit.src.Network
 
 		public override void LoadContent()
 		{
+			ChatBox.LastInput = null;
 			ScreenManager.IsIngame = true;
 			base.LoadContent();
 
@@ -219,6 +221,7 @@ namespace gearit.src.Network
 			if (Status == Status.Init)
 				NetworkClient.ApplyBruteRequests();
 
+			ProcessChatboxMessage();
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);
 			float delta = Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds * 2, (3f / 30f));
 			//float delta = 2 / 30f; // Static delta time for now, yea bitch!
@@ -241,6 +244,15 @@ namespace gearit.src.Network
 			if (_exiting)
 				Exit();
 			_FrameCount++;
+		}
+
+		private void ProcessChatboxMessage()
+		{
+			if (ChatBox.LastInput != null)
+			{
+				NetworkClient.BruteSend(null, PacketManager.Message(ChatBox.LastInput, MainRobot.Id));
+				ChatBox.LastInput = null;
+			}
 		}
 
 		public void Finish()

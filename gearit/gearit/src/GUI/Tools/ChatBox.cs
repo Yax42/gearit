@@ -16,6 +16,7 @@ namespace gearit.src.GUI
     /// </summary>
 	static public class ChatBox
 	{
+		static public string LastInput;
 		static private Desktop _chat_box;
 		static private Frame _container_chat = new Frame();
 		static private Control background = new Control();
@@ -127,8 +128,15 @@ namespace gearit.src.GUI
                 ChatBox.Toggle();
             }
 
-			if (Input.justReleased(Microsoft.Xna.Framework.Input.Keys.Enter))
-				;// toggleInputMode(); //FIXME: Temporary disabled (because it's triggered on every single enter being pressed)
+			if (ScreenManager.IsIngame)
+			{
+				if (Input.Enter)
+					toggleInputMode();
+			}
+			else
+			{
+				_has_input = false;
+			}
 		}
 
         static public void Toggle()
@@ -148,7 +156,8 @@ namespace gearit.src.GUI
 
 				if (_input.Text != "")
 				{
-					OutputManager.LogMessage(_input.Text);
+					//OutputManager.LogMessage(_input.Text);
+					LastInput = _input.Text;
 					_input.Text = "";
 				}
 			}
