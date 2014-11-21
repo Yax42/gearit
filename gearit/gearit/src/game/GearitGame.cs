@@ -98,8 +98,11 @@ namespace gearit.src.game
 			_gameMaster = new GameLuaScript(this, Map.LuaFullPath);
 
 			Robot robot = (Robot)Serializer.DeserializeItem(RobotPath);
-			Debug.Assert(Robots != null);
-			AddRobot(robot);
+			Debug.Assert(robot != null);
+			if (robot == null)
+				Exit();
+			else
+				AddRobot(robot);
 
 		#endregion
 
