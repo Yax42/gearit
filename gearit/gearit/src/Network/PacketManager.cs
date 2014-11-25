@@ -365,10 +365,15 @@ namespace gearit.src.Network
 
 		public byte[] Robot(Robot r)
 		{
+			return Robot(r.FullPath, r.Id);
+		}
+
+		public byte[] Robot(string path, int id = 0)
+		{
 			Packet_File res = new Packet_File();
-			res.RobotId = (byte)r.Id;
+			res.RobotId = (byte)id;
 			res.Type = (byte)FileType.Robot;
-			byte[] file = FileToBytes(r);
+			byte[] file = File.ReadAllBytes(path);	
 			res.Size = file.Count();
 			byte[] byteRes = PacketToRawData(res, CommandId.File);
 			return byteRes.Concat(file).ToArray();
@@ -513,15 +518,16 @@ namespace gearit.src.Network
 				return;
 			switch (packet.Command)
 			{
-				case (byte) ERobotCommand.Lose:
+				case (byte)ERobotCommand.Lose:
 					break;
-				case (byte) ERobotCommand.Win:
+				case (byte)ERobotCommand.Win:
 					Game.Finish();
 					break;
-				case (byte) ERobotCommand.Remove:
+				case (byte)ERobotCommand.Remove:
 					r.ExtractFromWorld();
+					Game.Robots.Remove(r);
 					break;
-				case (byte) ERobotCommand.Teleport:
+				case (byte)ERobotCommand.Teleport:
 					r.Position = packet.Position;
 					if (r.Id == Game.MainRobotId && Game.Camera != null)
 						Game.Camera.Jump2Target();
@@ -529,13 +535,13 @@ namespace gearit.src.Network
 					//foreach (Piece p in r.Pieces)
 					//	p.Position += deltaPos;
 					break;
-				case (byte) ERobotCommand.CameraDynamic:
+				case (byte)ERobotCommand.CameraDynamic:
 					Game.Camera.EnablePositionTracking = true;
 					break;
-				case (byte) ERobotCommand.CameraStatic:
+				case (byte)ERobotCommand.CameraStatic:
 					Game.Camera.StaticCamera(packet.Position, packet.Float);
 					break;
-				case (byte) ERobotCommand.Score:
+				case (byte)ERobotCommand.Score:
 					r.Score.IntScore = packet.Int;
 					r.Score.FloatScore = packet.Float;
 					break;
@@ -600,13 +606,17 @@ namespace gearit.src.Network
 			{
 				Game.Robots[0].Id = packet.RobotId;
 				Game.MainRobotId = packet.RobotId;
-				string path = Network.Path + "map.gim";
-				Game.Map = (Map)LoadFile(path, packet.Size);
-				Network.BruteSend(null, Robot(Game.RobotFromId(Game.MainRobotId)));
+				Robot r = Game.Robots[0];
+				string backupPath = r.FullPath;
+				r.FullPath = GI_Data.ClientPath + "MyRobot.gir";
+				r.Save();
+				Network.BruteSend(null, Robot(r.FullPath, packet.RobotId));
+				r.FullPath = backupPath;
+				Game.Map = (Map)LoadFile(GI_Data.ServerPath + "map.gim", packet.Size);
 			}
 			else
 			{
-				string path = Network.Path + "robot_" + packet.RobotId + ".gim";
+				string path = GI_Data.ServerPath + "robot_" + packet.RobotId + ".gim";
 				SerializerHelper.World = Game.World;
 				Robot r = (Robot) LoadFile(path, packet.Size);
 				r.Id = packet.RobotId;

@@ -24,7 +24,6 @@ namespace gearit.src.Network
         public string Name = "Test server";
         private Thread serverThread;
 		private NetworkServerGame Game;
-		override public string Path { get {return "data/net/server/";} }
 		public int MaxPlayers { get; set; }
 		public bool LockConnections { get; set; }
 

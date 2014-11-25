@@ -137,10 +137,6 @@ namespace gearit.src.Network
 			Robot r = (Robot)Serializer.DeserializeItem(NameRobot);
 			r.Label = r.Name;
 			r.Owner = GI_Data.Pseudo;
-			string backupPath = r.FullPath;
-			r.FullPath = NetworkClient.Path + "MyRobot.gir";
-			r.Save();
-			r.FullPath = backupPath;
 			AddRobot(r);
 			MainRobotId = 0;
 			Camera.TrackingBody = r.Heart;
@@ -266,7 +262,10 @@ namespace gearit.src.Network
 		public void Exit()
 		{
 			ScreenManager.IsIngame = false;
-			clearRobot();
+			//clearRobot();
+			Robots.Clear();
+			World.Clear();
+
 			NetworkClient.Disconnect();
 			ScreenManager.Instance.RemoveScreen(this);
 		}

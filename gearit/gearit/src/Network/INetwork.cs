@@ -40,7 +40,6 @@ namespace gearit.src.Network
 		protected NetPeer Peer;
 		protected List<Peer> Peers;
 
-		abstract public string Path { get; }
 		protected bool IsServer = false;
 		private int FrameCount;
 

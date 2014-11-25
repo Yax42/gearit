@@ -9,5 +9,7 @@ namespace gearit.src.utility
 	{
 		public const float Version = 1.11f;
 		public static string Pseudo = "";
+		public static string ClientPath { get {return "data/net/client/";} }
+		public static string ServerPath { get {return "data/net/server/";} }
 	}
 }

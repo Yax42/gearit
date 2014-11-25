@@ -71,11 +71,20 @@ namespace gearit.src.robot
 		[NonSerialized]
 		//public static int _robotIdCounter = 1;
 		private RobotLuaScript _script;
+		private int _Id;
 		public int Id
 		{
-			get;
-			set;
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				setCategorie(_Id);
+			}
 		}
+
 		public World _world;
 		public bool[] TriggersData;
 		private int _LastTrigger;
@@ -110,9 +119,9 @@ namespace gearit.src.robot
 		{
 			IsInEditor = isInEditor;
 			_world = world;
-			Id = 0;
 			_pieces = new List<Piece>();
 			_spots = new List<RevoluteSpot>();
+			Id = 0;
 			new Heart(this);
 			//Console.WriteLine("Robot created.");
 			_script = null;
@@ -139,7 +148,7 @@ namespace gearit.src.robot
 			// foreach (RevoluteSpot s in _spots)
 			//	 SerializerHelper._world.AddJoint((Joint)s);
 
-			Id = 0;
+			_Id = 0;
 			//Console.WriteLine("Robot created.");
 			_script = null;
 			InitTriggerData();
@@ -162,7 +171,7 @@ namespace gearit.src.robot
 			info.AddValue("Pieces", _pieces, typeof(List<Piece>));
 			info.AddValue("Spots", _spots, typeof(List<RevoluteSpot>));
 			info.AddValue("Label", Label, typeof(string));
-			info.AddValue("Owner", Name, typeof(string));
+			info.AddValue("Owner", Owner, typeof(string));
 		}
 		#endregion
 

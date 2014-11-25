@@ -24,7 +24,6 @@ namespace gearit.src.Network
         public EState State = EState.Disconnected;
         private Mutex mutex = new Mutex();
         private Thread clientThread;
-		override public string Path { get {return "data/net/client/";} }
 
 		public NetworkClient(NetPeerConfiguration config, PacketManager packetManager)
 			: base(new NetClient(config), 1, packetManager)
