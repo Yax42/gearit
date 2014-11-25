@@ -73,7 +73,8 @@ namespace gearit.src.GUI
 		private TextBox _piece_size = new TextBox();
 		private TextBox _piece_x = new TextBox();
 		private TextBox _piece_y = new TextBox();
-		private TextBox helper = new TextBox();
+		private Label helper = new Label();
+		private Label helper2 = new Label();
 
 		// Script editor
 		private Panel _panelScript = new Panel();
@@ -492,42 +493,88 @@ namespace gearit.src.GUI
 
 			#region Helper
 			helper.Text =
-			"Help (F1)\n" +
-			"----------------------------------------------------------------------------------------\n" +
-			"Select piece A.......................................(left click)\n" +
-			"Select piece B.......................................(shift+left click)\n" +
-			"Swap Selection.....................................(C)\n" +
-			"Select spot S.........................................[automatically\n" +
-			" selected by selecting both of the pieces it's linked to]\n" +
-			"Move piece A........................................(right click)\n" +
-			"Delete piece A.......................................(R)\n" +
-			"Delete spot S.........................................(shift+R)\n" +
-			"Move A to S anchor...............................(shift+right click)\n" +
-			"Resize A................................................(S)\n" +
-			//"Resize A and rotate B (Rods only).........(shift+S)\n" +
-			"Switch piece type pT.............................(A)\n" +
-			//"Switch spot type sT...............................(shift+A)\n" +
-			"Create a pT linked to A.........................(W)\n" +
-			"Create a pT linked to A in a close position....(ctrl+W)\n" +
-			"Link A and B.........................................(shift+W)\n" +
-			"Move camera........................................(scroll click)\n" +
-			"Zoom/Unzoom.......................................(scrolling)\n" +
-			"Undo......................................................(ctrl+Z)\n" +
-			"Redo......................................................(ctrl+Y)\n" +
-			"Show/Hide A..........................................(E)\n" +
-			"Show every pieces.................................(space)\n" +
-			"Save.......................................................(ctrl+S)\n" +
-			"Save as...................................................(ctrl+shift+S)\n" +
-			"Load.......................................................(ctrl+D)\n" +
+			"Help\n" +
+			"---------------------\n" +
+			"Select piece A\n" +
+			"Select piece B\n" +
+			"Swap Selection\n" +
+			"Select spot S\n" +
+			"Move piece A\n" +
+			"Delete piece A\n" +
+			"Delete spot S\n" +
+			"Move A to S anchor\n" +
+			"Resize A\n" +
+			"Switch piece type pT\n" +
+			"Link A and B with a pT\n" + 
+			"Link A and B close to mouse\n" +
+			"Move camera\n" +
+			"Zoom/Unzoom\n" +
+			"Show/Hide A\n" +
+			"Show every pieces\n" +
+			"Do action in mirror\n" +
+			"Set mirror axis position\n" +
+			"Set mirror axis orientation\n" +
+			"Color A\n" +
+			"---------------------\n" +
+			"Lauch simulation\n" +
+			"Lauch simulation with gravity\n" +
+			"Undo\n" +
+			"Redo\n" +
+			"Save\n" +
+			"Save as\n" +
+			"Load\n" +
+			"New\n" +
+			"";
+
+			helper2.Text =
+			"(F1)\n" +
+			"---------------------\n" +
+			"(Left click)\n" +
+			"(ctrl + Left click)\n" +
+			"(X)\n" +
+			"(shift + Left click)\n" +
+			"(Right click)\n" +
+			"(R)\n" +
+			"(shift + R)\n" +
+			"(shift + Right click)\n" +
+			"(S)\n" +
+			"(A)\n" +
+			"(W)\n" +
+			"(ctrl + W)\n" +
+			"(scroll click/C)\n" +
+			"(scrolling)\n" +
+			"(E)\n" +
+			"(space)\n" +
+			"(alt + [action's shortcut])\n" +
+			"(F)\n" +
+			"(shift + F)\n" + 
+			"(T)\n" +
+			"---------------------\n" +
+			"(shift + space)\n" +
+			"(ctrl + shift + space)\n" +
+			"(ctrl + Z)\n" +
+			"(ctrl + Y)\n" +
+			"(ctrl + S)\n" +
+			"(ctrl + shift + S)\n" +
+			"(ctrl + D)\n" +
+			"(ctrl + N)\n" +
 			"";
 
 
-			helper.Size = new Squid.Point(370, 430);
-			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
-			helper.Style = "messagebox";
+
+			helper.Size = new Squid.Point(200, 530);
+			helper2.Size = new Squid.Point(200, 530);
+			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x - 200, 0);
+			helper2.Position = new Squid.Point(ScreenManager.Width - helper2.Size.x, 0);
+			helper.Style = "helper";
+			helper2.Style = "helper";
+			helper2.TextAlign = Alignment.TopLeft;
 			helper.Parent = this;
+			helper2.Parent = this;
 			helper.Enabled = false;
+			helper2.Enabled = false;
 			helper.Visible = false;
+			helper2.Visible = false;
 			#endregion
 
 			#region action
@@ -962,6 +1009,7 @@ namespace gearit.src.GUI
 		public void swapHelp()
 		{
 			helper.Visible = !helper.Visible;
+			helper2.Visible = helper.Visible;
 			Help_btn.Checked = helper.Visible;
 		}
 

@@ -103,6 +103,10 @@ namespace gearit.src.GUI.Tools
 			ControlStyle buttonStyle = new ControlStyle();
 			buttonStyle.TextAlign = Alignment.MiddleCenter;
 
+			ControlStyle helperStyle = new ControlStyle();
+			helperStyle.TextAlign = Alignment.TopRight;
+			helperStyle.TextPadding = new Margin(4, 4, 4, 0);
+
 			ControlStyle buttonServerStyle = new ControlStyle();
 			buttonServerStyle.TextAlign = Alignment.MiddleCenter;
 
@@ -232,6 +236,7 @@ namespace gearit.src.GUI.Tools
 			skin.Styles.Add("item", itemStyle);
 			skin.Styles.Add("menuTextbox", inputStyle);
 			skin.Styles.Add("messagebox", messageBoxStyle);
+			skin.Styles.Add("helper", helperStyle);
 			skin.Styles.Add("button", buttonStyle);
 			skin.Styles.Add("buttonServer", buttonServerStyle);
 			skin.Styles.Add("volume", volumeStyle);
@@ -305,6 +310,10 @@ namespace gearit.src.GUI.Tools
 			style.Default.TextColor = toInt(info.Weird);// removeAlpha(toInt(info.Light), 150);
 
 			style = styles["messagebox"];
+			style.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
+			style.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
+
+			style = styles["helper"];
 			style.BackColor = ColorInt.RGBA(0.2f, 0.2f, 0.2f, 0.3f);
 			style.Focused.Tint = ColorInt.RGBA(1, 1, 1, 1f);
 
