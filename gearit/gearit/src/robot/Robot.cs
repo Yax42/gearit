@@ -81,7 +81,7 @@ namespace gearit.src.robot
 			set
 			{
 				_Id = value;
-				setCategorie(_Id);
+				setCategorie();
 			}
 		}
 
@@ -405,14 +405,15 @@ namespace gearit.src.robot
 			}
 		}
 
-		public void setCategorie(int v)
+		public void setCategorie()
 		{
-			v %= 31; //31 is not an acceptable categorie because
+			//v %= 31; //31 is not an acceptable categorie because
 					//	it's already the map chunks categorie
-			Category cat = (Category) (1 << v);
+			//Category cat = (Category) (1 << v);
 			foreach (Piece p in _pieces)
 			{
-				p.CollisionCategories = cat;
+				//p.CollisionCategories = cat;
+				p.UpdateCollision();
 			}
 		}
 

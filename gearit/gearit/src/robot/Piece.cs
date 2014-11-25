@@ -126,7 +126,13 @@ namespace gearit.src.robot
 			if (_fix != null && _fix.Body != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
-			_fix.CollisionGroup = (short)(-1 -Robot.Id); // all fixtures with the same group index always collide (positive index) or never collide (negative index).
+			UpdateCollision();
+		}
+
+		public void UpdateCollision()
+		{
+			// all fixtures with the same group index always collide (positive index) or never collide (negative index).
+			_fix.CollisionGroup = (short)(-1 -Robot.Id);
 		}
 
 		internal void initShapeAndFixture(Shape shape)
