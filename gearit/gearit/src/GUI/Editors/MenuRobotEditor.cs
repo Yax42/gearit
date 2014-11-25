@@ -501,20 +501,29 @@ namespace gearit.src.GUI
 			"Select spot S\n" +
 			"Move piece A\n" +
 			"Delete piece A\n" +
-			"Delete spot S\n" +
 			"Move A to S anchor\n" +
 			"Resize A\n" +
 			"Switch piece type pT\n" +
 			"Link A and B with a pT\n" + 
 			"Link A and B close to mouse\n" +
-			"Move camera\n" +
-			"Zoom/Unzoom\n" +
-			"Show/Hide A\n" +
-			"Show every pieces\n" +
-			"Do action in mirror\n" +
+			"Set limits of S\n" +
+			"Freeze / unfreeze S\n" +
+			"Turn on / off limits on S\n" +
+			"Set weight of A\n" +
+			"Set force of S\n" + 
+			"---------------------\n" +
 			"Set mirror axis position\n" +
 			"Set mirror axis orientation\n" +
+			"Set lock axis orientation\n" +
+			"Do action in mirror\n" +
+			"Do action on lock axis\n" +
+			"---------------------\n" +
 			"Color A\n" +
+			"Show actual colors\n" +
+			"Move camera\n" +
+			"Zoom / Unzoom\n" +
+			"Show / Hide A\n" +
+			"Show every pieces\n" +
 			"---------------------\n" +
 			"Lauch simulation\n" +
 			"Lauch simulation with gravity\n" +
@@ -535,20 +544,29 @@ namespace gearit.src.GUI
 			"(shift + Left click)\n" +
 			"(Right click)\n" +
 			"(R)\n" +
-			"(shift + R)\n" +
 			"(shift + Right click)\n" +
 			"(S)\n" +
 			"(A)\n" +
 			"(W)\n" +
 			"(ctrl + W)\n" +
-			"(scroll click/C)\n" +
+			"(Q)\n" +
+			"(ctrl + Q)\n" +
+			"(shift + Q)\n" +
+			"(V)\n" +
+			"(shift + V)\n" +
+			"---------------------\n" +
+			"(F)\n" +
+			"(shift + F)\n" + 
+			"(shift + Z)\n" + 
+			"(alt + [action's shortcut])\n" +
+			"(Z + [action's shortcut])\n" +
+			"---------------------\n" +
+			"(T)\n" +
+			"(shift + T)\n" +
+			"(scroll click / C)\n" +
 			"(scrolling)\n" +
 			"(E)\n" +
 			"(space)\n" +
-			"(alt + [action's shortcut])\n" +
-			"(F)\n" +
-			"(shift + F)\n" + 
-			"(T)\n" +
 			"---------------------\n" +
 			"(shift + space)\n" +
 			"(ctrl + shift + space)\n" +
@@ -562,8 +580,8 @@ namespace gearit.src.GUI
 
 
 
-			helper.Size = new Squid.Point(200, 530);
-			helper2.Size = new Squid.Point(200, 530);
+			helper.Size = new Squid.Point(200, 710);
+			helper2.Size = new Squid.Point(200, 710);
 			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x - 200, 0);
 			helper2.Position = new Squid.Point(ScreenManager.Width - helper2.Size.x, 0);
 			helper.Style = "helper";

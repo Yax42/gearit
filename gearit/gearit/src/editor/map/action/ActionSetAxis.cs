@@ -45,7 +45,7 @@ namespace gearit.src.editor.map.action
 				MirrorAxis.Dir = pos;
 			else
 				MirrorAxis.Origin = pos;
-			return Input.pressed(Keys.F) || Input.pressed(Keys.X);
+			return Input.pressed(Keys.F) || Input.pressed(Keys.Z);
 		}
 
 		public void revert() { }
