@@ -14,7 +14,9 @@ namespace gearit.src.editor.map.action
 				MirrorAxis.Active = true;
 			if (ActionSwapEventMode.EventMode)
 			{
-				MapEditor.Instance.SelectTrigger = MapEditor.Instance.Map.GetTrigger(Input.SimMousePos);
+				MapEditor.Instance.SelectVirtualItem = MapEditor.Instance.Map.GetArtefact(Input.SimMousePos);
+				if (MapEditor.Instance.IsSelectDummy())
+					MapEditor.Instance.SelectVirtualItem = MapEditor.Instance.Map.GetTrigger(Input.SimMousePos);
 			}
 			else
 			{

@@ -26,9 +26,8 @@ namespace gearit.src.editor.map.action
 		SWAP_EVENT_MODE,
 		CREATE_ARTEFACT,
 		CREATE_TRIGGER,
-		DELETE_TRIGGER,
-		DELETE_ARTEFACT,
-		SET_TRIGGER_ID,
+		DELETE_VIRTUAL_ITEM,
+		SET_VIRTUAL_ITEM_ID,
 		SET_AXIS,
 		PICK_COLOR,
 		COUNT,
@@ -92,9 +91,8 @@ namespace gearit.src.editor.map.action
 			if (action == ActionTypes.SWAP_EVENT_MODE) return new ActionSwapEventMode();
 			if (action == ActionTypes.CREATE_ARTEFACT) return new ActionCreateArtefact();
 			if (action == ActionTypes.CREATE_TRIGGER) return new ActionCreateTrigger();
-			if (action == ActionTypes.DELETE_TRIGGER) return new ActionDeleteTrigger();
-			if (action == ActionTypes.DELETE_ARTEFACT) return new ActionDeleteArtefact();
-			if (action == ActionTypes.SET_TRIGGER_ID) return new ActionSetTriggerId();
+			if (action == ActionTypes.DELETE_VIRTUAL_ITEM) return new ActionDeleteVirtualItem();
+			if (action == ActionTypes.SET_VIRTUAL_ITEM_ID) return new ActionSetVirtualItemId();
 			if (action == ActionTypes.SET_AXIS) return new ActionSetAxis();
 			if (action == ActionTypes.PICK_COLOR) return new ActionPickColor();
 			return _dummy;

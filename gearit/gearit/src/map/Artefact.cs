@@ -11,24 +11,17 @@ namespace gearit.src.map
     /// Artefact are used in the scripting of the map
     /// </summary>
 	[Serializable()]
-	public class Artefact : ISerializable
+	class Artefact : ISerializable, IVirtualItem
 	{
 		private const float Size = 0.4f;
 		private Vector2[] _Vertices;
 
-		private int _Id;
-		public int Id
-		{
-			get
-			{
-				return _Id;
-			}
-		}
+		public int Id { get; set; }
 
 		public Artefact(Vector2 pos, int id)
 		{
-			_Id = id;
-			_Vertices = new Vector2[8];
+			Id = id;
+			_Vertices = new Vector2[4];
 			Position = pos;
 		}
 
@@ -37,13 +30,13 @@ namespace gearit.src.map
 		{
 			_Vertices = new Vector2[8];
 			Position = (Vector2)info.GetValue("Position", typeof(Vector2));
-			_Id = (int)info.GetValue("ID", typeof(int));
+			Id = (int)info.GetValue("ID", typeof(int));
 		}
 
 		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
 		{
 			info.AddValue("Position", Position, typeof(Vector2));
-			info.AddValue("ID", _Id, typeof(int));
+			info.AddValue("ID", Id, typeof(int));
 		}
 		#endregion
 
@@ -60,20 +53,19 @@ namespace gearit.src.map
 			}
 		}
 		
-		public void DrawDebug(DrawGame dg)
+		public void DrawDebug(DrawGame dg, bool isSelect = false)
 		{
 			_Vertices[0] = new Vector2(Position.X, Position.Y + Size);
-			_Vertices[1] = new Vector2(Position.X + Size, Position.Y);
+			_Vertices[1] = new Vector2(Position.X - Size, Position.Y);
 			_Vertices[2] = new Vector2(Position.X, Position.Y - Size);
-			_Vertices[3] = new Vector2(Position.X - Size, Position.Y);
-			
-			_Vertices[4] = new Vector2(Position.X, Position.Y + Size * 0.8f);
-			_Vertices[5] = new Vector2(Position.X + Size * 0.8f, Position.Y);
-			_Vertices[6] = new Vector2(Position.X, Position.Y - Size * 0.8f);
-			_Vertices[7] = new Vector2(Position.X - Size * 0.8f, Position.Y);
+			_Vertices[3] = new Vector2(Position.X + Size, Position.Y);
 
-			dg.drawPolygon(_Vertices, 0,  4, Color.LightGoldenrodYellow);
-			dg.drawPolygon(_Vertices, 4, 4, Color.Brown);
+			Color col = Color.Brown;
+			col.A = 130;
+			dg.DrawPolygon(_Vertices, 0, 4, isSelect ? 3 : 1, col, Color.Yellow);
+
+			for (int i = 0; i < Id; i++)
+				dg.DrawCircle(new Vector2(Position.X + 0.2f * i, Position.Y), 0.1f, 1, Color.Black);
 		}
 	}
 }

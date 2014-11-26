@@ -11,25 +11,14 @@ namespace gearit.src.editor.map.action
 {
 	class ActionCreateArtefact : IAction
 	{
-		private Artefact _Artefact;
+		private Artefact _artefact;
 		private int _id;
 		public void init()
 		{
 			_id = 0;
 			bool ok  = false;
-			while (!ok)
-			{
-				ok = true;
-				foreach (Artefact a in MapEditor.Instance.Map.Artefacts)
-				{
-					if (_id == a.Id)
-					{
-						_id++;
-						ok = false;
-					}
-				}
-			}
-			_Artefact = new Artefact(Input.VirtualSimMousePos, _id);
+			_artefact = new Artefact(Input.VirtualSimMousePos, MapEditor.Instance.Map.NextArtefactFreeId(0));
+			MapEditor.Instance.SelectVirtualItem = _artefact;
 		}
 
 		public bool shortcut()
@@ -42,13 +31,13 @@ namespace gearit.src.editor.map.action
 
 		public bool run()
 		{
-			MapEditor.Instance.Map.Artefacts.Add(_Artefact);
+			MapEditor.Instance.Map.Artefacts.Add(_artefact);
 			return false;
 		}
 
 		public void revert()
 		{
-			MapEditor.Instance.Map.Artefacts.Remove(_Artefact);
+			MapEditor.Instance.Map.Artefacts.Remove(_artefact);
 		}
 
 		public bool canBeReverted { get { return true; } }

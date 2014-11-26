@@ -15,7 +15,7 @@ namespace gearit.src.editor.map.action
 		public void init()
 		{
 			_trigger = new Trigger(Input.VirtualSimMousePos);
-			MapEditor.Instance.SelectTrigger = _trigger;
+			MapEditor.Instance.SelectVirtualItem = _trigger;
 		}
 
 		public bool shortcut()

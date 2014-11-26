@@ -469,7 +469,7 @@ namespace gearit.src.robot
 					c = Color.Red;
 				else if (RobotEditor.Instance.Select2 == p)
 					c = Color.Blue;
-				dg.draw(p, c, p.Shown ? 128 : 16);
+				dg.Draw(p, 1, c, c, p.Shown ? 128 : 16);
 			}
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].drawDebug(dg);
@@ -477,16 +477,18 @@ namespace gearit.src.robot
 
 		public void drawDebugTexture(DrawGame dg)
 		{
+#if false
 			for (int i = 0; i < _pieces.Count; i++)
 				if (_pieces[i].Shown)
-					dg.drawTexture(_pieces[i], _pieces[i].Color);
+					 dg.drawTexture(_pieces[i], _pieces[i].Color);
 			// add else as in drawDebug()?
+#endif
 		}
 
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-				dg.draw(_pieces[i], _pieces[i].Color, -1);
+				dg.Draw(_pieces[i], 1, _pieces[i].Color);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].draw(dg);

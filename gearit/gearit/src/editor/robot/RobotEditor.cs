@@ -471,8 +471,8 @@ namespace gearit.src.editor.robot
 				{
 					var pos = ori + 0.5f * new Vector2((float)Math.Cos(i * delta),
 						(float)Math.Sin(i * delta));
-					DrawGame.DrawCircle(pos, (i == unit ? power * 0.05f : 0.05f),
-						(i == unit) ? new Color(0.5f, 0.2f + power / 10f, power / 20f, 1) : Color.Brown , true);
+					DrawGame.DrawCircle(pos, (i == unit ? power * 0.05f : 0.05f), 1,
+						(i == unit) ? new Color(0.5f, 0.2f + power / 10f, power / 20f, 1) : Color.Brown);
 				}
 			}
 		}
@@ -482,9 +482,9 @@ namespace gearit.src.editor.robot
 			if (_currentAction.Type() == ActionTypes.PICK_COLOR)
 			{
 				var act = (ActionPickColor)_currentAction;
-				DrawGame.DrawCircle(act.Origin, 0.1f, Color.White, true);
-				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, Color.Red);
-				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, Color.Black);
+				DrawGame.DrawCircle(act.Origin, 0.1f, 1, Color.White);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, 2, Color.Red, Color.Red);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, 2, Color.Black, Color.Black);
 			}
 		}
 

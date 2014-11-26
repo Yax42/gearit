@@ -36,7 +36,7 @@ namespace gearit.src.editor.map.action
 			}
 			else
 			{
-				_trigger = MapEditor.Instance.SelectTrigger;
+				_trigger = (Trigger) MapEditor.Instance.SelectVirtualItem;
 				_verticeId = _trigger.GetCloseCornerId(Input.VirtualSimMousePos);
 				_from = _trigger.Corner(_verticeId);
 			}
@@ -49,8 +49,11 @@ namespace gearit.src.editor.map.action
 			return Input.CtrlShift(false, true) &&
 				Input.justPressed(MouseKeys.RIGHT) &&
 				!MapEditor.Instance.IsSelectDummy() &&
-				(ActionSwapEventMode.EventMode ||
-				MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk));
+				((ActionSwapEventMode.EventMode &&
+				MapEditor.Instance.SelectVirtualItem.GetType() == typeof(Trigger))
+				||
+				(!ActionSwapEventMode.EventMode &&
+				MapEditor.Instance.SelectChunk.GetType() == typeof(PolygonChunk)));
 		}
 
 		public bool run()

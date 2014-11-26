@@ -11,7 +11,7 @@ namespace gearit.src.map
 	/// Areas that will be triggered when a robot comes in
     /// </summary>
 	[Serializable()]
-	public class Trigger : ISerializable
+	public class Trigger : ISerializable, IVirtualItem
 	{
 		public const int IdMax = 32;
 		private Vector2[] _Vertices;
@@ -155,11 +155,13 @@ namespace gearit.src.map
 			_Vertices[3] = new Vector2(From.X, To.Y);
 		}
 
-		public void DrawDebug(DrawGame dg, Color col)
+		public void DrawDebug(DrawGame dg, bool isSelect = false)
 		{
-			for (int i = 0; i < Id; i++ )
-				dg.DrawCircle(new Vector2(From.X + 0.2f * i, From.Y), 0.1f, Color.Black);
-			dg.drawPolygon(_Vertices, 0, 4, col);
+			for (int i = 0; i < Id; i++)
+				dg.DrawCircle(new Vector2(From.X + 0.2f * i, From.Y), 0.1f, 1, Color.Black);
+			Color col = Color.Violet;
+			col.A = 150;
+			dg.DrawPolygon(_Vertices, 0, 4, isSelect ? 3 : 1, col, Color.Yellow);
 		}
 	}
 }

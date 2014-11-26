@@ -66,6 +66,18 @@ namespace gearit.src.script
 			RobotCount--;
 		}
 
+		public bool Debug
+		{
+			get
+			{
+				return _game.Map.Debug;
+			}
+			set
+			{
+				_game.Map.Debug = value;
+			}
+		}
+
 		public float Time
 		{
 			get

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using gearit.src.editor;
 using gearit.src.editor.map;
 using gearit.src.utility;
+using gearit.src.editor.map.action;
 
 namespace gearit.src.map
 {
@@ -20,6 +21,7 @@ namespace gearit.src.map
 	[Serializable()]
 	class Map : GI_File, ISerializable
 	{
+		public bool Debug = false;
 		public List<MapChunk> Chunks;
 		public List<Artefact> Artefacts;
 		public List<Trigger> Triggers;
@@ -73,6 +75,24 @@ namespace gearit.src.map
 			return (null);
 		}
 
+		public Artefact GetArtefact(Vector2 p)
+		{
+			Artefact res = null;
+			float lowest = 10;
+			foreach (Artefact spawn in Artefacts)
+			{
+				float distance = (spawn.Position - p).LengthSquared();
+				if (distance < lowest)
+				{
+					res = spawn;
+					lowest = distance;
+				}
+			}
+			if (lowest > 0.15f)
+				return null;
+			return res;
+		}
+
 		public MapChunk GetChunk(Vector2 p)
 		{
 			foreach (MapChunk i in Chunks)
@@ -93,16 +113,37 @@ namespace gearit.src.map
 
 		public void Draw(DrawGame dg)
 		{
-			Color col;
+			DrawDebug(dg, true, Debug);
+		}
 
-			foreach(MapChunk chunk in Chunks)
+		public int NextArtefactFreeId(int id)
+		{
+			return GetArtefactFreeId(id, 1);
+		}
+
+		public int PrevArtefactFreeId(int id)
+		{
+			return GetArtefactFreeId(id, -1);
+		}
+
+		public int GetArtefactFreeId(int id, int delta)
+		{
+			bool ok = false;
+			while (!ok && id >= 0)
 			{
-				if (MapEditor.Instance.SelectChunk == chunk)
-					col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
-				else
-					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
-				dg.draw(chunk, col);
+				ok = true;
+				foreach (Artefact a in Artefacts)
+				{
+					if (a.Id == id)
+					{
+						ok = false;
+						break;
+					}
+				}
+				if (!ok)
+					id += delta;
 			}
+			return id;
 		}
 
 		public void DrawDebug(DrawGame dg, bool printColor, bool printEvents)
@@ -114,21 +155,17 @@ namespace gearit.src.map
 				if (printColor)
 					col = chunk.Color;
 				else
-				{
-					if (MapEditor.Instance.SelectChunk == chunk)
-						col = (chunk.BodyType == BodyType.Static) ? Color.Red : Color.Blue;
-					else
-						col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
-				}
-				dg.draw(chunk, col, printColor ? -1 : 128);
+					col = (chunk.BodyType == BodyType.Static) ? Color.Brown : Color.Purple;
+				bool bounding = !ActionSwapEventMode.EventMode && !printColor && MapEditor.Instance.SelectChunk == chunk;
+				dg.Draw(chunk, bounding ? 3 : 1, col, Color.Yellow, printColor ? -1 : 128);
 			}
 
 			if (printEvents)
 			{
 				foreach (Artefact artefact in Artefacts)
-					artefact.DrawDebug(dg);
+					artefact.DrawDebug(dg, artefact == MapEditor.Instance.SelectVirtualItem);
 				foreach (Trigger trigger in Triggers)
-                    trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectTrigger ? Color.BlueViolet : Color.HotPink);
+					trigger.DrawDebug(dg, trigger == MapEditor.Instance.SelectVirtualItem);
 			}
 		}
 	}

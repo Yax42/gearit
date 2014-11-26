@@ -32,8 +32,8 @@ namespace gearit.src.editor.map
 		private Trigger _dummyTrigger;
 		private MapChunk _selectedChunk;
 		private MapChunk _selectedMirrorChunk;
-		private Trigger _selectedTrigger;
-		private Trigger _selectedMirrorTrigger;
+		private IVirtualItem _selectedVirtualItem;
+		private IVirtualItem _selectedMirrorVirtualItem;
 
 		//Action
 		private List<IAction> _actionsLog;
@@ -63,30 +63,30 @@ namespace gearit.src.editor.map
 			}
 		}
 
-		public Trigger SelectTrigger
+		public IVirtualItem SelectVirtualItem
 		{
 			get
 			{
 				if (MirrorAxis.Active)
-					return _selectedMirrorTrigger;
+					return _selectedMirrorVirtualItem;
 				else
-					return _selectedTrigger;
+					return _selectedVirtualItem;
 			}
 			set
 			{
 				if (value == null)
 					value = _dummyTrigger;
 				if (MirrorAxis.Active)
-					_selectedMirrorTrigger = value;
+					_selectedMirrorVirtualItem = value;
 				else
-					_selectedTrigger = value;
+					_selectedVirtualItem = value;
 			}
 		}
 
 		public bool IsSelectDummy()
 		{
 			if (ActionSwapEventMode.EventMode)
-				return SelectTrigger == _dummyTrigger;
+				return SelectVirtualItem == _dummyTrigger;
 			else
 				return SelectChunk == _dummyChunk;
 		}
@@ -139,8 +139,8 @@ namespace gearit.src.editor.map
 
 			_selectedMirrorChunk = _dummyChunk;
 			_selectedChunk = _dummyChunk;
-			_selectedMirrorTrigger = _dummyTrigger;
-			_selectedTrigger = _dummyTrigger;
+			_selectedMirrorVirtualItem = _dummyTrigger;
+			_selectedVirtualItem = _dummyTrigger;
 
 			_prevName = Map.FullPath;
 			ScreenManager.Game.ResetElapsedTime();
@@ -281,7 +281,7 @@ namespace gearit.src.editor.map
 			_redoActionsLog.Clear();
 			Map = map;
 			SelectChunk = null;
-			SelectTrigger = null;
+			SelectVirtualItem = null;
 		}
 		//-----------------------------------------------------------------------
 
@@ -323,9 +323,9 @@ namespace gearit.src.editor.map
 			if (_currentAction.Type() == ActionTypes.PICK_COLOR)
 			{
 				var act = (ActionPickColor)_currentAction;
-				DrawGame.DrawCircle(act.Origin, 0.1f, Color.White, true);
-				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, Color.Red);
-				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, Color.Black);
+				DrawGame.DrawCircle(act.Origin, 0.1f, 1, Color.White);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray, 2, Color.Red, Color.Red);
+				DrawGame.DrawCircle(act.Origin, ActionPickColor.Ray * 2, 2, Color.Black, Color.Black);
 			}
 		}
 

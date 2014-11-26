@@ -15,10 +15,12 @@ using gearit.src.robot;
 using System.Diagnostics;
 
 namespace gearit.src
-
 {
 	public class DrawGame
 	{
+		public const int Paint = 1;
+		public const int Bounding = 2;
+
 		// a basic effect, which contains the shaders that we will use to draw our
 		// primitives. (it's about gpu)
 		private const int _circleSegments = 32;
@@ -120,6 +122,7 @@ namespace gearit.src
 			_primitiveBatch.End();
 		}
 
+#if false
 		public void drawTexture(Body b, Color c)
 		{
 			Transform xf;
@@ -163,6 +166,7 @@ namespace gearit.src
 					break;
 			}
 		}
+#endif
 
 		public void drawTriangle(Vector2 p1, Vector2 p2, Vector2 p3, Color col)
 		{
@@ -246,14 +250,15 @@ namespace gearit.src
 			}
 		}
 
-		public void draw(Body b, Color col, int a = 128)
+
+		public void Draw(Body b, int type, Color colPaint, Color colBounding = new Color(), int a = -1)
 		{
 			if (a > 0)
-				col.A = (byte) a;
+				colPaint.A = (byte) a;
 			Transform xf;
 			b.GetTransform(out xf);
 			foreach (Fixture f in b.FixtureList)
-				draw(f, xf, col);
+				Draw(f, xf, type, colPaint, colBounding);
 #if DRAW_DEBUG
 			if (b.GetType() == typeof(Rod))
 			{
@@ -272,7 +277,7 @@ namespace gearit.src
 			 ***/
 		}
 
-		private void draw(Fixture fixture, Transform xf, Color color)
+		private void Draw(Fixture fixture, Transform xf, int type, Color colPaint, Color colBounding = new Color())
 		{
 			switch (fixture.Shape.ShapeType)
 			{
@@ -283,10 +288,10 @@ namespace gearit.src
 						Vector2 center = MathUtils.Mul(ref xf, circle.Position);
 						float radius = circle.Radius;
 
-						DrawCircle(center, radius, color, true);
+						DrawCircle(center, radius, type, colPaint, colBounding);
 						float angle = fixture.Body.Rotation;
-						color = new Color(color.ToVector3() * 0.3f);
-						DrawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), color);
+						if ((type & Bounding) != 0)
+							DrawLine(center, center + new Vector2((float)(Math.Cos(angle)) * radius, (float) (Math.Sin(angle) * radius)), colBounding);
 					}
 					break;
 
@@ -301,7 +306,7 @@ namespace gearit.src
 							ver[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
 						}
 
-						drawPolygon(ver, 0, vertexCount, color);
+						DrawPolygon(ver, 0, vertexCount, type, colPaint, colBounding);
 					}
 					break;
 
@@ -310,7 +315,7 @@ namespace gearit.src
 						EdgeShape edge = (EdgeShape)fixture.Shape;
 						Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
 						Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
-						DrawLine(v1, v2, color);
+						DrawLine(v1, v2, colBounding);
 					}
 					break;
 			}
@@ -348,16 +353,19 @@ namespace gearit.src
 
 		}
 
-		public void drawPolygon(Vector2[] vertices, int from, int count, Color color, bool paint = true)
+		public void DrawPolygon(Vector2[] vertices, int from, int count, int type, Color colPaint, Color colBounding = new Color())
 		{
-			if (paint)
-				paintPolygon(vertices, from, count, color);
-			for (int i = from; i < count + from - 1; i++)
-				DrawLine(vertices[i], vertices[i + 1], color);
-			DrawLine(vertices[from + count - 1], vertices[from], color);
+			if ((type & Paint) != 0)
+				paintPolygon(vertices, from, count, colPaint);
+			if ((type & Bounding) != 0)
+			{
+				for (int i = from; i < count + from - 1; i++)
+					DrawLine(vertices[i], vertices[i + 1], colBounding);
+				DrawLine(vertices[from + count - 1], vertices[from], colBounding);
+			}
 		}
 
-		public void DrawCircle(Vector2 center, float radius, Color color, bool paint = false)
+		public void DrawCircle(Vector2 center, float radius, int type, Color colPaint, Color colBounding = new Color())
 		{
 			const double increment = Math.PI * 2.0 / _circleSegments;
 			double theta = 0.0;
@@ -373,7 +381,7 @@ namespace gearit.src
 				//drawLine(v1, v2, color);
 				theta += increment;
 			}
-			drawPolygon(vers, 0, _circleSegments, color, paint);
+			DrawPolygon(vers, 0, _circleSegments, type, colPaint, colBounding);
 		}
 
 		public void DrawSpirale(Vector2 pos, int total, int id, int size)
@@ -386,7 +394,7 @@ namespace gearit.src
 				float ray = 1 + delta * delta * 3;
 				Color col = new Color(new Vector4(0f, delta, 0f, 1f));
 				Vector2 deltaPos = new Vector2((float)Math.Cos(i * 10 * Math.PI / total), (float)Math.Sin(i * 10 * Math.PI / total)) * 10f * delta;
-				DrawCircle(pos + deltaPos, ray, col, true);
+				DrawCircle(pos + deltaPos, ray, Paint, col, Color.White);
 			}
 		}
 

@@ -8,17 +8,24 @@ using gearit.src.map;
 
 namespace gearit.src.editor.map.action
 {
-	class ActionSetTriggerId : IAction
+	class ActionSetVirtualItemId : IAction
 	{
-		private Trigger _trigger;
+		private IVirtualItem _item;
 		private int _from;
 		private int _to;
 
 		public void init()
 		{
-			_trigger = MapEditor.Instance.SelectTrigger;
-			_from = _trigger.Id;
-			_to = _from + (Input.justPressed(MouseKeys.LEFT) ? 1 : -1);
+			_item = MapEditor.Instance.SelectVirtualItem;
+			_from = _item.Id;
+			int delta = (Input.justPressed(MouseKeys.LEFT) ? 1 : -1);
+			_to = _from + delta;
+			if (_item.GetType() == typeof(Artefact))
+			{
+				_to = MapEditor.Instance.Map.GetArtefactFreeId(_to, delta);
+				if (_to < 0)
+					_to = _from;
+			}
 		}
 
 		public bool shortcut()
@@ -32,13 +39,13 @@ namespace gearit.src.editor.map.action
 
 		public bool run()
 		{
-			_trigger.Id = _to;
+			_item.Id = _to;
 			return false;
 		}
 
 		public void revert()
 		{
-			_trigger.Id = _from;
+			_item.Id = _from;
 		}
 
 		public bool canBeReverted { get { return true; } }
@@ -46,7 +53,7 @@ namespace gearit.src.editor.map.action
 
 		public bool actOnSelect() { return true; }
 
-		public ActionTypes Type() { return ActionTypes.SET_TRIGGER_ID; }
+		public ActionTypes Type() { return ActionTypes.SET_VIRTUAL_ITEM_ID; }
 	}
 }
 

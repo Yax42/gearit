@@ -46,7 +46,8 @@ namespace gearit.src.editor.map
 		private TextBox pos_x;
 		private TextBox pos_y;
 
-		private TextBox helper = new TextBox();
+		private Label helper = new Label();
+		private Label helper2 = new Label();
 
 		enum BType
 		{
@@ -225,31 +226,82 @@ namespace gearit.src.editor.map
 
 			#region Helper
 			helper.Text =
-			"Help (F1)\n" +
-			"----------------------------------------------------------------------------------------\n" +
-			"Select object.......................................(left click)\n" +
-			"Move object........................................(right click)\n" +
-			"Delete object.......................................(R)\n" +
-			"Resize object.......................................(shift+right click)\n" +
-			"Create wall..........................................(W)\n" +
-			"Create ball...........................................(shift+W)\n" +
-			"Switch object type................................(A)\n" +
-			"Move camera........................................(scroll click)\n" +
-			"Zoom/Unzoom.......................................(scrolling)\n" +
-			"Undo......................................................(ctrl+Z)\n" +
-			"Redo......................................................(ctrl+Y)\n" +
-			"Save.......................................................(ctrl+S)\n" +
-			"Save as...................................................(ctrl+shift+S)\n" +
-			"Load.......................................................(ctrl+D)\n" +
+			"Help\n" +
+			"---------------------\n" +
+
+			"Select object\n" +
+			"Move object\n" +
+			"Delete object\n" +
+			"Resize object\n" +
+			"Switch mode physical/virtual\n" +
+			"[Physical]---------------------\n" +
+			"Create wall\n" +
+			"Create ball\n" +
+			"Switch dynamic of object\n" +
+			"[Virtual]---------------------\n" +
+			"Create trigger area\n" +
+			"Create artefact\n" +
+			"Increment Id\n" +
+			"Decrement Id\n" +
+			"---------------------\n" +
+			"Color A\n" +
+			"Show actual colors\n" +
+			"Move camera\n" +
+			"Zoom / Unzoom\n" +
+			"---------------------\n" +
+			"Undo\n" +
+			"Redo\n" +
+			"Save\n" +
+			"Save as\n" +
+			"Load\n" +
+			"New\n" +
+			"";
+
+			helper2.Text =
+			"(F1)\n" +
+			"---------------------\n" +
+			"(Left click)\n" +
+			"(Right click)\n" +
+			"(R)\n" +
+			"(shift + Right click)\n" +
+			"(space)\n" +
+			"---------------------\n" +
+			"(W)\n" +
+			"(E)\n" +
+			"(A)\n" +
+			"---------------------\n" +
+			"(W)\n" +
+			"(E)\n" +
+			"(ctrl + Left click)\n" +
+			"(ctrl + Right click)\n" +
+			"---------------------\n" +
+			"(T)\n" +
+			"(shift + T)\n" +
+			"(scroll click / C)\n" +
+			"(scrolling)\n" +
+			"---------------------\n" +
+			"(ctrl + Z)\n" +
+			"(ctrl + Y)\n" +
+			"(ctrl + S)\n" +
+			"(ctrl + shift + S)\n" +
+			"(ctrl + D)\n" +
+			"(ctrl + N)\n" +
 			"";
 
 
-			helper.Size = new Squid.Point(370, 280);
-			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x, 0);
-			helper.Style = "messagebox";
+			helper.Size = new Squid.Point(200, 700);
+			helper2.Size = new Squid.Point(200, 700);
+			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x - 200, 0);
+			helper2.Position = new Squid.Point(ScreenManager.Width - helper2.Size.x, 0);
+			helper.Style = "helper";
+			helper2.Style = "helper";
+			helper2.TextAlign = Alignment.TopLeft;
 			helper.Parent = this;
+			helper2.Parent = this;
 			helper.Enabled = false;
+			helper2.Enabled = false;
 			helper.Visible = false;
+			helper2.Visible = false;
 			#endregion
 
 			#region action
@@ -436,6 +488,7 @@ namespace gearit.src.editor.map
 		public void swapHelp()
 		{
 			helper.Visible = !helper.Visible;
+			helper2.Visible = helper.Visible;
 			Help_btn.Checked = helper.Visible;
 		}
 

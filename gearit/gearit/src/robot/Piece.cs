@@ -378,7 +378,7 @@ namespace gearit.src.robot
 
 		public void draw(DrawGame dg)
 		{
-			dg.draw(this, Color);
+			dg.Draw(this, 1, Color);
 			if (_tex != null)
 				dg.drawTexture(_tex, _tex.Bounds, Color.White);
 		}

@@ -183,7 +183,7 @@ namespace gearit.src.game
 			_drawGame.Begin(Camera);
 			foreach (Robot r in Robots)
 				r.draw(_drawGame);
-			Map.DrawDebug(_drawGame, true, true);
+			Map.Draw(_drawGame);
 			_drawGame.End();
 			base.Draw(gameTime);
 		}

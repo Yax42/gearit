@@ -407,9 +407,9 @@ namespace gearit.src.robot
 		private void DrawDebug(DrawGame game, Vector2 pos)
 		{
 			//game.Batch().Draw(_tex, new Rectangle((int)corner.X, (int)corner.Y, (int)_spotSize * 2, (int)_spotSize * 2), ColorValue);
-			game.DrawCircle(pos, _spotSize * 1.2f, ColorValue, true);
+			game.DrawCircle(pos, _spotSize * 1.2f, 1, ColorValue);
 			if (SpotLimitEnabled)
-				game.DrawCircle(pos, _spotSize * 1f, Color.Pink, true);
+				game.DrawCircle(pos, _spotSize * 1f, 1, Color.Pink);
 			if (Frozen)
 				game.drawSquare(pos, _spotSize * 0.7f, Color.Yellow, true);
 		}

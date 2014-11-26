@@ -13,7 +13,7 @@ namespace gearit.src.editor.map.action
 	{
 		private bool _didRevert;
 		private MapChunk _chunk;
-		private Trigger _trigger;
+		private IVirtualItem _item;
 		private bool _isChunk;
 		private Vector2 _from;
 		private Vector2 _to;
@@ -28,8 +28,8 @@ namespace gearit.src.editor.map.action
 			}
 			else
 			{
-				_trigger = MapEditor.Instance.SelectTrigger;
-				_from = _trigger.Position;
+				_item = MapEditor.Instance.SelectVirtualItem;
+				_from = _item.Position;
 			}
 			_to = _from;
 			_didRevert = false;
@@ -48,7 +48,7 @@ namespace gearit.src.editor.map.action
 			if (_isChunk)
 				_chunk.Position = _to;
 			else
-				_trigger.Position = _to;
+				_item.Position = _to;
 
 			if (_didRevert)
 				return false;
@@ -61,7 +61,7 @@ namespace gearit.src.editor.map.action
 			if (_isChunk)
 				_chunk.Position = _from;
 			else
-				_trigger.Position = _from;
+				_item.Position = _from;
 		}
 
 		public bool canBeReverted { get { return true; } }

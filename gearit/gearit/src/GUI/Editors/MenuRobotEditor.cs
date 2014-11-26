@@ -580,8 +580,8 @@ namespace gearit.src.GUI
 
 
 
-			helper.Size = new Squid.Point(200, 710);
-			helper2.Size = new Squid.Point(200, 710);
+			helper.Size = new Squid.Point(200, 700);
+			helper2.Size = new Squid.Point(200, 700);
 			helper.Position = new Squid.Point(ScreenManager.Width - helper.Size.x - 200, 0);
 			helper2.Position = new Squid.Point(ScreenManager.Width - helper2.Size.x, 0);
 			helper.Style = "helper";

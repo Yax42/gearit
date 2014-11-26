@@ -164,6 +164,7 @@
     <Compile Include="src\GUI\Picker\ScreenPickRobot.cs" />
     <Compile Include="src\GUI\Tools\MessageBoxInput.cs" />
     <Compile Include="src\GUI\Tools\Theme.cs" />
+    <Compile Include="src\map\IVirtualItem.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Network\INetwork.cs" />
     <Compile Include="src\Network\PacketManager.cs" />
@@ -183,8 +184,7 @@
     <Compile Include="src\editor\map\action\ActionCreateArtefact.cs" />
     <Compile Include="src\editor\map\action\ActionCreateTrigger.cs" />
     <Compile Include="src\editor\map\action\ActionDeleteChunk.cs" />
-    <Compile Include="src\editor\map\action\ActionDeleteArtefact.cs" />
-    <Compile Include="src\editor\map\action\ActionDeleteTrigger.cs" />
+    <Compile Include="src\editor\map\action\ActionDeleteVirtualItem.cs" />
     <Compile Include="src\editor\map\action\ActionDummy.cs" />
     <Compile Include="src\editor\map\action\ActionExit.cs" />
     <Compile Include="src\editor\map\action\ActionFactory.cs" />
@@ -195,7 +195,7 @@
     <Compile Include="src\editor\map\action\ActionResizePolygon.cs" />
     <Compile Include="src\editor\map\action\ActionSaveMap.cs" />
     <Compile Include="src\editor\map\action\ActionSelect.cs" />
-    <Compile Include="src\editor\map\action\ActionSetTriggerId.cs" />
+    <Compile Include="src\editor\map\action\ActionSetVirtualItemId.cs" />
     <Compile Include="src\editor\map\action\ActionShowHelp.cs" />
     <Compile Include="src\editor\map\action\ActionUndo.cs" />
     <Compile Include="src\editor\map\action\ActionCreateWall.cs" />

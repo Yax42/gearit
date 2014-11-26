@@ -22,8 +22,7 @@ namespace gearit.src.editor.map.action
 		{
 			if (ActionSwapEventMode.EventMode)
 				return false;
-			return Input.justPressed(Keys.W)
-				&& Input.CtrlShift(false, true);
+			return Input.justPressed(Keys.E);
 		}
 
 		public bool run()
