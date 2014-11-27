@@ -29,6 +29,7 @@ namespace gearit.src.editor.robot.action
 			Debug.Assert(RobotEditor.Instance.Select1.GetType() == typeof(Heart));
 			Heart = (Heart) RobotEditor.Instance.Select1;
 			From = Heart.getShapeClone();
+			To = From;
 			_corner = Heart.getCorner(Input.VirtualSimMousePos);
 			_moving = true;
 			_isFirstFrame = true;
@@ -74,14 +75,7 @@ namespace gearit.src.editor.robot.action
 				if (Heart.addCorner(Input.VirtualSimMousePos))
 					_didSomething = true;
 			}
-			if ((Input.justPressed(Keys.S) == true && !_isFirstFrame) || Input.justPressed(Keys.Escape))
-			{
-				To = Heart.getShapeClone();
-				return false;
-			}
-			if (Input.released(Keys.S))
-				_isFirstFrame = false;
-			return true;
+			return Input.pressed(Keys.S);
 		}
 
 		public void revert()
