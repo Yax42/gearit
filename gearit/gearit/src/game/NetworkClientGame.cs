@@ -218,6 +218,11 @@ namespace gearit.src.Network
 				return ;
 			if (Status == Status.Init)
 				NetworkClient.ApplyBruteRequests();
+			if (_exiting)
+			{
+				Exit();
+				return;
+			}
 
 			ProcessChatboxMessage();
 			//Console.Out.WriteLine("Client " + NetworkClient.Requests.Count);

@@ -214,11 +214,16 @@ namespace gearit.src.Network
 		{
 			if (p == null)
 				p = Peers.First();
+			BruteSendCo(p.Connect, dataPart2);
+		}
+
+		public void BruteSendCo(NetConnection co, byte[] dataPart2)
+		{
 			byte[] data = BitConverter.GetBytes(-1);
 			data = data.Concat(dataPart2).ToArray();
 			NetOutgoingMessage om = Peer.CreateMessage();
 			om.Write(data);
-			Peer.SendMessage(om, p.Connect, NetDeliveryMethod.ReliableOrdered, 0);
+			Peer.SendMessage(om, co, NetDeliveryMethod.ReliableOrdered, 0);
 		}
 
 		public void BruteSpread(byte[] dataPart2, int id = -1)

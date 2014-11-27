@@ -488,7 +488,7 @@ namespace gearit.src.robot
 		public void draw(DrawGame dg)
 		{
 			for (int i = 0; i < _pieces.Count; i++)
-				dg.Draw(_pieces[i], 1, _pieces[i].Color);
+				dg.Draw(_pieces[i], 1, _pieces[i].Color, Color.White, 170);
 				//_pieces[i].draw(dg);
 			for (int i = 0; i < _spots.Count; i++)
 				_spots[i].draw(dg);

@@ -149,6 +149,10 @@ namespace gearit.src.Network
 								if (IsSenderValid(msg))
 									RemovePeer(GetPeer(msg));
 							}
+							else
+							{
+								BruteSendCo(msg.SenderConnection, PacketManager.GameCommandToBytes(PacketManager.GameCommand.End));
+							}
                             break;
                         case NetIncomingMessageType.Data:
 							if (IsSenderValid(msg))
