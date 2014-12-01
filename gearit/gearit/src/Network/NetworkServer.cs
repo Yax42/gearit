@@ -149,7 +149,7 @@ namespace gearit.src.Network
 								if (IsSenderValid(msg))
 									RemovePeer(GetPeer(msg));
 							}
-							else
+							else if (Peers.Count() >= MaxPlayers && LockConnections)
 							{
 								BruteSendCo(msg.SenderConnection, PacketManager.GameCommandToBytes(PacketManager.GameCommand.End));
 							}
@@ -217,7 +217,9 @@ namespace gearit.src.Network
 		public override void RemovePeer(Peer p)
 		{
 			PushEvent(PacketManager.RemoveRobot(p.Id));
-			Game.RemoveRobot(Game.RobotFromId(p.Id));
+			Robot r = Game.RobotFromId(p.Id);
+			if (r != null)
+				Game.RemoveRobot(r);
 			p.Connect.Disconnect("cya");
 			Peers.Remove(p);
 		}
