@@ -15,6 +15,8 @@ using gearit.src.editor;
 using gearit.src.robot;
 using gearit.src;
 using System.Diagnostics;
+using FarseerPhysics.Dynamics.Contacts;
+using gearit.src.xna.Sound;
 
 namespace gearit.src.robot
 {
@@ -126,7 +128,20 @@ namespace gearit.src.robot
 			if (_fix != null && _fix.Body != null)
 				DestroyFixture(_fix);
 			_fix = CreateFixture(shape, null);
+
+            // Adding a callback when this fixture collides with something.
+            _fix.OnCollision += new OnCollisionEventHandler(fixtureSoundCallback);
 			UpdateCollision();
+		}
+
+        // Called when a fixture collides
+		protected bool fixtureSoundCallback(Fixture fa, Fixture fb, Contact c)
+		{
+            // Play the sound only if the fixture collides with a dynamic body
+            // Maybe add more conditions, such as checking the force impact (low or strong), or a timer so there is no spam in some cases
+            if (fb.Body.BodyType == FarseerPhysics.Dynamics.BodyType.Dynamic)
+				AudioManager.Instance.PlaySound("collide_dynamic");
+			return true;
 		}
 
 		public void UpdateCollision()
