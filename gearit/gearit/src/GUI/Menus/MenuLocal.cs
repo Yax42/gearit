@@ -36,11 +36,11 @@ namespace gearit.src.gui
 
 	class MenuLocal : GameScreen, IDemoScreen
 	{
-        Task taskMasterServer = null;
+        static Task taskMasterServer = null;
         Desktop _desktop;
-        bool refreshing = false;
+        static bool refreshing = false;
         Button btn_refresh = new Button();
-        TcpClient client;
+        static TcpClient client;
 		ScreenPickManager picker;
 
         const int DIALOG_WIDTH = 400;
@@ -71,7 +71,7 @@ namespace gearit.src.gui
 				config.EnableMessageType(NetIncomingMessageType.DiscoveryResponse);
 				NetClient client = new NetClient(config);
 				client.Start();
-				Console.WriteLine(">>> " + NetUtility.GetBroadcastAddress().ToString());
+				//Console.WriteLine(">>> " + NetUtility.GetBroadcastAddress().ToString());
 				
 				client.DiscoverLocalPeers(INetwork.SERVER_PORT);
 
@@ -220,6 +220,7 @@ namespace gearit.src.gui
 
                 cell.MouseDoubleClick += delegate(Control snd, MouseEventArgs e)
                 {
+					endThread();
 					picker = new ScreenPickManager(false, true,
 					delegate()
 					{
@@ -233,7 +234,8 @@ namespace gearit.src.gui
             };
 
 			olv.SetObjects(models);
-			btn_refresh.Click(0);
+			//btn_refresh.Click(0);
+			btn_MouseClick(null, null);
 		}
 
 		public override void UnloadContent()
@@ -241,17 +243,19 @@ namespace gearit.src.gui
 			base.UnloadContent();
 		}
 
+		void endThread()
+		{
+			if (refreshing)
+            {
+				refreshing = false;
+				taskMasterServer.Wait();
+			}
+		}
+
         void btn_MouseClick(Control sender, MouseEventArgs args)
         {
-            if (refreshing)
-            {
-                refreshing = false;
-                taskMasterServer.Wait();
-                btn_refresh.Text = "Refresh";
-                return;
-            }
+			endThread();
             refreshing = !refreshing;
-            btn_refresh.Text = refreshing ? "Cancel" : "Refresh";
             taskMasterServer = new Task(() =>
             {
                 th_getServers();
