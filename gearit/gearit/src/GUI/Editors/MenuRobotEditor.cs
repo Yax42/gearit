@@ -53,7 +53,6 @@ namespace gearit.src.GUI
 		private TextBox _box_force;
 
 		// Piece & Spot
-		private ScreenManager _ScreenManager;
 		private ListBox menu_listbox = new ListBox();
 		private Panel background = new Panel();
 		private Button rb_pieceChoice = new Button();
@@ -131,8 +130,6 @@ namespace gearit.src.GUI
 			#region main
 
 			#region init
-
-			_ScreenManager = ScreenManager;
 
 			padding_x = RobotEditor.Instance.VisibleMenu ? ScreenMainMenu.MENU_WIDTH : 0;
 
@@ -763,8 +760,8 @@ namespace gearit.src.GUI
 
 			_panelScript.Visible = false;
 
-			_panelScript.Position = new Point(padding_x + MENU_WIDTH, _ScreenManager.Height - ITEM_HEIGHT);
-			_panelScript.Size = new Point(_ScreenManager.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
+			_panelScript.Position = new Point(padding_x + MENU_WIDTH, ScreenManager.Instance.Height - ITEM_HEIGHT);
+			_panelScript.Size = new Point(ScreenManager.Instance.Width - padding_x - MENU_WIDTH, ITEM_HEIGHT);
 			// Add event
 			btn_add_event.Parent = _panelScript;
 			btn_add_event.Size = new Point(_panelScript.Size.x, ITEM_HEIGHT);
@@ -928,11 +925,11 @@ namespace gearit.src.GUI
 			}
 
 			// Resize script editor container to show them all if we can
-			if (y > _ScreenManager.Height / 2)
-				y = _ScreenManager.Height / 2;
+			if (y > ScreenManager.Instance.Height / 2)
+				y = ScreenManager.Instance.Height / 2;
 
 			_panelScript.Size = new Point(_panelScript.Size.x, y);
-			_panelScript.Position = new Point(_panelScript.Position.x, _ScreenManager.Height - y);
+			_panelScript.Position = new Point(_panelScript.Position.x, ScreenManager.Instance.Height - y);
 		}
 
 		void dragPiece(Control sender, MouseEventArgs e)

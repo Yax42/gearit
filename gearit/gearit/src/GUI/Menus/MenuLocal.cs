@@ -247,6 +247,7 @@ namespace gearit.src.gui
 		{
 			if (refreshing)
             {
+				Console.WriteLine("exited");
 				refreshing = false;
 				taskMasterServer.Wait();
 			}

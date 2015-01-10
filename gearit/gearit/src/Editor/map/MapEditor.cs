@@ -160,6 +160,10 @@ namespace gearit.src.editor.map
 		public override void QuickLoadContent()
 		{
 			MenuMapEditor.Instance.setFocus(false);
+
+			_camera = new EditorCamera(ScreenManager.Instance.GraphicsDevice.Viewport);
+			_camera.Position = new Vector2(-500f, -100f);
+			MenuMapEditor.Instance.quickLoadContent();
 		}
 
 		public override void Update(GameTime gameTime)

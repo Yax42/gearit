@@ -173,6 +173,9 @@ namespace gearit.src.editor.robot
 		public override void QuickLoadContent()
 		{
 			MenuRobotEditor.Instance.setFocus(false);
+
+			_camera = new EditorCamera(ScreenManager.Instance.GraphicsDevice.Viewport);
+			_camera.Position = new Vector2(-500f, -100f);
 		}
 
 		public void selectHeart()

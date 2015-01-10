@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework.Input;
+using gearit.xna;
 
 namespace SquidXNA
 {
@@ -203,6 +204,10 @@ namespace SquidXNA
 		{
 			if (x < 0) x = 0;
 			if (y < 0) y = 0;
+			if (x + w > ScreenManager.Instance.Width)
+				w = ScreenManager.Instance.Width - x;
+			if (y + h > ScreenManager.Instance.Height)
+				h = ScreenManager.Instance.Height - y;
 			// Scissor (dont draw if not in rect)
 			Game.GraphicsDevice.ScissorRectangle = new Rectangle(x, y, w, h);
 		}

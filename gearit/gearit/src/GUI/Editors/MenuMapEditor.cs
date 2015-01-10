@@ -371,6 +371,11 @@ namespace gearit.src.editor.map
 			background.Size = new Point(MENU_WIDTH, y);
 		}
 
+		public void quickLoadContent()
+		{
+		}
+
+
 		public void Update()
 		{
 			base.Update();
