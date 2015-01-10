@@ -12,9 +12,11 @@ namespace gearit.xna
 		public SpriteFont FrameRateCounterFont;
 		public SpriteFont MenuSpriteFont;
 		public SpriteFont TitleFont;
+		static public Texture2D LogoTexture;
 
 		public SpriteFonts(ContentManager contentManager)
 		{
+			LogoTexture = ScreenManager.Instance.Content.Load<Texture2D>("GUI/logo");
 			NormalFont = contentManager.Load<SpriteFont>("GUI/Fonts/Normal");
 			MenuSpriteFont = contentManager.Load<SpriteFont>("Fonts/menuFont");
 			FrameRateCounterFont = contentManager.Load<SpriteFont>("Fonts/frameRateCounterFont");

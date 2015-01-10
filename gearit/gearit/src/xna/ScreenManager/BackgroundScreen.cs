@@ -19,6 +19,7 @@ namespace gearit.xna
 		private Texture2D _backgroundTexture;
 		private Rectangle _logoDestination;
 		private Texture2D _logoTexture;
+		private Texture2D _logoBeautyTexture;
 		private Rectangle _viewport;
 		private Texture2D _logoGearit;
 		private Rectangle _logoGearitDestination;
@@ -35,6 +36,7 @@ namespace gearit.xna
 		public override void LoadContent()
 		{
 			_logoTexture = ScreenManager.Content.Load<Texture2D>("Common/logo");
+			_logoBeautyTexture = ScreenManager.Content.Load<Texture2D>("GUI/logo");
 			//_backgroundTexture = ScreenManager.Content.Load<Texture2D>("Common/gradient");
 			_backgroundTexture = ScreenManager.Content.Load<Texture2D>("Common/bg");
 			_logoGearit = ScreenManager.Content.Load<Texture2D>("Common/bg_gearit");
@@ -84,6 +86,7 @@ namespace gearit.xna
 		{
 			ScreenManager.SpriteBatch.Begin();
 			ScreenManager.SpriteBatch.Draw(_backgroundTexture, ScreenManager.GraphicsDevice.Viewport.Bounds, Color.White);
+			ScreenManager.SpriteBatch.Draw(_logoBeautyTexture, _logoDestination, Color.White * 0.6f);
 			//ScreenManager.SpriteBatch.Draw(_logoTexture, _logoDestination, Color.White * 0.6f);
 			//ScreenManager.SpriteBatch.Draw(_logoGearit, _logoGearitDestination, Color.White * 0.6f);
 			ScreenManager.SpriteBatch.End();

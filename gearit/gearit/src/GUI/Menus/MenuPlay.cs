@@ -109,7 +109,7 @@ namespace gearit.src.editor.map
 			{
 				changeSubmenu(new MenuLocal());
 			};
-			btn.Click(0);
+			//btn.Click(0);
 
 			y += 2 * btn.Size.y + PADDING;
 			_btnServer = new Button();

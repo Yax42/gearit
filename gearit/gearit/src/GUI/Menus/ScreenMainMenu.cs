@@ -143,7 +143,7 @@ namespace GUI
 
 			addMenuItem(_quit, _quit.GetTitle().ToUpper());
 
-			menu_listbox.Items[0].Click(0);
+			//menu_listbox.Items[0].Click(0);
 
 			_rasterizer = new RasterizerState() { ScissorTestEnable = true };
 			_sampler = new SamplerState();
@@ -248,18 +248,21 @@ namespace GUI
 
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
 			// Draw menu border
-			Squid.Point menu_size = _current_screen.getMenuSize();
-            ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
-			if (_current_screen != null && menu_size.x != 0)
+			if (_current_screen != null)
 			{
-				Squid.Point menu_pos = _current_screen.getMenuPosition();
-				VertexPositionColor[] verts = new VertexPositionColor[3];
-				verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
-				verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
-				verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4 - 0.5f, 0), Theme.CurrentTheme.Grayie);
-                //Console.WriteLine("ScreenMainMenu menu_size :" + menu_size);
-                ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
-                //Console.WriteLine("ScreenMainMenu menu_position : " + _current_screen.getMenuPosition());
+				Squid.Point menu_size = _current_screen.getMenuSize();
+				ScreenManager.Instance.GraphicsDevice.ScissorRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, ScreenManager.Width, ScreenManager.Height);
+				if (menu_size.x != 0)
+				{
+					Squid.Point menu_pos = _current_screen.getMenuPosition();
+					VertexPositionColor[] verts = new VertexPositionColor[3];
+					verts[0] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
+					verts[1] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f + menu_size.x, menu_pos.y + menu_size.y - 0.5f, 0), Theme.CurrentTheme.Grayie);
+					verts[2] = new VertexPositionColor(new Vector3(menu_pos.x - 0.5f, menu_pos.y + menu_size.y + HEIGHT_TITLE * 4 - 0.5f, 0), Theme.CurrentTheme.Grayie);
+					//Console.WriteLine("ScreenMainMenu menu_size :" + menu_size);
+					ScreenManager.Instance.GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, verts, 0, 1);
+					//Console.WriteLine("ScreenMainMenu menu_position : " + _current_screen.getMenuPosition());
+				}
 			}
 
 			_dk_main_menu.Draw();
@@ -268,6 +271,8 @@ namespace GUI
 			ScreenManager.Instance.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, _sampler, null, _rasterizer);
             ScreenManager.Instance.BasicEffect.CurrentTechnique.Passes[0].Apply(); // don't worry be happy
 
+			if (_current_screen == null)
+				ScreenManager.SpriteBatch.Draw(SpriteFonts.LogoTexture, ScreenManager.Instance.GraphicsDevice.ScissorRectangle, Color.White);
 			Color color;
 			str_title = "GEARIT";
 			int nbSelected = 0;
