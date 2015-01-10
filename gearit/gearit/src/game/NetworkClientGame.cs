@@ -126,7 +126,7 @@ namespace gearit.src.Network
 			World.Gravity = new Vector2(0f, 9.8f);
 
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
-			config.ConnectionTimeout = 2000;
+			config.ConnectionTimeout = 5;
 			config.ResendHandshakeInterval = 1;
 			config.MaximumHandshakeAttempts = 2;
 			NetworkClient = new NetworkClient(config, PacketManager);
@@ -232,7 +232,6 @@ namespace gearit.src.Network
 			HandleInput();
 
 			World.Step(delta);
-
 
 			//for (int i = 0; i < MainRobot.Spots.Count; i++)
 			//	NetworkClient.PushRequest(PacketManager.MotorForce(i));

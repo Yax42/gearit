@@ -46,6 +46,7 @@ namespace gearit.src.Network
 				Instance.Stop();
 			MenuPlay.Instance.SetServerBtn(true);
             NetPeerConfiguration config = new NetPeerConfiguration("gearit");
+			config.ConnectionTimeout = 5;
             config.MaximumConnections = 100;
             config.Port = port;
 			config.EnableMessageType(NetIncomingMessageType.DiscoveryRequest);
